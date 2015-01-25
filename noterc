@@ -1,0 +1,4 @@
+UseColors = YES
+TempDirectory = ~/temp
+TimeFormat = MM/DD/YYYY hh:mm:ss 
+

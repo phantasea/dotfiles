@@ -1,0 +1,15 @@
+[user]
+	name = phantasea
+	email = phantasea@gmail.com
+
+[color]
+    ui = true
+
+[core]
+    editor = vim
+
+[merge]
+    tool = vimdiff
+
+[alias]
+    ci = commit

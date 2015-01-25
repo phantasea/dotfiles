@@ -1,0 +1,9 @@
+# Freesweep version 0.90
+# This is a generated file, but you can edit it if you like.
+Height=20
+Width=20
+Percent=30
+FastStart=1
+Color=1
+LineDraw=1
+Alert=None

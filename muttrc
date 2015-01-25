@@ -1,0 +1,116 @@
+#---------------------------------------------------------------
+# file:     ~/.mutt/muttrc                         
+# vim:fenc=utf-8:ai:si:et:ts=4:sw=4:
+#---------------------------------------------------------------
+
+#set pager="w3m"
+set editor="vim +/^$ +noh -c 'set ft=mail'"    #打开vim并定位到首个空白行，并取消高亮
+set query_command="abook --mutt-query '%s'"
+#set ispell="/usr/bin/aspell -e -c"  #use aspell as ispell
+set sendmail="/usr/bin/msmtp"
+set realname="chris"
+set mbox_type=Maildir
+set folder="~/.mail"
+set spoolfile="~/.mail/inbox"
+set mbox="~/.mail/inbox"
+set record="~/.mail/sent"
+set postponed="~/.mail/draft"
+set trash="~/.mail/trash"
+#set signature="/usr/games/fortune-zh song100 tang300|col -bp|sed '/m/s/^3.m\\(.*\\)m/\\1/'|"
+set signature="~/.signature"
+set mailcap_path="~/.mutt/mailcap"
+set alias_file="~/.mutt/alias"
+source "~/.mutt/alias"
+source "~/.mutt/color"
+source "~/.mutt/keymap"
+source "~/.mutt/score"
+
+set use_from=yes
+set include=no
+set edit_headers=yes #see the headers when editing
+set forward_quote=yes
+set envelope_from=yes
+set maildir_trash=yes
+set sig_dashes=yes
+set move=no
+set delete=yes
+set header=no
+set reverse_alias=yes  #show names from alias file in index
+set sort=reverse-date
+set sort_browser=alpha
+set sort_alias=alias
+set mark_old=no
+set markers=no
+set beep=no
+set quit=yes  #不提示直接退出
+set help=no #当你按"r"回信时，不提示你输入回信地址和主题，直接进入编辑模式
+set fast_reply=yes #外部程序退出时，是否要求用户按一个键才返回，这在察看某些shell命令输出时是必要的，否则它们一下就消失了
+set wait_key=no #退出外部pager时，不提示按键直接回到index
+set prompt_after=no #如果翻到最后，再按往下翻也不会翻到下一封信件
+set pager_stop=yes #当按"t" 或"D"等标记操作时，是否自动把光标移动到下一封信件
+set menu_scroll=yes
+set smart_wrap=yes
+set resolve=yes #当你在用 pager 看信件时，在 index 留出多少行显示邮件列表？
+set pager_index_lines=0 #当在index操作时针对所有tagged的消息
+set auto_tag=yes
+set check_new=no #get notified if new mail arrived in inbox
+#set timeout=15
+#set mail_check=90
+#set sleep_time= 0  #instantaneous mailbox change
+
+#my_hdr Org: SIMONE
+
+ignore * 
+unignore  from: to: subject: date:
+hdr_order from: to: subject: date:
+
+set status_chars="*+%A"
+set date_format   = "%b/%d/%y %I:%M%p"
+set index_format  = "%3C [%S] %D (%X) %-15.15L • %s"
+#set attach_format =
+#set compose_format=
+#set message_format=
+#set query_format  =
+#set pager_format  = "Reading message %C of %m %> %lL [%P]"
+#set folder_format = "%2C %t %N %8s %d %f"
+#set status_format = " %?M?%M/?%m Mails %?n?%n new, ?%?u?%u unread, ?%?p?%p drafts, ?%?t?%t +tagged, ?%?d?%d deleted, ?[%f %l]  %?b?%b unread messages. ?%>  %V  [%P]"
+#set alias_format  = "%4n %t %-20a  %r"
+#set forward_format= "Fwd: %s"
+
+set charset=UTF-8
+set locale=UTF-8
+set send_charset="us-ascii:iso-8859-1:utf-8:gbk:gb2312:big5"
+set assumed_charset="gb2312:gbk:utf-8:big5"
+set rfc2047_parameters=yes
+
+#有些没有设置字符编码时
+#charset-hook ^us-ascii$ gb2312
+#Chinaren 等服务器发出来的信件使用了quoted-printable的subject，
+#而且设置编码为 "iso8859-1"，这显然是错误的。
+#对付这个错误的办法是把iso-8859-1变成gb2312的别名
+#charset-hook ^iso-8859-1$ gb2312
+#evolution发过来的subject为utf-8编码的邮件标题乱码！
+#那就把不是utf-8的编码都映射到gb2312
+#charset-hook !utf-8 gb2312
+#charset-hook .* gb2312
+#charset-hook !UTF-8 gbk
+#charset-hook "^us-ascii$" "utf-8"
+
+# Mailing lists
+lists arch-announce@archlinux.org
+subscribe arch-announce@archlinux.org
+lists arch-general@archlinux.org
+subscribe arch-general@archlinux.org
+lists dev@suckless.org
+subscribe dev@suckless.org
+
+auto_view text/html
+auto_view image/*
+auto_view video/*
+auto_view audio/*
+auto_view application/pdf
+auto_view application/msword
+auto_view application/excel
+auto_view application/powerpoint
+auto_view application/pgp-keys
+

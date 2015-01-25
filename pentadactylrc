@@ -1,0 +1,106 @@
+" vim: set ft=vim:
+"1.0
+
+loadplugins '\.(js|penta)$'
+group user
+
+highlight Hint font:bold 12px "Droid Sans Mono",monospace !important;margin:-.2ex;padding: 0 0 0 1px;outline:1px solid rgba(0,0,0,.5);background:rgba(255,248,231,.8);color:red;text-transform:uppercase;
+set! browser.tabs.closeWindowWithLastTab=false
+set! browser.tabs.tabMinWidth=0
+set! browser.tabs.closeButtons=2
+set! disable_window_open_feature.close=true
+set! disable_window_open_feature.resizable=true
+set! dom.popup_maximum=1
+set! dom.popup_allowed_events=""
+set! network.cookie.cookieBehavior=1
+set! nglayout.initialpaint.delay=0
+set! network.http.pipelining=true
+set! network.http.proxy.pipelining=true
+set! network.http.pipelining.maxrequests=8
+set! plugin.expose_full_path=true
+set! privacy.popups.disable_from_plugins=3
+set! security.dialog_enable_delay=0
+
+"set noinsertmode
+set guioptions=CsN
+set hintkeys=hjklasdfgyuiopqwertnmzxcvb
+set history=64
+set maxitems=10
+set newtab=all
+set timeoutlen=2000
+set titlestring='Firefox'
+set defsearch=b
+
+nmap -b i gi
+nmap -b I gi<C-t>
+nmap -b gi i
+nmap -b <Tab>   gt
+nmap -b <S-Tab> gT
+nmap -b gh gT
+nmap -b gl gt
+nmap -b gH g0
+nmap -b gL g$
+nmap -b h 2h
+nmap -b l 2l
+nmap -b j 3j
+nmap -b k 3k
+nmap -b J <C-d>
+nmap -b K <C-u>
+nmap -b y :bmarks<CR>
+nmap -b Y :history<CR>
+nmap -b p <C-b>
+nmap -b q D
+nmap -b Q d
+nmap -b v gf
+nmap -b V gF
+nmap -b x :stop<CR>
+nmap -b X :stopall<CR>
+nmap -b <BS> <Nop>
+nmap -b <C-S> :saveas<CR>
+nmap -b gq   ZZ
+nmap -b ? :helpall<CR>
+
+
+vmap -b p <Esc><Esc>p
+vmap -b P <Esc><Esc>P
+vmap -b y yv
+vmap -b o yv<Esc>p
+vmap -b t yv<Esc>P
+vmap -b s <C-v><C-c><Esc><Esc>s<C-v><C-v><CR>
+
+imap mpwd s0pH3aU07!6<Tab>
+imap bpwd s0pH34u10!5<Tab>
+imap spwd s0pH3aU10!5<Tab>
+
+nmap -b sn :tabmove! +1<CR>
+nmap -b sp :tabmove! -1<CR>
+nmap -b sj gt
+nmap -b sk gT
+nmap -b sl gt
+nmap -b sh gT
+nmap -b sa :emenu Tile.New Layout.All Tabs - Vertical Grid<CR>
+nmap -b ss :emenu Tile.New Layout.2 Tabs - Horizontal<CR>
+nmap -b sv :emenu Tile.New Layout.2 Tabs - Vertical<CR>
+nmap -b sq :emenu Tile.Close Layout<CR>
+nmap -b su :emenu Tile.Untile Tab<CR>
+nmap -b sb :emenu Tile.Sync Scroll<CR>
+nmap -b se :emenu Tile.Expand Tile<CR>
+nmap -b src :source ~/.pentadactylrc<CR>
+
+nmap -b di :set! permissions.default.image=2<CR>
+nmap -b dj :set! javascript.enabled=false<CR>
+nmap -b ei :set! permissions.default.image=1<CR>
+nmap -b ej :set! javascript.enabled=true<CR>
+
+nmap -b w <Nop>
+nmap -b wbd :tabopen www.baidu.com<CR>
+nmap -b wgg :tabopen www.google.com/intl/en/<CR>
+nmap -b wsn :tabopen news.sina.com.cn<CR>
+nmap -b wff :tabopen https://addons.mozilla.org/en-US/firefox/<CR>
+nmap -b wuk :tabopen www.youku.com<CR>
+nmap -b wtd :tabopen www.tudou.com<CR>
+nmap -b wtb :tabopen www.taobao.com<CR>
+nmap -b wtm :tabopen www.tmall.com<CR>
+nmap -b wab :tabopen about:config<CR>
+
+

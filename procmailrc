@@ -1,0 +1,17 @@
+VERBOSE=yes
+MAILDIR=$HOME/.mail
+DEFAULT=$MAILDIR/inbox
+LOGFILE=$HOME/.log/procmail.log
+
+:0:
+* ^From:.*(Rachel|Malissavr|Suzy|Facebook|iTunes|LoveAgain)
+trash
+
+:0:
+* ^Delivered-To.*phantasea@gmail.com
+gmail
+
+:0:
+* ^Received.*pop.qq.com
+qmail
+

@@ -1,0 +1,72 @@
+" some map
+
+map Space <C-f>
+map Backspace <C-b>
+map J <C-d>
+map K <C-u>
+
+
+
+" if start apvlv as fullscreen mode, default is no
+set fullscreen=no
+
+" zoom value, default is fitwidth
+" zoom has 4 styles
+" a float type number
+" fitwidth
+" fitheight
+" normal
+"set zoom=fitwidth
+
+" set window size
+set width=800
+set height=600
+
+" set command timeout between two key press 
+set commandtimeout=3000
+
+" set default dir
+set defaultdir="/home/lynna/docs"
+
+" set if use content view
+set content=yes
+
+" set weather use continuous view 
+" make sure the autoscrollpage is set to "yes" if you want to set this to yes
+set continuous=yes
+
+" set a pad to continuous page
+set continuouspad=0
+
+" set if auto scroll page when at the end or begin of one pdf page
+set autoscrollpage=yes
+
+" set if auto scroll doc from 1st page when goto the last page
+set autoscrolldoc=yes
+
+" set if disable ~/.apvlvinfo, default is no
+set noinfo=no
+
+" set pdf object cache size
+set pdfcache = 4
+
+" set if use right and bottom scrollbar
+set scrollbar = no
+
+" set if use visual mode to select and copy text
+set visualmode = no
+
+" set if wrapscan text
+set wrapscan = yes
+
+" set double click action " option value is 'word', 'line' or 'page'
+set doubleclick = word
+
+" set GUI options " m means menu, T means toolbar
+" set guioptions = 
+
+" set if use auto reload document " > 0 means auto reload after some seconds. = 0 means not auto reload
+" set autoreload = 3
+
+" set if reverted pdf page
+" set reverted = no
