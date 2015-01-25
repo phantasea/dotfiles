@@ -96,16 +96,16 @@ set show-notes			= yes		# When non-bool passed as `--show-notes=...` (diff)
 
 # Misc
 set refresh-mode		= auto		# Enum: manual, auto, after-command, periodic
-set refresh-interval	= 10		# Interval in seconds between refreshes
+set refresh-interval		= 10		# Interval in seconds between refreshes
 set ignore-case			= no		# Ignore case when searching?
 set focus-child			= yes		# Move focus to child view when opened?
-set horizontal-scroll	= 50%		# Number of columns to scroll as % of width
-set split-view-height	= 67%		# Number of lines for bottom view as % of height
+set horizontal-scroll		= 50%		# Number of columns to scroll as % of width
+set split-view-height		= 67%		# Number of lines for bottom view as % of height
 set vertical-split		= auto		# Enum: horizontal, vertical, auto; Use auto to
 						# switch to horizontal split when width allows it
-set editor-line-number	= yes		# Automatically pass line number to editor? Used
+set editor-line-number		= yes		# Automatically pass line number to editor? Used
 						# for opening file at specific line e.g. from a diff
-set mouse				= no		# Enable mouse support?
+set mouse			= no		# Enable mouse support?
 set mouse-scroll		= 3		# Number of lines to scroll via the mouse
 
 # User-defined commands
@@ -154,39 +154,40 @@ bind refs	!	?git branch -D %(branch)
 # ---------------
 
 # View switching
-bind generic	<F1>	view-main
-bind generic	<F2>	view-diff
-bind generic	<F3>	view-log
-bind generic	<F4>	view-tree
-bind generic	<F5>	view-blob
-bind generic	<F6>	view-blame
-bind generic	<F7>	view-refs
-bind generic	<F8>	view-pager
-bind generic	<F9>	view-status
-bind generic	<F10>	view-stage
-bind generic	<F11>	view-stash
-bind generic	*   	view-grep
-bind generic	?   	view-help
+bind generic	m	view-main
+bind generic	d	view-diff
+bind generic	l	view-log
+bind generic	t	view-tree
+bind generic	f	view-blob
+bind generic	b	view-blame
+bind generic	r	view-refs
+bind generic	p	view-pager
+bind generic	H	view-help
+bind generic	s	view-status
+bind generic	S	view-status		# Compat binding to avoid going crazy!
+bind generic	c	view-stage
+bind generic	y	view-stash
+bind generic	?	view-grep
 
 # View manipulation
-bind generic	l       enter			# Enter and open selected entry
-bind generic	h	    view-close		# Close the current view
+bind generic	<Enter>	enter			# Enter and open selected entry
 bind generic	<Lt>	back			# Go back to the previous view state
 bind generic	<Down>	next			# Move to next
 bind generic	<C-N>	next
 bind generic	<Up>	previous		# Move to previous
 bind generic	<C-P>	previous
-bind generic	,   	parent			# Move to parent
+bind generic	,	parent			# Move to parent
 bind generic	<Tab>	view-next		# Move focus to the next view
-bind generic	r	    refresh			# Reload and refresh view
-bind generic	o	    maximize		# Maximize the current view
-bind generic	q	    view-close		# Close the current view
-bind generic	Q	    quit			# Close all views and quit
+bind generic	R	refresh			# Reload and refresh view
+bind generic	<F5>	refresh
+bind generic	O	maximize		# Maximize the current view
+bind generic	q	view-close		# Close the current view
+bind generic	Q	quit			# Close all views and quit
 
 # View specific
 bind status	u	status-update		# Stage/unstage changes in file
 bind status	!	status-revert		# Revert changes in file
-bind status	m	status-merge		# Open git-mergetool(1)
+bind status	M	status-merge		# Open git-mergetool(1)
 #bind status	???	:toggle status		# Show short or long status labels
 bind stage	u	status-update		# Stage/unstage current diff (c)hunk
 bind stage	-	stage-update-line	# Stage/unstage current line
@@ -213,9 +214,11 @@ bind generic	g   	 move-first-line
 bind generic	G   	 move-last-line
 
 # Scrolling
-bind generic	0   	scroll-first-col
+bind generic	|   	scroll-first-col
 bind generic	<C-Y>	scroll-line-up
 bind generic	<C-E>	scroll-line-down
+bind generic	K   	scroll-line-up
+bind generic	J   	scroll-line-down
 
 # Searching
 bind generic	/	search
@@ -224,7 +227,7 @@ bind generic	n	find-next
 bind generic	N	find-prev
 
 # Option manipulation
-bind generic	O	options			# Open the options menu
+bind generic	o	options			# Open the options menu
 # Bindings for toggling settings
 bind generic	I	:toggle sort-order	# Toggle ascending/descending sort order
 bind generic	i	:toggle sort-field	# Toggle field to sort by
