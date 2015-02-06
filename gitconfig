@@ -13,3 +13,9 @@
 
 [alias]
     ci = commit
+
+[diff]
+    tool = vimdiff
+
+[difftool]
+    prompt = no
