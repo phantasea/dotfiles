@@ -50,8 +50,8 @@ set history=64
 set ignorecase
 set incsearch
 set keywordprg=
+set lazyredraw
 set laststatus=2
-set nolazyredraw
 set linebreak
 set magic
 set modeline
@@ -113,8 +113,8 @@ nnoremap   <C-P>    :bp<CR>
 "inoremap   <C-Y>    <C-R><C-R>=LookupColumnChar('y')<CR>
 "inoremap   <C-E>    <C-R><C-R>=LookupColumnChar('e')<CR>
 
-onoremap   if   :normal [[jV]]k<CR>
-onoremap   af   :normal [[v%<CR>
+"onoremap   if   :normal [[jV]]k<CR>
+"onoremap   af   :normal [[v%<CR>
 
 "vnoremap  #    y:let @/=@"<CR>N
 "vnoremap  *    y/<C-R>"<CR>
