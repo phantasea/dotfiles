@@ -26,4 +26,4 @@
     ci = commit
     br = branch
     st = status
-    flog = log --color --graph --stat --pretty=format:'[%h] %ae, %ar: %s'
+    lg = log
