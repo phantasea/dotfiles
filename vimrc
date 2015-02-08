@@ -38,6 +38,7 @@ set background=dark
 set backspace=indent,eol,start
 set completeopt=menu
 set display=lastline
+set diffopt=filler,context:3,foldcolumn:0
 set encoding=utf-8
 set expandtab
 set fileencoding=chinese

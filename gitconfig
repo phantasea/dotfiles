@@ -8,14 +8,22 @@
 [core]
     editor = vim
 
-[merge]
-    tool = vimdiff
-
-[alias]
-    ci = commit
-
 [diff]
     tool = vimdiff
 
 [difftool]
-    prompt = no
+    prompt = false
+
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+
+[mergetool]
+    prompt = false
+
+[alias]
+    co = checkout
+    ci = commit
+    br = branch
+    st = status
+    flog = log --color --graph --stat --pretty=format:'[%h] %ae, %ar: %s'
