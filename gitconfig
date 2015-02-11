@@ -6,6 +6,7 @@
     ui = true
 
 [core]
+    pager = less
     editor = vim
 
 [diff]
