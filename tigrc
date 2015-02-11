@@ -162,12 +162,12 @@ bind generic	f	view-blob
 bind generic	b	view-blame
 bind generic	r	view-refs
 bind generic	p	view-pager
-bind generic	H	view-help
+bind generic	h	view-help
 bind generic	s	view-status
 bind generic	S	view-status		# Compat binding to avoid going crazy!
 bind generic	c	view-stage
 bind generic	y	view-stash
-bind generic	?	view-grep
+bind generic	g	view-grep
 
 # View manipulation
 bind generic	<Enter>	enter			# Enter and open selected entry
@@ -190,7 +190,7 @@ bind status	!	status-revert		# Revert changes in file
 bind status	M	status-merge		# Open git-mergetool(1)
 #bind status	???	:toggle status		# Show short or long status labels
 bind stage	u	status-update		# Stage/unstage current diff (c)hunk
-bind stage	-	stage-update-line	# Stage/unstage current line
+bind stage	1	stage-update-line	# Stage/unstage current line
 bind stage	!	status-revert		# Revert current diff (c)hunk
 bind stage	\	stage-split-chunk	# Split current diff (c)hunk
 bind stage	@	:/^@@			# Jump to next (c)hunk
@@ -199,7 +199,7 @@ bind stage	]	:toggle diff-context +1	# Increase the diff context
 bind diff	@	:/^@@			# Jump to next (c)hunk
 bind diff	[	:toggle diff-context -1
 bind diff	]	:toggle diff-context +1
-bind main	T	:toggle commit-title-graph # Toggle revision graph visualization
+bind main	G	:toggle commit-title-graph # Toggle revision graph visualization
 bind main	F	:toggle commit-title-refs  # Toggle reference display (tags/branches)
 
 # Cursor navigation
@@ -210,8 +210,6 @@ bind generic	<C-J>    move-page-down
 bind generic	<C-D>	 move-page-down
 bind generic	<C-K>	 move-page-up
 bind generic	<C-U>	 move-page-up
-bind generic	g   	 move-first-line
-bind generic	G   	 move-last-line
 
 # Scrolling
 bind generic	|   	scroll-first-col
@@ -222,7 +220,7 @@ bind generic	J   	scroll-line-down
 
 # Searching
 bind generic	/	search
-#bind generic	?	search-back
+bind generic	?	search-back
 bind generic	n	find-next
 bind generic	N	find-prev
 
