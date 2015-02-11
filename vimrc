@@ -536,7 +536,12 @@ command! Xhelp   call  DelHelpFile()
 command! Xsrc    source ~/.vimrc
 "}}}
 
-" plugin  {{{
+" plugins  {{{
+"pandoc {{{
+let g:pandoc#folding#fdc=0
+let g:pandoc#filetypes#pandoc_markdown=0
+"}}}
+
 "taglist {{{
 let  g:Tlist_Auto_Update = 1
 let  g:Tlist_Auto_Highlight_Tag = 1
