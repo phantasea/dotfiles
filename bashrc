@@ -110,7 +110,7 @@ fi
 
 #set -o vi
 unset  MAILCHECK
-#export PATH=$PATH:~/.util:
+export PATH=$PATH:~/.util
 export PAGER="/bin/sh -c \"col -b | view -c 'set ts=8 nomod nolist nonu noma' -\""
 export MANPAGER="/bin/sh -c \"col -b | view --noplugin -c 'set ft=man ts=8 nomod nolist nonu noma titlestring=MANPAGE' -\""
 export NNTPSERVER='news.gwene.org'
@@ -119,6 +119,8 @@ export EDITOR=vim
 export VISUAL=vim
 export LANG=en_US.UTF-8
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
+export WWW_HOME='www.baidu.com'
+export LYNX_CFG='~/.etc/lynx.cfg'
 
 #if [ "$TERM" = "linux" ]; then
 #    #LANG=zh_CN.UTF-8 fbterm
