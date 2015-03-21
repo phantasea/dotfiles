@@ -1,0 +1,9 @@
+image/*; fim %s
+video/*; mplayer %s
+audio/*; mplayer %s
+
+#need antiword
+application/msword; vim %s; copiousoutput;
+
+application/pdf; zathura %s
+
