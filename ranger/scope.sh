@@ -70,22 +70,27 @@ case "$extension" in
     # C/C++ files
     c|cpp)
         try highlight --syntax=c --out-format=ansi "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
+    # Python script
+    py)
+        try highlight --syntax=python --out-format=ansi "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
     # GnuPG files:
     asc)
         try gpg --quiet --no-tty --no-use-agent --no-verbose -d "$path" && { dump; exit 0; } || exit 1;;
     # Realmedia files:
     rmvb|rmb|swf)
-        try mediainfo "$path" && { dump; exit 0; } || exit 1;;
+        try mediainfo -f "$path" && { dump; exit 0; } || exit 1;;
 esac
 
 case "$mimetype" in
-    # Text files:
-    text/*)
-        #try highlight --syntax=txt --out-format=ansi "$path" && { dump | fmt -s -w $width; exit 5; } || exit 1;;
-        try cat "$path" && { dump; exit 0; } || exit 1;;
+    # Shell script
+    application/x-shellscript)
+        try highlight --syntax=sh --out-format=ansi "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
     # Media files:
     video/* | audio/* | image/*)
-        try mediainfo "$path" && { dump; exit 0; } || exit 1;;
+        try mediainfo -f "$path" && { dump; exit 0; } || exit 1;;
+    # Text files:
+    text/*)
+        try cat "$path" && { dump; exit 0; } || exit 1;;
 esac
 
 exit 1
