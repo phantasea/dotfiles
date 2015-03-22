@@ -1,0 +1,355 @@
+" vim: filetype=vifm :
+
+" mapping {{{
+nnoremap  <return> <nop>
+vnoremap  <space>  o
+qnoremap  <space>  <tab>
+nnoremap  <c-j>    <c-f>
+nnoremap  <c-k>    <c-b>
+nnoremap  -  :invert s<cr>
+vnoremap  -  :invert s<cr>
+nnoremap  a  Gvgg
+vnoremap  a  ggoG
+nnoremap  A  za
+nnoremap  b  :set scrollbind!<cr>
+nnoremap  cm cp
+vnoremap  cm cp
+nnoremap  cd :cd<space>
+nnoremap  ci :copyfromother<cr>
+vnoremap  ci :copyfromother<cr>
+nnoremap  co :copytoother<cr>
+vnoremap  co :copytoother<cr>
+nnoremap  cI :sucopyfromother<cr>
+vnoremap  cI :sucopyfromother<cr>
+nnoremap  cO :sucopytoother<cr>
+vnoremap  cO :sucopytoother<cr>
+nnoremap  C  :clone<cr>
+nnoremap  d  dd
+nnoremap  D  DD
+nnoremap  e  :edit %f<cr>
+nnoremap  E  :suedit<cr>
+nnoremap  i  :touch<space>
+nnoremap  I  :mkdir!<space>
+nnoremap  J  <c-e>
+nnoremap  K  <c-y>
+nnoremap  o  :filter //i<left><left>
+nnoremap  O  :filter<cr>
+nnoremap  q  ZZ
+nnoremap  r  cw
+nnoremap  R  :rename<cr>
+nnoremap ge  :empty<cr>
+nnoremap gr  :source ~/.vifm/vifmrc<cr>
+nnoremap  sd :diff<cr>
+nnoremap  s  <c-w>
+nmap      se s_
+nmap      sr s=
+nnoremap  S  :sync!<cr>
+nnoremap gt  gs
+nnoremap  t  tj
+nnoremap  U  <c-r>
+nnoremap  v  e
+nnoremap  w  :set lsview!<cr>
+nnoremap  W  :set nolaststatus!<cr>
+nnoremap  xi :movefromother<cr>
+vnoremap  xi :movefromother<cr>
+nnoremap  xo :movetoother<cr>
+vnoremap  xo :movetoother<cr>
+nnoremap  xI :sumovefromother<cr>
+vnoremap  xI :sumovefromother<cr>
+nnoremap  xO :sumovetoother<cr>
+vnoremap  xO :sumovetoother<cr>
+nnoremap  y  yy
+nnoremap  Y  :copyfilename<cr>
+nnoremap gy  :copydirname<cr>
+nnoremap  z  zz
+
+cnoremap  <c-j>  <cr>
+
+nnoremap  <c-j>  <c-f>
+nnoremap  <c-k>  <c-b>
+qnoremap  <c-j>  <c-f>
+qnoremap  <c-k>  <c-b>
+mnoremap  <c-j>  <c-f>
+mnoremap  <c-k>  <c-b>
+qnoremap  p  <c-b>
+qnoremap  e  q:edit %c<cr>
+qnoremap  s  <c-w>
+qnoremap  v  q
+mnoremap  h  q
+" }}}
+
+" mark {{{
+mark h ~/
+mark H ~simone/
+mark m /media
+mark p /opt/.porn
+mark r /
+mark v ~/.vifm
+mark w ~/.w3m
+mark t ~/.vifm/Trash
+" }}}
+
+" option {{{
+" This is the actual command used to start vi.  The default is vim.
+set vicmd="~/.util/fmvimux"
+" set vicmd="vim"
+
+set tuioptions=""
+set fillchars=vborder:|
+
+" Trash Directory
+set trash
+
+" This is how many directories to store in the directory history.
+set history=32
+
+" Follow links on l or Enter.
+set followlinks
+
+" With this option turned on you can run partially entered commands with
+" unambiguous beginning using :! (e.g. :!Te instead of :!Terminal or :!Te<tab>).
+set nofastrun
+
+" Natural sort of (version) numbers within text.
+set sortnumbers
+
+" Maximum number of changes that can be undone.
+set undolevels=13
+
+" If you installed the vim.txt help file set vimhelp.
+" If would rather use a plain text help file set novimhelp.
+set novimhelp
+
+" If you would like to run an executable file when you
+" press return on the file name set this.
+set norunexec
+
+" Use KiB, MiB, ... instead of KB, MB, ...
+" set noiec
+
+" Selected color scheme
+colorscheme chris
+
+" The FUSE_HOME directory will be used as a root dir for all FUSE mounts.
+" Unless it exists with write/exec permissions set, vifm will attempt to create it.
+set fusehome=/tmp/vifm_FUSE
+
+" See man date or man strftime for details.
+set timefmt=%H:%M:%S\ %m/%d/%Y
+
+set statusline="%u:%g  [%A]  \"%t\"%=  %d"
+
+" *********chris***************
+"set nolaststatus
+set timeoutlen=3000
+set nolsview
+set classify=""
+set sort="+iname"
+set cpoptions="s"
+set dotdirs=norootparent
+set rulerformat="%=%l%%%S"
+" set viewcolumns="-{name}"
+" *****************************
+
+" Show list of matches on tab complition in command-line mode
+set wildmenu
+
+" Ignore case in search patterns unless it contains at least one uppercase letter
+set ignorecase
+set smartcase
+
+" Highlight search, search while typing
+set hlsearch
+set incsearch
+set wrapscan
+
+" Try to leave some space from cursor to upper/lower border in lists
+set scrolloff=0
+" }}}
+
+" command {{{
+" :com[mand] command_name action
+" The following macros can be used in a command
+" %a is replaced with the user arguments.
+" %c the current file under the cursor.
+" %C the current file under the cursor in the other directory.
+" %f the current selected file, or files.
+" %F the current selected file, or files in the other directory.
+" %b same as %f %F.
+" %d the current directory name.
+" %D the other window directory name.
+" %i completely ignore command output
+" %m run the command in a menu window
+" %S Show command output in the status bar
+command suedit !sudoedit %c
+command rc vimux ~/.vifm/vifmrc
+command df df -h %m 2> /dev/null
+command surm sudo rm -rf %c
+command ps pstree %m
+command du ncdu . 
+command diff vimdiff %f %F
+command unzip  tar -zxf %c %i &
+command unjar  tar -jxf %c %i &
+command zip zip -r %f.zip %f
+command run !! ./%f
+command make !!make
+command vgrep vim "+grep %a"
+command fim fim %f 2> /dev/null
+command fima fim *.{jpg,png,jpeg,gif}
+command movetoother   mv -i %f %D %i
+command copytoother   cp -R %f %D %i
+command movefromother mv -i %F %d %i
+command copyfromother cp -R %F %d %i
+command sumovetoother   sudo mv -i %f %D %i
+command sucopytoother   sudo cp -R %f %D %i
+command sumovefromother sudo mv -i %F %d %i
+command sucopyfromother sudo cp -R %F %d %i
+command copyfilename tmux setb %f %i &
+command copydirname  tmux setb %d %i &
+command winiconv iconv -f GBK -t UTF8 %c -o %c %i
+command vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom %f
+" }}}
+
+" filetype and fileview {{{
+" The file type is for the default programs to be used with a file extension.
+" :filetype pattern1,pattern2 defaultprogram,program2
+" :fileviewer pattern1,pattern2 consoleviewer
+" The other programs for the file type can be accessed with the :file command
+" The command macros %f, %F, %d, %F may be used in the commands.
+" The %a macro is ignored.  To use a % you must put %%.
+
+" For automated FUSE mounts, you must register an extension with :file[x]type
+" in one of following formats:
+"
+" :filetype extensions FUSE_MOUNT|some_mount_command using %SOURCE_FILE and %DESTINATION_DIR variables
+" %SOURCE_FILE and %DESTINATION_DIR are filled in by vifm at runtime.
+" A sample line might look like this:
+" :filetype *.zip,*.jar,*.war,*.ear FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR
+"
+" :filetype extensions FUSE_MOUNT2|some_mount_command using %PARAM and %DESTINATION_DIR variables
+" %PARAM and %DESTINATION_DIR are filled in by vifm at runtime.
+" A sample line might look like this:
+" :filetype *.ssh FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR
+" %PARAM value is filled from the first line of file (whole line).
+" Example first line for SshMount filetype: root@127.0.0.1:/
+"
+" You can also add %CLEAR if you want to clear screen before running FUSE program.
+
+" Manpage
+" filetype  *.1  /home/lynna/.util/manmux %f
+
+" Office files
+filetype  *.doc  vim %f
+fileview  *.doc  antiword %f
+"fileview  *.doc  catdoc %f
+"fileview  *.docx docx2txt.pl %f -
+
+" c/c++ files
+fileview  *.h,*.c,*.cpp  highlight --syntax=c --out-format=ansi %f
+
+" xml files
+fileview  *.xml  highlight --syntax=xml --out-format=ansi %f
+
+" makefile
+fileview  Makefile*,makefile*  highlight --syntax=make --out-format=ansi %f
+
+" python files
+fileview  *.py  highlight --syntax=python --out-format=ansi %f
+
+" shell script
+fileview  *.sh  highlight --syntax=sh --out-format=ansi %f
+
+" Directories
+fileview  */  tree -F --dirsfirst %c
+
+" Pdf
+filetype  *.pdf fimgs %f
+fileview  *.pdf pdftotext -l 1 -nopgbrk -q %c -, pdfinfo %c
+
+" PostScript
+filetype  *.ps fimgs %f
+fileview  *.ps ps2text %f -
+
+" PGP
+fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %f
+
+" Audio
+filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mpg321 -q %f &
+fileview  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mediainfo -f %f
+
+" Video
+filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb  mplayer -vo fbdev2 %f
+fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb  mediainfo -f %f
+
+" Image
+filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm  fim *.jpg *.jpeg *.png *.gif *.xpm 2> /dev/null
+fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm  mediainfo -f %f
+
+" Web
+filetype  *.html,*.htm,*.xhtml,*.shtml  /home/lynna/.util/fmw3mux %f
+fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %f, html2text %f
+
+" Markdown
+fileview  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %f |w3m -dump -cols 128 -T text/html
+
+" Object
+filetype  *.o nm %f | less
+fileview  *.o nm %f
+
+" torrent
+fileview  *.torrent  transmission-show %c
+
+" MD5
+filetype  *.md5  md5sum -c %f
+
+" FuseZipMount
+filetype  *.zip,*.jar,*.war,*.ear
+       \ {Mount with fuse-zip}
+       \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
+       \ {View contents}
+       \ zip -sf %c | less,
+       \ tar -xf %c,
+fileview  *.zip,*.jar,*.war,*.ear zip -sf %c
+
+" ArchiveMount
+filetype  *.tar.bz2,*.tbz2,*.tgz,*.tar.gz
+       \ {Mount with archivemount}
+       \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
+"fileview  *.tgz,*.tar.gz    tar -tzf %c
+"fileview  *.tar.bz2,*.tbz2  tar -tjf %c
+fileview  *.tar,*.tgz,*.tar.gz,*.tbz2,*.tar.bz2  als %c
+
+" Rar2FsMount
+filetype  *.rar
+       \ {Mount with rar2fs}
+       \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
+
+" IsoMount
+filetype  *.iso
+       \ {Mount with fuseiso}
+       \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
+
+" SshMount
+filetype  *.ssh
+       \ {Mount with sshfs}
+       \ FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR,
+
+" FtpMount
+filetype  *.ftp
+       \ {Mount with curlftpfs}
+       \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR,
+
+" Fuse7z
+filetype  *.7z
+       \ {Mount with fuse-7z}
+       \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
+
+" Open all other files with default system programs (you can also remove all
+" :file[x]type commands above to ensure they don't interfere with system-wide
+" settings).  By default all unknown files are opened with 'vi[x]cmd'
+filetype * /home/lynna/.util/fmvimux %f
+" }}}
+
+" What should be saved automatically between vifm runs
+set vifminfo=chistory,dhistory,fhistory,phistory,shistory,savedirs,state,tui,dirstack,registers,bookmarks
+

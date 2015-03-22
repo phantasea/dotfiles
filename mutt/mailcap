@@ -1,0 +1,17 @@
+#text/html; firefox %s; test=RunningX
+text/html; w3m -I %{charset} -T text/html %s; nametemplate=%s.html
+text/html; w3m -dump -I %{charset} -T text/html %s; nametemplate=%s.html; copiousoutput
+
+#image/*; pho %s > /dev/null; test=RunningX
+image/*; fim %s > /dev/null
+video/*; mplayer -really-quiet -vo fbdev2 %s > /dev/null
+audio/*; mpg321 %s > /dev/null
+
+#application/msword;   wvHtml --charset=gb2312 %s |w3m -dump; nametemplate=%s.html
+application/msword;    antiword %s |w3m
+application/excel;       xlhtml %s |w3m -dump; nametemplate=%s.html
+application/powerpoint; pptHtml %s |w3m -dump; nametemplate=%s.html
+application/pdf;      pdftotext %s |w3m -dump; nametemplate=%s.html
+
+application/pgp-keys; pgp -f < %s ; copiousoutput
+

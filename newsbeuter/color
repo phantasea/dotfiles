@@ -1,0 +1,13 @@
+search-highlight-colors black green bold
+#highlight all "mutt" cyan black 
+#highlight all "vim"  cyan black 
+#highlight all "vifm" cyan black 
+
+color background          white   black
+color listnormal          cyan    black
+color listfocus           black   green
+color info                cyan    blue   bold
+color article             white   black
+color listnormal_unread   red     black  bold
+color listfocus_unread    black   green
+

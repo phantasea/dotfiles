@@ -1,0 +1,10 @@
+# vim: set ft=muttrc :
+
+score "~N"          +4
+score "~s 招商银行" +2
+score "~s 携程"     +3
+score "~s 糯米"     -2
+score "~D"          -5
+score "~O"          +1
+score "~Q"          -3
+score "~U"          +3

@@ -1,0 +1,26 @@
+# vim: set filetype=muttrc :
+
+#----   object       foreground      background  pattern  ----
+
+color   hdrdefault   cyan            black
+color   quoted       cyan            black
+color   signature    cyan            black
+color   attachment   yellow          black
+color   message      brightred       black
+color   error        red             black
+color   indicator    brightwhite     red
+color   status       white           blue
+color   tree         white           black
+color   normal       white           black
+color   markers      red             black
+color   search       brightyellow    black
+color   tilde        brightmagenta   black
+
+color   index        blue            black       "~F"
+color   index        red             black       "~N|~O"
+color   index        cyan            black       '~f phantasea'
+color   index        brightyellow    black       '~s 招商银行'
+color   index        cyan            black       '~s 民生银行'
+color   index        cyan            black       '~s 京东'
+color   index        magenta         black       '~f 支付宝'
+color   index        yellow          black       '~s ranger'
