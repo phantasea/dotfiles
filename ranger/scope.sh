@@ -41,7 +41,7 @@ dump() { echo "$output"; }
 trim() { head -n "$maxln"; }
 
 # wraps highlight to treat exit code 141 (killed by SIGPIPE) as success
-highlight() { command highlight "$@"; test $? = 0 -o $? = 141; }
+# highlight() { command highlight "$@"; test $? = 0 -o $? = 141; }
 
 case "$extension" in
     # Archive extensions:
@@ -56,41 +56,49 @@ case "$extension" in
         try pdftotext -l 1 -nopgbrk -q "$path" - && { dump | fmt -s -w $width; exit 0; } || exit 1;;
     # MS documents:
     doc)
-        try antidoc "$path" && { dump | fmt -s -w $width; exit 4; } || exit 1;;
+        try antiword "$path" && { dump | fmt -s -w $width; exit 0; }
+        try catdoc  "$path" && { dump | fmt -s -w $width; exit 0; }
+        exit 1;;
     # BitTorrent Files
     torrent)
-        try transmission-show "$path" && { dump | trim; exit 5; } || exit 1;;
+        try transmission-show "$path" && { dump | fmt -s -w $width; exit 5; } || exit 1;;
     # HTML Pages:
     htm|html|xhtml)
-        try w3m -dump -T text/html "$path" && { dump; exit 0; } || exit 1;;
-        #try w3m -dump -cols 128 -T text/html "$path" && { dump; exit 0; } || exit 1;;
+        try w3m -dump -cols "$width" -T text/html "$path" && { dump; exit 0; } || exit 1;;
     # XML files
     xml)
-        try highlight --syntax=xml --out-format=ansi "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
+        try highlight -S xml -O ansi -s dante "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
     # C/C++ files
     c|cpp)
-        try highlight --syntax=c --out-format=ansi "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
+        try highlight -S c -O ansi -s dante "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
     # Python script
     py)
-        try highlight --syntax=python --out-format=ansi "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
+        try highlight -S python -O ansi -s dante "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
     # GnuPG files:
     asc)
-        try gpg --quiet --no-tty --no-use-agent --no-verbose -d "$path" && { dump; exit 0; } || exit 1;;
+        try gpg --quiet --no-tty --no-use-agent --no-verbose -d "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
+    # ISO files
+    iso)
+        try isoinfo -l -i "$path" && { dump | fmt -s -w $width; exit 5; } || exit 1;;
     # Realmedia files:
     rmvb|rmb|swf)
-        try mediainfo -f "$path" && { dump; exit 0; } || exit 1;;
+        try mediainfo "$path" && { dump | fmt -s -w $width; exit 5; } || exit 1;;
 esac
 
 case "$mimetype" in
     # Shell script
     application/x-shellscript)
-        try highlight --syntax=sh --out-format=ansi "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
+        try highlight -S sh -O ansi -s dante "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
     # Media files:
     video/* | audio/* | image/*)
-        try mediainfo -f "$path" && { dump; exit 0; } || exit 1;;
+        try mediainfo "$path" && { dump | fmt -s -w $width; exit 5; } || exit 1;;
     # Text files:
     text/*)
-        try cat "$path" && { dump; exit 0; } || exit 1;;
+        try pygmentize -O style=monokai -f console -g -- "$path" && { dump; exit 0; }
+        exit 2;;
+    # Other files:
+    *)
+        try mediainfo "$path" && { dump; exit 5; } || exit 1;;
 esac
 
 exit 1

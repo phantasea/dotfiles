@@ -92,7 +92,6 @@ mark t ~/.vifm/Trash
 " option {{{
 " This is the actual command used to start vi.  The default is vim.
 set vicmd="~/.util/fmvimux"
-" set vicmd="vim"
 
 set tuioptions=""
 set fillchars=vborder:|
@@ -235,36 +234,43 @@ command vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom %f
 "
 " You can also add %CLEAR if you want to clear screen before running FUSE program.
 
+" You can use filename modifiers after %c, %C, %f, %F, %b, %d and %D macros.  Supported modifiers are:
+" :p - full path
+" :~ - relative to the home directory
+" :. - relative to current directory
+" :h - head of the filename
+" :t - tail of the filename
+" :r - root of the filename (without last extension)
+
 " Manpage
-" filetype  *.1  /home/lynna/.util/manmux %f
+"filetype  *.1  manmux %f:t:r
 
 " Office files
 filetype  *.doc  vim %f
 fileview  *.doc  antiword %f
-"fileview  *.doc  catdoc %f
-"fileview  *.docx docx2txt.pl %f -
 
 " c/c++ files
-fileview  *.h,*.c,*.cpp  highlight --syntax=c --out-format=ansi %f
+fileview  *.h,*.c,*.cpp  highlight -S c -O ansi -s dante %f
 
 " xml files
-fileview  *.xml  highlight --syntax=xml --out-format=ansi %f
+fileview  *.xml  highlight -S xml -O ansi -s dante %f
 
 " makefile
-fileview  Makefile*,makefile*  highlight --syntax=make --out-format=ansi %f
+fileview  Makefile*,makefile*  highlight -S make -O ansi -s dante %f
 
 " python files
-fileview  *.py  highlight --syntax=python --out-format=ansi %f
+fileview  *.py  highlight -S python -O ansi -s dante %f
 
 " shell script
-fileview  *.sh  highlight --syntax=sh --out-format=ansi %f
+fileview  *.sh  highlight -S sh -O ansi -s dante %f
 
 " Directories
 fileview  */  tree -F --dirsfirst %c
 
 " Pdf
 filetype  *.pdf fimgs %f
-fileview  *.pdf pdftotext -l 1 -nopgbrk -q %c -, pdfinfo %c
+fileview  *.pdf pdftotext -l 1 -nopgbrk -q %c -
+"fileview  *.pdf pdfinfo %c
 
 " PostScript
 filetype  *.ps fimgs %f
@@ -286,8 +292,8 @@ filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm  fim *.jpg *.jpeg *.png *.gif *.x
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm  mediainfo -f %f
 
 " Web
-filetype  *.html,*.htm,*.xhtml,*.shtml  /home/lynna/.util/fmw3mux %f
-fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %f, html2text %f
+filetype  *.html,*.htm,*.xhtml,*.shtml  fmw3mux %f
+fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %f
 
 " Markdown
 fileview  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %f |w3m -dump -cols 128 -T text/html
@@ -303,28 +309,34 @@ fileview  *.torrent  transmission-show %c
 filetype  *.md5  md5sum -c %f
 
 " FuseZipMount
+fileview  *.zip,*.jar,*.war,*.ear  als %c
 filetype  *.zip,*.jar,*.war,*.ear
        \ {Mount with fuse-zip}
        \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
        \ {View contents}
        \ zip -sf %c | less,
        \ tar -xf %c,
-fileview  *.zip,*.jar,*.war,*.ear zip -sf %c
 
 " ArchiveMount
+fileview  *.tar,*.tgz,*.tar.gz,*.tbz2,*.tar.bz2  als %c
 filetype  *.tar.bz2,*.tbz2,*.tgz,*.tar.gz
        \ {Mount with archivemount}
        \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
-"fileview  *.tgz,*.tar.gz    tar -tzf %c
-"fileview  *.tar.bz2,*.tbz2  tar -tjf %c
-fileview  *.tar,*.tgz,*.tar.gz,*.tbz2,*.tar.bz2  als %c
+
+" Fuse7z
+fileview  *.7z  als %c
+filetype  *.7z
+       \ {Mount with fuse-7z}
+       \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
 
 " Rar2FsMount
+fileview  *.rar  als %c
 filetype  *.rar
        \ {Mount with rar2fs}
        \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
 
 " IsoMount
+fileview  *.iso  isoinfo -l -i %c
 filetype  *.iso
        \ {Mount with fuseiso}
        \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
@@ -339,15 +351,10 @@ filetype  *.ftp
        \ {Mount with curlftpfs}
        \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR,
 
-" Fuse7z
-filetype  *.7z
-       \ {Mount with fuse-7z}
-       \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
-
-" Open all other files with default system programs (you can also remove all
-" :file[x]type commands above to ensure they don't interfere with system-wide
-" settings).  By default all unknown files are opened with 'vi[x]cmd'
-filetype * /home/lynna/.util/fmvimux %f
+" Open all other files with default system programs. By default all unknown files are opened with 'vi[x]cmd'
+filetype * fmvimux %f
+fileview * mediainfo %f
+"fileview * pygmentize -f console -g -- %c
 " }}}
 
 " What should be saved automatically between vifm runs

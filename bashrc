@@ -110,10 +110,9 @@ fi
 
 #set -o vi
 unset  MAILCHECK
-export PATH=$PATH:~/.util
+export PATH="~/.util:$PATH"
 export PAGER="/bin/sh -c \"col -b | view -c 'set ts=8 nomod nolist nonu noma' -\""
 export MANPAGER="/bin/sh -c \"col -b | view --noplugin -c 'set ft=man ts=8 nomod nolist nonu noma titlestring=MANPAGE' -\""
-export NNTPSERVER='news.gwene.org'
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export EDITOR=vim
 export VISUAL=vim
