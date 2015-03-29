@@ -69,7 +69,7 @@ keymap	Q   QUIT
 keymap	r   RELOAD
 keymap  R   READ_SHELL
 keymap  C-S SAVE
-keymap  M-S SAVE_SCREEN
+keymap  M-s SAVE_SCREEN
 keymap  s   SRCH_BD
 keymap  S   TAB_SRCH_BD
 keymap  t   SELECT_MENU

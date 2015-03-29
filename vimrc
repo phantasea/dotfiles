@@ -117,20 +117,20 @@ nnoremap   <C-P>    :bp<CR>
 "onoremap   if   :normal [[jV]]k<CR>
 "onoremap   af   :normal [[v%<CR>
 
-"vnoremap  #    y:let @/=@"<CR>N
-"vnoremap  *    y/<C-R>"<CR>
-nnoremap   '    `
-nnoremap   ['   [`
-nnoremap   ]'   ]`
-nnoremap   0    ^
-nnoremap   #    #n
-nnoremap  g#    g#n
-nnoremap   *    *N
-nnoremap  g*    g*N
-vnoremap   #    y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
-vnoremap   *    y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
-vnoremap   <    <gv
-vnoremap   >    >gv
+"vnoremap  #   y:let @/=@"<CR>N
+"vnoremap  *   y/<C-R>"<CR>
+nnoremap   '   `
+nnoremap   ['  [`
+nnoremap   ]'  ]`
+nnoremap   0   ^
+nnoremap   #   #n
+nnoremap  g#   g#n
+nnoremap   *   *N
+nnoremap  g*   g*N
+vnoremap   #   y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
+vnoremap   *   y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
+vnoremap   <   <gv
+vnoremap   >   >gv
 
 nnoremap  cd   :cd 
 nnoremap  c.   :cc<CR>
@@ -160,6 +160,7 @@ nnoremap  d<space>  :call SmartDiffOff()<CR>
 nnoremap  gj   J
 nnoremap  gw   :write<CR>
 nnoremap  gW   :w !sudo tee % > /dev/null<CR>
+nnoremap  g/   :Ag  %<left><left>
 nnoremap  j    gj
 vnoremap  j    gj
 nnoremap  k    gk
@@ -537,6 +538,16 @@ command! Xsrc    source ~/.vimrc
 "}}}
 
 " plugins  {{{
+"Ag {{{
+let g:ag_prg="ag --vimgrep --smart-case"
+"}}}
+
+"BufExplorer
+let g:bufExplorerDefaultHelp=0
+let g:bufExplorerSortBy='mru'
+let g:bufExplorerSplitBelow=0        " Split new window above current.
+"}}}
+
 "pandoc {{{
 let g:pandoc#folding#fdc=0
 let g:pandoc#filetypes#pandoc_markdown=0

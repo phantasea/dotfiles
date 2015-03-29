@@ -3,3 +3,4 @@
 #color setting of ls command
 FILE 00;33
 DIR  00;36
+LINK 01;35
