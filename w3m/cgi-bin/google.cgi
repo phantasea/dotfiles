@@ -1,5 +1,6 @@
 #!/bin/sh
 google='http://google.com/search?btnG=Google&q'
+#google='http://www.webcrawler.com/?q'
 query=${QUERY_STRING#*:}
 
 cat <<_END_

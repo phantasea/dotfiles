@@ -63,7 +63,7 @@ case "$extension" in
     torrent)
         try transmission-show "$path" && { dump | fmt -s -w $width; exit 5; } || exit 1;;
     # HTML Pages:
-    htm|html|xhtml)
+    htm|html|xhtml|shtml)
         try w3m -dump -cols "$width" -T text/html "$path" && { dump; exit 0; } || exit 1;;
     # XML files
     xml)
@@ -83,6 +83,9 @@ case "$extension" in
     # Realmedia files:
     rmvb|rmb|swf)
         try mediainfo "$path" && { dump | fmt -s -w $width; exit 5; } || exit 1;;
+    # Log files
+    log)
+        try tail -n100 "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
 esac
 
 case "$mimetype" in
@@ -94,7 +97,7 @@ case "$mimetype" in
         try mediainfo "$path" && { dump | fmt -s -w $width; exit 5; } || exit 1;;
     # Text files:
     text/*)
-        try pygmentize -O style=monokai -f console -g -- "$path" && { dump; exit 0; }
+        #try pygmentize -O style=monokai -f console -g -- "$path" && { dump; exit 0; }
         exit 2;;
     # Other files:
     *)

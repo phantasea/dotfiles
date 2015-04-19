@@ -110,7 +110,6 @@ fi
 
 #set -o vi
 unset  MAILCHECK
-export PATH="~/.util:$PATH"
 export PAGER="/bin/sh -c \"col -b | view -c 'set ts=8 nomod nolist nonu noma' -\""
 export MANPAGER="/bin/sh -c \"col -b | view --noplugin -c 'set ft=man ts=8 nomod nolist nonu noma titlestring=MANPAGE' -\""
 export RANGER_LOAD_DEFAULT_RC=FALSE
@@ -121,10 +120,9 @@ export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 export WWW_HOME='www.baidu.com'
 export LYNX_CFG='~/.etc/lynx.cfg'
 
-#if [ "$TERM" = "linux" ]; then
-#    #LANG=zh_CN.UTF-8 fbterm
-#    fbterm tmux
-#fi
+if [ -d "$HOME/.util" ]; then
+    export PATH="$HOME/.util:$PATH"
+fi
 
-PERL_MB_OPT="--install_base \"/home/lynna/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/lynna/perl5"; export PERL_MM_OPT;
+#fbterm -- tmux
+

@@ -50,6 +50,7 @@ set hlsearch
 set history=64
 set ignorecase
 set incsearch
+set iskeyword-=.
 set keywordprg=
 set lazyredraw
 set laststatus=2
@@ -542,7 +543,7 @@ command! Xsrc    source ~/.vimrc
 let g:ag_prg="ag --vimgrep --smart-case"
 "}}}
 
-"BufExplorer
+"BufExplorer {{{
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerSortBy='mru'
 let g:bufExplorerSplitBelow=0        " Split new window above current.

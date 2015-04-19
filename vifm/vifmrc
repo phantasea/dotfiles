@@ -75,6 +75,8 @@ qnoremap  p  <c-b>
 qnoremap  e  q:edit %c<cr>
 qnoremap  s  <c-w>
 qnoremap  v  q
+qnoremap  J  qje
+qnoremap  K  qke
 mnoremap  h  q
 " }}}
 
@@ -297,6 +299,9 @@ fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %f
 
 " Markdown
 fileview  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %f |w3m -dump -cols 128 -T text/html
+
+" Log
+fileview  *.log  tail -n500 %f
 
 " Object
 filetype  *.o nm %f | less
