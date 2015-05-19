@@ -28,3 +28,4 @@
     br = branch
     st = status
     lg = log
+    vd = difftool

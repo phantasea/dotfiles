@@ -89,6 +89,7 @@ mark r /
 mark v ~/.vifm
 mark w ~/.w3m
 mark t ~/.vifm/Trash
+mark a /mnt/adb
 " }}}
 
 " option {{{
