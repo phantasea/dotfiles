@@ -31,6 +31,3 @@
     lg = log
     vd = difftool
 
-[gui]
-    encoding = utf-8
-
