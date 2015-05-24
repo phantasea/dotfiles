@@ -119,6 +119,7 @@ export LANG=en_US.UTF-8
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 export WWW_HOME='www.baidu.com'
 export LYNX_CFG='~/.etc/lynx.cfg'
+export PYTHONSTARTUP='~/.pystartup'
 
 if [ -d "$HOME/.util" ]; then
     export PATH="$HOME/.util:$PATH"
