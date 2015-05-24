@@ -38,12 +38,14 @@ nnoremap  q  ZZ
 nnoremap  r  cw
 nnoremap  R  :rename<cr>
 nnoremap ge  :empty<cr>
+nnoremap gl  gf
 nnoremap gr  :source ~/.vifm/vifmrc<cr>
 nnoremap  sd :diff<cr>
 nnoremap  s  <c-w>
-nmap      se s_
-nmap      sr s=
-nnoremap  S  :sync!<cr>
+"nmap     se s_
+"nmap     sr s=
+nnoremap  sl al
+nnoremap  S  :sync<cr>
 nnoremap gt  gs
 nnoremap  t  tj
 nnoremap  U  <c-r>
@@ -61,7 +63,7 @@ vnoremap  xO :sumovetoother<cr>
 nnoremap  y  yy
 nnoremap  Y  :copyfilename<cr>
 nnoremap gy  :copydirname<cr>
-nnoremap  z  zz
+"nnoremap  z  zz
 
 cnoremap  <c-j>  <cr>
 
@@ -89,7 +91,6 @@ mark r /
 mark v ~/.vifm
 mark w ~/.w3m
 mark t ~/.vifm/Trash
-mark a /mnt/adb
 " }}}
 
 " option {{{
@@ -150,6 +151,7 @@ set sort="+iname"
 set cpoptions="s"
 set dotdirs=norootparent
 set rulerformat="%=%l%%%S"
+set grepprg=ag\ --line-numbers\ %i\ %a\ %s
 " set viewcolumns="-{name}"
 " *****************************
 
@@ -336,7 +338,7 @@ filetype  *.7z
        \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
 
 " Rar2FsMount
-fileview  *.rar  als %c
+fileview  *.rar,*.xpi  als %c
 filetype  *.rar
        \ {Mount with rar2fs}
        \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,

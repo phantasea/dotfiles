@@ -15,11 +15,12 @@ highlight Device     cterm=bold  ctermfg=red       ctermbg=none
 highlight Fifo       cterm=bold  ctermfg=blue      ctermbg=none
 highlight Executable cterm=none  ctermfg=green     ctermbg=none
 highlight StatusLine cterm=none  ctermfg=white     ctermbg=blue
+highlight JobLine    cterm=bold  ctermfg=white     ctermbg=blue
 highlight CmdLine    cterm=bold  ctermfg=cyan      ctermbg=none
 highlight ErrorMsg   cterm=none  ctermfg=red       ctermbg=black
 highlight Border     cterm=none  ctermfg=green     ctermbg=black
 highlight OtherLine  cterm=bold  ctermfg=white     ctermbg=black
-highlight TopLine    cterm=reverse           ctermfg=white   ctermbg=black
+highlight TopLine    cterm=reverse           ctermfg=black   ctermbg=lightwhite   
 highlight TopLineSel cterm=bold,reverse      ctermfg=green   ctermbg=black
 highlight CurrLine   cterm=bold,reverse      ctermfg=none    ctermbg=black
 highlight Selected   cterm=reverse           ctermfg=green   ctermbg=black
