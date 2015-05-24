@@ -8,6 +8,7 @@
 [core]
     pager = less
     editor = vim
+    quotepath = false
 
 [diff]
     tool = vimdiff
@@ -29,3 +30,7 @@
     st = status
     lg = log
     vd = difftool
+
+[gui]
+    encoding = utf-8
+
