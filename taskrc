@@ -2,26 +2,38 @@
 # Taskwarrior program configuration file.
 # For more documentation, see http://taskwarrior.org or try 'man task', 'man task-faq',
 # 'man task-tutorial', 'man task-color', 'man task-sync' or 'man taskrc'
-
-# Here is an example of entries that use the default, override and blank values
-#   variable=foo   -- By specifying a value, this overrides the default
-#   variable=      -- By specifying no value, this means no default
-#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
-
 # Use the command 'task show' to see all defaults and overrides
 
 # Files
 data.location=~/.task
 
-# Color theme (uncomment one to use)
-#include /usr/local/share/doc/task/rc/light-16.theme
-#include /usr/local/share/doc/task/rc/light-256.theme
-#include /usr/local/share/doc/task/rc/dark-16.theme
-#include /usr/local/share/doc/task/rc/dark-256.theme
-#include /usr/local/share/doc/task/rc/dark-red-256.theme
-#include /usr/local/share/doc/task/rc/dark-green-256.theme
-#include /usr/local/share/doc/task/rc/dark-blue-256.theme
-#include /usr/local/share/doc/task/rc/dark-violets-256.theme
-#include /usr/local/share/doc/task/rc/dark-yellow-green.theme
-#include /usr/local/share/doc/task/rc/dark-gray-256.theme
+include ~/.task/holidays.ch-CN.rc
+include ~/.task/chris.theme
+
+# Terminal
+editor=vim
+
+# Alias
+alias.rm=delete
+alias.cal=calendar
+
+# Misc
+verbose=on
+confirmation=yes
+indent.annotation=0
+nag=You have tasks more urgent.
+list.all.projects=yes
+summary.all.projects=yes
+complete.all.tags=yes
+list.all.tags=yes
+search.case.sensitive=no
+regex=on
+json.array=off
+abbreviation.minimum=2
+weekstart=Sunday
+displayweeknumber=no
+calendar.details=full
+calendar.holidays=full
+fontunderline=on
+default.command=next
 

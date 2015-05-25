@@ -543,10 +543,21 @@ command! Xsrc    source ~/.vimrc
 let g:ag_prg="ag --vimgrep --smart-case"
 "}}}
 
+"Taskwarrior {{{
+let g:task_rc_override = 'rc.defaultheight=0'
+let g:task_rc_override = 'rc.defaultwidth=0'
+"}}}
+
 "BufExplorer {{{
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerSortBy='mru'
-let g:bufExplorerSplitBelow=0        " Split new window above current.
+let g:bufExplorerSplitBelow=0  " Split new window above current.
+"}}}
+
+"bufferline {{{
+let g:bufferline_echo = 0
+let g:bufferline_active_buffer_left = '*'
+let g:bufferline_active_buffer_right = ''
 "}}}
 
 "pandoc {{{
