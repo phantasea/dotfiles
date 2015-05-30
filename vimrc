@@ -44,6 +44,7 @@ set expandtab
 set fileencoding=chinese
 set fileencodings=utf-8,gb2312,gbk,gb18030
 set foldmethod=marker
+set grepprg=ag\ --nogroup\ --nocolor\ --smart-case
 set helplang=en
 set hidden
 set hlsearch
@@ -176,6 +177,7 @@ nnoremap  s    <C-W>
 vnoremap  s    <C-W>
 nnoremap  sa   :ball<CR>
 nnoremap  s}   :call OpenTagPreviewWin()<CR>
+nnoremap  s#   :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nnoremap  s*   :call ListSrchCurrFile("n")<CR>
 vnoremap  s*   y:call ListSrchCurrFile("v")<CR>
 nnoremap  s/   :vimgrep  %<left><left>
@@ -205,6 +207,8 @@ iabbrev   teh      the
 iabbrev   xbq      `
 iabbrev   xdate    <C-R>=strftime("%d/%m/%y %H:%M:%S")<cr>
 cabbrev   xcal     Calendar<cr>
+cabbrev   diffin   diffget
+cabbrev   diffout  diffput
 "}}}
 
 " function  {{{
@@ -543,19 +547,19 @@ command! Xsrc    source ~/.vimrc
 let g:ag_prg="ag --vimgrep --smart-case"
 "}}}
 
-"Taskwarrior {{{
+"taskwarrior {{{
 let g:task_rc_override = 'rc.defaultheight=0'
 let g:task_rc_override = 'rc.defaultwidth=0'
 "}}}
 
-"BufExplorer {{{
+"bufexplorer {{{
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerSortBy='mru'
 let g:bufExplorerSplitBelow=0  " Split new window above current.
 "}}}
 
 "bufferline {{{
-let g:bufferline_echo = 0
+let g:bufferline_echo = 1
 let g:bufferline_active_buffer_left = '*'
 let g:bufferline_active_buffer_right = ''
 "}}}

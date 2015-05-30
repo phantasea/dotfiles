@@ -29,5 +29,8 @@
     br = branch
     st = status
     lg = log
-    vd = difftool
+    dt = difftool
+    mt = mergetool
+    unstage = reset HEAD --
+    last = log -1 HEAD
 
