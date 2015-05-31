@@ -8,9 +8,9 @@
 
 highlight Win        cterm=none  ctermfg=yellow    ctermbg=black
 highlight Directory  cterm=none  ctermfg=cyan      ctermbg=none
-highlight Link       cterm=bold  ctermfg=red       ctermbg=none
+highlight Link       cterm=bold  ctermfg=magenta   ctermbg=none
 highlight BrokenLink cterm=bold  ctermfg=black     ctermbg=none
-highlight Socket     cterm=bold  ctermfg=magenta   ctermbg=none
+highlight Socket     cterm=none  ctermfg=red       ctermbg=none
 highlight Device     cterm=bold  ctermfg=red       ctermbg=none
 highlight Fifo       cterm=bold  ctermfg=blue      ctermbg=none
 highlight Executable cterm=none  ctermfg=green     ctermbg=none

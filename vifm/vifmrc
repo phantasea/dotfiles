@@ -83,14 +83,20 @@ mnoremap  h  q
 " }}}
 
 " mark {{{
+mark / /
+mark b ~/.vim/bundle
 mark h ~/
 mark H ~simone/
 mark m /media
+mark n ~/doc/note
+mark o /opt
 mark p /opt/.porn
-mark r /
+mark e /opt/.etc
+mark g /opt/git/clone
+mark r ~/.ranger
 mark v ~/.vifm
-mark w ~/.w3m
 mark t ~/.vifm/Trash
+mark w ~/.w3m
 " }}}
 
 " option {{{
