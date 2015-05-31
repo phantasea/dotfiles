@@ -1,3 +1,5 @@
 !.gitignore
 fetchmailrc
 msmtprc
+
+vifm/ftpfile
