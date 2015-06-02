@@ -1,9 +1,0 @@
-[Blog0]
-blog_url = http://127.0.0.1
-username = root
-password = sophantasea
-
-[Blog1]
-blog_url = https://someone.wordpress.com/
-username = someone
-password =
