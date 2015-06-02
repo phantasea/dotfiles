@@ -122,7 +122,7 @@ export LYNX_CFG='~/.etc/lynx.cfg'
 export PYTHONSTARTUP='~/.pystartup'
 
 if [ -d "$HOME/.util" ]; then
-    export PATH="$HOME/.util:$PATH"
+    export PATH="/opt/.util:$PATH"
 fi
 
 #fbterm -- tmux

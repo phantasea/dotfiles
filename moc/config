@@ -118,7 +118,7 @@ Prebuffering	= 64
 SoundDriver		= ALSA
 
 # Jack output settings.
-JackOutLeft	= "alsa_pcm:playback_1"
+JackOutLeft		= "alsa_pcm:playback_1"
 JackOutRight	= "alsa_pcm:playback_2"
 
 # OSS output device.
@@ -184,7 +184,7 @@ ShowFormat = no
 ShowTime = no
 
 # Show time played as a percentage in the time progress bar.
-ShowTimePercent	= no
+ShowTimePercent	= yes
 
 # Values of the TERM environment variable which are deemed to be xterms.
 XTerms = xterm
@@ -215,7 +215,7 @@ UseMmap	= no
 
 # Use MIME to identify audio files.  This can make for slower loading
 # of playlists but is more accurate than using "extensions".
-#UseMimeMagic = no
+UseMimeMagic = no
 
 # Assume this encoding for ID3 version 1/1.1 tags (mp3 files). Unlike ID3v2
 # UTF-8 is not used here and MOC can't guess how tags are encoded. Another
@@ -251,8 +251,7 @@ SyncPlaylist = yes
 # Example keymap with description is included (keymap.example).
 Keymap = keymap
 
-# Use ASCII characters instead of graphic for drawing lines. This helps on
-# some terminals.
+# Use ASCII characters instead of graphic for drawing lines. This helps on some terminals.
 ASCIILines = no
 
 # FastDirs, these allow you to jump directly to a directory, the key bindings
@@ -271,8 +270,7 @@ Fastdir5 = /media/rec/7.純輕音乐
 # How fast to seek? Number of seconds per key stroke.
 SeekTime = 5
 
-# How fast to seek (when using silent seeking)? Number of seconds per key
-# stroke.
+# How fast to seek (when using silent seeking)? Number of seconds per key stroke.
 #SilentSeekTime	= 5
 
 # PreferredDecoders allows you to specify which decoder should be used
@@ -427,11 +425,11 @@ PlaylistNumbering	= yes
 #             and the directory menu at the bottom.  Playlist will
 #             occupy 10 lines and the directory menu the rest.
 #
-Layout2	= directory(0,0,100%,100%):playlist(0,0,100%,100%)
 Layout1	= directory(0,0,45%,100%):playlist(45%,0,FILL,100%)
+Layout2	= directory(0,0,100%,100%):playlist(0,0,100%,100%)
+Layout3	= directory(0,0,39%,FILL):playlist(39%,0,FILL,FILL)
 
-# When the song changes, should the menu be scrolled so that the currently
-# played file is visible?
+# When the song changes, should the menu be scrolled so that the currently played file is visible?
 FollowPlayedFile = yes
 
 # What to do if the interface was started and something from the playlist is
@@ -469,8 +467,7 @@ CanStartInPlaylist = yes
 # ExecCommand1		= "cp %f /mnt/usb_drive"
 # ExecCommand2		= "/home/joe/now_playing %I"
 
-# Display the cursor in the line with the selected file. This can be useful with
-# a braille display.
+# Display the cursor in the line with the selected file. This can be useful with a braille display.
 # UseCursorSelection	= no
 
 # Set the terminal title when running under xterm.
@@ -492,6 +489,7 @@ PlaylistFullPaths	= no
 # You can turn off the displaying of these block marker positions by using
 # three space characters.
 #BlockDecorators	= "`\"'"
+BlockDecorators	= "[|]"
 
 # How long (in seconds) to leave a message displayed on the screen.
 # Setting this to a high value allows you to scroll through the messages

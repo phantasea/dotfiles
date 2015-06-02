@@ -2,7 +2,7 @@
 
 " color  {{{
 highlight IncSearch    ctermbg=black    ctermfg=red     cterm=reverse
-highlight Search       ctermbg=blue     ctermfg=white   cterm=none
+highlight Search       ctermbg=blue     ctermfg=white   cterm=bold
 highlight TabLine      ctermfg=black    ctermbg=black   cterm=none 
 highlight TabLineSel   ctermfg=green    ctermbg=black   cterm=reverse
 highlight TabLineFill  ctermfg=black
@@ -30,6 +30,7 @@ filetype plugin indent on
 syntax enable
 syntax on
 
+"set t_Co=256
 set ambiwidth=double
 set autochdir
 set autoindent
@@ -146,6 +147,7 @@ nnoremap  co   :call SmartOpenQfWin()<CR>
 nnoremap  c<space>  :call SmartOpenQfWin()<CR>
 
 if &diff
+"color    peaksea
 syntax    off
 nnoremap  dj   ]c
 nnoremap  dk   [c

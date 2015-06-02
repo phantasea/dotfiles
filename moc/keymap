@@ -25,7 +25,8 @@
 quit                  = q
 quit_client           = x
 stop                  = s
-toggle_menu           = TAB SPACE
+toggle_menu           = SPACE
+toggle_layout         = TAB
 go                    = l
 menu_down             = j
 menu_up               = k
@@ -104,9 +105,8 @@ toggle_show_format  = ^f
 toggle_read_tags    =	
 toggle_make_mono    =
 toggle_shuffle      = 
-toggle_repeat       =	 
-toggle_auto_next    = 
-toggle_layout       = w
+toggle_repeat       = ^r
+toggle_auto_next    = ^x
 toggle_mixer        =
 toggle_softmixer    =
 toggle_equalizer    =
@@ -127,6 +127,6 @@ exec_command9 =
 # The following commands are available but not assigned to any keys by
 # default:
 #
-#   toggle_percent	Switch on/off play progress bar time percentage
+# toggle_percent	Switch on/off play progress bar time percentage
 toggle_percent = 
 #

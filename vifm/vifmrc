@@ -32,6 +32,7 @@ nnoremap  i  :touch<space>
 nnoremap  I  :mkdir!<space>
 nnoremap  J  <c-e>
 nnoremap  K  <c-y>
+nnoremap  ml :alink!<cr>
 nnoremap  o  :filter //i<left><left>
 nnoremap  O  :filter<cr>
 nnoremap  q  ZZ
@@ -44,7 +45,6 @@ nnoremap  sd :diff<cr>
 nnoremap  s  <c-w>
 "nmap     se s_
 "nmap     sr s=
-nnoremap  sl al
 nnoremap  S  :sync<cr>
 nnoremap gt  gs
 nnoremap  t  tj

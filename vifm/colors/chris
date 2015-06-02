@@ -1,3 +1,5 @@
+" vim: set ft=vim :
+
 " The standard ncurses colors are:
 " Default = -1 = None, can be used for transparency or default color
 " Black   = 0  Red     = 1  Green   = 2  Yellow  = 3 
@@ -10,7 +12,7 @@ highlight Win        cterm=none  ctermfg=yellow    ctermbg=black
 highlight Directory  cterm=none  ctermfg=cyan      ctermbg=none
 highlight Link       cterm=bold  ctermfg=magenta   ctermbg=none
 highlight BrokenLink cterm=bold  ctermfg=black     ctermbg=none
-highlight Socket     cterm=none  ctermfg=red       ctermbg=none
+highlight Socket     cterm=bold  ctermfg=red       ctermbg=none
 highlight Device     cterm=bold  ctermfg=red       ctermbg=none
 highlight Fifo       cterm=bold  ctermfg=blue      ctermbg=none
 highlight Executable cterm=none  ctermfg=green     ctermbg=none
@@ -20,7 +22,7 @@ highlight CmdLine    cterm=bold  ctermfg=cyan      ctermbg=none
 highlight ErrorMsg   cterm=none  ctermfg=red       ctermbg=black
 highlight Border     cterm=none  ctermfg=green     ctermbg=black
 highlight OtherLine  cterm=bold  ctermfg=white     ctermbg=black
-highlight TopLine    cterm=reverse           ctermfg=black   ctermbg=lightwhite   
+highlight TopLine    cterm=reverse           ctermfg=black   ctermbg=lightwhite
 highlight TopLineSel cterm=bold,reverse      ctermfg=green   ctermbg=black
 highlight CurrLine   cterm=bold,reverse      ctermfg=none    ctermbg=black
 highlight Selected   cterm=reverse           ctermfg=green   ctermbg=black

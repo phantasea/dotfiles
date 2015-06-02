@@ -64,7 +64,8 @@ case "$extension" in
         try transmission-show "$path" && { dump | fmt -s -w $width; exit 5; } || exit 1;;
     # HTML Pages:
     htm|html|xhtml|shtml)
-        try w3m -dump -cols "$width" -T text/html "$path" && { dump; exit 0; } || exit 1;;
+        #try w3m -dump -cols "$width" -T text/html "$path" && { dump; exit 0; } || exit 1;;
+        try w3m -dump -T text/html "$path" && { dump; exit 0; } || exit 1;;
     # XML files
     xml)
         try highlight -S xml -O ansi -s dante "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;

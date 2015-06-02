@@ -16,12 +16,22 @@
 [difftool]
     prompt = false
 
+[diff "word"]
+	textconv = strings
+
+[diff "exif"]
+	textconv = exiftool
+
 [merge]
+    keepBackup = false
     tool = vimdiff
     conflictstyle = diff3
 
 [mergetool]
     prompt = false
+
+[push]
+	default = matching
 
 [alias]
     co = checkout
@@ -33,10 +43,3 @@
     mt = mergetool
     last = log -1 HEAD
     unstage = reset HEAD --
-
-[push]
-	default = matching
-[diff "word"]
-	textconv = strings
-[diff "exif"]
-	textconv = exiftool

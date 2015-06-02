@@ -20,8 +20,10 @@ set! network.http.pipelining.maxrequests=8
 set! plugin.expose_full_path=true
 set! privacy.popups.disable_from_plugins=3
 set! security.dialog_enable_delay=0
+set! browser.fullscreen.autohide=false
 
 "set noinsertmode
+"set fullscreen
 set guioptions=CsN
 set hintkeys=hjklasdfgyuiopqwertnmzxcvb
 set history=64
@@ -29,8 +31,12 @@ set maxitems=10
 set newtab=all
 set timeoutlen=2000
 set titlestring='Firefox'
-set defsearch=b
+"set defsearch=b
 
+nmap -b <c-j> <c-f>
+nmap -b <c-k> <c-b>
+nmap -b <c-n> gt
+nmap -b <c-p> gT
 nmap -b i gi
 nmap -b I gi<C-t>
 nmap -b gi i
@@ -50,7 +56,7 @@ nmap -b y :bmarks<CR>
 nmap -b Y :history<CR>
 nmap -b p <C-b>
 nmap -b q D
-nmap -b Q d
+nmap -b Q :qall<cr>
 nmap -b v gf
 nmap -b V gF
 nmap -b x :stop<CR>
