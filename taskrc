@@ -7,8 +7,8 @@
 # Files
 data.location=~/.task
 
-include ~/.task/holidays.ch-CN.rc
-include ~/.task/chris.theme
+include /opt/.etc/task/holidays.ch-CN.rc
+include /opt/.etc/task/chris.theme
 
 # Terminal
 editor=vim
