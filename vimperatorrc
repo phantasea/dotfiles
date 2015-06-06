@@ -1,0 +1,55 @@
+" vim: set ft=vim:
+
+set editor="sublime-text"
+set gui=none,tabs
+set history=64
+set maxitems=9
+set newtab=all
+set noscrollbars
+set autocomplete
+set tabnumbers
+set showstatuslinks=1
+set complete=sl
+set defsearch=baidu
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+set wildmode=list:longest,full
+
+"highlight CmdLine color:white; background:black;
+highlight StatusLine font-style:bold color:magenta; background:white;
+map <silent> <F9>    :set gui=none,tabs,addons<CR>
+map <silent> <F11>   :set gui=all,nobookmarks<CR>
+map <silent> <F10>   :set gui=none,tabs<CR>
+map <silent> <S-F4>  :restart<CR>
+map <silent> <F4>    :winclose<CR>
+
+map <C-Tab> <C-^>
+nnoremap <C-N>   gt
+nnoremap <C-P>   gT
+nnoremap <C-H>   <C-^>
+nnoremap <C-C>   :stop<CR>
+nnoremap <C-O>   :back<CR>
+nnoremap <C-I>   :forward<CR>
+nnoremap q D
+nnoremap I i
+nnoremap i gi
+nnoremap J <C-F>
+nnoremap K <C-B>
+nnoremap <C-J> <C-F>
+nnoremap <C-K> <C-B>
+nnoremap x :run 
+nnoremap X :!!<CR>
+vnoremap y <C-V><C-C>
+nnoremap <Space> <C-F>
+nnoremap <S-Space> <C-B>
+
+noremap wbd :tabopen www.baidu.com<CR><Esc>
+noremap wgg :tabopen http://www.google.com/intl/en/<CR>
+noremap wsn :tabopen news.sina.com.cn<CR>
+noremap wxl :tabopen www.xunlei.com<CR>
+noremap whi :tab help index<CR>
+noremap whh :tab help<CR>
+noremap wff :tabopen https://addons.mozilla.org/en-US/firefox/<CR>
+noremap wuk :tabopen www.youku.com<CR>
+noremap wtd :tabopen www.tudou.com<CR>
+noremap wfd :tabopen www.thefreedictionary.com<CR>
+
