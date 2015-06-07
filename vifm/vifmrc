@@ -1,6 +1,7 @@
 " vim: filetype=vifm :
 
 " mapping {{{
+nnoremap  <F5> :shell<cr>
 nnoremap  <return> <nop>
 vnoremap  <space>  o
 qnoremap  <space>  <tab>
@@ -80,23 +81,27 @@ qnoremap  v  q
 qnoremap  J  qje
 qnoremap  K  qke
 mnoremap  h  q
+
+map <left>   <nop>
+map <right>  <nop>
+map <up>     <nop>
+map <down>   <nop>
 " }}}
 
 " mark {{{
 mark / /
-mark b ~/.vim/bundle
 mark h ~/
 mark H ~simone/
-mark m /media
 mark n ~/doc/note
+mark t ~/.vifm/Trash
+mark m /media
 mark o /opt
 mark p /opt/.porn
 mark e /opt/.etc
 mark g /opt/git/clone
-mark r ~/.ranger
-mark v ~/.vifm
-mark t ~/.vifm/Trash
-mark w ~/.w3m
+mark v /opt/.vim
+mark u /opt/.util
+mark w /opt/web
 " }}}
 
 " option {{{
@@ -134,7 +139,7 @@ set novimhelp
 set norunexec
 
 " Use KiB, MiB, ... instead of KB, MB, ...
-" set noiec
+set noiec
 
 " Selected color scheme
 colorscheme chris
@@ -142,6 +147,9 @@ colorscheme chris
 " The FUSE_HOME directory will be used as a root dir for all FUSE mounts.
 " Unless it exists with write/exec permissions set, vifm will attempt to create it.
 set fusehome=/tmp/vifm_FUSE
+
+" Don't do too many requests to slow file systems
+set slowfs=curlftpfs
 
 " See man date or man strftime for details.
 set timefmt=%H:%M:%S\ %m/%d/%Y
@@ -158,7 +166,8 @@ set cpoptions="s"
 set dotdirs=norootparent
 set rulerformat="%=%l%%%S"
 set grepprg=ag\ --line-numbers\ %i\ %a\ %s
-" set viewcolumns="-{name}"
+windo set viewcolumns=-{name}
+"windo filter! /^.*\.(lo|o|d|class|py[co])$|.*~$/
 " *****************************
 
 " Show list of matches on tab complition in command-line mode
@@ -254,11 +263,14 @@ command vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom %f
 " :r - root of the filename (without last extension)
 
 " Manpage
-"filetype  *.1  manmux %f:t:r
+filetype  *.[1-8]  gtbl %c | groff -Tascii -man | less
+fileview  *.[1-8]  gtbl %c | groff -Tascii -man | col -b
 
 " Office files
 filetype  *.doc  vim %f
 fileview  *.doc  antiword %f
+fileview  *.docx docx2txt.pl %f -
+filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
 
 " c/c++ files
 fileview  *.h,*.c,*.cpp  highlight -S c -O ansi -s dante %f
@@ -276,16 +288,20 @@ fileview  *.py  highlight -S python -O ansi -s dante %f
 fileview  *.sh  highlight -S sh -O ansi -s dante %f
 
 " Directories
-fileview  */  tree -F --dirsfirst %c
+fileview  */,.*/  tree -F --dirsfirst %c
 
 " Pdf
 filetype  *.pdf fimgs %f
 fileview  *.pdf pdftotext -l 1 -nopgbrk -q %c -
-"fileview  *.pdf pdfinfo %c
+filextype *.pdf zathura %c %i, apvlv %c
 
 " PostScript
 filetype  *.ps fimgs %f
 fileview  *.ps ps2text %f -
+filextype *.ps,*.ps.gz zathura %f
+
+" Djvu
+filextype *.djvu zathura %f, apvlv %f
 
 " PGP
 fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %f
@@ -301,10 +317,12 @@ fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb  me
 " Image
 filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm  fim *.jpg *.jpeg *.png *.gif *.xpm 2> /dev/null
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm  mediainfo -f %f
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm  pho %f, feh %f
 
 " Web
 filetype  *.html,*.htm,*.xhtml,*.shtml  fmw3mux %f
 fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %f
+filextype *.html,*.htm,*.xhtml,*.shtml  firefox %f &
 
 " Markdown
 fileview  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %f |w3m -dump -cols 128 -T text/html
@@ -338,13 +356,13 @@ filetype  *.tar,*.tgz,*.tar.gz,*.tbz,*.tbz2,*.tar.bz2
        \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
 
 " Fuse7z
-fileview  *.7z  als %c
+fileview  *.7z  als %c, 7z | %c
 filetype  *.7z
        \ {Mount with fuse-7z}
        \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
 
 " Rar2FsMount
-fileview  *.rar  als %c
+fileview  *.rar  als %c, unrar v %c
 filetype  *.rar
        \ {Mount with rar2fs}
        \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,

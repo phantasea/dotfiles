@@ -11,7 +11,7 @@
 #keymap  RIGHT   MOVE_RIGHT
 #keymap  UP      MOVE_UP
 #keymap  DOWN    MOVE_DOWN
-keymap	SPC     NEXT_PAGE
+keymap  SPC     NEXT_PAGE
 keymap  C-N     NEXT_TAB
 keymap  C-P     PREV_TAB
 keymap  C-J     NEXT_PAGE
@@ -34,29 +34,29 @@ keymap  |   PIPE_SHELL
 keymap  ^   LINE_BEGIN
 keymap  $   LINE_END
 keymap  0   LINE_BEGIN
-keymap	?   HELP
+keymap  ?   HELP
 
 keymap  a   ADD_BOOKMARK
 keymap  b   NEXT_LEFT_UP
 keymap  B   PREV_WORD
 keymap  d   SAVE_LINK
 keymap  D   SAVE_IMAGE
-keymap  e   EDIT
-keymap  E   EDIT_SCREEN
+keymap  e   EDIT_SCREEN
+keymap  E   EDIT
 keymap  f   LIST_MENU
-keymap	G   END
+keymap  G   END
 keymap  i   GOTO_LINK
 keymap  I   TAB_LINK
 keymap  h   MOVE_LEFT
 keymap  l   MOVE_RIGHT
-keymap	j   MOVE_DOWN1
-keymap	k   MOVE_UP1
-keymap	K   DOWN
-keymap	J   UP
+keymap  j   MOVE_DOWN1
+keymap  k   MOVE_UP1
+keymap  K   DOWN
+keymap  J   UP
 keymap  H   MOV2TOP
 keymap  L   MOV2BOT
 keymap  M   MOV2MID
-keymap	mm  MARK_LINE
+keymap  mm  MARK_LINE
 keymap  mw  MARK_WORD
 keymap  mu  ANCHOR_URL
 keymap  n   COMMAND "SEARCH_NEXT; MARK_WORD"
@@ -64,9 +64,9 @@ keymap  N   COMMAND "SEARCH_PREV; MARK_WORD"
 keymap  o   GOTO
 keymap  O   TAB_GOTO
 keymap  p   PREV_PAGE
-keymap	q   CLOSE_TAB
-keymap	Q   QUIT
-keymap	r   RELOAD
+keymap  q   CLOSE_TAB
+keymap  Q   QUIT
+keymap  r   RELOAD
 keymap  R   READ_SHELL
 keymap  C-S SAVE
 keymap  M-s SAVE_SCREEN
@@ -74,8 +74,8 @@ keymap  s   SRCH_BD
 keymap  S   TAB_SRCH_BD
 keymap  t   SELECT_MENU
 keymap  T   TAB_GOTO
-keymap	u   UNDO_CLOSE_ONE
-keymap	U   UNDO_CLOSE_ALL
+keymap  u   UNDO_CLOSE_ONE
+keymap  U   UNDO_CLOSE_ALL
 keymap  v   VIEW
 keymap  w   NEXT_RIGHT_DOWN
 keymap  W   NEXT_WORD
@@ -88,26 +88,26 @@ keymap  Z   CENTER_H
 
 keymap  cd  GOTO_RELATIVE
 keymap  gc  COOKIE
-keymap	gd  DOWNLOAD_LIST
+keymap  gd  DOWNLOAD_LIST
 keymap  ge  MSGS
 keymap  gf  LOAD
-keymap	gg  BEGIN
-keymap	gh  HISTORY
-#keymap	gi  DISPLAY_IMAGE
-keymap	gi  SET_OPTION display_image=toggle
+keymap  gg  BEGIN
+keymap  gh  HISTORY
+#keymap  gi  DISPLAY_IMAGE
+keymap  gi  SET_OPTION display_image=toggle
 #keymap gi  COMMAND "FIRST_INPUT; GOTO_LINK"
 keymap  gi  FIRST_INPUT
 keymap  gk  COOKIE
 keymap  gl  LIST
-keymap	gm  VIEW_BOOKMARK
+keymap  gm  VIEW_BOOKMARK
 keymap  gn  COMMAND "SEARCH 下一页; GOTO_LINK"
 keymap  go  OPTIONS
 keymap  gp  COMMAND "SEARCH 上一页; GOTO_LINK"
 keymap  gr  REINIT
-keymap	gt  TAB_MENU
-keymap	gq  ABORT
-keymap	gu  UNDO
-keymap	gU  REDO
+keymap  gt  TAB_MENU
+keymap  gq  ABORT
+keymap  gu  UNDO
+keymap  gU  REDO
 keymap  gw  DICT_WORD_AT
 keymap  gW  DICT_WORD
 keymap  gs  SRCH_GG
