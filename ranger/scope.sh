@@ -102,7 +102,8 @@ case "$mimetype" in
         exit 2;;
     # Other files:
     *)
-        try mediainfo "$path" && { dump; exit 5; } || exit 1;;
+        #try mediainfo "$path" && { dump; exit 5; } || exit 1;;
+        exit 2;;
 esac
 
 exit 1
