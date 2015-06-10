@@ -263,13 +263,13 @@ command vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom %f
 " :r - root of the filename (without last extension)
 
 " Manpage
-filetype  *.[1-8]  gtbl %c | groff -Tascii -man | less
 fileview  *.[1-8]  gtbl %c | groff -Tascii -man | col -b
+filetype  *.[1-8]  gtbl %c | groff -Tascii -man | less
 
 " Office files
-filetype  *.doc  vim %f
-fileview  *.doc  antiword %f
+fileview  *.doc  antiword %f, catdoc %f
 fileview  *.docx docx2txt.pl %f -
+filetype  *.doc  vim %f
 filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
 
 " c/c++ files
@@ -291,13 +291,13 @@ fileview  *.sh  highlight -S sh -O ansi -s dante %f
 fileview  */,.*/  tree -F --dirsfirst %c
 
 " Pdf
-filetype  *.pdf fimgs %f
 fileview  *.pdf pdftotext -l 1 -nopgbrk -q %c -
+filetype  *.pdf fimgs %f
 filextype *.pdf zathura %c %i, apvlv %c
 
 " PostScript
-filetype  *.ps fimgs %f
 fileview  *.ps ps2text %f -
+filetype  *.ps fimgs %f
 filextype *.ps,*.ps.gz zathura %f
 
 " Djvu
@@ -307,21 +307,21 @@ filextype *.djvu zathura %f, apvlv %f
 fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %f
 
 " Audio
-filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mpg321 -q %f &
 fileview  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mediainfo -f %f
+filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mpg321 -q %f &
 
 " Video
-filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb  mplayer -vo fbdev2 %f
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb  mediainfo -f %f
+filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb  mplayer -vo fbdev2 %f
 
 " Image
-filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm  fim *.jpg *.jpeg *.png *.gif *.xpm 2> /dev/null
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm  mediainfo -f %f
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm  pho %f, feh %f
+filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm  fim * 2> /dev/null
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm  pho *, feh *
 
 " Web
-filetype  *.html,*.htm,*.xhtml,*.shtml  fmw3mux %f
 fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %f
+filetype  *.html,*.htm,*.xhtml,*.shtml  fmw3mux %f
 filextype *.html,*.htm,*.xhtml,*.shtml  firefox %f &
 
 " Markdown
@@ -331,8 +331,8 @@ fileview  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %f |w3m -dump -cols 
 fileview  *.log  tail -n500 %f
 
 " Object
-filetype  *.o nm %f | less
 fileview  *.o nm %f
+filetype  *.o nm %f | less
 
 " torrent
 fileview  *.torrent  transmission-show %c
