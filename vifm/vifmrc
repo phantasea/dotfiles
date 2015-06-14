@@ -1,12 +1,17 @@
 " vim: filetype=vifm :
 
 " mapping {{{
-nnoremap  <F5> :shell<cr>
+nnoremap  <F5>  :shell<cr>
+nnoremap  <F10> :diff<cr>
+nnoremap  <F11> :diff2<cr>
 nnoremap  <return> <nop>
 vnoremap  <space>  o
 qnoremap  <space>  <tab>
 nnoremap  <c-j>    <c-f>
 nnoremap  <c-k>    <c-b>
+nnoremap  0  gg
+nnoremap  ^  gg
+nnoremap  $  G
 nnoremap  -  :invert s<cr>
 vnoremap  -  :invert s<cr>
 nnoremap  a  Gvgg
@@ -41,8 +46,11 @@ nnoremap  r  cw
 nnoremap  R  :rename<cr>
 nnoremap ge  :empty<cr>
 nnoremap gl  gf
+nnoremap gI  :fimdir<cr>
+nnoremap go  :!  %f<left><left><left>
+nnoremap gO  :!sudo  %f<left><left><left>
 nnoremap gr  :source ~/.vifm/vifmrc<cr>
-nnoremap  sd :diff<cr>
+nnoremap gS  :shell<cr>
 nnoremap  s  <c-w>
 "nmap     se s_
 "nmap     sr s=
@@ -200,21 +208,23 @@ set scrolloff=0
 " %i completely ignore command output
 " %m run the command in a menu window
 " %S Show command output in the status bar
-command suedit !sudoedit %c
+command sued !sudoedit %c
+command surm sudo rm -rf %c
 command rc vimux ~/.vifm/vifmrc
 command df df -h %m 2> /dev/null
-command surm sudo rm -rf %c
 command ps pstree %m
 command du ncdu . 
-command diff vimdiff %f %F
-command unzip  tar -zxf %c %i &
-command unjar  tar -jxf %c %i &
+command diff  vimdiff %c %C
+command diff2 vimdiff %f
+command uz  tar -zxf %c %i &
+command uj  tar -jxf %c %i &
 command zip zip -r %f.zip %f
 command run !! ./%f
 command make !!make
 command vgrep vim "+grep %a"
 command fim fim %f 2> /dev/null
-command fima fim *.{jpg,png,jpeg,gif}
+command fimall fim -c 'endless_slideshow' *.{jpg,png,jpeg,gif,bmp,xpm}
+command fimdir fim -c 'endless_slideshow' * **/*
 command movetoother   mv -i %f %D %i
 command copytoother   cp -R %f %D %i
 command movefromother mv -i %F %d %i
@@ -225,7 +235,8 @@ command sumovefromother sudo mv -i %F %d %i
 command sucopyfromother sudo cp -R %F %d %i
 command copyfilename tmux setb %f %i &
 command copydirname  tmux setb %d %i &
-command winiconv iconv -f GBK -t UTF8 %c -o %c %i
+command iconv iconv -f GBK -t UTF8 %c -o %c.new %i
+command vid   mplayer -vo fbdev2
 command vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom %f
 " }}}
 

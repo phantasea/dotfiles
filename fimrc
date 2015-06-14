@@ -61,12 +61,13 @@ bind 'n' "next_picture;";
 bind 'N' 'next10';
 bind 'o' "reduce";
 bind 'p' "prev_picture;";
-bind 'P' "endless_slideshow";
+bind 'P' "random_slideshow";
+bind 'S' "endless_slideshow";
 bind 'q' "quit";
 bind 'r' "reload";
 bind 'R' "redisplay";
 bind 's' "split;redisplay;";
-bind 't' "top_align;";
+bind 't' "mark";
 bind 'v' "vsplit;redisplay;";
 bind 'w' "toggleAutoWidth;";
 bind 'x' "swap;redisplay;";
@@ -124,25 +125,19 @@ autocmd "PostScale"   "" "_wd=i:_will_display;" ;
 autocmd "PostPan"     "" "{i:fresh=1;display;}" ;
 autocmd "PostReload"   "" "if(i:fresh){redisplay;}";
 # FIXME : seems like the following automcd's can be commented
-autocmd "PostInteractiveCommand"   "" "if(i:fresh){display;i:fresh=0;}";
-autocmd "PostInteractiveCommand"   "" "if(_want_prefetch){prefetch;}";	# new : for smoother browsing of big images 
-autocmd "PostInteractiveCommand"   "" "if(_display_console==0 && i:fresh){redisplay;i:fresh=0;}"; # a fixup
+#autocmd "PostInteractiveCommand"   "" "if(i:fresh){display;i:fresh=0;}";
+#autocmd "PostInteractiveCommand"   "" "if(_want_prefetch){prefetch;}";	# new : for smoother browsing of big images 
+#autocmd "PostInteractiveCommand"   "" "if(_display_console==0 && i:fresh){redisplay;i:fresh=0;}"; # a fixup
 
-alias "next10" "i=0;while(i<10){i=i+1;next;display;sleep '1';};";
+alias "next10"            "i=0;while(i<10){i=i+1;next;display;sleep '1';};";
 alias "endless_slideshow" "while(1){display;sleep '1';next;};";
+alias "random_slideshow"  "while(1){goto random;}";
 alias "bookview"          "while(1){display;sleep '2';scrolldown;};";
 alias "comicview"         "while(1){display;sleep '1';scrolldown;};";
 alias "read"              "while(1){display;sleep '1';scrollforward;};";
 alias "slowread"          "while(1){display;sleep '2';scrollforward;};";
 alias "fastread"          "while(1){display;scrollforward;};";
 alias "pornview"          "echo 'press any key repeatedly to terminate' ;endless_slideshow;";
-autocmd "PreExecutionCycle" "/fbps-" "_display_busy=0;_display_status=0;" ;
-autocmd "PreExecutionCycle" "" "i:fresh=1;reload;";
-#autocmd "PreExecutionCycle" "" "redisplay;";
-autocmd "PreExecutionCycle" "/fbps-.*ps001.png" "i:fresh=1;redisplay;";
-#autocmd "PostInteractiveCommand" "" "i:fresh=0;";
-#autocmd "PostInteractiveCommand" "" "prefetch;";
-#extra..
 alias "diagonal_nw" "pan_nw;";
 alias "diagonal_ne" "pan_ne;";
 alias "diagonal_se" "pan_se;";
@@ -164,7 +159,6 @@ alias "toggleAutoWidth" "autowidth=1-autowidth;v:auto_scale_v=0;reload;";
 #toggleVerbosity;
 alias "plisten" 'popen "nc -l -p 9999 "';
 alias "wlisten" "while(1){sleep;plisten;}";
-alias "random_slideshow" "while(1){goto random;}";
 alias "rotate90_ccw" "i:orientation=i:orientation+1;i:fresh=1;i:i:fresh=1;redisplay;";
 alias "rotate90_cw"  "i:orientation=i:orientation+3;i:fresh=1;i:i:fresh=1;redisplay;";
 alias "rotate90" "rotate90_cw;display;";

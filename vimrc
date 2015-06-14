@@ -146,6 +146,7 @@ nnoremap  cp   :cprev<CR>
 nnoremap  co   :call SmartOpenQfWin()<CR>
 nnoremap  c<space>  :call SmartOpenQfWin()<CR>
 
+nnoremap  d<space>  :call SmartDiffOff()<CR>
 if &diff
 "color    peaksea
 syntax    off
@@ -159,7 +160,6 @@ nnoremap  do   :diffput<CR>
 vnoremap  do   :diffput<CR>
 nnoremap  du   :diffupdate<CR>
 endif
-nnoremap  d<space>  :call SmartDiffOff()<CR>
 
 nnoremap  gj   J
 nnoremap  gw   :write<CR>
@@ -579,29 +579,12 @@ let  g:Tlist_Exit_OnlyWindow = 1
 let  g:Tlist_GainFocus_On_ToggleOpen = 1
 "}}}
 
-"neocomplcache {{{
-let g:neocomplcache_enable_smart_case = 1
-let g:neocomplcache_min_syntax_length = 3
-"}}}
-
-"vimwiki {{{
-"let g:vimwiki_use_mouse = 0
-"let g:vimwiki_camel_case = 0
-"let g:vimwiki_html_header_numbering = 2
-"let g:vimwiki_hl_cb_checked = 1
-"let g:vimwiki_CJK_length = 1
-"let g:vimwiki_list = [{'path':'~/vimwiki/', 'path_html':'~/vimwiki/html/'}]
-"}}}
-
-"conque-term {{{
-"}}}
-
 "w3m {{{
-"let g:w3m#hover_set_on = -1
-"let g:w3m#hover_delay_time = 50
-"let g:w3m#external_browser = 'w3m'
-"let g:w3m#homepage = 'http://www.baidu.com'
-"let g:w3m#hit_a_hint_key = 'f'
+let g:w3m#hover_set_on = -1
+let g:w3m#hover_delay_time = 50
+let g:w3m#external_browser = 'w3m'
+let g:w3m#homepage = 'http://www.baidu.com'
+let g:w3m#hit_a_hint_key = 'f'
 "}}}
 
 "viewdoc {{{
@@ -609,29 +592,8 @@ let g:viewdoc_open = "topleft new"
 let g:viewdoc_only = 0
 "}}}
 
-"CtrlP {{{
-let g:ctrlp_map = '<c-;>'
-"}}}
-
 "markdown {{{
 let g:vim_markdown_folding_disabled=1
-"}}}
-
-"delimitMate {{{
-let delimitMate_expand_space = 1
-let delimitMate_expand_cr = 2
-"}}}
-
-"shot-f {{{
-let g:shot_f_no_default_key_mappings = 1
-"nmap f  <Plug>(shot-f-f)
-"nmap F  <Plug>(shot-f-F)
-"xmap f  <Plug>(shot-f-f)
-"xmap F  <Plug>(shot-f-F)
-"omap f  <Plug>(shot-f-f)
-"omap F  <Plug>(shot-f-F)
-"omap t  <Plug>(shot-f-t)
-"omap T  <Plug>(shot-f-T)
 "}}}
 
 "tmux-navigator {{{
