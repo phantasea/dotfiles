@@ -111,6 +111,7 @@ keymap  gU  REDO
 keymap  gw  DICT_WORD_AT
 keymap  gW  DICT_WORD
 keymap  gs  SRCH_GG
-keymap  gS  TAB_SRCH_GG
+keymap  gS  TAB_SRCH_WIKI
+#keymap  gS  TAB_SRCH_GG
 keymap  gy  EXTERN_LINK
 keymap  gY  EXTERN
