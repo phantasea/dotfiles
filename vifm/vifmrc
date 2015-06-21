@@ -162,7 +162,7 @@ set slowfs=curlftpfs
 " See man date or man strftime for details.
 set timefmt=%H:%M:%S\ %m/%d/%Y
 
-set statusline="%u:%g  [%A]  \"%t\"%=  %d"
+set statusline="%u:%g  [%A]  \"%t\" (%s) %=  %d"
 
 " *********chris***************
 "set nolaststatus
@@ -174,7 +174,7 @@ set cpoptions="s"
 set dotdirs=norootparent
 set rulerformat="%=%l%%%S"
 set grepprg=ag\ --line-numbers\ %i\ %a\ %s
-windo set viewcolumns=-{name}
+"windo set viewcolumns=-{name}
 "windo filter! /^.*\.(lo|o|d|class|py[co])$|.*~$/
 " *****************************
 
