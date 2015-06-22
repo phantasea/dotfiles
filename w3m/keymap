@@ -47,6 +47,7 @@ keymap  f   LIST_MENU
 keymap  G   END
 keymap  i   GOTO_LINK
 keymap  I   TAB_LINK
+keymap  M-i SET_OPTION display_image=toggle
 keymap  h   MOVE_LEFT
 keymap  l   MOVE_RIGHT
 keymap  j   MOVE_DOWN1
@@ -93,8 +94,6 @@ keymap  ge  MSGS
 keymap  gf  LOAD
 keymap  gg  BEGIN
 keymap  gh  HISTORY
-#keymap  gi  DISPLAY_IMAGE
-keymap  gi  SET_OPTION display_image=toggle
 #keymap gi  COMMAND "FIRST_INPUT; GOTO_LINK"
 keymap  gi  FIRST_INPUT
 keymap  gk  COOKIE
