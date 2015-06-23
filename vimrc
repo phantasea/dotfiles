@@ -173,6 +173,7 @@ nnoremap  J    <C-E>
 nnoremap  K    <C-Y>
 nnoremap  q    :call SmartQuit()<CR>
 nnoremap  Q    :qall<CR>
+nnoremap sq    :call QuitAllBufButMe()<CR>
 nnoremap  S    :%s//g<Left><Left>
 vnoremap  S    :s/\%V/g<left><left>
 nnoremap  s    <C-W>
@@ -282,6 +283,20 @@ func! SmartQuit()
     endif
 
     bdelete
+endfunc
+
+func! QuitAllBufButMe()
+    let bufs = ListedBufs()
+    if len(bufs) < 2
+        return
+    endif
+
+    let me = winbufnr(0)
+    for b in bufs
+        if b != me
+            exec("bdelete ".b)
+        endif
+    endfor
 endfunc
 
 func! DelEmptyFile()
