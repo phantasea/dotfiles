@@ -1,4 +1,5 @@
-# Ctrl  : C-, ^ # Escape: ESC-, M-, ^[
+# Ctrl  : C-, ^ 
+# Escape: ESC-, M-, ^[
 # Space : SPC, ' '
 # Tab   : TAB, ^i, ^I
 # Delete: DEL, ^?
@@ -7,11 +8,11 @@
 # Right : RIGHT, ^[[C
 # Left  : LEFT, ^[[D
 
-#keymap  LEFT    MOVE_LEFT
-#keymap  RIGHT   MOVE_RIGHT
-#keymap  UP      MOVE_UP
-#keymap  DOWN    MOVE_DOWN
-keymap  SPC     NEXT_PAGE
+keymap  SPC     COMMAND "NEXT_PAGE; MOV2BOT"
+keymap  LEFT    MOVE_LEFT
+keymap  RIGHT   MOVE_RIGHT
+keymap  UP      MOVE_UP
+keymap  DOWN    MOVE_DOWN
 keymap  C-N     NEXT_TAB
 keymap  C-P     PREV_TAB
 keymap  C-J     NEXT_PAGE
@@ -64,7 +65,7 @@ keymap  n   COMMAND "SEARCH_NEXT; MARK_WORD"
 keymap  N   COMMAND "SEARCH_PREV; MARK_WORD"
 keymap  o   GOTO
 keymap  O   TAB_GOTO
-keymap  p   PREV_PAGE
+keymap  p   COMMAND "PREV_PAGE; MOV2TOP"
 keymap  q   CLOSE_TAB
 keymap  Q   QUIT
 keymap  r   RELOAD
