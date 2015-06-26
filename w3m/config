@@ -119,7 +119,7 @@ imgdisplay w3mimgdisplay
 image_scale 100
 ext_image_viewer 0
 max_load_image 8
-auto_image 0
+auto_image 1
 pseudo_inlines 1
 display_image 0
 view_unseenobject 1

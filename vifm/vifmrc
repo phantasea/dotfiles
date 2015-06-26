@@ -319,7 +319,7 @@ fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %f
 
 " Audio
 fileview  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mediainfo -f %f
-filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mpg321 -q %f &
+filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mpg123 -q %f &
 
 " Video
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb  mediainfo -f %f
