@@ -224,7 +224,7 @@ command make !!make
 command vgrep vim "+grep %a"
 command fim fim %f 2> /dev/null
 command fimall fim -c 'endless_slideshow' *.{jpg,png,jpeg,gif,bmp,xpm}
-command fimdir fim -c 'endless_slideshow' * **/*
+command fimdir fim -c 'endless_slideshow' *.{jpg,png,jpeg,gif,bmp,xpm} **/*.{jpg,png,jpeg,gif,bmp,xpm}
 command movetoother   mv -i %f %D %i
 command copytoother   cp -R %f %D %i
 command movefromother mv -i %F %d %i
