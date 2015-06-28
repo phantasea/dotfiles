@@ -1,4 +1,4 @@
-" vim: set ft=vim :
+" vim: set ft=vifm :
 
 " The standard ncurses colors are:
 " Default = -1 = None, can be used for transparency or default color
@@ -8,22 +8,22 @@
 " Available style values (some of them can be combined):
 " bold  underline  reverse/inverse  standout  none
 
-highlight Win        cterm=none  ctermfg=yellow    ctermbg=black
-highlight Directory  cterm=none  ctermfg=cyan      ctermbg=none
-highlight Link       cterm=bold  ctermfg=magenta   ctermbg=none
-highlight BrokenLink cterm=bold  ctermfg=black     ctermbg=none
-highlight Socket     cterm=bold  ctermfg=red       ctermbg=none
-highlight Device     cterm=bold  ctermfg=red       ctermbg=none
-highlight Fifo       cterm=bold  ctermfg=blue      ctermbg=none
-highlight Executable cterm=none  ctermfg=green     ctermbg=none
-highlight StatusLine cterm=none  ctermfg=white     ctermbg=blue
-highlight JobLine    cterm=bold  ctermfg=white     ctermbg=blue
-highlight CmdLine    cterm=bold  ctermfg=cyan      ctermbg=none
-highlight ErrorMsg   cterm=none  ctermfg=red       ctermbg=black
-highlight Border     cterm=none  ctermfg=green     ctermbg=black
-highlight OtherLine  cterm=bold  ctermfg=white     ctermbg=black
-highlight TopLine    cterm=reverse           ctermfg=black   ctermbg=lightwhite
-highlight TopLineSel cterm=bold,reverse      ctermfg=green   ctermbg=black
-highlight CurrLine   cterm=bold,reverse      ctermfg=none    ctermbg=black
-highlight Selected   cterm=reverse           ctermfg=green   ctermbg=black
-highlight WildMenu   cterm=underline,reverse ctermfg=white   ctermbg=black
+highlight Win        ctermfg=yellow      ctermbg=black       cterm=none
+highlight Directory  ctermfg=cyan        ctermbg=none        cterm=none
+highlight Link       ctermfg=magenta     ctermbg=none        cterm=bold
+highlight BrokenLink ctermfg=black       ctermbg=none        cterm=bold
+highlight Socket     ctermfg=red         ctermbg=none        cterm=bold
+highlight Device     ctermfg=red         ctermbg=none        cterm=bold
+highlight Fifo       ctermfg=blue        ctermbg=none        cterm=bold
+highlight Executable ctermfg=green       ctermbg=none        cterm=none
+highlight JobLine    ctermfg=white       ctermbg=blue        cterm=bold
+highlight ErrorMsg   ctermfg=red         ctermbg=black       cterm=none
+highlight Border     ctermfg=green       ctermbg=black       cterm=none
+highlight StatusLine ctermfg=white       ctermbg=blue        cterm=none
+highlight CmdLine    ctermfg=cyan        ctermbg=none        cterm=bold
+highlight WildMenu   ctermfg=white       ctermbg=black       cterm=underline,reverse
+highlight TopLine    ctermfg=lightgreen  ctermbg=black       cterm=bold
+highlight TopLineSel ctermfg=green       ctermbg=black       cterm=bold,reverse
+highlight CurrLine   ctermfg=none        ctermbg=black       cterm=bold,reverse
+highlight OtherLine  ctermfg=white       ctermbg=black       cterm=bold
+highlight Selected   ctermbg=green       ctermfg=black       cterm=none
