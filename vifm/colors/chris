@@ -19,8 +19,8 @@ highlight Executable ctermfg=green       ctermbg=none        cterm=none
 highlight JobLine    ctermfg=white       ctermbg=blue        cterm=bold
 highlight ErrorMsg   ctermfg=red         ctermbg=black       cterm=none
 highlight Border     ctermfg=green       ctermbg=black       cterm=none
-highlight StatusLine ctermfg=white       ctermbg=blue        cterm=none
-highlight CmdLine    ctermfg=cyan        ctermbg=none        cterm=bold
+highlight StatusLine ctermfg=white       ctermbg=blue        cterm=bold
+highlight CmdLine    ctermfg=green       ctermbg=none        cterm=bold
 highlight WildMenu   ctermfg=white       ctermbg=black       cterm=underline,reverse
 highlight TopLine    ctermfg=lightgreen  ctermbg=black       cterm=bold
 highlight TopLineSel ctermfg=green       ctermbg=black       cterm=bold,reverse
