@@ -1,5 +1,3 @@
-" vim: filetype=vifm :
-
 " mapping {{{
 nnoremap  <F5>  :shell<cr>
 nnoremap  <F10> :diff<cr>
@@ -339,7 +337,8 @@ filextype *.html,*.htm,*.xhtml,*.shtml  firefox %f &
 fileview  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %f |w3m -dump -cols 128 -T text/html
 
 " Log
-fileview  *.log  tail -n500 %f
+fileview  *.log  tac %c, tail -n500 %c
+filetype  *.log  tac %c | less
 
 " Object
 fileview  *.o nm %f
@@ -347,9 +346,6 @@ filetype  *.o nm %f | less
 
 " torrent
 fileview  *.torrent  transmission-show %c
-
-" MD5
-filetype  *.md5  md5sum -c %f
 
 " FuseZipMount
 fileview  *.zip,*.jar,*.war,*.ear  als %c

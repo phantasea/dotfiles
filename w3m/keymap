@@ -58,9 +58,9 @@ keymap  J   UP
 keymap  H   MOV2TOP
 keymap  L   MOV2BOT
 keymap  M   MOV2MID
-keymap  mm  MARK_LINE
-keymap  mw  MARK_WORD
-keymap  mu  ANCHOR_URL
+keymap  m   MARK_LINE
+keymap  M   ANCHOR_URL
+#keymap mw  MARK_WORD
 keymap  n   COMMAND "SEARCH_NEXT; MARK_WORD"
 keymap  N   COMMAND "SEARCH_PREV; MARK_WORD"
 keymap  o   GOTO

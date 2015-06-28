@@ -1,5 +1,3 @@
-" vim: set ft=vifm :
-
 " The standard ncurses colors are:
 " Default = -1 = None, can be used for transparency or default color
 " Black   = 0  Red     = 1  Green   = 2  Yellow  = 3 
@@ -20,7 +18,7 @@ highlight JobLine    ctermfg=white       ctermbg=blue        cterm=bold
 highlight ErrorMsg   ctermfg=red         ctermbg=black       cterm=none
 highlight Border     ctermfg=green       ctermbg=black       cterm=none
 highlight StatusLine ctermfg=white       ctermbg=blue        cterm=bold
-highlight CmdLine    ctermfg=green       ctermbg=none        cterm=bold
+highlight CmdLine    ctermfg=cyan        ctermbg=none        cterm=bold
 highlight WildMenu   ctermfg=white       ctermbg=black       cterm=underline,reverse
 highlight TopLine    ctermfg=lightgreen  ctermbg=black       cterm=bold
 highlight TopLineSel ctermfg=green       ctermbg=black       cterm=bold,reverse
