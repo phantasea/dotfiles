@@ -61,7 +61,7 @@ bind 'n' "next_picture;";
 bind 'N' 'next10';
 bind 'o' "reduce";
 bind 'p' "prev_picture;";
-bind 'P' "random_slideshow";
+bind 'P' "endless_slideshow";
 bind 'S' "endless_slideshow";
 bind 'q' "quit";
 bind 'r' "reload";
