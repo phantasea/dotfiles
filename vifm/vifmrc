@@ -221,8 +221,8 @@ command run !! ./%f
 command make !!make
 command vgrep vim "+grep %a"
 command fim fim %f 2> /dev/null
-command fimall fim -c 'endless_slideshow' *.{jpg,png,jpeg,gif,bmp,xpm}
-command fimdir fim -c 'endless_slideshow' *.{jpg,png,jpeg,gif,bmp,xpm} **/*.{jpg,png,jpeg,gif,bmp,xpm}
+command fimall fim -c 'endless_slideshow' *.{jpg,png,jpeg,gif,bmp,xpm} 2> /dev/null
+command fimdir fim -c 'endless_slideshow' *.{jpg,png,jpeg,gif,bmp,xpm} **/*.{jpg,png,jpeg,gif,bmp,xpm} 2> /dev/null
 command movetoother   mv -i %f %D %i
 command copytoother   cp -R %f %D %i
 command movefromother mv -i %F %d %i
@@ -324,9 +324,9 @@ fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb  me
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb  mplayer -vo fbdev2 %f
 
 " Image
-fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm  mediainfo -f %f
-filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm  fim * 2> /dev/null
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm  pho *, feh *
+fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  mediainfo -f %f
+filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  fim *.jpeg *.jpg *.png *.bmp *.gif *.ppm *.xpm 2> /dev/null
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  pho *.jpeg *.jpg *.png *.bmp *.gif *.ppm *.xpm
 
 " Web
 fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %f
@@ -395,6 +395,7 @@ fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo*.xpi  als %c
 
 " Open all other files with default system programs. By default all unknown files are opened with 'vi[x]cmd'
 filetype * fmvimux %f
+filextype * sublime-text %f
 "fileview * mediainfo %f
 "fileview * pygmentize -f console -g -- %c
 " }}}
