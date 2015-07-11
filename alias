@@ -13,7 +13,7 @@ alias ll='ls -Al'
 alias la='ls -A'
 alias ld='ls -d */'
 alias ld2='ls -aF | grep /'
-alias l.a='ls -d .*'
+alias l.='ls -d .*'
 alias l.d='ls -d .*/'
 
 alias ..='cd ..'
