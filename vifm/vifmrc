@@ -44,7 +44,7 @@ nnoremap  r  cw
 nnoremap  R  :rename<cr>
 nnoremap ge  :empty<cr>
 nnoremap gl  gf
-nnoremap gI  :fimdir<cr>
+nnoremap gi  :fimall<cr>
 nnoremap go  :!  %f<left><left><left>
 nnoremap gO  :!sudo  %f<left><left><left>
 nnoremap gr  :source ~/.vifm/vifmrc<cr>
@@ -104,7 +104,7 @@ mark m /media
 mark o /opt
 mark p /opt/.porn
 mark e /opt/.etc
-mark g /opt/git/clone
+mark g /opt/git
 mark v /opt/.vim
 mark u /opt/.util
 mark w /opt/web
@@ -220,9 +220,6 @@ command zip zip -r %f.zip %f
 command run !! ./%f
 command make !!make
 command vgrep vim "+grep %a"
-command fim fim %f 2> /dev/null
-command fimall fim -c 'endless_slideshow' *.{jpg,png,jpeg,gif,bmp,xpm} 2> /dev/null
-command fimdir fim -c 'endless_slideshow' *.{jpg,png,jpeg,gif,bmp,xpm} **/*.{jpg,png,jpeg,gif,bmp,xpm} 2> /dev/null
 command movetoother   mv -i %f %D %i
 command copytoother   cp -R %f %D %i
 command movefromother mv -i %F %d %i
@@ -236,6 +233,13 @@ command copydirname  tmux setb %d %i &
 command iconv iconv -f GBK -t UTF8 %c -o %c.new %i
 command vid   mplayer -vo fbdev2
 command vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom %f
+command fim fim %f 2> /dev/null
+command fimall  find . -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.bmp' -o -iname '*.gif' | fim -c 'endless_slideshow' -
+"command fimall find . -maxdepth 1 -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.bmp' -o -iname '*.gif' | fim -c 'endless_slideshow' -
+"command fimall find . -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.bmp' -o -iname '*.gif' -exec fim -c 'endless_slideshow' {} +
+"command fimall find . -maxdepth 1 -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.bmp' -o -iname '*.gif' -exec fim -c 'endless_slideshow' {} +
+"command fimall fim -c 'endless_slideshow' *.{jpg,png,jpeg,gif,bmp} 2> /dev/null
+"command fimall fim -c 'endless_slideshow' *.{jpg,png,jpeg,gif,bmp} **/*.{jpg,png,jpeg,gif,bmp,xpm} 2> /dev/null
 " }}}
 
 " filetype and fileview {{{
@@ -325,8 +329,9 @@ filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb  mp
 
 " Image
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  mediainfo -f %f
-filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  fim *.jpeg *.jpg *.png *.bmp *.gif *.ppm *.xpm 2> /dev/null
+filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  fimimgs
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  pho *.jpeg *.jpg *.png *.bmp *.gif *.ppm *.xpm
+"filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  fim *.jpeg *.jpg *.png *.bmp *.gif *.ppm *.xpm 2> /dev/null
 
 " Web
 fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %f
