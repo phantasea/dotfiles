@@ -1,7 +1,7 @@
 " mapping {{{
 nnoremap  <F5>  :shell<cr>
 nnoremap  <F10> :diff<cr>
-nnoremap  <F11> :diff2<cr>
+nnoremap  <F11> :diffsamewin<cr>
 nnoremap  <return> <nop>
 vnoremap  <space>  o
 qnoremap  <space>  <tab>
@@ -213,7 +213,7 @@ command df df -h %m 2> /dev/null
 command ps pstree %m
 command du ncdu . 
 command diff  vimdiff %c %C
-command diff2 vimdiff %f
+command diffsamewin vimdiff %f
 command uz  tar -zxf %c %i &
 command uj  tar -jxf %c %i &
 command zip zip -r %f.zip %f

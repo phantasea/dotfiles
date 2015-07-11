@@ -84,6 +84,7 @@ set tabstop=4
 set tags=tags;
 set termencoding=utf-8
 set textwidth=0
+set updatetime=2000
 set wildmenu
 set wildignorecase
 "}}}
@@ -107,11 +108,12 @@ inoremap   <C-L>    <END>
 inoremap   <C-H>    <BS>
 inoremap   <C-K>    <Esc>lC
 inoremap   <Tab>    <C-N>
-nnoremap   <BS>     <Nop>
 nnoremap   <C-H>    <C-^>
-nnoremap   <Space>  <PageDown>
-nnoremap   <C-J>    <PageDown>
-nnoremap   <C-K>    <PageUp>
+nnoremap   <Enter>  <Nop>
+nnoremap   <BS>     <PageUp>H
+nnoremap   <Space>  <PageDown>L
+nnoremap   <C-J>    <PageDown>L
+nnoremap   <C-K>    <PageUp>H
 nnoremap   <C-N>    :bn<CR>
 nnoremap   <C-P>    :bp<CR>
 "inoremap   <C-Y>    <C-R><C-R>=LookupColumnChar('y')<CR>
