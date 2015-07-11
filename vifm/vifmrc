@@ -234,12 +234,11 @@ command iconv iconv -f GBK -t UTF8 %c -o %c.new %i
 command vid   mplayer -vo fbdev2
 command vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom %f
 command fim fim %f 2> /dev/null
-command fimall  find . -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.bmp' -o -iname '*.gif' | fim -c 'endless_slideshow' -
-"command fimall find . -maxdepth 1 -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.bmp' -o -iname '*.gif' | fim -c 'endless_slideshow' -
+command fimall  fim -c 'endless_slideshow' {,**/}*.{jpg,jpeg,png,bmp,gif} 2> /dev/null
+"command fimall find . -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.bmp' -o -iname '*.gif' | fim -c 'endless_slideshow' -
 "command fimall find . -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.bmp' -o -iname '*.gif' -exec fim -c 'endless_slideshow' {} +
+"command fimall find . -maxdepth 1 -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.bmp' -o -iname '*.gif' | fim -c 'endless_slideshow' -
 "command fimall find . -maxdepth 1 -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.bmp' -o -iname '*.gif' -exec fim -c 'endless_slideshow' {} +
-"command fimall fim -c 'endless_slideshow' *.{jpg,png,jpeg,gif,bmp} 2> /dev/null
-"command fimall fim -c 'endless_slideshow' *.{jpg,png,jpeg,gif,bmp} **/*.{jpg,png,jpeg,gif,bmp,xpm} 2> /dev/null
 " }}}
 
 " filetype and fileview {{{
@@ -331,7 +330,6 @@ filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb  mp
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  mediainfo -f %f
 filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  fimimgs
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  pho *.jpeg *.jpg *.png *.bmp *.gif *.ppm *.xpm
-"filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  fim *.jpeg *.jpg *.png *.bmp *.gif *.ppm *.xpm 2> /dev/null
 
 " Web
 fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %f
