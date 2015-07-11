@@ -48,7 +48,7 @@ keymap  f   LIST_MENU
 keymap  G   END
 keymap  i   GOTO_LINK
 keymap  I   TAB_LINK
-keymap  M-i SET_OPTION display_image=toggle
+keymap  M-i COMMAND "SET_OPTION display_image=toggle; RELOAD"
 keymap  h   MOVE_LEFT
 keymap  l   MOVE_RIGHT
 keymap  j   MOVE_DOWN1
@@ -59,7 +59,7 @@ keymap  H   MOV2TOP
 keymap  L   MOV2BOT
 keymap  M   MOV2MID
 keymap  m   MARK_LINE
-keymap  M   ANCHOR_URL
+#keymap mu  ANCHOR_URL
 #keymap mw  MARK_WORD
 keymap  n   COMMAND "SEARCH_NEXT; MARK_WORD"
 keymap  N   COMMAND "SEARCH_PREV; MARK_WORD"
