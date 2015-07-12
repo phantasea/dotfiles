@@ -233,12 +233,8 @@ command copydirname  tmux setb %d %i &
 command iconv iconv -f GBK -t UTF8 %c -o %c.new %i
 command vid   mplayer -vo fbdev2
 command vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom %f
-command fim fim %f 2> /dev/null
-command fimall  fim -c 'endless_slideshow' {,**/}*.{jpg,jpeg,png,bmp,gif} 2> /dev/null
-"command fimall find . -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.bmp' -o -iname '*.gif' | fim -c 'endless_slideshow' -
-"command fimall find . -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.bmp' -o -iname '*.gif' -exec fim -c 'endless_slideshow' {} +
-"command fimall find . -maxdepth 1 -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.bmp' -o -iname '*.gif' | fim -c 'endless_slideshow' -
-"command fimall find . -maxdepth 1 -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.bmp' -o -iname '*.gif' -exec fim -c 'endless_slideshow' {} +
+command fim     fim %f > /dev/null 2>&1
+command fimall  fimimgs recursive slideshow
 " }}}
 
 " filetype and fileview {{{
@@ -328,7 +324,7 @@ filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb  mp
 
 " Image
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  mediainfo -f %f
-filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  fimimgs
+filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  fimimgs current normal
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  pho *.jpeg *.jpg *.png *.bmp *.gif *.ppm *.xpm
 
 " Web
