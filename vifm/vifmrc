@@ -45,6 +45,7 @@ nnoremap  R  :rename<cr>
 nnoremap ge  :empty<cr>
 nnoremap gl  gf
 nnoremap gi  :fimall<cr>
+nnoremap gI  :fimrall<cr>
 nnoremap go  :!  %f<left><left><left>
 nnoremap gO  :!sudo  %f<left><left><left>
 nnoremap gr  :source ~/.vifm/vifmrc<cr>
@@ -234,7 +235,8 @@ command iconv iconv -f GBK -t UTF8 %c -o %c.new %i
 command vid   mplayer -vo fbdev2
 command vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom %f
 command fim     fim %f > /dev/null 2>&1
-command fimall  fimimgs recursive slideshow
+command fimall  fimimgs -n -s -n -n
+command fimrall fimimgs -r -s -n -n
 " }}}
 
 " filetype and fileview {{{
@@ -324,7 +326,7 @@ filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb  mp
 
 " Image
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  mediainfo -f %f
-filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  fimimgs current normal
+filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  fimimgs -n -n %c -n
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  pho *.jpeg *.jpg *.png *.bmp *.gif *.ppm *.xpm
 
 " Web
