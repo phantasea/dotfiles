@@ -113,7 +113,7 @@ mark w /opt/web
 
 " option {{{
 " This is the actual command used to start vi.  The default is vim.
-set vicmd="~/.util/fmvimux"
+set vicmd="fmvimux"
 
 set tuioptions=""
 set fillchars=vborder:|
