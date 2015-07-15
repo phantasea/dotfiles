@@ -26,12 +26,13 @@ v:auto_scale_v=1;
 # default bindings (binding is dynamical, so you can rebind keys even during program's execution)
 bind 'Enter' "mark;next";
 bind 'Esc'   "toggleDisplayStatus;redisplay";
-bind ' ' "next_picture;";
+bind 'Space' "next";
+bind 'Backspace' "prev";
 bind '?' "help";
 bind '+' "magnify";
 bind '-' "reduce";
 bind '.' "";
-bind 'a' "auto_scale;";
+bind 'a' "toggleAutoScale;";
 bind 'c' "wc;redisplay;";
 bind 'D' "pop;next;display";
 bind 'f' "flip;";
