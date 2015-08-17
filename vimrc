@@ -38,7 +38,6 @@ set autoread
 set background=dark
 set backspace=indent,eol,start
 set completeopt=menu
-set display=lastline
 set diffopt=filler,context:3,foldcolumn:0
 set encoding=utf-8
 set expandtab
@@ -594,6 +593,14 @@ let  g:Tlist_Auto_Highlight_Tag = 1
 let  g:Tlist_Show_One_File = 1
 let  g:Tlist_Exit_OnlyWindow = 1
 let  g:Tlist_GainFocus_On_ToggleOpen = 1
+"}}}
+
+"multiplecursors {{{
+let  g:multi_cursor_use_default_mapping = 0
+let  g:multi_cursor_next_key = '+'
+let  g:multi_cursor_prev_key = '-'
+let  g:multi_cursor_skip_key = '\'
+let  g:multi_cursor_quit_key = '<Esc>'
 "}}}
 
 "w3m {{{
