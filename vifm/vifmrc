@@ -232,8 +232,8 @@ command sucopyfromother sudo cp -R %F %d %i
 command copyfilename tmux setb %f %i &
 command copydirname  tmux setb %d %i &
 command iconv iconv -f GBK -t UTF8 %c -o %c.new %i
-command vid   mplayer -vo fbdev2
-command vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom %f
+command vid   mplayer -vo fbdev2 -really-quiet 
+command vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom -really-quiet %f
 command fim     fim %f > /dev/null 2>&1
 command fimall  fimimgs -n -s -n -n
 command fimrall fimimgs -r -s -n -n
@@ -321,8 +321,8 @@ fileview  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mediainfo -f %f
 filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mpg123 -q %f &
 
 " Video
-fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb  mediainfo -f %f
-filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb  mplayer -vo fbdev2 %f
+fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat  mediainfo -f %f
+filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat  mplayer -vo fbdev2 -really-quiet %f
 
 " Image
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  mediainfo -f %f
