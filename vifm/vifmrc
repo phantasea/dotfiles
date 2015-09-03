@@ -19,14 +19,14 @@ nnoremap  b  :set scrollbind!<cr>
 nnoremap  cm cp
 vnoremap  cm cp
 nnoremap  cd :cd<space>
-nnoremap  ci :copyfromother<cr>
-vnoremap  ci :copyfromother<cr>
-nnoremap  co :copytoother<cr>
-vnoremap  co :copytoother<cr>
-nnoremap  cI :sucopyfromother<cr>
-vnoremap  cI :sucopyfromother<cr>
-nnoremap  cO :sucopytoother<cr>
-vnoremap  cO :sucopytoother<cr>
+"nnoremap  ci :copyfromother<cr>
+"vnoremap  ci :copyfromother<cr>
+"nnoremap  co :copytoother<cr>
+"vnoremap  co :copytoother<cr>
+"nnoremap  cI :sucopyfromother<cr>
+"vnoremap  cI :sucopyfromother<cr>
+"nnoremap  cO :sucopytoother<cr>
+"vnoremap  cO :sucopytoother<cr>
 nnoremap  C  :clone<cr>
 nnoremap  d  dd
 nnoremap  D  DD
@@ -60,14 +60,14 @@ nnoremap  U  <c-r>
 nnoremap  v  e
 nnoremap  w  :set lsview!<cr>
 nnoremap  W  :set nolaststatus!<cr>
-nnoremap  xi :movefromother<cr>
-vnoremap  xi :movefromother<cr>
-nnoremap  xo :movetoother<cr>
-vnoremap  xo :movetoother<cr>
-nnoremap  xI :sumovefromother<cr>
-vnoremap  xI :sumovefromother<cr>
-nnoremap  xO :sumovetoother<cr>
-vnoremap  xO :sumovetoother<cr>
+"nnoremap  xi :movefromother<cr>
+"vnoremap  xi :movefromother<cr>
+"nnoremap  xo :movetoother<cr>
+"vnoremap  xo :movetoother<cr>
+"nnoremap  xI :sumovefromother<cr>
+"vnoremap  xI :sumovefromother<cr>
+"nnoremap  xO :sumovetoother<cr>
+"vnoremap  xO :sumovetoother<cr>
 nnoremap  y  yy
 nnoremap  Y  :copyfilename<cr>
 nnoremap gy  :copydirname<cr>
@@ -165,6 +165,7 @@ set statusline="%u:%g  [%A]  \"%t\" (%s) %=  %d"
 
 " *********chris***************
 "set nolaststatus
+"set chaselinks
 set timeoutlen=3000
 set nolsview
 set classify=""
@@ -220,6 +221,9 @@ command uj  tar -jxf %c %i &
 command zip zip -r %f.zip %f
 command run !! ./%f
 command make !!make
+command md mkdir -p %a
+command mv mv -r %f %D
+command cp cp -r %f %D
 command vgrep vim "+grep %a"
 command movetoother   mv -i %f %D %i
 command copytoother   cp -R %f %D %i

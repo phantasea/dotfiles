@@ -6,6 +6,10 @@
 " Available style values (some of them can be combined):
 " bold  underline  reverse/inverse  standout  none
 
+"highlight group      ctermfg=fg_color    ctermbg=bg_color    cterm=attrs 
+
+highlight clear
+
 highlight  Win        ctermfg=yellow      ctermbg=black       cterm=none
 highlight  Directory  ctermfg=cyan        ctermbg=none        cterm=none
 highlight  Link       ctermfg=magenta     ctermbg=none        cterm=bold
@@ -19,7 +23,6 @@ highlight  Border     ctermfg=green       ctermbg=black       cterm=none
 highlight  StatusLine ctermfg=white       ctermbg=blue        cterm=bold
 highlight  CmdLine    ctermfg=cyan        ctermbg=none        cterm=bold
 highlight  WildMenu   ctermfg=white       ctermbg=black       cterm=underline,reverse
-"highlight TopLine    ctermfg=lightgreen  ctermbg=black       cterm=bold
 highlight  TopLine    ctermfg=green       ctermbg=black       cterm=reverse
 highlight  TopLineSel ctermfg=green       ctermbg=black       cterm=bold,reverse
 highlight  CurrLine   ctermfg=none        ctermbg=black       cterm=bold,reverse
