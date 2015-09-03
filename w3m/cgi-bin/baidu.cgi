@@ -1,5 +1,7 @@
 #!/bin/sh
+
 baidu="http://www.baidu.com/s?wd"
+
 query=${QUERY_STRING#*:}
 cat <<_END_
 Content-type: text/plain

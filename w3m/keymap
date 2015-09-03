@@ -25,12 +25,12 @@ keymap  C-T     COMMAND "TAB_GOTO ."
 keymap  C-Y     DOWN
 keymap  C-D     UP
 
+keymap  ,   COMMAND "PREV_PAGE; MOV2TOP"
 keymap  \'  NEXT_LINE_MARK
 keymap  \"  PREV_LINE_MARK
 keymap  /   ISEARCH
 keymap  :   COMMAND
 keymap ";"  REDRAW
-keymap  ,   REDRAW
 keymap  *   FSRCH_CUR_WORD
 keymap  #   BSRCH_CUR_WORD
 keymap  !   EXEC_SHELL
