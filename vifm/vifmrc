@@ -44,8 +44,13 @@ nnoremap  r  cw
 nnoremap  R  :rename<cr>
 nnoremap ge  :empty<cr>
 nnoremap gl  gf
-nnoremap gi  :fimall<cr>
-nnoremap gI  :fimrall<cr>
+if $DISPLAY == ""
+  nnoremap gi  :fimall<cr>
+  nnoremap gI  :fimrall<cr>
+else
+  nnoremap gi  :phoall<cr>
+  nnoremap gI  :phorall<cr>
+endif
 nnoremap go  :!  %f<left><left><left>
 nnoremap gO  :!sudo  %f<left><left><left>
 nnoremap gr  :source ~/.vifm/vifmrc<cr>
@@ -241,6 +246,8 @@ command vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom -really-quiet %f
 command fim     fim %f > /dev/null 2>&1
 command fimall  fimimgs -n -s -n -n
 command fimrall fimimgs -r -s -n -n
+command phoall  phoimgs -n -s -n -n
+command phorall phoimgs -r -s -n -n
 " }}}
 
 " filetype and fileview {{{
@@ -283,8 +290,11 @@ filetype  *.[1-8]  gtbl %c | groff -Tascii -man | less
 " Office files
 fileview  *.doc  antiword %f, catdoc %f
 fileview  *.docx docx2txt.pl %f -
-filetype  *.doc  vim %f
-filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
+if $DISPLAY == ""
+  filetype  *.doc  vim %f
+else
+  filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
+endif
 
 " c/c++ files
 fileview  *.h,*.c,*.cpp  highlight -S c -O ansi -s dante %f
@@ -306,16 +316,24 @@ fileview  */,.*/  tree -F --dirsfirst %c
 
 " Pdf
 fileview  *.pdf pdftotext -l 1 -nopgbrk -q %c -
-filetype  *.pdf fimgs %f
-filextype *.pdf zathura %c %i, apvlv %c
+if $DISPLAY == ""
+  filetype  *.pdf fimgs %f
+else
+  filextype *.pdf zathura %c %i, apvlv %c
+endif
 
 " PostScript
 fileview  *.ps ps2text %f -
-filetype  *.ps fimgs %f
-filextype *.ps,*.ps.gz zathura %f
+if $DISPLAY == ""
+  filetype  *.ps fimgs %f
+else
+  filextype *.ps,*.ps.gz zathura %f
+endif
 
 " Djvu
-filextype *.djvu zathura %f, apvlv %f
+if $DISPLAY != ""
+  filextype *.djvu zathura %f, apvlv %f
+endif
 
 " PGP
 fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %f
@@ -330,13 +348,19 @@ filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.v
 
 " Image
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  mediainfo -f %f
-filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  fimimgs -n -n %c -n
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  pho *.jpeg *.jpg *.png *.bmp *.gif *.ppm *.xpm
+if $DISPLAY == ""
+  filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  fimimgs -n -n %c -n
+else
+  filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  phoimgs -n -n %c -n
+endif
 
 " Web
 fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %f
-filetype  *.html,*.htm,*.xhtml,*.shtml  fmw3mux %f
-filextype *.html,*.htm,*.xhtml,*.shtml  firefox %f &
+if $DISPLAY == ""
+  filetype  *.html,*.htm,*.xhtml,*.shtml  fmw3mux %f
+else
+  filextype *.html,*.htm,*.xhtml,*.shtml  firefox %f &
+endif
 
 " Markdown
 fileview  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %f |w3m -dump -cols 128 -T text/html
@@ -399,10 +423,13 @@ filetype  *.ftp
 fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo*.xpi  als %c
 
 " Open all other files with default system programs. By default all unknown files are opened with 'vi[x]cmd'
-filetype * fmvimux %f
-filextype * sublime-text %f
 "fileview * mediainfo %f
 "fileview * pygmentize -f console -g -- %c
+if $DISPLAY == ""
+  filetype  * fmvimux %f
+else
+  filextype * sublime-text %f
+endif
 " }}}
 
 " What should be saved automatically between vifm runs
