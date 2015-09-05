@@ -44,13 +44,8 @@ nnoremap  r  cw
 nnoremap  R  :rename<cr>
 nnoremap ge  :empty<cr>
 nnoremap gl  gf
-if $DISPLAY == ""
-  nnoremap gi  :fimall<cr>
-  nnoremap gI  :fimrall<cr>
-else
-  nnoremap gi  :phoall<cr>
-  nnoremap gI  :phorall<cr>
-endif
+nnoremap gi  :imgall<cr>
+nnoremap gI  :rimgall<cr>
 nnoremap go  :!  %f<left><left><left>
 nnoremap gO  :!sudo  %f<left><left><left>
 nnoremap gr  :source ~/.vifm/vifmrc<cr>
@@ -103,8 +98,11 @@ map <down>   <nop>
 " mark {{{
 mark / /
 mark h ~/
-mark H ~simone/
-mark n ~/doc/note
+if $HOME == "/home/simone"
+  mark H ~lynna/
+else
+  mark H ~simone/
+endif
 mark t ~/.vifm/Trash
 mark m /media
 mark o /opt
@@ -114,11 +112,15 @@ mark g /opt/git
 mark v /opt/.vim
 mark u /opt/.util
 mark w /opt/web
+
+bmark! /home/lynna/doc doc
+bmark! /home/lynna/doc/note note
 " }}}
 
 " option {{{
 " This is the actual command used to start vi.  The default is vim.
 set vicmd="fmvimux"
+set vixcmd="sublime-text &"
 
 set tuioptions=""
 set fillchars=vborder:|
@@ -174,11 +176,11 @@ set statusline="%u:%g  [%A]  \"%t\" (%s) %=  %d"
 set timeoutlen=3000
 set nolsview
 set classify=""
-set sort="+iname"
 set cpoptions="s"
 set dotdirs=norootparent
-set rulerformat="%=%l%%%S"
+set rulerformat="%=%l%%%S%[ +%0-%]"
 set grepprg=ag\ --line-numbers\ %i\ %a\ %s
+windo set sort="+iname"
 "windo set viewcolumns=-{name}
 "windo filter! /^.*\.(lo|o|d|class|py[co])$|.*~$/
 " *****************************
@@ -244,10 +246,8 @@ command iconv iconv -f GBK -t UTF8 %c -o %c.new %i
 command vid   mplayer -vo fbdev2 -really-quiet 
 command vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom -really-quiet %f
 command fim     fim %f > /dev/null 2>&1
-command fimall  fimimgs -n -s -n -n
-command fimrall fimimgs -r -s -n -n
-command phoall  phoimgs -n -s -n -n
-command phorall phoimgs -r -s -n -n
+command imgall  imgview -n -s -n -n
+command rimgall imgview -r -s -n -n
 " }}}
 
 " filetype and fileview {{{
@@ -343,16 +343,12 @@ fileview  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mediainfo -f %f
 filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mpg123 -q %f &
 
 " Video
-fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat  mediainfo -f %f
-filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat  mplayer -vo fbdev2 -really-quiet %f
+fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat  mediainfo -f %c
+filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat  avplay %c
 
 " Image
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  mediainfo -f %f
-if $DISPLAY == ""
-  filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  fimimgs -n -n %c -n
-else
-  filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  phoimgs -n -n %c -n
-endif
+filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview -n -n %c -n
 
 " Web
 fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %f
@@ -433,5 +429,5 @@ endif
 " }}}
 
 " What should be saved automatically between vifm runs
-set vifminfo=chistory,dhistory,fhistory,phistory,shistory,savedirs,state,tui,dirstack,registers,bookmarks
+set vifminfo=chistory,dhistory,fhistory,shistory,savedirs,state,tui,dirstack
 
