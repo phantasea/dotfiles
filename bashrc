@@ -107,9 +107,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # source autojump
-if [ -f /usr/share/autojump/autojump.bash ]; then
-    . /usr/share/autojump/autojump.bash
-fi
+[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
 #set -o vi
 unset  MAILCHECK
