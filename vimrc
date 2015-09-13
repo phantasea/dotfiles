@@ -89,8 +89,6 @@ set wildignorecase
 "}}}
 
 " mapping  {{{
-map <F5>   :call CompileRunGcc()<CR>
-map <F6>   :call Rungdb()<CR>
 map <F7>   :set wrap!<CR>
 map <F8>   :nohlsearch<CR>
 
@@ -202,7 +200,7 @@ nnoremap  <leader>ct   :ConqueTerm bash<CR>
 nnoremap  <leader>vm   :VimuxPromptCommand<CR>
 nnoremap  <leader>te   :tabedit <C-R>=expand("%:p:h")<CR>/
 nnoremap  <leader>cd   :cd %:p:h<CR>:pwd<CR>
-nnoremap  <leader>md   :!Markdown.pl % > %.html<CR><CR>:!w3m %.html<CR>
+nnoremap  <leader>md   :!Markdown.pl % > %.html<CR><CR>:!w3mux %.html<CR>
 nnoremap  <leader>ts   :%s/\t/    /g<CR>
 "}}}
 
