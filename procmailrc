@@ -1,7 +1,7 @@
 VERBOSE=yes
 MAILDIR=$HOME/.mail
 DEFAULT=$MAILDIR/inbox
-LOGFILE=$HOME/.log/procmail.log
+#LOGFILE=$HOME/.log/procmail.log
 
 :0:
 * ^From:.*(Rachel|Malissavr|Suzy|Facebook|iTunes|LoveAgain)
@@ -15,3 +15,4 @@ gmail
 * ^Received.*pop.qq.com
 qmail
 
+# vim: ft=procmail:
