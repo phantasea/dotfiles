@@ -10,6 +10,8 @@
     editor = vim
     quotepath = false
     mergeoptions = --no-edit
+    autocrlf = input
+    safecrlf = false
 
 [diff]
     tool = vimdiff
@@ -34,7 +36,13 @@
 [push]
 	default = matching
 
+[svn]
+    rmdir = true
+
 [alias]
+    a  = add
+    c  = clone
+    d  = diff
     co = checkout
     ci = commit
     br = branch
