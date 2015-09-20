@@ -168,7 +168,7 @@ set slowfs=curlftpfs
 " See man date or man strftime for details.
 set timefmt=%H:%M:%S\ %m/%d/%Y
 
-set statusline="%u:%g  [%A]  \"%t\" (%s) %=  %d"
+set statusline="[%A] %u:%g {%E} %d %= \"%t\""
 
 " *********chris***************
 "set nolaststatus
@@ -181,7 +181,8 @@ set dotdirs=norootparent
 set rulerformat="%=%l%%%S%[ +%0-%]"
 set grepprg=ag\ --line-numbers\ %i\ %a\ %s
 windo set sort="+iname"
-"windo set viewcolumns=-{name}
+"windo set viewcolumns=-{name}..,6{size},20{mtime}
+"windo set viewcolumns=-{name}..,10{perms},6{uname},4{gname},6{size},20{mtime}
 "windo filter! /^.*\.(lo|o|d|class|py[co])$|.*~$/
 " *****************************
 
@@ -215,39 +216,39 @@ set scrolloff=0
 " %i completely ignore command output
 " %m run the command in a menu window
 " %S Show command output in the status bar
-command sued !sudoedit %c
-command surm sudo rm -rf %c
-command rc vimux ~/.vifm/vifmrc
-command df df -h %m 2> /dev/null
-command ps pstree %m
-command du ncdu . 
-command diff  vimdiff %c %C
-command diffsamewin vimdiff %f
-command uz  tar -zxf %c %i &
-command uj  tar -jxf %c %i &
-command zip zip -r %f.zip %f
-command run !! ./%f
-command make !!make
-command md mkdir -p %a
-command mv mv -r %f %D
-command cp cp -r %f %D
-command vgrep vim "+grep %a"
-command movetoother   mv -i %f %D %i
-command copytoother   cp -R %f %D %i
-command movefromother mv -i %F %d %i
-command copyfromother cp -R %F %d %i
-command sumovetoother   sudo mv -i %f %D %i
-command sucopytoother   sudo cp -R %f %D %i
-command sumovefromother sudo mv -i %F %d %i
-command sucopyfromother sudo cp -R %F %d %i
-command copyfilename tmux setb %f %i &
-command copydirname  tmux setb %d %i &
-command iconv iconv -f GBK -t UTF8 %c -o %c.new %i
-command vid   mplayer -vo fbdev2 -really-quiet 
-command vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom -really-quiet %f
-command fim     fim %f > /dev/null 2>&1
-command imgall  imgview -n -s -n -n
-command rimgall imgview -r -s -n -n
+command! sued !sudoedit %c
+command! surm sudo rm -rf %c
+command! rc vimux ~/.vifm/vifmrc
+command! df df -h %m 2> /dev/null
+command! ps pstree %m
+command! du ncdu . 
+command! diff  vimdiff %c %C
+command! diffsamewin vimdiff %f
+command! uz  tar -zxf %c %i &
+command! uj  tar -jxf %c %i &
+command! zip zip -r %f.zip %f
+command! run !! ./%f
+command! make !!make
+command! md mkdir -p %a
+command! mv mv -r %f %D
+command! cp cp -r %f %D
+command! vgrep vim "+grep %a"
+command! movetoother   mv -i %f %D %i
+command! copytoother   cp -R %f %D %i
+command! movefromother mv -i %F %d %i
+command! copyfromother cp -R %F %d %i
+command! sumovetoother   sudo mv -i %f %D %i
+command! sucopytoother   sudo cp -R %f %D %i
+command! sumovefromother sudo mv -i %F %d %i
+command! sucopyfromother sudo cp -R %F %d %i
+command! copyfilename tmux setb %f %i &
+command! copydirname  tmux setb %d %i &
+command! iconv iconv -f GBK -t UTF8 %c -o %c.new %i
+command! vid   mplayer -vo fbdev2 -really-quiet 
+command! vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom -really-quiet %f
+command! fim     fim %f > /dev/null 2>&1
+command! imgall  imgview -n -s -n -n
+command! rimgall imgview -r -s -n -n
 " }}}
 
 " filetype and fileview {{{
