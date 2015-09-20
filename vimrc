@@ -30,7 +30,6 @@ filetype plugin indent on
 syntax enable
 syntax on
 
-"set t_Co=256
 set ambiwidth=double
 set autochdir
 set autoindent
@@ -172,12 +171,12 @@ nnoremap  J    <C-E>
 nnoremap  K    <C-Y>
 nnoremap  q    :call SmartQuit()<CR>
 nnoremap  Q    :qall<CR>
-nnoremap sq    :call QuitAllBufButMe()<CR>
 nnoremap  S    :%s//g<Left><Left>
 vnoremap  S    :s/\%V/g<left><left>
 nnoremap  s    <C-W>
 vnoremap  s    <C-W>
 nnoremap  sa   :ball<CR>
+nnoremap  sq   :call QuitAllBufButMe()<CR>
 nnoremap  s}   :call OpenTagPreviewWin()<CR>
 nnoremap  s#   :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nnoremap  s*   :call ListSrchCurrFile("n")<CR>
@@ -231,7 +230,7 @@ func! MyColorStatusLine()
 
     set fillchars=vert:\|
     set statusline=%2*\#%n@%{len(ListedBufs())}%0*\ %3*[%{strlen(&ft)?&ft:'none'}]
-    set statusline+=%r%m%0*\ %4*%<\"%F\"%0*\ %2*%=%0*\ %4*%4l/%-4L%0*\ %2*--%p%%--%0*
+    set statusline+=%r%m%0*\ %4*%<\"%F\"%0*\ %2*%=%0*\ %4*\ %l/%L\ \|%c\ %0*\ %2*--%p%%--%0*
 endfunc
 
 func! MyPlainStatusLine()
