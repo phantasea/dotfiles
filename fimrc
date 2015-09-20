@@ -34,6 +34,7 @@ bind '-' "reduce";
 bind '.' "";
 bind 'a' "toggleAutoScale;";
 bind 'c' "wc;redisplay;";
+bind 'd' "";
 bind 'D' "pop;next;display";
 bind 'f' "flip;";
 bind 'i' "magnify";
