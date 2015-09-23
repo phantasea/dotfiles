@@ -23,4 +23,4 @@ UUID=4AC0DE30C0DE21CD /media/sys  ntfs  defaults  0  2
 UUID=2AE83D51E83D1C8F /media/app  ntfs  defaults  0  2
 UUID=E014D88814D86358 /media/rec  ntfs  defaults  0  2
 UUID=38c13fcd-c76a-4928-96c5-43a201db1b7a  /media/sandisk_u  ext4  defaults  0  2
-UUID=3E29-A0FA                             /media/sandisk_v  vfat  defaults  0  2
+UUID=3E29-A0FA                             /media/sandisk_v  vfat  rw,uid=1000,gid=1003  0  2
