@@ -181,6 +181,7 @@ set dotdirs=norootparent
 set rulerformat="%=%l%%%S%[ +%0-%]"
 set grepprg=ag\ --line-numbers\ %i\ %a\ %s
 windo set sort="+iname"
+windo filter! /lost\+found/
 "windo set viewcolumns=-{name}..,6{size},20{mtime}
 "windo set viewcolumns=-{name}..,10{perms},6{uname},4{gname},6{size},20{mtime}
 "windo filter! /^.*\.(lo|o|d|class|py[co])$|.*~$/
