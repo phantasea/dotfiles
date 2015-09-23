@@ -1,0 +1,26 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+proc            /proc           proc    nodev,noexec,nosuid 0       0
+# / was on /dev/sda10 during installation
+UUID=6c2ad9c0-f7e9-4e5b-a9b4-0be050778dc4 /               ext4    errors=remount-ro 0       1
+# /boot was on /dev/sda7 during installation
+UUID=c8a1c97b-1cca-40aa-aa93-a1897129d70a /boot           ext4    defaults        0       2
+# /home was on /dev/sda8 during installation
+UUID=0b0c5e1c-1feb-463d-98a8-dc62ccc8d4d9 /home           ext4    defaults        0       2
+# /opt was on /dev/sda12 during installation
+UUID=6e6a8e0f-ed44-4c74-ac53-aba0b4105134 /opt            ext4    defaults        0       2
+# /usr was on /dev/sda9 during installation
+UUID=dcccbde2-6b95-4739-b4cd-4e1a2f65eb35 /usr            ext4    defaults        0       2
+# swap was on /dev/sda11 during installation
+UUID=6b7de3ce-c393-4c21-a3d8-e6c91df82fe0 none            swap    sw              0       0
+
+UUID=4AC0DE30C0DE21CD /media/sys  ntfs  defaults  0  2
+UUID=2AE83D51E83D1C8F /media/app  ntfs  defaults  0  2
+UUID=E014D88814D86358 /media/rec  ntfs  defaults  0  2
+UUID=38c13fcd-c76a-4928-96c5-43a201db1b7a  /media/sandisk_u  ext4  defaults  0  2
+UUID=3E29-A0FA                             /media/sandisk_v  vfat  defaults  0  2
