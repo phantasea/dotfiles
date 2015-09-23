@@ -44,7 +44,7 @@
     c  = clone
     d  = diff
     co = checkout
-    ci = commit
+    ci = commit -m
     br = branch
     st = status
     lg = log
