@@ -10,6 +10,8 @@ nnoremap  <c-k>    <c-b>
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
+vnoremap  .  :!!<cr>
+nnoremap  .  :!!<cr>
 nnoremap  -  :invert s<cr>
 vnoremap  -  :invert s<cr>
 nnoremap  a  Gvgg
