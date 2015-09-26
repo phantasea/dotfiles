@@ -20,7 +20,7 @@ keymap  C-J     COMMAND "NEXT_PAGE; MOV2BOT"
 keymap  C-K     COMMAND "PREV_PAGE; MOV2TOP"
 keymap  C-O     PREV
 keymap  C-I     NEXT
-keymap  C-H     LAST_TAB
+keymap  C-U     LAST_TAB
 keymap  C-T     COMMAND "TAB_GOTO ."
 keymap  C-Y     DOWN
 keymap  C-D     UP
