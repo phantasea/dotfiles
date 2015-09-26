@@ -91,6 +91,8 @@ set wildignorecase
 map <F7>   :set wrap!<CR>
 map <F8>   :nohlsearch<CR>
 
+nnoremap   <Enter>  <Nop>
+
 cnoremap   <C-A>    <Home>
 cnoremap   <C-B>    <Left>
 cnoremap   <C-D>    <Del>
@@ -104,19 +106,20 @@ inoremap   <C-L>    <END>
 inoremap   <C-H>    <BS>
 inoremap   <C-K>    <Esc>lC
 inoremap   <Tab>    <C-N>
-nnoremap   <C-H>    <C-^>
-nnoremap   <Enter>  <Nop>
+nnoremap   <C-U>    <C-^>
 nnoremap   <BS>     <PageUp>H
 nnoremap   <Space>  <PageDown>L
+nnoremap   <C-H>    <C-T>
 nnoremap   <C-J>    <PageDown>L
 nnoremap   <C-K>    <PageUp>H
+nnoremap   <C-L>    <C-]>
 nnoremap   <C-N>    :bn<CR>
 nnoremap   <C-P>    :bp<CR>
-"inoremap   <C-Y>    <C-R><C-R>=LookupColumnChar('y')<CR>
-"inoremap   <C-E>    <C-R><C-R>=LookupColumnChar('e')<CR>
+"inoremap  <C-Y>    <C-R><C-R>=LookupColumnChar('y')<CR>
+"inoremap  <C-E>    <C-R><C-R>=LookupColumnChar('e')<CR>
 
-"onoremap   if   :normal [[jV]]k<CR>
-"onoremap   af   :normal [[v%<CR>
+"onoremap  if  :normal [[jV]]k<CR>
+"onoremap  af  :normal [[v%<CR>
 
 "vnoremap  #   y:let @/=@"<CR>N
 "vnoremap  *   y/<C-R>"<CR>
