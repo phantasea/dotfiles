@@ -12,7 +12,7 @@ HISTCONTROL=ignoreboth
 #HISTCONTROL=erasedups
 
 #HISTTIMEFORMAT='%F %T '
-HISTIGNORE="cd:ls:ll:l:web:fim:"
+HISTIGNORE="cd:ls:ll:l:web:fim:fm:fe:w:mus:e"
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -126,5 +126,5 @@ if [ -d "$HOME/.util" ]; then
     export PATH="/opt/.util:$PATH"
 fi
 
-#fbterm -- tmux
+fbterm -- tmux > /dev/null 2>&1
 
