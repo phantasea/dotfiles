@@ -126,5 +126,9 @@ if [ -d "$HOME/.util" ]; then
     export PATH="/opt/.util:$PATH"
 fi
 
+if [ -f /opt/git/hhighlighter/h.sh ]; then
+    . /opt/git/hhighlighter/h.sh
+fi
+
 fbterm -- tmux > /dev/null 2>&1
 

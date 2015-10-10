@@ -18,6 +18,7 @@ nnoremap  a  Gvgg
 vnoremap  a  ggoG
 nnoremap  A  za
 nnoremap  b  :set scrollbind!<cr>
+nnoremap  B  :find . *<cr>b
 nnoremap  cm cp
 vnoremap  cm cp
 nnoremap  cd :cd<space>

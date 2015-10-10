@@ -496,7 +496,7 @@ BlockDecorators	= "[|]"
 # using the 'hide_message' key.  Setting it to zero means you'll have to
 # be quick to see any message at all.  Any new messages will queued up
 # and displayed after the current message's linger time expires.
-#MessageLingerTime	= 3
+MessageLingerTime = 15
 
 # Does MOC display a prefix on delayed messages indicating
 # the number of queued messages still to be displayed?
