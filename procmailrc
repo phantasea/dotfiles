@@ -12,7 +12,7 @@ trash
 gmail
 
 :0:
-* ^Received.*pop.qq.com
+* ^(Received|From).*qq.com
 qmail
 
 # vim: ft=procmail:

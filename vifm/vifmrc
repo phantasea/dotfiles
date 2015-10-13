@@ -115,6 +115,7 @@ mark g /opt/git
 mark v /opt/.vim
 mark u /opt/.util
 mark w /opt/web
+mark d /media/adb/sdcard/UCDownloads
 
 bmark! /home/lynna/doc doc
 bmark! /home/lynna/doc/note note

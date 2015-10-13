@@ -84,9 +84,10 @@ bind  postpone  u   undelete-entry
 # }}}
 # attach{{{
 bind  attach  d  delete-entry
-bind  attach  u  undelete-entry
-bind  attach  v  view-text
 bind  attach  i  view-attach
+bind  attach  u  undelete-entry
+bind  attach  v  exit
+#bind  attach  v  view-text
 # }}}
 # browser {{{
 bind  browser  cd  change-dir
