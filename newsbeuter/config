@@ -3,6 +3,8 @@
 ####################################
 
 include "~/.newsbeuter/color"
+include "~/.newsbeuter/keymap"
+
 ## configuration option: always-display-description
 ## description: If true, then the description will always displayed even if e.g. a content:encoded tag has been found.
 ## parameter syntax: [true/false]
@@ -36,7 +38,7 @@ auto-reload no
 ## configuration option: browser
 ## description: Set the browser command to use when opening an article in the browser. If <browser-command> contains %u, it will be used as complete commandline and %u will be replaced with the URL that shall be opened.
 ## parameter syntax: <browser-command>
-browser "w3m %u"
+browser "w3mux %u"
 
 ## configuration option: cache-file
 ## description: This configuration option sets the cache file. This is especially useful if the filesystem of your home directory doesn't support proper locking (e.g. NFS).
@@ -197,8 +199,8 @@ keep-articles-days 0
 ## configuration option: pager
 ## description: If set to "internal", then the internal pager will be used. Otherwise, the article to be displayed will be rendered to be a temporary file and then displayed with the configured pager. If the pager path is set to an empty string, the content of the "PAGER" environment variable will be used. If the pager path contains a placeholder "%f", it will be replaced with the temporary filename.
 ## parameter syntax: [<path>/internal]
-pager internal
 # pager w3m %f
+pager internal
 
 
 ## configuration option: podcast-auto-enqueue
@@ -254,7 +256,7 @@ search-highlight-colors white blue bold
 ## configuration option: show-keymap-hint
 ## description: If no, then the keymap hints on the bottom of screen will not be displayed.
 ## parameter syntax: [yes/no]
-show-keymap-hint no
+show-keymap-hint yes
 
 ## configuration option: show-read-feeds
 ## description: If yes, then all feeds, including those without unread articles, are listed. If no, then only feeds with one or more unread articles are list.
@@ -295,30 +297,3 @@ show-keymap-hint no
 
 # all feedlist filebrowser help articlelist
 # article tagselection filterselection urlview podbeuter
-unbind-key h  feedlist
-unbind-key l  article
-bind-key   d  delete-article
-bind-key   S  purge-deleted
-bind-key   h  quit             all
-bind-key   l  open             all
-bind-key   j  down             all
-bind-key   k  up               all
-bind-key   n  next             all
-bind-key   p  prev             all
-bind-key   o  goto-url
-bind-key   r  reload
-bind-key   R  reload-all
-bind-key   s  save
-bind-key   N  toggle-article-read
-bind-key   v  toggle-source-view
-bind-key   u  show-urls
-bind-key   w  open-in-browser
-bind-key   ;  redraw           all
-bind-key   ?  helpaw           all
-bind-key   D  view-dialogs
-bind-key  ^N  next-dialog
-bind-key  ^P  prev-dialog
-bind-key  ^K      pageup       all  
-bind-key   ENTER  pagedown     all
-bind-key   SPACE  toggle-article-read
-

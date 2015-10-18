@@ -1,0 +1,43 @@
+# vim: ft=conf:
+# keybindings for newsbeuter
+
+unbind-key h  feedlist
+unbind-key l  article
+
+bind-key   ?  help             all
+bind-key   ;  redraw           all
+bind-key   /  open-search
+
+bind-key   a  bookmark
+bind-key   d  delete-article
+bind-key   D  view-dialogs
+bind-key   e  edit-urls
+bind-key   g  home
+bind-key   G  end
+bind-key   h  quit             all
+bind-key   j  down             all
+bind-key   J  next
+bind-key   k  up               all
+bind-key   K  prev
+bind-key   l  open             all
+bind-key   n  next-unread      all
+bind-key   N  toggle-article-read
+bind-key   o  goto-url
+bind-key   p  prev-unread      all
+bind-key   r  reload
+bind-key   R  reload-all
+bind-key   s  save
+bind-key   S  purge-deleted
+bind-key   u  show-urls
+bind-key   v  toggle-source-view
+bind-key   w  open-in-browser
+
+bind-key  ^J  pagedown         all
+bind-key  ^K  pageup           all  
+bind-key  ^N  next-feed
+bind-key  ^P  prev-feed
+bind-key  ^R  reload-urls
+
+bind-key   ENTER  pagedown     all
+bind-key   SPACE  toggle-article-read
+

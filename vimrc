@@ -91,7 +91,15 @@ set wildignorecase
 map <F7>   :set wrap!<CR>
 map <F8>   :nohlsearch<CR>
 
-nnoremap   <Enter>  <Nop>
+onoremap  aa  :<C-U>normal! ggVG<CR>
+onoremap  if  :<C-U>normal! [[jV]]k<CR>
+onoremap  af  :<C-U>normal! [[v%<CR>
+
+vnoremap  aa  VGo1G
+vnoremap  if  <Esc>[[jV]]k
+vnoremap  af  <Esc>[[v%
+
+nnoremap   <Enter>  <NOP>
 
 cnoremap   <C-A>    <Home>
 cnoremap   <C-B>    <Left>
@@ -102,24 +110,19 @@ inoremap   <C-A>    <Home>
 inoremap   <C-B>    <Left>
 inoremap   <C-D>    <Del>
 inoremap   <C-F>    <Right>
-inoremap   <C-L>    <END>
+inoremap   <C-L>    <End>
 inoremap   <C-H>    <BS>
 inoremap   <C-K>    <Esc>lC
 inoremap   <Tab>    <C-N>
-nnoremap   <C-U>    <C-^>
 nnoremap   <BS>     <PageUp>H
 nnoremap   <Space>  <PageDown>L
-nnoremap   <C-H>    <C-T>
+nnoremap   <C-H>    <C-^>
 nnoremap   <C-J>    <PageDown>L
 nnoremap   <C-K>    <PageUp>H
-nnoremap   <C-L>    <C-]>
 nnoremap   <C-N>    :bn<CR>
 nnoremap   <C-P>    :bp<CR>
-"inoremap  <C-Y>    <C-R><C-R>=LookupColumnChar('y')<CR>
-"inoremap  <C-E>    <C-R><C-R>=LookupColumnChar('e')<CR>
-
-"onoremap  if  :normal [[jV]]k<CR>
-"onoremap  af  :normal [[v%<CR>
+inoremap   <C-Y>    <C-R><C-R>=VCopy('up')<CR>
+inoremap   <C-E>    <C-R><C-R>=VCopy('down')<CR>
 
 "vnoremap  #   y:let @/=@"<CR>N
 "vnoremap  *   y/<C-R>"<CR>
@@ -148,6 +151,7 @@ nnoremap  co   :call SmartOpenQfWin()<CR>
 nnoremap  c<space>  :call SmartOpenQfWin()<CR>
 
 nnoremap  d<space>  :call SmartDiffOff()<CR>
+
 if &diff
 "color    peaksea
 syntax    off
@@ -173,7 +177,7 @@ vnoremap  k    gk
 nnoremap  J    <C-E>
 nnoremap  K    <C-Y>
 nnoremap  q    :call SmartQuit()<CR>
-nnoremap  Q    :qall<CR>
+nnoremap  Q    :qall!<CR>
 nnoremap  S    :%s//g<Left><Left>
 vnoremap  S    :s/\%V/g<left><left>
 nnoremap  s    <C-W>
@@ -188,22 +192,35 @@ nnoremap  s/   :vimgrep  %<left><left>
 nnoremap  s?   :vimgrepadd  %<left><left>
 nnoremap  U    <C-R>
 nnoremap  Y    y$
-nnoremap  vo   o<Esc>k
-nnoremap  vO   O<Esc>j
+nnoremap  yo   o<Esc>k
+nnoremap  yO   O<Esc>j
 nnoremap  zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-nnoremap  z<space>  @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-nnoremap  s<space>  :call SmartWinMax()<CR>
-nnoremap  t<space>  :TlistToggle<CR>
+nnoremap  z<space>    @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+nnoremap  s<space>    :call SmartWinMax()<CR>
+nnoremap  t<space>    :TlistToggle<CR>
 
-nnoremap  <leader>be   :BufExplorer<CR>
-nnoremap  <leader>fe   :EditVifm<CR>
-nnoremap  <leader>tl   :TlistToggle<CR>
-nnoremap  <leader>ct   :ConqueTerm bash<CR>
-nnoremap  <leader>vm   :VimuxPromptCommand<CR>
-nnoremap  <leader>te   :tabedit <C-R>=expand("%:p:h")<CR>/
-nnoremap  <leader>cd   :cd %:p:h<CR>:pwd<CR>
-nnoremap  <leader>md   :!Markdown.pl % > %.html<CR><CR>:!w3mux %.html<CR>
-nnoremap  <leader>ts   :%s/\t/    /g<CR>
+"nmap dm  :g//delete<CR> doesn't retain all deletes in the nameless register
+nnoremap  dm   :     call ForAllMatches('delete', {})<CR>
+nnoremap  dM   :     call ForAllMatches('delete', {'inverse':1})<CR>
+nnoremap  ym   :     call ForAllMatches('yank',   {})<CR>
+nnoremap  yM   :     call ForAllMatches('yank',   {'inverse':1})<CR>
+vnoremap  dm   :<C-U>call ForAllMatches('delete', {'visual':1})<CR>
+vnoremap  dM   :<C-U>call ForAllMatches('delete', {'visual':1, 'inverse':1})<CR>
+vnoremap  ym   :<C-U>call ForAllMatches('yank',   {'visual':1})<CR>
+vnoremap  yM   :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':1})<CR>
+
+nnoremap  <leader>ev  :e $MYVIMRC<CR>
+nnoremap  <leader>ef  :e ~/.vifm/vifmrc<CR>
+nnoremap  <leader>ew  :e ~/.w3m/keymap<CR>
+nnoremap  <leader>be  :BufExplorer<CR>
+nnoremap  <leader>fe  :EditVifm<CR>
+nnoremap  <leader>tl  :TlistToggle<CR>
+nnoremap  <leader>ct  :ConqueTerm bash<CR>
+nnoremap  <leader>vm  :VimuxPromptCommand<CR>
+nnoremap  <leader>te  :tabedit <C-R>=expand("%:p:h")<CR>/
+nnoremap  <leader>cd  :cd %:p:h<CR>:pwd<CR>
+nnoremap  <leader>md  :!Markdown.pl % > %.html<CR><CR>:!w3mux %.html<CR>
+nnoremap  <leader>ts  :%s/\t/    /g<CR>
 "}}}
 
 " abbrev  {{{
@@ -417,24 +434,7 @@ func! SmartWinMax()
     endif
 endfunc
 
-func! LookupColumnChar(mode)
-    let cnum = virtcol('.')
-    let cpat = '\%'. cnum. 'v.'
-    if a:mode ==? 'y'
-        let flag = 'bnW'
-    else
-        let flag = 'nW'
-    endif
-
-    let lnum = search(cpat. '*\S', flag)
-    if lnum == 0
-        return ""
-    endif
-
-    return matchstr(getline(lnum), cpat)
-endfunc
-
-func! CompileRunGCC()
+func! RunGCC()
     exec "w"
     if &filetype == 'c'
         exec "!g++ % -o %<"
@@ -461,6 +461,17 @@ func! RunGDB()
     exec "w"
     exec "!g++ % -g -o %<"
     exec "!gdb ./%<"
+endfunc
+
+func! VCopy(dir)
+    let column     = virtcol('.')
+    let pattern    = '\%' . column . 'v.'
+    let sourceline = search(pattern . '*\S', a:dir=='up' ? 'bnW' : 'nW')
+    if !sourceline
+        return ""
+    else
+        return matchstr(getline(sourceline), pattern)
+    endif
 endfunc
 
 ""定义函数SetTitle，自动插入文件头 
@@ -492,6 +503,69 @@ func! SetTitle()
         call append(line(".")+7, "")
     endif
 endfunc 
+
+" yanking or deleting all lines with a match
+func! ForAllMatches (command, options)
+    " Remember where we parked...
+    let orig_pos = getpos('.')
+
+    " Work out the implied range of lines to consider...
+    let in_visual = get(a:options, 'visual', 0)
+    let start_line = in_visual ? getpos("'<'")[1] : 1
+    let end_line   = in_visual ? getpos("'>'")[1] : line('$')
+
+    " Are we inverting the selection???
+    let inverted = get(a:options, 'inverse', 0)
+
+    " Are we modifying the buffer???
+    let deleting = a:command == 'delete'
+
+    " Honour smartcase (which :lvimgrep doesn't, by default)
+    let sensitive = &ignorecase && &smartcase && @/ =~ '\u' ? '\C' : ''
+
+    " Identify the lines to be operated on...
+    exec 'silent lvimgrep /' . sensitive . @/ . '/j %'
+    let matched_line_nums
+    \ = reverse(filter(map(getloclist(0), 'v:val.lnum'), 'start_line <= v:val && v:val <= end_line'))
+
+    " Invert the list of lines, if requested...
+    if inverted
+        let inverted_line_nums = range(start_line, end_line)
+        for line_num in matched_line_nums
+            call remove(inverted_line_nums, line_num-1)
+        endfor
+        let matched_line_nums = reverse(inverted_line_nums)
+    endif
+
+    " Filter the original lines...
+    let yanked = ""
+    for line_num in matched_line_nums
+        " Remember yanks or deletions...
+        let yanked = getline(line_num) . "\n" . yanked
+
+        " Delete buffer lines if necessary...
+        if deleting
+            exec line_num . 'delete'
+        endif
+    endfor
+
+    " Make yanked lines available for putting...
+    let @" = yanked
+
+    " Return to original position...
+    call setpos('.', orig_pos)
+
+    " Report results...
+    redraw
+    let match_count = len(matched_line_nums)
+    if match_count == 0
+        unsilent echo 'Nothing to ' . a:command . ' (no matches found)'
+    elseif deleting
+        unsilent echo match_count . (match_count > 1 ? ' fewer lines' : ' less line')
+    else
+        unsilent echo match_count . ' line' . (match_count > 1 ? 's' : '') . ' yanked'
+    endif
+endfunc
 "}}}
 
 " autocmd  {{{
@@ -548,21 +622,15 @@ augroup END
 
 " command  {{{
 " See the difference between the current buffer and the file it was loaded from, thus the changes you made.
-if !exists(":DiffOrig")
-    command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
-endif
+command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 
-command! Rcvim   edit  ~/.vimrc
-command! Rcvifm  edit  ~/.vifm/vifmrc
-command! Rcw3m   edit  ~/.w3m/keymap
-command! Rctmux  edit  ~/.tmux.conf
-command! Xhelp   call  DelHelpFile()
+command! Xhelp   call DelHelpFile()
 command! Xsrc    source ~/.vimrc
 "}}}
 
 " plugins  {{{
 "Ag {{{
-let g:ag_prg="ag --vimgrep --smart-case"
+let g:ag_prg = "ag --vimgrep --smart-case"
 "}}}
 
 "taskwarrior {{{
@@ -571,9 +639,9 @@ let g:task_rc_override = 'rc.defaultwidth=0'
 "}}}
 
 "bufexplorer {{{
-let g:bufExplorerDefaultHelp=0
-let g:bufExplorerSortBy='mru'
-let g:bufExplorerSplitBelow=0  " Split new window above current.
+let g:bufExplorerDefaultHelp = 0
+let g:bufExplorerSortBy = 'mru'
+let g:bufExplorerSplitBelow = 0  " Split new window above current.
 "}}}
 
 "bufferline {{{
@@ -583,8 +651,8 @@ let g:bufferline_active_buffer_right = ''
 "}}}
 
 "pandoc {{{
-let g:pandoc#folding#fdc=0
-let g:pandoc#filetypes#pandoc_markdown=0
+let g:pandoc#folding#fdc = 0
+let g:pandoc#filetypes#pandoc_markdown = 0
 "}}}
 
 "taglist {{{
@@ -617,11 +685,26 @@ let g:viewdoc_only = 0
 "}}}
 
 "markdown {{{
-let g:vim_markdown_folding_disabled=1
+let g:vim_markdown_folding_disabled = 1
 "}}}
 
 "tmux-navigator {{{
 let g:tmux_navigator_save_on_switch = 0
 let g:tmux_navigator_no_mappings = 1
+"}}}
+
+"dragvisuals {{{
+let g:DVB_TrimWS = 1
+
+vmap  <expr>  <LEFT>   DVB_Drag('left')
+vmap  <expr>  <RIGHT>  DVB_Drag('right')
+vmap  <expr>  <DOWN>   DVB_Drag('down')
+vmap  <expr>  <UP>     DVB_Drag('up')
+vmap  <expr>  Y        DVB_Duplicate()
+"}}}
+
+"vmath {{{
+vmap <expr>  ++  VMATH_YankAndAnalyse()
+nmap         ++  vip++
 "}}}
 "}}}

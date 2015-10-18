@@ -1,10 +1,13 @@
+# vim: ft=conf:
+
 search-highlight-colors black green bold
-#highlight all "mutt" cyan black 
-#highlight all "vim"  cyan black 
-#highlight all "vifm" cyan black 
+
+highlight all "mutt" cyan black 
+highlight all "vim"  cyan black 
+highlight all "vifm" cyan black 
 
 color background          white   black
-color listnormal          cyan    black
+color listnormal          white   black
 color listfocus           black   green
 color info                cyan    blue   bold
 color article             white   black
