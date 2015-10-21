@@ -254,6 +254,12 @@ command! vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom -really-quiet %f
 command! fim     fim %f > /dev/null 2>&1
 command! imgall  imgview -n -s -n -n
 command! rimgall imgview -r -s -n -n
+
+command! fe  fmux2
+command! mus musmux
+command! nb  rssmux
+command! w   w3mmux
+command! ww  lynxmux
 " }}}
 
 " filetype and fileview {{{

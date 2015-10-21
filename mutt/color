@@ -19,8 +19,12 @@ color   tilde        brightmagenta   black
 color   index        blue            black       "~F"
 color   index        red             black       "~N|~O"
 color   index        cyan            black       '~f phantasea'
-color   index        brightyellow    black       '~s 招商银行'
-color   index        cyan            black       '~s 民生银行'
+color   index        brightyellow    black       '~s 招商'
+color   index        brightyellow    black       '~s 民生'
 color   index        cyan            black       '~s 京东'
+color   index        cyan            black       '~s 淘宝'
+color   index        cyan            black       '~s 携程'
 color   index        magenta         black       '~f 支付宝'
 color   index        yellow          black       '~s ranger'
+color   index        yellow          black       '~s mutt'
+color   index        yellow          black       '~s vifm'

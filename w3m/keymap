@@ -25,6 +25,12 @@ keymap  C-T     COMMAND "TAB_GOTO ."
 keymap  C-Y     DOWN
 keymap  C-E     UP
 
+keymap  <   LEFT
+keymap  >   RIGHT
+keymap  [   LEFT
+keymap  ]   RIGHT
+keymap  {   SHIFT_LEFT
+keymap  }   SHIFT_RIGHT
 keymap  ,   COMMAND "PREV_PAGE; MOV2TOP"
 keymap  \'  NEXT_LINE_MARK
 keymap  \"  PREV_LINE_MARK

@@ -1,6 +1,7 @@
 " vim: set ft=vim :
 
 " color  {{{
+"highlight ColorColumn  ctermbg=lightgrey
 highlight IncSearch    ctermbg=black    ctermfg=red     cterm=reverse
 highlight Search       ctermbg=blue     ctermfg=white   cterm=bold
 highlight TabLine      ctermfg=black    ctermbg=black   cterm=none 
@@ -126,6 +127,7 @@ inoremap   <C-E>    <C-R><C-R>=VCopy('down')<CR>
 
 "vnoremap  #   y:let @/=@"<CR>N
 "vnoremap  *   y/<C-R>"<CR>
+nnoremap  \|\| \|
 nnoremap   '   `
 nnoremap   ['  [`
 nnoremap   ]'  ]`
@@ -148,9 +150,29 @@ nnoremap  ck   :cprev<CR>
 nnoremap  cn   :cnext<CR>
 nnoremap  cp   :cprev<CR>
 nnoremap  co   :call SmartOpenQfWin()<CR>
-nnoremap  c<space>  :call SmartOpenQfWin()<CR>
 
-nnoremap  d<space>  :call SmartDiffOff()<CR>
+"nmap dm  :g//delete<CR> doesn't retain all deletes in the nameless register
+nnoremap  dm   :     call ForAllMatches('delete', {})<CR>
+nnoremap  dM   :     call ForAllMatches('delete', {'inverse':1})<CR>
+nnoremap  ym   :     call ForAllMatches('yank',   {})<CR>
+nnoremap  yM   :     call ForAllMatches('yank',   {'inverse':1})<CR>
+vnoremap  md   :<C-U>call ForAllMatches('delete', {'visual':1})<CR>
+vnoremap  mD   :<C-U>call ForAllMatches('delete', {'visual':1, 'inverse':1})<CR>
+vnoremap  my   :<C-U>call ForAllMatches('yank',   {'visual':1})<CR>
+vnoremap  mY   :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':1})<CR>
+
+nnoremap  c<space>  :call SmartOpenQfWin()<CR>
+nnoremap  d<space>  :call SmartDiffToggle()<CR>
+nnoremap  g<space>  <NOP>
+nnoremap  m<space>  <NOP>
+nnoremap  s<space>  :call SmartWinMax()<CR>
+nnoremap  t<space>  :TlistToggle<CR>
+nnoremap  y<space>  <NOP>
+nnoremap  z<space>  @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+nnoremap  [<space>  <NOP>
+nnoremap  ]<space>  <NOP>
+nnoremap  ,<space>  <NOP>
+nnoremap \|<space>  :call ToggleColorColumn()<CR>
 
 if &diff
 "color    peaksea
@@ -195,19 +217,6 @@ nnoremap  Y    y$
 nnoremap  yo   o<Esc>k
 nnoremap  yO   O<Esc>j
 nnoremap  zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-nnoremap  z<space>    @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-nnoremap  s<space>    :call SmartWinMax()<CR>
-nnoremap  t<space>    :TlistToggle<CR>
-
-"nmap dm  :g//delete<CR> doesn't retain all deletes in the nameless register
-nnoremap  dm   :     call ForAllMatches('delete', {})<CR>
-nnoremap  dM   :     call ForAllMatches('delete', {'inverse':1})<CR>
-nnoremap  ym   :     call ForAllMatches('yank',   {})<CR>
-nnoremap  yM   :     call ForAllMatches('yank',   {'inverse':1})<CR>
-vnoremap  dm   :<C-U>call ForAllMatches('delete', {'visual':1})<CR>
-vnoremap  dM   :<C-U>call ForAllMatches('delete', {'visual':1, 'inverse':1})<CR>
-vnoremap  ym   :<C-U>call ForAllMatches('yank',   {'visual':1})<CR>
-vnoremap  yM   :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':1})<CR>
 
 nnoremap  <leader>ev  :e $MYVIMRC<CR>
 nnoremap  <leader>ef  :e ~/.vifm/vifmrc<CR>
@@ -414,7 +423,7 @@ func! ListSrchCurrFile(mode)
     call setpos('.', save_cursor)
 endfunc
 
-func! SmartDiffOff()
+func! SmartDiffToggle()
     if &diff
         diffoff
     else
@@ -564,6 +573,16 @@ func! ForAllMatches (command, options)
         unsilent echo match_count . (match_count > 1 ? ' fewer lines' : ' less line')
     else
         unsilent echo match_count . ' line' . (match_count > 1 ? 's' : '') . ' yanked'
+    endif
+endfunc
+
+func! ToggleColorColumn()
+    let col_num = virtcol(".")
+    let cc_list = split(&colorcolumn, ',')
+    if count(cc_list, string(col_num)) <= 0
+        execute "set cc+=".col_num
+    else
+        execute "set cc-=".col_num
     endif
 endfunc
 "}}}
