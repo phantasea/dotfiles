@@ -12,6 +12,7 @@
     mergeoptions = --no-edit
     autocrlf = input
     safecrlf = false
+    excludesfile = /opt/.etc/gitignore
 
 [diff]
     tool = vimdiff

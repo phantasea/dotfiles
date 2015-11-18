@@ -68,6 +68,7 @@ set nostartofline
 set noswapfile
 set nowrap
 set nocursorline
+set nrformats=hex
 set numberwidth=1
 set ruler
 set scrolloff=0
@@ -89,18 +90,18 @@ set wildignorecase
 "}}}
 
 " mapping  {{{
+nnoremap   <Enter>  <NOP>
+
 map <F7>   :set wrap!<CR>
 map <F8>   :nohlsearch<CR>
 
-onoremap  aa  :<C-U>normal! ggVG<CR>
-onoremap  if  :<C-U>normal! [[jV]]k<CR>
-onoremap  af  :<C-U>normal! [[v%<CR>
+onoremap   aa   :<C-U>normal! ggVG<CR>
+onoremap   if   :<C-U>normal! [[jV]]k<CR>
+onoremap   af   :<C-U>normal! [[v%<CR>
 
-vnoremap  aa  VGo1G
-vnoremap  if  <Esc>[[jV]]k
-vnoremap  af  <Esc>[[v%
-
-nnoremap   <Enter>  <NOP>
+vnoremap   aa   VGo1G
+vnoremap   if   <Esc>[[jV]]k
+vnoremap   af   <Esc>[[v%
 
 cnoremap   <C-A>    <Home>
 cnoremap   <C-B>    <Left>
@@ -122,114 +123,120 @@ nnoremap   <C-J>    <PageDown>L
 nnoremap   <C-K>    <PageUp>H
 nnoremap   <C-N>    :bn<CR>
 nnoremap   <C-P>    :bp<CR>
+nnoremap   <C-U>    99u
 inoremap   <C-Y>    <C-R><C-R>=VCopy('up')<CR>
 inoremap   <C-E>    <C-R><C-R>=VCopy('down')<CR>
 
-"vnoremap  #   y:let @/=@"<CR>N
-"vnoremap  *   y/<C-R>"<CR>
-nnoremap  \|\| \|
-nnoremap   '   `
-nnoremap   ['  [`
-nnoremap   ]'  ]`
-nnoremap   0   ^
-nnoremap   #   #n
-nnoremap  g#   g#n
-nnoremap   *   *N
-nnoremap  g*   g*N
-vnoremap   #   y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
-vnoremap   *   y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
-vnoremap   <   <gv
-vnoremap   >   >gv
+"vnoremap  #    y:let @/=@"<CR>N
+"vnoremap  *    y/<C-R>"<CR>
+nnoremap  \|\|  \|
+nnoremap   '    `
+nnoremap   ['   [`
+nnoremap   ]'   ]`
+nnoremap   0    ^
+nnoremap   &    :&&<CR>
+nnoremap  g/    :Ag  %<left><left>
+nnoremap   #    #n
+nnoremap  g#    g#n
+nnoremap   *    *N
+nnoremap  g*    g*N
+vnoremap   &    :&&<CR>
+vnoremap   #    y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
+vnoremap   *    y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
+vnoremap   <    <gv
+vnoremap   >    >gv
 
-nnoremap  cd   :cd 
-nnoremap  c.   :cc<CR>
-nnoremap  ch   :colder<CR>
-nnoremap  cl   :cnewer<CR>
-nnoremap  cj   :cnext<CR>
-nnoremap  ck   :cprev<CR>
-nnoremap  cn   :cnext<CR>
-nnoremap  cp   :cprev<CR>
-nnoremap  co   :call SmartOpenQfWin()<CR>
+nnoremap   cd   :cd 
+nnoremap   c.   :cc<CR>
+nnoremap   ch   :colder<CR>
+nnoremap   cl   :cnewer<CR>
+nnoremap   cj   :cnext<CR>
+nnoremap   ck   :cprev<CR>
+nnoremap   cn   :cnext<CR>
+nnoremap   cp   :cprev<CR>
+nnoremap   co   :call SmartOpenQfWin()<CR>
 
-"nmap dm  :g//delete<CR> doesn't retain all deletes in the nameless register
-nnoremap  dm   :     call ForAllMatches('delete', {})<CR>
-nnoremap  dM   :     call ForAllMatches('delete', {'inverse':1})<CR>
-nnoremap  ym   :     call ForAllMatches('yank',   {})<CR>
-nnoremap  yM   :     call ForAllMatches('yank',   {'inverse':1})<CR>
-vnoremap  md   :<C-U>call ForAllMatches('delete', {'visual':1})<CR>
-vnoremap  mD   :<C-U>call ForAllMatches('delete', {'visual':1, 'inverse':1})<CR>
-vnoremap  my   :<C-U>call ForAllMatches('yank',   {'visual':1})<CR>
-vnoremap  mY   :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':1})<CR>
+"nmap dm   :g//delete<CR> doesn't retain all deletes in the nameless register
+nnoremap   dm   :     call ForAllMatches('delete', {})<CR>
+nnoremap   dM   :     call ForAllMatches('delete', {'inverse':1})<CR>
+nnoremap   ym   :     call ForAllMatches('yank',   {})<CR>
+nnoremap   yM   :     call ForAllMatches('yank',   {'inverse':1})<CR>
+vnoremap   md   :<C-U>call ForAllMatches('delete', {'visual':1})<CR>
+vnoremap   mD   :<C-U>call ForAllMatches('delete', {'visual':1, 'inverse':1})<CR>
+vnoremap   my   :<C-U>call ForAllMatches('yank',   {'visual':1})<CR>
+vnoremap   mY   :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':1})<CR>
 
-nnoremap  c<space>  :call SmartOpenQfWin()<CR>
-nnoremap  d<space>  :call SmartDiffToggle()<CR>
-nnoremap  g<space>  <NOP>
-nnoremap  m<space>  <NOP>
-nnoremap  s<space>  :call SmartWinMax()<CR>
-nnoremap  t<space>  :TlistToggle<CR>
-nnoremap  y<space>  <NOP>
-nnoremap  z<space>  @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-nnoremap  [<space>  <NOP>
-nnoremap  ]<space>  <NOP>
-nnoremap  ,<space>  <NOP>
-nnoremap \|<space>  :call ToggleColorColumn()<CR>
+nnoremap   c<space>   :call SmartOpenQfWin()<CR>
+nnoremap   d<space>   :call SmartDiffToggle()<CR>
+nnoremap   g<space>   <NOP>
+nnoremap   m<space>   <NOP>
+nnoremap   s<space>   :call SmartWinMax()<CR>
+nnoremap   t<space>   :TlistToggle<CR>
+nnoremap   y<space>   <NOP>
+nnoremap   z<space>   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+nnoremap   [<space>   <NOP>
+nnoremap   ]<space>   <NOP>
+nnoremap   ,<space>   <NOP>
+nnoremap  \|<space>   :call ToggleColorColumn()<CR>
 
 if &diff
-"color    peaksea
-syntax    off
-nnoremap  dj   ]c
-nnoremap  dk   [c
-nnoremap  dn   ]c
-nnoremap  dp   [c
-nnoremap  di   :diffget<CR>
-vnoremap  di   :diffget<CR>
-nnoremap  do   :diffput<CR>
-vnoremap  do   :diffput<CR>
-nnoremap  du   :diffupdate<CR>
+"color     peaksea
+syntax     off
+nnoremap   dj   ]c
+nnoremap   dk   [c
+nnoremap   dn   ]c
+nnoremap   dp   [c
+nnoremap   di   :diffget<CR>
+vnoremap   di   :diffget<CR>
+nnoremap   do   :diffput<CR>
+vnoremap   do   :diffput<CR>
+nnoremap   du   :diffupdate<CR>
 endif
 
-nnoremap  gj   J
-nnoremap  gw   :write<CR>
-nnoremap  gW   :w !sudo tee % > /dev/null<CR>
-nnoremap  g/   :Ag  %<left><left>
-nnoremap  j    gj
-vnoremap  j    gj
-nnoremap  k    gk
-vnoremap  k    gk
-nnoremap  J    <C-E>
-nnoremap  K    <C-Y>
-nnoremap  q    :call SmartQuit()<CR>
-nnoremap  Q    :qall!<CR>
-nnoremap  S    :%s//g<Left><Left>
-vnoremap  S    :s/\%V/g<left><left>
-nnoremap  s    <C-W>
-vnoremap  s    <C-W>
-nnoremap  sa   :ball<CR>
-nnoremap  sq   :call QuitAllBufButMe()<CR>
-nnoremap  s}   :call OpenTagPreviewWin()<CR>
-nnoremap  s#   :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-nnoremap  s*   :call ListSrchCurrFile("n")<CR>
-vnoremap  s*   y:call ListSrchCurrFile("v")<CR>
-nnoremap  s/   :vimgrep  %<left><left>
-nnoremap  s?   :vimgrepadd  %<left><left>
-nnoremap  U    <C-R>
-nnoremap  Y    y$
-nnoremap  yo   o<Esc>k
-nnoremap  yO   O<Esc>j
-nnoremap  zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+nnoremap   j    gj
+vnoremap   j    gj
+nnoremap  gj    J
+nnoremap   k    gk
+vnoremap   k    gk
+nnoremap  gk    K
+nnoremap   J    <C-E>
+nnoremap   K    <C-Y>
+nnoremap   q    :call SmartQuit()<CR>
+nnoremap   Q    :qall!<CR>
+nnoremap   S    :%s//g<Left><Left>
+vnoremap   S    :s/\%V/g<left><left>
+nnoremap   s    <C-W>
+vnoremap   s    <C-W>
+nnoremap   sa   :ball<CR>
+nnoremap   sq   :call QuitAllBufButMe()<CR>
+nnoremap   s}   :call OpenTagPreviewWin()<CR>
+nnoremap   s#   :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap   s*   :call ListSrchCurrFile("n")<CR>
+vnoremap   s*   y:call ListSrchCurrFile("v")<CR>
+nnoremap   s/   :vimgrep  %<left><left>
+nnoremap   s?   :vimgrepadd  %<left><left>
+nnoremap   U    <C-R>
+nnoremap  gw    :write<CR>
+nnoremap  gW    :w !sudo tee % > /dev/null<CR>
+nnoremap   Y    y$
+nnoremap   yo   o<Esc>k
+nnoremap   yO   O<Esc>j
+nnoremap   zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
-nnoremap  <leader>ev  :e $MYVIMRC<CR>
-nnoremap  <leader>ef  :e ~/.vifm/vifmrc<CR>
-nnoremap  <leader>ew  :e ~/.w3m/keymap<CR>
-nnoremap  <leader>be  :BufExplorer<CR>
-nnoremap  <leader>fe  :EditVifm<CR>
-nnoremap  <leader>tl  :TlistToggle<CR>
-nnoremap  <leader>ct  :ConqueTerm bash<CR>
-nnoremap  <leader>vm  :VimuxPromptCommand<CR>
-nnoremap  <leader>te  :tabedit <C-R>=expand("%:p:h")<CR>/
-nnoremap  <leader>cd  :cd %:p:h<CR>:pwd<CR>
-nnoremap  <leader>md  :!Markdown.pl % > %.html<CR><CR>:!w3mux %.html<CR>
-nnoremap  <leader>ts  :%s/\t/    /g<CR>
+nnoremap   <leader>ev   :e $MYVIMRC<CR>
+nnoremap   <leader>ef   :e ~/.vifm/vifmrc<CR>
+nnoremap   <leader>ew   :e ~/.w3m/keymap<CR>
+nnoremap   <leader>be   :BufExplorer<CR>
+nnoremap   <leader>fe   :EditVifm<CR>
+nnoremap   <leader>tl   :TlistToggle<CR>
+nnoremap   <leader>ct   :ConqueTerm bash<CR>
+nnoremap   <leader>vm   :VimuxPromptCommand<CR>
+nnoremap   <leader>te   :tabedit <C-R>=expand("%:p:h")<CR>/
+nnoremap   <leader>cd   :cd %:p:h<CR>:pwd<CR>
+nnoremap   <leader>md   :!Markdown.pl % > %.html<CR><CR>:!w3mux %.html<CR>
+nnoremap   <leader>ts   :%s/\t/    /g<CR>
+
+cnoremap   <expr> %%    getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 "}}}
 
 " abbrev  {{{
@@ -237,8 +244,6 @@ iabbrev   teh      the
 iabbrev   xbq      `
 iabbrev   xdate    <C-R>=strftime("%d/%m/%y %H:%M:%S")<cr>
 cabbrev   xcal     Calendar<cr>
-cabbrev   diffin   diffget
-cabbrev   diffout  diffput
 "}}}
 
 " function  {{{
