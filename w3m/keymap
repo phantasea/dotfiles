@@ -8,121 +8,120 @@
 # Right : RIGHT, ^[[C
 # Left  : LEFT, ^[[D
 
-keymap  BS      MOVE_DOWN1
-keymap  SPC     COMMAND "NEXT_PAGE; MOV2BOT"
-keymap  LEFT    MOVE_LEFT
-keymap  RIGHT   MOVE_RIGHT
-keymap  UP      MOVE_UP
-keymap  DOWN    MOVE_DOWN
-keymap  C-N     NEXT_TAB
-keymap  C-P     PREV_TAB
-keymap  C-J     COMMAND "NEXT_PAGE; MOV2BOT"
-keymap  C-K     COMMAND "PREV_PAGE; MOV2TOP"
-keymap  C-O     PREV
-keymap  C-I     NEXT
-keymap  C-H     LAST_TAB
-keymap  C-T     COMMAND "TAB_GOTO ."
-keymap  C-Y     DOWN
-keymap  C-E     UP
+keymap   BS      MOVE_DOWN1
+keymap   SPC     COMMAND "NEXT_PAGE; MOV2BOT"
+keymap   LEFT    MOVE_LEFT
+keymap   RIGHT   MOVE_RIGHT
+keymap   UP      MOVE_UP
+keymap   DOWN    MOVE_DOWN
+keymap   C-N     NEXT_TAB
+keymap   C-P     PREV_TAB
+keymap   C-J     COMMAND "NEXT_PAGE; MOV2BOT"
+keymap   C-K     COMMAND "PREV_PAGE; MOV2TOP"
+keymap   C-O     PREV
+keymap   C-I     NEXT
+keymap   C-H     LAST_TAB
+keymap   C-T     COMMAND "TAB_GOTO ."
+keymap   C-Y     DOWN
+keymap   C-E     UP
 
-keymap  <   LEFT
-keymap  >   RIGHT
-keymap  [   LEFT
-keymap  ]   RIGHT
-keymap  {   SHIFT_LEFT
-keymap  }   SHIFT_RIGHT
-keymap  ,   COMMAND "PREV_PAGE; MOV2TOP"
-keymap  \'  NEXT_LINE_MARK
-keymap  \"  PREV_LINE_MARK
-keymap  /   ISEARCH
-keymap  :   COMMAND
-keymap ";"  REDRAW
-keymap  *   FSRCH_CUR_WORD
-keymap  #   BSRCH_CUR_WORD
-keymap  !   EXEC_SHELL
-keymap  @   READ_SHELL
-keymap  |   PIPE_SHELL
-keymap  ^   LINE_BEGIN
-keymap  $   LINE_END
-keymap  0   LINE_BEGIN
-keymap  ?   HELP
+keymap   <    LEFT
+keymap   >    RIGHT
+keymap   [    LEFT
+keymap   ]    RIGHT
+keymap   {    SHIFT_LEFT
+keymap   }    SHIFT_RIGHT
+keymap   ,    COMMAND "PREV_PAGE; MOV2TOP"
+keymap   \'   NEXT_LINE_MARK
+keymap   \"   PREV_LINE_MARK
+keymap   /    ISEARCH
+keymap   :    COMMAND
+keymap  ";"   REDRAW
+keymap   *    FSRCH_CUR_WORD
+keymap   #    BSRCH_CUR_WORD
+keymap   !    EXEC_SHELL
+keymap   @    READ_SHELL
+keymap   |    PIPE_SHELL
+keymap   ^    LINE_BEGIN
+keymap   $    LINE_END
+keymap   0    LINE_BEGIN
+keymap   ?    HELP
 
-keymap  a   ADD_BOOKMARK
-keymap  b   NEXT_LEFT_UP
-keymap  B   PREV_WORD
-keymap  d   SAVE_LINK
-keymap  D   SAVE_IMAGE
-keymap  e   EDIT_SCREEN
-keymap  E   EDIT
-keymap  f   LIST_MENU
-keymap  G   END
-keymap  h   MOVE_LEFT
-keymap  H   MOV2TOP
-keymap  i   GOTO_LINK
-keymap  I   TAB_LINK
-keymap  M-i COMMAND "SET_OPTION display_image=toggle; RELOAD"
-keymap  j   MOVE_DOWN1
-keymap  J   UP
-keymap  k   MOVE_UP1
-keymap  K   DOWN
-keymap  l   MOVE_RIGHT
-keymap  L   MOV2BOT
-keymap  m   MARK_LINE
-keymap  M   MOV2MID
-#keymap mu  ANCHOR_URL
-#keymap mw  MARK_WORD
-keymap  n   COMMAND "SEARCH_NEXT; MARK_WORD"
-keymap  N   COMMAND "SEARCH_PREV; MARK_WORD"
-keymap  o   GOTO
-keymap  O   TAB_GOTO
-keymap  p   COMMAND "PREV_PAGE; MOV2TOP"
-keymap  q   CLOSE_TAB
-keymap  Q   QUIT
-keymap  r   RELOAD
-keymap  R   READ_SHELL
-keymap  C-S SAVE
-keymap  M-s SAVE_SCREEN
-keymap  ss  SRCH_BD
-keymap  SS  TAB_SRCH_BD
-keymap  sg  SRCH_GG
-keymap  SG  TAB_SRCH_GG
-keymap  sw  SRCH_WK
-keymap  SW  TAB_SRCH_WK
-keymap  t   SELECT_MENU
-keymap  T   TAB_GOTO
-keymap  u   UNDO_CLOSE_ONE
-keymap  U   UNDO_CLOSE_ALL
-keymap  v   VIEW
-keymap  w   NEXT_RIGHT_DOWN
-keymap  W   NEXT_WORD
-keymap  x   STOP_IMAGE
-keymap  X   SUSPEND
-keymap  y   PEEK_LINK
-keymap  Y   PEEK_IMG
-keymap  z   CENTER_V
-keymap  Z   CENTER_H
+keymap   a    ADD_BOOKMARK
+keymap   b    NEXT_LEFT_UP
+keymap   B    PREV_WORD
+keymap   d    SAVE_LINK
+keymap   D    SAVE_IMAGE
+keymap   e    EDIT_SCREEN
+keymap   E    EDIT
+keymap   f    LIST_MENU
+keymap   G    END
+keymap   h    MOVE_LEFT
+keymap   H    MOV2TOP
+keymap   i    GOTO_LINK
+keymap   I    TAB_LINK
+keymap   M-i  COMMAND "SET_OPTION display_image=toggle; RELOAD"
+keymap   j    MOVE_DOWN1
+keymap   J    UP
+keymap   k    MOVE_UP1
+keymap   K    DOWN
+keymap   l    MOVE_RIGHT
+keymap   L    MOV2BOT
+keymap   M    MOV2MID
+keymap   mm   MARK_LINE
+keymap   mw   MARK_WORD
+keymap   mu   ANCHOR_URL
+keymap   n    COMMAND "SEARCH_NEXT; MARK_WORD"
+keymap   N    COMMAND "SEARCH_PREV; MARK_WORD"
+keymap   o    GOTO
+keymap   O    TAB_GOTO
+keymap   p    COMMAND "PREV_PAGE; MOV2TOP"
+keymap   q    CLOSE_TAB
+keymap   Q    QUIT
+keymap   r    RELOAD
+keymap   R    READ_SHELL
+keymap   C-S  SAVE
+keymap   M-s  SAVE_SCREEN
+keymap   s    SRCH_BD
+keymap   S    TAB_SRCH_BD
+keymap  gs    SRCH_GG
+keymap  gS    TAB_SRCH_GG
+keymap  zs    SRCH_WK
+keymap  zS    TAB_SRCH_WK
+keymap   t    SELECT_MENU
+keymap   T    TAB_GOTO
+keymap   u    UNDO_CLOSE_ONE
+keymap   U    UNDO_CLOSE_ALL
+keymap   v    VIEW
+keymap   w    NEXT_RIGHT_DOWN
+keymap   W    NEXT_WORD
+keymap   x    STOP_IMAGE
+keymap   X    SUSPEND
+keymap   y    PEEK_LINK
+keymap   Y    PEEK_IMG
+keymap  zz    CENTER_V
 
-keymap  cd  GOTO_RELATIVE
-keymap  gc  COOKIE
-keymap  gd  DOWNLOAD_LIST
-keymap  ge  MSGS
-keymap  gf  LOAD
-keymap  gg  BEGIN
-keymap  gh  HISTORY
-#keymap gi  COMMAND "FIRST_INPUT; GOTO_LINK"
-keymap  gi  FIRST_INPUT
-keymap  gk  COOKIE
-keymap  gl  LIST
-keymap  gm  VIEW_BOOKMARK
-keymap  gn  COMMAND "SEARCH 下一页; GOTO_LINK"
-keymap  go  OPTIONS
-keymap  gp  COMMAND "SEARCH 上一页; GOTO_LINK"
-keymap  gr  REINIT
-keymap  gt  TAB_MENU
-keymap  gq  ABORT
-keymap  gu  UNDO
-keymap  gU  REDO
-keymap  gw  DICT_WORD_AT
-keymap  gW  DICT_WORD
-keymap  gy  EXTERN_LINK
-keymap  gY  EXTERN
+keymap   cd   GOTO_RELATIVE
+keymap   gc   COOKIE
+keymap   gd   DOWNLOAD_LIST
+keymap   ge   MSGS
+keymap   gf   LOAD
+keymap   gg   BEGIN
+keymap   gh   HISTORY
+#keymap  gi   COMMAND "FIRST_INPUT; GOTO_LINK"
+keymap   gi   FIRST_INPUT
+keymap   gk   COOKIE
+keymap   gl   LIST
+keymap   gm   VIEW_BOOKMARK
+keymap   gn   COMMAND "SEARCH 下一页; GOTO_LINK"
+keymap   go   OPTIONS
+keymap   gp   COMMAND "SEARCH 上一页; GOTO_LINK"
+keymap   gr   REINIT
+keymap   gt   TAB_MENU
+keymap   gq   ABORT
+keymap   gu   UNDO
+keymap   gU   REDO
+keymap   gw   DICT_WORD_AT
+keymap   gW   DICT_WORD
+keymap   gy   EXTERN_LINK
+keymap   gY   EXTERN
