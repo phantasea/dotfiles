@@ -123,7 +123,7 @@ bmark! /home/lynna/doc/note note
 
 " option {{{
 " This is the actual command used to start vi.  The default is vim.
-set vicmd="fmvimux"
+set vicmd="vimux"
 set vixcmd="sublime-text &"
 
 set tuioptions=""
@@ -249,13 +249,13 @@ command! sucopyfromother sudo cp -R %F %d %i
 command! copyfilename tmux setb %f %i &
 command! copydirname  tmux setb %d %i &
 command! iconv iconv -f GBK -t UTF8 %c -o %c.new %i
-command! vid   mplayer -vo fbdev2 -really-quiet 
-command! vidfs mplayer -vo fbdev2 -xy 1024 -fs -zoom -really-quiet %f
+command! vid     vidmux %c
+command! vidfs   vidmux -f %c
 command! fim     fim %f > /dev/null 2>&1
-command! imgall  imgview -n -s -n -n
-command! rimgall imgview -r -s -n -n
+command! imgall  imgview -s
+command! rimgall imgview -rs
 
-command! fe  fmux2
+command! fe  fmux -e
 command! mus musmux
 command! nb  rssmux
 command! w   w3mmux
@@ -356,16 +356,16 @@ filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mpg123 -q %f &
 
 " Video
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat  mediainfo -f %c
-filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat  avplay %c
+filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat  vidmux %c
 
 " Image
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  mediainfo -f %f
-filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview -n -n %c -n
+filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview %c
 
 " Web
 fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %f
 if $DISPLAY == ""
-  filetype  *.html,*.htm,*.xhtml,*.shtml  fmw3mux %f
+  filetype  *.html,*.htm,*.xhtml,*.shtml  w3mux %f
 else
   filextype *.html,*.htm,*.xhtml,*.shtml  firefox %f &
 endif
@@ -434,7 +434,7 @@ fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo*.xpi  als %c
 "fileview * mediainfo %f
 "fileview * pygmentize -f console -g -- %c
 if $DISPLAY == ""
-  filetype  * fmvimux %f
+  filetype  * vimux %f
 else
   filextype * sublime-text %f
 endif
