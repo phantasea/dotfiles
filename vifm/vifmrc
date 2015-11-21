@@ -365,7 +365,7 @@ filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview %c
 " Web
 fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %f
 if $DISPLAY == ""
-  filetype  *.html,*.htm,*.xhtml,*.shtml  w3mux %f
+  filetype  *.html,*.htm,*.xhtml,*.shtml  wemux %f
 else
   filextype *.html,*.htm,*.xhtml,*.shtml  firefox %f &
 endif
