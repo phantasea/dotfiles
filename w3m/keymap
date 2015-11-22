@@ -93,6 +93,7 @@ keymap   T    TAB_GOTO
 keymap   u    UNDO_CLOSE_ONE
 keymap   U    UNDO_CLOSE_ALL
 keymap   v    VIEW
+keymap   V    VIEW_IMAGE
 keymap   w    NEXT_RIGHT_DOWN
 keymap   W    NEXT_WORD
 keymap   x    STOP_IMAGE
