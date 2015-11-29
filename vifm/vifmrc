@@ -110,12 +110,13 @@ mark t ~/.vifm/Trash
 mark m /media
 mark o /opt
 mark p /opt/.porn
+mark P /media/sandisk_u/porn
 mark e /opt/.etc
 mark g /opt/git
 mark v /opt/.vim
 mark u /opt/.util
 mark w /opt/web
-mark d /media/adb/sdcard/UCDownloads
+mark a /media/adb/sdcard/UCDownloads/Screenshot
 
 bmark! /home/lynna/doc doc
 bmark! /home/lynna/doc/note note
