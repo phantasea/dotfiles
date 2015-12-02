@@ -281,7 +281,7 @@ func! ListedBufs()
 endfunc
 
 func! SmartQuit()
-    if &diff
+    if &diff && len(ListedBufs()) <=2
         qall
         return
     endif
