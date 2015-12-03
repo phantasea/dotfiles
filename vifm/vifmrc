@@ -171,9 +171,10 @@ set fusehome=/tmp/vifm_FUSE
 set slowfs=curlftpfs
 
 " See man date or man strftime for details.
-set timefmt=%H:%M:%S\ %m/%d/%Y
+" set timefmt=%H:%M:%S\ %m/%d/%Y
+set timefmt=%H:%M\ %m/%d/%y
 
-set statusline="[%A] %u:%g {%E} %d %= \"%t\""
+set statusline="[%A] %u:%g {%E} %d %r %= \"%t\""
 
 " *********chris***************
 "set nolaststatus
@@ -186,7 +187,11 @@ set dotdirs=norootparent
 set rulerformat="%=%l%%%S%[ +%0-%]"
 set grepprg=ag\ --line-numbers\ %i\ %a\ %s
 set sort="+iname"
-set viewcolumns=-{name}...,{rating}
+if layoutis('only')
+  set viewcolumns=-{name}...,{rating},17{mtime}
+else
+  set viewcolumns=-{name}...,{rating}
+endif
 "viewcolumns=-{name}..,10{perms},6{uname},4{gname},6{size},20{mtime}
 windo filter! /lost\+found/
 "windo filter! /^.*\.(lo|o|d|class|py[co])$|.*~$/
