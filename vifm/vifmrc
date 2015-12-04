@@ -171,14 +171,12 @@ set fusehome=/tmp/vifm_FUSE
 set slowfs=curlftpfs
 
 " See man date or man strftime for details.
-" set timefmt=%H:%M:%S\ %m/%d/%Y
 set timefmt=%H:%M\ %m/%d/%y
 
 set statusline="[%A] %u:%g {%E} %d %r %= \"%t\""
 
 " *********chris***************
-"set nolaststatus
-"set chaselinks
+set nochaselinks
 set timeoutlen=2000
 set nolsview
 set classify=""
@@ -192,9 +190,7 @@ if layoutis('only')
 else
   set viewcolumns=-{name}...,{rating}
 endif
-"viewcolumns=-{name}..,10{perms},6{uname},4{gname},6{size},20{mtime}
 windo filter! /lost\+found/
-"windo filter! /^.*\.(lo|o|d|class|py[co])$|.*~$/
 " *****************************
 
 " Show list of matches on tab complition in command-line mode
