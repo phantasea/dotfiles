@@ -90,7 +90,11 @@ set wildignorecase
 "}}}
 
 " mapping  {{{
-nnoremap   <Enter>  <NOP>
+nnoremap   <Enter>    <NOP>
+nnoremap   <Left>     zh
+nnoremap   <S-Left>   zH
+nnoremap   <Right>    zl
+nnoremap   <S-Right>  zL
 
 map <F7>   :set wrap!<CR>
 map <F8>   :nohlsearch<CR>
