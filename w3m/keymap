@@ -8,16 +8,16 @@
 # Right : RIGHT, ^[[C
 # Left  : LEFT, ^[[D
 
-keymap   BS      MOVE_DOWN1
-keymap   SPC     COMMAND "NEXT_PAGE; MOV2BOT"
+keymap   BS      COMMAND "PREV_PAGE; MOV2TOP; REDRAW"
+keymap   SPC     COMMAND "NEXT_PAGE; MOV2BOT; REDRAW"
 keymap   LEFT    MOVE_LEFT
 keymap   RIGHT   MOVE_RIGHT
 keymap   UP      MOVE_UP
 keymap   DOWN    MOVE_DOWN
 keymap   C-N     NEXT_TAB
 keymap   C-P     PREV_TAB
-keymap   C-J     COMMAND "NEXT_PAGE; MOV2BOT"
-keymap   C-K     COMMAND "PREV_PAGE; MOV2TOP"
+keymap   C-J     COMMAND "NEXT_PAGE; MOV2BOT; REDRAW"
+keymap   C-K     COMMAND "PREV_PAGE; MOV2TOP; REDRAW"
 keymap   C-O     PREV
 keymap   C-I     NEXT
 keymap   C-H     LAST_TAB
@@ -25,13 +25,13 @@ keymap   C-T     COMMAND "TAB_GOTO ."
 keymap   C-Y     DOWN
 keymap   C-E     UP
 
-keymap   <    LEFT
-keymap   >    RIGHT
+keymap   <    PREV_TAB
+keymap   >    NEXT_TAB
 keymap   [    LEFT
 keymap   ]    RIGHT
 keymap   {    SHIFT_LEFT
 keymap   }    SHIFT_RIGHT
-keymap   ,    COMMAND "PREV_PAGE; MOV2TOP"
+keymap   ,    REDRAW
 keymap   \'   NEXT_LINE_MARK
 keymap   \"   PREV_LINE_MARK
 keymap   /    ISEARCH
@@ -75,7 +75,7 @@ keymap   n    COMMAND "SEARCH_NEXT; MARK_WORD"
 keymap   N    COMMAND "SEARCH_PREV; MARK_WORD"
 keymap   o    GOTO
 keymap   O    TAB_GOTO
-keymap   p    COMMAND "PREV_PAGE; MOV2TOP"
+keymap   p    COMMAND "PREV_PAGE; MOV2TOP; REDRAW"
 keymap   q    CLOSE_TAB
 keymap   Q    QUIT
 keymap   r    RELOAD
