@@ -56,7 +56,9 @@ nnoremap gS  :shell<cr>
 nnoremap  s  <c-w>
 "nmap     se s_
 "nmap     sr s=
-nnoremap  S  :sync<cr>
+"nnoremap  S  :sync<cr>
+nnoremap  S  :%s//g<left><left>
+vnoremap  S  :%s//g<left><left>
 nnoremap gt  gs
 nnoremap  t  tj
 nnoremap  U  <c-r>

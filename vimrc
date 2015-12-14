@@ -85,6 +85,7 @@ set tags=tags;
 set termencoding=utf-8
 set textwidth=0
 set updatetime=2000
+set viminfo='49,<0,s10,h,/25,f0,n~/.vim/viminfo
 set wildmenu
 set wildignorecase
 "}}}
@@ -734,5 +735,11 @@ vmap  <expr>  Y        DVB_Duplicate()
 "vmath {{{
 vmap <expr>  ++  VMATH_YankAndAnalyse()
 nmap         ++  vip++
+"}}}
+
+" showmarks {{{
+let g:showmarks_hlline_lower = 1
+let g:showmarks_hlline_upper = 1
+let g:showmarks_hlline_other = 1
 "}}}
 "}}}
