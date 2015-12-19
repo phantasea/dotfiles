@@ -3,6 +3,7 @@ nnoremap  <F5>  :shell<cr>
 nnoremap  <F10> :diff<cr>
 nnoremap  <F11> :diffsamewin<cr>
 nnoremap  <return> <nop>
+nnoremap  <bs> gh
 vnoremap  <space>  o
 qnoremap  <space>  <tab>
 nnoremap  <c-j>    <c-f>

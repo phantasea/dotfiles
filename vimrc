@@ -21,8 +21,8 @@ highlight User5        ctermfg=blue     ctermbg=black   cterm=inverse
 
 "}}}
 
-let   mapleader=","
-let g:mapleader=","
+"let   mapleader=","
+"let g:mapleader=","
 
 exec pathogen#infect()
 
@@ -131,6 +131,14 @@ nnoremap   <C-P>    :bp<CR>
 nnoremap   <C-U>    99u
 inoremap   <C-Y>    <C-R><C-R>=VCopy('up')<CR>
 inoremap   <C-E>    <C-R><C-R>=VCopy('down')<CR>
+
+nnoremap   'b   'B
+nnoremap   'c   'C
+nnoremap   'g   'G
+nnoremap   'm   'M
+nnoremap   'r   'R
+nnoremap   'w   'W
+nnoremap   'y   'Y
 
 "vnoremap  #    y:let @/=@"<CR>N
 "vnoremap  *    y/<C-R>"<CR>
