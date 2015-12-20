@@ -62,6 +62,7 @@ nnoremap  S  :%s//g<left><left>
 vnoremap  S  :%s//g<left><left>
 nnoremap gt  gs
 nnoremap  t  tj
+nnoremap  T  tk
 nnoremap  U  <c-r>
 nnoremap  v  e
 nnoremap  w  :set lsview!<cr>
