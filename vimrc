@@ -31,8 +31,8 @@ filetype plugin indent on
 syntax enable
 syntax on
 
+"set autochdir
 set ambiwidth=double
-set autochdir
 set autoindent
 set autoread
 set background=dark
@@ -189,7 +189,12 @@ nnoremap   y<space>   <NOP>
 nnoremap   z<space>   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 nnoremap   [<space>   <NOP>
 nnoremap   ]<space>   <NOP>
-nnoremap   ,<space>   <NOP>
+nnoremap   <<space>   <NOP>
+nnoremap   ><space>   <NOP>
+nnoremap   =<space>   <NOP>
+nnoremap   !<space>   <NOP>
+nnoremap   @<space>   <NOP>
+nnoremap   _<space>   :set cursorline!<CR>
 nnoremap  \|<space>   :call ToggleColorColumn()<CR>
 
 if &diff
@@ -219,7 +224,6 @@ nnoremap   Q    :qall!<CR>
 nnoremap   S    :%s//g<Left><Left>
 vnoremap   S    :s/\%V/g<left><left>
 nnoremap   s    <C-W>
-vnoremap   s    <C-W>
 nnoremap   sa   :ball<CR>
 nnoremap   sq   :call QuitAllBufButMe()<CR>
 nnoremap   s}   :call OpenTagPreviewWin()<CR>
@@ -598,9 +602,9 @@ func! ToggleColorColumn()
     let col_num = virtcol(".")
     let cc_list = split(&colorcolumn, ',')
     if count(cc_list, string(col_num)) <= 0
-        execute "set cc+=".col_num
+        execute "set colorcolumn+=".col_num
     else
-        execute "set cc-=".col_num
+        execute "set colorcolumn-=".col_num
     endif
 endfunc
 "}}}

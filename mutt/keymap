@@ -61,10 +61,10 @@ bind  index   J   next-unread
 bind  index   K   previous-unread
 bind  index   F   limit
 bind  index   m   mail
+bind  index   q   exit
 bind  index   r   reply
 bind  index   R   group-reply
 bind  index \Cr   recall-message
-bind  index   q   exit
 bind  index   S   save-message
 bind  index   s   sync-mailbox
 bind  index   u   undelete-message
@@ -134,4 +134,4 @@ macro index,pager gs  "<change-folder>=sent<enter>"  "go to sent"
 macro index,pager gd  "<change-folder>=draft<enter>" "go to draft"
 macro index,pager gt  "<change-folder>=trash<enter>" "go to trash"
 
-folder-hook draft 'bind index \Cr recall-message'
+folder-hook draft 'bind index r recall-message'
