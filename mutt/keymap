@@ -2,77 +2,101 @@
 
 # menu: generic index pager alias attach editor compose postpone browser pgp query
 
+# public {{{
+set my_allmenu = generic,index,pager,attach,browser,alias,compose,postpone
+
+bind  $my_allmenu  <space>     next-page
+bind  $my_allmenu  <backspace> previous-page
+bind  $my_allmenu  \Cj  next-page
+bind  $my_allmenu  \Ck  previous-page
+bind  $my_allmenu    p  previous-page
+bind  $my_allmenu    n  search-next
+bind  $my_allmenu    N  search-opposite
+macro $my_allmenu   gr  ":source ~/.muttrc\r"
+macro $my_allmenu    l  <enter>
+
+bind  generic,pager,attach,alias,compose,postpone h exit
+
+bind  generic,index,attach,browser,alias,compose,postpone H top-page
+bind  generic,index,attach,browser,alias,compose,postpone M middle-page
+bind  generic,index,attach,browser,alias,compose,postpone L bottom-page
+# }}}
 # compose {{{
 bind  compose  a   attach-file
 bind  compose  A   attach-message
 bind  compose  d   detach-file
-bind  compose  ea  edit-description
+bind  compose  ea  edit-file
+bind  compose  ed  edit-description
 bind  compose  eb  edit-bcc
 bind  compose  ec  edit-cc
 bind  compose  ef  edit-from
+bind  compose  eh  edit-headers
 bind  compose  em  edit-message
 bind  compose  er  edit-reply-to
 bind  compose  et  edit-to
 bind  compose  es  edit-subject
-bind  compose  P   postpone-message
+bind  compose  p   postpone-message
+bind  compose  r   rename-file
 bind  compose  s   send-message
+bind  compose ^s   copy-file
+bind  compose  y   send-message
 # }}}
 # index {{{
-macro index  <tab>  "<change-folder><tab>"
-macro index \Ca  "!abook\n"
-bind  index  a   create-alias
-macro index  A   |'abook --add-email'\n
-bind  index  b   bounce-message
-bind  index  c   copy-message
-bind  index  d   delete-message
-bind  index  D   purge-message
-bind  index  e   edit
-bind  index  f   forward-message
-bind  index  gg  first-entry
-bind  index  G   last-entry
-macro index  h   "<change-folder><tab>"
-bind  index  j   next-entry
-bind  index  k   previous-entry
-bind  index  J   next-unread
-bind  index  K   previous-unread
-bind  index  F   limit
-bind  index  m   mail
-bind  index  r   reply
-bind  index  R   group-reply
-bind  index ^r   recall-message
-bind  index  q   exit
-bind  index ^s   save-message
-bind  index  s   sync-mailbox
-bind  index  u   undelete-message
-bind  index  @   display-address
+macro index <tab> "<change-folder><tab>"
+macro index \Ca   "!abook\n"
+bind  index   a   create-alias
+macro index   A   |'abook --add-email'\n
+bind  index   b   bounce-message
+bind  index   c   copy-message
+bind  index   d   delete-message
+bind  index   D   purge-message
+bind  index   e   edit
+bind  index   f   forward-message
+bind  index   gg  first-entry
+bind  index   G   last-entry
+macro index   h   "<change-folder><tab>"
+bind  index   j   next-entry
+bind  index   k   previous-entry
+bind  index   J   next-unread
+bind  index   K   previous-unread
+bind  index   F   limit
+bind  index   m   mail
+bind  index   r   reply
+bind  index   R   group-reply
+bind  index \Cr   recall-message
+bind  index   q   exit
+bind  index   S   save-message
+bind  index   s   sync-mailbox
+bind  index   u   undelete-message
+bind  index   @   display-address
 # }}}
 # pager {{{
-macro pager \ca  "!abook\n"
-bind  pager  a   create-alias
-macro pager  A   |'abook --add-email'\n
-bind  pager  b   bounce-message
-bind  pager  c   copy-message
-bind  pager  d   delete-message
-bind  pager  D   purge-message
-bind  pager  e   edit
-bind  pager  f   forward-message
-bind  pager  gg  top
-bind  pager  G   bottom
-bind  pager  j   next-line
-bind  pager  k   previous-line
-bind  pager  J   next-entry
-bind  pager  K   previous-entry
-bind  pager  m   mail
-bind  pager  r   reply
-bind  pager  R   group-reply
-bind  pager ^r   recall-message
-bind  pager ^s   save-message
-macro pager  so  ":set pager_index_lines=0\r"
-macro pager  ss  ":set pager_index_lines=13\r"
-bind  pager  u   undelete-message
-macro pager  w   |urlview\n
-bind  pager  @   display-address
-bind  pager  *   display-toggle-weed
+macro pager \ca   "!abook\n"
+bind  pager   a   create-alias
+macro pager   A   |'abook --add-email'\n
+bind  pager   b   bounce-message
+bind  pager   c   copy-message
+bind  pager   d   delete-message
+bind  pager   D   purge-message
+bind  pager   e   edit
+bind  pager   f   forward-message
+bind  pager   gg  top
+bind  pager   G   bottom
+bind  pager   j   next-line
+bind  pager   k   previous-line
+bind  pager   J   next-entry
+bind  pager   K   previous-entry
+bind  pager   m   mail
+bind  pager   r   reply
+bind  pager   R   group-reply
+bind  pager \Cr   recall-message
+bind  pager   S   save-message
+macro pager   so  ":set pager_index_lines=0\r"
+macro pager   ss  ":set pager_index_lines=13\r"
+bind  pager   u   undelete-message
+macro pager   w   |urlview\n
+bind  pager   @   display-address
+bind  pager   *   display-toggle-weed
 # }}}
 # alias {{{
 bind  alias  d   delete-entry
@@ -83,14 +107,17 @@ bind  postpone  d   delete-entry
 bind  postpone  u   undelete-entry
 # }}}
 # attach{{{
+bind  attach  <space>  collapse-parts
+bind  attach  |  pipe-entry
 bind  attach  d  delete-entry
 bind  attach  i  view-attach
+bind  attach  s  save-entry
 bind  attach  u  undelete-entry
-bind  attach  v  exit
-#bind  attach  v  view-text
+bind  attach  v  view-text
 # }}}
 # browser {{{
-bind  browser  cd  change-dir
+bind  browser  c   change-dir
+bind  browser  v   view-file
 macro browser  h   "<exit>\n"
 macro browser  q   "<exit>\n"
 # }}}
@@ -100,31 +127,11 @@ macro editor  \Cp     "<history-up>"
 macro editor  \Cn     "<history-down>"
 # }}}
 
-# misc {{{
-set my_allmenu = generic,index,pager,attach,browser,alias,compose,postpone
-macro $my_allmenu l <enter>
-
-bind generic,pager,attach,alias,compose,postpone h exit
-
-bind generic,index,attach,browser,alias,compose,postpone H top-page
-bind generic,index,attach,browser,alias,compose,postpone M middle-page
-bind generic,index,attach,browser,alias,compose,postpone L bottom-page
-
-bind $my_allmenu <space> next-page
-bind $my_allmenu <backspace> previous-page
-bind $my_allmenu \Cj next-page
-bind $my_allmenu \Ck previous-page
-bind $my_allmenu p previous-page
-bind $my_allmenu n search-next
-bind $my_allmenu N search-opposite
-
 macro index,pager gm  "!fetchmail -v\n"   "Invoke fetchmail"
 
 macro index,pager gi  "<change-folder>=inbox<enter>" "go to inbox"
 macro index,pager gs  "<change-folder>=sent<enter>"  "go to sent"
 macro index,pager gd  "<change-folder>=draft<enter>" "go to draft"
 macro index,pager gt  "<change-folder>=trash<enter>" "go to trash"
-macro generic,pager  gr  ":source ~/.muttrc\r"
-# }}}
 
-folder-hook draft 'bind index R recall-message'
+folder-hook draft 'bind index \Cr recall-message'
