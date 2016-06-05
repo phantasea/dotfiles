@@ -4,10 +4,7 @@ nnoremap  <F10> :diff<cr>
 nnoremap  <F11> :diffsamewin<cr>
 nnoremap  <return> <nop>
 nnoremap  <bs> gh
-vnoremap  <space>  o
 qnoremap  <space>  <tab>
-nnoremap  <c-j>    <c-f>
-nnoremap  <c-k>    <c-b>
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
@@ -55,9 +52,7 @@ nnoremap gO  :!sudo  %f<left><left><left>
 nnoremap gr  :source ~/.vifm/vifmrc<cr>
 nnoremap gS  :shell<cr>
 nnoremap  s  <c-w>
-"nmap     se s_
-"nmap     sr s=
-"nnoremap  S  :sync<cr>
+nnoremap  sy :sync<cr>
 nnoremap  S  :%s//g<left><left>
 vnoremap  S  :%s//g<left><left>
 nnoremap gt  gs
@@ -78,7 +73,7 @@ vnoremap  xO :sumovetoother<cr>
 nnoremap  y  yy
 nnoremap  Y  :copyfilename<cr>
 nnoremap gy  :copydirname<cr>
-"nnoremap  z  zz
+nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
 
 cnoremap  <c-j>  <cr>
 
@@ -120,7 +115,7 @@ mark g /opt/git
 mark v /opt/.vim
 mark u /opt/.util
 mark w /opt/web
-mark a /media/adb/sdcard/UCDownloads/Screenshot
+mark a /media/adb/storage/sdcard1/pics
 
 bmark! /home/lynna/doc doc
 bmark! /home/lynna/doc/note note
@@ -138,7 +133,7 @@ set fillchars=vborder:|
 set trash
 
 " This is how many directories to store in the directory history.
-set history=32
+set history=13
 
 " Follow links on l or Enter.
 set followlinks
@@ -177,13 +172,13 @@ set slowfs=curlftpfs
 " See man date or man strftime for details.
 set timefmt=%H:%M\ %m/%d/%y
 
-set statusline="[%A] %u:%g {%E} %d %r %= \"%t\""
+set statusline="[%A] %u:%g %d %s %r %= \"%t\""
 
 " *********chris***************
 set nochaselinks
 set timeoutlen=2000
 set nolsview
-set classify=""
+set classify=":dir:"
 set cpoptions="s"
 set dotdirs=norootparent
 set rulerformat="%=%l%%%S%[ +%0-%]"
