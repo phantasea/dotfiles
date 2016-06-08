@@ -52,7 +52,7 @@
     dt = difftool
     mt = mergetool
     rv = remote -v
-    last = log -1 HEAD
+    last = whatchanged -1
     unstage = reset HEAD --
     lg = "log --color --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
 
