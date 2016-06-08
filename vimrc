@@ -128,7 +128,7 @@ nnoremap   <C-J>    <PageDown>L
 nnoremap   <C-K>    <PageUp>H
 nnoremap   <C-N>    :bn<CR>
 nnoremap   <C-P>    :bp<CR>
-nnoremap   <C-U>    99u
+nnoremap   <C-U>    <C-T>
 inoremap   <C-Y>    <C-R><C-R>=VCopy('up')<CR>
 inoremap   <C-E>    <C-R><C-R>=VCopy('down')<CR>
 

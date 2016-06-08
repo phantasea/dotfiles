@@ -105,8 +105,9 @@ if $HOME == "/home/simone"
 else
   mark H ~simone/
 endif
-mark t ~/.vifm/Trash
+mark t /tmp/Trash
 mark m /media
+mark n ~/docs/note
 mark o /opt
 mark p /opt/.porn
 mark P /media/sandisk_u/porn
@@ -118,7 +119,6 @@ mark w /opt/web
 mark a /media/adb/storage/sdcard1/pics
 
 bmark! /home/lynna/doc doc
-bmark! /home/lynna/doc/note note
 " }}}
 
 " option {{{
@@ -131,12 +131,14 @@ set fillchars=vborder:|
 
 " Trash Directory
 set trash
+set trashdir="/tmp/Trash"
 
 " This is how many directories to store in the directory history.
 set history=13
 
 " Follow links on l or Enter.
 set followlinks
+set nochaselinks
 
 " With this option turned on you can run partially entered commands with
 " unambiguous beginning using :! (e.g. :!Te instead of :!Terminal or :!Te<tab>).
@@ -144,6 +146,7 @@ set nofastrun
 
 " Natural sort of (version) numbers within text.
 set sortnumbers
+set sort="+iname"
 
 " Maximum number of changes that can be undone.
 set undolevels=13
@@ -167,33 +170,36 @@ colorscheme chris
 set fusehome=/tmp/vifm_FUSE
 
 " Don't do too many requests to slow file systems
-set slowfs=curlftpfs
+set slowfs=""
 
 " See man date or man strftime for details.
 set timefmt=%H:%M\ %m/%d/%y
-
+set rulerformat="%=%l%%%S%[ +%0-%]"
 set statusline="[%A] %u:%g %d %s %r %= \"%t\""
 
-" *********chris***************
-set nochaselinks
-set timeoutlen=2000
-set nolsview
-set classify=":dir:"
-set cpoptions="s"
-set dotdirs=norootparent
-set rulerformat="%=%l%%%S%[ +%0-%]"
-set grepprg=ag\ --line-numbers\ %i\ %a\ %s
-set sort="+iname"
 if layoutis('only')
   set viewcolumns=-{name}...,{rating},17{mtime}
 else
   set viewcolumns=-{name}...,{rating}
 endif
+
+" *****************************
+set numberwidth=2
+set confirm=permdelete
+set dirsize=nitems
+set shortmess="pT"
+set timeoutlen=2000
+set nolsview
+set classify=":dir:"
+set cpoptions="s"
+set dotdirs=rootparent
+set grepprg=ag\ --line-numbers\ %i\ %a\ %s
 windo filter! /lost\+found/
 " *****************************
 
 " Show list of matches on tab complition in command-line mode
 set wildmenu
+set wildstyle=popup
 
 " Ignore case in search patterns unless it contains at least one uppercase letter
 set ignorecase
