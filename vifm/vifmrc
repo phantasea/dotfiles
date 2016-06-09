@@ -185,7 +185,7 @@ endif
 
 " *****************************
 set numberwidth=2
-set confirm=permdelete
+set confirm=delete,permdelete
 set dirsize=nitems
 set shortmess="pT"
 set timeoutlen=2000
