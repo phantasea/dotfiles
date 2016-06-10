@@ -170,7 +170,7 @@ colorscheme chris
 set fusehome=/tmp/vifm_FUSE
 
 " Don't do too many requests to slow file systems
-set slowfs=""
+set slowfs=curlftpfs
 
 " See man date or man strftime for details.
 set timefmt=%H:%M\ %m/%d/%y
