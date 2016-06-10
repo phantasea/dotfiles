@@ -76,6 +76,7 @@ nnoremap gy  :copydirname<cr>
 nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
 
 cnoremap  <c-j>  <cr>
+cnoremap  <c-w>  <a-b><a-d>
 
 nnoremap  <c-j>  <c-f>
 nnoremap  <c-k>  <c-b>
