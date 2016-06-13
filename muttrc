@@ -25,7 +25,7 @@ source "~/.mutt/color"
 source "~/.mutt/keymap"
 source "~/.mutt/score"
 
-set use_from=yes
+set use_from=no
 set include=no
 set edit_headers=yes #see the headers when editing
 set forward_quote=yes
