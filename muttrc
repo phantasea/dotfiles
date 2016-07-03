@@ -65,8 +65,8 @@ unignore  from: to: subject: date:
 hdr_order from: to: subject: date:
 
 set status_chars="*+%A"
-set date_format   = "%b/%d/%y %I:%M%p"
-set index_format  = "%3C [%S] %D (%X) %-15.15L • %s"
+set date_format   = "%b/%d/%y %H:%M"
+set index_format  = "%2C [%S] %D (%X) %-15.15L • %s"
 #set attach_format =
 #set compose_format=
 #set message_format=
