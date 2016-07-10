@@ -34,7 +34,7 @@ nnoremap  D  DD
 nnoremap  e  :edit %f<cr>
 nnoremap  E  :suedit<cr>
 nnoremap  i  :touch<space>
-nnoremap  I  :mkdir!<space>
+nnoremap  I  :mkdir! ""<left>
 nnoremap  J  <c-e>
 nnoremap  K  <c-y>
 nnoremap  ml :alink!<cr>
