@@ -104,6 +104,9 @@ keymap  zt    SCR2TOP
 keymap  zz    SCR2MID
 keymap  zb    SCR2BOT
 
+keymap   [[   COMMAND "SEARCH 上一页; GOTO_LINK"
+keymap   ]]   COMMAND "SEARCH 下一页; GOTO_LINK"
+
 keymap   cd   GOTO_RELATIVE
 keymap   gc   COOKIE
 keymap   gd   DOWNLOAD_LIST
