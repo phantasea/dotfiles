@@ -106,7 +106,7 @@ if $HOME == "/home/simone"
 else
   mark H ~simone/
 endif
-mark t /tmp/Trash
+mark t ~/.vifm/Trash
 mark m /media
 mark n ~/docs/note
 mark o /opt
