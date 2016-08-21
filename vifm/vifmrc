@@ -41,6 +41,7 @@ nnoremap  ml :alink!<cr>
 nnoremap  o  :filter //i<left><left>
 nnoremap  O  :filter<cr>
 nnoremap  q  ZZ
+vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  :rename<cr>
 nnoremap ge  :empty<cr>
