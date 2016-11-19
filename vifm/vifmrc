@@ -133,7 +133,7 @@ set fillchars=vborder:|
 
 " Trash Directory
 set trash
-set trashdir="~/.vifm/Trash"
+set trashdir="~/.Trash"
 
 " This is how many directories to store in the directory history.
 set history=13
