@@ -25,6 +25,11 @@ source "~/.mutt/color"
 source "~/.mutt/keymap"
 source "~/.mutt/score"
 
+#set sidebar_visible=yes
+#set sidebar_format="%B%*  %S"
+#set sidebar_width=16
+#set sidebar_short_path=yes
+
 set use_from=no
 set include=no
 set edit_headers=yes #see the headers when editing
@@ -60,6 +65,7 @@ set check_new=no #get notified if new mail arrived in inbox
 
 #my_hdr Org: SIMONE
 
+mailboxes =inbox =qmail =gmail =draft =trash =sent
 ignore * 
 unignore  from: to: subject: date:
 hdr_order from: to: subject: date:

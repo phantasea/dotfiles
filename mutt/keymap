@@ -133,5 +133,20 @@ macro index,pager gi  "<change-folder>=inbox<enter>" "go to inbox"
 macro index,pager gs  "<change-folder>=sent<enter>"  "go to sent"
 macro index,pager gd  "<change-folder>=draft<enter>" "go to draft"
 macro index,pager gt  "<change-folder>=trash<enter>" "go to trash"
+macro index,pager gq  "<change-folder>=qmail<enter>" "go to qmail"
+macro index,pager go  "<change-folder>=gmail<enter>" "go to gmail"
+
+# sidebar {{{
+#bind index \Cp sidebar-prev
+#bind index \Cn sidebar-next
+#bind index \Co sidebar-open
+#bind pager \Cp sidebar-prev
+#bind pager \Cn sidebar-next
+#bind pager \Co sidebar-open
+#macro index b ‘<enter-command>toggle sidebar_visible<enter>’
+#macro pager b ‘<enter-command>toggle sidebar_visible<enter>’
+#macro index b ‘<enter-command>toggle sidebar_visible<enter><refresh>’
+#macro pager b ‘<enter-command>toggle sidebar_visible<enter><redraw-screen>’
+# }}}
 
 folder-hook draft 'bind index r recall-message'
