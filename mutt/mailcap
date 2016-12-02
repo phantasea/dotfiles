@@ -16,3 +16,4 @@ application/pdf;      pdftotext %s |w3m -dump; nametemplate=%s.html
 
 application/pgp-keys; pgp -f < %s ; copiousoutput
 
+application/x-rar; unrar -p- lt %s; copiousoutput 
