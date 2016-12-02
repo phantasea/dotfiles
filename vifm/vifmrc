@@ -31,27 +31,30 @@ vnoremap  cO :sucopytoother<cr>
 nnoremap  C  :clone<cr>
 nnoremap  d  dd
 nnoremap  D  DD
+nnoremap ge  :empty<cr>
 nnoremap  e  :edit %f<cr>
 nnoremap  E  :suedit<cr>
+nnoremap gi  :imgall<cr>
+nnoremap gI  :rimgall<cr>
 nnoremap  i  :touch<space>
 nnoremap  I  :mkdir! ""<left>
 nnoremap  J  <c-e>
 nnoremap  K  <c-y>
-nnoremap  ml :alink!<cr>
-nnoremap  o  :filter //i<left><left>
-nnoremap  O  :filter<cr>
+nnoremap ml  :alink!<cr>
+nnoremap gl  gf
+nnoremap go  :!  %f<left><left><left>
+nnoremap gO  :!sudo  %f<left><left><left>
+"nnoremap oo :filter //i<left><left>
+nnoremap  oo =
+nnoremap  of zd
+nnoremap  od zD
+nnoremap  o. zA
+nnoremap  O  zM
 nnoremap  q  ZZ
+nnoremap gr  :source ~/.vifm/vifmrc<cr>
 vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  :rename<cr>
-nnoremap ge  :empty<cr>
-nnoremap gl  gf
-nnoremap gi  :imgall<cr>
-nnoremap gI  :rimgall<cr>
-nnoremap go  :!  %f<left><left><left>
-nnoremap gO  :!sudo  %f<left><left><left>
-nnoremap gr  :source ~/.vifm/vifmrc<cr>
-nnoremap gS  :shell<cr>
 nnoremap  s  <c-w>
 nnoremap  sy :sync<cr>
 nnoremap  S  :%s//g<left><left>
@@ -107,12 +110,13 @@ if $HOME == "/home/simone"
 else
   mark H ~simone/
 endif
-mark t ~/.vifm/Trash
+mark t ~/.Trash
 mark m /media
 mark n ~/docs/note
 mark o /opt
-mark p /opt/.porn
-mark P /media/sandisk_u/porn
+mark P /opt/.porn
+mark p /media/sandisk_u/porn
+mark q /media/sandisk_v
 mark e /opt/.etc
 mark g /opt/git
 mark v /opt/.vim
@@ -263,12 +267,6 @@ command! vidfs   vidmux -f %c
 command! fim     fim %f > /dev/null 2>&1
 command! imgall  imgview -s
 command! rimgall imgview -rs
-
-command! fe  fmux -e
-command! mus musmux
-command! nb  rssmux
-command! w   w3mmux
-command! ww  lynxmux
 " }}}
 
 " filetype and fileview {{{
