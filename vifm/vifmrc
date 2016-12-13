@@ -12,6 +12,8 @@ vnoremap  .  :!!<cr>
 nnoremap  .  :!!<cr>
 nnoremap  -  :invert s<cr>
 vnoremap  -  :invert s<cr>
+nnoremap  \  :invert s<cr>
+vnoremap  \  :invert s<cr>
 nnoremap  a  Gvgg
 vnoremap  a  ggoG
 nnoremap  A  za
@@ -44,11 +46,7 @@ nnoremap ml  :alink!<cr>
 nnoremap gl  gf
 nnoremap go  :!  %f<left><left><left>
 nnoremap gO  :!sudo  %f<left><left><left>
-"nnoremap oo :filter //i<left><left>
-nnoremap  oo =
-nnoremap  of zd
-nnoremap  od zD
-nnoremap  o. zA
+nnoremap  o  =
 nnoremap  O  zM
 nnoremap  q  ZZ
 nnoremap gr  :source ~/.vifm/vifmrc<cr>
@@ -63,7 +61,6 @@ nnoremap gt  gs
 nnoremap  t  tj
 nnoremap  T  tk
 nnoremap  U  <c-r>
-nnoremap  v  e
 nnoremap  w  :set lsview!<cr>
 nnoremap  W  :set nolaststatus!<cr>
 nnoremap  xi :movefromother<cr>
@@ -77,6 +74,9 @@ vnoremap  xO :sumovetoother<cr>
 nnoremap  y  yy
 nnoremap  Y  :copyfilename<cr>
 nnoremap gy  :copydirname<cr>
+nnoremap  zf zd
+nnoremap  zd zD
+nnoremap  z. zA
 nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
 
 cnoremap  <c-j>  <cr>
@@ -88,6 +88,10 @@ qnoremap  <c-j>  <c-f>
 qnoremap  <c-k>  <c-b>
 mnoremap  <c-j>  <c-f>
 mnoremap  <c-k>  <c-b>
+mnoremap  <c-t>  :lstrash<cr>
+nnoremap  <c-v>  <s-tab>
+qnoremap  <c-v>  <s-tab>
+
 qnoremap  p  <c-b>
 qnoremap  e  q:edit %c<cr>
 qnoremap  s  <c-w>
@@ -191,7 +195,7 @@ endif
 
 " *****************************
 set numberwidth=2
-set confirm=delete,permdelete
+set confirm=permdelete
 set dirsize=nitems
 set shortmess="pT"
 set timeoutlen=2000
@@ -251,14 +255,14 @@ command! md mkdir -p %a
 command! mv mv -r %f %D
 command! cp cp -r %f %D
 command! vgrep vim "+grep %a"
-command! movetoother   mv -i %f %D %i
-command! copytoother   cp -R %f %D %i
-command! movefromother mv -i %F %d %i
-command! copyfromother cp -R %F %d %i
-command! sumovetoother   sudo mv -i %f %D %i
-command! sucopytoother   sudo cp -R %f %D %i
-command! sumovefromother sudo mv -i %F %d %i
-command! sucopyfromother sudo cp -R %F %d %i
+command! movetoother   mv -i %f %D %i &
+command! copytoother   cp -R %f %D %i &
+command! movefromother mv -i %F %d %i &
+command! copyfromother cp -R %F %d %i &
+command! sumovetoother   sudo mv -i %f %D %i &
+command! sucopytoother   sudo cp -R %f %D %i &
+command! sumovefromother sudo mv -i %F %d %i &
+command! sucopyfromother sudo cp -R %F %d %i &
 command! copyfilename tmux setb %f %i &
 command! copydirname  tmux setb %d %i &
 command! iconv iconv -f GBK -t UTF8 %c -o %c.new %i
