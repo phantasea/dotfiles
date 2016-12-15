@@ -44,8 +44,8 @@ nnoremap  J  <c-e>
 nnoremap  K  <c-y>
 nnoremap ml  :alink!<cr>
 nnoremap gl  gf
-nnoremap go  :!  %f<left><left><left>
-nnoremap gO  :!sudo  %f<left><left><left>
+nnoremap \o  :!sudo  %f<left><left><left>
+nnoremap go  :! %f<left><left>
 nnoremap  o  =
 nnoremap  O  zM
 nnoremap  q  ZZ
@@ -53,14 +53,16 @@ nnoremap gr  :source ~/.vifm/vifmrc<cr>
 vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  :rename<cr>
+nnoremap \s  :sync<cr>
 nnoremap  s  <c-w>
-nnoremap  sy :sync<cr>
 nnoremap  S  :%s//g<left><left>
 vnoremap  S  :%s//g<left><left>
+nnoremap \t  :lstrash<cr>
 nnoremap gt  gs
 nnoremap  t  tj
 nnoremap  T  tk
 nnoremap  U  <c-r>
+nnoremap \v  :if layoutis('only') | vsplit | endif | view<cr>
 nnoremap  w  :set lsview!<cr>
 nnoremap  W  :set nolaststatus!<cr>
 nnoremap  xi :movefromother<cr>
@@ -78,8 +80,6 @@ nnoremap  zf zd
 nnoremap  zd zD
 nnoremap  z. zA
 nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
-nnoremap  \t :lstrash<cr>
-nnoremap  \v :if layoutis('only') | vsplit | endif | view<cr>
 
 cnoremap  <c-j>  <cr>
 cnoremap  <c-o>  <s-tab>
