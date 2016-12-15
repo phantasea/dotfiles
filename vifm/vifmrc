@@ -78,8 +78,11 @@ nnoremap  zf zd
 nnoremap  zd zD
 nnoremap  z. zA
 nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
+nnoremap  \t :lstrash<cr>
+nnoremap  \v :if layoutis('only') | vsplit | endif | view<cr>
 
 cnoremap  <c-j>  <cr>
+cnoremap  <c-o>  <s-tab>
 cnoremap  <c-w>  <a-b><a-d>
 
 nnoremap  <c-j>  <c-f>
@@ -88,7 +91,6 @@ qnoremap  <c-j>  <c-f>
 qnoremap  <c-k>  <c-b>
 mnoremap  <c-j>  <c-f>
 mnoremap  <c-k>  <c-b>
-mnoremap  <c-t>  :lstrash<cr>
 nnoremap  <c-v>  <s-tab>
 qnoremap  <c-v>  <s-tab>
 
