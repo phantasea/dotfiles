@@ -55,6 +55,7 @@ nnoremap  r  cw
 nnoremap  R  :rename<cr>
 nnoremap \s  :sync<cr>
 nnoremap  s  <c-w>
+nnoremap  ss :if layoutis('only') | vsplit | else | only | endif<cr>
 nnoremap  S  :%s//g<left><left>
 vnoremap  S  :%s//g<left><left>
 nnoremap \t  :lstrash<cr>
@@ -261,10 +262,10 @@ command! movetoother   mv -i %f %D %i &
 command! copytoother   cp -R %f %D %i &
 command! movefromother mv -i %F %d %i &
 command! copyfromother cp -R %F %d %i &
-command! sumovetoother   sudo mv -i %f %D %i &
-command! sucopytoother   sudo cp -R %f %D %i &
-command! sumovefromother sudo mv -i %F %d %i &
-command! sucopyfromother sudo cp -R %F %d %i &
+command! sumovetoother   sudo mv -i %f %D %i
+command! sucopytoother   sudo cp -R %f %D %i
+command! sumovefromother sudo mv -i %F %d %i
+command! sucopyfromother sudo cp -R %F %d %i
 command! copyfilename tmux setb %f %i &
 command! copydirname  tmux setb %d %i &
 command! iconv iconv -f GBK -t UTF8 %c -o %c.new %i
