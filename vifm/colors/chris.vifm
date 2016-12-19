@@ -23,8 +23,8 @@ highlight  Border     ctermfg=green       ctermbg=black       cterm=none
 highlight  StatusLine ctermfg=white       ctermbg=blue        cterm=bold
 highlight  CmdLine    ctermfg=cyan        ctermbg=none        cterm=bold
 highlight  WildMenu   ctermfg=white       ctermbg=black       cterm=underline,reverse
-highlight  TopLine    ctermfg=green       ctermbg=black       cterm=reverse
-highlight  TopLineSel ctermfg=green       ctermbg=black       cterm=bold,reverse
+highlight  TopLine    ctermfg=white       ctermbg=blue        cterm=none
+highlight  TopLineSel ctermfg=white       ctermbg=blue        cterm=bold
 highlight  CurrLine   ctermfg=none        ctermbg=black       cterm=bold,reverse
 highlight  OtherLine  ctermfg=white       ctermbg=black       cterm=bold
 highlight  Selected   ctermbg=black       ctermfg=yellow      cterm=bold
