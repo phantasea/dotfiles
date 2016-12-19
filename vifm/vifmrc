@@ -5,11 +5,11 @@ nnoremap  <F11> :diffsamewin<cr>
 nnoremap  <return> <nop>
 nnoremap  <bs> gh
 qnoremap  <space>  <tab>
+"nnoremap <tab> :if isactive('preview') | swap | endif<cr>
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
 vnoremap  .  :!!<cr>
-nnoremap  .  :!!<cr>
 nnoremap  -  :invert s<cr>
 vnoremap  -  :invert s<cr>
 nnoremap  \  :invert s<cr>
@@ -53,17 +53,19 @@ nnoremap gr  :source ~/.vifm/vifmrc<cr>
 vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  :rename<cr>
-nnoremap \s  :sync<cr>
 nnoremap  s  <c-w>
-nnoremap  ss :if layoutis('only') | vsplit | else | only | endif<cr>
+"nnoremap ss :if layoutis('only') | vsplit | else | only | endif<cr>
+nnoremap  sp :sync<cr>
+nnoremap  ss <c-w>S
 nnoremap  S  :%s//g<left><left>
 vnoremap  S  :%s//g<left><left>
 nnoremap \t  :lstrash<cr>
 nnoremap gt  gs
 nnoremap  t  tj
-nnoremap  T  tk
+nnoremap  T  kt
 nnoremap  U  <c-r>
 nnoremap \v  :if layoutis('only') | vsplit | endif | view<cr>
+"nnoremap v  :if !layoutis('only') | view | else | explore | endif<cr>
 nnoremap  w  :set lsview!<cr>
 nnoremap  W  :set nolaststatus!<cr>
 nnoremap  xi :movefromother<cr>
@@ -99,8 +101,8 @@ qnoremap  p  <c-b>
 qnoremap  e  q:edit %c<cr>
 qnoremap  s  <c-w>
 qnoremap  v  q
-qnoremap  J  qje
-qnoremap  K  qke
+qnoremap  J  qje:if isactive('preview') | swap | endif<cr>
+qnoremap  K  qke:if isactive('preview') | swap | endif<cr>
 mnoremap  h  q
 
 map <left>   <nop>
@@ -203,6 +205,7 @@ set dirsize=nitems
 set shortmess="pT"
 set timeoutlen=2000
 set nolsview
+set noprefervsplit
 set classify=":dir:"
 set cpoptions="s"
 set dotdirs=rootparent
