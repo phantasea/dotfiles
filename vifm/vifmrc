@@ -18,9 +18,9 @@ nnoremap  a  Gvgg
 vnoremap  a  ggoG
 nnoremap  A  za
 nnoremap  b  :set scrollbind!<cr>
-nnoremap  B  :find . *<cr>b
 nnoremap  cm cp
 vnoremap  cm cp
+nnoremap  cc :copen<cr>
 nnoremap  cd :cd<space>
 nnoremap  ci :copyfromother<cr>
 vnoremap  ci :copyfromother<cr>
@@ -46,7 +46,10 @@ nnoremap ml  :alink!<cr>
 nnoremap gl  gf
 nnoremap \o  :!sudo  %f<left><left><left>
 nnoremap go  :! %f<left><left>
-nnoremap  o  =
+nnoremap  oo =
+nnoremap  of zd
+nnoremap  od zD
+nnoremap  o. zA
 nnoremap  O  zM
 nnoremap  q  ZZ
 nnoremap gr  :source ~/.vifm/vifmrc<cr>
@@ -54,9 +57,11 @@ vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  :rename<cr>
 nnoremap  s  <c-w>
-"nnoremap ss :if layoutis('only') | vsplit | else | only | endif<cr>
 nnoremap  sp :sync<cr>
+"nnoremap ss :if layoutis('only') | vsplit | else | only | endif<cr>
+"nnoremap ss :vsplit!<cr>
 nnoremap  ss <c-w>S
+nnoremap  st :tree<cr>
 nnoremap  S  :%s//g<left><left>
 vnoremap  S  :%s//g<left><left>
 nnoremap \t  :lstrash<cr>
@@ -79,15 +84,13 @@ vnoremap  xO :sumovetoother<cr>
 nnoremap  y  yy
 nnoremap  Y  :copyfilename<cr>
 nnoremap gy  :copydirname<cr>
-nnoremap  zf zd
-nnoremap  zd zD
-nnoremap  z. zA
 nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
 
 cnoremap  <c-j>  <cr>
 cnoremap  <c-o>  <s-tab>
 cnoremap  <c-w>  <a-b><a-d>
 
+nnoremap  <c-b>  :find . *<cr>b
 nnoremap  <c-j>  <c-f>
 nnoremap  <c-k>  <c-b>
 qnoremap  <c-j>  <c-f>
@@ -204,10 +207,13 @@ set confirm=permdelete
 set dirsize=nitems
 set shortmess="pT"
 set timeoutlen=2000
+set notitle
 set nolsview
-set noprefervsplit
+set prefervsplit
 set classify=":dir:"
 set cpoptions="s"
+set caseoptions="pg"
+set suggestoptions=normal,visual,view,otherpane
 set dotdirs=rootparent
 set grepprg=ag\ --line-numbers\ %i\ %a\ %s
 windo filter! /lost\+found/
