@@ -35,13 +35,19 @@ nnoremap  d  dd
 nnoremap  D  DD
 nnoremap ge  :empty<cr>
 nnoremap  e  :edit %f<cr>
+qnoremap  e  q:edit %c<cr>
 nnoremap  E  :suedit<cr>
+mnoremap  h  q
 nnoremap gi  :imgall<cr>
 nnoremap gI  :rimgall<cr>
 nnoremap  i  :touch<space>
 nnoremap  I  :mkdir! ""<left>
 nnoremap  J  <c-e>
+mnoremap  J  <c-e>
 nnoremap  K  <c-y>
+mnoremap  K  <c-y>
+qnoremap  J  qje:if isactive('preview') | swap | endif<cr>
+qnoremap  K  qke:if isactive('preview') | swap | endif<cr>
 nnoremap ml  :alink!<cr>
 nnoremap gl  gf
 nnoremap \o  :!sudo  %f<left><left><left>
@@ -51,12 +57,15 @@ nnoremap  of zd
 nnoremap  od zD
 nnoremap  o. zA
 nnoremap  O  zM
+qnoremap  p  <c-b>
 nnoremap  q  ZZ
 nnoremap gr  :source ~/.vifm/vifmrc<cr>
 vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  :rename<cr>
+qnoremap  s  <c-w>
 nnoremap  s  <c-w>
+nnoremap  sf :find . *<cr>b
 nnoremap  sp :sync<cr>
 "nnoremap ss :if layoutis('only') | vsplit | else | only | endif<cr>
 "nnoremap ss :vsplit!<cr>
@@ -69,6 +78,7 @@ nnoremap gt  gs
 nnoremap  t  tj
 nnoremap  T  kt
 nnoremap  U  <c-r>
+qnoremap  v  q
 nnoremap \v  :if layoutis('only') | vsplit | endif | view<cr>
 "nnoremap v  :if !layoutis('only') | view | else | explore | endif<cr>
 nnoremap  w  :set lsview!<cr>
@@ -99,14 +109,6 @@ mnoremap  <c-j>  <c-f>
 mnoremap  <c-k>  <c-b>
 nnoremap  <c-v>  <s-tab>
 qnoremap  <c-v>  <s-tab>
-
-qnoremap  p  <c-b>
-qnoremap  e  q:edit %c<cr>
-qnoremap  s  <c-w>
-qnoremap  v  q
-qnoremap  J  qje:if isactive('preview') | swap | endif<cr>
-qnoremap  K  qke:if isactive('preview') | swap | endif<cr>
-mnoremap  h  q
 
 map <left>   <nop>
 map <right>  <nop>
