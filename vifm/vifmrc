@@ -12,8 +12,6 @@ nnoremap  $  G
 vnoremap  .  :!!<cr>
 nnoremap  -  :invert s<cr>
 vnoremap  -  :invert s<cr>
-nnoremap  \  :invert s<cr>
-vnoremap  \  :invert s<cr>
 nnoremap  a  Gvgg
 vnoremap  a  ggoG
 nnoremap  A  za
@@ -212,10 +210,11 @@ set timeoutlen=2000
 set notitle
 set nolsview
 set prefervsplit
+set laststatus
 set classify=":dir:"
 set cpoptions="s"
 set caseoptions="pg"
-set suggestoptions=normal,visual,view,otherpane
+set suggestoptions=normal,visual,view
 set dotdirs=rootparent
 set grepprg=ag\ --line-numbers\ %i\ %a\ %s
 windo filter! /lost\+found/
