@@ -1,6 +1,6 @@
 " vim: set ft=vim :
 
-" color  {{{
+" colorscheme  {{{
 "highlight ColorColumn  ctermbg=lightgrey
 highlight IncSearch    ctermbg=black    ctermfg=red     cterm=reverse
 highlight Search       ctermbg=blue     ctermfg=white   cterm=bold
@@ -12,7 +12,7 @@ highlight PmenuSel     ctermfg=black    ctermbg=green   cterm=none
 highlight PmenuSbar    ctermbg=black
 highlight PmenuThumb   ctermbg=black
 highlight CursorLine   ctermfg=yellow   ctermbg=black   cterm=inverse
-" settings below ard used by statusline
+" settings below are used by statusline
 highlight User1        ctermfg=magenta  ctermbg=black   cterm=inverse
 highlight User2        ctermfg=cyan     ctermbg=black   cterm=inverse
 highlight User3        ctermfg=green    ctermbg=black   cterm=inverse
@@ -133,13 +133,14 @@ nnoremap   <C-U>    <C-T>
 inoremap   <C-Y>    <C-R><C-R>=VCopy('up')<CR>
 inoremap   <C-E>    <C-R><C-R>=VCopy('down')<CR>
 
-nnoremap   'b   'B
-nnoremap   'c   'C
-nnoremap   'g   'G
-nnoremap   'm   'M
-nnoremap   'r   'R
-nnoremap   'w   'W
-nnoremap   'y   'Y
+" markline keymap
+"nnoremap   'b   'B
+"nnoremap   'c   'C
+"nnoremap   'g   'G
+"nnoremap   'm   'M
+"nnoremap   'r   'R
+"nnoremap   'w   'W
+"nnoremap   'y   'Y
 
 "vnoremap  #    y:let @/=@"<CR>N
 "vnoremap  *    y/<C-R>"<CR>

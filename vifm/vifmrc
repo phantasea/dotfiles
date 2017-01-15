@@ -1,10 +1,30 @@
 " mapping {{{
-nnoremap  <F5>  :shell<cr>
-nnoremap  <F10> :diff<cr>
-nnoremap  <F11> :diffsamewin<cr>
+map  <left>   <nop>
+map  <right>  <nop>
+map  <up>     <nop>
+map  <down>   <nop>
+
+nnoremap  <F5>   :shell<cr>
+nnoremap  <F10>  :diff<cr>
+nnoremap  <F11>  :diffsamewin<cr>
+
 nnoremap  <return> <nop>
-nnoremap  <bs> gh
+nnoremap  <bs>     gh
 qnoremap  <space>  <tab>
+
+cnoremap  <c-j>  <cr>
+cnoremap  <c-o>  <s-tab>
+cnoremap  <c-w>  <a-b><a-d>
+nnoremap  <c-b>  :find . *<cr>b
+nnoremap  <c-j>  <c-f>L
+nnoremap  <c-k>  <c-b>H
+qnoremap  <c-j>  <c-f>
+qnoremap  <c-k>  <c-b>
+qnoremap  <c-v>  <s-tab>
+mnoremap  <c-j>  <c-f>
+mnoremap  <c-k>  <c-b>
+nnoremap  <c-v>  <s-tab>
+
 "nnoremap <tab> :if isactive('preview') | swap | endif<cr>
 nnoremap  0  gg
 nnoremap  ^  gg
@@ -12,7 +32,7 @@ nnoremap  $  G
 vnoremap  .  :!!<cr>
 nnoremap  -  :invert s<cr>
 vnoremap  -  :invert s<cr>
-nnoremap  a  Gvgg
+nnoremap  a  GVgg
 vnoremap  a  ggoG
 nnoremap  A  za
 nnoremap  b  :set scrollbind!<cr>
@@ -48,6 +68,7 @@ qnoremap  J  qje:if isactive('preview') | swap | endif<cr>
 qnoremap  K  qke:if isactive('preview') | swap | endif<cr>
 nnoremap ml  :alink!<cr>
 nnoremap gl  gf
+nnoremap \l  :file &<cr>
 nnoremap \o  :!sudo  %f<left><left><left>
 nnoremap go  :! %f<left><left>
 nnoremap  oo =
@@ -57,7 +78,9 @@ nnoremap  o. zA
 nnoremap  O  zM
 qnoremap  p  <c-b>
 nnoremap  q  ZZ
+nnoremap \r  :write | edit $MYVIFMRC | restart<cr>
 nnoremap gr  :source ~/.vifm/vifmrc<cr>
+nnoremap gr  :restart<cr>
 vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  :rename<cr>
@@ -69,6 +92,7 @@ nnoremap  sp :sync<cr>
 "nnoremap ss :vsplit!<cr>
 nnoremap  ss <c-w>S
 nnoremap  st :tree<cr>
+nnoremap \s  :sort<cr>
 nnoremap  S  :%s//g<left><left>
 vnoremap  S  :%s//g<left><left>
 nnoremap \t  :lstrash<cr>
@@ -93,25 +117,6 @@ nnoremap  y  yy
 nnoremap  Y  :copyfilename<cr>
 nnoremap gy  :copydirname<cr>
 nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
-
-cnoremap  <c-j>  <cr>
-cnoremap  <c-o>  <s-tab>
-cnoremap  <c-w>  <a-b><a-d>
-
-nnoremap  <c-b>  :find . *<cr>b
-nnoremap  <c-j>  <c-f>
-nnoremap  <c-k>  <c-b>
-qnoremap  <c-j>  <c-f>
-qnoremap  <c-k>  <c-b>
-mnoremap  <c-j>  <c-f>
-mnoremap  <c-k>  <c-b>
-nnoremap  <c-v>  <s-tab>
-qnoremap  <c-v>  <s-tab>
-
-map <left>   <nop>
-map <right>  <nop>
-map <up>     <nop>
-map <down>   <nop>
 " }}}
 
 " mark {{{
@@ -152,10 +157,10 @@ set trash
 set trashdir="~/.Trash"
 
 " This is how many directories to store in the directory history.
-set history=13
+set history=16
 
 " Follow links on l or Enter.
-set followlinks
+set nofollowlinks
 set nochaselinks
 
 " With this option turned on you can run partially entered commands with
@@ -167,11 +172,11 @@ set sortnumbers
 set sort="+iname"
 
 " Maximum number of changes that can be undone.
-set undolevels=13
+set undolevels=16
 
 " If you installed the vim.txt help file set vimhelp.
 " If would rather use a plain text help file set novimhelp.
-set vimhelp
+set novimhelp
 
 " If you would like to run an executable file when you
 " press return on the file name set this.
@@ -179,6 +184,10 @@ set norunexec
 
 " Use KiB, MiB, ... instead of KB, MB, ...
 set noiec
+
+" Display suggestions in normal, visual and view modes for keys, marks and
+" registers (at most 5 files).  In other view, when available.
+set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
 
 " Selected color scheme
 colorscheme chris
@@ -188,7 +197,9 @@ colorscheme chris
 set fusehome=/tmp/vifm_FUSE
 
 " Don't do too many requests to slow file systems
-set slowfs=curlftpfs
+if !has('win')
+  set slowfs=curlftpfs
+endif
 
 " See man date or man strftime for details.
 set timefmt=%H:%M\ %m/%d/%y
@@ -202,7 +213,8 @@ else
 endif
 
 " *****************************
-set numberwidth=2
+set sizefmt=units:iec,precision:1
+set numberwidth=1
 set confirm=permdelete
 set dirsize=nitems
 set shortmess="pT"
@@ -214,7 +226,6 @@ set laststatus
 set classify=":dir:"
 set cpoptions="s"
 set caseoptions="pg"
-set suggestoptions=normal,visual,view
 set dotdirs=rootparent
 set grepprg=ag\ --line-numbers\ %i\ %a\ %s
 windo filter! /lost\+found/
@@ -251,36 +262,38 @@ set scrolloff=0
 " %i completely ignore command output
 " %m run the command in a menu window
 " %S Show command output in the status bar
-command! sued !sudoedit %c
-command! surm sudo rm -rf %c
-command! rc vimux ~/.vifm/vifmrc
-command! df df -h %m 2> /dev/null
-command! ps pstree %m
-command! du ncdu . 
-command! diff  vimdiff %c %C
-command! diffsamewin vimdiff %f
-command! uz  tar -zxf %c %i &
-command! uj  tar -jxf %c %i &
-command! zip zip -r %f.zip %f
-command! run !! ./%f
-command! make !!make
-command! md mkdir -p %a
-command! mv mv -r %f %D
-command! cp cp -r %f %D
-command! vgrep vim "+grep %a"
-command! movetoother   mv -i %f %D %i &
-command! copytoother   cp -R %f %D %i &
-command! movefromother mv -i %F %d %i &
-command! copyfromother cp -R %F %d %i &
+command! sued  !sudoedit %c
+command! surm  sudo rm -rf %c
+command! rc    vimux ~/.vifm/vifmrc
+command! df    df -h %m 2> /dev/null
+command! ps    pstree %m
+command! du    ncdu . 
+command! diff  vim -d %c %C
+command! diffsamewin  vimdiff %f
+command! uz    tar -zxf %c %i &
+command! uj    tar -jxf %c %i &
+command! zip   zip -r %f.zip %f
+command! run   !! ./%f
+command! make  !!make
+command! mkcd  :mkdir %a | cd %a
+command! md    mkdir -p %a
+command! mv    mv -r %f %D
+command! cp    cp -r %f %D
+command! movetoother     mv -i %f %D %i &
+command! copytoother     cp -R %f %D %i &
+command! movefromother   mv -i %F %d %i &
+command! copyfromother   cp -R %F %d %i &
 command! sumovetoother   sudo mv -i %f %D %i
 command! sucopytoother   sudo cp -R %f %D %i
 command! sumovefromother sudo mv -i %F %d %i
 command! sucopyfromother sudo cp -R %F %d %i
-command! copyfilename tmux setb %f %i &
-command! copydirname  tmux setb %d %i &
-command! iconv iconv -f GBK -t UTF8 %c -o %c.new %i
-command! vid     vidmux %c
+command! copyfilename    tmux setb %f %i &
+command! copydirname     tmux setb %d %i &
+command! iconv   iconv -f GBK -t UTF8 %c -o %c.new %i
+command! reload  :write | restart
+command! vid     vidmu    x %c
 command! vidfs   vidmux -f %c
+command! vgrep   vim "+grep %a"
 command! fim     fim %f > /dev/null 2>&1
 command! imgall  imgview -s
 command! rimgall imgview -rs
@@ -320,8 +333,8 @@ command! rimgall imgview -rs
 " :r - root of the filename (without last extension)
 
 " Manpage
-fileview  *.[1-8]  gtbl %c | groff -Tascii -man | col -b
-filetype  *.[1-8]  gtbl %c | groff -Tascii -man | less
+filetype  *.[1-8] man ./%c
+fileview  *.[1-8] man ./%c | col -b
 
 " Office files
 fileview  *.doc  antiword %f, catdoc %f
@@ -373,6 +386,7 @@ endif
 
 " PGP
 fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %f
+filetype  *.asc  !!gpg --verify %c
 
 " Audio
 fileview  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mediainfo -f %f
@@ -451,6 +465,36 @@ filetype  *.ssh
 filetype  *.ftp
        \ {Mount with curlftpfs}
        \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR,
+
+" OpenRaster
+filextype *.ora
+        \ {Edit in MyPaint}
+        \ mypaint %f,
+
+" Mindmap
+filextype *.vym
+        \ {Open with VYM}
+        \ vym %f &,
+
+" MD5
+filetype *.md5
+       \ {Check MD5 hash sum}
+       \ md5sum -c %f %S,
+
+" SHA1
+filetype *.sha1
+       \ {Check SHA1 hash sum}
+       \ sha1sum -c %f %S,
+
+" SHA256
+filetype *.sha256
+       \ {Check SHA256 hash sum}
+       \ sha256sum -c %f %S,
+
+" SHA512
+filetype *.sha512
+       \ {Check SHA512 hash sum}
+       \ sha512sum -c %f %S,
 
 " Misc
 fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo*.xpi  als %c

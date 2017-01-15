@@ -27,10 +27,10 @@ keymap   C-E     UP
 
 keymap   <    PREV_TAB
 keymap   >    NEXT_TAB
-keymap   [    LEFT
-keymap   ]    RIGHT
-keymap   {    SHIFT_LEFT
-keymap   }    SHIFT_RIGHT
+keymap   {    LEFT
+keymap   }    RIGHT
+keymap   [    SHIFT_LEFT
+keymap   ]    SHIFT_RIGHT
 keymap   ,    REDRAW
 keymap   \'   NEXT_LINE_MARK
 keymap   \"   PREV_LINE_MARK
