@@ -13,7 +13,9 @@ nnoremap  <bs>     gh
 qnoremap  <space>  <tab>
 
 cnoremap  <c-j>  <cr>
+cnoremap  <c-l>  <c-x>
 cnoremap  <c-o>  <s-tab>
+cnoremap  <c-r>  <c-x>
 cnoremap  <c-w>  <a-b><a-d>
 nnoremap  <c-b>  :find . *<cr>b
 nnoremap  <c-j>  <c-f>L
@@ -119,6 +121,13 @@ nnoremap gy  :copydirname<cr>
 nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
 " }}}
 
+" cabbrev {{{
+cabbrev  fn  <c-x>c
+cabbrev  dn  <c-x>d
+cabbrev  fno <c-x><c-x>c
+cabbrev  dno <c-x><c-x>d
+" }}}
+
 " mark {{{
 mark / /
 mark h ~/
@@ -132,14 +141,14 @@ mark m /media
 mark n ~/docs/note
 mark o /opt
 mark P /opt/.porn
-mark p /media/sandisk_u/porn
-mark q /media/sandisk_v
+mark U /media/sandisk_u
+mark V /media/sandisk_v
 mark e /opt/.etc
 mark g /opt/git
 mark v /opt/.vim
 mark u /opt/.util
 mark w /opt/web
-mark a /media/adb/storage/sdcard1/pics
+mark a /media/adb/storage/sdcard1
 
 bmark! /home/lynna/doc doc
 " }}}
@@ -187,7 +196,8 @@ set noiec
 
 " Display suggestions in normal, visual and view modes for keys, marks and
 " registers (at most 5 files).  In other view, when available.
-set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+"set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
+set suggestoptions=normal,visual,view
 
 " Selected color scheme
 colorscheme chris
@@ -389,8 +399,8 @@ fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %f
 filetype  *.asc  !!gpg --verify %c
 
 " Audio
-fileview  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mediainfo -f %f
-filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mpg123 -q %f &
+fileview  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mediainfo -c %f
+filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mpg123 -q %c > /dev/null 2>&1 &
 
 " Video
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat  mediainfo -f %c
