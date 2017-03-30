@@ -61,7 +61,7 @@ mnoremap  h  q
 nnoremap gi  :imgall<cr>
 nnoremap gI  :rimgall<cr>
 nnoremap  i  :touch<space>
-nnoremap  I  :mkdir! ""<left>
+nnoremap  I  :mkdir! ""<left><c-x>c
 nnoremap  J  <c-e>
 mnoremap  J  <c-e>
 nnoremap  K  <c-y>
