@@ -214,7 +214,7 @@ endif
 " See man date or man strftime for details.
 set timefmt=%H:%M\ %m/%d/%y
 set rulerformat="%=%l%%%S%[ +%0-%]"
-set statusline="[%A] %u:%g %d %s %r %= \"%t\""
+set statusline="[%A] %u:%g%d %s %r %= \"%t%T\"%D"
 
 if layoutis('only')
   set viewcolumns=-{name}...,{rating},17{mtime}
@@ -227,7 +227,7 @@ set sizefmt=units:iec,precision:1
 set numberwidth=1
 set confirm=permdelete
 set dirsize=nitems
-set shortmess="pT"
+set shortmess="T"
 set timeoutlen=2000
 set notitle
 set nolsview
