@@ -66,8 +66,8 @@ nnoremap  J  <c-e>
 mnoremap  J  <c-e>
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
-qnoremap  J  qje:if isactive('preview') | swap | endif<cr>
-qnoremap  K  qke:if isactive('preview') | swap | endif<cr>
+qnoremap  J  qje:if isactive('preview') | switch | endif<cr>
+qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
 nnoremap ml  :alink!<cr>
 nnoremap gl  gf
 nnoremap \l  :file &<cr>
@@ -119,6 +119,10 @@ nnoremap  y  yy
 nnoremap  Y  :copyfilename<cr>
 nnoremap gy  :copydirname<cr>
 nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
+
+nnoremap  c<space> :if &viewcolumns == &hsviewcols 
+                    \| set viewcolumns=-{name}...,{rating} | else 
+                    \| set viewcolumns=-{name}...,{rating},17{mtime} | endif<cr>
 " }}}
 
 " cabbrev {{{
@@ -214,7 +218,7 @@ endif
 " See man date or man strftime for details.
 set timefmt=%H:%M\ %m/%d/%y
 set rulerformat="%=%l%%%S [%0-]"
-set statusline="[%A] %u:%g%d %s %r %= \"%t%T\"%D"
+set statusline="[%A] %u∶%g%d 【%s】 %r %= 〓\"%t%T\"%D"
 
 if layoutis('only')
   set viewcolumns=-{name}...,{rating},17{mtime}
