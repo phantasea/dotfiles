@@ -220,14 +220,7 @@ set timefmt=%H:%M\ %m/%d/%y
 set rulerformat="%=%l%%%S [%0-]"
 set statusline="[%A] %u∶%g%d 【%s】 %r %= 〓\"%t%T\"%D"
 
-if layoutis('only')
-  set viewcolumns=-{name}...,{rating},17{mtime}
-else
-  set viewcolumns=-{name}...,{rating}
-endif
-
-set vsviewcols=-{name}...,{rating}
-set hsviewcols=-{name}...,{rating},17{mtime}
+set viewcolumns=-{name},{rating},17{mtime}
 
 " *****************************
 set sizefmt=units:iec,precision:1
