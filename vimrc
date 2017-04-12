@@ -207,9 +207,9 @@ nnoremap   dk   [c
 nnoremap   dn   ]c
 nnoremap   dp   [c
 nnoremap   di   :diffget<CR>
-vnoremap   di   :diffget<CR>
 nnoremap   do   :diffput<CR>
-vnoremap   do   :diffput<CR>
+vnoremap    i   :diffget<CR>
+vnoremap    o   :diffput<CR>
 nnoremap   du   :diffupdate<CR>
 endif
 
