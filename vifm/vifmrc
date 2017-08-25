@@ -227,6 +227,7 @@ set viewcolumns=-{name},{rating},17{mtime}
 " *****************************
 set sizefmt=units:iec,precision:1
 set numberwidth=1
+set tabstop=4
 set confirm=permdelete
 set dirsize=nitems
 set shortmess="T"
