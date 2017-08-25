@@ -164,6 +164,8 @@ set vixcmd="sublime-text &"
 
 set tuioptions=""
 set fillchars=vborder:|
+set milleroptions=lsize:1,csize:2,rsize:1
+set millerview
 
 " Trash Directory
 set trash
@@ -218,7 +220,7 @@ endif
 " See man date or man strftime for details.
 set timefmt=%H:%M\ %m/%d/%y
 set rulerformat="%=%l%%%S [+%0-]"
-set statusline="[%A] %u∶%g%d 【%s】 %r %= 〓\"%t%T\"%D"
+set statusline="[%A] %u∶%g%d 【%a】 %r %=%s 〓\"%t%T\"%D"
 
 set viewcolumns=-{name},{rating},17{mtime}
 
