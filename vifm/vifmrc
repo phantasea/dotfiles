@@ -62,8 +62,10 @@ nnoremap gi  :imgall<cr>
 nnoremap gI  :rimgall<cr>
 nnoremap  i  :touch<space>
 nnoremap  I  :mkdir! ""<left><c-x>c
+nnoremap gj  :siblnext<cr>
 nnoremap  J  <c-e>
 mnoremap  J  <c-e>
+nnoremap gk  :siblprev<cr>
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  J  qje:if isactive('preview') | switch | endif<cr>
@@ -164,7 +166,7 @@ set vixcmd="sublime-text &"
 
 set tuioptions=""
 set fillchars=vborder:|
-set milleroptions=lsize:1,csize:2,rsize:1
+set milleroptions=lsize:2,csize:5,rsize:3
 set millerview
 
 " Trash Directory
