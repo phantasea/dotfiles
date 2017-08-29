@@ -306,7 +306,7 @@ command! copyfilename    tmux setb %f %i &
 command! copydirname     tmux setb %d %i &
 command! iconv   iconv -f GBK -t UTF8 %c -o %c.new %i
 command! reload  :write | restart
-command! vid     vidmu    x %c
+command! vid     vidmux %c
 command! vidfs   vidmux -f %c
 command! vgrep   vim "+grep %a"
 command! fim     fim %f > /dev/null 2>&1
