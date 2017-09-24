@@ -142,32 +142,33 @@ if $HOME == "/home/simone"
 else
   mark H ~simone/
 endif
-mark t ~/.Trash
-mark m /media
 mark n ~/docs/note
+mark t ~/.Trash
+mark v ~/.vim
+mark m /media/simone
 mark o /opt
 mark P /opt/.porn
-mark U /media/sandisk_u
-mark V /media/sandisk_v
-mark e /opt/.etc
-mark g /opt/git
-mark v /opt/.vim
-mark u /opt/.util
-mark w /opt/web
-mark a /media/adb/storage/sdcard1
+mark e /opt/etc
+mark a /opt/apps
+mark b /opt/bin
+mark u /opt/util
+mark w /opt/webs
+mark U /media/simone/sandisk_u
+mark V /media/simone/sandisk_v
+mark W /media/simone/sandisk_w
 
-bmark! /home/lynna/doc doc
+bmark! ~/docs doc
 " }}}
 
 " option {{{
 " This is the actual command used to start vi.  The default is vim.
 set vicmd="vimux"
-set vixcmd="sublime-text &"
+set vixcmd="gvim &"
 
 set tuioptions=""
 set fillchars=vborder:|
-set milleroptions=lsize:2,csize:5,rsize:3
 set millerview
+set milleroptions=lsize:2,csize:5,rsize:3
 
 " Trash Directory
 set trash
