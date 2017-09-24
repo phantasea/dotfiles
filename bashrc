@@ -97,8 +97,6 @@ if [ -f ~/.alias ]; then
     . ~/.alias
 fi
 
-source ~/.tmux/bash_completion_tmux.sh
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -107,7 +105,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 # source autojump
-[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+[[ -s /home/simone/.autojump/etc/profile.d/autojump.sh ]] && source /home/simone/.autojump/etc/profile.d/autojump.sh
+
+# source tmux completion script
+[[ -s /usr/share/doc/tmux/examples/bash_completion_tmux.sh ]] && source /usr/share/doc/tmux/examples/bash_completion_tmux.sh
 
 #set -o vi
 unset  MAILCHECK
@@ -117,13 +118,14 @@ export RANGER_LOAD_DEFAULT_RC=FALSE
 export EDITOR=vim
 export VISUAL=vim
 export LANG=en_US.UTF-8
+export PHO_ARGS=-p
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 export WWW_HOME='www.baidu.com'
 export LYNX_CFG='~/.etc/lynx.cfg'
 export PYTHONSTARTUP='~/.pystartup'
 
-if [ -d "$HOME/.util" ]; then
-    export PATH="/opt/.util:$PATH"
+if [ -d "/opt/util" ]; then
+    export PATH="/opt/util:$PATH"
 fi
 
 if [ -f /opt/git/hhighlighter/h.sh ]; then

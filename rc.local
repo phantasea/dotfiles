@@ -11,9 +11,9 @@
 #
 # By default this script does nothing.
 
-/usr/bin/loadkeys /opt/.etc/mykbd
+/usr/bin/loadkeys /opt/etc/mykbd
 
 # disable bluetooth
-rfkill block all
+# rfkill block all
 
 exit 0
