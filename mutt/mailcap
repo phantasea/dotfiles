@@ -1,12 +1,12 @@
-#text/html; firefox %s; test=RunningX
+text/html; firefox %s; test=test -n "$DISPLAY"
 text/html; w3m -I %{charset} -T text/html %s; nametemplate=%s.html
 text/html; w3m -dump -I %{charset} -T text/html %s; nametemplate=%s.html; copiousoutput
 
-#image/*; pho %s > /dev/null; test=RunningX
+image/*; pho %s > /dev/null; test=test -n "$DISPLAY"
 #image/*; fim %s > /dev/null
-image/*; fbv %s > /dev/null
+image/*; fbv %s > /dev/null; test=test -z "$DISPLAY"; needsterminal
 video/*; mplayer -really-quiet -vo fbdev2 %s > /dev/null
-audio/*; mpg321 %s > /dev/null
+audio/*; mpg123 -q %s > /dev/null
 
 #application/msword;   wvHtml --charset=gb2312 %s |w3m -dump; nametemplate=%s.html
 application/msword;    antiword %s |w3m
