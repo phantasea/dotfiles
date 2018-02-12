@@ -23,6 +23,8 @@ highlight  ErrorMsg     ctermfg=red       ctermbg=black     cterm=none
 highlight  Border       ctermfg=blue      ctermbg=black     cterm=bold
 highlight  StatusLine   ctermfg=white     ctermbg=blue      cterm=bold
 highlight  CmdLine      ctermfg=yellow    ctermbg=none      cterm=bold
+highlight  TabLine      ctermfg=none      ctermbg=black     cterm=none
+highlight  TopLineSel   ctermfg=none      ctermbg=black     cterm=bold,reverse
 highlight  TopLine      ctermfg=white     ctermbg=blue      cterm=none
 highlight  TopLineSel   ctermfg=white     ctermbg=blue      cterm=bold
 highlight  CurrLine     ctermfg=none      ctermbg=black     cterm=bold,reverse

@@ -12,20 +12,29 @@ nnoremap  <return> <nop>
 nnoremap  <bs>     gh
 qnoremap  <space>  <tab>
 
-cnoremap  <c-j>  <cr>
-cnoremap  <c-l>  <c-x>
-cnoremap  <c-o>  <s-tab>
-cnoremap  <c-r>  <c-x>
-cnoremap  <c-w>  <a-b><a-d>
 nnoremap  <c-b>  :find . *<cr>b
-nnoremap  <c-j>  <c-f>L
-nnoremap  <c-k>  <c-b>H
-qnoremap  <c-j>  <c-f>
-qnoremap  <c-k>  <c-b>
-qnoremap  <c-v>  <s-tab>
+cnoremap  <c-j>  <cr>
 mnoremap  <c-j>  <c-f>
+nnoremap  <c-j>  <c-f>L
+qnoremap  <c-j>  <c-f>
+nnoremap  <c-k>  <c-b>H
 mnoremap  <c-k>  <c-b>
+qnoremap  <c-k>  <c-b>
+cnoremap  <c-l>  <c-x>
+nnoremap  <c-n>  gt
+qnoremap  <c-n>  gt
+vnoremap  <c-n>  gt
+cnoremap  <c-o>  <s-tab>
+nnoremap  <c-p>  gT
+qnoremap  <c-p>  gT
+vnoremap  <c-p>  gT
+cnoremap  <c-r>  <c-x>
+nnoremap  <c-t>  :tabnew<cr>
+qnoremap  <c-t>  :tabnew<cr>
+vnoremap  <c-t>  :tabnew<cr>
 nnoremap  <c-v>  <s-tab>
+qnoremap  <c-v>  <s-tab>
+cnoremap  <c-w>  <a-b><a-d>
 
 "nnoremap <tab> :if isactive('preview') | swap | endif<cr>
 nnoremap  0  gg
@@ -70,7 +79,7 @@ nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  J  qje:if isactive('preview') | switch | endif<cr>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
-nnoremap ml  :alink!<cr>
+nnoremap cl  :alink!<cr>
 nnoremap gl  gf
 nnoremap \l  :file &<cr>
 nnoremap \o  :!sudo  %f<left><left><left>
@@ -82,9 +91,9 @@ nnoremap  o. zA
 nnoremap  O  zM
 qnoremap  p  <c-b>
 nnoremap  q  ZZ
+nnoremap  Q  :qall<cr>
 nnoremap \r  :write | edit $MYVIFMRC | restart<cr>
 nnoremap gr  :source ~/.vifm/vifmrc<cr>
-nnoremap gr  :restart<cr>
 vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  :rename<cr>
@@ -169,6 +178,7 @@ set tuioptions=""
 set fillchars=vborder:|
 set millerview
 set milleroptions=lsize:2,csize:5,rsize:3
+set tabscope=pane
 
 " Trash Directory
 set trash
@@ -222,8 +232,9 @@ endif
 
 " See man date or man strftime for details.
 set timefmt=%H:%M\ %m/%d/%y
-set rulerformat="%=%l%%%S [+%0-]"
-set statusline="[%A] %u∶%g%d 【%a】 %r %=%s 〓\"%t%T\"%D"
+set rulerformat="%=%l%%%S [+%0-] (%n)"
+set statusline="[%A] %u:%g%d (%a) %=%r  %E =\"%t%T\""
+"set statusline="[%A] %u∶%g%d 【%a】 %r %=%E 〓\"%t%T\"%D"
 
 set viewcolumns=-{name},{rating},17{mtime}
 

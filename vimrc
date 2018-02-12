@@ -221,6 +221,7 @@ vnoremap   k    gk
 nnoremap  gk    K
 nnoremap   J    <C-E>
 nnoremap   K    <C-Y>
+nnoremap   n    nzz
 nnoremap   q    :call SmartQuit()<CR>
 nnoremap   Q    :qall!<CR>
 nnoremap   S    :%s//g<Left><Left>
