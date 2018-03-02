@@ -144,24 +144,18 @@ cabbrev  dno <c-x><c-x>d
 " }}}
 
 " mark {{{
-mark / /
+mark r /
 mark h ~/
-if $HOME == "/home/simone"
-  mark H ~lynna/
-else
-  mark H ~simone/
-endif
 mark n ~/docs/note
 mark t ~/.Trash
 mark v ~/.vim
 mark m /media/simone
 mark o /opt
-mark P /opt/.porn
 mark e /opt/etc
 mark a /opt/apps
 mark b /opt/bin
 mark u /opt/util
-mark w /opt/webs
+mark P /opt/.porn
 mark U /media/simone/sandisk_u
 mark V /media/simone/sandisk_v
 mark W /media/simone/sandisk_w
