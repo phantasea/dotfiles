@@ -63,6 +63,9 @@ set check_new=no #get notified if new mail arrived in inbox
 #set mail_check=90
 #set sleep_time= 0  #instantaneous mailbox change
 
+#set ssl_starttls=yes
+#set ssl_force_tls=yes
+
 #my_hdr Org: SIMONE
 
 mailboxes =inbox =qmail =gmail =draft =trash =sent
