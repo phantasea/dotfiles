@@ -144,17 +144,19 @@ cabbrev  dno <c-x><c-x>d
 " }}}
 
 " mark {{{
-mark r /
-mark h ~/
-mark n ~/docs/note
-mark t ~/.Trash
-mark v ~/.vim
-mark m /media/simone
-mark o /opt
-mark e /opt/etc
 mark a /opt/apps
 mark b /opt/bin
+mark e /opt/etc
+mark h ~/
+mark m /media/simone
+mark n ~/docs/note
+mark o /opt
+mark p /opt/.priv
+mark r /
+mark t ~/.Trash
 mark u /opt/util
+mark v ~/.vim
+
 mark P /opt/.porn
 mark U /media/simone/sandisk_u
 mark V /media/simone/sandisk_v
