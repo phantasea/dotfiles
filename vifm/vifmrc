@@ -181,7 +181,7 @@ set trash
 set trashdir="~/.Trash"
 
 " This is how many directories to store in the directory history.
-set history=16
+set history=9
 
 " Follow links on l or Enter.
 set nofollowlinks
@@ -196,7 +196,7 @@ set sortnumbers
 set sort="+iname"
 
 " Maximum number of changes that can be undone.
-set undolevels=16
+set undolevels=9
 
 " If you installed the vim.txt help file set vimhelp.
 " If would rather use a plain text help file set novimhelp.
@@ -416,8 +416,8 @@ fileview  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mediainfo -c %f
 filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mpg123 -q %c > /dev/null 2>&1 &
 
 " Video
-fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat  mediainfo -f %c
-filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat  vidmux -f %c
+fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  mediainfo -f %c
+filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  vidmux -f %c
 
 " Image
 "fileview *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  mediainfo -f %f

@@ -1,8 +1,8 @@
 #!/bin/sh
 
-#google='http://google.com/search?btnG=Google&q'
+google='http://google.com/search?btnG=Google&q'
 #google='https://search.yahoo.com/search?p'
-google='http://www.webcrawler.com/search/web?fcoid=417&q'
+#google='http://www.webcrawler.com/search/web?fcoid=417&q'
 
 query=${QUERY_STRING#*:}
 
