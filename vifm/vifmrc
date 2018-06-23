@@ -229,7 +229,7 @@ endif
 " See man date or man strftime for details.
 set timefmt=%H:%M\ %m/%d/%y
 set rulerformat="%=%l%%%S [+%0-] (%n)"
-set statusline="[%A] %u:%g%d (%a) %=%r  %E =\"%t%T\""
+set statusline="%5*[%A]%9* %6*%u:%g%9* %2*%d%9* %1*%E | %a%9* %4* %= \"%t%T\""
 "set statusline="[%A] %u∶%g%d 【%a】 %r %=%E 〓\"%t%T\"%D"
 
 set viewcolumns=-{name},{rating},17{mtime}

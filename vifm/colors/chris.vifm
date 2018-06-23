@@ -35,3 +35,10 @@ highlight  Menu         ctermfg=white     ctermbg=black     cterm=none
 highlight  WildMenu     ctermfg=white     ctermbg=black     cterm=underline,reverse
 highlight  SuggestBox   ctermfg=yellow    ctermbg=black     cterm=bold
 highlight  CmpMismatch  ctermfg=red       ctermbg=black     cterm=bold
+highlight  User1        ctermfg=cyan      ctermbg=black     cterm=bold,reverse
+highlight  User2        ctermfg=green     ctermbg=black     cterm=bold,reverse
+highlight  User3        ctermfg=yellow    ctermbg=black     cterm=bold,reverse
+highlight  User4        ctermfg=white     ctermbg=blue      cterm=bold
+highlight  User5        ctermfg=red       ctermbg=black     cterm=bold,reverse
+highlight  User6        ctermfg=magenta   ctermbg=black     cterm=bold,reverse
+highlight  User9        ctermfg=white     ctermbg=black     cterm=bold,reverse
