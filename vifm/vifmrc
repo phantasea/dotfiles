@@ -171,7 +171,7 @@ set vicmd="vimux"
 set vixcmd="gvim &"
 
 set tuioptions=""
-set fillchars=vborder:|
+set fillchars=vborder:\|
 set millerview
 set milleroptions=lsize:2,csize:5,rsize:3
 set tabscope=pane
