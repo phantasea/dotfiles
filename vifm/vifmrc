@@ -37,6 +37,10 @@ qnoremap  <c-v>  <s-tab>
 cnoremap  <c-w>  <a-b><a-d>
 
 "nnoremap <tab> :if isactive('preview') | swap | endif<cr>
+"nnoremap  ss :vsplit!<cr>
+"nnoremap  ss :if layoutis('only') | vsplit | else | only | endif<cr>
+"nnoremap \v  :if layoutis('only') | vsplit | endif | view<cr>
+"nnoremap  v  :if !layoutis('only') | view | else | explore | endif<cr>
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
@@ -101,11 +105,9 @@ qnoremap  s  <c-w>
 nnoremap  s  <c-w>
 nnoremap  sf :find . *<cr>b
 nnoremap  sp :sync<cr>
-"nnoremap ss :if layoutis('only') | vsplit | else | only | endif<cr>
-"nnoremap ss :vsplit!<cr>
 nnoremap  ss <c-w>S
 nnoremap  st :tree<cr>
-nnoremap \s  :sort<cr>
+nnoremap gs  :sort<cr>
 nnoremap  S  :%s//g<left><left>
 vnoremap  S  :%s//g<left><left>
 nnoremap \t  :lstrash<cr>
@@ -114,8 +116,6 @@ nnoremap  t  tj
 nnoremap  T  kt
 nnoremap  U  <c-r>
 qnoremap  v  q
-nnoremap \v  :if layoutis('only') | vsplit | endif | view<cr>
-"nnoremap v  :if !layoutis('only') | view | else | explore | endif<cr>
 nnoremap  w  :set lsview!<cr>
 nnoremap  W  :set nolaststatus!<cr>
 nnoremap  xi :movefromother<cr>
@@ -130,10 +130,6 @@ nnoremap  y  yy
 nnoremap  Y  :copyfilename<cr>
 nnoremap gy  :copydirname<cr>
 nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
-
-nnoremap  c<space> :if &viewcolumns == &hsviewcols 
-                    \| set viewcolumns=-{name}...,{rating} | else 
-                    \| set viewcolumns=-{name}...,{rating},17{mtime} | endif<cr>
 " }}}
 
 " cabbrev {{{
@@ -387,7 +383,7 @@ fileview  *.sh  highlight -S sh -O ansi -s dante %f
 fileview  */,.*/  tree -F --dirsfirst %c
 
 " Pdf
-fileview  *.pdf pdftotext -l 1 -nopgbrk -q %c -
+fileview  *.pdf pdftotext -l 3 -nopgbrk -q %c -
 if $DISPLAY == ""
   filetype  *.pdf fimgs %f
 else
