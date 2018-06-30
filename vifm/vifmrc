@@ -36,11 +36,6 @@ nnoremap  <c-v>  <s-tab>
 qnoremap  <c-v>  <s-tab>
 cnoremap  <c-w>  <a-b><a-d>
 
-"nnoremap <tab> :if isactive('preview') | swap | endif<cr>
-"nnoremap  ss :vsplit!<cr>
-"nnoremap  ss :if layoutis('only') | vsplit | else | only | endif<cr>
-"nnoremap \v  :if layoutis('only') | vsplit | endif | view<cr>
-"nnoremap  v  :if !layoutis('only') | view | else | explore | endif<cr>
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
@@ -130,6 +125,11 @@ nnoremap  y  yy
 nnoremap  Y  :copyfilename<cr>
 nnoremap gy  :copydirname<cr>
 nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
+"nnoremap  ss :vsplit!<cr>
+"nnoremap  ss :if layoutis('only') | vsplit | else | only | endif<cr>
+"nnoremap \v  :if layoutis('only') | vsplit | endif | view<cr>
+"nnoremap  v  :if !layoutis('only') | view | else | explore | endif<cr>
+"nnoremap <tab> :if isactive('preview') | swap | endif<cr>
 " }}}
 
 " cabbrev {{{
@@ -166,11 +166,49 @@ bmark! ~/docs doc
 set vicmd="vimux"
 set vixcmd="gvim &"
 
-set tuioptions=""
-set fillchars=vborder:\|
+" TUI options
+set notitle
+set nolsview
 set millerview
-set milleroptions=lsize:2,csize:5,rsize:3
+set laststatus
+set tuioptions=""
 set tabscope=pane
+set dotdirs=rootparent
+set fillchars=vborder:\|
+set timefmt=%H:%M\ %m/%d/%y
+set numberwidth=1
+set classify=":dir:"
+set rulerformat="%=%l%%%S [+%0-] (%n)"
+set statusline="%5*[%A]%9* %6*%u:%g%9* %2*%d%9* %1*%a | %E%9* %4* %= %r \"%t%T\""
+set viewcolumns=-{name},{rating},17{mtime}
+set sizefmt=units:iec,precision:1
+set milleroptions=lsize:2,csize:5,rsize:3
+set tabstop=4
+set confirm=permdelete
+set dirsize=nitems
+set shortmess="T"
+set timeoutlen=2000
+set cpoptions="s"
+set caseoptions="pg"
+set grepprg=ag\ --line-numbers\ %i\ %a\ %s
+set prefervsplit
+windo filter! /lost\+found/
+
+" Show list of matches on tab complition in command-line mode
+set wildmenu
+set wildstyle=popup
+
+" Ignore case in search patterns unless it contains at least one uppercase letter
+set ignorecase
+set smartcase
+
+" Highlight search, search while typing
+set hlsearch
+set incsearch
+set wrapscan
+
+" Try to leave some space from cursor to upper/lower border in lists
+set scrolloff=0
 
 " Trash Directory
 set trash
@@ -221,50 +259,6 @@ set fusehome=/tmp/vifm_FUSE
 if !has('win')
   set slowfs=curlftpfs
 endif
-
-" See man date or man strftime for details.
-set timefmt=%H:%M\ %m/%d/%y
-set rulerformat="%=%l%%%S [+%0-] (%n)"
-set statusline="%5*[%A]%9* %6*%u:%g%9* %2*%d%9* %1*%a | %E%9* %4* %= \"%t%T\""
-"set statusline="[%A] %u∶%g%d 【%a】 %r %=%E 〓\"%t%T\"%D"
-
-set viewcolumns=-{name},{rating},17{mtime}
-
-" *****************************
-set sizefmt=units:iec,precision:1
-set numberwidth=1
-set tabstop=4
-set confirm=permdelete
-set dirsize=nitems
-set shortmess="T"
-set timeoutlen=2000
-set notitle
-set nolsview
-set prefervsplit
-set laststatus
-set classify=":dir:"
-set cpoptions="s"
-set caseoptions="pg"
-set dotdirs=rootparent
-set grepprg=ag\ --line-numbers\ %i\ %a\ %s
-windo filter! /lost\+found/
-" *****************************
-
-" Show list of matches on tab complition in command-line mode
-set wildmenu
-set wildstyle=popup
-
-" Ignore case in search patterns unless it contains at least one uppercase letter
-set ignorecase
-set smartcase
-
-" Highlight search, search while typing
-set hlsearch
-set incsearch
-set wrapscan
-
-" Try to leave some space from cursor to upper/lower border in lists
-set scrolloff=0
 " }}}
 
 " command {{{
