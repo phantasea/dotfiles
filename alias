@@ -86,6 +86,7 @@ alias q='exit'
 alias s='stat'
 alias sd='sdcv'
 alias se='sudoedit'
+alias smi="sudo make install"
 alias src='source'
 alias shut='autoshut'
 alias boot='autoboot'
