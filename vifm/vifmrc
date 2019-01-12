@@ -29,9 +29,9 @@ nnoremap  <c-p>  gT
 qnoremap  <c-p>  gT
 vnoremap  <c-p>  gT
 cnoremap  <c-r>  <c-x>
-nnoremap  <c-t>  :tabnew<cr>
-qnoremap  <c-t>  :tabnew<cr>
-vnoremap  <c-t>  :tabnew<cr>
+nnoremap  <c-t>  :tabnew<cr>'h
+qnoremap  <c-t>  :tabnew<cr>'h
+vnoremap  <c-t>  :tabnew<cr>'h
 nnoremap  <c-v>  <s-tab>
 qnoremap  <c-v>  <s-tab>
 cnoremap  <c-w>  <a-b><a-d>
@@ -39,6 +39,7 @@ cnoremap  <c-w>  <a-b><a-d>
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
+nnoremap  ~  :cd ~<cr>
 vnoremap  .  :!!<cr>
 nnoremap  -  :invert s<cr>
 vnoremap  -  :invert s<cr>
@@ -50,9 +51,10 @@ nnoremap  cm cp
 vnoremap  cm cp
 nnoremap  cc :copen<cr>
 nnoremap  cd :cd<space>
+nnoremap  cp :copy<cr>
 nnoremap  ci :copyfromother<cr>
 vnoremap  ci :copyfromother<cr>
-nnoremap  co :copytoother<cr>
+nnoremap  co :copy<cr>
 vnoremap  co :copytoother<cr>
 nnoremap  cI :sucopyfromother<cr>
 vnoremap  cI :sucopyfromother<cr>
@@ -81,8 +83,9 @@ qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
 nnoremap cl  :alink!<cr>
 nnoremap gl  gf
 nnoremap \l  :file &<cr>
+nnoremap  mv :move<cr>
 nnoremap \o  :!sudo  %f<left><left><left>
-nnoremap go  :! %f<left><left>
+nnoremap go  :! %f<left><left><left>
 nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
@@ -94,14 +97,15 @@ nnoremap  Q  :qall<cr>
 nnoremap \r  :write | edit $MYVIFMRC | restart<cr>
 nnoremap gr  :source ~/.vifm/vifmrc<cr>
 vnoremap  r  cw
-nnoremap  r  cw
+nnoremap  r  cW
 nnoremap  R  :rename<cr>
 qnoremap  s  <c-w>
 nnoremap  s  <c-w>
-nnoremap  sf :find . *<cr>b
-nnoremap  sp :sync<cr>
+nnoremap  sb :find . *<cr>b
+nnoremap  <silent>  sf :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
 nnoremap  ss <c-w>S
 nnoremap  st :tree<cr>
+nnoremap  sy :sync<cr>
 nnoremap gs  :sort<cr>
 nnoremap  S  :%s//g<left><left>
 vnoremap  S  :%s//g<left><left>
@@ -115,7 +119,7 @@ nnoremap  w  :set lsview!<cr>
 nnoremap  W  :set nolaststatus!<cr>
 nnoremap  xi :movefromother<cr>
 vnoremap  xi :movefromother<cr>
-nnoremap  xo :movetoother<cr>
+nnoremap  xo :move<cr>
 vnoremap  xo :movetoother<cr>
 nnoremap  xI :sumovefromother<cr>
 vnoremap  xI :sumovefromother<cr>
@@ -124,7 +128,7 @@ vnoremap  xO :sumovetoother<cr>
 nnoremap  y  yy
 nnoremap  Y  :copyfilename<cr>
 nnoremap gy  :copydirname<cr>
-nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
+nnoremap  <silent>  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
 "nnoremap  ss :vsplit!<cr>
 "nnoremap  ss :if layoutis('only') | vsplit | else | only | endif<cr>
 "nnoremap \v  :if layoutis('only') | vsplit | endif | view<cr>
@@ -162,6 +166,9 @@ bmark! ~/docs doc
 " }}}
 
 " option {{{
+set syscalls
+set iooptions=fastfilecloning
+
 " This is the actual command used to start vi.  The default is vim.
 set vicmd="vimux"
 set vixcmd="gvim &"
@@ -192,7 +199,7 @@ set cpoptions="s"
 set caseoptions="pg"
 set grepprg=ag\ --line-numbers\ %i\ %a\ %s
 set prefervsplit
-windo filter! /lost\+found/
+windo filter! /(lost\+found|Desktop|sandisk_win|sandisk_ext|Extreme\ SSD|adbfs|udisk_hama|3166-6338|d042e951-)/
 
 " Show list of matches on tab complition in command-line mode
 set wildmenu
