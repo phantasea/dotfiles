@@ -29,12 +29,14 @@ nnoremap  <c-p>  gT
 qnoremap  <c-p>  gT
 vnoremap  <c-p>  gT
 cnoremap  <c-r>  <c-x>
+nnoremap s<c-t>  :tabnew<cr>
 nnoremap  <c-t>  :tabnew<cr>'h
 qnoremap  <c-t>  :tabnew<cr>'h
 vnoremap  <c-t>  :tabnew<cr>'h
 nnoremap  <c-v>  <s-tab>
 qnoremap  <c-v>  <s-tab>
 cnoremap  <c-w>  <a-b><a-d>
+nnoremap  <c-y>  :tabnew<cr>
 
 nnoremap  0  gg
 nnoremap  ^  gg
