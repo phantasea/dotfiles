@@ -29,19 +29,17 @@ nnoremap  <c-p>  gT
 qnoremap  <c-p>  gT
 vnoremap  <c-p>  gT
 cnoremap  <c-r>  <c-x>
-nnoremap s<c-t>  :tabnew<cr>
-nnoremap  <c-t>  :tabnew<cr>'h
-qnoremap  <c-t>  :tabnew<cr>'h
-vnoremap  <c-t>  :tabnew<cr>'h
+nnoremap  <c-t>  :tabnew<cr>
+qnoremap  <c-t>  :tabnew<cr>
+vnoremap  <c-t>  :tabnew<cr>
 nnoremap  <c-v>  <s-tab>
 qnoremap  <c-v>  <s-tab>
 cnoremap  <c-w>  <a-b><a-d>
-nnoremap  <c-y>  :tabnew<cr>
 
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
-nnoremap  ~  :cd ~<cr>
+nnoremap  ~  :tabnew ~<cr>
 vnoremap  .  :!!<cr>
 nnoremap  -  :invert s<cr>
 vnoremap  -  :invert s<cr>
@@ -104,7 +102,9 @@ nnoremap  R  :rename<cr>
 qnoremap  s  <c-w>
 nnoremap  s  <c-w>
 nnoremap  sb :find . *<cr>b
-nnoremap  <silent>  sf :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
+nnoremap  sf :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
+nnoremap  sg :goto<space>
+nnoremap  sq :hideui<cr>
 nnoremap  ss <c-w>S
 nnoremap  st :tree<cr>
 nnoremap  sy :sync<cr>
@@ -115,6 +115,7 @@ nnoremap \t  :lstrash<cr>
 nnoremap gt  gs
 nnoremap  t  tj
 nnoremap  T  kt
+nnoremap \u  :undolist<cr>
 nnoremap  U  <c-r>
 qnoremap  v  q
 nnoremap  w  :set lsview!<cr>
@@ -130,7 +131,7 @@ vnoremap  xO :sumovetoother<cr>
 nnoremap  y  yy
 nnoremap  Y  :copyfilename<cr>
 nnoremap gy  :copydirname<cr>
-nnoremap  <silent>  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
+nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
 "nnoremap  ss :vsplit!<cr>
 "nnoremap  ss :if layoutis('only') | vsplit | else | only | endif<cr>
 "nnoremap \v  :if layoutis('only') | vsplit | endif | view<cr>
@@ -527,7 +528,8 @@ fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo*.xpi  als %c
 if $DISPLAY == ""
   filetype  * vimux %f
 else
-  filextype * gvim %f &
+ "filextype * gvim %f &
+  filextype * subl %f
 endif
 " }}}
 
