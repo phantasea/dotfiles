@@ -1,109 +1,191 @@
-#!/usr/bin/env sh
-# ranger supports enhanced previews.  If the option "use_preview_script"
-# is set to True and this file exists, this script will be called and its
-# output is displayed in ranger.  ANSI color codes are supported.
+#!/usr/bin/env bash
 
-# NOTES: This script is considered a configuration file.  If you upgrade
-# ranger, it will be left untouched. (You must update it yourself.)
-# Also, ranger disables STDIN here, so interactive scripts won't work properly
+set -o noclobber -o noglob -o nounset -o pipefail
+IFS=$'\n'
+
+# If the option `use_preview_script` is set to `true`,
+# then this script will be called and its output will be displayed in ranger.
+# ANSI color codes are supported.
+# STDIN is disabled, so interactive scripts won't work properly
+
+# This script is considered a configuration file and must be updated manually.
+# It will be left untouched if you upgrade ranger.
 
 # Meanings of exit codes:
 # code | meaning    | action of ranger
 # -----+------------+-------------------------------------------
-# 0    | success    | success. display stdout as preview
-# 1    | no preview | failure. display no preview at all
-# 2    | plain text | display the plain content of the file
-# 3    | fix width  | success. Don't reload when width changes
-# 4    | fix height | success. Don't reload when height changes
-# 5    | fix both   | success. Don't ever reload
+# 0    | success    | Display stdout as preview
+# 1    | no preview | Display no preview at all
+# 2    | plain text | Display the plain content of the file
+# 3    | fix width  | Don't reload when width changes
+# 4    | fix height | Don't reload when height changes
+# 5    | fix both   | Don't ever reload
+# 6    | image      | Display the image `$IMAGE_CACHE_PATH` points to as an image preview
+# 7    | image      | Display the file directly as an image
 
-# Meaningful aliases for arguments:
-path="$1"    # Full path of the selected file
-width="$2"   # Width of the preview pane (number of fitting characters)
-height="$3"  # Height of the preview pane (number of fitting characters)
+# Script arguments
+FILE_PATH="${1}"         # Full path of the highlighted file
+PV_WIDTH="${2}"          # Width of the preview pane (number of fitting characters)
+PV_HEIGHT="${3}"         # Height of the preview pane (number of fitting characters)
+IMAGE_CACHE_PATH="${4}"  # Full path that should be used to cache image preview
+PV_IMAGE_ENABLED="${5}"  # 'True' if image previews are enabled, 'False' otherwise.
 
-maxln=1000   # Stop after $maxln lines.  Can be used like ls | head -n $maxln
+FILE_EXTENSION="${FILE_PATH##*.}"
+FILE_EXTENSION_LOWER=$(echo ${FILE_EXTENSION} | tr '[:upper:]' '[:lower:]')
 
-# Find out something about the file:
-#mimetype=$(file --mime-type -Lb "$path")
-mimetype=$(mimetype -Lb "$path")
-extension=${path##*.}
+# Settings
+HIGHLIGHT_SIZE_MAX=262143  # 256KiB
+HIGHLIGHT_TABWIDTH=8
+HIGHLIGHT_STYLE='pablo'
+PYGMENTIZE_STYLE='autumn'
 
-# Functions:
-# runs a command and saves its output into $output.  Useful if you need
-# the return value AND want to use the output in a pipe
-try() { output=$(eval '"$@"'); }
 
-# writes the output of the previouosly used "try" command
-dump() { echo "$output"; }
+handle_extension() {
+    case "${FILE_EXTENSION_LOWER}" in
+        # Archive
+        a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|\
+        rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)
+            atool --list -- "${FILE_PATH}" && exit 5
+            als "${FILE_PATH}" && exit 5
+            bsdtar --list --file "${FILE_PATH}" && exit 5
+            exit 1;;
+        rar)
+            # Avoid password prompt by providing empty password
+            als "${FILE_PATH}" && exit 5
+            unrar lt -p- -- "${FILE_PATH}" && exit 5
+            exit 1;;
+        7z)
+            # Avoid password prompt by providing empty password
+            als "${FILE_PATH}" && exit 5
+            7z l -p -- "${FILE_PATH}" && exit 5
+            exit 1;;
 
-# a common post-processing function used after most commands
-trim() { head -n "$maxln"; }
+        # PDF
+        pdf)
+            # Preview as text conversion
+            pdftotext -l 3 -nopgbrk -q -- "${FILE_PATH}" - | fmt -w ${PV_WIDTH} && exit 5
+            mutool draw -F txt -i -- "${FILE_PATH}" 1-10 | fmt -w ${PV_WIDTH} && exit 5
+            exiftool "${FILE_PATH}" && exit 5
+            exit 1;;
 
-# wraps highlight to treat exit code 141 (killed by SIGPIPE) as success
-# highlight() { command highlight "$@"; test $? = 0 -o $? = 141; }
+        # MS documents:
+        doc)
+            antiword "${FILE_PATH}" | fmt -w ${PV_WIDTH} && exit 5
+            catdoc   "${FILE_PATH}" | fmt -w ${PV_WIDTH} && exit 5
+            exit 1;;
 
-case "$extension" in
-    # Archive extensions:
-    7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|\
-    rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)
-        #try acat "$path" && { dump | trim; exit 3; }
-        try als "$path" && { dump | trim; exit 0; } || exit 1;;
-    rar)
-        try unrar -p- lt "$path" && { dump | trim; exit 0; } || exit 1;;
-    # PDF documents:
-    pdf)
-        try pdftotext -l 1 -nopgbrk -q "$path" - && { dump | fmt -s -w $width; exit 0; } || exit 1;;
-    # MS documents:
-    doc)
-        try antiword "$path" && { dump | fmt -s -w $width; exit 0; }
-        try catdoc  "$path" && { dump | fmt -s -w $width; exit 0; }
-        exit 1;;
-    # BitTorrent Files
-    torrent)
-        try transmission-show "$path" && { dump | fmt -s -w $width; exit 5; } || exit 1;;
-    # HTML Pages:
-    htm|html|xhtml|shtml)
-        #try w3m -dump -cols "$width" -T text/html "$path" && { dump; exit 0; } || exit 1;;
-        try w3m -dump -T text/html "$path" && { dump; exit 0; } || exit 1;;
-    # XML files
-    xml)
-        try highlight -S xml -O ansi -s dante "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
-    # C/C++ files
-    c|cpp)
-        try highlight -S c -O ansi -s dante "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
-    # Python script
-    py)
-        try highlight -S python -O ansi -s dante "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
-    # GnuPG files:
-    asc)
-        try gpg --quiet --no-tty --no-use-agent --no-verbose -d "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
-    # ISO files
-    iso)
-        try isoinfo -l -i "$path" && { dump | fmt -s -w $width; exit 5; } || exit 1;;
-    # Realmedia files:
-    rmvb|rmb|swf)
-        try mediainfo "$path" && { dump | fmt -s -w $width; exit 5; } || exit 1;;
-    # Log files
-    log)
-        try tail -n100 "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
-esac
+        # BitTorrent
+        torrent)
+            transmission-show -- "${FILE_PATH}" && exit 5
+            exit 1;;
 
-case "$mimetype" in
-    # Shell script
-    application/x-shellscript)
-        try highlight -S sh -O ansi -s dante "$path" && { dump | fmt -s -w $width; exit 5; } || exit 2;;
-    # Media files:
-    video/* | audio/* | image/*)
-        try mediainfo "$path" && { dump | fmt -s -w $width; exit 5; } || exit 1;;
-    # Text files:
-    text/*)
-        #try pygmentize -O style=monokai -f console -g -- "$path" && { dump; exit 0; }
-        exit 2;;
-    # Other files:
-    *)
-        #try mediainfo "$path" && { dump; exit 5; } || exit 1;;
-        exit 2;;
-esac
+        # OpenDocument
+        odt|ods|odp|sxw)
+            # Preview as text conversion
+            odt2txt "${FILE_PATH}" && exit 5
+            exit 1;;
+
+        # HTML
+        htm|html|xhtml)
+            # Preview as text conversion
+            w3m -dump -T text/html "${FILE_PATH}" && exit 5
+            lynx -dump -- "${FILE_PATH}" && exit 5
+            elinks -dump "${FILE_PATH}" && exit 5
+            exit 1;;
+
+        # C/C++ files
+        c|cpp)
+            highlight -S c -O ansi -s dante "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            exit 1;;
+
+        # Python script
+        py)
+            highlight -S python -O ansi -s dante "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            exit 1;;
+
+        # GnuPG files:
+        asc)
+            gpg --quiet --no-tty --no-use-agent --no-verbose -d "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            exit 1;;
+
+        # ISO files
+        iso)
+            isoinfo -l -i "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            exit 1;;
+
+        # Realmedia files:
+        rmvb|rmb|swf)
+            mediainfo "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            exit 1;;
+
+        # Log files
+        log)
+            tail -n100 "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            exit 1;;
+    esac
+}
+
+handle_image() {
+    local mimetype="${1}"
+    case "${mimetype}" in
+        # Image
+        image/*)
+            local orientation
+            orientation="$( identify -format '%[EXIF:Orientation]\n' -- "${FILE_PATH}" )"
+            # If orientation data is present and the image actually
+            # needs rotating ("1" means no rotation)...
+            if [[ -n "$orientation" && "$orientation" != 1 ]]; then
+                # ...auto-rotate the image according to the EXIF data.
+                convert -- "${FILE_PATH}" -auto-orient "${IMAGE_CACHE_PATH}" && exit 6
+            fi
+
+            # `w3mimgdisplay` will be called for all images (unless overriden as above),
+            # but might fail for unsupported types.
+            exit 7;;
+    esac
+}
+
+handle_mime() {
+    local mimetype="${1}"
+    case "${mimetype}" in
+        # Text
+        text/* | */xml)
+            # Syntax highlight
+            if [[ "$( stat --printf='%s' -- "${FILE_PATH}" )" -gt "${HIGHLIGHT_SIZE_MAX}" ]]; then
+                exit 2
+            fi
+            if [[ "$( tput colors )" -ge 256 ]]; then
+                local pygmentize_format='terminal256'
+                local highlight_format='xterm256'
+            else
+                local pygmentize_format='terminal'
+                local highlight_format='ansi'
+            fi
+            highlight --replace-tabs="${HIGHLIGHT_TABWIDTH}" --out-format="${highlight_format}" \
+                --style="${HIGHLIGHT_STYLE}" --force -- "${FILE_PATH}" && exit 5
+            # pygmentize -f "${pygmentize_format}" -O "style=${PYGMENTIZE_STYLE}" -- "${FILE_PATH}" && exit 5
+            exit 2;;
+
+        # Image Video and audio
+        image/* | video/* | audio/*)
+            mediainfo "${FILE_PATH}" && exit 5
+            exiftool "${FILE_PATH}" && exit 5
+            exit 1;;
+    esac
+}
+
+handle_fallback() {
+    echo '----- File Type Classification -----' && file --dereference --brief -- "${FILE_PATH}" && exit 5
+    exit 1
+}
+
+
+MIMETYPE="$( file --dereference --brief --mime-type -- "${FILE_PATH}" )"
+if [[ "${PV_IMAGE_ENABLED}" == 'True' ]]; then
+    handle_image "${MIMETYPE}"
+fi
+handle_extension
+handle_mime "${MIMETYPE}"
+handle_fallback
 
 exit 1
