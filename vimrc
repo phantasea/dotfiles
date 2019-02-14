@@ -94,8 +94,10 @@ set wildignorecase
 nnoremap   <Enter>    <NOP>
 nnoremap   <Left>     zh
 nnoremap   <S-Left>   zH
+nnoremap   <C-Left>   zs
 nnoremap   <Right>    zl
 nnoremap   <S-Right>  zL
+nnoremap   <C-Right>  ze
 
 map <F7>   :set wrap!<CR>
 map <F8>   :nohlsearch<CR>
