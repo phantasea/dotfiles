@@ -47,11 +47,13 @@ nnoremap  a  GVgg
 vnoremap  a  ggoG
 nnoremap  A  za
 nnoremap  b  :set scrollbind!<cr>
+nnoremap gc  :change<cr>
+nnoremap  cc :change<cr>
+nnoremap  cd :cd<space>
+nnoremap  cg :goto<space>
+nnoremap  cs :cds/
 nnoremap  cm cp
 vnoremap  cm cp
-nnoremap  cc :copen<cr>
-nnoremap  cd :cd<space>
-nnoremap  cp :copy<cr>
 nnoremap  ci :copyfromother<cr>
 vnoremap  ci :copyfromother<cr>
 nnoremap  co :copy<cr>
@@ -60,7 +62,6 @@ nnoremap  cI :sucopyfromother<cr>
 vnoremap  cI :sucopyfromother<cr>
 nnoremap  cO :sucopytoother<cr>
 vnoremap  cO :sucopytoother<cr>
-nnoremap  C  :clone<cr>
 nnoremap  d  dd
 nnoremap  D  DD
 nnoremap ge  :empty<cr>
@@ -80,9 +81,9 @@ nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  J  qje:if isactive('preview') | switch | endif<cr>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
-nnoremap cl  :alink!<cr>
 nnoremap gl  gf
 nnoremap \l  :file &<cr>
+nnoremap  mm :copen<cr>
 nnoremap  mv :move<cr>
 nnoremap \o  :!sudo  %f<left><left><left>
 nnoremap go  :! %f<left><left><left>
@@ -103,7 +104,7 @@ qnoremap  s  <c-w>
 nnoremap  s  <c-w>
 nnoremap  sb :find . *<cr>b
 nnoremap  sf :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
-nnoremap  sg :goto<space>
+nnoremap  sl :alink!<cr>
 nnoremap  sq :hideui<cr>
 nnoremap  ss <c-w>S
 nnoremap  st :tree<cr>
@@ -291,8 +292,8 @@ command! rc    vimux ~/.vifm/vifmrc
 command! df    df -h %m 2> /dev/null
 command! ps    pstree %m
 command! du    ncdu . 
-command! diff  vim -d %c %C
-command! diffsamewin  vimdiff %f
+command! diff  vimux -d %c %C
+command! diffsamewin  vimux -d %f
 command! uz    tar -zxf %c %i &
 command! uj    tar -jxf %c %i &
 command! zip   zip -r %f.zip %f
