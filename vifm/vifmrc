@@ -5,14 +5,14 @@ map  <up>     <nop>
 map  <down>   <nop>
 
 nnoremap  <F5>   :shell<cr>
-nnoremap  <F10>  :diff<cr>
+nnoremap  <F12>  :diff<cr>
 nnoremap  <F11>  :diffsamewin<cr>
 
 nnoremap  <return> <nop>
 nnoremap  <bs>     gh
 qnoremap  <space>  <tab>
 
-nnoremap  <c-b>  :find . *<cr>b
+nnoremap  <c-b>  :tree<cr>
 cnoremap  <c-j>  <cr>
 mnoremap  <c-j>  <c-f>
 nnoremap  <c-j>  <c-f>L
@@ -102,7 +102,7 @@ nnoremap  r  cW
 nnoremap  R  :rename<cr>
 qnoremap  s  <c-w>
 nnoremap  s  <c-w>
-nnoremap  sb :find . *<cr>b
+nnoremap  sb :find . -name "*"<cr>B
 nnoremap  sf :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
 nnoremap  sl :alink!<cr>
 nnoremap  sq :hideui<cr>
@@ -201,7 +201,7 @@ set shortmess="T"
 set timeoutlen=2000
 set cpoptions="s"
 set caseoptions="pg"
-set grepprg=ag\ --line-numbers\ %i\ %a\ %s
+set grepprg='ag --line-numbers %i %a %s'
 set prefervsplit
 windo filter! /(lost\+found|Desktop|sandisk_win|sandisk_ext|Extreme\ SSD|adbfs|udisk_hama|3166-6338|d042e951-)/
 

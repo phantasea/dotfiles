@@ -181,7 +181,7 @@ ShowFormat = no
 
 # Show file time in menu. Possible options: yes, no, IfAvailable - show the
 # time only when it was read before (often works faster).
-ShowTime = no
+ShowTime = yes
 
 # Show time played as a percentage in the time progress bar.
 ShowTimePercent	= yes
@@ -496,7 +496,7 @@ BlockDecorators	= "[|]"
 # using the 'hide_message' key.  Setting it to zero means you'll have to
 # be quick to see any message at all.  Any new messages will queued up
 # and displayed after the current message's linger time expires.
-MessageLingerTime = 15
+MessageLingerTime = 3
 
 # Does MOC display a prefix on delayed messages indicating
 # the number of queued messages still to be displayed?
