@@ -4,9 +4,9 @@
 "highlight ColorColumn  ctermbg=lightgrey
 highlight IncSearch    ctermbg=black    ctermfg=red     cterm=reverse
 highlight Search       ctermbg=blue     ctermfg=white   cterm=bold
-highlight TabLine      ctermfg=black    ctermbg=black   cterm=none 
-highlight TabLineSel   ctermfg=green    ctermbg=black   cterm=reverse
-highlight TabLineFill  ctermfg=black
+highlight TabLine      ctermfg=white    ctermbg=blue    cterm=bold
+highlight TabLineSel   ctermfg=white    ctermbg=blue    cterm=bold,reverse
+highlight TabLineFill  ctermfg=white    ctermbg=blue    cterm=bold
 highlight Pmenu        ctermfg=white    ctermbg=blue    cterm=none
 highlight PmenuSel     ctermfg=black    ctermbg=green   cterm=none
 highlight PmenuSbar    ctermbg=black
@@ -134,15 +134,6 @@ nnoremap   <C-P>    :bp<CR>
 nnoremap   <C-U>    <C-T>
 inoremap   <C-Y>    <C-R><C-R>=VCopy('up')<CR>
 inoremap   <C-E>    <C-R><C-R>=VCopy('down')<CR>
-
-" markline keymap
-"nnoremap   'b   'B
-"nnoremap   'c   'C
-"nnoremap   'g   'G
-"nnoremap   'm   'M
-"nnoremap   'r   'R
-"nnoremap   'w   'W
-"nnoremap   'y   'Y
 
 "vnoremap  #    y:let @/=@"<CR>N
 "vnoremap  *    y/<C-R>"<CR>
@@ -759,5 +750,15 @@ nmap         ++  vip++
 let g:showmarks_hlline_lower = 1
 let g:showmarks_hlline_upper = 1
 let g:showmarks_hlline_other = 1
+"}}}
+
+" markline keymap {{{
+"nnoremap  'b  'B  //blue
+"nnoremap  'c  'C  //cyan
+"nnoremap  'g  'G  //green
+"nnoremap  'm  'M  //magenta
+"nnoremap  'r  'R  //red
+"nnoremap  'w  'W  //white
+"nnoremap  'y  'Y  //yellow
 "}}}
 "}}}
