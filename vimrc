@@ -75,6 +75,7 @@ set scrolloff=0
 set selection=inclusive
 set shiftwidth=4
 set showcmd
+set showtabline=1
 set smartcase
 set smartindent
 set smarttab
@@ -215,6 +216,7 @@ nnoremap  gk    K
 nnoremap   J    <C-E>
 nnoremap   K    <C-Y>
 nnoremap   n    nzz
+nnoremap   N    Nzz
 nnoremap   q    :call SmartQuit()<CR>
 nnoremap   Q    :qall!<CR>
 nnoremap   S    :%s//g<Left><Left>
