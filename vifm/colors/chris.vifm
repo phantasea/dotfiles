@@ -24,7 +24,7 @@ highlight  Border       ctermfg=blue      ctermbg=black     cterm=bold
 highlight  StatusLine   ctermfg=white     ctermbg=blue      cterm=bold
 highlight  CmdLine      ctermfg=magenta   ctermbg=none      cterm=bold
 highlight  TabLine      ctermfg=none      ctermbg=black     cterm=none
-highlight  TopLineSel   ctermfg=none      ctermbg=black     cterm=bold,reverse
+highlight  TabLineSel   ctermfg=none      ctermbg=black     cterm=bold,reverse
 highlight  TopLine      ctermfg=white     ctermbg=blue      cterm=bold
 highlight  TopLineSel   ctermfg=white     ctermbg=blue      cterm=bold
 highlight  CurrLine     ctermfg=none      ctermbg=black     cterm=bold,reverse
