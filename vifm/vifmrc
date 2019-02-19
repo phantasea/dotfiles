@@ -361,28 +361,28 @@ filetype  *.[1-8] man ./%c
 fileview  *.[1-8] man ./%c | col -b
 
 " Office files
-fileview  *.doc  antiword %f, catdoc %f
-fileview  *.docx docx2txt %f -
+fileview  *.doc  antiword %c, catdoc %c
+fileview  *.docx docx2txt %c -
 if $DISPLAY == ""
-  filetype  *.doc  vim %f
+  filetype  *.doc  vim %c
 else
   filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
 endif
 
 " c/c++ files
-fileview  *.h,*.c,*.cpp  highlight -S c -O ansi -s dante %f
+fileview  *.h,*.c,*.cpp  highlight -S c -O ansi -s dante %c
 
 " xml files
-fileview  *.xml  highlight -S xml -O ansi -s dante %f
+fileview  *.xml  highlight -S xml -O ansi -s dante %c
 
 " makefile
-fileview  Makefile*,makefile*  highlight -S make -O ansi -s dante %f
+fileview  Makefile*,makefile*  highlight -S make -O ansi -s dante %c
 
 " python files
-fileview  *.py  highlight -S python -O ansi -s dante %f
+fileview  *.py  highlight -S python -O ansi -s dante %c
 
 " shell script
-fileview  *.sh  highlight -S sh -O ansi -s dante %f
+fileview  *.sh  highlight -S sh -O ansi -s dante %c
 
 " Directories
 fileview  */,.*/  tree -F --dirsfirst %c
@@ -396,41 +396,40 @@ else
 endif
 
 " PostScript
-fileview  *.ps ps2text %f -
+fileview  *.ps ps2text %c -
 if $DISPLAY == ""
-  filetype  *.ps fimgs %f
+  filetype  *.ps fimgs %c
 else
-  filextype *.ps,*.ps.gz zathura %f
+  filextype *.ps,*.ps.gz zathura %c
 endif
 
 " Djvu
 if $DISPLAY != ""
-  filextype *.djvu zathura %f, apvlv %f
+  filextype *.djvu zathura %c, apvlv %c
 endif
 
 " PGP
-fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %f
+fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %c
 filetype  *.asc  !!gpg --verify %c
 
 " Audio
-fileview  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mediainfo -c %f
-filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a  mpg123 -q %c > /dev/null 2>&1 &
+fileview  *.mp3,*.wav,*.flac,*.ogg,*.m4a,*.wma  mediainfo -f %c
+filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg123 -q %c > /dev/null 2>&1 &
 
 " Video
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  mediainfo -f %c
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  vidmux -f %c
 
 " Image
-"fileview *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  mediainfo -f %f
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  w3mimg %px %py %pw %ph %c
 filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview %c
 
 " Web
-fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %f
+fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %c
 if $DISPLAY == ""
-  filetype  *.html,*.htm,*.xhtml,*.shtml  wemux %f
+  filetype  *.html,*.htm,*.xhtml,*.shtml  wemux %c
 else
-  filextype *.html,*.htm,*.xhtml,*.shtml  firefox %f &
+  filextype *.html,*.htm,*.xhtml,*.shtml  firefox %c &
 endif
 
 " Markdown
@@ -441,8 +440,8 @@ fileview  *.log  tac %c, tail -n500 %c
 filetype  *.log  tac %c | less
 
 " Object
-fileview  *.o nm %f
-filetype  *.o nm %f | less
+fileview  *.o nm %c
+filetype  *.o nm %c | less
 
 " torrent
 fileview  *.torrent  transmission-show %c
@@ -524,8 +523,7 @@ filetype *.sha512
 fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo*.xpi  als %c
 
 " Open all other files with default system programs. By default all unknown files are opened with 'vi[x]cmd'
-"fileview * mediainfo %f
-"fileview * pygmentize -f console -g -- %c
+"  fileview * file -i %c
 if $DISPLAY == ""
   filetype  * vimux %f
 else
