@@ -186,7 +186,7 @@ set tuioptions=""
 set tabscope=pane
 set dotdirs=rootparent
 set fillchars=vborder:\|
-set timefmt=%H:%M\ %m/%d/%y
+set timefmt="%H:%M\ %m/%d/%y"
 set numberwidth=1
 set classify=":dir:"
 set rulerformat="%=%l%%%S [+%0-] (%n)"
