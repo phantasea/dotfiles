@@ -64,7 +64,7 @@ ReadTags		= no
 # Directory in which you store music files. If you specify it you will be able
 # to quickly go to this directory with the '-m' parameter or the 'm' command.
 # This can also point to a playlist.
-MusicDir		= "/media/rec"
+MusicDir		= "/home/simone/auds"
 
 # How to sort? FileName is the only option for now.
 Sort			= FileName
@@ -256,16 +256,15 @@ ASCIILines = no
 
 # FastDirs, these allow you to jump directly to a directory, the key bindings
 # are in the keymap file.
-Fastdir1 = /media/rec/2.新世紀音樂
-Fastdir2 = /media/rec/3.華語歌曲
-Fastdir3 = /media/rec/4.外語歌曲
-Fastdir4 = /media/rec/6.影視原聲
-Fastdir5 = /media/rec/7.純輕音乐
-#Fastdir6 = /media/rec/MTV
-#Fastdir7 =
-#Fastdir8 =
+Fastdir1 = ${MusicDir}/1.古典音樂
+Fastdir2 = ${MusicDir}/2.新世紀音樂
+Fastdir3 = ${MusicDir}/3.華語歌曲
+Fastdir4 = ${MusicDir}/4.外語歌曲
+Fastdir5 = ${MusicDir}/5.日韓歌曲
+Fastdir6 = ${MusicDir}/6.影視原聲
+Fastdir7 = ${MusicDir}/7.純輕音乐
+Fastdir8 = ${MusicDir}/8.演唱会
 #Fastdir9 =
-#Fastdir10 =
 
 # How fast to seek? Number of seconds per key stroke.
 SeekTime = 5
