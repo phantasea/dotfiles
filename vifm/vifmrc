@@ -160,6 +160,7 @@ mark r /
 mark t ~/.Trash
 mark u /opt/util
 mark v ~/.vim
+mark w ~/docs/webs
 
 mark P /opt/.porn
 mark U /media/simone/sandisk_u
