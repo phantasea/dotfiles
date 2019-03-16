@@ -1,17 +1,18 @@
 " vim: set ft=vim :
 
 " colorscheme  {{{
-"highlight ColorColumn  ctermbg=lightgrey
+highlight ColorColumn  ctermfg=white    ctermbg=green   cterm=bold
+highlight CursorColumn ctermfg=white    ctermbg=yellow  cterm=bold
+highlight CursorLine   ctermfg=white    ctermbg=yellow  cterm=bold
 highlight IncSearch    ctermbg=black    ctermfg=red     cterm=reverse
-highlight Search       ctermbg=blue     ctermfg=white   cterm=bold
-highlight TabLine      ctermfg=white    ctermbg=blue    cterm=bold
-highlight TabLineSel   ctermfg=white    ctermbg=blue    cterm=bold,reverse
-highlight TabLineFill  ctermfg=white    ctermbg=blue    cterm=bold
 highlight Pmenu        ctermfg=white    ctermbg=blue    cterm=none
 highlight PmenuSel     ctermfg=black    ctermbg=green   cterm=none
 highlight PmenuSbar    ctermbg=black
 highlight PmenuThumb   ctermbg=black
-highlight CursorLine   ctermfg=yellow   ctermbg=black   cterm=inverse
+highlight Search       ctermbg=blue     ctermfg=white   cterm=bold
+highlight TabLine      ctermfg=white    ctermbg=blue    cterm=bold
+highlight TabLineSel   ctermfg=white    ctermbg=blue    cterm=bold,reverse
+highlight TabLineFill  ctermfg=white    ctermbg=blue    cterm=bold
 " settings below are used by statusline
 highlight User1        ctermfg=magenta  ctermbg=black   cterm=inverse
 highlight User2        ctermfg=cyan     ctermbg=black   cterm=inverse
@@ -62,12 +63,12 @@ set mouse=
 set nobackup
 set nocompatible
 set nocursorline
+set nocursorcolumn
 set noerrorbells
 set noshowmatch
 set nostartofline
 set noswapfile
 set nowrap
-set nocursorline
 set nrformats=hex
 set numberwidth=1
 set ruler
@@ -190,7 +191,8 @@ nnoremap   ><space>   <NOP>
 nnoremap   =<space>   <NOP>
 nnoremap   !<space>   <NOP>
 nnoremap   @<space>   <NOP>
-nnoremap   _<space>   :set cursorline!<CR>
+nnoremap   _<space>   :set cursorcolumn!<CR>
+nnoremap   -<space>   :set cursorline!<CR>
 nnoremap  \|<space>   :call ToggleColorColumn()<CR>
 
 if &diff
@@ -613,6 +615,8 @@ augroup autocmds
 
     autocmd FileType * setlocal formatoptions-=ro formatoptions+=j cedit=<C-O>
 
+    autocmd TerminalOpen call MyPlainStatusLine()
+
     "进入文件后定位到上次退出时的位置
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
 
@@ -736,16 +740,11 @@ let g:tmux_navigator_no_mappings = 1
 "dragvisuals {{{
 let g:DVB_TrimWS = 1
 
-vmap  <expr>  <LEFT>   DVB_Drag('left')
-vmap  <expr>  <RIGHT>  DVB_Drag('right')
-vmap  <expr>  <DOWN>   DVB_Drag('down')
-vmap  <expr>  <UP>     DVB_Drag('up')
-vmap  <expr>  Y        DVB_Duplicate()
-"}}}
-
-"vmath {{{
-vmap <expr>  ++  VMATH_YankAndAnalyse()
-nmap         ++  vip++
+"vmap  <expr>  <LEFT>   DVB_Drag('left')
+"vmap  <expr>  <RIGHT>  DVB_Drag('right')
+"vmap  <expr>  <DOWN>   DVB_Drag('down')
+"vmap  <expr>  <UP>     DVB_Drag('up')
+"vmap  <expr>  Y        DVB_Duplicate()
 "}}}
 
 " showmarks {{{
