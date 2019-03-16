@@ -617,6 +617,9 @@ augroup autocmds
 
     autocmd TerminalOpen call MyPlainStatusLine()
 
+    autocmd WinEnter * set cursorline
+    autocmd WinLeave * set nocursorline
+
     "进入文件后定位到上次退出时的位置
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
 
