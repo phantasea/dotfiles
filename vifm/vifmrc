@@ -101,6 +101,8 @@ nnoremap  R  :rename<cr>
 qnoremap  s  <c-w>
 nnoremap  s  <c-w>
 nnoremap  sb :find . -name "*"<cr>B
+nnoremap  sd :diff<cr>
+nnoremap  sD :diffsamewin<cr>
 nnoremap  sf :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
 nnoremap  sl :alink!<cr>
 nnoremap  sq :hideui<cr>
