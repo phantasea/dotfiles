@@ -85,8 +85,6 @@ nnoremap gl  gf
 nnoremap \l  :file &<cr>
 nnoremap  mm :copen<cr>
 nnoremap  mv :move<cr>
-nnoremap \o  :!sudo  %f<left><left><left>
-nnoremap go  :! %f<left><left><left>
 nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
