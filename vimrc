@@ -195,20 +195,6 @@ nnoremap   _<space>   :set cursorcolumn!<CR>
 nnoremap   -<space>   :set cursorline!<CR>
 nnoremap  \|<space>   :call ToggleColorColumn()<CR>
 
-if &diff
-"color     peaksea
-syntax     off
-nnoremap   dj   ]c
-nnoremap   dk   [c
-nnoremap   dn   ]c
-nnoremap   dp   [c
-nnoremap   di   :diffget<CR>
-nnoremap   do   :diffput<CR>
-vnoremap    i   :diffget<CR>
-vnoremap    o   :diffput<CR>
-nnoremap   du   :diffupdate<CR>
-endif
-
 nnoremap   j    gj
 vnoremap   j    gj
 nnoremap  gj    J
@@ -607,7 +593,26 @@ func! ToggleColorColumn()
         execute "set colorcolumn-=".col_num
     endif
 endfunc
+
+func! MyDiffSetting()
+    "color     peaksea
+    syntax     off
+    nnoremap   dj   ]c
+    nnoremap   dk   [c
+    nnoremap   dn   ]c
+    nnoremap   dp   [c
+    nnoremap   di   :diffget<CR>
+    nnoremap   do   :diffput<CR>
+    vnoremap   di   :diffget<CR>
+    vnoremap   do   :diffput<CR>
+    nnoremap   du   :diffupdate<CR>
+endfunc
 "}}}
+
+" Special key mappings for diff mode
+"if &diff
+"    call MyDiffSetting()
+"endif
 
 " autocmd  {{{
 augroup autocmds
@@ -619,6 +624,8 @@ augroup autocmds
 
     autocmd WinEnter * set cursorline
     autocmd WinLeave * set nocursorline
+
+    autocmd DiffUpdated * call MyDiffSetting()
 
     "进入文件后定位到上次退出时的位置
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
