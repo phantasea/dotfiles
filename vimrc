@@ -210,7 +210,8 @@ nnoremap   Q    :qall!<CR>
 nnoremap   S    :%s//g<Left><Left>
 vnoremap   S    :s/\%V/g<left><left>
 nnoremap   s    <C-W>
-nnoremap   sa   :ball<CR>
+nnoremap   sa   :vert ball<CR>
+nnoremap   sb   :windo set scrollbind!<cr>
 nnoremap   sq   :call QuitAllBufButMe()<CR>
 nnoremap   s}   :call OpenTagPreviewWin()<CR>
 nnoremap   s#   :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
