@@ -1,14 +1,20 @@
-" some map
+map  <C-n>  gt
+map  <C-p>  gT
+map  <C-r>  R
 
-map Space <C-f>
-map Backspace <C-b>
-map J <C-d>
-map K <C-u>
+map  <Space>      <C-f>
+map  <Backspace>  <C-b>
 
-
+map  =  zw
+map  i  zi
+map  o  zo
+map  O  o
+map  J  <C-d>
+map  K  <C-u>
+map  R  rrr
 
 " if start apvlv as fullscreen mode, default is no
-set fullscreen=no
+set fullscreen=yes
 
 " zoom value, default is fitwidth
 " zoom has 4 styles
@@ -16,20 +22,20 @@ set fullscreen=no
 " fitwidth
 " fitheight
 " normal
-"set zoom=fitwidth
+set zoom=normal
 
 " set window size
 set width=800
 set height=600
 
 " set command timeout between two key press 
-set commandtimeout=3000
+set commandtimeout=2000
 
 " set default dir
-set defaultdir="/home/lynna/docs"
+set defaultdir="/home/simone/docs"
 
 " set if use content view
-set content=yes
+set content=no
 
 " set weather use continuous view 
 " make sure the autoscrollpage is set to "yes" if you want to set this to yes
@@ -54,19 +60,23 @@ set pdfcache = 4
 set scrollbar = no
 
 " set if use visual mode to select and copy text
-set visualmode = no
+set visualmode = yes
 
 " set if wrapscan text
 set wrapscan = yes
 
-" set double click action " option value is 'word', 'line' or 'page'
+" set double click action
+" option value is 'word', 'line' or 'page'
 set doubleclick = word
 
-" set GUI options " m means menu, T means toolbar
-" set guioptions = 
+" set GUI options
+" m means menu, T means toolbar
+set guioptions =
 
-" set if use auto reload document " > 0 means auto reload after some seconds. = 0 means not auto reload
-" set autoreload = 3
+" set if use auto reload document
+" > 0 means auto reload after some seconds. 
+" = 0 means not auto reload
+set autoreload = 0
 
 " set if reverted pdf page
-" set reverted = no
+set reverted = no
