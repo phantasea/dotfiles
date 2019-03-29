@@ -1,0 +1,122 @@
+# zathurarc
+
+# colors
+#set statusbar-bg "#00FF00"
+#set statusbar-fg red
+
+#set recolor-darkcolor "#93A1A1"
+#set recolor-lightcolor "#002B36"
+#set recolor true
+
+# colors
+#set statusbar-bg "#000000"
+#set statusbar-fg "#CC0000"
+#set default-fg "#FFFFFF"
+#set default-bg "#000000"
+
+# setting recolor-keep true will keep any color your pdf has.
+# if it is false, it'll just be black and white
+#set recolor-keephue             "true"
+#set default-bg                  "#1B2B34"
+#set default-fg                  "#343D46"
+#
+#set statusbar-fg                "#A7ADBA"
+#set statusbar-bg                "#343D46"
+#
+#set inputbar-bg                 "#1B2B34"
+#set inputbar-fg                 "#4F5B66"
+#
+#set notification-error-bg       "#EC5f67"
+#set notification-error-fg       "#1B2B34"
+#
+#set notification-warning-bg     "#EC5f67"
+#set notification-warning-fg     "#1B2B34"
+#
+#set highlight-color             "#FAC863"
+#set highlight-active-color      "#6699CC"
+#
+#set completion-highlight-fg     "#4F5B66"
+#set completion-highlight-bg     "#5FB3B3"
+#
+#set completion-bg               "#4F5B66"
+#set completion-fg               "#5FB3B3"
+#
+#set notification-bg             "#99C794"
+#set notification-fg             "#1B2B34"
+#
+#set recolor-lightcolor          "#1B2B34"
+#set recolor-darkcolor           "#CDD3DE"
+#set recolor                     "true"
+
+# settings
+set window-height 1024
+set window-width  768
+set adjust-open   width
+
+# use sqlite as bookmarks database backend
+#set database sqlite
+
+# key bindings
+map <Esc>      abort
+map <Tab>      toggle_statusbar
+
+map + zoom in
+map - zoom out
+map a adjust_window best-fit
+map b recolor
+map f toggle_fullscreen
+map F follow
+map i zoom in
+map j scroll down
+map J navigate next
+map k scroll up
+map K navigate previous
+map o zoom out
+map p navigate previous
+map P toggle_presentation
+map q quit
+map r rotate rotate-cw
+map R rotate rotate-ccw
+map s toggle_page_mode
+map w adjust_window width
+
+map [fullscreen] + zoom in
+map [fullscreen] - zoom out
+map [fullscreen] a adjust_window best-fit
+map [fullscreen] b recolor
+map [fullscreen] f toggle_fullscreen
+map [fullscreen] F follow
+map [fullscreen] i zoom in
+map [fullscreen] j scroll down
+map [fullscreen] J navigate next
+map [fullscreen] k scroll up
+map [fullscreen] K navigate previous
+map [fullscreen] o zoom out
+map [fullscreen] p navigate previous
+map [fullscreen] P toggle_presentation
+map [fullscreen] q quit
+map [fullscreen] r rotate rotate-cw
+map [fullscreen] R rotate rotate-ccw
+map [fullscreen] s toggle_page_mode
+map [fullscreen] w adjust_window width
+
+map [presentation] + zoom in
+map [presentation] - zoom out
+map [presentation] a adjust_window best-fit
+map [presentation] b recolor
+map [presentation] f toggle_fullscreen
+map [presentation] F follow
+map [presentation] i zoom in
+map [presentation] j scroll down
+map [presentation] J navigate next
+map [presentation] k scroll up
+map [presentation] K navigate previous
+map [presentation] o zoom out
+map [presentation] p navigate previous
+map [presentation] P toggle_presentation
+map [presentation] q quit
+map [presentation] r rotate rotate-cw
+map [presentation] R rotate rotate-ccw
+map [presentation] s toggle_page_mode
+map [presentation] w adjust_window width
+
