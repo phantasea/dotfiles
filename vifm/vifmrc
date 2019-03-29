@@ -100,7 +100,7 @@ nnoremap  r  cW
 nnoremap  R  :rename<cr>
 qnoremap  s  <c-w>
 nnoremap  s  <c-w>
-nnoremap  sb :find . -name "*"<cr>B
+nnoremap  sb :set scrollbind!<cr>
 nnoremap  sd :diff<cr>
 nnoremap  sD :diffsamewin<cr>
 nnoremap  sf :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
@@ -108,6 +108,7 @@ nnoremap  sl :alink!<cr>
 nnoremap  sq :hideui<cr>
 nnoremap  ss <c-w>S
 nnoremap  st :tree<cr>
+nnoremap  sT :find . -name "*"<cr>B
 nnoremap  sy :sync<cr>
 nnoremap gs  :sort<cr>
 nnoremap  S  :%s//g<left><left>
@@ -204,7 +205,7 @@ set cpoptions="s"
 set caseoptions="pg"
 set grepprg='ag --line-numbers %i %a %s'
 set prefervsplit
-windo filter! /(lost\+found|Desktop|sandisk_win|sandisk_ext|Extreme\ SSD|adbfs|udisk_hama|3166-6338|d042e951-)/
+windo filter! /(lost\+found|Desktop|sandisk_win|sandisk_ext|sandisk_exp|Extreme\ SSD|udisk_hama|3166-6338|d042e951-|华为手机助手)/
 
 " Show list of matches on tab complition in command-line mode
 set wildmenu
@@ -393,7 +394,7 @@ fileview  *.pdf pdftotext -l 3 -nopgbrk -q %c -
 if $DISPLAY == ""
   filetype  *.pdf fimgs %f
 else
-  filextype *.pdf zathura %c %i, apvlv %c
+  filextype *.pdf zathura -c /home/simone/.zathura %c %i, apvlv %c
 endif
 
 " PostScript
