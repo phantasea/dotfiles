@@ -1,5 +1,18 @@
 # Write your default config options here!
 # embeddedfonts=true
+# priority=abovenormal
+really-quiet=1
 ass=true
 
+# Subtitle
+unicode=yes
+utf8=yes
+sub_cp=cp936
+subfont-encoding=unicode
+subfont-text-scale=3
+subpos=90
+#font=/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc
+
+# OSD
+subfont-osd-scale=3
 
