@@ -1,0 +1,12 @@
+###### Ubuntu Main Repos
+deb http://ro.archive.ubuntu.com/ubuntu/ xenial main restricted universe 
+deb-src http://ro.archive.ubuntu.com/ubuntu/ xenial main restricted universe 
+
+###### Ubuntu Update Repos
+deb http://ro.archive.ubuntu.com/ubuntu/ xenial-security main restricted universe 
+deb http://ro.archive.ubuntu.com/ubuntu/ xenial-updates main restricted universe 
+deb-src http://ro.archive.ubuntu.com/ubuntu/ xenial-security main restricted universe 
+deb-src http://ro.archive.ubuntu.com/ubuntu/ xenial-updates main restricted universe 
+
+###### Ubuntu Partner Repo
+# deb-src http://archive.canonical.com/ubuntu xenial partner
