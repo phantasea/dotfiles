@@ -21,7 +21,7 @@ color-foreground=7
 color-background=0
 
 # max scroll-back history lines of every window, value must be [0 - 65535], 0 means disable it
-history-lines=1000
+history-lines=300
 
 # up to 5 additional text encodings, multiple encodings must be seperated by ','
 # run 'iconv --list' to get available encodings.
@@ -30,8 +30,7 @@ text-encodings=
 # cursor shape: 0 = underline, 1 = block
 # cursor flash interval in milliseconds, 0 means disable flashing
 cursor-shape=1
-#cursor-interval=500
-cursor-interval=0
+cursor-interval=1000
 
 # additional ascii chars considered as part of a word while auto-selecting text, except ' ', 0-9, a-z, A-Z
 word-chars=._-
