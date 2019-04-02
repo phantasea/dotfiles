@@ -132,5 +132,6 @@ if [ -f /opt/git/hhighlighter/h.sh ]; then
     . /opt/git/hhighlighter/h.sh
 fi
 
-fbterm -- tmux > /dev/null 2>&1
+#fbterm -- tmux > /dev/null 2>&1
+fbtmux
 
