@@ -95,6 +95,7 @@ nnoremap  q  ZZ
 nnoremap  Q  :qall<cr>
 nnoremap \r  :write | edit $MYVIFMRC | restart<cr>
 nnoremap gr  :source ~/.vifm/vifmrc<cr>
+nnoremap gr  :grep<space>
 vnoremap  r  cw
 nnoremap  r  cW
 nnoremap  R  :rename<cr>
@@ -106,6 +107,7 @@ nnoremap  sD :diffsamewin<cr>
 nnoremap  sf :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
 nnoremap  sl :alink!<cr>
 nnoremap  sq :hideui<cr>
+nnoremap  sr :source ~/.vifm/vifmrc<cr>
 nnoremap  ss <c-w>S
 nnoremap  st :tree<cr>
 nnoremap  sT :find . -name "*"<cr>B
@@ -131,8 +133,8 @@ vnoremap  xI :sumovefromother<cr>
 nnoremap  xO :sumovetoother<cr>
 vnoremap  xO :sumovetoother<cr>
 nnoremap  y  yy
-nnoremap  Y  :copyfilename<cr>
-nnoremap gy  :copydirname<cr>
+nnoremap  Y  :copybasename<cr>
+nnoremap gy  :copyfullname<cr>
 nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
 "nnoremap  ss :vsplit!<cr>
 "nnoremap  ss :if layoutis('only') | vsplit | else | only | endif<cr>
@@ -313,8 +315,8 @@ command! sumovetoother   sudo mv -i %f %D %i
 command! sucopytoother   sudo cp -R %f %D %i
 command! sumovefromother sudo mv -i %F %d %i
 command! sucopyfromother sudo cp -R %F %d %i
-command! copyfilename    tmux setb %f %i &
-command! copydirname     tmux setb %d %i &
+command! copybasename    tmux setb %c %i &
+command! copyfullname    tmux setb %d/%c %i &
 command! iconv   iconv -f GBK -t UTF8 %c -o %c.new %i
 command! reload  :write | restart
 command! vid     vidmux %c
