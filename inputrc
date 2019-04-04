@@ -1,0 +1,16 @@
+# ~/.inputrc - user defined inputrc for libreadline
+# See readline(3readline) and `info rluserman' for more information.
+
+# do not bell on tab-completion
+# set bell-style none
+# set bell-style visible
+
+# some defaults / modifications for the emacs mode
+$if mode=emacs
+
+# press Ctrl-V and press F1~F12 can show the code, ^[ represents ESC
+# map F1/F12 to run cmd "cmatrix"
+"\eOP":"cmatrix\n"
+"\e[24~":"cmatrix\n"
+
+$endif
