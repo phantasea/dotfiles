@@ -5,8 +5,9 @@ map  <up>     <nop>
 map  <down>   <nop>
 
 nnoremap  <F5>   :shell<cr>
-nnoremap  <F12>  :diff<cr>
+nnoremap  <F10>  :diff<cr>
 nnoremap  <F11>  :diffsamewin<cr>
+nnoremap  <F12>  :.!cmatrix<cr>
 
 nnoremap  <return> <nop>
 nnoremap  <bs>     gh
