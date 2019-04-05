@@ -11,9 +11,9 @@ $if mode=emacs
 # press Ctrl-V and press F1~F12 can show the code, ^[ represents ESC
 # map F1/F12 to run cmd "cmatrix"
 # F1
-"\eOP":"screenfetch\n"
+"\eOP":"tty-clock -cBS -C 6\n"
 # F2
-"\eOQ":"tty-clock\n"
+"\eOQ":"screenfetch\n"
 # F8
 "\e[19~":"w\n"
 # F9

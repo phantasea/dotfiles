@@ -4,6 +4,7 @@ map  <right>  <nop>
 map  <up>     <nop>
 map  <down>   <nop>
 
+nnoremap  <F1>   :.!tty-clock -cBS -C 6<cr>
 nnoremap  <F5>   :shell<cr>
 nnoremap  <F10>  :diff<cr>
 nnoremap  <F11>  :diffsamewin<cr>
@@ -318,7 +319,7 @@ command! sumovefromother sudo mv -i %F %d %i
 command! sucopyfromother sudo cp -R %F %d %i
 command! copybasename    tmux setb %c %i &
 command! copyfullname    tmux setb %d/%c %i &
-command! iconv   iconv -f GBK -t UTF8 %c -o %c.new %i
+command! iconv   iconv -f GBK -t UTF8 %c -o %c %i
 command! reload  :write | restart
 command! vid     vidmux %c
 command! vidfs   vidmux -f %c

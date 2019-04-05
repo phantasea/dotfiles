@@ -27,6 +27,7 @@ alias bat='upower -i $(upower -e | grep "BAT") | grep -E "state|to\ full|percent
 alias bw='watch --interval=5 acpi -V'
 alias c='git clone'
 alias cal='ccal -3'
+alias clk='tty-clock -cBS -C 6'
 alias cc='lolcat'
 alias cn='cd ~/docs/note'
 alias cw='cd ~/docs/webs'
