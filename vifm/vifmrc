@@ -195,7 +195,7 @@ set fillchars=vborder:\|
 set timefmt="%H:%M\ %m/%d/%y"
 set numberwidth=1
 set classify=":dir:"
-set rulerformat="%=%l%%%S [+%0-] (%n)"
+set rulerformat="%=%l%%%S [.%0-] (%n)"
 set statusline="%5*[%A]%9* %6*%u:%g%9* %2*%d%9* %1*%a | %E%9* %4* %= %r \"%t%T\""
 set viewcolumns=-{name},{rating},17{mtime}
 set sizefmt=units:iec,precision:1
