@@ -59,7 +59,8 @@ keymap   G    END
 keymap   h    MOVE_LEFT
 keymap   H    MOV2TOP
 keymap   i    GOTO_LINK
-keymap   I    TAB_LINK
+#keymap  I    TAB_LINK
+keymap   I    COMMAND "TAB_LINK; LAST_TAB"
 keymap   M-i  COMMAND "SET_OPTION display_image=toggle; RELOAD"
 keymap   j    MOVE_DOWN1
 keymap   J    UP

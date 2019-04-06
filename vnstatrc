@@ -1,7 +1,8 @@
-# vnStat 1.11 config file
+# vnStat config file
 
 # default interface
-Interface "ppp0"
+#Interface "ppp0"
+Interface "wls3"
 
 # location of the database directory
 DatabaseDir "/var/lib/vnstat"
@@ -90,7 +91,7 @@ SaveOnStatusChange 1
 UseLogging 1
 
 # file used for logging if UseLogging is set to 1
-LogFile "~/.log/vnstat.log"
+LogFile "/home/simone/.log/vnstat.log"
 
 # file used as daemon pid / lock file
 PidFile "/var/run/vnstat.pid"
