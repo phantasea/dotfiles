@@ -23,8 +23,8 @@
 # Default key configuration for MOC (and a list of all available commands):
 
 quit                  = q
-quit_client           = x
-stop                  = s
+quit_client           = Q
+stop                  = x
 toggle_menu           = TAB
 toggle_layout         = w
 go                    = l
@@ -109,9 +109,9 @@ toggle_show_time    =
 toggle_show_format  = 
 toggle_read_tags    =	
 toggle_make_mono    =
-toggle_shuffle      = S
+toggle_shuffle      = s
 toggle_repeat       = 
-toggle_auto_next    = R
+toggle_auto_next    = r
 toggle_mixer        =
 toggle_softmixer    =
 toggle_equalizer    =
