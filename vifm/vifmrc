@@ -8,7 +8,7 @@ nnoremap  <F1>   :.!tty-clock -cBS -C 6<cr>
 nnoremap  <F5>   :shell<cr>
 nnoremap  <F10>  :diff<cr>
 nnoremap  <F11>  :diffsamewin<cr>
-nnoremap  <F12>  :.!cmatrix<cr>
+nnoremap  <F12>  :.!cmatrix -abs -C cyan<cr>
 
 nnoremap  <return> <nop>
 nnoremap  <bs>     gh

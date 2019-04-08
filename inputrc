@@ -14,11 +14,15 @@ $if mode=emacs
 "\eOP":"tty-clock -cBS -C 6\n"
 # F2
 "\eOQ":"screenfetch\n"
+# F3
+"\eOS":"em\n"
+# F5
+"\e[15~":"m\n"
 # F8
 "\e[19~":"w\n"
 # F9
-"\e[20~":"fm\n"
+"\e[20~":"f\n"
 # F12
-"\e[24~":"cmatrix\n"
+"\e[24~":"cmatrix -abs -C cyan\n"
 
 $endif
