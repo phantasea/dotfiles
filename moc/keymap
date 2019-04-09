@@ -94,6 +94,7 @@ go_to_fast_dir6 = 6
 go_to_fast_dir7 = 7	
 go_to_fast_dir8 = 8	
 go_to_fast_dir9 = 9	
+go_to_fast_dir10 = 0
 
 plist_add_stream =
 history_up       =
@@ -105,7 +106,7 @@ plist_move_down  =
 theme_menu       = T
 
 toggle_hidden_files =	
-toggle_show_time    = 
+toggle_show_time    = ^t
 toggle_show_format  = 
 toggle_read_tags    =	
 toggle_make_mono    =
