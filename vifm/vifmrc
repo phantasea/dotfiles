@@ -146,6 +146,7 @@ nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" 
 " }}}
 
 " cabbrev {{{
+cabbrev  mf  <c-x>m
 cabbrev  fn  <c-x>c
 cabbrev  dn  <c-x>d
 cabbrev  fno <c-x><c-x>c
@@ -293,6 +294,8 @@ endif
 " %i completely ignore command output
 " %m run the command in a menu window
 " %S Show command output in the status bar
+command! time  tty-clock -cBS -C 6
+command! ss    cmatrix -abs -C cyan
 command! sued  !sudoedit %c
 command! surm  sudo rm -rf %c
 command! rc    vimux ~/.vifm/vifmrc
