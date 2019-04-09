@@ -52,8 +52,8 @@ nnoremap  b  :set scrollbind!<cr>
 nnoremap gc  :change<cr>
 nnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
-nnoremap  cg :goto<space>
 nnoremap  cs :cds/
+nnoremap  cg :goto<space>
 nnoremap  cm cp
 vnoremap  cm cp
 nnoremap  ci :copyfromother<cr>
@@ -150,6 +150,7 @@ cabbrev  fn  <c-x>c
 cabbrev  dn  <c-x>d
 cabbrev  fno <c-x><c-x>c
 cabbrev  dno <c-x><c-x>d
+cabbrev  cs  colorscheme
 " }}}
 
 " mark {{{
