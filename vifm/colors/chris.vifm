@@ -22,7 +22,7 @@ highlight  Executable   ctermfg=green     ctermbg=none      cterm=none
 highlight  ErrorMsg     ctermfg=red       ctermbg=black     cterm=none
 highlight  Border       ctermfg=blue      ctermbg=black     cterm=bold
 highlight  StatusLine   ctermfg=white     ctermbg=blue      cterm=bold
-highlight  CmdLine      ctermfg=magenta   ctermbg=none      cterm=bold
+highlight  CmdLine      ctermfg=yellow    ctermbg=none      cterm=bold
 highlight  TabLine      ctermfg=none      ctermbg=black     cterm=none
 highlight  TabLineSel   ctermfg=none      ctermbg=black     cterm=bold,reverse
 highlight  TopLine      ctermfg=white     ctermbg=blue      cterm=bold
@@ -44,10 +44,10 @@ highlight  User5        ctermfg=red       ctermbg=black     cterm=bold,reverse
 highlight  User6        ctermfg=magenta   ctermbg=black     cterm=bold,reverse
 highlight  User9        ctermfg=white     ctermbg=black     cterm=bold,reverse
 
-highlight  /\.m3u$/     ctermfg=magenta   ctermbg=none      cterm=bold
 highlight  /^todo$/     ctermfg=red       ctermbg=none      cterm=bold
-highlight  /^misc$/     ctermfg=none      ctermbg=none      cterm=bold
-highlight  /^\-/        ctermfg=none      ctermbg=none      cterm=bold
 highlight  /^Makefile$/ ctermfg=red       ctermbg=none      cterm=bold
 highlight  /^README$/   ctermfg=red       ctermbg=none      cterm=bold
+highlight  /^FAQ$/      ctermfg=red       ctermbg=none      cterm=bold
+highlight  /^ChangeLog/ ctermfg=red       ctermbg=none      cterm=bold
 highlight  /^INSTALL$/  ctermfg=red       ctermbg=none      cterm=bold
+highlight  /\.m3u$/     ctermfg=magenta   ctermbg=none      cterm=bold
