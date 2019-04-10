@@ -29,12 +29,13 @@ highlight  TopLine      ctermfg=white     ctermbg=blue      cterm=bold
 highlight  TopLineSel   ctermfg=white     ctermbg=blue      cterm=bold
 highlight  CurrLine     ctermfg=none      ctermbg=black     cterm=bold,reverse
 highlight  OtherLine    ctermfg=white     ctermbg=black     cterm=bold
-highlight  Selected     ctermbg=black     ctermfg=yellow    cterm=bold
+highlight  Selected     ctermfg=white     ctermbg=none      cterm=bold
 highlight  JobLine      ctermfg=white     ctermbg=blue      cterm=bold
 highlight  Menu         ctermfg=white     ctermbg=black     cterm=none
 highlight  WildMenu     ctermfg=white     ctermbg=black     cterm=underline,reverse
 highlight  SuggestBox   ctermfg=yellow    ctermbg=black     cterm=bold
 highlight  CmpMismatch  ctermfg=red       ctermbg=black     cterm=bold
+
 highlight  User1        ctermfg=cyan      ctermbg=black     cterm=bold,reverse
 highlight  User2        ctermfg=green     ctermbg=black     cterm=bold,reverse
 highlight  User3        ctermfg=yellow    ctermbg=black     cterm=bold,reverse
@@ -42,3 +43,11 @@ highlight  User4        ctermfg=white     ctermbg=blue      cterm=bold
 highlight  User5        ctermfg=red       ctermbg=black     cterm=bold,reverse
 highlight  User6        ctermfg=magenta   ctermbg=black     cterm=bold,reverse
 highlight  User9        ctermfg=white     ctermbg=black     cterm=bold,reverse
+
+highlight  /\.m3u$/     ctermfg=magenta   ctermbg=none      cterm=bold
+highlight  /^todo$/     ctermfg=red       ctermbg=none      cterm=bold
+highlight  /^misc$/     ctermfg=none      ctermbg=none      cterm=bold
+highlight  /^\-/        ctermfg=none      ctermbg=none      cterm=bold
+highlight  /^Makefile$/ ctermfg=red       ctermbg=none      cterm=bold
+highlight  /^README$/   ctermfg=red       ctermbg=none      cterm=bold
+highlight  /^INSTALL$/  ctermfg=red       ctermbg=none      cterm=bold
