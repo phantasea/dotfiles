@@ -197,7 +197,7 @@ set fillchars=vborder:\|
 set timefmt="%H:%M\ %m/%d/%y"
 set numberwidth=1
 set classify=":dir:"
-set rulerformat="%=%l%%%S [.%0-] (%n)"
+set rulerformat="%=%l%%%S +%0-"
 set statusline="%5*[%A]%9* %6*%u:%g%9* %2*%d%9* %1*%a | %E%9* %4* %= %r \"%t%T\""
 set viewcolumns=-{name},{rating},17{mtime}
 set sizefmt=units:iec,precision:1
@@ -308,7 +308,7 @@ command! uz    tar -zxf %c %i &
 command! uj    tar -jxf %c %i &
 command! zip   zip -r %f.zip %f
 command! run   !! ./%f
-command! make  !!make
+command! make  !!make %a
 command! mkcd  :mkdir %a | cd %a
 command! md    mkdir -p %a
 command! mv    mv -r %f %D
@@ -423,12 +423,12 @@ fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %c
 filetype  *.asc  !!gpg --verify %c
 
 " Audio
-fileview  *.mp3,*.wav,*.flac,*.ogg,*.m4a,*.wma  mediainfo -f %c
+fileview  *.mp3,*.wav,*.flac,*.ogg,*.ape,*.wma  mediainfo %c
 filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg123 -q %c > /dev/null 2>&1 &
-filetype  *.wma                                 mplayer -really-quiet %c > /dev/null 2>&1 &
+filetype  *.wma,*.ape                           mplayer -really-quiet %c > /dev/null 2>&1 &
 
 " Video
-fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  mediainfo -f %c
+fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  mediainfo %c
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  vidmux -f %c
 
 " Image
@@ -479,7 +479,7 @@ filetype  *.7z
        \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
 
 " Rar2FsMount
-fileview  *.rar  als %c, unrar v %c
+fileview  *.rar  unrar v %c, als --option=use_rar_for_unpack=0 %c
 filetype  *.rar
        \ {Mount with rar2fs}
        \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
@@ -499,16 +499,6 @@ filetype  *.ssh
 filetype  *.ftp
        \ {Mount with curlftpfs}
        \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,
-
-" OpenRaster
-filextype *.ora
-        \ {Edit in MyPaint}
-        \ mypaint %f,
-
-" Mindmap
-filextype *.vym
-        \ {Open with VYM}
-        \ vym %f &,
 
 " MD5
 filetype *.md5
