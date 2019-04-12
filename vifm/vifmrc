@@ -100,7 +100,7 @@ nnoremap gr  :source ~/.vifm/vifmrc<cr>
 nnoremap gr  :grep<space>
 vnoremap  r  cw
 nnoremap  r  cW
-nnoremap  R  :rename<cr>
+nnoremap  R  cw
 qnoremap  s  <c-w>
 nnoremap  s  <c-w>
 nnoremap  sb :set scrollbind!<cr>
