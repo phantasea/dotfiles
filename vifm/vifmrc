@@ -372,12 +372,16 @@ fileview  *.[1-8] man ./%c | col -b
 
 " Office files
 fileview  *.doc  antiword %c, catdoc %c
+fileview  *.ppt  catppt %c
 fileview  *.docx docx2txt %c -
 if $DISPLAY == ""
   filetype  *.doc  vim %c
 else
   filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
 endif
+
+" tpp files
+filetype  *.tpp  tpp %c
 
 " c/c++ files
 fileview  *.h,*.c,*.cpp  highlight -S c -O ansi -s dante %c
