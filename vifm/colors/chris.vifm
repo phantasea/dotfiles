@@ -46,12 +46,14 @@ highlight  User9        ctermfg=white     ctermbg=black     cterm=bold,reverse
 
 highlight  /\.m3u$/     ctermfg=magenta   ctermbg=none      cterm=bold
 highlight  /\.exe$/     ctermfg=green     ctermbg=none      cterm=none
+highlight  /\.tar$/     ctermfg=red       ctermbg=none      cterm=bold
+highlight  /\.iso$/     ctermfg=red       ctermbg=none      cterm=bold
+highlight  /\.rar$/     ctermfg=red       ctermbg=none      cterm=bold
+highlight  /\.gz$/      ctermfg=red       ctermbg=none      cterm=bold
+highlight  /\.7z$/      ctermfg=red       ctermbg=none      cterm=bold
 highlight  /^todo$/     ctermfg=red       ctermbg=none      cterm=bold
 highlight  /^Makefile$/ ctermfg=red       ctermbg=none      cterm=bold
 highlight  /^README$/   ctermfg=red       ctermbg=none      cterm=bold
 highlight  /^FAQ$/      ctermfg=red       ctermbg=none      cterm=bold
 highlight  /^ChangeLog/ ctermfg=red       ctermbg=none      cterm=bold
 highlight  /^INSTALL$/  ctermfg=red       ctermbg=none      cterm=bold
-highlight  /(gz$|tar$)/ ctermfg=red       ctermbg=none      cterm=bold
-highlight  /(7z$|iso$)/ ctermfg=red       ctermbg=none      cterm=bold
-highlight  /(bz2|rar$)/ ctermfg=red       ctermbg=none      cterm=bold
