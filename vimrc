@@ -181,7 +181,7 @@ nnoremap   d<space>   :call SmartDiffToggle()<CR>
 nnoremap   g<space>   <NOP>
 nnoremap   m<space>   <NOP>
 nnoremap   s<space>   :call SmartWinMax()<CR>
-nnoremap   t<space>   :TlistToggle<CR>
+nnoremap   t<space>   <NOP>
 nnoremap   y<space>   <NOP>
 nnoremap   z<space>   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 nnoremap   [<space>   <NOP>
@@ -227,17 +227,11 @@ nnoremap   yo   o<Esc>k
 nnoremap   yO   O<Esc>j
 nnoremap   zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
-nnoremap   <leader>ev   :e $MYVIMRC<CR>
-nnoremap   <leader>ef   :e ~/.vifm/vifmrc<CR>
-nnoremap   <leader>ew   :e ~/.w3m/keymap<CR>
+nnoremap   <leader>fv   :edit ~/.vim/favlist
 nnoremap   <leader>be   :BufExplorer<CR>
 nnoremap   <leader>fe   :EditVifm<CR>
-nnoremap   <leader>tl   :TlistToggle<CR>
-nnoremap   <leader>ct   :ConqueTerm bash<CR>
-nnoremap   <leader>vm   :VimuxPromptCommand<CR>
 nnoremap   <leader>te   :tabedit <C-R>=expand("%:p:h")<CR>/
 nnoremap   <leader>cd   :cd %:p:h<CR>:pwd<CR>
-nnoremap   <leader>md   :!Markdown.pl % > %.html<CR><CR>:!w3mux %.html<CR>
 nnoremap   <leader>ts   :%s/\t/    /g<CR>
 
 cnoremap   <expr> %%    getcmdtype() == ':' ? expand('%:h').'/' : '%%'
@@ -247,7 +241,6 @@ cnoremap   <expr> %%    getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 iabbrev   teh      the
 iabbrev   xbq      `
 iabbrev   xdate    <C-R>=strftime("%d/%m/%y %H:%M:%S")<cr>
-cabbrev   xcal     Calendar<cr>
 "}}}
 
 " function  {{{
@@ -452,35 +445,6 @@ func! SmartWinMax()
     endif
 endfunc
 
-func! RunGCC()
-    exec "w"
-    if &filetype == 'c'
-        exec "!g++ % -o %<"
-        exec "!time ./%<"
-    elseif &filetype == 'cpp'
-        exec "!g++ % -o %<"
-        exec "!time ./%<"
-    elseif &filetype == 'java' 
-        exec "!javac %" 
-        exec "!time java %<"
-    elseif &filetype == 'sh'
-        :!time bash %
-    elseif &filetype == 'python'
-        exec "!time python2.7 %"
-    elseif &filetype == 'html'
-        exec "!firefox % &"
-    elseif &filetype == 'mkd'
-        exec "!Markdown.pl % > %.html &"
-        "exec "!firefox %.html &"
-    endif
-endfunc
-
-func! RunGDB()
-    exec "w"
-    exec "!g++ % -g -o %<"
-    exec "!gdb ./%<"
-endfunc
-
 func! VCopy(dir)
     let column     = virtcol('.')
     let pattern    = '\%' . column . 'v.'
@@ -677,19 +641,11 @@ augroup END
 " command  {{{
 " See the difference between the current buffer and the file it was loaded from, thus the changes you made.
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
-
-command! Xhelp   call DelHelpFile()
-command! Xsrc    source ~/.vimrc
 "}}}
 
 " plugins  {{{
 "Ag {{{
 let g:ag_prg = "ag --vimgrep --smart-case"
-"}}}
-
-"taskwarrior {{{
-let g:task_rc_override = 'rc.defaultheight=0'
-let g:task_rc_override = 'rc.defaultwidth=0'
 "}}}
 
 "bufexplorer {{{
@@ -705,11 +661,6 @@ let g:bufferline_active_buffer_left = '*'
 let g:bufferline_active_buffer_right = ' '
 "}}}
 
-"pandoc {{{
-let g:pandoc#folding#fdc = 0
-let g:pandoc#filetypes#pandoc_markdown = 0
-"}}}
-
 "taglist {{{
 let  g:Tlist_Auto_Update = 1
 let  g:Tlist_Auto_Highlight_Tag = 1
@@ -718,59 +669,8 @@ let  g:Tlist_Exit_OnlyWindow = 1
 let  g:Tlist_GainFocus_On_ToggleOpen = 1
 "}}}
 
-"multiplecursors {{{
-let  g:multi_cursor_use_default_mapping = 0
-let  g:multi_cursor_next_key = '+'
-let  g:multi_cursor_prev_key = '-'
-let  g:multi_cursor_skip_key = '\'
-let  g:multi_cursor_quit_key = '<Esc>'
-"}}}
-
-"w3m {{{
-let g:w3m#hover_set_on = -1
-let g:w3m#hover_delay_time = 50
-let g:w3m#external_browser = 'w3m'
-let g:w3m#homepage = 'http://www.baidu.com'
-let g:w3m#hit_a_hint_key = 'f'
-"}}}
-
 "viewdoc {{{
 let g:viewdoc_open = "topleft new"
 let g:viewdoc_only = 0
-"}}}
-
-"markdown {{{
-let g:vim_markdown_folding_disabled = 1
-"}}}
-
-"tmux-navigator {{{
-let g:tmux_navigator_save_on_switch = 0
-let g:tmux_navigator_no_mappings = 1
-"}}}
-
-"dragvisuals {{{
-let g:DVB_TrimWS = 1
-
-"vmap  <expr>  <LEFT>   DVB_Drag('left')
-"vmap  <expr>  <RIGHT>  DVB_Drag('right')
-"vmap  <expr>  <DOWN>   DVB_Drag('down')
-"vmap  <expr>  <UP>     DVB_Drag('up')
-"vmap  <expr>  Y        DVB_Duplicate()
-"}}}
-
-" showmarks {{{
-let g:showmarks_hlline_lower = 1
-let g:showmarks_hlline_upper = 1
-let g:showmarks_hlline_other = 1
-"}}}
-
-" markline keymap {{{
-"nnoremap  'b  'B  //blue
-"nnoremap  'c  'C  //cyan
-"nnoremap  'g  'G  //green
-"nnoremap  'm  'M  //magenta
-"nnoremap  'r  'R  //red
-"nnoremap  'w  'W  //white
-"nnoremap  'y  'Y  //yellow
 "}}}
 "}}}
