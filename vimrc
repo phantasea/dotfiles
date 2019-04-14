@@ -25,6 +25,8 @@ highlight User5        ctermfg=blue     ctermbg=black   cterm=inverse
 "let   mapleader=","
 "let g:mapleader=","
 
+runtime ftplugin/man.vim
+
 exec pathogen#infect()
 
 " option  {{{
@@ -241,6 +243,9 @@ cnoremap   <expr> %%    getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 iabbrev   teh      the
 iabbrev   xbq      `
 iabbrev   xdate    <C-R>=strftime("%d/%m/%y %H:%M:%S")<cr>
+
+cabbrev   cs       colorscheme
+cabbrev   man      Man
 "}}}
 
 " function  {{{
@@ -574,11 +579,6 @@ func! MyDiffSetting()
 endfunc
 "}}}
 
-" Special key mappings for diff mode
-"if &diff
-"    call MyDiffSetting()
-"endif
-
 " autocmd  {{{
 augroup autocmds
     autocmd!
@@ -609,6 +609,7 @@ augroup autocmds
 
     "when reading man file, delete empty file
     autocmd FileType man,help call DelEmptyFile()
+    "autocmd FileType man,help only
 
     "syntax highlight for txt file (txt.vim is needed)
     autocmd BufNewFile,BufRead *.txt set filetype=txt
@@ -641,6 +642,9 @@ augroup END
 " command  {{{
 " See the difference between the current buffer and the file it was loaded from, thus the changes you made.
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+command! Vimrc    edit ~/.vimrc
+command! Vifmrc   edit ~/.vifm/vifmrc
+command! Favlist  edit ~/.vim/favlist
 "}}}
 
 " plugins  {{{
@@ -667,10 +671,5 @@ let  g:Tlist_Auto_Highlight_Tag = 1
 let  g:Tlist_Show_One_File = 1
 let  g:Tlist_Exit_OnlyWindow = 1
 let  g:Tlist_GainFocus_On_ToggleOpen = 1
-"}}}
-
-"viewdoc {{{
-let g:viewdoc_open = "topleft new"
-let g:viewdoc_only = 0
 "}}}
 "}}}
