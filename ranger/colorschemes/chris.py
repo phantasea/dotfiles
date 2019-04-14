@@ -73,7 +73,7 @@ class Default(ColorScheme):
 					attr |= bold
 				if context.marked:
 					attr |= bold
-					fg = yellow
+					fg = white
 			if context.badinfo:
 				if attr & reverse:
 					bg = magenta
