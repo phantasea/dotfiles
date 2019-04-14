@@ -91,7 +91,7 @@ class Default(ColorScheme):
 					bg = red
 			elif context.link:
 				fg = magenta
-			fg = green
+			fg = yellow
 
 		elif context.in_statusbar:
 			if context.permissions:

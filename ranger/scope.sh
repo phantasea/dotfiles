@@ -47,12 +47,11 @@ handle_extension() {
         rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)
             atool --list -- "${FILE_PATH}" && exit 5
             als "${FILE_PATH}" && exit 5
-            bsdtar --list --file "${FILE_PATH}" && exit 5
             exit 1;;
         rar)
             # Avoid password prompt by providing empty password
-            als "${FILE_PATH}" && exit 5
-            unrar lt -p- -- "${FILE_PATH}" && exit 5
+            als --option=use_rar_for_unpack=0 "${FILE_PATH}" && exit 5
+            unrar v -- "${FILE_PATH}" && exit 5
             exit 1;;
         7z)
             # Avoid password prompt by providing empty password
@@ -64,8 +63,6 @@ handle_extension() {
         pdf)
             # Preview as text conversion
             pdftotext -l 3 -nopgbrk -q -- "${FILE_PATH}" - | fmt -w ${PV_WIDTH} && exit 5
-            mutool draw -F txt -i -- "${FILE_PATH}" 1-10 | fmt -w ${PV_WIDTH} && exit 5
-            exiftool "${FILE_PATH}" && exit 5
             exit 1;;
 
         # MS documents:
@@ -89,7 +86,6 @@ handle_extension() {
         htm|html|xhtml)
             # Preview as text conversion
             w3m -dump -T text/html "${FILE_PATH}" && exit 5
-            lynx -dump -- "${FILE_PATH}" && exit 5
             elinks -dump "${FILE_PATH}" && exit 5
             exit 1;;
 
@@ -103,7 +99,7 @@ handle_extension() {
             highlight -S python -O ansi -s dante "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
             exit 1;;
 
-        # GnuPG files:
+        # GnuPG files
         asc)
             gpg --quiet --no-tty --no-use-agent --no-verbose -d "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
             exit 1;;
@@ -113,8 +109,18 @@ handle_extension() {
             isoinfo -l -i "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
             exit 1;;
 
-        # Realmedia files:
-        rmvb|rmb|swf)
+        # Audio files
+        mp3|wav|flac|ogg|ape|wma)
+            mediainfo "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            exit 1;;
+
+        # Media files
+        rmvb|rmb|swf|avi|mp4|wmv|3gp|ogv|mkv|mpg|vob|flv|rmvb|rmb|vdat|webm)
+            mediainfo "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            exit 1;;
+
+        # Image files
+        bmp|jpg|jpeg|png|gif|xpm|ppm)
             mediainfo "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
             exit 1;;
 
@@ -128,7 +134,6 @@ handle_extension() {
 handle_image() {
     local mimetype="${1}"
     case "${mimetype}" in
-        # Image
         image/*)
             local orientation
             orientation="$( identify -format '%[EXIF:Orientation]\n' -- "${FILE_PATH}" )"
