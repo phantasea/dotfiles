@@ -665,6 +665,13 @@ let g:bufferline_active_buffer_left = '*'
 let g:bufferline_active_buffer_right = ' '
 "}}}
 
+"ranger {{{
+let g:ranger_map_keys = 0
+let g:ranger_open_new_tab = 0
+let g:ranger_replace_netrw = 1
+let g:ranger_command_override = 'ranger'
+"}}}
+
 "taglist {{{
 let  g:Tlist_Auto_Update = 1
 let  g:Tlist_Auto_Highlight_Tag = 1
