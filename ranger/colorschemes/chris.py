@@ -107,7 +107,7 @@ class Default(ColorScheme):
 					attr |= bold
 					fg = red
 			bg = blue
-			fg = yellow
+			fg = white
 			attr |= bold
 
 		if context.text:
