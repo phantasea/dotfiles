@@ -147,19 +147,16 @@ nnoremap   ['   [`
 nnoremap   ]'   ]`
 nnoremap   0    ^
 nnoremap   &    :&&<CR>
-nnoremap  g/    :Ag  %<left><left>
 nnoremap   #    #n
-nnoremap  g#    g#n
 nnoremap   *    *N
-nnoremap  g*    g*N
 vnoremap   &    :&&<CR>
 vnoremap   #    y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 vnoremap   *    y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 vnoremap   <    <gv
 vnoremap   >    >gv
 
-nnoremap   cd   :cd 
 nnoremap   c.   :cc<CR>
+nnoremap   cd   :cd 
 nnoremap   ch   :colder<CR>
 nnoremap   cl   :cnewer<CR>
 nnoremap   cj   :cnext<CR>
@@ -168,19 +165,14 @@ nnoremap   cn   :cnext<CR>
 nnoremap   cp   :cprev<CR>
 nnoremap   co   :call SmartOpenQfWin()<CR>
 
-"nmap dm   :g//delete<CR> doesn't retain all deletes in the nameless register
-nnoremap   dm   :     call ForAllMatches('delete', {})<CR>
-nnoremap   dM   :     call ForAllMatches('delete', {'inverse':1})<CR>
-nnoremap   ym   :     call ForAllMatches('yank',   {})<CR>
-nnoremap   yM   :     call ForAllMatches('yank',   {'inverse':1})<CR>
-vnoremap   md   :<C-U>call ForAllMatches('delete', {'visual':1})<CR>
-vnoremap   mD   :<C-U>call ForAllMatches('delete', {'visual':1, 'inverse':1})<CR>
-vnoremap   my   :<C-U>call ForAllMatches('yank',   {'visual':1})<CR>
-vnoremap   mY   :<C-U>call ForAllMatches('yank',   {'visual':1, 'inverse':1})<CR>
+nnoremap   g/   :Ag  %<left><left>
+nnoremap   g#   g#n
+nnoremap   g*   g*N
+nnoremap   gf   :call DirFilePicker("Normal")<CR>
 
 nnoremap   c<space>   :call SmartOpenQfWin()<CR>
 nnoremap   d<space>   :call SmartDiffToggle()<CR>
-nnoremap   g<space>   <NOP>
+nnoremap   g<space>   :view ~/.vim/favlist<CR>
 nnoremap   m<space>   <NOP>
 nnoremap   s<space>   :call SmartWinMax()<CR>
 nnoremap   t<space>   <NOP>
@@ -193,9 +185,8 @@ nnoremap   ><space>   <NOP>
 nnoremap   =<space>   <NOP>
 nnoremap   !<space>   <NOP>
 nnoremap   @<space>   <NOP>
-nnoremap   _<space>   :set cursorcolumn!<CR>
 nnoremap   -<space>   :set cursorline!<CR>
-nnoremap  \|<space>   :call ToggleColorColumn()<CR>
+nnoremap  \|<space>   :set cursorcolumn!<CR>
 
 nnoremap   j    gj
 vnoremap   j    gj
@@ -214,6 +205,7 @@ vnoremap   S    :s/\%V/g<left><left>
 nnoremap   s    <C-W>
 nnoremap   sa   :vert ball<CR>
 nnoremap   sb   :windo set scrollbind!<cr>
+nnoremap   sf   :call DirFilePicker("HSplit")<CR>
 nnoremap   sq   :call QuitAllBufButMe()<CR>
 nnoremap   s}   :call OpenTagPreviewWin()<CR>
 nnoremap   s#   :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
@@ -317,6 +309,36 @@ func! SmartQuit()
     endif
 
     bdelete
+endfunc
+
+func! DirFilePicker(mode)
+    let thisline = getline(".")
+
+    let dircmd = ""
+    let filecmd = ""
+    if a:mode == "Normal"
+        let dircmd = "EditVifm"
+        let filecmd = "gf"
+    elseif a:mode == "HSplit"
+        let dircmd = "SplitVifm"
+        let filecmd = "\<c-w>f"
+    elseif a:mode == "VSplit"
+        let dircmd = "VSplitVifm"
+        let filecmd = "\<c-w>f"
+    elseif a:mode == "Tab"
+        let dircmd = "TabVifm"
+        let filecmd = "\<c-w>gf"
+    endif
+
+    if dircmd == "" || filecmd == ""
+        return
+    endif
+
+    if isdirectory(thisline)
+        exec dircmd." ".thisline
+    else
+        exec "normal! ".filecmd
+    endif
 endfunc
 
 func! QuitAllBufButMe()
@@ -490,79 +512,6 @@ func! SetTitle()
         call append(line(".")+7, "")
     endif
 endfunc 
-
-" yanking or deleting all lines with a match
-func! ForAllMatches (command, options)
-    " Remember where we parked...
-    let orig_pos = getpos('.')
-
-    " Work out the implied range of lines to consider...
-    let in_visual = get(a:options, 'visual', 0)
-    let start_line = in_visual ? getpos("'<'")[1] : 1
-    let end_line   = in_visual ? getpos("'>'")[1] : line('$')
-
-    " Are we inverting the selection???
-    let inverted = get(a:options, 'inverse', 0)
-
-    " Are we modifying the buffer???
-    let deleting = a:command == 'delete'
-
-    " Honour smartcase (which :lvimgrep doesn't, by default)
-    let sensitive = &ignorecase && &smartcase && @/ =~ '\u' ? '\C' : ''
-
-    " Identify the lines to be operated on...
-    exec 'silent lvimgrep /' . sensitive . @/ . '/j %'
-    let matched_line_nums
-    \ = reverse(filter(map(getloclist(0), 'v:val.lnum'), 'start_line <= v:val && v:val <= end_line'))
-
-    " Invert the list of lines, if requested...
-    if inverted
-        let inverted_line_nums = range(start_line, end_line)
-        for line_num in matched_line_nums
-            call remove(inverted_line_nums, line_num-1)
-        endfor
-        let matched_line_nums = reverse(inverted_line_nums)
-    endif
-
-    " Filter the original lines...
-    let yanked = ""
-    for line_num in matched_line_nums
-        " Remember yanks or deletions...
-        let yanked = getline(line_num) . "\n" . yanked
-
-        " Delete buffer lines if necessary...
-        if deleting
-            exec line_num . 'delete'
-        endif
-    endfor
-
-    " Make yanked lines available for putting...
-    let @" = yanked
-
-    " Return to original position...
-    call setpos('.', orig_pos)
-
-    " Report results...
-    redraw
-    let match_count = len(matched_line_nums)
-    if match_count == 0
-        unsilent echo 'Nothing to ' . a:command . ' (no matches found)'
-    elseif deleting
-        unsilent echo match_count . (match_count > 1 ? ' fewer lines' : ' less line')
-    else
-        unsilent echo match_count . ' line' . (match_count > 1 ? 's' : '') . ' yanked'
-    endif
-endfunc
-
-func! ToggleColorColumn()
-    let col_num = virtcol(".")
-    let cc_list = split(&colorcolumn, ',')
-    if count(cc_list, string(col_num)) <= 0
-        execute "set colorcolumn+=".col_num
-    else
-        execute "set colorcolumn-=".col_num
-    endif
-endfunc
 
 func! MyDiffSetting()
     "color     peaksea
