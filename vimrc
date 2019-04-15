@@ -147,8 +147,11 @@ nnoremap   ['   [`
 nnoremap   ]'   ]`
 nnoremap   0    ^
 nnoremap   &    :&&<CR>
+nnoremap  g/    :Ag  %<left><left>
 nnoremap   #    #n
+nnoremap  g#    g#n
 nnoremap   *    *N
+nnoremap  g*    g*N
 vnoremap   &    :&&<CR>
 vnoremap   #    y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 vnoremap   *    y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
@@ -164,30 +167,7 @@ nnoremap   ck   :cprev<CR>
 nnoremap   cn   :cnext<CR>
 nnoremap   cp   :cprev<CR>
 nnoremap   co   :call SmartOpenQfWin()<CR>
-
-nnoremap   g/   :Ag  %<left><left>
-nnoremap   g#   g#n
-nnoremap   g*   g*N
-nnoremap   gf   :call DirFilePicker("Normal")<CR>
-
-nnoremap   c<space>   :call SmartOpenQfWin()<CR>
-nnoremap   d<space>   :call SmartDiffToggle()<CR>
-nnoremap   g<space>   :view ~/.vim/favlist<CR>
-nnoremap   m<space>   <NOP>
-nnoremap   s<space>   :call SmartWinMax()<CR>
-nnoremap   t<space>   <NOP>
-nnoremap   y<space>   <NOP>
-nnoremap   z<space>   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-nnoremap   [<space>   <NOP>
-nnoremap   ]<space>   <NOP>
-nnoremap   <<space>   <NOP>
-nnoremap   ><space>   <NOP>
-nnoremap   =<space>   <NOP>
-nnoremap   !<space>   <NOP>
-nnoremap   @<space>   <NOP>
-nnoremap   -<space>   :set cursorline!<CR>
-nnoremap  \|<space>   :set cursorcolumn!<CR>
-
+nnoremap  gf    :call DirFilePicker("Normal")<CR>
 nnoremap   j    gj
 vnoremap   j    gj
 nnoremap  gj    J
@@ -220,6 +200,24 @@ nnoremap   Y    y$
 nnoremap   yo   o<Esc>k
 nnoremap   yO   O<Esc>j
 nnoremap   zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+
+nnoremap   c<space>   :call SmartOpenQfWin()<CR>
+nnoremap   d<space>   :call SmartDiffToggle()<CR>
+nnoremap   g<space>   :view ~/.vim/favlist<CR>
+nnoremap   m<space>   <NOP>
+nnoremap   s<space>   :call SmartWinMax()<CR>
+nnoremap   t<space>   <NOP>
+nnoremap   y<space>   <NOP>
+nnoremap   z<space>   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+nnoremap   [<space>   <NOP>
+nnoremap   ]<space>   <NOP>
+nnoremap   <<space>   <NOP>
+nnoremap   ><space>   <NOP>
+nnoremap   =<space>   <NOP>
+nnoremap   !<space>   <NOP>
+nnoremap   @<space>   <NOP>
+nnoremap   -<space>   :set cursorline!<CR>
+nnoremap  \|<space>   :set cursorcolumn!<CR>
 
 nnoremap   <leader>fv   :edit ~/.vim/favlist
 nnoremap   <leader>be   :BufExplorer<CR>
@@ -483,36 +481,6 @@ func! VCopy(dir)
     endif
 endfunc
 
-""定义函数SetTitle，自动插入文件头 
-func! SetTitle() 
-    "如果文件类型为.sh文件 
-    if &filetype == 'sh' 
-        call setline(1,"\#!/bin/bash") 
-        call append(line("."), "") 
-    elseif &filetype == 'python'
-        call setline(1,"#!/usr/bin/env python")
-        call append(line("."),"# coding=utf-8")
-        call append(line(".")+1, "") 
-    else 
-        call setline(1, "/*************************************************************************") 
-        call append(line("."),   "    > File Name: ".expand("%")) 
-        call append(line(".")+1, "    > Author: ma6174") 
-        call append(line(".")+2, "    > Mail: ma6174@163.com ") 
-        call append(line(".")+3, "    > Created Time: ".strftime("%c")) 
-        call append(line(".")+4, " ************************************************************************/") 
-        call append(line(".")+5, "")
-    endif
-    if &filetype == 'cpp'
-        call append(line(".")+6, "#include <iostream>")
-        call append(line(".")+7, "using namespace std;")
-        call append(line(".")+8, "")
-    endif
-    if &filetype == 'c'
-        call append(line(".")+6, "#include <stdio.h>")
-        call append(line(".")+7, "")
-    endif
-endfunc 
-
 func! MyDiffSetting()
     "color     peaksea
     syntax     off
@@ -570,21 +538,6 @@ augroup autocmds
     "reading Ms-Word documents, requires antiword
     autocmd BufReadPre  *.doc setlocal readonly
     autocmd BufReadPost *.doc %!antiword "%"
-
-    "Delete trailing white space on save
-    "autocmd BufWrite *.py call LineStrip()
-
-    "自动将Vim工作目录迁移到所打开文件的目录下
-    "autocmd BufEnter * cd %:p:h
-
-    "au FileType php setlocal dict+=~/.vim/dict/php_funclist.dict
-    "au FileType css setlocal dict+=~/.vim/dict/css.dict
-    "au FileType c setlocal dict+=~/.vim/dict/c.dict
-    "au FileType cpp setlocal dict+=~/.vim/dict/cpp.dict
-    "au FileType scale setlocal dict+=~/.vim/dict/scale.dict
-    "au FileType javascript setlocal dict+=~/.vim/dict/javascript.dict
-    "au FileType html setlocal dict+=~/.vim/dict/javascript.dict
-    "au FileType html setlocal dict+=~/.vim/dict/css.dict
 augroup END
 "}}}
 
