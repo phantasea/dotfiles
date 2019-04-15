@@ -312,7 +312,11 @@ endfunc
 let g:file_picker_vifm = 0
 func! DirFilePicker(mode)
     if g:file_picker_vifm == 0
-        exec "normal! gf"
+        if a:mode == "Normal"
+            exec "normal! gf"
+        elseif a:mode == "HSplit"
+            exec "normal! \<c-w>f"
+        endif
         return
     endif
 
