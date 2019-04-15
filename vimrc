@@ -309,8 +309,12 @@ func! SmartQuit()
     bdelete
 endfunc
 
+let g:file_picker_vifm = 0
 func! DirFilePicker(mode)
-    let thisline = getline(".")
+    if g:file_picker_vifm == 0
+        exec "normal! gf"
+        return
+    endif
 
     let dircmd = ""
     let filecmd = ""
@@ -332,6 +336,7 @@ func! DirFilePicker(mode)
         return
     endif
 
+    let thisline = getline(".")
     if isdirectory(thisline)
         exec dircmd." ".thisline
     else
