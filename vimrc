@@ -2,8 +2,8 @@
 
 " colorscheme  {{{
 highlight ColorColumn  ctermfg=white    ctermbg=green   cterm=bold
-highlight CursorColumn ctermfg=white    ctermbg=yellow  cterm=bold
-highlight CursorLine   ctermfg=white    ctermbg=yellow  cterm=bold
+highlight CursorColumn ctermfg=white    ctermbg=red     cterm=bold
+highlight CursorLine   ctermfg=white    ctermbg=red     cterm=bold
 highlight IncSearch    ctermbg=black    ctermfg=red     cterm=reverse
 highlight Pmenu        ctermfg=white    ctermbg=blue    cterm=none
 highlight PmenuSel     ctermfg=black    ctermbg=green   cterm=none
@@ -227,15 +227,6 @@ nnoremap   <leader>cd   :cd %:p:h<CR>:pwd<CR>
 nnoremap   <leader>ts   :%s/\t/    /g<CR>
 
 cnoremap   <expr> %%    getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-"}}}
-
-" abbrev  {{{
-iabbrev   teh      the
-iabbrev   xbq      `
-iabbrev   xdate    <C-R>=strftime("%d/%m/%y %H:%M:%S")<cr>
-
-cabbrev   cs       colorscheme
-cabbrev   man      Man
 "}}}
 
 " function  {{{
@@ -534,7 +525,7 @@ augroup autocmds
     autocmd FileType help set buflisted
 
     "when reading man file, delete empty file
-    autocmd FileType man,help call DelEmptyFile()
+    "autocmd FileType man,help call DelEmptyFile()
     "autocmd FileType man,help only
 
     "syntax highlight for txt file (txt.vim is needed)
@@ -548,6 +539,11 @@ augroup autocmds
     autocmd BufReadPre  *.doc setlocal readonly
     autocmd BufReadPost *.doc %!antiword "%"
 augroup END
+"}}}
+
+" abbrev  {{{
+iabbrev   xbq      `
+iabbrev   xdate    <C-R>=strftime("%d/%m/%y %H:%M:%S")<cr>
 "}}}
 
 " command  {{{
