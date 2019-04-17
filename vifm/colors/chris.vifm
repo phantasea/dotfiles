@@ -6,7 +6,7 @@
 " Available style values (some of them can be combined):
 " bold  underline  reverse/inverse  standout  none
 
-"highlight group      ctermfg=fg_color    ctermbg=bg_color    cterm=attrs 
+"highlight group        ctermfg=fg_color  ctermbg=bg_color  cterm=attrs 
 
 highlight clear
 
