@@ -331,6 +331,9 @@ command! vgrep   vim "+grep %a"
 command! fim     fim %f > /dev/null 2>&1
 command! imgall  imgview -s
 command! rimgall imgview -rs
+command! picpix  mediainfo %c |egrep '(Width|Height)' |awk -F ':' '{print $2}'
+                 \ |sed 's/\ //g'|sed 's/pixels//g' |tr '\n' 'x'| sed 's/x$//' %S
+
 " }}}
 
 " filetype and fileview {{{
@@ -532,8 +535,7 @@ fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo*.xpi  als %c
 if $DISPLAY == ""
   filetype  * vimux %f
 else
- "filextype * gvim %f &
-  filextype * subl %f
+  filextype * gvim %f &
 endif
 " }}}
 
