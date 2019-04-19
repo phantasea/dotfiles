@@ -525,7 +525,7 @@ augroup autocmds
     autocmd FileType help set buflisted
 
     "when reading man file, delete empty file
-    "autocmd FileType man,help call DelEmptyFile()
+    autocmd FileType man,help call DelEmptyFile()
     "autocmd FileType man,help only
 
     "syntax highlight for txt file (txt.vim is needed)

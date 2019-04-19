@@ -67,9 +67,9 @@ vnoremap  cO :sucopytoother<cr>
 nnoremap  d  dd
 nnoremap  D  DD
 nnoremap ge  :empty<cr>
-nnoremap  e  :edit %f<cr>
+nnoremap  e  :edit %c<cr>
 qnoremap  e  q:edit %c<cr>
-nnoremap  E  :suedit<cr>
+nnoremap  E  :sued<cr>
 nnoremap \f  :file<cr>
 mnoremap  h  q
 nnoremap gi  :imgall<cr>
@@ -85,8 +85,7 @@ mnoremap  K  <c-y>
 qnoremap  J  qje:if isactive('preview') | switch | endif<cr>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
 nnoremap gl  gf
-nnoremap  mm :copen<cr>
-nnoremap  mv :move<cr>
+nnoremap \m  :copen<cr>
 nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
@@ -328,7 +327,6 @@ command! imgall  imgview -s
 command! rimgall imgview -rs
 command! picpix  mediainfo %c |egrep '(Width|Height)' |awk -F ':' '{print $2}'
                  \ |sed 's/\ //g'|sed 's/pixels//g' |tr '\n' 'x'| sed 's/x$//' %S
-
 " }}}
 
 " filetype and fileview {{{
