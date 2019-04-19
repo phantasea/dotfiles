@@ -176,7 +176,7 @@ set syscalls
 set iooptions=fastfilecloning
 
 " This is the actual command used to start vi.  The default is vim.
-set vicmd="vimux"
+set vicmd="vim"
 set vixcmd="vim"
 
 " TUI options
