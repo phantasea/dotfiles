@@ -70,6 +70,7 @@ nnoremap ge  :empty<cr>
 nnoremap  e  :edit %f<cr>
 qnoremap  e  q:edit %c<cr>
 nnoremap  E  :suedit<cr>
+nnoremap \f  :file<cr>
 mnoremap  h  q
 nnoremap gi  :imgall<cr>
 nnoremap gI  :rimgall<cr>
@@ -84,7 +85,6 @@ mnoremap  K  <c-y>
 qnoremap  J  qje:if isactive('preview') | switch | endif<cr>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
 nnoremap gl  gf
-nnoremap \l  :file &<cr>
 nnoremap  mm :copen<cr>
 nnoremap  mv :move<cr>
 nnoremap  oo =
@@ -137,12 +137,7 @@ vnoremap  xO :sumovetoother<cr>
 nnoremap  y  yy
 nnoremap  Y  :copybasename<cr>
 nnoremap gy  :copyfullname<cr>
-nnoremap  zv :if &vicmd == "vimux" | set vicmd="vim" | else | set vicmd="vimux" | endif<cr>
-"nnoremap  ss :vsplit!<cr>
-"nnoremap  ss :if layoutis('only') | vsplit | else | only | endif<cr>
-"nnoremap \v  :if layoutis('only') | vsplit | endif | view<cr>
-"nnoremap  v  :if !layoutis('only') | view | else | explore | endif<cr>
-"nnoremap <tab> :if isactive('preview') | swap | endif<cr>
+"nnoremap v  :if !layoutis('only') | view | else | explore | endif<cr>
 " }}}
 
 " cabbrev {{{
@@ -183,7 +178,7 @@ set iooptions=fastfilecloning
 
 " This is the actual command used to start vi.  The default is vim.
 set vicmd="vimux"
-set vixcmd="gvim &"
+set vixcmd="vim"
 
 " TUI options
 set notitle
@@ -528,14 +523,15 @@ filetype *.sha512
        \ sha512sum -c %f %S,
 
 " Misc
-fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo*.xpi  als %c
+fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo,*.xpi  als %c
 
 " Open all other files with default system programs. By default all unknown files are opened with 'vi[x]cmd'
-"  fileview * file -i %c
+fileview * vim %c
+
 if $DISPLAY == ""
   filetype  * vimux %f
 else
-  filextype * gvim %f &
+  filextype * vim %f
 endif
 " }}}
 
