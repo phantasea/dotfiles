@@ -524,8 +524,6 @@ filetype *.sha512
 fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo,*.xpi  als %c
 
 " Open all other files with default system programs. By default all unknown files are opened with 'vi[x]cmd'
-fileview * vim %c
-
 if $DISPLAY == ""
   filetype  * vimux %f
 else
