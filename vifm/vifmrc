@@ -533,5 +533,5 @@ fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo,*.xpi  als %c
 " }}}
 
 " What should be saved automatically between vifm runs
-set vifminfo=chistory,dhistory,fhistory,shistory,savedirs,state,tui,dirstack,ratings
+set vifminfo=tui,chistory,dhistory,shistory,savedirs,ratings
 
