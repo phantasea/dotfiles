@@ -172,12 +172,13 @@ bmark! ~/docs doc
 " }}}
 
 " option {{{
-set syscalls
-set iooptions=fastfilecloning
-
 " This is the actual command used to start vi.  The default is vim.
 set vicmd="vimux"
 set vixcmd="vim"
+
+" IO options
+set syscalls
+set iooptions=fastfilecloning
 
 " TUI options
 set notitle
@@ -524,11 +525,11 @@ filetype *.sha512
 fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo,*.xpi  als %c
 
 " Open all other files with default system programs. By default all unknown files are opened with 'vi[x]cmd'
-if $DISPLAY == ""
-  filetype  * vimux %f
-else
-  filextype * vim %f
-endif
+" if $DISPLAY == ""
+"   filetype  * vimux %f
+" else
+"   filextype * vim %f
+" endif
 " }}}
 
 " What should be saved automatically between vifm runs
