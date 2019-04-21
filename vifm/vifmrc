@@ -150,7 +150,6 @@ cabbrev  cs  colorscheme
 
 " mark {{{
 mark a /opt/apps
-mark b /opt/bin
 mark e /opt/etc
 mark h ~/
 mark m /media/simone
