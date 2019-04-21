@@ -1,15 +1,15 @@
 " vim: set ft=vim :
 
 " colorscheme  {{{
+highlight Search       ctermbg=blue     ctermfg=white   cterm=bold
+highlight IncSearch    ctermbg=red      ctermfg=white   cterm=bold
 highlight ColorColumn  ctermfg=white    ctermbg=green   cterm=bold
 highlight CursorColumn ctermfg=white    ctermbg=red     cterm=bold
 highlight CursorLine   ctermfg=white    ctermbg=red     cterm=bold
-highlight IncSearch    ctermbg=black    ctermfg=red     cterm=reverse
 highlight Pmenu        ctermfg=white    ctermbg=blue    cterm=none
 highlight PmenuSel     ctermfg=black    ctermbg=green   cterm=none
 highlight PmenuSbar    ctermbg=black
 highlight PmenuThumb   ctermbg=black
-highlight Search       ctermbg=blue     ctermfg=white   cterm=bold
 highlight TabLine      ctermfg=white    ctermbg=blue    cterm=bold
 highlight TabLineSel   ctermfg=white    ctermbg=blue    cterm=bold,reverse
 highlight TabLineFill  ctermfg=white    ctermbg=blue    cterm=bold
@@ -105,6 +105,9 @@ nnoremap   <C-Right>  ze
 
 map <F7>   :set wrap!<CR>
 map <F8>   :nohlsearch<CR>
+
+imap  jj   <ESC>
+cmap  jj   <ESC>
 
 onoremap   aa   :<C-U>normal! ggVG<CR>
 onoremap   if   :<C-U>normal! [[jV]]k<CR>
@@ -494,6 +497,12 @@ func! MyDiffSetting()
     vnoremap   do   :diffput<CR>
     nnoremap   du   :diffupdate<CR>
 endfunc
+
+func! TrimTrailingWS ()
+    if search('\s\+$', 'cnw')
+        :%s/\s\+$//g
+    endif
+endfunc
 "}}}
 
 " autocmd  {{{
@@ -533,7 +542,10 @@ augroup autocmds
     autocmd FileType changelog set filetype=txt
 
     "auto load vimrc after writing
-    "autocmd BufWritePost .vimrc source ~/.vimrc
+    "autocmd BufWritePost $MYVIMRC source $MYVIMRC
+
+    "Goto last location in non-empty files
+    "autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
     "reading Ms-Word documents, requires antiword
     autocmd BufReadPre  *.doc setlocal readonly
