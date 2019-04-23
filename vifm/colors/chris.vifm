@@ -44,8 +44,8 @@ highlight  User5        ctermfg=red       ctermbg=black     cterm=bold,reverse
 highlight  User6        ctermfg=magenta   ctermbg=black     cterm=bold,reverse
 highlight  User9        ctermfg=white     ctermbg=black     cterm=bold,reverse
 
-highlight  /\.m3u$/     ctermfg=magenta   ctermbg=none      cterm=bold
 highlight  /\.exe$/     ctermfg=green     ctermbg=none      cterm=none
+highlight  /\.m3u$/     ctermfg=red       ctermbg=none      cterm=bold
 highlight  /\.tar$/     ctermfg=red       ctermbg=none      cterm=bold
 highlight  /\.iso$/     ctermfg=red       ctermbg=none      cterm=bold
 highlight  /\.rar$/     ctermfg=red       ctermbg=none      cterm=bold

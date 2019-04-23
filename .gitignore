@@ -9,3 +9,6 @@ moc/pid
 moc/softmixer
 ranger/colorschemes/__init__.pyo
 ranger/colorschemes/chris.pyo
+newsbeuter/cache.db
+newsbeuter/history.cmdline
+newsbeuter/history.search
