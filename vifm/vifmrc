@@ -10,9 +10,16 @@ nnoremap  <F10>  :diff<cr>
 nnoremap  <F11>  :diffsamewin<cr>
 nnoremap  <F12>  :.!cmatrix -abs -C cyan<cr>
 
-nnoremap  <return> <nop>
 nnoremap  <bs>     gh
+nnoremap  <cr>     <nop>
 qnoremap  <space>  <tab>
+nnoremap c<space>  :change<cr>
+nnoremap g<space>  :edit $MYVIFMRC<cr>
+nnoremap m<space>  :copen<cr>
+nnoremap o<space>  j
+nnoremap s<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
+nnoremap x<space>  <c-w>x
+nnoremap z<space>  j
 
 nnoremap  <c-b>  :tree<cr>
 cnoremap  <c-j>  <cr>
@@ -90,12 +97,11 @@ nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
 nnoremap  o. zA
-nnoremap  O  zM
+nnoremap  O  zR
 qnoremap  p  <c-b>
 nnoremap  q  ZZ
 nnoremap  Q  :qall<cr>
-nnoremap \r  :write | edit $MYVIFMRC | restart<cr>
-nnoremap gr  :source ~/.vifm/vifmrc<cr>
+nnoremap \r  :source ~/.vifm/vifmrc<cr>
 nnoremap gr  :grep<space>
 vnoremap  r  cw
 nnoremap  r  cW
@@ -105,13 +111,12 @@ nnoremap  s  <c-w>
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sd :diff<cr>
 nnoremap  sD :diffsamewin<cr>
-nnoremap  sf :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
+nnoremap  sf :find . -name "*"<cr>B
 nnoremap  sl :alink!<cr>
 nnoremap  sq :hideui<cr>
 nnoremap  sr :source ~/.vifm/vifmrc<cr>
 nnoremap  ss <c-w>S
 nnoremap  st :tree<cr>
-nnoremap  sT :find . -name "*"<cr>B
 nnoremap  sy :sync<cr>
 nnoremap gs  :sort<cr>
 nnoremap  S  :%s//g<left><left>
@@ -191,9 +196,7 @@ set dotdirs=rootparent
 set fillchars=vborder:\|
 set timefmt="%H:%M\ %m/%d/%y"
 set numberwidth=1
-set classify=":dir:"
 set rulerformat="%=%l%%%S +%0-"
-set statusline="%5*[%A]%9* %6*%u:%g%9* %2*%d%9* %1*%a | %E%9* %4* %= %r \"%t%T\""
 set viewcolumns=-{name},{rating},17{mtime}
 set sizefmt=units:iec,precision:1
 set milleroptions=lsize:2,csize:5,rsize:3
@@ -206,7 +209,17 @@ set cpoptions="s"
 set caseoptions="pg"
 set grepprg='ag --line-numbers %i %a %s'
 set prefervsplit
-windo filter! /(lost\+found|Desktop|sandisk_win|sandisk_ext|sandisk_exp|Extreme\ SSD|udisk_hama|3166-6338|d042e951-|华为手机助手)/
+
+if $DISPLAY == ""
+  set classify="■ :dir:,◘ :reg:,Ξ :exe:,▥ :link:,▣ :char:,▩ :block:"
+  set statusline="%5*[%A]%9*‥%6*%u:%g%9*‥%2*%d%9*‥%1*%a | %E%9*‥%4* %= %r \"%t%T\""
+else
+  set classify="✠ :dir:,※ :reg:,♠ :exe:,♣ :link:,◇ :char:,◆ :block:"
+  set statusline="%5*[%A]%9* %6*%u:%g%9* %2*%d%9* %1*%a | %E%9* %4* %= %r \"%t%T\""
+endif
+
+windo filter! /(lost\+found|Desktop|sandisk_win|sandisk_ext|sandisk_exp
+              \|Extreme\ SSD|udisk_hama|3166-6338|d042e951-|华为手机助手)/
 
 " Show list of matches on tab complition in command-line mode
 set wildmenu
@@ -248,7 +261,7 @@ set undolevels=9
 
 " If you installed the vim.txt help file set vimhelp.
 " If would rather use a plain text help file set novimhelp.
-set novimhelp
+set vimhelp
 
 " If you would like to run an executable file when you
 " press return on the file name set this.
@@ -308,6 +321,8 @@ command! mkcd  :mkdir %a | cd %a
 command! md    mkdir -p %a
 command! mv    mv -r %f %D
 command! cp    cp -r %f %D
+command! link  ln -s %d/%f %D
+command! mkbt  mktorrent -p -a [your announce url here] -o %D/%f.torrent %d%f
 command! movetoother     mv -i %f %D %i &
 command! copytoother     cp -R %f %D %i &
 command! movefromother   mv -i %F %d %i &
@@ -520,6 +535,9 @@ filetype *.sha256
 filetype *.sha512
        \ {Check SHA512 hash sum}
        \ sha512sum -c %f %S,
+
+" Windows EXE file
+fileview *.exe  echo Windows binary file: no preview available. %i
 
 " Misc
 fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo,*.xpi  als %c
