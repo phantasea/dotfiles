@@ -183,6 +183,7 @@ nnoremap   n    nzz
 nnoremap   N    Nzz
 nnoremap   q    :call SmartQuit()<CR>
 nnoremap   Q    :qall!<CR>
+nnoremap  gs    :write<CR>
 nnoremap   S    :%s//g<Left><Left>
 vnoremap   S    :s/\%V/g<left><left>
 nnoremap   s    <C-W>
@@ -358,8 +359,8 @@ endfunc
 
 func! DelEmptyFile()
     for b in ListedBufs()
-        if empty(bufname(b)) && getbufvar(b, "&filetype") != "man"
-            exec "bdelete ".b
+        if empty(bufname(b)) && empty(&filetype)
+            exec("bdelete ".b)
             break
         endif
     endfor
