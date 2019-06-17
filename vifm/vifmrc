@@ -4,11 +4,11 @@ map  <right>  <nop>
 map  <up>     <nop>
 map  <down>   <nop>
 
-nnoremap  <F1>   :.!tty-clock -cBS -C 6<cr>
-nnoremap  <F5>   :shell<cr>
-nnoremap  <F10>  :diff<cr>
-nnoremap  <F11>  :diffsamewin<cr>
-nnoremap  <F12>  :.!cmatrix -abs -C cyan<cr>
+nnoremap  <F1>     :.!tty-clock -cBS -C 6<cr>
+nnoremap  <F5>     :shell<cr>
+nnoremap  <F10>    :diff<cr>
+nnoremap  <F11>    :diffsamewin<cr>
+nnoremap  <F12>    :.!cmatrix -abs -C cyan<cr>
 
 nnoremap  <bs>     gh
 nnoremap  <cr>     <nop>
@@ -211,10 +211,10 @@ set grepprg='ag --line-numbers %i %a %s'
 set prefervsplit
 
 if $DISPLAY == ""
-  set classify="■ :dir:,◘ :reg:,Ξ :exe:,▥ :link:,▣ :char:,▩ :block:"
+  set classify="◘ :dir:,■ :reg:,Ξ :exe:,▥ :link:,▣ :char:,▩ :block:"
   set statusline="%5*[%A]%9*‥%6*%u:%g%9*‥%2*%d%9*‥%1*%a | %E%9*‥%4* %= %r \"%t%T\""
 else
-  set classify="✠ :dir:,※ :reg:,♠ :exe:,♣ :link:,◇ :char:,◆ :block:"
+  set classify="✠ :dir:,※ :reg:,♠ :exe:,♣ :link:,♡ :char:,◇ :block:"
   set statusline="%5*[%A]%9* %6*%u:%g%9* %2*%d%9* %1*%a | %E%9* %4* %= %r \"%t%T\""
 endif
 
