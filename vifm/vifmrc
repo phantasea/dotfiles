@@ -324,7 +324,7 @@ command! md    mkdir -p %a
 command! mv    mv -r %f %D
 command! cp    cp -r %f %D
 command! link  ln -s %d/%f %D
-command! mkbt  mktorrent -p -a [your announce url here] -o %D/%f.torrent %d%f
+command! mkbt  mktorrent -p -a -o %D/%f.torrent %d%f
 command! movetoother     mv -i %f %D %i &
 command! copytoother     cp -R %f %D %i &
 command! movefromother   mv -i %F %d %i &
@@ -416,7 +416,7 @@ fileview  *.sh  highlight -S sh -O ansi -s dante %c
 fileview  */,.*/  tree -F --dirsfirst %c
 
 " Pdf
-fileview  *.pdf pdftotext -l 3 -nopgbrk -q %c -
+fileview  *.pdf  thumbnail %px %py %pw %ph %c, pdftotext -l 3 -nopgbrk -q %c -
 if $DISPLAY == ""
   filetype  *.pdf fimgs %f
 else
@@ -436,17 +436,13 @@ if $DISPLAY != ""
   filextype *.djvu zathura %c, apvlv %c
 endif
 
-" PGP
-fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %c
-filetype  *.asc  !!gpg --verify %c
-
 " Audio
 fileview  *.mp3,*.wav,*.flac,*.ogg,*.ape,*.wma  mediainfo %c
 filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg123 -q %c > /dev/null 2>&1 &
 filetype  *.wma,*.ape                           mplayer -really-quiet %c > /dev/null 2>&1 &
 
 " Video
-fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  mediainfo %c
+fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  thumbnail %px %py %pw %ph %c, mediainfo %c
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  vidmux -f %c
 
 " Image
@@ -474,6 +470,10 @@ filetype  *.o nm %c | less
 
 " torrent
 fileview  *.torrent  transmission-show %c
+
+" PGP
+fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %c
+filetype  *.asc  !!gpg --verify %c
 
 " FuseZipMount
 fileview  *.zip,*.jar,*.war,*.ear  als %c
