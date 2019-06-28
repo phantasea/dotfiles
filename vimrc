@@ -359,7 +359,7 @@ endfunc
 
 func! DelEmptyFile()
     for b in ListedBufs()
-        if empty(bufname(b)) && empty(&filetype)
+        if empty(bufname(b)) && empty(getbufvar(b, "&filetype"))
             exec("bdelete ".b)
             break
         endif
