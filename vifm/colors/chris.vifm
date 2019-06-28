@@ -10,10 +10,10 @@
 
 highlight clear
 
-highlight  Win          ctermfg=yellow    ctermbg=black     cterm=none
-highlight  OtherWin     ctermfg=yellow    ctermbg=black     cterm=none
-highlight  AuxWin       ctermfg=white     ctermbg=black     cterm=none
-highlight  Directory    ctermfg=cyan      ctermbg=none      cterm=none
+highlight  Win          ctermfg=yellow    ctermbg=black     cterm=bold
+highlight  OtherWin     ctermfg=yellow    ctermbg=black     cterm=bold
+highlight  AuxWin       ctermfg=white     ctermbg=black     cterm=bold
+highlight  Directory    ctermfg=cyan      ctermbg=none      cterm=bold
 highlight  Link         ctermfg=magenta   ctermbg=none      cterm=bold
 highlight  BrokenLink   ctermfg=black     ctermbg=none      cterm=bold
 highlight  Socket       ctermfg=red       ctermbg=none      cterm=bold
@@ -29,7 +29,7 @@ highlight  TabLineSel   ctermfg=none      ctermbg=black     cterm=bold,reverse
 highlight  TopLine      ctermfg=white     ctermbg=blue      cterm=bold
 highlight  TopLineSel   ctermfg=white     ctermbg=blue      cterm=bold
 highlight  CurrLine     ctermfg=none      ctermbg=black     cterm=bold,reverse
-highlight  OtherLine    ctermfg=white     ctermbg=black     cterm=bold
+highlight  OtherLine    ctermfg=black     ctermbg=none      cterm=bold,reverse
 highlight  Selected     ctermfg=white     ctermbg=none      cterm=bold
 highlight  JobLine      ctermfg=white     ctermbg=blue      cterm=bold
 highlight  Menu         ctermfg=white     ctermbg=black     cterm=none
