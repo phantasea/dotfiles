@@ -203,19 +203,43 @@ set milleroptions=lsize:2,csize:5,rsize:3
 set tabstop=4
 set confirm=permdelete
 set dirsize=nitems
-set shortmess="TL"
+set shortmess="T"
 set timeoutlen=2000
 set cpoptions="s"
 set caseoptions="pg"
 set grepprg='ag --line-numbers %i %a %s'
 set prefervsplit
 
+let $VIFMRC_HAS_RICH_FONT = "TRUE"
 if $DISPLAY == ""
   set classify="◘ :dir:,■ :reg:,Ξ :exe:,▥ :link:,▣ :char:,▩ :block:"
   set statusline="%5*[%A]%9*‥%6*%u:%g%9*‥%2*%d%9*‥%1*%a | %E%9*‥%4* %= %r \"%t%T\""
 else
-  set classify="✠ :dir:,※ :reg:,♠ :exe:,♣ :link:,♡ :char:,◇ :block:"
   set statusline="%5*[%A]%9* %6*%u:%g%9* %2*%d%9* %1*%a | %E%9* %4* %= %r \"%t%T\""
+
+  if $VIFMRC_HAS_RICH_FONT == "FALSE"
+    set classify="✠ :dir:,※ :reg:,♠ :exe:,♣ :link:,♡ :char:,◇ :block:"
+  else
+    set classify=' :dir:/, :exe:, :reg:, :link:'
+    set classify+=' ::../::, ::*.sh::, ::*.[hc]pp,,*.cc,,*.hh::, ::*.[hc]::'
+    set classify+=' ::/^copying|license$/::, ::.git/,,*.git/::/'
+    set classify+=' ::*.epub,,*.fb2,,*.djvu::, ::*.pdf::'
+    set classify+=' ::*.htm,,*.html,,**.[sx]html,,*.xml::'
+    set classify+=' ::*.7z,,*.ace,,*.arj,,*.bz2,,*.cpio,,*.deb,,*.dz,,*.gz,,
+                  \*.jar,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.rz,,*.tar,,*.taz,,
+                  \*.tb2,,*.tbz,,*.tbz2,,*.tgz,,*.tlz,,*.trz,,*.txz,,*.tz,,
+                  \*.tz2,,*.xz,,*.z,,*.zip,,*.zoo::'
+    set classify+=' ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,
+                  \*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.xcf,,*.xpm,,*.xspf,,*.xwd::'
+    set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,
+                  \*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,
+                  \*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
+    set classify+=' ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,
+                  \*.mkv,,*.mov,,*.mp4,,*.flv,,*.mp4v,,*.mpeg,,*.mpg,,*.nuv,,
+                  \*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.wmv,,*.xvid,,*.webm::'
+    set classify+=' ::*.doc,,*.docx::, ::*.xls,,*.xls[mx]::'
+    set classify+=' ::*.pptx,,*.ppt::'
+  endif
 endif
 
 windo filter! /(lost\+found|Desktop|sandisk_win|sandisk_ext|sandisk_exp
@@ -315,6 +339,7 @@ command! diffsamewin  vimux -d %f
 command! uz    tar -zxf %c %i &
 command! uj    tar -jxf %c %i &
 command! zip   zip -r %f.zip %f
+command! zx    zx %f
 command! extract  aunpack %f &>/dev/null &
 command! archive  apack %a %f &>/dev/null &
 command! run   !! ./%f
@@ -386,8 +411,9 @@ fileview  *.[1-8] man ./%c | col -b
 
 " Office files
 fileview  *.doc  antiword %c, catdoc %c
-fileview  *.ppt  catppt %c
 fileview  *.docx docx2txt %c -
+fileview  *.ppt  catppt %c
+fileview  *.csv  sed "s/,,,,/,,-,,/g;s/,,/ /g" %c | column -t | sed "s/ - /  /g" | cut -c -%pw
 if $DISPLAY == ""
   filetype  *.doc  vim %c
 else
@@ -413,7 +439,7 @@ fileview  *.py  highlight -S python -O ansi -s dante %c
 fileview  *.sh  highlight -S sh -O ansi -s dante %c
 
 " Directories
-fileview  */,.*/  tree -F --dirsfirst %c
+fileview  */,.*/  tree -F -L 3 --dirsfirst %c
 
 " Pdf
 fileview  *.pdf  thumbnail %px %py %pw %ph %c, pdftotext -l 3 -nopgbrk -q %c -
@@ -442,8 +468,12 @@ filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg123 -q %c > /dev/null 2>&1 &
 filetype  *.wma,*.ape                           mplayer -really-quiet %c > /dev/null 2>&1 &
 
 " Video
-fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  thumbnail %px %py %pw %ph %c, mediainfo %c
-filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  vidmux -f %c
+fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  
+          \ thumbnail %px %py %pw %ph %c,
+          \ mediainfo %c,
+filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  
+          \ vidmux -f %c,
+          \ mpv --really-quiet --vo=drm --no-audio-display %c,
 
 " Image
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  w3mimg %px %py %pw %ph %c
@@ -544,7 +574,7 @@ fileview *.exe  echo Windows binary file: no preview available. %i
 " Misc
 fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo,*.xpi  als %c
 
-if $DISPLAY != ""
+if $DISPLAY == "XXX"
   fileview *.pdf
       \ vifmimg pdfpreview %px %py %pw %ph %c
       \ %pc
