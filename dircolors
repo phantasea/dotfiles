@@ -1,6 +1,7 @@
 # vim: set ft=dircolors :
 
 #color setting of ls command
-FILE 00;33
-DIR  00;36
+FILE 01;33
+DIR  01;36
+EXEC 01;32
 LINK 01;35
