@@ -7,6 +7,9 @@ moc/cache/
 moc/last_directory
 moc/pid
 moc/softmixer
+ranger/plugins/__init__.pyo
+ranger/plugins/devicons.pyo
+ranger/plugins/devicons_linemode.pyo
 ranger/colorschemes/__init__.pyo
 ranger/colorschemes/chris.pyo
 newsbeuter/cache.db
