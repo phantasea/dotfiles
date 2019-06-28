@@ -26,3 +26,5 @@ $if mode=emacs
 "\e[24~":"cmatrix -ab -C cyan\n"
 
 $endif
+
+set completion-ignore-case on
