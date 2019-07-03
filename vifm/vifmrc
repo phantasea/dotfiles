@@ -171,6 +171,7 @@ mark v ~/.vim
 mark w ~/docs/webs
 
 mark P /opt/.porn
+mark T /tmp
 mark U /media/simone/sandisk_u
 mark V /media/simone/sandisk_v
 mark W /media/simone/sandisk_w
@@ -366,6 +367,7 @@ command! iconv   iconv -f GBK -t UTF8 %c -o %c %i
 command! reload  :write | restart
 command! vid     vidmux %c
 command! vidfs   vidmux -f %c
+command! vidmpv  vidmux -f -v %c
 command! vgrep   vim "+grep %a"
 command! fim     fim %f > /dev/null 2>&1
 command! imgall  imgview -s
