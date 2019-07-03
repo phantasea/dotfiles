@@ -52,6 +52,9 @@
 set window-height 1024
 set window-width  768
 set adjust-open   width
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1
 
 # use sqlite as bookmarks database backend
 #set database sqlite
@@ -79,6 +82,7 @@ map r rotate rotate-cw
 map R rotate rotate-ccw
 map s toggle_page_mode
 map w adjust_window width
+map y reload
 
 map [fullscreen] + zoom in
 map [fullscreen] - zoom out
