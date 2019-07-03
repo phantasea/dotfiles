@@ -10,9 +10,11 @@ nnoremap  <F10>    :diff<cr>
 nnoremap  <F11>    :diffsamewin<cr>
 nnoremap  <F12>    :.!cmatrix -abs -C cyan<cr>
 
-nnoremap  <bs>     gh
 nnoremap  <cr>     <nop>
+nnoremap  <bs>     gh
+mnoremap  <bs>     <c-b>
 qnoremap  <space>  <tab>
+mnoremap  <space>  <c-f>
 nnoremap c<space>  :change<cr>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
 nnoremap m<space>  :copen<cr>
@@ -471,9 +473,7 @@ filetype  *.wma,*.ape                           mplayer -really-quiet %c > /dev/
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  
           \ thumbnail %px %py %pw %ph %c,
           \ mediainfo %c,
-filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  
-          \ vidmux -f %c,
-          \ mpv --really-quiet --vo=drm --no-audio-display %c,
+filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  vidmux -f -v %c
 
 " Image
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  w3mimg %px %py %pw %ph %c
