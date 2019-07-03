@@ -1,0 +1,60 @@
+" The standard ncurses colors are:
+" Default = -1 = None, can be used for transparency or default color
+" Black   = 0  Red     = 1  Green   = 2  Yellow  = 3 
+" Blue    = 4  Magenta = 5  Cyan    = 6  White   = 7
+
+" Available style values (some of them can be combined):
+" bold  underline  reverse/inverse  standout  none
+
+"highlight group        ctermfg=fg_color  ctermbg=bg_color  cterm=attrs 
+
+highlight clear
+
+highlight  Win          ctermfg=yellow    ctermbg=black     cterm=bold
+highlight  OtherWin     ctermfg=yellow    ctermbg=black     cterm=bold
+highlight  AuxWin       ctermfg=white     ctermbg=black     cterm=bold
+highlight  Directory    ctermfg=cyan      ctermbg=none      cterm=bold
+highlight  Link         ctermfg=magenta   ctermbg=none      cterm=bold
+highlight  BrokenLink   ctermfg=black     ctermbg=none      cterm=bold
+highlight  Socket       ctermfg=red       ctermbg=none      cterm=bold
+highlight  Device       ctermfg=red       ctermbg=none      cterm=bold
+highlight  Fifo         ctermfg=blue      ctermbg=none      cterm=bold
+highlight  Executable   ctermfg=green     ctermbg=none      cterm=none
+highlight  ErrorMsg     ctermfg=red       ctermbg=black     cterm=none
+highlight  Border       ctermfg=blue      ctermbg=black     cterm=bold
+highlight  StatusLine   ctermfg=white     ctermbg=blue      cterm=bold
+highlight  CmdLine      ctermfg=yellow    ctermbg=none      cterm=bold
+highlight  TabLine      ctermfg=none      ctermbg=black     cterm=none
+highlight  TabLineSel   ctermfg=none      ctermbg=black     cterm=bold,reverse
+highlight  TopLine      ctermfg=white     ctermbg=blue      cterm=bold
+highlight  TopLineSel   ctermfg=white     ctermbg=blue      cterm=bold
+highlight  CurrLine     ctermfg=none      ctermbg=black     cterm=bold,reverse
+highlight  OtherLine    ctermfg=black     ctermbg=none      cterm=bold,reverse
+highlight  Selected     ctermfg=black     ctermbg=white     cterm=bold
+highlight  JobLine      ctermfg=white     ctermbg=blue      cterm=bold
+highlight  Menu         ctermfg=white     ctermbg=black     cterm=none
+highlight  WildMenu     ctermfg=white     ctermbg=black     cterm=underline,reverse
+highlight  SuggestBox   ctermfg=yellow    ctermbg=black     cterm=bold
+highlight  CmpMismatch  ctermfg=red       ctermbg=black     cterm=bold
+
+highlight  User1        ctermfg=cyan      ctermbg=black     cterm=bold,reverse
+highlight  User2        ctermfg=green     ctermbg=black     cterm=bold,reverse
+highlight  User3        ctermfg=yellow    ctermbg=black     cterm=bold,reverse
+highlight  User4        ctermfg=white     ctermbg=blue      cterm=bold
+highlight  User5        ctermfg=red       ctermbg=black     cterm=bold,reverse
+highlight  User6        ctermfg=magenta   ctermbg=black     cterm=bold,reverse
+highlight  User9        ctermfg=white     ctermbg=black     cterm=bold,reverse
+
+highlight  /\.exe$/     ctermfg=green     ctermbg=none      cterm=none
+highlight  /\.m3u$/     ctermfg=red       ctermbg=none      cterm=bold
+highlight  /\.tar$/     ctermfg=red       ctermbg=none      cterm=bold
+highlight  /\.iso$/     ctermfg=red       ctermbg=none      cterm=bold
+highlight  /\.rar$/     ctermfg=red       ctermbg=none      cterm=bold
+highlight  /\.gz$/      ctermfg=red       ctermbg=none      cterm=bold
+highlight  /\.7z$/      ctermfg=red       ctermbg=none      cterm=bold
+highlight  /^todo$/     ctermfg=red       ctermbg=none      cterm=bold
+highlight  /^Makefile$/ ctermfg=red       ctermbg=none      cterm=bold
+highlight  /^README$/   ctermfg=red       ctermbg=none      cterm=bold
+highlight  /^FAQ$/      ctermfg=red       ctermbg=none      cterm=bold
+highlight  /^ChangeLog/ ctermfg=red       ctermbg=none      cterm=bold
+highlight  /^INSTALL$/  ctermfg=red       ctermbg=none      cterm=bold
