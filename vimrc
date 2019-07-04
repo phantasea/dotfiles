@@ -47,7 +47,7 @@ set encoding=utf-8
 set expandtab
 set fileencoding=chinese
 set fileencodings=utf-8,gb2312,gbk,gb18030
-set foldmethod=marker
+set foldmethod=manual
 set grepprg=ag\ --nogroup\ --nocolor\ --smart-case
 set helplang=en
 set hidden
