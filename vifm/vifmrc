@@ -195,6 +195,7 @@ set millerview
 set laststatus
 set tuioptions=""
 set tabscope=pane
+set showtabline=always
 set dotdirs=rootparent
 set fillchars=vborder:\|
 set timefmt="%H:%M\ %m/%d/%y"
@@ -374,6 +375,10 @@ command! imgall  imgview -s
 command! rimgall imgview -rs
 command! picpix  mediainfo %c |egrep '(Width|Height)' |awk -F ':' '{print $2}'
                  \ |sed 's/\ //g'|sed 's/pixels//g' |tr '\n' 'x'| sed 's/x$//' %S
+" }}}
+
+" autocommand {{{
+autocmd  DirEnter '/opt/apps/**/*' setl previewprg='git log --color -- %c 2>&1'
 " }}}
 
 " filetype and fileview {{{
