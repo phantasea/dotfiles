@@ -3,6 +3,7 @@
 google='https://www.google.com/search?btnG=Google&lr=lang_en&hl=en&q'
 #google='https://search.yahoo.com/search?p'
 #google='http://www.webcrawler.com/search/web?fcoid=417&q'
+#google='https://duckduckgo.com/?q'
 
 query=${QUERY_STRING#*:}
 
