@@ -106,8 +106,8 @@ nnoremap  Q  :qall<cr>
 nnoremap \r  :source ~/.vifm/vifmrc<cr>
 nnoremap gr  :grep<space>
 vnoremap  r  cw
-nnoremap  r  cW
-nnoremap  R  cw
+nnoremap  r  cw
+nnoremap  R  :rename<cr>
 qnoremap  s  <c-w>
 nnoremap  s  <c-w>
 nnoremap  sb :set scrollbind!<cr>
@@ -195,7 +195,7 @@ set millerview
 set laststatus
 set tuioptions=""
 set tabscope=pane
-set showtabline=always
+set showtabline=multiple
 set dotdirs=rootparent
 set fillchars=vborder:\|
 set timefmt="%H:%M\ %m/%d/%y"
@@ -368,7 +368,7 @@ command! iconv   iconv -f GBK -t UTF8 %c -o %c %i
 command! reload  :write | restart
 command! vid     vidmux %c
 command! vidfs   vidmux -f %c
-command! vidmpv  vidmux -f -v %c
+command! mpv     vidmux -v %c
 command! vgrep   vim "+grep %a"
 command! fim     fim %f > /dev/null 2>&1
 command! imgall  imgview -s
@@ -480,7 +480,7 @@ filetype  *.wma,*.ape                           mplayer -really-quiet %c > /dev/
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  
           \ thumbnail %px %py %pw %ph %c,
           \ mediainfo %c,
-filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  vidmux -f -v %c
+filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  vidmux -f %c
 
 " Image
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  w3mimg %px %py %pw %ph %c
