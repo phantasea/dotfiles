@@ -1,10 +1,17 @@
 # Write your default config options here!
 # embeddedfonts=true
 # priority=abovenormal
-really-quiet=1
-ass=true
+
+lirc=no
+really-quiet=yes
+vo=fbdev2
+fs=yes
+xy=1024
+zoom=yes
+ontop=yes
 
 # Subtitle
+ass=true
 unicode=yes
 utf8=yes
 sub_cp=cp936
