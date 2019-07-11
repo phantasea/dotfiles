@@ -367,14 +367,13 @@ command! copyfullname    tmux setb %d/%c %i &
 command! iconv   iconv -f GBK -t UTF8 %c -o %c %i
 command! reload  :write | restart
 command! vid     vidmux %c
-command! vidfs   vidmux -f %c
 command! mpv     vidmux -v %c
 command! vgrep   vim "+grep %a"
 command! fim     fim %f > /dev/null 2>&1
 command! imgall  imgview -s
 command! rimgall imgview -rs
-command! picpix  mediainfo %c |egrep '(Width|Height)' |awk -F ':' '{print $2}'
-                 \ |sed 's/\ //g'|sed 's/pixels//g' |tr '\n' 'x'| sed 's/x$//' %S
+command! picpix  mediainfo %c | egrep '(Width|Height)' | awk -F ':' '{print $2}'
+                 \ | sed 's/\ //g' | sed 's/pixels//g' | tr '\n' 'x' | sed 's/x$//' %S
 " }}}
 
 " autocommand {{{
@@ -474,13 +473,13 @@ endif
 " Audio
 fileview  *.mp3,*.wav,*.flac,*.ogg,*.ape,*.wma  mediainfo %c
 filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg123 -q %c > /dev/null 2>&1 &
-filetype  *.wma,*.ape                           mplayer -really-quiet %c > /dev/null 2>&1 &
+filetype  *.wma,*.ape                           mplayer %c > /dev/null 2>&1 &
 
 " Video
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  
           \ thumbnail %px %py %pw %ph %c,
           \ mediainfo %c,
-filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  vidmux -f %c
+filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  vidmux %c
 
 " Image
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  w3mimg %px %py %pw %ph %c
@@ -495,7 +494,7 @@ else
 endif
 
 " Markdown
-fileview  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %f |w3m -dump -cols 128 -T text/html
+fileview  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %f | w3m -dump -cols 128 -T text/html
 
 " Log
 fileview  *.log  tac %c, tail -n500 %c
