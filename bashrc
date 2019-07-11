@@ -12,11 +12,12 @@ HISTCONTROL=ignoreboth
 #HISTCONTROL=erasedups
 
 #HISTTIMEFORMAT='%F %T '
-HISTIGNORE="cd:ls:ll:l:web:fim:fm:fe:w:mus:e"
+HISTIGNORE="cd:ls:ll:l:web:fim:fm:fe:w:mus:e:f:g:tig:t:ww:em:j"
 
 # append to the history file, don't overwrite it
 shopt -s histappend
 shopt -s cmdhist
+shopt -s autocd
 PROMPT_COMMAND='history -a'
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
