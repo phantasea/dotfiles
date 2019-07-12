@@ -1,7 +1,4 @@
 # Write your default config options here!
-# embeddedfonts=true
-# priority=abovenormal
-
 lirc=no
 really-quiet=yes
 vo=fbdev2
@@ -10,7 +7,11 @@ xy=1024
 zoom=yes
 ontop=yes
 
-# Subtitle
+# OSD & Subtitle
+subfont-osd-scale=3
+osd-duration=1200
+progbar-align=50
+font="WenQuanYi Zen Hei Mono,Consolas"
 ass=true
 unicode=yes
 utf8=yes
@@ -18,8 +19,3 @@ sub_cp=cp936
 subfont-encoding=unicode
 subfont-text-scale=3
 subpos=90
-#font=/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc
-
-# OSD
-subfont-osd-scale=3
-
