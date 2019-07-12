@@ -15,11 +15,16 @@ nnoremap  <bs>     gh
 mnoremap  <bs>     <c-b>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
+nnoremap b<space>  :set scrollbind!<cr>
 nnoremap c<space>  :change<cr>
+nnoremap f<space>  :change<cr>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
 nnoremap m<space>  :copen<cr>
-nnoremap o<space>  j
-nnoremap s<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
+nnoremap o<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
+nnoremap s<space>  :set nolaststatus!<cr>
+                  \:if !&laststatus | highlight CmdLine ctermfg=white ctermbg=blue cterm=bold
+                  \| else | highlight CmdLine ctermfg=yellow ctermbg=none cterm=bold | endif<cr>
+nnoremap w<space>  :set lsview!<cr>
 nnoremap x<space>  <c-w>x
 nnoremap z<space>  j
 
@@ -57,7 +62,6 @@ vnoremap  -  :invert s<cr>
 nnoremap  a  GVgg
 vnoremap  a  ggoG
 nnoremap  A  za
-nnoremap  b  :set scrollbind!<cr>
 nnoremap gc  :change<cr>
 nnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
@@ -94,7 +98,6 @@ mnoremap  K  <c-y>
 qnoremap  J  qje:if isactive('preview') | switch | endif<cr>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
 nnoremap gl  gf
-nnoremap \m  :copen<cr>
 nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
@@ -103,16 +106,14 @@ nnoremap  O  zR
 qnoremap  p  <c-b>
 nnoremap  q  ZZ
 nnoremap  Q  :qall<cr>
-nnoremap \r  :source ~/.vifm/vifmrc<cr>
 nnoremap gr  :grep<space>
 vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  :rename<cr>
 qnoremap  s  <c-w>
 nnoremap  s  <c-w>
-nnoremap  sb :set scrollbind!<cr>
 nnoremap  sd :diff<cr>
-nnoremap  sD :diffsamewin<cr>
+nnoremap  sc :diffsamewin<cr>
 nnoremap  sf :find . -name "*"<cr>B
 nnoremap  sl :alink!<cr>
 nnoremap  sq :hideui<cr>
@@ -130,8 +131,7 @@ nnoremap  T  kt
 nnoremap \u  :undolist<cr>
 nnoremap  U  <c-r>
 qnoremap  v  q
-nnoremap  w  :set lsview!<cr>
-nnoremap  W  :set nolaststatus!<cr>
+nnoremap  W  :set lsview!<cr>
 nnoremap  xi :movefromother<cr>
 vnoremap  xi :movefromother<cr>
 nnoremap  xo :move<cr>
@@ -160,7 +160,6 @@ mark a /opt/apps
 mark c /opt/conf
 mark e /opt/conf
 mark h ~/
-mark m /media/simone
 mark n ~/docs/note
 mark o /opt
 mark p /opt/.priv
@@ -170,6 +169,7 @@ mark u /opt/util
 mark v ~/.vim
 mark w ~/docs/webs
 
+mark M /media/simone
 mark P /opt/.porn
 mark T /tmp
 mark U /media/simone/sandisk_u
