@@ -45,6 +45,7 @@ nnoremap  <c-p>  gT
 qnoremap  <c-p>  gT
 vnoremap  <c-p>  gT
 cnoremap  <c-r>  <c-x>
+nnoremap  <c-r>  :restore<cr>
 nnoremap  <c-t>  :tabnew<cr>
 qnoremap  <c-t>  :tabnew<cr>
 vnoremap  <c-t>  :tabnew<cr>
