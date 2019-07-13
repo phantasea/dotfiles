@@ -157,7 +157,7 @@ if [ -f /opt/git/hhighlighter/h.sh ]; then
     . /opt/git/hhighlighter/h.sh
 fi
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 #fbterm -- tmux > /dev/null 2>&1
 fbtmux
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
