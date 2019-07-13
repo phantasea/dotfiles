@@ -365,11 +365,10 @@ command! sumovefromother sudo mv -i %F %d %i
 command! sucopyfromother sudo cp -R %F %d %i
 command! copybasename    tmux setb %c %i &
 command! copyfullname    tmux setb %d/%c %i &
-command! iconv   iconv -f GBK -t UTF8 %c -o %c %i
 command! reload  :write | restart
-command! vid     vidmux %c
-command! mpv     vidmux -v %c
+command! iconv   iconv -f GBK -t UTF8 %c -o %c %i
 command! vgrep   vim "+grep %a"
+command! mpv     mpv --vo=drm %c
 command! fim     fim %f > /dev/null 2>&1
 command! imgall  imgview -s
 command! rimgall imgview -rs
@@ -378,7 +377,8 @@ command! picpix  mediainfo %c | egrep '(Width|Height)' | awk -F ':' '{print $2}'
 " }}}
 
 " autocommand {{{
-autocmd  DirEnter '/opt/apps/**/*' setl previewprg='git log --color -- %c 2>&1'
+"autocmd DirEnter '/opt/apps/**/*' setl previewprg='git log --color -- %c 2>&1'
+autocmd DirEnter '~/pics' exec 'normal fm'
 " }}}
 
 " filetype and fileview {{{
