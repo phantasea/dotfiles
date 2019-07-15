@@ -113,8 +113,8 @@ nnoremap  r  cw
 nnoremap  R  :rename<cr>
 qnoremap  s  <c-w>
 nnoremap  s  <c-w>
-nnoremap  sd :diff<cr>
-nnoremap  sc :diffsamewin<cr>
+nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
+vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 nnoremap  sf :find . -name "*"<cr>B
 nnoremap  sl :alink!<cr>
 nnoremap  sq :hideui<cr>
