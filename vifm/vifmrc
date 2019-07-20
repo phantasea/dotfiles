@@ -215,6 +215,7 @@ set cpoptions="s"
 set caseoptions="pg"
 set grepprg='ag --line-numbers %i %a %s'
 set prefervsplit
+set maxundotabs=3
 
 let $VIFMRC_HAS_RICH_FONT = "TRUE"
 if $DISPLAY == ""
