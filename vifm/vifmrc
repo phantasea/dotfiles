@@ -219,13 +219,13 @@ set maxundotabs=3
 
 let $VIFMRC_HAS_RICH_FONT = "TRUE"
 if $DISPLAY == ""
-  set classify="◘ :dir:,■ :reg:,Ξ :exe:,▥ :link:,▣ :char:,▩ :block:"
+  set classify="◘ :dir:,■ :reg:,Ξ :exe:,▥ :link:,▣ :char:,▩ :block:,▨ :fifo:,▒ :sock:"
   set statusline="%5*[%A]%9*‥%6*%u:%g%9*‥%2*%d%9*‥%1*%a | %E%9*‥%4* %= %r \"%t%T\""
 else
   set statusline="%5*[%A]%9* %6*%u:%g%9* %2*%d%9* %1*%a | %E%9* %4* %= %r \"%t%T\""
 
   if $VIFMRC_HAS_RICH_FONT == "FALSE"
-    set classify="✠ :dir:,※ :reg:,♠ :exe:,♣ :link:,♡ :char:,◇ :block:"
+    set classify="✠ :dir:,★ :reg:,♠ :exe:,♣ :link:,♡ :char:,◇ :block:,※ :fifo:,☆ :sock:"
   else
     set classify=' :dir:/, :exe:, :reg:, :link:'
     set classify+=' ::../::, ::*.sh::, ::*.[hc]pp,,*.cc,,*.hh::, ::*.[hc]::'
