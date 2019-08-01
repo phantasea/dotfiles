@@ -14,7 +14,7 @@ $if mode=emacs
 "\eOP":"tty-clock -cB -C 6\n"
 # F2
 "\eOQ":"screenfetch\n"
-# F3
+# F4
 "\eOS":"em\n"
 # F5
 "\e[15~":"m\n"
@@ -22,6 +22,8 @@ $if mode=emacs
 "\e[19~":"w\n"
 # F9
 "\e[20~":"f\n"
+# F11
+"\e[23~":"vlock\n"
 # F12
 "\e[24~":"cmatrix -ab -C cyan\n"
 
