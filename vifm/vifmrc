@@ -17,16 +17,16 @@ qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
 nnoremap b<space>  :set scrollbind!<cr>
 nnoremap c<space>  :change<cr>
-nnoremap f<space>  :change<cr>
+nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
 nnoremap m<space>  :copen<cr>
-nnoremap o<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
+nnoremap o<space>  <nop>
 nnoremap s<space>  :set nolaststatus!<cr>
                   \:if !&laststatus | highlight CmdLine ctermfg=white ctermbg=blue cterm=bold
                   \| else | highlight CmdLine ctermfg=yellow ctermbg=none cterm=bold | endif<cr>
 nnoremap w<space>  :set lsview!<cr>
 nnoremap x<space>  <c-w>x
-nnoremap z<space>  j
+nnoremap z<space>  <nop>
 
 nnoremap  <c-b>  :tree<cr>
 cnoremap  <c-j>  <cr>
@@ -64,7 +64,7 @@ vnoremap  -  :invert s<cr>
 nnoremap  a  GVgg
 vnoremap  a  ggoG
 nnoremap  A  za
-nnoremap gc  :change<cr>
+nnoremap gc  <nop>
 nnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
 nnoremap  cs :cds/
@@ -341,7 +341,7 @@ command! rc    vimux ~/.vifm/vifmrc
 command! df    df -h %m 2> /dev/null
 command! ps    pstree %m
 command! du    ncdu . 
-command! diff  vimux -d %c %C
+command! diff         vimux -d %c %C
 command! diffsamewin  vimux -d %f
 command! uz    tar -zxf %c %i &
 command! uj    tar -jxf %c %i &
