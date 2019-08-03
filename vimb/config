@@ -1,0 +1,124 @@
+# Homepage that vimb opens if started without a URI.
+set home-page=www.baidu.com
+
+# Path to the default download directory. If no download directory is set,
+# download will be written into current directory. The following pattern will
+# be expanded if the download is started '~/', '~user', '$VAR' and '${VAR}'.
+set download-path=~/temp/
+
+# Command with placeholder '%s' called if form field is opened with $EDITOR to
+# spawn the editor-like `x-terminal-emulator -e vim %s'. To use Gvim as the
+# editor, it's necessary to call it with `-f' to run it in the foreground.
+set editor-command=st -e vim %s
+#set editor-command=gvim -f %s
+
+# If enabled the inputbox will be hidden whenever it contains no text.
+set input-autohide=true
+
+# Enable or disable the spell checking feature.
+set spell-checking=false
+
+# Set comma separated list of spell checking languages to be used for
+# spell checking.
+set spell-checking-languages=en
+
+# Enable or disable support for WebGL on pages.
+set webgl=true
+
+# While typing a search command, show where the pattern typed so far matches.
+set incsearch=true
+
+# The font family to use as the default for content that does not specify a
+# font.
+set default-font=DejaVu Sans
+
+# The font family used as the default for content using monospace font.
+set monospace-font=DejaVu Sans Mono
+
+# The font family used as the default for content using sans-serif font.
+set sans-serif-font=DejaVu Sans
+
+# The font family used as the default for content using serif font.
+set serif-font=DejaVu Serif
+
+# The default font size used to display text.
+set font-size=16
+
+# Default font size for the monospace font.
+set monospace-font-size=13
+
+# Default Full-Content zoom level in percent. Default is 100.
+set default-zoom=100
+
+# UI
+set hint-keys=asdfglkjheiwocvmnpqb;
+set stylesheet=on
+set smooth-scrolling=on
+
+# Status bar
+set status-bar=false
+
+# Webkit
+set html5-database=on
+set html5-local-storage=on
+set images=on
+
+# SSL
+set strict-ssl=false
+
+# JS
+set javascript-can-access-clipboard=off
+set javascript-can-open-windows-automatically=off
+
+# Maximum number of stored last closed URLs. If closed-max-items is set to 0, closed URLs will not be stored.
+set closed-max-items=8
+
+# Zoom in everything by default
+#aug zoom_all
+#  au LoadCommited * normal zz|8zI
+#aug end
+
+# Shortcuts allow the opening of an URI built up from a named template with additional parameters.
+shortcut-add duck=https://duckduckgo.com/?q=$0
+shortcut-add dict=http://dict.cc/?s=$0
+shortcut-add bd=http://www.baidu.com/s?wd=$0
+shortcut-add gg=https://www.google.com/search?btnG=Google&lr=lang_en&hl=en&q=$0
+shortcut-add yt=http://www.youtube.com/results?search_query=$0
+
+# Set the shortcut as the default, that is the shortcut to be used if no
+# shortcut is given and the string to open is not an URI.
+shortcut-default duck
+
+# GUI color settings
+# Color scheme: Base16 Eighties (https://github.com/chriskempson/base16)
+set completion-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
+set completion-hover-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
+set completion-selected-css=color:#d3d0c8;background-color:#515151;font:12pt DejaVu Sans Mono;
+set input-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
+set input-error-css=color:#f2777a;background-color:#393939;font:12pt DejaVu Sans Mono;
+set status-css=color:#ffcc66;background-color:#393939;font:12pt DejaVu Sans Mono;
+set status-ssl-css=color:#99cc99;background-color:#393939;font:12pt DejaVu Sans Mono;
+set status-ssl-invalid-css=color:#f2777a;background-color:#393939;font:12pt DejaVu Sans Mono;
+
+# Map page zoom in normal mode to keys commonly used across applications
+# + (zoom in), - (zoom out), = (zoom reset)
+nmap + zI
+nmap - zO
+nmap = zz
+
+nnoremap gt :sh! xdotool key --window $VIMB_XID ctrl+shift+l<CR><Esc>
+nnoremap gT :sh! xdotool key --window $VIMB_XID ctrl+shift+h<CR><Esc>
+nnoremap 1gt :sh! xdotool key --window $VIMB_XID ctrl+1<CR><Esc>
+nnoremap 2gt :sh! xdotool key --window $VIMB_XID ctrl+2<CR><Esc>
+
+nnoremap <C-N> gt
+nnoremap <C-P> gT
+nnoremap <BS>  <C-B>
+
+nnoremap J     <C-F>
+nnoremap K     <C-B>
+nnoremap q     :q<CR>
+nnoremap gs    :open gg<Space>
+nnoremap gS    :tabopen gg<Space>
+nnoremap s     :open bd<Space>
+nnoremap S     :tabopen bd<Space>
