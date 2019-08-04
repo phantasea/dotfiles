@@ -1,5 +1,5 @@
 # Homepage that vimb opens if started without a URI.
-set home-page=www.baidu.com
+set home-page=about:blank
 
 # Path to the default download directory. If no download directory is set,
 # download will be written into current directory. The following pattern will
@@ -111,12 +111,13 @@ nnoremap gT :sh! xdotool key --window $VIMB_XID ctrl+shift+h<CR><Esc>
 nnoremap 1gt :sh! xdotool key --window $VIMB_XID ctrl+1<CR><Esc>
 nnoremap 2gt :sh! xdotool key --window $VIMB_XID ctrl+2<CR><Esc>
 
-cnoremap <C-J> <C-F>
-cnoremap <C-K> <C-B>
+nnoremap <C-J> <C-F>
+nnoremap <C-K> <C-B>
 nnoremap <C-N> gt
 nnoremap <C-P> gT
 nnoremap <BS>  <C-B>
 cnoremap <C-J> <C-M>
+nnoremap <C-S> :save<Space>
 
 nnoremap J     <C-F>
 nnoremap K     <C-B>
