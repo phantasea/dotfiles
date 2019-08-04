@@ -111,9 +111,12 @@ nnoremap gT :sh! xdotool key --window $VIMB_XID ctrl+shift+h<CR><Esc>
 nnoremap 1gt :sh! xdotool key --window $VIMB_XID ctrl+1<CR><Esc>
 nnoremap 2gt :sh! xdotool key --window $VIMB_XID ctrl+2<CR><Esc>
 
+cnoremap <C-J> <C-F>
+cnoremap <C-K> <C-B>
 nnoremap <C-N> gt
 nnoremap <C-P> gT
 nnoremap <BS>  <C-B>
+cnoremap <C-J> <C-M>
 
 nnoremap J     <C-F>
 nnoremap K     <C-B>
@@ -122,3 +125,4 @@ nnoremap gs    :open gg<Space>
 nnoremap gS    :tabopen gg<Space>
 nnoremap s     :open bd<Space>
 nnoremap S     :tabopen bd<Space>
+
