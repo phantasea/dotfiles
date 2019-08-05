@@ -119,7 +119,7 @@ vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 nnoremap  sf :find . -name "*"<cr>B
 nnoremap  sl :alink!<cr>
 nnoremap  sq :hideui<cr>
-nnoremap  sr :source ~/.vifm/vifmrc<cr>
+nnoremap  sr :source $VIFM/vifmrc<cr>
 nnoremap  ss <c-w>S
 nnoremap  st :tree<cr>
 nnoremap  sy :sync<cr>
@@ -217,37 +217,9 @@ set grepprg='ag --line-numbers %i %a %s'
 set prefervsplit
 set maxundotabs=3
 
-let $VIFMRC_HAS_RICH_FONT = "TRUE"
-if $DISPLAY == ""
-  set classify="◘ :dir:,■ :reg:,Ξ :exe:,▥ :link:,▣ :char:,▩ :block:,▨ :fifo:,▒ :sock:"
-  set statusline="%5*[%A]%9*‥%6*%u:%g%9*‥%2*%d%9*‥%1*%a | %E%9*‥%4* %= %r \"%t%T\""
-else
-  set statusline="%5*[%A]%9* %6*%u:%g%9* %2*%d%9* %1*%a | %E%9* %4* %= %r \"%t%T\""
+set statusline="%5*[%A]%9*‥%6*%u:%g%9*‥%2*%d%9*‥%1*%a | %E%9*‥%4* %= %r \"%t%T\""
 
-  if $VIFMRC_HAS_RICH_FONT == "FALSE"
-    set classify="✠ :dir:,★ :reg:,♠ :exe:,♣ :link:,♡ :char:,◇ :block:,※ :fifo:,☆ :sock:"
-  else
-    set classify=' :dir:/, :exe:, :reg:, :link:'
-    set classify+=' ::../::, ::*.sh::, ::*.[hc]pp,,*.cc,,*.hh::, ::*.[hc]::'
-    set classify+=' ::/^copying|license$/::, ::.git/,,*.git/::/'
-    set classify+=' ::*.epub,,*.fb2,,*.djvu::, ::*.pdf::'
-    set classify+=' ::*.htm,,*.html,,**.[sx]html,,*.xml::'
-    set classify+=' ::*.7z,,*.ace,,*.arj,,*.bz2,,*.cpio,,*.deb,,*.dz,,*.gz,,
-                  \*.jar,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.rz,,*.tar,,*.taz,,
-                  \*.tb2,,*.tbz,,*.tbz2,,*.tgz,,*.tlz,,*.trz,,*.txz,,*.tz,,
-                  \*.tz2,,*.xz,,*.z,,*.zip,,*.zoo::'
-    set classify+=' ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,
-                  \*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.xcf,,*.xpm,,*.xspf,,*.xwd::'
-    set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,
-                  \*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,
-                  \*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
-    set classify+=' ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,
-                  \*.mkv,,*.mov,,*.mp4,,*.flv,,*.mp4v,,*.mpeg,,*.mpg,,*.nuv,,
-                  \*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.wmv,,*.xvid,,*.webm::'
-    set classify+=' ::*.doc,,*.docx::, ::*.xls,,*.xls[mx]::'
-    set classify+=' ::*.pptx,,*.ppt::'
-  endif
-endif
+source $VIFM/devicons
 
 windo filter! /(lost\+found|Desktop|sandisk_win|sandisk_ext|sandisk_exp
               \|Extreme\ SSD|udisk_hama|3166-6338|d042e951-|华为手机助手)/
@@ -337,7 +309,7 @@ command! time  tty-clock -cBS -C 6
 command! ss    cmatrix -abs -C cyan
 command! sued  !sudoedit %c
 command! surm  sudo rm -rf %c
-command! rc    vimux ~/.vifm/vifmrc
+command! rc    vimux $VIFM/vifmrc
 command! df    df -h %m 2> /dev/null
 command! ps    pstree %m
 command! du    ncdu . 
