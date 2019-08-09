@@ -159,7 +159,7 @@ cabbrev  cs  colorscheme
 
 " mark {{{
 mark a /opt/apps
-mark c /opt/conf
+mark c ~/.config
 mark e /opt/conf
 mark h ~/
 mark n ~/docs/note
@@ -346,8 +346,7 @@ command! mpv     mpv --vo=drm %c
 command! fim     fim %f > /dev/null 2>&1
 command! imgall  imgview -s
 command! rimgall imgview -rs
-command! picpix  mediainfo %c | egrep '(Width|Height)' | awk -F ':' '{print $2}'
-                 \ | sed 's/\ //g' | sed 's/pixels//g' | tr '\n' 'x' | sed 's/x$//' %S
+command! medinfo medinfo %c %S
 " }}}
 
 " autocommand {{{
