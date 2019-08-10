@@ -217,7 +217,7 @@ set caseoptions="pg"
 set grepprg='ag --line-numbers %i %a %s'
 set prefervsplit
 set maxundotabs=3
-set previewmaxsize=1000
+set previewmaxsize=3000
 
 set statusline="%5*[%A]%9*‥%6*%u:%g%9*‥%2*%d%9*‥%1*%a | %E%9*‥%4* %= %r \"%t%T\""
 
@@ -429,9 +429,9 @@ fileview  */,.*/  tree -F -L 3 --dirsfirst %c
 " Pdf
 fileview  *.pdf  thumbnail %px %py %pw %ph %c, pdftotext -l 3 -nopgbrk -q %c -
 if $DISPLAY == ""
-  filetype  *.pdf fimgs %f
+  filetype  *.pdf jfbview --zoom_to_fit --cache_size=5 %c, fimgs %c, fbpdf %c
 else
-  filextype *.pdf zathura %c %i, apvlv %c
+  filextype *.pdf zathura %c %i, apvlv %c, mupdf %c
 endif
 
 " PostScript
@@ -444,6 +444,8 @@ endif
 
 " Djvu
 if $DISPLAY != ""
+  filetype  *.djvu fbpdf %c
+else
   filextype *.djvu zathura %c, apvlv %c
 endif
 
