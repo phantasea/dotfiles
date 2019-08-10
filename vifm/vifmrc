@@ -429,7 +429,7 @@ fileview  */,.*/  tree -F -L 3 --dirsfirst %c
 " Pdf
 fileview  *.pdf  thumbnail %px %py %pw %ph %c, pdftotext -l 3 -nopgbrk -q %c -
 if $DISPLAY == ""
-  filetype  *.pdf jfbview --zoom_to_fit --cache_size=5 %c, fimgs %c, fbpdf %c
+  filetype  *.pdf jfbview --cache_size=5 %c, fimgs %c, fbpdf %c
 else
   filextype *.pdf zathura %c %i, apvlv %c, mupdf %c
 endif
@@ -455,14 +455,16 @@ filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg123 -q %c > /dev/null 2>&1 &
 filetype  *.wma,*.ape                           mplayer %c > /dev/null 2>&1 &
 
 " Video
-fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  
+fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
           \ thumbnail %px %py %pw %ph %c,
           \ mediainfo %c,
-filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm  vidmux %c
+filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
+          \ vidmux %c,
+          \ mplayer %c, mpv %c,
 
 " Image
-fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  w3mimg %px %py %pw %ph %c
-filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview %c
+fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  w3mimg %px %py %pw %ph %c, mediainfo %c
+filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview %c, jfbview %c, feh %c
 
 " Web
 fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %c
