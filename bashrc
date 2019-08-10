@@ -7,12 +7,13 @@
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
-#HISTCONTROL=ignoredups
-#HISTCONTROL=erasedups
+HISTCONTROL=ignoreboth:erasedups
 
-#HISTTIMEFORMAT='%F %T '
-HISTIGNORE="cd:ls:ll:l:web:fim:fm:fe:w:mus:e:f:g:tig:t:ww:em:j"
+HISTIGNORE="cd:ls:ll:l:f:fmfe:mus:e:g:tig:t:w:ww:em:j"
+
+# disable ctrl+s/ctrl-q
+stty stop undef
+stty start undef
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -127,6 +128,12 @@ zx ()
   else
     echo "'$1' is not a valid file"
   fi
+}
+
+# remove bash history duplicates
+rmhistdups() {
+  awk '!visited[$0]++' "$HOME/.bash_history" > /tmp/.bash_history.tmp;
+  mv -f /tmp/.bash_history.tmp "$HOME/.bash_history"
 }
 
 # source autojump
