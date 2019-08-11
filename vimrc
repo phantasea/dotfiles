@@ -96,6 +96,8 @@ set wildignorecase
 
 " mapping  {{{
 nnoremap   <Enter>    <NOP>
+nnoremap   <Up>       <C-Y>
+nnoremap   <Down>     <C-E>
 nnoremap   <Left>     zh
 nnoremap   <S-Left>   zH
 nnoremap   <C-Left>   zs
