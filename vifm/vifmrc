@@ -113,7 +113,7 @@ nnoremap  Q  :qall<cr>
 nnoremap gr  :grep<space>
 vnoremap  r  cw
 nnoremap  r  cw
-nnoremap  R  :rename<cr>
+nnoremap  R  cW
 qnoremap  s  <c-w>
 nnoremap  s  <c-w>
 nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
