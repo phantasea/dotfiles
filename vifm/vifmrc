@@ -20,7 +20,7 @@ nnoremap c<space>  :change<cr>
 nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
 nnoremap m<space>  :copen<cr>
-nnoremap o<space>  <nop>
+nnoremap o<space>  :file<cr>
 nnoremap s<space>  :set nolaststatus!<cr>
                   \:if !&laststatus | highlight CmdLine ctermfg=white ctermbg=blue cterm=bold
                   \| else | highlight CmdLine ctermfg=yellow ctermbg=none cterm=bold | endif<cr>
@@ -61,6 +61,9 @@ nnoremap  ~  :tabnew ~<cr>
 vnoremap  .  :!!<cr>
 nnoremap  -  :invert s<cr>
 vnoremap  -  :invert s<cr>
+nnoremap  <  <c-w><
+nnoremap  >  <c-w>>
+nnoremap  ?  :file<cr>
 nnoremap  a  GVgg
 vnoremap  a  ggoG
 nnoremap  A  za
@@ -85,7 +88,6 @@ nnoremap ge  :empty<cr>
 nnoremap  e  :edit %c<cr>
 qnoremap  e  q:edit %c<cr>
 nnoremap  E  :sued<cr>
-nnoremap \f  :file<cr>
 mnoremap  h  q
 nnoremap gi  :imgall<cr>
 nnoremap gI  :rimgall<cr>
@@ -118,7 +120,7 @@ nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 nnoremap  sf :find . -name "*"<cr>B
 nnoremap  sl :alink!<cr>
-nnoremap  sm :medinfo<cr>
+nnoremap  si :medinfo<cr>
 nnoremap  sq :hideui<cr>
 nnoremap  sr :source $VIFM/vifmrc<cr>
 nnoremap  ss <c-w>S
@@ -307,30 +309,30 @@ endif
 " %i completely ignore command output
 " %m run the command in a menu window
 " %S Show command output in the status bar
-command! time  tty-clock -cBS -C 6
-command! ss    cmatrix -abs -C cyan
-command! sued  !sudoedit %c
-command! surm  sudo rm -rf %c
-command! rc    vimux $VIFM/vifmrc
-command! df    df -h %m 2> /dev/null
-command! ps    pstree %m
-command! du    ncdu . 
-command! diff         vimux -d %c %C
-command! diffsamewin  vimux -d %f
-command! uz    tar -zxf %c %i &
-command! uj    tar -jxf %c %i &
-command! zip   zip -r %f.zip %f
-command! zx    zx %f
-command! extract  aunpack %f &>/dev/null &
-command! archive  apack %a %f &>/dev/null &
-command! run   !! ./%f
-command! make  !!make %a
-command! mkcd  :mkdir %a | cd %a
-command! md    mkdir -p %a
-command! mv    mv -r %f %D
-command! cp    cp -r %f %D
-command! link  ln -s %d/%f %D
-command! mkbt  mktorrent -p -a -o %D/%f.torrent %d%f
+command! time            tty-clock -cBS -C 6
+command! ss              cmatrix -abs -C cyan
+command! sued            !sudoedit %c
+command! surm            sudo rm -rf %c
+command! rc              vimux $VIFM/vifmrc
+command! df              df -h %m 2> /dev/null
+command! ps              pstree %m
+command! du              ncdu .
+command! diff            vimux -d %c %C
+command! diffsamewin     vimux -d %f
+command! uz              tar -zxf %c %i &
+command! uj              tar -jxf %c %i &
+command! zip             zip -r %f.zip %f
+command! zx              zx %f
+command! extract         aunpack %f &>/dev/null &
+command! archive         apack %a %f &>/dev/null &
+command! run             !! ./%f
+command! make            !!make %a
+command! mkcd            :mkdir %a | cd %a
+command! md              mkdir -p %a
+command! mv              mv -r %f %D
+command! cp              cp -r %f %D
+command! link            ln -s %d/%f %D
+command! mkbt            mktorrent -p -a -o %D/%f.torrent %d%f
 command! movetoother     mv -i %f %D %i &
 command! copytoother     cp -R %f %D %i &
 command! movefromother   mv -i %F %d %i &
@@ -341,14 +343,15 @@ command! sumovefromother sudo mv -i %F %d %i
 command! sucopyfromother sudo cp -R %F %d %i
 command! copybasename    tmux setb %c %i &
 command! copyfullname    tmux setb %d/%c %i &
-command! reload  :write | restart
-command! iconv   iconv -f GBK -t UTF8 %c -o %c %i
-command! vgrep   vim "+grep %a"
-command! mpv     mpv --vo=drm %c
-command! fim     fim %f > /dev/null 2>&1
-command! imgall  imgview -s
-command! rimgall imgview -rs
-command! medinfo medinfo %c %S
+command! reload          :write | restart
+command! iconv           iconv -f GBK -t UTF8 %c -o %c %i
+command! vgrep           vim "+grep %a"
+command! mpv             mpv --vo=drm %c
+command! fim             fim %f > /dev/null 2>&1
+command! imgall          imgview -s
+command! rimgall         imgview -rs
+command! medinfo         medinfo %c %S
+command! wether          curl --silent wttr.in %m
 " }}}
 
 " autocommand {{{
@@ -391,19 +394,15 @@ autocmd DirEnter '/opt/apps/vifm' exec 'normal fs;'
 " :r - root of the filename (without last extension)
 
 " Manpage
-filetype  *.[1-8] man ./%c
 fileview  *.[1-8] man ./%c | col -b
+filetype  *.[1-8] man ./%c
 
 " Office files
 fileview  *.doc  antiword %c, catdoc %c
 fileview  *.docx docx2txt %c -
 fileview  *.ppt  catppt %c
 fileview  *.csv  sed "s/,,,,/,,-,,/g;s/,,/ /g" %c | column -t | sed "s/ - /  /g" | cut -c -%pw
-if $DISPLAY == ""
-  filetype  *.doc  vim %c
-else
-  filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
-endif
+filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
 
 " tpp files
 filetype  *.tpp  tpp %c
@@ -443,35 +442,34 @@ else
 endif
 
 " Djvu
-if $DISPLAY != ""
+if $DISPLAY == ""
   filetype  *.djvu fbpdf %c
 else
-  filextype *.djvu zathura %c, apvlv %c
+  filextype *.djvu zathura %c %i, apvlv %c
 endif
 
 " Audio
-fileview  *.mp3,*.wav,*.flac,*.ogg,*.ape,*.wma  mediainfo %c
-filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg123 -q %c > /dev/null 2>&1 &
-filetype  *.wma,*.ape                           mplayer %c > /dev/null 2>&1 &
+fileview  *.mp3,*.wav,*.flac,*.ogg,*.ape,*.wma  mediainfo %c, exiftool %c
+filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg123 -q %c > /dev/null 2>&1 &, mplayer %c > /dev/null 2>&1 &
+filetype  *.wma,*.ape                           mplayer %c > /dev/null 2>&1 &, mpv %c > /dev/null 2>&1 &
 
 " Video
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
           \ thumbnail %px %py %pw %ph %c,
-          \ mediainfo %c,
+          \ mediainfo %c, exiftool %c,
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
-          \ vidmux %c,
-          \ mplayer %c, mpv %c,
+          \ vidmux %c, mplayer %c, mpv %c,
 
 " Image
-fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  w3mimg %px %py %pw %ph %c, mediainfo %c
+fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  w3mimg %px %py %pw %ph %c, mediainfo %c, exiftool %c
 filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview %c, jfbview %c, feh %c
 
 " Web
-fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols 128 -T text/html %c
+fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols %pw -T text/html %c, elinks -dump -dump-width %pw %c
 if $DISPLAY == ""
-  filetype  *.html,*.htm,*.xhtml,*.shtml  wemux %c
+  filetype  *.html,*.htm,*.xhtml,*.shtml  wemux %c, wemux -e %c
 else
-  filextype *.html,*.htm,*.xhtml,*.shtml  firefox %c &
+  filextype *.html,*.htm,*.xhtml,*.shtml  firefox %c, vimb %c, surf %c, dwb %c
 endif
 
 " Markdown
@@ -479,7 +477,7 @@ fileview  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %f | w3m -dump -cols
 
 " Log
 fileview  *.log  tac %c, tail -n500 %c
-filetype  *.log  tac %c | less
+filetype  *.log  tac %c | less, multitail %f, lnav %f
 
 " Object
 fileview  *.o nm %c
@@ -492,6 +490,10 @@ fileview  *.torrent  transmission-show %c
 fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %c
 filetype  *.asc  !!gpg --verify %c
 
+" Misc archive/zip files
+fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo  als %c
+filetype  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo  als %c | less, aunpack %c
+
 " FuseZipMount
 fileview  *.zip,*.jar,*.war,*.ear  als %c
 filetype  *.zip,*.jar,*.war,*.ear
@@ -500,24 +502,30 @@ filetype  *.zip,*.jar,*.war,*.ear
        \ {View contents}
        \ zip -sf %c | less,
        \ tar -xf %c,
+       \ aunpack %c,
 
 " ArchiveMount
 fileview  *.tar,*.tgz,*.tar.gz,*.tbz,*.tbz2,*.tar.bz2  als %c
 filetype  *.tar,*.tgz,*.tar.gz,*.tbz,*.tbz2,*.tar.bz2
        \ {Mount with archivemount}
        \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
+       \ aunpack %c,
 
 " Fuse7z
 fileview  *.7z  als %c, 7z | %c
 filetype  *.7z
        \ {Mount with fuse-7z}
        \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
+       \ 7z x %c,
+       \ aunpack %c,
 
 " Rar2FsMount
 fileview  *.rar  unrar v %c, als --option=use_rar_for_unpack=0 %c
 filetype  *.rar
        \ {Mount with rar2fs}
        \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
+       \ unrar x %c,
+       \ aunpack %c,
 
 " IsoMount
 fileview  *.iso  isoinfo -l -i %c
@@ -555,11 +563,8 @@ filetype *.sha512
        \ {Check SHA512 hash sum}
        \ sha512sum -c %f %S,
 
-" Windows EXE file
+" Windows EXE
 fileview *.exe  echo Windows binary file: no preview available. %i
-
-" Misc
-fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo,*.xpi  als %c
 
 " Open all other files with default system programs. By default all unknown files are opened with 'vi[x]cmd'
 " if $DISPLAY == ""
