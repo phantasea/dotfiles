@@ -52,7 +52,7 @@ highlight  /\.iso$/     ctermfg=red       ctermbg=none      cterm=bold
 highlight  /\.rar$/     ctermfg=red       ctermbg=none      cterm=bold
 highlight  /\.gz$/      ctermfg=red       ctermbg=none      cterm=bold
 highlight  /\.7z$/      ctermfg=red       ctermbg=none      cterm=bold
-highlight  /^todo$/     ctermfg=red       ctermbg=none      cterm=bold
+highlight  /^TODO$/     ctermfg=red       ctermbg=none      cterm=bold
 highlight  /^Makefile$/ ctermfg=red       ctermbg=none      cterm=bold
 highlight  /^README$/   ctermfg=red       ctermbg=none      cterm=bold
 highlight  /^FAQ$/      ctermfg=red       ctermbg=none      cterm=bold
