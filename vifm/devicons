@@ -1,20 +1,17 @@
-" Ranger devicons for ViFM
+" Devicons for ViFM
 " https://github.com/cirala/vifm_devicons
-"
+
+" ◘
+" 
+
 " Filetypes
-" set classify="✠ :dir:,★ :reg:,♠ :exe:,♣ :link:,♡ :char:,◇ :block:,※ :fifo:,☆ :sock:"
-" set classify="◘ :dir:,■ :reg:,Ξ :exe:,▥ :link:,▣ :char:,▩ :block:,▨ :fifo:,▒ :sock:"
-if $DISPLAY == ""
-  set classify=" :dir:, :reg:, :exe:, :link:, :char:, :block:, :fifo:, :sock:,? :?:"
-else
-endif
+set classify=" :dir:, :reg:, :exe:, :link:, :char:, :block:, :fifo:, :sock:, :?:"
 
 " Specific files
 set classify+=' ::../::'
 set classify+=' ::.Xdefaults,,.Xresources,,.bashprofile,,.bash_profile,,.gitconfig,,.gitignore,,.profile,,::'
-set classify+=' ::dropbox::'
+set classify+=' ::TODO::'
 set classify+=' ::favicon.*,,README,,readme::'
-set classify+=' ::.vim,,.vimrc,,.gvimrc,,.vifm::'
 set classify+=' ::license,,copyright,,copying,,LICENSE,,COPYRIGHT,,COPYING::'
 
 " File extensions
@@ -22,7 +19,7 @@ set classify+=' ::*.py,,*.pyc,,*.pyd,,*.pyo::'
 set classify+=' ::*.markdown,,*.md::'
 set classify+=' ::*.js::'
 set classify+=' ::*.bmp,,*.gif,,*.ico,,*.jpeg,,*.jpg,,*.png,,*.svg,,*.xpm::'
-set classify+=' ::*.htm,,*.html,,*.xml,,*.php::'
+set classify+=' ::*.htm,,*.html,,*.xml,,*.php::'
 set classify+=' ::*.css,,*.bat,,*.conf,,*.config,,*.ini,,*.yml,,*.cfg,,*rc::'
 set classify+=' ::*.rss::'
 set classify+=' ::*.coffee::'
@@ -38,8 +35,8 @@ set classify+=' ::*.aac,,*.asf,,*.au,,*.flac,,*.m4a,,*.midi,,*.mp3,,*.mpc,,*.
 set classify+=' ::*.avi,,*.flv,,*.mkv,,*.mov,,*.mp4,,*.mpeg,,*.mpg,,*.webm,,*.rm::'
 set classify+=' ::*.epub,,*.pdf,,*.fb2,,*.djvu::'
 set classify+=' ::*.7z,,*.apk,,*.bz2,,*.cab,,*.deb,,*.gz,,*.gzip,,*.rar,,*.rpm,,*.tar,,*.tgz,,*.xz,,*.zip::'
-set classify+=' ::*.log::'
-set classify+=' ::*.doc,,*.docx,,*.adoc::'
-set classify+=' ::*.xls,,*.xls,,*.xlsmx::'
-set classify+=' ::*.pptx,,*.ppt::'
+set classify+=' ::*.log::'
+set classify+=' ::*.doc,,*.docx,,*.adoc::'
+set classify+=' ::*.xls,,*.xls,,*.xlsmx::'
+set classify+=' ::*.pptx,,*.ppt::'
 
