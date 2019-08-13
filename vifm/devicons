@@ -1,8 +1,8 @@
 " Devicons for ViFM
 " https://github.com/cirala/vifm_devicons
 
-" ⚡◘
-" 
+" ⚡◘
+" 
 
 " Filetypes
 set classify=" :dir:, :reg:, :exe:, :link:, :char:, :block:, :fifo:, :sock:, :?:"
@@ -10,7 +10,7 @@ set classify=" :dir:, :reg:, :exe:, :link:, :char:, :block:,�
 " Specific files
 set classify+=' ::../::'
 set classify+=' ::.Xdefaults,,.Xresources,,.bashprofile,,.bash_profile,,.gitconfig,,.gitignore,,.profile::'
-set classify+=' ::TODO,,README,,FAQ,,ChangeLog,Makefile::'
+set classify+=' ::TODO,,README,,FAQ,,ChangeLog,,Makefile::'
 set classify+=' ::license,,copyright,,copying,,LICENSE,,COPYRIGHT,,COPYING::'
 
 " File extensions

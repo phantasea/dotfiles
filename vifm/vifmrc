@@ -220,6 +220,11 @@ set grepprg='ag --line-numbers %i %a %s'
 set prefervsplit
 set maxundotabs=3
 set previewmaxsize=3000
+if $DISPLAY == ""
+set topmidfiller="∥"
+else
+set topmidfiller="‖"
+endif
 
 set statusline="%5*[%A]%9*‥%6*%u:%g%9*‥%2*%d%9*‥%1*%a | %E%9*‥%4* %= %r \"%t%T\""
 

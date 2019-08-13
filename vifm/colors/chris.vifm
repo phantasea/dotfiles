@@ -27,7 +27,11 @@ highlight  CmdLine      ctermfg=yellow    ctermbg=none      cterm=bold
 highlight  TabLine      ctermfg=none      ctermbg=black     cterm=none
 highlight  TabLineSel   ctermfg=white     ctermbg=red       cterm=bold
 highlight  TopLine      ctermfg=white     ctermbg=blue      cterm=none
+if &topmidfiller == " "
 highlight  TopLineSel   ctermfg=white     ctermbg=blue      cterm=bold
+else
+highlight  TopLineSel   ctermfg=white     ctermbg=red       cterm=bold
+endif
 highlight  CurrLine     ctermfg=none      ctermbg=black     cterm=bold,reverse
 highlight  OtherLine    ctermfg=white     ctermbg=black     cterm=bold
 highlight  Selected     ctermfg=white     ctermbg=none      cterm=bold
