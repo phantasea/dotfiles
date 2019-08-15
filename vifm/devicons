@@ -1,8 +1,9 @@
 " Devicons for ViFM
 " https://github.com/cirala/vifm_devicons
 
-" ⚡◘
+" ⚡◘ 
 " 
+" Ξ☰
 
 " Filetypes
 set classify=" :dir:, :reg:, :exe:, :link:, :char:, :block:, :fifo:, :sock:, :?:"
