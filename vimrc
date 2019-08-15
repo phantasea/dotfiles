@@ -209,10 +209,11 @@ nnoremap   zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 nnoremap   c<space>   :call SmartOpenQfWin()<CR>
 nnoremap   d<space>   :call SmartDiffToggle()<CR>
-nnoremap   g<space>   :view ~/.vim/favlist<CR>
+nnoremap   g<space>   :Ranger<cr>
 nnoremap   m<space>   <NOP>
 nnoremap   s<space>   :call SmartWinMax()<CR>
 nnoremap   t<space>   <NOP>
+nnoremap   v<space>   :view ~/.vim/favlist<CR>
 nnoremap   y<space>   <NOP>
 nnoremap   z<space>   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 nnoremap   [<space>   <NOP>
@@ -591,7 +592,7 @@ let g:bufferline_active_buffer_right = ' '
 let g:ranger_map_keys = 0
 let g:ranger_open_new_tab = 0
 let g:ranger_replace_netrw = 1
-let g:ranger_command_override = 'ranger'
+let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
 "}}}
 
 "taglist {{{
