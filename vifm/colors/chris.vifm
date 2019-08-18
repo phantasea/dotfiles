@@ -8,6 +8,8 @@
 
 "highlight group        ctermfg=fg_color  ctermbg=bg_color  cterm=attrs 
 
+set laststatus
+
 highlight clear
 
 highlight  Win          ctermfg=yellow    ctermbg=black     cterm=none
