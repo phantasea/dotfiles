@@ -197,7 +197,6 @@ set iooptions=fastfilecloning
 set notitle
 set nolsview
 set millerview
-set laststatus
 set tuioptions=""
 set tabscope=pane
 set showtabline=multiple
