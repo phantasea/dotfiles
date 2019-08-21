@@ -62,7 +62,7 @@ set laststatus=2
 set linebreak
 set magic
 set modeline
-set mouse=
+set mouse=a
 set nobackup
 set nocompatible
 set nocursorcolumn
