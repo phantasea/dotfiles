@@ -68,6 +68,7 @@ nnoremap  a  GVgg
 vnoremap  a  ggoG
 nnoremap  A  za
 nnoremap gc  <nop>
+nnoremap  c. cw<c-a><c-d><cr>
 nnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
 nnoremap  cs :cds/
@@ -90,7 +91,7 @@ qnoremap  e  q:edit %c<cr>
 nnoremap  E  :sued<cr>
 mnoremap  h  q
 nnoremap gi  :imgall<cr>
-nnoremap gI  :rimgall<cr>
+nnoremap gI  :imgrall<cr>
 nnoremap  i  :touch<space>
 nnoremap  I  :mkdir! ""<left><c-x>c
 nnoremap gj  :siblnext<cr>
@@ -354,7 +355,7 @@ command! vgrep           vim "+grep %a"
 command! mpv             mpv --vo=drm %c
 command! fim             fim %f > /dev/null 2>&1
 command! imgall          imgview -s
-command! rimgall         imgview -rs
+command! imgrall         imgview -rs
 command! medinfo         medinfo %c %S
 command! wether          curl --silent wttr.in %m
 " }}}
@@ -460,8 +461,8 @@ filetype  *.wma,*.ape                           mplayer %c > /dev/null 2>&1 &, m
 
 " Video
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
-          \ thumbnail %px %py %pw %ph %c,
           \ mediainfo %c, exiftool %c,
+          \ thumbnail %px %py %pw %ph %c,
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
           \ vidmux %c, mplayer %c, mpv %c,
 

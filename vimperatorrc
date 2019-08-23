@@ -1,46 +1,93 @@
 " vim: set ft=vim:
 
-set editor="sublime-text"
-set gui=none,tabs
-set history=64
-set maxitems=9
-set newtab=all
-set noscrollbars
+" let mapleader=','
+
+"colorscheme darkness.vimp
+
+set activate=
 set autocomplete
-set tabnumbers
-set showstatuslinks=1
-set complete=sl
+set complete=bSl
+set editor="vim"
 set defsearch=baidu
+set focuscontent
+set gui=none,tabs
 set hintchars=hjklasdfgyuiopqwertnmzxcvb
-set wildmode=list:longest,full
+set history=64
+set hlsearch
+set ignorecase
+set incsearch
+set maxitems=13
+set newtab=all
+set newtaburl="about:newtab"
+set nextpattern+=^下一页$,^下一章$,^翻下页$,^下页$,^>>$,^next$,^>$
+set noscrollbars
+set pageinfo=gfm
+set popups=tab
+set previouspattern+=^上一页$,^上一章$,^翻上页$,^上页$,^<<$,^previous$,^<$
+set showmode
+set showstatuslinks=1
+set smartcase
+set status=input,location,bookmark,history,tabcount,ssl,zoomlevel
+set statuslinevisibility=auto
+set tabnumbers
+set visualbell
+set wildmode=list,full
+
+set! browser.tabs.autoHide=false
+set! browser.fullscreen.animateUp=0
+set! browser.tabs.closeButtons=2
+set! browser.tabs.loadDivertedInBackground=true
+set! accessibility.typeaheadfind.casesensitive=0
+set! browser.enabel_automatic_image_resizing=false
+set! browser.download.manager.showWhenStarting=false
 
 "highlight CmdLine color:white; background:black;
-highlight StatusLine font-style:bold color:magenta; background:white;
-map <silent> <F9>    :set gui=none,tabs,addons<CR>
-map <silent> <F11>   :set gui=all,nobookmarks<CR>
-map <silent> <F10>   :set gui=none,tabs<CR>
+highlight StatusLine font-style:bold color:magenta; background:black;
+
+map <silent> <F12>   :set gui=none<CR>
+map <silent> <F11>   :set gui=none,tabs,addons<CR>
+map <silent> <F10>   :set gui=all,nobookmarks<CR>
+map <silent> <F9>    :set gui+=navigation<cr>
 map <silent> <S-F4>  :restart<CR>
 map <silent> <F4>    :winclose<CR>
 
-map <C-Tab> <C-^>
-nnoremap <C-N>   gt
-nnoremap <C-P>   gT
-nnoremap <C-H>   <C-^>
-nnoremap <C-C>   :stop<CR>
-nnoremap <C-O>   :back<CR>
-nnoremap <C-I>   :forward<CR>
-nnoremap q D
-nnoremap I i
-nnoremap i gi
-nnoremap J <C-F>
-nnoremap K <C-B>
-nnoremap <C-J> <C-F>
-nnoremap <C-K> <C-B>
-nnoremap x :run 
-nnoremap X :!!<CR>
-vnoremap y <C-V><C-C>
-nnoremap <Space> <C-F>
-nnoremap <S-Space> <C-B>
+nnoremap ~    :set apptab!<cr>
+nnoremap s    :open baidu 
+nnoremap S    :tabopen baidu 
+nnoremap gh   :history<CR>
+nnoremap gs   :open google 
+nnoremap gS   :tabopen google 
+nnoremap ws   :open wikipedia 
+nnoremap wS   :tabopen wikipedia 
+nnoremap q    D
+nnoremap I    i
+nnoremap i    gi
+nnoremap J    <C-F>
+nnoremap K    <C-B>
+nnoremap v    :viewsource<CR>
+nnoremap x    :run 
+nnoremap X    :!!<CR>
+vnoremap y    <C-V><C-C>
+
+nnoremap <Space>    <C-F>
+nnoremap <S-Space>  <C-B>
+nnoremap <C-J>      <C-F>
+nnoremap <C-K>      <C-B>
+nnoremap <C-N>      gt
+nnoremap <C-P>      gT
+nnoremap <C-H>      <C-^>
+nnoremap <C-C>      :stop<CR>
+nnoremap <C-O>      :back<CR>
+nnoremap <C-I>      :forward<CR>
+cnoremap <C-J>      <CR>
+cnoremap <C-O>      <C-J>
+cnoremap <C-N>      <down>
+cnoremap <C-P>      <up>
+cnoremap <C-B>      <left>
+cnoremap <C-F>      <right>
+inoremap <C-J>      <CR>
+inoremap <C-N>      <down>
+inoremap <C-P>      <up>
 
 noremap wbd :tabopen www.baidu.com<CR><Esc>
 noremap wgg :tabopen http://www.google.com/intl/en/<CR>
