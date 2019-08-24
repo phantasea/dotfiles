@@ -65,12 +65,17 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+rightprompt()
+{
+    printf "%*s" $COLUMNS $(date +%Y-%m-%d\|%H:%M:%S)
+}
+
 # 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
 # 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
 else
-    PS1='\[\033[01;33m\]\u\[\033[01;37m\]@\[\033[01;34m\]\h\[\033[00;37m\]:\[\033[01;36m\]\w\[\033[00;31m\]\$\[\033[00;37m\] '
+    PS1='\[$(tput sc; rightprompt; tput rc)\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
 fi
 unset color_prompt force_color_prompt
 
