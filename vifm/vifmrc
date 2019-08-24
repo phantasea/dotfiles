@@ -15,7 +15,7 @@ nnoremap  <bs>     gh
 mnoremap  <bs>     <c-b>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
-nnoremap b<space>  :set scrollbind!<cr>
+nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
 nnoremap c<space>  :change<cr>
 nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
@@ -117,6 +117,7 @@ nnoremap  r  cW
 nnoremap  R  cw
 qnoremap  s  <c-w>
 nnoremap  s  <c-w>
+nnoremap  sb :set scrollbind!<cr>
 nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 nnoremap  sf :find . -name "*"<cr>B

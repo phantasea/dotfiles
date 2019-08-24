@@ -95,7 +95,8 @@ class Default(ColorScheme):
 				if context.good:
 					bg = red
 			elif context.link:
-				fg = magenta
+				fg = white
+				bg = red
 			fg = white
 
 		elif context.in_statusbar:
