@@ -84,14 +84,19 @@ class Default(ColorScheme):
 			attr |= bold
 			if context.hostname:
 				fg = context.bad and red or green
+				bg = red
 			elif context.directory:
-				fg = cyan
+				fg = white
+				bg = red
+			elif context.file:
+				fg = white
+				bg = red
 			elif context.tab:
 				if context.good:
 					bg = red
 			elif context.link:
 				fg = magenta
-			fg = yellow
+			fg = white
 
 		elif context.in_statusbar:
 			if context.permissions:
@@ -106,8 +111,8 @@ class Default(ColorScheme):
 				if context.bad:
 					attr |= bold
 					fg = red
-			bg = blue
-			fg = white
+			bg = cyan
+			fg = yellow
 			attr |= bold
 
 		if context.text:
