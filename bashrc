@@ -67,7 +67,7 @@ fi
 
 rightprompt()
 {
-    printf "%*s" $COLUMNS $(date +%Y-%m-%d\|%H:%M:%S)
+    printf "%*s" $COLUMNS $(date +%Y-%m-%d/%H:%M:%S)
 }
 
 # 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
