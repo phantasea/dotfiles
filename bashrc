@@ -119,6 +119,7 @@ zx ()
     case $1 in
       *.tar.bz2)   tar xjf $1   ;;
       *.tar.gz)    tar xzf $1   ;;
+      *.tar.xz)    tar Jxf $1   ;;
       *.bz2)       bunzip2 $1   ;;
       *.rar)       unrar x $1   ;;
       *.gz)        gunzip $1    ;;
@@ -139,6 +140,35 @@ zx ()
 rmhistdups() {
   awk '!visited[$0]++' "$HOME/.bash_history" > /tmp/.bash_history.tmp;
   mv -f /tmp/.bash_history.tmp "$HOME/.bash_history"
+}
+
+# timer
+countdown() {
+    total=$1
+    for ((i=total; i>0; i--)); do sleep 1; printf "Time remaining $i secs \r"; done
+    echo -e "\a"
+}
+
+up() {
+    times=$1
+    while [ "$times" -gt "0" ]; do
+        cd ..
+        times=$(($times - 1))
+    done
+}
+
+gac() {
+    git add -f $1
+    shift
+    git commit -m "$*"
+}
+
+ytdl_music() {
+    youtube-dl --output ~/temp/"$2.%(ext)s" --extract-audio --audio-format mp3 --audio-quality 0 "$1" --add-metadata -x
+}
+
+ytdl_video() {
+    youtube-dl --output ~/temp/"$2.%(ext)s" "$1"
 }
 
 # source autojump
