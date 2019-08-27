@@ -433,7 +433,9 @@ fileview  *.sh  highlight -S sh -O ansi -s dante %c
 fileview  */,.*/  tree -F -L 3 --dirsfirst %c
 
 " Pdf
-fileview  *.pdf  thumbnail %px %py %pw %ph %c, pdftotext -l 3 -nopgbrk -q %c -
+fileview  *.pdf
+          \ thumbnail %px %py %pw %ph %c,
+          \ pdftotext -l 3 -nopgbrk -q %c -,
 if $DISPLAY == ""
   filetype  *.pdf jfbview --cache_size=5 %c, fimgs %c, fbpdf %c
 else
