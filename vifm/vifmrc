@@ -120,7 +120,7 @@ nnoremap  s  <c-w>
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
-nnoremap  sf :find . -name "*"<cr>B
+nnoremap  sf :find . -iname '**'<left><left>
 nnoremap  sl :alink!<cr>
 nnoremap  si :medinfo<cr>
 nnoremap  sq :hideui<cr>
