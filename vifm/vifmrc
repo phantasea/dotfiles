@@ -474,11 +474,15 @@ fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  w3mimg %px %py %pw %ph %c,
 filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview %c, jfbview %c, feh %c
 
 " Web
-fileview  *.html,*.htm,*.xhtml,*.shtml  w3m -dump -cols %pw -T text/html %c, elinks -dump -dump-width %pw %c
+fileview  *.html,*.htm,*.xhtml,*.shtml
+          \ w3m -dump -cols %pw -T text/html %c,
+          \ elinks -dump -dump-width %pw %c,
 if $DISPLAY == ""
-  filetype  *.html,*.htm,*.xhtml,*.shtml  wemux %c, wemux -e %c
+  filetype  *.html,*.htm,*.xhtml,*.shtml  wemux -e %c, wemux %c
 else
-  filextype *.html,*.htm,*.xhtml,*.shtml  firefox %c, vimb %c, surf %c, dwb %c
+  filextype *.html,*.htm,*.xhtml,*.shtml
+            \ wemux %c, wemux -e %c,
+            \ firefox %c, vimb %c, surf %c, dwb %c,
 endif
 
 " Markdown
