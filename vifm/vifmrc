@@ -16,10 +16,10 @@ mnoremap  <bs>     <c-b>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
-nnoremap c<space>  :change<cr>
+nnoremap c<space>  :copen<cr>
 nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
-nnoremap m<space>  :copen<cr>
+nnoremap m<space>  :marks<cr>
 nnoremap o<space>  :file<cr>
 nnoremap s<space>  :set nolaststatus!<cr>
                   \:if !&laststatus | highlight CmdLine ctermfg=white ctermbg=blue cterm=bold
@@ -122,6 +122,7 @@ nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 nnoremap  sf :find . -iname '**'<left><left>
 nnoremap  sl :alink!<cr>
+nnoremap  sm :marks<cr>
 nnoremap  si :medinfo<cr>
 nnoremap  sq :hideui<cr>
 nnoremap  sr :source $VIFM/vifmrc<cr>
@@ -163,27 +164,7 @@ cabbrev  cs  colorscheme
 " }}}
 
 " mark {{{
-mark a /opt/apps
-mark c ~/.config
-mark e /opt/conf
-mark h ~/
-mark n ~/docs/note
-mark o /opt
-mark p /opt/.priv
-mark r /
-mark t ~/.Trash
-mark u /opt/util
-mark v ~/.vim
-mark w ~/docs/webs
-
-mark M /media/simone
-mark P /opt/.porn
-mark T /tmp
-mark U /media/simone/sandisk_u
-mark V /media/simone/sandisk_v
-mark W /media/simone/sandisk_w
-
-bmark! ~/docs doc
+source $VIFM/vifmmark
 " }}}
 
 " option {{{
