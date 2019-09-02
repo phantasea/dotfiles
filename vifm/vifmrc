@@ -478,7 +478,7 @@ fileview  *.html,*.htm,*.xhtml,*.shtml
           \ w3m -dump -cols %pw -T text/html %c,
           \ elinks -dump -dump-width %pw %c,
 if $DISPLAY == ""
-  filetype  *.html,*.htm,*.xhtml,*.shtml  wemux -e %c, wemux %c
+  filetype  *.html,*.htm,*.xhtml,*.shtml  wemux %c, wemux -e %c
 else
   filextype *.html,*.htm,*.xhtml,*.shtml
             \ wemux %c, wemux -e %c,
