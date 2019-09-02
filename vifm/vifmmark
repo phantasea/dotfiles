@@ -1,0 +1,22 @@
+mark a /opt/apps
+mark c ~/.config
+mark e /opt/conf
+mark h ~/
+mark n ~/docs/note
+mark o /opt
+mark p /opt/.priv
+mark r /
+mark t ~/.Trash
+mark u /opt/util
+mark v ~/.vim
+mark w ~/docs/webs
+
+mark M /media/simone
+mark P /opt/.porn
+mark T /tmp
+mark U /media/simone/sandisk_u
+mark V /media/simone/sandisk_v
+mark W /media/simone/sandisk_w
+mark X /media/simone/sandisk_x1
+
+bmark! ~/docs doc
