@@ -29,6 +29,7 @@ nnoremap x<space>  <c-w>x
 nnoremap z<space>  <nop>
 
 nnoremap  <c-b>  :tree<cr>
+nnoremap  <c-f>  :fzffind<cr>
 cnoremap  <c-j>  <cr>
 mnoremap  <c-j>  <c-f>
 nnoremap  <c-j>  <c-f>L
@@ -340,6 +341,7 @@ command! imgall          imgview -s
 command! imgrall         imgview -rs
 command! medinfo         medinfo %c %S
 command! wether          curl --silent wttr.in %m
+command! fzffind         :set noquickview | :execute 'goto "'.system('find | fzf 2>/dev/tty ').'"%IU' | redraw
 " }}}
 
 " autocommand {{{
