@@ -85,7 +85,7 @@ set smarttab
 set softtabstop=4
 set statusline=%{MyColorStatusLine()}
 set tabstop=4
-set tags+=/opt/apps/**/tags
+set tags+=tags
 set termencoding=utf-8
 set textwidth=0
 set updatetime=2000
