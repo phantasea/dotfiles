@@ -171,13 +171,12 @@ ytdl_video() {
     youtube-dl --output ~/temp/"$2.%(ext)s" "$1"
 }
 
-#ffe() { du -a /opt/util/* /opt/conf/* | awk '{print $2}' | grep -iv 'pyo$\|__init\|db$\|ttf$\|png$\|jpg$\|w3m' | fzf | xargs -r vimux ;}
-ffe() { find /opt/util/ /opt/conf/ -depth -type f | egrep -iv '\.git|pyo$|__init|db$|ttf$|png$|jpg$|w3m' | fzf | xargs -r vimux ;}
-
+ffe() { find /opt/util/ /opt/conf/ ~/docs/note -depth -type f | egrep -iv '\.git|pyo$|__init|db$|ttf$|png$|jpg$|w3m' | fzf | xargs -r vimux ;}
+ffw() { find ~/docs/webs -maxdepth 1 -type f | fzf | xargs -r wemux ;}
 ffcp() { cp -vi "$1" "$(cat ~/.vifm/vifmmark | egrep -v 'bmark|^$' | awk '{print $3}' | grep -v -e '^/$' | fzf | sed "s|~|$HOME|")" ;}
 
 # source autojump
-[[ -s /home/simone/.autojump/etc/profile.d/autojump.sh ]] && source /home/simone/.autojump/etc/profile.d/autojump.sh
+[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 
 # source tmux completion script
 [[ -s /usr/share/doc/tmux/examples/bash_completion_tmux.sh ]] && source /usr/share/doc/tmux/examples/bash_completion_tmux.sh
