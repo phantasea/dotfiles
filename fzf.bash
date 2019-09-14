@@ -4,7 +4,7 @@ if [[ ! "$PATH" == */opt/apps/fzf/bin* ]]; then
   export PATH="${PATH:+${PATH}:}/opt/apps/fzf/bin"
 fi
 
-export FZF_DEFAULT_OPTS="--exact --cycle --bind=ctrl-j:accept,ctrl-k:kill-line"
+export FZF_DEFAULT_OPTS="--exact --multi --cycle --bind=ctrl-j:accept,ctrl-k:kill-line"
 export FZF_COMPLETION_TRIGGER='**'
 
 # Auto-completion
