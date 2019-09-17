@@ -341,7 +341,7 @@ command! imgall          imgview -s
 command! imgrall         imgview -rs
 command! medinfo         medinfo %c %S
 command! wether          curl --silent wttr.in %m
-command! fzffind         :set noquickview | :execute 'goto "'.system('find | fzf 2>/dev/tty ').'"%IU' | redraw
+command! fzffind         :set noquickview | :execute 'goto "'.system('find . -not -path "*/\.*" | fzf 2>/dev/tty').'"%IU' | redraw
 " }}}
 
 " autocommand {{{
