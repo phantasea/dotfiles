@@ -171,7 +171,7 @@ ytdl_video() {
     youtube-dl --output ~/temp/"$2.%(ext)s" "$1"
 }
 
-ffe() { find /opt/util/ /opt/conf/ ~/docs/note -depth -type f | egrep -iv '\.git|pyo$|__init|db$|ttf$|png$|jpg$|w3m' | fzf | xargs -r vimux ;}
+ffe() { find /opt/util/ /opt/conf/ ~/docs/note /opt/misc/docs -depth -type f | egrep -iv '\.git|pyo$|__init|db$|ttf$|png$|jpg$|w3m' | fzf | xargs -r vimux ;}
 ffw() { find ~/docs/webs -maxdepth 1 -type f | fzf | xargs -r wemux ;}
 ffcp() { cp -vi "$1" "$(cat ~/.vifm/vifmmark | egrep -v 'bmark|^$' | awk '{print $3}' | grep -v -e '^/$' | fzf | sed "s|~|$HOME|")" ;}
 
