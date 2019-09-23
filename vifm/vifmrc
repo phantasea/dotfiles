@@ -300,11 +300,12 @@ endif
 " %S Show command output in the status bar
 command! time            tty-clock -cBS -C 6
 command! ss              cmatrix -abs -C cyan
-command! sued            !sudoedit %c
+command! sued            sudoedit %c
 command! surm            sudo rm -rf %c
 command! rc              vimux $VIFM/vifmrc
 command! df              df -h %m 2> /dev/null
 command! ps              pstree %m
+command! ctags           ctags -R . %i
 command! du              ncdu .
 command! diff            vimux -d %c %C
 command! diffsamewin     vimux -d %f
