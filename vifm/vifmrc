@@ -337,7 +337,7 @@ command! reload          :write | restart
 command! iconv           iconv -f GBK -t UTF8 %c -o %c %i
 command! vgrep           vim "+grep %a"
 command! mpv             mpv --vo=drm %c
-command! mpl             mplayer -nofs -xy 768 %c
+command! mpl             vidmux -n %c
 command! fim             fim %f > /dev/null 2>&1
 command! imgall          imgview -s
 command! imgrall         imgview -rs
