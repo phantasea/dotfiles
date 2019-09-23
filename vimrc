@@ -34,15 +34,15 @@ filetype plugin indent on
 syntax enable
 syntax on
 
-"set autochdir
 set ambiwidth=double
+set autochdir
 set autoindent
 set autoread
 set background=dark
 set backspace=indent,eol,start
 set completeopt=menu
 set cursorline
-set diffopt=filler,context:3,foldcolumn:0
+set diffopt=internal,indent-heuristic,filler,vertical,context:3,foldcolumn:0
 set encoding=utf-8
 set expandtab
 set fileencoding=chinese
@@ -85,7 +85,7 @@ set smarttab
 set softtabstop=4
 set statusline=%{MyColorStatusLine()}
 set tabstop=4
-set tags+=tags
+set tags=tags;
 set termencoding=utf-8
 set textwidth=0
 set updatetime=2000
@@ -108,7 +108,6 @@ nnoremap   <C-Right>  ze
 map <F7>   :set wrap!<CR>
 map <F8>   :nohlsearch<CR>
 
-imap  jj   <ESC>
 cmap  jj   <ESC>
 
 onoremap   aa   :<C-U>normal! ggVG<CR>
@@ -558,16 +557,16 @@ augroup END
 "}}}
 
 " abbrev  {{{
-iabbrev   xbq      `
-iabbrev   xdate    <C-R>=strftime("%d/%m/%y %H:%M:%S")<cr>
+iabbrev  xbq      `
+iabbrev  xdate    <C-R>=strftime("%d/%m/%y %H:%M:%S")<cr>
 "}}}
 
 " command  {{{
-" See the difference between the current buffer and the file it was loaded from, thus the changes you made.
-command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 command! Vimrc    edit ~/.vimrc
 command! Vifmrc   edit ~/.vifm/vifmrc
 command! Favlist  edit ~/.vim/favlist
+"See the difference between the current buffer and the file it was loaded from, thus the changes you made.
+command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 "}}}
 
 " plugins  {{{
