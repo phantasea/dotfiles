@@ -44,6 +44,7 @@ highlight  OtherLine    ctermfg=white     ctermbg=black     cterm=bold
 highlight  Selected     ctermfg=white     ctermbg=none      cterm=bold
 highlight  JobLine      ctermfg=white     ctermbg=blue      cterm=bold
 highlight  Menu         ctermfg=white     ctermbg=black     cterm=none
+highlight  Dialog       ctermfg=white     ctermbg=black     cterm=bold
 highlight  WildMenu     ctermfg=white     ctermbg=black     cterm=underline,reverse
 highlight  SuggestBox   ctermfg=yellow    ctermbg=black     cterm=bold
 highlight  CmpMismatch  ctermfg=red       ctermbg=black     cterm=bold
