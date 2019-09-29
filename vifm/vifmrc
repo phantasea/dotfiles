@@ -202,7 +202,7 @@ set caseoptions="pg"
 set grepprg='ag --line-numbers %i %a %s'
 set prefervsplit
 set maxundotabs=3
-set maxratingstars=7
+set maxratingstars=0
 set previewmaxsize=3000
 if $DISPLAY == ""
 set topmidfiller="∥"
