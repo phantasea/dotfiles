@@ -5,7 +5,7 @@ if [[ ! "$PATH" == */opt/apps/fzf/bin* ]]; then
 fi
 
 export FZF_DEFAULT_OPTS="--exact --multi --cycle --bind=ctrl-f:page-down,ctrl-b:page-up --color=fg+:7,bg+:1,hl+:3"
-export FZF_COMPLETION_TRIGGER='**'
+export FZF_COMPLETION_TRIGGER=',,'
 
 # Auto-completion
 # ---------------
