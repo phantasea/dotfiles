@@ -171,7 +171,7 @@ source $VIFM/vifmmark
 " option {{{
 " This is the actual command used to start vi.  The default is vim.
 set vicmd="vimux"
-set vixcmd="vim"
+set vixcmd="vimux"
 
 " IO options
 set syscalls
