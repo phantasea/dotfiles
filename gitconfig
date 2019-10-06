@@ -14,6 +14,10 @@
     safecrlf = false
     excludesfile = /opt/conf/gitignore
 
+#[pager]
+#    diff = diff-so-fancy | less --tabs=1,5 -RFX
+#    show = diff-so-fancy | less --tabs=1,5 -RFX
+
 [diff]
     tool = vimdiff
 
