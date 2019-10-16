@@ -136,7 +136,9 @@ nnoremap   <BS>     <PageUp>H
 nnoremap   <Space>  <PageDown>L
 nnoremap   <C-H>    <C-^>
 nnoremap   <C-J>    <PageDown>L
+vnoremap   <C-J>    <PageDown>zz
 nnoremap   <C-K>    <PageUp>H
+vnoremap   <C-K>    <PageUp>zz
 nnoremap   <C-N>    :bn<CR>
 nnoremap   <C-P>    :bp<CR>
 nnoremap   <C-U>    <C-T>

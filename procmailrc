@@ -1,7 +1,7 @@
 VERBOSE=yes
 MAILDIR=$HOME/.mail
 DEFAULT=$MAILDIR/inbox
-#LOGFILE=$HOME/.log/procmail.log
+#LOGFILE=$HOME/.logs/procmail.log
 
 :0:
 * ^From:.*(Rachel|Malissavr|Suzy|Facebook|iTunes|LoveAgain)
