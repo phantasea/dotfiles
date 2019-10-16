@@ -78,7 +78,7 @@ nnoremap  cm cp
 vnoremap  cm cp
 nnoremap  ci :copyfromother<cr>
 vnoremap  ci :copyfromother<cr>
-nnoremap  co :copy<cr>
+nnoremap  co :copytoother<cr>
 vnoremap  co :copytoother<cr>
 nnoremap  cI :sucopyfromother<cr>
 vnoremap  cI :sucopyfromother<cr>
@@ -143,7 +143,7 @@ qnoremap  v  q
 nnoremap  W  :set lsview!<cr>
 nnoremap  xi :movefromother<cr>
 vnoremap  xi :movefromother<cr>
-nnoremap  xo :move<cr>
+nnoremap  xo :movetoother<cr>
 vnoremap  xo :movetoother<cr>
 nnoremap  xI :sumovefromother<cr>
 vnoremap  xI :sumovefromother<cr>
