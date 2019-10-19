@@ -351,6 +351,8 @@ autocmd DirEnter '~/docs/misc'     exec 'normal zd'
 autocmd DirEnter '~/docs/webs'     exec 'normal zd'
 autocmd DirEnter '~/pics'          exec 'normal fm'
 autocmd DirEnter '/opt/apps/vifm'  exec 'normal fs;'
+autocmd DirEnter '/opt/auds'       setl nomillerview lsview
+autocmd DirEnter '~/auds/misc'     setl nomillerview lsview
 " }}}
 
 " filetype and fileview {{{
