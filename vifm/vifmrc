@@ -53,7 +53,6 @@ vnoremap  <c-t>  :tabnew<cr>
 nnoremap  <c-u>  U
 nnoremap  <c-v>  <s-tab>
 qnoremap  <c-v>  <s-tab>
-cnoremap  <c-w>  <a-b><a-d>
 
 nnoremap  0  gg
 nnoremap  ^  gg
@@ -348,8 +347,10 @@ command! fzffind         :set noquickview | :execute 'goto "'.system('find . -no
 
 " autocommand {{{
 "autocmd DirEnter '/opt/apps/**/*' setl previewprg='git log --color -- %c 2>&1'
-autocmd DirEnter '~/pics' exec 'normal fm'
-autocmd DirEnter '/opt/apps/vifm' exec 'normal fs;'
+autocmd DirEnter '~/docs/misc'     exec 'normal zd'
+autocmd DirEnter '~/docs/webs'     exec 'normal zd'
+autocmd DirEnter '~/pics'          exec 'normal fm'
+autocmd DirEnter '/opt/apps/vifm'  exec 'normal fs;'
 " }}}
 
 " filetype and fileview {{{
