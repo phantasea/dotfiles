@@ -185,9 +185,7 @@ set tabscope=pane
 set showtabline=multiple
 set dotdirs=rootparent
 set fillchars=vborder:\|
-set timefmt="%H:%M\ %m/%d/%y"
 set numberwidth=1
-set rulerformat="%=%r %l%%%S%[ +%x%]"
 set viewcolumns=-{name},{rating},17{mtime}
 set sizefmt=units:iec,precision:1,nospace
 set milleroptions=lsize:2,csize:5,rsize:3
@@ -209,7 +207,9 @@ else
 set topmidfiller="‖"
 endif
 
-set statusline="%5*[%A]%9*‥%6*%u:%g%9*‥%2*%d%9*‥%1*%a | %E%9*‥%4* %= %r \"%t%T\""
+set timefmt="%H:%M\ %m/%d/%y"
+set rulerformat="%=%r %l%%%S%[ +%x%]"
+set statusline="%5*[%A]%9*‥%6*%u:%g%9*‥%2*%d%9*‥%1*%a | %E%9*‥%4* %= \"%t%T\""
 
 source $VIFM/devicons
 
@@ -448,7 +448,7 @@ endif
 " Audio
 fileview  *.mp3,*.wav,*.flac,*.ogg,*.ape,*.wma  exiftool %c, mediainfo %c
 filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg123 -q %c > /dev/null 2>&1 &, mplayer %c > /dev/null 2>&1 &
-filetype  *.wma,*.ape                           mplayer %c > /dev/null 2>&1 &, mpv %c > /dev/null 2>&1 &
+filetype  *.wma,*.ape,*.rm                      mplayer %c > /dev/null 2>&1 &, mpv %c > /dev/null 2>&1 &
 
 " Video
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
