@@ -342,7 +342,11 @@ command! imgall          imgview -s
 command! imgrall         imgview -rs
 command! medinfo         medinfo %c %S
 command! wether          curl --silent wttr.in %m
-command! fzffind         :set noquickview | :execute 'goto "'.system('find . -not -path "*/\.*" | fzf 2>/dev/tty').'"%IU' | redraw
+command! fffind         :set noquickview | :execute 'goto "'.system('find . -not -path "*/\.*" | fzf 2>/dev/tty').'"%IU' | redraw
+command! ffgoto         find . -not -path "*/\.*" | fzf | xargs -r vifmgoto
+command! ffedit         find /opt/util/ /opt/conf/ ~/docs/note /opt/misc/docs -depth -type f
+                              \| egrep -iv '\.git|pyo$|__init|db$|ttf$|png$|jpg$|w3m'
+                              \| fzf | xargs -r vifmedit
 " }}}
 
 " autocommand {{{
@@ -350,6 +354,7 @@ command! fzffind         :set noquickview | :execute 'goto "'.system('find . -no
 autocmd DirEnter '~/docs/misc'     exec 'normal zd'
 autocmd DirEnter '~/docs/webs'     exec 'normal zd'
 autocmd DirEnter '~/pics'          exec 'normal fm'
+autocmd DirEnter '~/auds'          exec 'normal fm'
 autocmd DirEnter '/opt/apps/vifm'  exec 'normal fs;'
 autocmd DirEnter '/opt/auds'       setl nomillerview lsview
 autocmd DirEnter '~/auds/misc'     setl nomillerview lsview
@@ -447,8 +452,8 @@ endif
 
 " Audio
 fileview  *.mp3,*.wav,*.flac,*.ogg,*.ape,*.wma  exiftool %c, mediainfo %c
-filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg123 -q %c &, mplayer %c > /dev/null 2>&1 &
-filetype  *.wma,*.ape,*.rm                      mplayer %c &, mpv %c > /dev/null 2>&1 &
+filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg123 -q %c &, mplayer %c &
+filetype  *.wma,*.ape,*.rm                      mplayer %c &, mpv %c &
 
 " Video
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
