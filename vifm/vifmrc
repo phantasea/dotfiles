@@ -341,10 +341,11 @@ command! fim             fim %f > /dev/null 2>&1
 command! imgall          imgview -s
 command! imgrall         imgview -rs
 command! medinfo         medinfo %c %S
-command! wether          curl --silent wttr.in %m
-command! fffind         :set noquickview | :execute 'goto "'.system('find . -not -path "*/\.*" | fzf 2>/dev/tty').'"%IU' | redraw
-command! ffgoto         find . -not -path "*/\.*" | fzf | xargs -r vifmgoto
-command! ffedit         find /opt/util/ /opt/conf/ ~/docs/note /opt/misc/docs -depth -type f
+command! weather         curl --silent wttr.in %m
+command! fffind          :set noquickview | :exec 'goto' fnameescape(system('find . -not -path "*/\.*" 
+                              \| fzf 2>/dev/tty')) '%IU' | redraw
+command! ffgoto          find . -not -path "*/\.*" | fzf | xargs -r vifmgoto
+command! ffedit          find /opt/util/ /opt/conf/ ~/docs/note /opt/misc/docs -depth -type f
                               \| egrep -iv '\.git|pyo$|__init|db$|ttf$|png$|jpg$|w3m'
                               \| fzf | xargs -r vifmedit
 " }}}
