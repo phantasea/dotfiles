@@ -20,7 +20,7 @@ nnoremap c<space>  :copen<cr>
 nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
 nnoremap m<space>  :marks<cr>
-nnoremap o<space>  :file<cr>
+nnoremap o<space>  :sort<cr>
 nnoremap s<space>  :set nolaststatus!<cr>
                   \:if !&laststatus | highlight CmdLine ctermfg=white ctermbg=blue cterm=bold
                   \| else | highlight CmdLine ctermfg=yellow ctermbg=none cterm=bold | endif<cr>
@@ -29,7 +29,7 @@ nnoremap x<space>  <c-w>x
 nnoremap z<space>  <nop>
 
 nnoremap  <c-b>  :tree<cr>
-nnoremap  <c-f>  :fzffind<cr>
+nnoremap  <c-f>  :fffind<cr>
 cnoremap  <c-j>  <cr>
 mnoremap  <c-j>  <c-f>
 nnoremap  <c-j>  <c-f>L
@@ -57,12 +57,16 @@ qnoremap  <c-v>  <s-tab>
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
+nnoremap  @  <nop>
+nnoremap  &  <nop>
+nnoremap  +  <nop>
 nnoremap  ~  :tabnew ~<cr>
 vnoremap  .  :!!<cr>
 nnoremap  -  :invert s<cr>
 vnoremap  -  :invert s<cr>
 nnoremap  <  <c-w><
 nnoremap  >  <c-w>>
+nnoremap  |  <c-w>=
 nnoremap  ?  :file<cr>
 nnoremap  a  GVgg
 vnoremap  a  ggoG
@@ -75,6 +79,7 @@ nnoremap  cs :cds/
 nnoremap  cg :goto<space>
 nnoremap  cm cp
 vnoremap  cm cp
+nnoremap  cl cl
 nnoremap  ci :copyfromother<cr>
 vnoremap  ci :copyfromother<cr>
 nnoremap  co :copytoother<cr>
@@ -90,6 +95,7 @@ nnoremap  e  :edit %c<cr>
 qnoremap  e  q:edit %c<cr>
 nnoremap  E  :sued<cr>
 mnoremap  h  q
+dnoremap  h  q
 nnoremap gi  :imgall<cr>
 nnoremap gI  :imgrall<cr>
 nnoremap  i  :touch<space>
@@ -111,6 +117,7 @@ nnoremap  O  zR
 qnoremap  p  <c-b>
 nnoremap  q  ZZ
 nnoremap  Q  :qall<cr>
+nnoremap gq  q
 nnoremap gr  :grep<space>
 vnoremap  r  cw
 nnoremap  r  cW
@@ -129,16 +136,21 @@ nnoremap  sr :source $VIFM/vifmrc<cr>
 nnoremap  ss <c-w>S
 nnoremap  st :tree<cr>
 nnoremap  sy :sync<cr>
-nnoremap gs  :sort<cr>
 nnoremap  S  :%s//g<left><left>
 vnoremap  S  :%s//g<left><left>
-nnoremap \t  :lstrash<cr>
 nnoremap gt  gs
 nnoremap  t  tj
 nnoremap  T  kt
-nnoremap \u  :undolist<cr>
 nnoremap  U  <c-r>
 qnoremap  v  q
+nnoremap  wj :jobs<cr>
+nnoremap  wm :marks<cr>
+nnoremap  wt :lstrash<cr>
+nnoremap  wu :undolist<cr>
+nnoremap  ww :copen<cr>
+nnoremap  ws :sort<cr>
+nnoremap  wp :chmod<cr>
+nnoremap  wc :change<cr>
 nnoremap  W  :set lsview!<cr>
 nnoremap  xi :movefromother<cr>
 vnoremap  xi :movefromother<cr>
@@ -201,10 +213,13 @@ set prefervsplit
 set maxundotabs=3
 set maxratingstars=0
 set previewmaxsize=3000
+set nofilenamedispall
 if $DISPLAY == ""
 set topmidfiller="∥"
+set filenamedisplen=66
 else
 set topmidfiller="‖"
+set filenamedisplen=49
 endif
 
 set timefmt="%H:%M\ %m/%d/%y"
@@ -342,7 +357,7 @@ command! imgall          imgview -s
 command! imgrall         imgview -rs
 command! medinfo         medinfo %c %S
 command! weather         curl --silent wttr.in %m
-command! fffind          :set noquickview | :exec 'goto' fnameescape(system('find . -not -path "*/\.*" 
+command! fffind          :set noquickview | :exec 'goto' fnameescape(system('find . -not -path "*/\.*"
                               \| fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          find . -not -path "*/\.*" | fzf | xargs -r vifmgoto
 command! ffedit          find /opt/util/ /opt/conf/ ~/docs/note /opt/misc/docs -depth -type f
@@ -453,8 +468,8 @@ endif
 
 " Audio
 fileview  *.mp3,*.wav,*.flac,*.ogg,*.ape,*.wma  exiftool %c, mediainfo %c
-filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg123 -q %c &, mplayer %c &
-filetype  *.wma,*.ape,*.rm                      mplayer %c &, mpv %c &
+filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg123 -q %c > /dev/null 2>&1 &, mplayer %c > /dev/null 2>&1 &
+filetype  *.wma,*.ape,*.rm                      mplayer %c > /dev/null 2>&1 &, mpv %c > /dev/null 2>&1 &
 
 " Video
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
