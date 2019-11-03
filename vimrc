@@ -60,6 +60,9 @@ set keywordprg=
 set lazyredraw
 set laststatus=2
 set linebreak
+set list
+set listchars=tab:â–¸\ 
+"set listchars+=eol:Â¬
 set magic
 set modeline
 set mouse=a
@@ -523,7 +526,7 @@ augroup autocmds
 
     autocmd DiffUpdated * call MyDiffSetting()
 
-    "½øÈëÎÄ¼şºó¶¨Î»µ½ÉÏ´ÎÍË³öÊ±µÄÎ»ÖÃ
+    "è¿›å…¥æ–‡ä»¶åå®šä½åˆ°ä¸Šæ¬¡é€€å‡ºæ—¶çš„ä½ç½®
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
 
     "custom quickfix window statusline
