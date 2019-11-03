@@ -28,6 +28,7 @@ highlight  Fifo         ctermfg=blue      ctermbg=none      cterm=bold
 highlight  Executable   ctermfg=green     ctermbg=none      cterm=none
 highlight  ErrorMsg     ctermfg=red       ctermbg=black     cterm=none
 highlight  Border       ctermfg=blue      ctermbg=black     cterm=bold
+highlight  TopMid       ctermfg=white     ctermbg=black     cterm=bold
 highlight  StatusLine   ctermfg=white     ctermbg=blue      cterm=bold
 highlight  CmdLine      ctermfg=yellow    ctermbg=none      cterm=bold
 highlight  TabLine      ctermfg=none      ctermbg=black     cterm=none
