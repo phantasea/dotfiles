@@ -14,6 +14,8 @@ $if mode=emacs
 "\eOP":"tty-clock -cB -C 6\n"
 # F2
 "\eOQ":"screenfetch\n"
+# F3
+"\eOR":"ffe\n"
 # F4
 "\eOS":"em\n"
 # F5
