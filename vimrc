@@ -11,7 +11,7 @@ highlight PmenuSel     ctermfg=black    ctermbg=green   cterm=none
 highlight PmenuSbar    ctermbg=black
 highlight PmenuThumb   ctermbg=black
 highlight TabLine      ctermfg=white    ctermbg=blue    cterm=bold
-highlight TabLineSel   ctermfg=white    ctermbg=blue    cterm=bold,reverse
+highlight TabLineSel   ctermfg=white    ctermbg=green   cterm=bold
 highlight TabLineFill  ctermfg=white    ctermbg=blue    cterm=bold
 " settings below are used by statusline
 highlight User1        ctermfg=magenta  ctermbg=black   cterm=inverse
@@ -135,7 +135,7 @@ inoremap   <C-L>    <End>
 inoremap   <C-H>    <BS>
 inoremap   <C-K>    <Esc>lC
 inoremap   <Tab>    <C-N>
-nnoremap   <BS>     <PageUp>H
+nnoremap   <BS>     gt
 nnoremap   <Space>  <PageDown>L
 nnoremap   <C-H>    <C-^>
 nnoremap   <C-J>    <PageDown>L
@@ -216,7 +216,7 @@ nnoremap   d<space>   :call SmartDiffToggle()<CR>
 nnoremap   g<space>   :Ranger<cr>
 nnoremap   m<space>   <NOP>
 nnoremap   s<space>   :call SmartWinMax()<CR>
-nnoremap   t<space>   <NOP>
+nnoremap   t<space>   :NERDTree<cr>
 nnoremap   v<space>   :view ~/.vim/favlist<CR>
 nnoremap   y<space>   <NOP>
 nnoremap   z<space>   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
@@ -605,5 +605,9 @@ let  g:Tlist_Auto_Highlight_Tag = 1
 let  g:Tlist_Show_One_File = 1
 let  g:Tlist_Exit_OnlyWindow = 1
 let  g:Tlist_GainFocus_On_ToggleOpen = 1
+"}}}
+
+"nerdtree {{{
+let NERDTreeIgnore=['\~$', '\.d$[[dir]]', '\.o$[[file]]']
 "}}}
 "}}}
