@@ -98,7 +98,10 @@ set wildignorecase
 "}}}
 
 " mapping  {{{
-nnoremap   <Enter>    <NOP>
+inoremap   <Tab>      <C-N>
+nnoremap   <CR>       <C-W>w
+nnoremap   <BS>       <C-W>p
+nnoremap   <Space>    <PageDown>L
 nnoremap   <Up>       <C-Y>
 nnoremap   <Down>     <C-E>
 nnoremap   <Left>     zh
@@ -134,9 +137,6 @@ inoremap   <C-F>    <Right>
 inoremap   <C-L>    <End>
 inoremap   <C-H>    <BS>
 inoremap   <C-K>    <Esc>lC
-inoremap   <Tab>    <C-N>
-nnoremap   <BS>     gt
-nnoremap   <Space>  <PageDown>L
 nnoremap   <C-H>    <C-^>
 nnoremap   <C-J>    <PageDown>L
 vnoremap   <C-J>    <PageDown>zz
@@ -216,7 +216,7 @@ nnoremap   d<space>   :call SmartDiffToggle()<CR>
 nnoremap   g<space>   :Ranger<cr>
 nnoremap   m<space>   <NOP>
 nnoremap   s<space>   :call SmartWinMax()<CR>
-nnoremap   t<space>   :NERDTree<cr>
+nnoremap   t<space>   :NERDTreeToggle<cr>
 nnoremap   v<space>   :view ~/.vim/favlist<CR>
 nnoremap   y<space>   <NOP>
 nnoremap   z<space>   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
@@ -608,6 +608,13 @@ let  g:Tlist_GainFocus_On_ToggleOpen = 1
 "}}}
 
 "nerdtree {{{
-let NERDTreeIgnore=['\~$', '\.d$[[dir]]', '\.o$[[file]]']
+let NERDTreeIgnore=['\~$', '^lost+found$[[dir]]', '\.o$[[file]]']
+let NERDTreeHijackNetrw=1
+let NERDTreeNaturalSort=1
+let NERDTreeShowBookmarks=1
+let NERDTreeQuitOnOpen=3
+let NERDTreeCaseSensitiveSort=0
+let NERDTreeStatusline=-1
+let NERDTreeWinSize=32
 "}}}
 "}}}

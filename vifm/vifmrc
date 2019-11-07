@@ -10,13 +10,13 @@ nnoremap  <F10>    :diff<cr>
 nnoremap  <F11>    :diffsamewin<cr>
 nnoremap  <F12>    :.!cmatrix -abs -C cyan<cr>
 
-nnoremap  <cr>     <nop>
-nnoremap  <bs>     gh
+nnoremap  <cr>     gt
+nnoremap  <bs>     <c-h>
 mnoremap  <bs>     <c-b>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
-nnoremap c<space>  :copen<cr>
+nnoremap c<space>  <nop>
 nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
 nnoremap m<space>  :marks<cr>
