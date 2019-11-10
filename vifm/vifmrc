@@ -29,6 +29,7 @@ nnoremap x<space>  <c-w>x
 nnoremap z<space>  <nop>
 
 nnoremap  <c-b>  :tree<cr>
+nnoremap  <c-e>  :ffedit<cr>
 nnoremap  <c-f>  :fffind<cr>
 cnoremap  <c-j>  <cr>
 mnoremap  <c-j>  <c-f>
