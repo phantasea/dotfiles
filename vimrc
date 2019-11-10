@@ -61,8 +61,7 @@ set lazyredraw
 set laststatus=2
 set linebreak
 set list
-set listchars=tab:▸\ 
-"set listchars+=eol:¬
+set listchars=tab:▸\     "set listchars+=eol:¬
 set magic
 set modeline
 set mouse=a
@@ -91,10 +90,16 @@ set tabstop=4
 set tags=tags;
 set termencoding=utf-8
 set textwidth=0
+set ttyfast
 set updatetime=2000
 set viminfo='49,<0,s10,h,/25,f0,n~/.vim/viminfo
 set wildmenu
+set wildmode=list:full
 set wildignorecase
+if &term =~ '256color'
+    set t_Co=256
+    set t_ut=
+endif
 "}}}
 
 " mapping  {{{
@@ -166,6 +171,13 @@ vnoremap   #    y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 vnoremap   *    y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 vnoremap   <    <gv
 vnoremap   >    >gv
+vnoremap   .    :normal .<CR>
+vnoremap  g(   <esc>`<i(<esc>`>a)<esc>
+vnoremap  g[   <esc>`<i[<esc>`>a]<esc>
+vnoremap  g{   <esc>`<i{<esc>`>a}<esc>
+vnoremap  g"   <esc>`<i"<esc>`>a"<esc>
+vnoremap  g'   <esc>`<i'<esc>`>a'<esc>
+vnoremap  g<   <esc>`<i<<esc>`>i><esc>
 
 nnoremap   c.   :cc<CR>
 nnoremap   cd   :cd 
@@ -311,9 +323,9 @@ func! SmartQuit()
     bdelete
 endfunc
 
-let g:file_picker_vifm = 0
+let s:file_picker = "ranger"
 func! DirFilePicker(mode)
-    if g:file_picker_vifm == 0
+    if s:file_picker == "default"
         if a:mode == "Normal"
             exec "normal! gf"
         elseif a:mode == "HSplit"
@@ -324,27 +336,35 @@ func! DirFilePicker(mode)
 
     let dircmd = ""
     let filecmd = ""
-    if a:mode == "Normal"
-        let dircmd = "EditVifm"
+    if s:file_picker == "vifm"
+        if a:mode == "Normal"
+            let dircmd = "Vifm"
+            let filecmd = "gf"
+        elseif a:mode == "HSplit"
+            let dircmd = "SplitVifm"
+            let filecmd = "\<c-w>f"
+        elseif a:mode == "VSplit"
+            let dircmd = "VSplitVifm"
+            let filecmd = "\<c-w>f"
+        elseif a:mode == "Tab"
+            let dircmd = "TabVifm"
+            let filecmd = "\<c-w>gf"
+        endif
+    endif
+
+    if s:file_picker == "ranger"
+        let dircmd = "Ranger"
         let filecmd = "gf"
-    elseif a:mode == "HSplit"
-        let dircmd = "SplitVifm"
-        let filecmd = "\<c-w>f"
-    elseif a:mode == "VSplit"
-        let dircmd = "VSplitVifm"
-        let filecmd = "\<c-w>f"
-    elseif a:mode == "Tab"
-        let dircmd = "TabVifm"
-        let filecmd = "\<c-w>gf"
     endif
 
     if dircmd == "" || filecmd == ""
         return
     endif
 
-    let thisline = getline(".")
-    if isdirectory(thisline)
-        exec dircmd." ".thisline
+    "let file = expand(getline("."))
+    let file = expand("<cfile>:p")
+    if isdirectory(file)
+        exec dircmd." ".file
     else
         exec "normal! ".filecmd
     endif
@@ -595,8 +615,8 @@ let g:bufferline_active_buffer_right = ' '
 "ranger {{{
 let g:ranger_map_keys = 0
 let g:ranger_open_new_tab = 0
-let g:ranger_replace_netrw = 1
-let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
+let g:ranger_replace_netrw = 0
+let g:ranger_command_override = 'ranger --cmd "set show_hidden=false"'
 "}}}
 
 "taglist {{{
