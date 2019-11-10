@@ -176,6 +176,11 @@ handle_mime() {
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
+
+        # Directory but not working
+        inode/directory)
+            tree -F -L 3 --dirsfirst "${FILE_PATH}" && exit 5
+            exit 1;;
     esac
 }
 
