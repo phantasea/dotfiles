@@ -226,10 +226,10 @@ nnoremap   zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 nnoremap   c<space>   :call SmartOpenQfWin()<CR>
 nnoremap   d<space>   :call SmartDiffToggle()<CR>
 nnoremap   g<space>   :Ranger<cr>
-nnoremap   m<space>   <NOP>
+nnoremap   m<space>   :view ~/.vim/favlist<CR>
 nnoremap   s<space>   :call SmartWinMax()<CR>
 nnoremap   t<space>   :NERDTreeToggle<cr>
-nnoremap   v<space>   :view ~/.vim/favlist<CR>
+nnoremap   v<space>   :edit ~/.vimrc<CR>
 nnoremap   y<space>   <NOP>
 nnoremap   z<space>   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 nnoremap   [<space>   <NOP>
@@ -242,7 +242,8 @@ nnoremap   @<space>   <NOP>
 nnoremap   -<space>   :set cursorline!<CR>
 nnoremap  \|<space>   :set cursorcolumn!<CR>
 
-nnoremap   <leader>fv   :edit ~/.vim/favlist
+nnoremap   <leader>ff   :edit ~/.vim/favlist<CR>
+nnoremap   <leader>fv   :edit ~/.vimrc<CR>
 nnoremap   <leader>be   :BufExplorer<CR>
 nnoremap   <leader>fe   :EditVifm<CR>
 nnoremap   <leader>te   :tabedit <C-R>=expand("%:p:h")<CR>/
