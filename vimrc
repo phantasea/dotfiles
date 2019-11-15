@@ -22,12 +22,14 @@ highlight User5        ctermfg=blue     ctermbg=black   cterm=inverse
 
 "}}}
 
-"let   mapleader=","
-"let g:mapleader=","
+let   mapleader=","
+let g:mapleader=","
+
+exec pathogen#infect()
 
 runtime ftplugin/man.vim
 
-exec pathogen#infect()
+set rtp+=~/.fzf
 
 " option  {{{
 filetype plugin indent on
@@ -57,7 +59,7 @@ set ignorecase
 set incsearch
 set iskeyword-=.
 set keywordprg=
-set lazyredraw
+set nolazyredraw
 set laststatus=2
 set linebreak
 set list
@@ -94,7 +96,7 @@ set ttyfast
 set updatetime=2000
 set viminfo='49,<0,s10,h,/25,f0,n~/.vim/viminfo
 set wildmenu
-set wildmode=list:full
+set wildmode=full
 set wildignorecase
 if &term =~ '256color'
     set t_Co=256
@@ -104,8 +106,9 @@ endif
 
 " mapping  {{{
 inoremap   <Tab>      <C-N>
+nnoremap  g<Tab>      :retab<CR>
 nnoremap   <CR>       <C-W>w
-nnoremap   <BS>       <C-W>p
+nnoremap   <BS>       <PageUp>H
 nnoremap   <Space>    <PageDown>L
 nnoremap   <Up>       <C-Y>
 nnoremap   <Down>     <C-E>
@@ -135,6 +138,7 @@ cnoremap   <C-D>    <Del>
 cnoremap   <C-E>    <End>
 cnoremap   <C-F>    <Right>
 cnoremap   <C-O>    <S-Tab>
+
 inoremap   <C-A>    <Home>
 inoremap   <C-B>    <Left>
 inoremap   <C-D>    <Del>
@@ -142,6 +146,12 @@ inoremap   <C-F>    <Right>
 inoremap   <C-L>    <End>
 inoremap   <C-H>    <BS>
 inoremap   <C-K>    <Esc>lC
+inoremap   <C-Y>    <C-R><C-R>=VCopy('up')<CR>
+inoremap   <C-E>    <C-R><C-R>=VCopy('down')<CR>
+
+nnoremap   <C-E>    :FFEdit<space>
+nnoremap   <C-F>    :FFFave<cr>
+nnoremap   <C-G>    :FFGrep<cr>
 nnoremap   <C-H>    <C-^>
 nnoremap   <C-J>    <PageDown>L
 vnoremap   <C-J>    <PageDown>zz
@@ -150,8 +160,6 @@ vnoremap   <C-K>    <PageUp>zz
 nnoremap   <C-N>    :bn<CR>
 nnoremap   <C-P>    :bp<CR>
 nnoremap   <C-U>    <C-T>
-inoremap   <C-Y>    <C-R><C-R>=VCopy('up')<CR>
-inoremap   <C-E>    <C-R><C-R>=VCopy('down')<CR>
 
 "vnoremap  #    y:let @/=@"<CR>N
 "vnoremap  *    y/<C-R>"<CR>
@@ -206,7 +214,8 @@ nnoremap   S    :%s//g<Left><Left>
 vnoremap   S    :s/\%V/g<left><left>
 nnoremap   s    <C-W>
 nnoremap   sa   :vert ball<CR>
-nnoremap   sb   :windo set scrollbind!<cr>
+nnoremap   sb   :windo set scrollbind!<CR>
+nnoremap   sd   :DiffOrig<CR>
 nnoremap   sf   :call DirFilePicker("HSplit")<CR>
 nnoremap   sq   :call QuitAllBufButMe()<CR>
 nnoremap   s}   :call OpenTagPreviewWin()<CR>
@@ -225,38 +234,53 @@ nnoremap   zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 nnoremap   c<space>   :call SmartOpenQfWin()<CR>
 nnoremap   d<space>   :call SmartDiffToggle()<CR>
-nnoremap   g<space>   :Ranger<cr>
-nnoremap   m<space>   :view ~/.vim/favlist<CR>
-nnoremap   s<space>   :call SmartWinMax()<CR>
-nnoremap   t<space>   :NERDTreeToggle<cr>
-nnoremap   v<space>   :edit ~/.vimrc<CR>
-nnoremap   y<space>   <NOP>
+nnoremap   g<space>   :edit ~/.vimrc<CR>
+nnoremap   m<space>   <NOP>
+nnoremap   s<space>   <NOP>
+nnoremap   v<space>   :view ~/.vim/bookmark<CR>
+nnoremap   y<space>   :Ranger<cr>
 nnoremap   z<space>   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 nnoremap   [<space>   <NOP>
 nnoremap   ]<space>   <NOP>
 nnoremap   <<space>   <NOP>
 nnoremap   ><space>   <NOP>
-nnoremap   =<space>   <NOP>
+nnoremap   =<space>   :call SmartWinMax()<CR>
 nnoremap   !<space>   <NOP>
 nnoremap   @<space>   <NOP>
 nnoremap   -<space>   :set cursorline!<CR>
 nnoremap  \|<space>   :set cursorcolumn!<CR>
 
-nnoremap   <leader>ff   :edit ~/.vim/favlist<CR>
-nnoremap   <leader>fv   :edit ~/.vimrc<CR>
+nnoremap   <leader><leader>  <leader>
+nnoremap   <leader><space>   <NOP>
+
 nnoremap   <leader>be   :BufExplorer<CR>
-nnoremap   <leader>fe   :EditVifm<CR>
+nnoremap   <leader>fe   :Ranger<CR>
+nnoremap   <leader>fm   :Vifm<CR>
 nnoremap   <leader>te   :tabedit <C-R>=expand("%:p:h")<CR>/
 nnoremap   <leader>cd   :cd %:p:h<CR>:pwd<CR>
 nnoremap   <leader>ts   :%s/\t/    /g<CR>
 
-cnoremap   <expr> %%    getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+cnoremap   <expr>  %%   getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 "}}}
 
 " function  {{{
+func! MyDiffSetting()
+    syntax     off
+    nnoremap   dj   ]c
+    nnoremap   dk   [c
+    nnoremap   dn   ]c
+    nnoremap   dp   [c
+    nnoremap   di   :diffget<CR>
+    nnoremap   do   :diffput<CR>
+    vnoremap   di   :diffget<CR>
+    vnoremap   do   :diffput<CR>
+    nnoremap   du   :diffupdate<CR>
+endfunc
+
 func! MyQfSettings()
     call MyColorStatusLine()
 
+    nnoremap <buffer> <silent> q :call SmartQuit()<CR>
     nnoremap <buffer> <silent> i <cr>
     nnoremap <buffer> <silent> o <cr>zz:wincmd p<cr>
     nnoremap <buffer> <silent> <space> <cr>zz:wincmd p<cr>
@@ -446,19 +470,19 @@ func! OpenTagPreviewWin()
 
     silent! wincmd P
     if &previewwindow
-	   if has("folding")
-	       silent! .foldopen
-	   endif
+        if has("folding")
+            silent! .foldopen
+        endif
 
-	   call search("$", "b")
-	   let w = substitute(w, '\\', '\\\\', "")
-	   call search('\<\V' . w . '\>')
+        call search("$", "b")
+        let w = substitute(w, '\\', '\\\\', "")
+        call search('\<\V' . w . '\>')
 
-	   " Add a match highlight to the word at this position
-       hi previewWord term=bold ctermbg=blue guibg=green
-	   exec 'match previewWord "\%' . line(".") . 'l\%' . col(".") . 'c\k*"'
+        " Add a match highlight to the word at this position
+        hi previewWord term=bold ctermbg=blue guibg=green
+        exec 'match previewWord "\%' . line(".") . 'l\%' . col(".") . 'c\k*"'
 
-       wincmd p
+        wincmd p
     endif
 endfunc
 
@@ -490,15 +514,15 @@ func! SmartDiffToggle()
     endif
 endfunc
 
-let g:WinMaxFlag = 0
+let s:WinMaxFlag = 0
 func! SmartWinMax()
-    if g:WinMaxFlag == 0
+    if s:WinMaxFlag == 0
         wincmd _
         wincmd |
-        let g:WinMaxFlag = 1
+        let s:WinMaxFlag = 1
     else
         wincmd =
-        let g:WinMaxFlag = 0
+        let s:WinMaxFlag = 0
     endif
 endfunc
 
@@ -513,20 +537,6 @@ func! VCopy(dir)
     endif
 endfunc
 
-func! MyDiffSetting()
-    "color     peaksea
-    syntax     off
-    nnoremap   dj   ]c
-    nnoremap   dk   [c
-    nnoremap   dn   ]c
-    nnoremap   dp   [c
-    nnoremap   di   :diffget<CR>
-    nnoremap   do   :diffput<CR>
-    vnoremap   di   :diffget<CR>
-    vnoremap   do   :diffput<CR>
-    nnoremap   du   :diffupdate<CR>
-endfunc
-
 func! TrimTrailingWS ()
     if search('\s\+$', 'cnw')
         :%s/\s\+$//g
@@ -538,6 +548,7 @@ endfunc
 augroup autocmds
     autocmd!
 
+    autocmd FileType fzf set noshowmode noruler nonu
     autocmd FileType * setlocal formatoptions-=ro formatoptions+=j cedit=<C-O>
 
     autocmd TerminalOpen call MyPlainStatusLine()
@@ -588,16 +599,57 @@ iabbrev  xdate    <C-R>=strftime("%d/%m/%y %H:%M:%S")<cr>
 "}}}
 
 " command  {{{
-command! Vimrc    edit ~/.vimrc
-command! Vifmrc   edit ~/.vifm/vifmrc
-command! Favlist  edit ~/.vim/favlist
-"See the difference between the current buffer and the file it was loaded from, thus the changes you made.
+"See the difference between the current buffer and the file when it was loaded
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+
+"fzf#vim#grep(command, with_column, [options], [fullscreen])
+command! -nargs=? -complete=dir FFFave call fzf#run(fzf#wrap(fzf#vim#with_preview
+         \({'source':'fd -t=f -d=3 . /opt/conf /opt/util /opt/misc/docs ~/docs/note '.expand(<q-args>)})))
+
+command! -nargs=? -complete=dir FFEdit call fzf#run(fzf#wrap(fzf#vim#with_preview
+         \({'source':'fd -t=f -d=3 . '.expand(<q-args>)})))
+
+command! -bang -nargs=* FFGrep call fzf#vim#grep
+         \('ag --vimgrep --smart-case '.shellescape(<q-args>), 1,
+         \<bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%:hidden', '?'), <bang>0)
+
+"command! -bang -nargs=* FFGrep call fzf#vim#ag
+"         \(<q-args>, <bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%:hidden', '?'), <bang>0)
 "}}}
 
 " plugins  {{{
 "Ag {{{
 let g:ag_prg = "ag --vimgrep --smart-case"
+"}}}
+
+"fzf {{{
+let g:fzf_layout = { 'down': '~40%' }
+
+let g:fzf_action = {
+  \ 'ctrl-t':'tab split',
+  \ 'ctrl-x':'split',
+  \ 'ctrl-v':'vsplit' }
+
+let g:fzf_colors = {
+  \ 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'Title'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" [[B]Commits] Customize the options used by 'git log':
+let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
+
+" [Tags] Command to generate tags file
+let g:fzf_tags_command = 'ctags -R'
 "}}}
 
 "bufexplorer {{{
@@ -619,6 +671,23 @@ let g:ranger_open_new_tab = 0
 let g:ranger_replace_netrw = 0
 let g:ranger_command_override = 'ranger --cmd "set show_hidden=false"'
 "}}}
+
+" bclose {{{
+let g:loaded_bclose = 1
+" }}}
+
+" multiple-cursurs {{{
+let g:multi_cursor_exit_from_visual_mode= 1
+let g:multi_cursor_exit_from_insert_mode= 1
+let g:multi_cursor_use_default_mapping  = 0
+let g:multi_cursor_start_word_key       = '<C-Y>'
+let g:multi_cursor_select_all_word_key  = 'g<C-Y>'
+let g:multi_cursor_next_key             = '<C-Y>'
+let g:multi_cursor_prev_key             = '<C-P>'
+let g:multi_cursor_skip_key             = '<C-U>'
+let g:multi_cursor_quit_key             = '<Esc>'
+nnoremap <silent> <C-C> :MultipleCursorsFind <C-R><C-W>
+" }}}
 
 "taglist {{{
 let  g:Tlist_Auto_Update = 1
