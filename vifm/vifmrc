@@ -30,7 +30,8 @@ nnoremap z<space>  <nop>
 
 nnoremap  <c-b>  :tree<cr>
 nnoremap  <c-e>  :ffedit<cr>
-nnoremap  <c-f>  :fffind<cr>
+nnoremap  <c-f>  :fffave<cr>
+nnoremap  <c-g>  :ffgoto<cr>
 cnoremap  <c-j>  <cr>
 mnoremap  <c-j>  <c-f>
 nnoremap  <c-j>  <c-f>L
@@ -152,6 +153,7 @@ nnoremap  ww :copen<cr>
 nnoremap  ws :sort<cr>
 nnoremap  wp :chmod<cr>
 nnoremap  wc :change<cr>
+nnoremap  wk :command<cr>
 nnoremap  W  :set lsview!<cr>
 nnoremap  xi :movefromother<cr>
 vnoremap  xi :movefromother<cr>
@@ -177,7 +179,7 @@ cabbrev  cs  colorscheme
 " }}}
 
 " mark {{{
-source $VIFM/vifmmark
+source $VIFM/bookmark
 " }}}
 
 " option {{{
@@ -209,7 +211,7 @@ set shortmess="T"
 set timeoutlen=2000
 set cpoptions="s"
 set caseoptions="pg"
-set grepprg='ag --line-numbers %i %a %s'
+set grepprg='ag --smart-case --line-numbers %i %a %s'
 set prefervsplit
 set maxundotabs=3
 set maxratingstars=0
@@ -358,12 +360,10 @@ command! imgall          imgview -s
 command! imgrall         imgview -rs
 command! medinfo         medinfo %c %S
 command! weather         curl --silent wttr.in %m
-command! fffind          :set noquickview | :exec 'goto' fnameescape(system('find . -not -path "*/\.*"
-                              \| fzf 2>/dev/tty')) '%IU' | redraw
-command! ffgoto          find . -not -path "*/\.*" | fzf | xargs -r vifmgoto
-command! ffedit          find /opt/util/ /opt/conf/ ~/docs/note /opt/misc/docs -depth -type f
-                              \| egrep -iv '\.git|pyo$|__init|db$|ttf$|png$|jpg$|w3m'
-                              \| fzf | xargs -r vifmedit
+command! ffgoto          :set noquickview | :exec 'goto' fnameescape(system('fd -t=f | fzf 2>/dev/tty')) '%IU' | redraw
+command! ffgoto          fd --type file | fzf | xargs -r vifmgoto
+command! ffedit          fd -d=4 -t file --size=-100k | fzf | xargs -r vifmedit
+command! fffave          fd -a -t=f -E *.png -E *.jpg -E __init* . /opt/util /opt/conf /opt/misc/docs ~/docs/note | fzf | xargs -r vifmedit
 " }}}
 
 " autocommand {{{
