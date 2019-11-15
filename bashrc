@@ -171,9 +171,10 @@ ytdl_video() {
     youtube-dl --output ~/temp/"$2.%(ext)s" "$1"
 }
 
-ffe() { find /opt/util/ /opt/conf/ ~/docs/note /opt/misc/docs -depth -type f | egrep -iv '\.git|pyo$|__init|db$|ttf$|png$|jpg$|w3m' | fzf | xargs -r vimux ;}
-ffw() { find ~/docs/webs -maxdepth 1 -type f | fzf | xargs -r wemux ;}
-ffcp() { cp -vi "$1" "$(cat ~/.vifm/vifmmark | egrep -v 'bmark|^$' | awk '{print $3}' | grep -v -e '^/$' | fzf | sed "s|~|$HOME|")" ;}
+ffe() { fd -t=f -d=3 . | fzf | xargs -r vimux ;}
+fff() { fd -t=f -d=3 . /opt/util /opt/conf /opt/misc/docs ~/docs/note | egrep -iv '__init|db$|ttf$|png$|jpg$' | fzf | xargs -r vimux ;}
+ffw() { fd -t=f -d=1 .  ~/docs/webs | fzf | xargs -r wemux ;}
+ffcp() { cp -vi "$1" "$(cat ~/.vifm/bookmark | egrep -v 'bmark|^$' | awk '{print $3}' | grep -v -e '^/$' | fzf | sed "s|~|$HOME|")" ;}
 
 # source autojump
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
