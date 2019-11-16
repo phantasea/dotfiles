@@ -171,9 +171,9 @@ ytdl_video() {
     youtube-dl --output ~/temp/"$2.%(ext)s" "$1"
 }
 
-j() {
+jj() {
     if [[ "$#" -ne 0 ]]; then
-        cd $(autojump $@)
+        j "$@"
         return
     fi
     cd "$(autojump -s | sort -k1gr | cut -d':' -f 2- | sed 's/^\s\+//' | egrep '^\/' | fzf --inline-info)"
