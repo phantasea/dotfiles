@@ -24,7 +24,7 @@ REGEXP (((http|https|ftp|gopher)|mailto)[.:][^ >"\t]*|www\.[-a-z0-9.]+)[^ .,;\t>
 
 #COMMAND netscape -remote 'openURL(%s)'
 #COMMAND url_handler.sh
-COMMAND  ~/.util/wemux
+COMMAND  /opt/util/wemux
 
 # If enable URL wrapping
 WRAP yes
