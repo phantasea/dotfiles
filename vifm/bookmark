@@ -11,9 +11,10 @@ mark  u  /opt/util      sandisk
 mark  v  ~/.vim/bundle  vifm
 mark  w  ~/docs/webs
 
-mark  M  /media/simone  sandisk_w
-mark  P  /opt/.porn     text
 mark  T  /tmp
+mark  P  /opt/.porn     text
+mark  M  /media/simone  sandisk_w
+mark  S  /media/simone/sandisk_s
 mark  U  /media/simone/sandisk_u
 mark  V  /media/simone/sandisk_v
 mark  W  /media/simone/sandisk_w
