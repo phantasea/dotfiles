@@ -171,9 +171,17 @@ ytdl_video() {
     youtube-dl --output ~/temp/"$2.%(ext)s" "$1"
 }
 
-ffe() { fd -t=f -d=3 . | fzf | xargs -r vimux ;}
+j() {
+    if [[ "$#" -ne 0 ]]; then
+        cd $(autojump $@)
+        return
+    fi
+    cd "$(autojump -s | sort -k1gr | cut -d':' -f 2- | sed 's/^\s\+//' | egrep '^\/' | fzf --inline-info)"
+}
+
+ffe() { fd -t=f -d=3 . | fzf | sed 's/ /\\ /g' | xargs -r vimux ;}
 fff() { fd -t=f -d=3 . /opt/util /opt/conf /opt/misc/docs ~/docs/note | egrep -iv '__init|db$|ttf$|png$|jpg$' | fzf | xargs -r vimux ;}
-ffw() { fd -t=f -d=1 .  ~/docs/webs | fzf | xargs -r wemux ;}
+ffw() { fd -t=f -d=1 .  ~/docs/webs | fzf | sed 's/ /\\ /g' | xargs -r wemux ;}
 ffcp() { cp -vi "$1" "$(cat ~/.vifm/bookmark | egrep -v 'bmark|^$' | awk '{print $3}' | grep -v -e '^/$' | fzf | sed "s|~|$HOME|")" ;}
 
 # source autojump
