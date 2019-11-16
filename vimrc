@@ -264,6 +264,10 @@ cnoremap   <expr>  %%   getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 "}}}
 
 " function  {{{
+func! SetSmartQuit()
+    nnoremap <buffer> <silent> q :call SmartQuit()<CR>
+endfunc
+
 func! MyDiffSetting()
     syntax     off
     nnoremap   dj   ]c
@@ -575,6 +579,7 @@ augroup autocmds
 
     "when reading man file, delete empty file
     autocmd FileType man,help call DelEmptyFile()
+    autocmd FileType man,help call SetSmartQuit()
     "autocmd FileType man,help only
 
     "syntax highlight for txt file (txt.vim is needed)
