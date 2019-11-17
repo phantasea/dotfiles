@@ -15,11 +15,11 @@ $if mode=emacs
 # F2
 "\eOQ":"screenfetch\n"
 # F3
-"\eOR":"ffe\n"
+"\eOR":"fff\n"
 # F4
-"\eOS":"em\n"
+"\eOS":"ffe\n"
 # F5
-"\e[15~":"m\n"
+"\e[15~":"ffw\n"
 # F8
 "\e[19~":"w\n"
 # F9
