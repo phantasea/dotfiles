@@ -195,6 +195,12 @@ fff() { fd -t=f -d=3 . /opt/util /opt/conf /opt/misc/docs ~/docs/note | egrep -i
 ffw() { fd -t=f -d=1 .  ~/docs/webs | fzf | sed 's/ /\\ /g' | xargs -r wemux ;}
 ffcp() { cp -vi "$1" "$(cat ~/.vifm/bookmark | egrep -v 'bmark|^$' | awk '{print $3}' | grep -v -e '^/$' | fzf | sed "s|~|$HOME|")" ;}
 
+fft() {
+    local files
+    IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+    [[ -n "$files" ]] && vimux "${files[@]}"
+}
+
 ffpk() {
     local pid
     if [ "$UID" != "0" ]; then
