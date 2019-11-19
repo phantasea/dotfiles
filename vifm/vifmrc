@@ -28,26 +28,28 @@ nnoremap w<space>  :set lsview!<cr>
 nnoremap x<space>  <c-w>x
 nnoremap z<space>  <nop>
 
+cnoremap  <c-o>  <s-tab>
+cnoremap  <c-j>  <cr>
+cnoremap  <c-r>  <c-x>
+cnoremap  <c-g>  <a-f>
+cnoremap  <c-y>  <a-b>
+
 nnoremap  <c-b>  :tree<cr>
 nnoremap  <c-e>  :ffedit<cr>
 nnoremap  <c-f>  :fffave<cr>
 nnoremap  <c-g>  :ffgoto<cr>
-cnoremap  <c-j>  <cr>
 mnoremap  <c-j>  <c-f>
 nnoremap  <c-j>  <c-f>L
 qnoremap  <c-j>  <c-f>
 nnoremap  <c-k>  <c-b>H
 mnoremap  <c-k>  <c-b>
 qnoremap  <c-k>  <c-b>
-cnoremap  <c-l>  <c-x>
 nnoremap  <c-n>  gt
 qnoremap  <c-n>  gt
 vnoremap  <c-n>  gt
-cnoremap  <c-o>  <s-tab>
 nnoremap  <c-p>  gT
 qnoremap  <c-p>  gT
 vnoremap  <c-p>  gT
-cnoremap  <c-r>  <c-x>
 nnoremap  <c-r>  :restore<cr>
 nnoremap  <c-t>  :tabnew<cr>
 qnoremap  <c-t>  :tabnew<cr>
