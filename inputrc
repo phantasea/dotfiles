@@ -29,6 +29,13 @@ $if mode=emacs
 # F12
 "\e[24~":"cmatrix -ab -C cyan\n"
 
+# Ctrl-G
+"\C-g": forward-word
+# Ctrl-Y
+"\C-y": backward-word
+# Escape #
+"\e#": "\C-a#\C-m"
+
 $endif
 
 set completion-ignore-case on
