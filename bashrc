@@ -75,7 +75,11 @@ rightprompt()
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
 else
-    PS1='\[$(tput sc; rightprompt; tput rc)\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
+    if tmux list-windows | grep active | grep -q vifm; then
+        PS1='\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
+    else
+        PS1='\[$(tput sc; rightprompt; tput rc)\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
+    fi
 fi
 unset color_prompt force_color_prompt
 
