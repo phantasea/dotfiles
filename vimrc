@@ -138,6 +138,8 @@ cnoremap   <C-D>    <Del>
 cnoremap   <C-E>    <End>
 cnoremap   <C-F>    <Right>
 cnoremap   <C-O>    <S-Tab>
+cnoremap   <C-Y>    <S-Left>
+cnoremap   <C-G>    <S-Right>
 
 inoremap   <C-A>    <Home>
 inoremap   <C-B>    <Left>
