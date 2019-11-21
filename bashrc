@@ -194,9 +194,9 @@ jj() {
     cd "$(autojump -s | sort -k1gr | cut -d':' -f 2- | sed 's/^\s\+//' | egrep '^\/' | fzf +m --inline-info)"
 }
 
+fff() { FAVES=$(< ~/.favedirs); echo ${FAVES//\~/$HOME} | xargs fd -a -t=f . | fzf | xargs -r vimux ;}
 ffe() { fd -t=f -d=3 . | fzf | sed 's/ /\\ /g' | xargs -r vimux ;}
-fff() { fd -t=f -d=3 . /opt/util /opt/conf /opt/misc/docs ~/docs/note | egrep -iv '__init|db$|ttf$|png$|jpg$' | fzf | xargs -r vimux ;}
-ffw() { fd -t=f -d=1 .  ~/docs/webs | fzf | sed 's/ /\\ /g' | xargs -r wemux ;}
+ffw() { fd -t=f -d=1 . ~/docs/webs | fzf | sed 's/ /\\ /g' | xargs -r wemux ;}
 ffcp() { cp -vi "$1" "$(cat ~/.vifm/bookmark | egrep -v 'bmark|^$' | awk '{print $3}' | grep -v -e '^/$' | fzf | sed "s|~|$HOME|")" ;}
 
 fft() {
