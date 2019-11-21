@@ -611,7 +611,7 @@ command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincm
 
 "fzf#vim#grep(command, with_column, [options], [fullscreen])
 command! -nargs=? -complete=dir FFFave call fzf#run(fzf#wrap(fzf#vim#with_preview
-         \({'source':'fd -t=f -d=3 . /opt/conf /opt/util /opt/misc/docs ~/docs/note '.expand(<q-args>)})))
+            \({'source':'cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f . '.expand(<q-args>)})))
 
 command! -nargs=? -complete=dir FFEdit call fzf#run(fzf#wrap(fzf#vim#with_preview
          \({'source':'fd -t=f -d=3 . '.expand(<q-args>)})))
