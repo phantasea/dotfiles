@@ -112,7 +112,7 @@ nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  J  qje:if isactive('preview') | switch | endif<cr>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
-nnoremap gl  gf
+nnoremap gl  :auxopen<cr>
 nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
@@ -362,11 +362,12 @@ command! imgall          imgview -s
 command! imgrall         imgview -rs
 command! medinfo         medinfo %c %S
 command! weather         curl --silent wttr.in %m
-command! fffind          :set noquickview | :exec 'goto' fnameescape(system('locate %a')) '%IU' | redraw
-command! ffgoto          :set noquickview | :exec 'goto' fnameescape(system('fd -t=f | fzf 2>/dev/tty')) '%IU' | redraw
+command! auxopen         vifmopen %c
+command! fffind          :exec 'goto' fnameescape(system('locate %a | fzf 2>/dev/tty')) '%IU' | redraw
+command! ffgoto          :exec 'goto' fnameescape(system('fd -t=f | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          fd --type file | fzf | xargs -r vifmgoto
 command! ffedit          fd -d=4 -t file --size=-100k | fzf | xargs -r vifmedit
-command! fffave          fd -a -t=f -E *.png -E *.jpg -E __init* . /opt/util /opt/conf /opt/misc/docs ~/docs/note | fzf | xargs -r vifmedit
+command! fffave          FAVES=$(< ~/.favedirs); echo ${FAVES//\~/$HOME} | xargs fd -a -t=f . | fzf | xargs -r vifmedit
 " }}}
 
 " autocommand {{{
