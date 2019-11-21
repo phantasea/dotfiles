@@ -367,7 +367,7 @@ command! fffind          :exec 'goto' fnameescape(system('locate %a | fzf 2>/dev
 command! ffgoto          :exec 'goto' fnameescape(system('fd -t=f | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          fd --type file | fzf | xargs -r vifmgoto
 command! ffedit          fd -d=4 -t file --size=-100k | fzf | xargs -r vifmedit
-command! fffave          FAVES=$(< ~/.favedirs); echo ${FAVES//\~/$HOME} | xargs fd -a -t=f . | fzf | xargs -r vifmedit
+command! fffave          cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f . | fzf | xargs -r vifmedit
 " }}}
 
 " autocommand {{{
