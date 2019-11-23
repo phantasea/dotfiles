@@ -362,7 +362,7 @@ command! imgall          imgview -s
 command! imgrall         imgview -rs
 command! medinfo         medinfo %c %S
 command! weather         curl --silent wttr.in %m
-command! auxopen         vifmopen %c
+command! auxopen         auxopen %c
 command! fffind          :exec 'goto' fnameescape(system('locate -i %a | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          :exec 'goto' fnameescape(system('fd -t=f | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          fd --type file | fzf | xargs -r vifmgoto
