@@ -147,6 +147,7 @@ nnoremap  t  tj
 nnoremap  T  kt
 nnoremap  U  <c-r>
 qnoremap  v  q
+nnoremap  wf :file<cr>
 nnoremap  wj :jobs<cr>
 nnoremap  wm :marks<cr>
 nnoremap  wt :lstrash<cr>
@@ -379,6 +380,7 @@ autocmd DirEnter '~/auds'          exec 'normal fm'
 autocmd DirEnter '/opt/apps/vifm'  exec 'normal fs;'
 autocmd DirEnter '/opt/auds'       setl nomillerview lsview
 autocmd DirEnter '~/auds/misc'     setl nomillerview lsview
+autocmd DirEnter '~/misc/dotfiles/**/*'  setl dotfiles
 " }}}
 
 " filetype and fileview {{{
