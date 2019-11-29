@@ -54,9 +54,9 @@ class fzf_locate(Command):
     def execute(self):
         import subprocess
         if self.quantifier:
-            command="locate home | fzf -e -i"
+            command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs locate | fzf | xargs -r vimux"
         else:
-            command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs locate | fzf -e -i"
+            command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs locate | fzf | xargs -r vimux"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
