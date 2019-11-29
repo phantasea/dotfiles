@@ -13,7 +13,8 @@
 
 /usr/bin/loadkeys /opt/conf/mykbd
 
-# disable bluetooth
-# rfkill block all
+#rfkill block bluetooth
+#rfkill block wifi
+#rfkill block all
 
 exit 0
