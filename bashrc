@@ -194,15 +194,16 @@ jj() {
 }
 
 fff() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs fd -a -t=f . | fzf | xargs -r vimux ;}
+ffl() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs locate | fzf | xargs -r vimux ;}
 ffe() { fd -t=f -d=3 . | fzf | sed 's/ /\\ /g' | xargs -r vimux ;}
 ffw() { fd -t=f -d=1 . ~/docs/webs | fzf | sed 's/ /\\ /g' | xargs -r wemux ;}
-ffcp() { cp -vi "$1" "$(cat ~/.vifm/bookmark | egrep -v 'bmark|^$' | awk '{print $3}' | grep -v -e '^/$' | fzf | sed "s|~|$HOME|")" ;}
-
 fft() {
     local files
     IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
     [[ -n "$files" ]] && vimux "${files[@]}"
 }
+
+ffcp() { cp -vi "$1" "$(cat ~/.vifm/bookmark | egrep -v 'bmark|^$' | awk '{print $3}' | grep -v -e '^/$' | fzf | sed "s|~|$HOME|")" ;}
 
 ffpk() {
     local pid
