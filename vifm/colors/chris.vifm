@@ -61,6 +61,7 @@ highlight  User9        ctermfg=white     ctermbg=black     cterm=bold,reverse
 highlight  /\.exe$/     ctermfg=green     ctermbg=none      cterm=none
 highlight  /\.m3u$/     ctermfg=red       ctermbg=none      cterm=bold
 highlight  /\.tar$/     ctermfg=red       ctermbg=none      cterm=bold
+highlight  /\.tgz$/     ctermfg=red       ctermbg=none      cterm=bold
 highlight  /\.iso$/     ctermfg=red       ctermbg=none      cterm=bold
 highlight  /\.rar$/     ctermfg=red       ctermbg=none      cterm=bold
 highlight  /\.gz$/      ctermfg=red       ctermbg=none      cterm=bold
