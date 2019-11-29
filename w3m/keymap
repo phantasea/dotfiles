@@ -120,9 +120,9 @@ keymap   gi   FIRST_INPUT
 keymap   gk   COOKIE
 keymap   gl   LIST
 keymap   gm   VIEW_BOOKMARK
-keymap   gn   COMMAND "SEARCH 下一页; GOTO_LINK"
+keymap   gn   COMMAND "SEARCH 下一頁; GOTO_LINK"
 keymap   go   OPTIONS
-keymap   gp   COMMAND "SEARCH 上一页; GOTO_LINK"
+keymap   gp   COMMAND "SEARCH 上一頁; GOTO_LINK"
 keymap   gr   REINIT
 keymap   gt   TAB_MENU
 keymap   gq   ABORT
