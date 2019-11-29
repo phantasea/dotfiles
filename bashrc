@@ -263,3 +263,4 @@ fi
 
 #fbterm -- tmux > /dev/null 2>&1
 fbtmux
+rfkill block all
