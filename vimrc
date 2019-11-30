@@ -151,9 +151,9 @@ inoremap   <C-K>    <Esc>lC
 inoremap   <C-Y>    <C-R><C-R>=VCopy('up')<CR>
 inoremap   <C-E>    <C-R><C-R>=VCopy('down')<CR>
 
-nnoremap   <C-E>    :FFEdit<space>
+nnoremap   <C-E>    :FFEdit<cr>
 nnoremap   <C-F>    :FFFave<cr>
-nnoremap   <C-G>    :FFGrep<cr>
+nnoremap   <C-G>    :FFGrep<space>
 nnoremap   <C-H>    <C-^>
 nnoremap   <C-J>    <PageDown>L
 vnoremap   <C-J>    <PageDown>zz
@@ -246,9 +246,9 @@ nnoremap   [<space>   <NOP>
 nnoremap   ]<space>   <NOP>
 nnoremap   <<space>   <NOP>
 nnoremap   ><space>   <NOP>
-nnoremap   =<space>   :call SmartWinMax()<CR>
 nnoremap   !<space>   <NOP>
 nnoremap   @<space>   <NOP>
+nnoremap   =<space>   :call SmartWinMax()<CR>
 nnoremap   -<space>   :set cursorline!<CR>
 nnoremap  \|<space>   :set cursorcolumn!<CR>
 
@@ -564,6 +564,8 @@ augroup autocmds
 
     autocmd DiffUpdated * call MyDiffSetting()
 
+    autocmd QuickFixCmdPost * call SmartOpenQfWin()
+
     "进入文件后定位到上次退出时的位置
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
 
@@ -588,15 +590,15 @@ augroup autocmds
     autocmd BufNewFile,BufRead *.txt set filetype=txt
     autocmd FileType changelog set filetype=txt
 
+    "reading Ms-Word documents, requires antiword
+    autocmd BufReadPre  *.doc setlocal readonly
+    autocmd BufReadPost *.doc %!antiword "%"
+
     "auto load vimrc after writing
     "autocmd BufWritePost $MYVIMRC source $MYVIMRC
 
     "Goto last location in non-empty files
     "autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-
-    "reading Ms-Word documents, requires antiword
-    autocmd BufReadPre  *.doc setlocal readonly
-    autocmd BufReadPost *.doc %!antiword "%"
 augroup END
 "}}}
 
@@ -611,17 +613,14 @@ command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincm
 
 "fzf#vim#grep(command, with_column, [options], [fullscreen])
 command! -nargs=? -complete=dir FFFave call fzf#run(fzf#wrap(fzf#vim#with_preview
-            \({'source':'cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f . '.expand(<q-args>)})))
+         \({'source':'cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f . '.expand(<q-args>)})))
 
 command! -nargs=? -complete=dir FFEdit call fzf#run(fzf#wrap(fzf#vim#with_preview
-         \({'source':'fd -t=f -d=3 . '.expand(<q-args>)})))
+         \({'source':'fd -a -t=f -d=3 . '.expand(<q-args>)})))
 
 command! -bang -nargs=* FFGrep call fzf#vim#grep
          \('ag --vimgrep --smart-case '.shellescape(<q-args>), 1,
          \<bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%:hidden', '?'), <bang>0)
-
-"command! -bang -nargs=* FFGrep call fzf#vim#ag
-"         \(<q-args>, <bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%:hidden', '?'), <bang>0)
 "}}}
 
 " plugins  {{{
@@ -634,7 +633,7 @@ let g:fzf_layout = { 'down': '~40%' }
 
 let g:fzf_action = {
   \ 'ctrl-t':'tab split',
-  \ 'ctrl-x':'split',
+  \ 'ctrl-s':'split',
   \ 'ctrl-v':'vsplit' }
 
 let g:fzf_colors = {
