@@ -196,7 +196,7 @@ jj() {
 fff() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs fd -a -t=f . | fzf | xargs -r vimux ;}
 ffl() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs locate | fzf | xargs -r vimux ;}
 ffe() { fd -t=f -d=3 . | fzf | sed 's/ /\\ /g' | xargs -r vimux ;}
-ffv() { fd -t=f -e mp4 . /media | fzf | sed 's/ /\\ /g' | xargs -r vidmux ;}
+ffm() { fd -t=f -e=mp4 . /media | fzf | sed 's/ /\\ /g' | xargs -r vidmux ;}
 ffw() { fd -t=f -d=1 . ~/docs/webs | fzf | sed 's/ /\\ /g' | xargs -r wemux ;}
 fft() {
     local files
