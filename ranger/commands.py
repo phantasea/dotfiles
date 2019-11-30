@@ -11,7 +11,6 @@ from ranger.api.commands import *
 # You can import any python module as needed.
 import os
 
-# fzf_select
 class fzf_select(Command):
     """
     :fzf_select
@@ -41,7 +40,6 @@ class fzf_select(Command):
             else:
                 self.fm.select_file(fzf_file)
 
-# fzf_locate
 class fzf_locate(Command):
     def execute(self):
         import subprocess
@@ -58,7 +56,6 @@ class fzf_locate(Command):
             else:
                 self.fm.select_file(fzf_file)
 
-# fzf_goto
 class fzf_goto(Command):
     def execute(self):
         import subprocess
@@ -72,7 +69,6 @@ class fzf_goto(Command):
             else:
                 self.fm.select_file(fzf_file)
 
-# fzf_edit
 class fzf_edit(Command):
     def execute(self):
         import subprocess
@@ -86,11 +82,36 @@ class fzf_edit(Command):
             else:
                 self.fm.select_file(fzf_file)
 
-# fzf_fave
 class fzf_fave(Command):
     def execute(self):
         import subprocess
         command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs fd -a -t=f . | fzf | xargs -r vimux"
+        fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
+        stdout, stderr = fzf.communicate()
+        if fzf.returncode == 0:
+            fzf_file = os.path.abspath(stdout.decode('utf-8').rstrip('\n'))
+            if os.path.isdir(fzf_file):
+                self.fm.cd(fzf_file)
+            else:
+                self.fm.select_file(fzf_file)
+
+class fzf_vids(Command):
+    def execute(self):
+        import subprocess
+        command="fd -t=f -e=mp4 . /media | fzf | sed 's/ /\\ /g' | xargs -r vidmux"
+        fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
+        stdout, stderr = fzf.communicate()
+        if fzf.returncode == 0:
+            fzf_file = os.path.abspath(stdout.decode('utf-8').rstrip('\n'))
+            if os.path.isdir(fzf_file):
+                self.fm.cd(fzf_file)
+            else:
+                self.fm.select_file(fzf_file)
+
+class fzf_webs(Command):
+    def execute(self):
+        import subprocess
+        command="fd -d=1 -t=f . ~/docs/webs | fzf | sed 's/ /\\ /g' | xargs -r wemux"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
