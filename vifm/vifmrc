@@ -15,6 +15,7 @@ nnoremap  <bs>     <c-h>
 mnoremap  <bs>     <c-b>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
+nnoremap  <space>  :switch<cr>
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
 nnoremap c<space>  <nop>
 nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
@@ -38,7 +39,7 @@ nnoremap  <c-b>  :tree<cr>
 nnoremap  <c-e>  :ffedit<cr>
 nnoremap  <c-f>  :fffave<cr>
 nnoremap  <c-g>  :ffgoto<cr>
-nnoremap  <c-m>  :ffmeds<cr>
+nnoremap  <c-v>  :ffvids<cr>
 nnoremap  <c-w>  :ffwebs<cr>
 mnoremap  <c-j>  <c-f>
 nnoremap  <c-j>  <c-f>L
@@ -57,8 +58,6 @@ nnoremap  <c-t>  :tabnew<cr>
 qnoremap  <c-t>  :tabnew<cr>
 vnoremap  <c-t>  :tabnew<cr>
 nnoremap  <c-u>  U
-nnoremap  <c-v>  <s-tab>
-qnoremap  <c-v>  <s-tab>
 
 nnoremap  0  gg
 nnoremap  ^  gg
@@ -371,7 +370,7 @@ command! ffgoto          :exec 'goto' fnameescape(system('fd -t=f | fzf 2>/dev/t
 command! ffgoto          fd --type file | fzf | xargs -r vifmgoto
 command! ffedit          fd -d=4 -t file --size=-100k | fzf | xargs -r vifmedit
 command! fffave          cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f . | fzf | xargs -r vifmedit
-command! ffmeds          fd -t=f -e mp4 . /media | fzf | sed 's/ /\\ /g' | xargs -r vidmux
+command! ffvids          fd -t=f -e mp4 . /media | fzf | sed 's/ /\\ /g' | xargs -r vidmux
 command! ffwebs          fd -d=1 -t=f . ~/docs/webs | fzf | sed 's/ /\\ /g' | xargs -r wemux
 " }}}
 
