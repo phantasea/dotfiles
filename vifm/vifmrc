@@ -366,7 +366,7 @@ command! imgrall         imgview -rs
 command! medinfo         medinfo %c %S
 command! weather         curl --silent wttr.in %m
 command! auxopen         auxopen %c
-command! fffind          :exec 'goto' fnameescape(system('locate -i %a | fzf 2>/dev/tty')) '%IU' | redraw
+command! ffgoto          :exec 'goto' fnameescape(system('locate -i %a | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          :exec 'goto' fnameescape(system('fd -t=f | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          fd --type file | fzf | xargs -r vifmgoto
 command! ffedit          fd -d=4 -t file --size=-100k | fzf | xargs -r vifmedit
@@ -376,14 +376,14 @@ command! ffwebs          fd -d=1 -t=f . ~/docs/webs | fzf | sed 's/ /\\ /g' | xa
 " }}}
 
 " autocommand {{{
-"autocmd DirEnter '/opt/apps/**/*' setl previewprg='git log --color -- %c 2>&1'
-autocmd DirEnter '~/docs/misc'     exec 'normal zd'
-autocmd DirEnter '~/docs/webs'     exec 'normal zd'
-autocmd DirEnter '~/pics'          exec 'normal fm'
-autocmd DirEnter '~/auds'          exec 'normal fm'
-autocmd DirEnter '/opt/apps/vifm'  exec 'normal fs;'
-autocmd DirEnter '/opt/auds'       setl nomillerview lsview
-autocmd DirEnter '~/auds/misc'     setl nomillerview lsview
+"autocmd DirEnter '/opt/apps/**/*'        setl previewprg='git log --color -- %c 2>&1'
+autocmd DirEnter '~/docs/misc'           exec 'normal zd'
+autocmd DirEnter '~/docs/webs'           exec 'normal zd'
+autocmd DirEnter '~/pics'                exec 'normal fm'
+autocmd DirEnter '~/auds'                exec 'normal fm'
+autocmd DirEnter '/opt/apps/vifm'        exec 'normal fs;'
+autocmd DirEnter '/opt/auds'             setl nomillerview lsview
+autocmd DirEnter '~/auds/misc'           setl nomillerview lsview
 autocmd DirEnter '~/misc/dotfiles/**/*'  setl dotfiles
 " }}}
 
