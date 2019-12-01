@@ -38,6 +38,11 @@ $if mode=emacs
 # Escape #
 "\e#": "\C-a#\C-m"
 
+"\ef":"fff\n"
+"\ee":"ffe\n"
+"\ew":"ffw\n"
+"\ev":"ffv\n"
+
 $endif
 
 set completion-ignore-case on
