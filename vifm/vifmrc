@@ -41,6 +41,7 @@ nnoremap  <c-f>  :fffave<cr>
 nnoremap  <c-g>  :ffgoto<cr>
 nnoremap  <c-v>  :ffvids<cr>
 nnoremap  <c-w>  :ffwebs<cr>
+nnoremap  <c-x>  :ffporn<cr>
 mnoremap  <c-j>  <c-f>
 nnoremap  <c-j>  <c-f>L
 qnoremap  <c-j>  <c-f>
@@ -373,6 +374,7 @@ command! ffedit          fd -d=4 -t file --size=-800k | fzf --height=0 | xargs -
 command! fffave          cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f . | fzf --height=0 | xargs -r vifmedit
 command! ffvids          fd -t=f -e mp4 . /media | fzf --height=0 | sed 's/ /\\ /g' | xargs -r vidmux
 command! ffwebs          fd -d=1 -t=f . ~/docs/webs | fzf --height=0 | sed 's/ /\\ /g' | xargs -r wemux
+command! ffporn          fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 | sed 's/ /\\ /g' | xargs -r wemux
 " }}}
 
 " autocommand {{{

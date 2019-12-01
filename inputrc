@@ -39,9 +39,6 @@ $if mode=emacs
 "\e#": "\C-a#\C-m"
 
 "\ef":"fff\n"
-"\ee":"ffe\n"
-"\ew":"ffw\n"
-"\ev":"ffv\n"
 
 $endif
 

@@ -11,7 +11,7 @@ HISTCONTROL=ignoreboth:erasedups
 
 HISTIGNORE="cd:ls:ll:l:f:fmfe:mus:e:g:tig:t:w:ww:em:j"
 
-# disable ctrl+s/ctrl-q
+# disable ctrl+s/ctrl-q (stty -ixon ixoff ixany)
 stty stop undef
 stty start undef
 
@@ -198,6 +198,7 @@ ffl() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs locate | fzf "$@" | xargs -r
 ffe() { fd -t=f -d=3 --size=-800k . "$@" | fzf | sed 's/ /\\ /g' | xargs -r vimux ;}
 ffv() { fd -t=f -e=mp4 . /media | fzf "$@" | sed 's/ /\\ /g' | xargs -r vidmux ;}
 ffw() { fd -t=f -d=1 . ~/docs/webs | fzf "$@" | sed 's/ /\\ /g' | xargs -r wemux ;}
+ffx() { fd -t=f -d=2 . /opt/.porn/text | fzf "$@" | sed 's/ /\\ /g' | xargs -r wemux ;}
 fft() {
     local files
     IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
