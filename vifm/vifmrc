@@ -4,7 +4,7 @@ map  <right>  <nop>
 map  <up>     <nop>
 map  <down>   <nop>
 
-nnoremap  <F1>     :.!tty-clock -cBS -C 6<cr>
+nnoremap  <F1>     :manhelp<cr>
 nnoremap  <F5>     :shell<cr>
 nnoremap  <F10>    :diff<cr>
 nnoremap  <F11>    :diffsamewin<cr>
@@ -363,15 +363,16 @@ command! fim             fim %f > /dev/null 2>&1
 command! imgall          imgview -s
 command! imgrall         imgview -rs
 command! medinfo         medinfo %c %S
+command! manhelp         manmux vifm
 command! weather         curl --silent wttr.in %m
 command! auxopen         auxopen %c
 command! ffgoto          :exec 'goto' fnameescape(system('locate -i %a | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          :exec 'goto' fnameescape(system('fd -t=f | fzf 2>/dev/tty')) '%IU' | redraw
-command! ffgoto          fd --type file | fzf | xargs -r vifmgoto
-command! ffedit          fd -d=4 -t file --size=-100k | fzf | xargs -r vifmedit
-command! fffave          cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f . | fzf | xargs -r vifmedit
-command! ffvids          fd -t=f -e mp4 . /media | fzf | sed 's/ /\\ /g' | xargs -r vidmux
-command! ffwebs          fd -d=1 -t=f . ~/docs/webs | fzf | sed 's/ /\\ /g' | xargs -r wemux
+command! ffgoto          fd --type file | fzf --height=0 | xargs -r vifmgoto
+command! ffedit          fd -d=4 -t file --size=-800k | fzf --height=0 | xargs -r vifmedit
+command! fffave          cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f . | fzf --height=0 | xargs -r vifmedit
+command! ffvids          fd -t=f -e mp4 . /media | fzf --height=0 | sed 's/ /\\ /g' | xargs -r vidmux
+command! ffwebs          fd -d=1 -t=f . ~/docs/webs | fzf --height=0 | sed 's/ /\\ /g' | xargs -r wemux
 " }}}
 
 " autocommand {{{

@@ -566,7 +566,7 @@ augroup autocmds
 
     autocmd QuickFixCmdPost * call SmartOpenQfWin()
 
-    "进入文件后定位到上次退出时的位置
+    "Goto last location in non-empty files
     autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exec "normal! g`\"" | endif
 
     "custom quickfix window statusline
@@ -582,9 +582,10 @@ augroup autocmds
     autocmd FileType help set buflisted
 
     "when reading man file, delete empty file
-    autocmd FileType man,help call DelEmptyFile()
-    autocmd FileType man,help call SetSmartQuit()
     "autocmd FileType man,help only
+    "autocmd FileType man,help call DelEmptyFile()
+    autocmd BufReadPost * call DelEmptyFile()
+    autocmd FileType man,help call SetSmartQuit()
 
     "syntax highlight for txt file (txt.vim is needed)
     autocmd BufNewFile,BufRead *.txt set filetype=txt
@@ -596,9 +597,6 @@ augroup autocmds
 
     "auto load vimrc after writing
     "autocmd BufWritePost $MYVIMRC source $MYVIMRC
-
-    "Goto last location in non-empty files
-    "autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 "}}}
 
@@ -616,7 +614,7 @@ command! -nargs=? -complete=dir FFFave call fzf#run(fzf#wrap(fzf#vim#with_previe
          \({'source':'cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f . '.expand(<q-args>)})))
 
 command! -nargs=? -complete=dir FFEdit call fzf#run(fzf#wrap(fzf#vim#with_preview
-         \({'source':'fd -a -t=f -d=3 . '.expand(<q-args>)})))
+         \({'source':'fd -a -t=f -d=3 --size=-800k . '.expand(<q-args>)})))
 
 command! -bang -nargs=* FFGrep call fzf#vim#grep
          \('ag --vimgrep --smart-case '.shellescape(<q-args>), 1,

@@ -193,11 +193,11 @@ jj() {
     cd "$(autojump -s | sort -k1gr | cut -d':' -f 2- | sed 's/^\s\+//' | egrep '^\/' | fzf +m --inline-info)"
 }
 
-fff() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs fd -a -t=f . | fzf | xargs -r vimux ;}
-ffl() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs locate | fzf | xargs -r vimux ;}
-ffe() { fd -t=f -d=3 . | fzf | sed 's/ /\\ /g' | xargs -r vimux ;}
-ffm() { fd -t=f -e=mp4 . /media | fzf | sed 's/ /\\ /g' | xargs -r vidmux ;}
-ffw() { fd -t=f -d=1 . ~/docs/webs | fzf | sed 's/ /\\ /g' | xargs -r wemux ;}
+fff() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs fd -a -t=f . | fzf "$@" | xargs -r vimux ;}
+ffl() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs locate | fzf "$@" | xargs -r vimux ;}
+ffe() { fd -t=f -d=3 --size=-800k . "$@" | fzf | sed 's/ /\\ /g' | xargs -r vimux ;}
+ffv() { fd -t=f -e=mp4 . /media | fzf "$@" | sed 's/ /\\ /g' | xargs -r vidmux ;}
+ffw() { fd -t=f -d=1 . ~/docs/webs | fzf "$@" | sed 's/ /\\ /g' | xargs -r wemux ;}
 fft() {
     local files
     IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))

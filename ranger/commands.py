@@ -59,7 +59,7 @@ class fzf_locate(Command):
 class fzf_goto(Command):
     def execute(self):
         import subprocess
-        command="fd -a -t=f . | fzf +m"
+        command="fd -a -t=f . | fzf"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -72,7 +72,7 @@ class fzf_goto(Command):
 class fzf_edit(Command):
     def execute(self):
         import subprocess
-        command="fd -a -t=f . | fzf | xargs -r vimux"
+        command="fd -a -t=f --size=-800k . | fzf --height=0 | xargs -r vimux"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -85,7 +85,7 @@ class fzf_edit(Command):
 class fzf_fave(Command):
     def execute(self):
         import subprocess
-        command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs fd -a -t=f . | fzf | xargs -r vimux"
+        command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs fd -a -t=f . | fzf --height=0 | xargs -r vimux"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -98,7 +98,7 @@ class fzf_fave(Command):
 class fzf_vids(Command):
     def execute(self):
         import subprocess
-        command="fd -t=f -e=mp4 . /media | fzf | sed 's/ /\\ /g' | xargs -r vidmux"
+        command="fd -t=f -e=mp4 . /media | fzf --height=0 | sed 's/ /\\ /g' | xargs -r vidmux"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -111,7 +111,7 @@ class fzf_vids(Command):
 class fzf_webs(Command):
     def execute(self):
         import subprocess
-        command="fd -d=1 -t=f . ~/docs/webs | fzf | sed 's/ /\\ /g' | xargs -r wemux"
+        command="fd -d=1 -t=f . ~/docs/webs | fzf --height=0 | sed 's/ /\\ /g' | xargs -r wemux"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
