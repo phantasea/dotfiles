@@ -262,11 +262,5 @@ fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-if [ -z "$DISPLAY" ]; then
-    #rfkill block bluetooth
-    #rfkill block wifi
-    rfkill block all
-fi
-
 #type fbtmux > /dev/null 2>&1 && fbtmux
 command -v fbtmux > /dev/null 2>&1 && fbtmux

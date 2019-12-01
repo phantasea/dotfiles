@@ -13,4 +13,9 @@
 
 /usr/bin/loadkeys /opt/conf/mykbd
 
+rfkill block bluetooth
+sed s/^WirelessEnabled=true/WirelessEnabled=false/ -i /var/lib/NetworkManager/NetworkManager.state
+sleep 10
+rfkill block wifi
+
 exit 0
