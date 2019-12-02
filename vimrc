@@ -543,10 +543,23 @@ func! VCopy(dir)
     endif
 endfunc
 
-func! TrimTrailingWS ()
+func! TrimTrailingWS()
     if search('\s\+$', 'cnw')
         :%s/\s\+$//g
     endif
+endfunc
+
+func! s:fzf_sisfiles()
+    let curr_file = expand("%")
+    let cwd = fnamemodify(curr_file, ':p:h')
+    let cmd = 'fd -t=f -d=1 . ' . cwd
+   "let cmd = 'ag -g "" -f ' . cwd . ' --depth 0'
+
+    call fzf#run({
+        \ 'source': cmd,
+        \ 'sink':   'e',
+        \ 'options':'-m -x +s',
+        \ 'window': 'enew' })
 endfunc
 "}}}
 
@@ -608,6 +621,8 @@ iabbrev  xdate    <C-R>=strftime("%d/%m/%y %H:%M:%S")<cr>
 " command  {{{
 "See the difference between the current buffer and the file when it was loaded
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
+
+command! FFSisFiles call s:fzf_sisfiles()
 
 "fzf#vim#grep(command, with_column, [options], [fullscreen])
 command! -nargs=? -complete=dir FFFave call fzf#run(fzf#wrap(fzf#vim#with_preview
