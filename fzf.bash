@@ -8,7 +8,7 @@ fi
 
 export FZF_COMPLETION_TRIGGER=',,'
 
-export FZF_DEFAULT_COMMAND='fd --type file --color=always --max-depth 3'
+export FZF_DEFAULT_COMMAND='fd --type file --max-depth 3'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export FZF_DEFAULT_OPTS="--exact --no-multi --no-sort --cycle --reverse --prompt='$=' --height 40%
