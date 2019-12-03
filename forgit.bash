@@ -188,14 +188,13 @@ FORGIT_FZF_DEFAULT_OPTS="
 $FZF_DEFAULT_OPTS
 --ansi
 --height='80%'
---bind='alt-k:preview-up,alt-p:preview-up'
---bind='alt-j:preview-down,alt-n:preview-down'
---bind='ctrl-r:toggle-all'
---bind='ctrl-s:toggle-sort'
---bind='?:toggle-preview'
---bind='alt-w:toggle-preview-wrap'
+--multi
+--bind='alt-k:preview-up'
+--bind='alt-j:preview-down'
+--bind='ctrl-a:toggle-all'
+--bind='?:toggle-preview,ctrl-v:toggle-preview'
+--bind='>:toggle-preview-wrap'
 --preview-window='right:60%'
-$FORGIT_FZF_DEFAULT_OPTS
 "
 
 # register aliases

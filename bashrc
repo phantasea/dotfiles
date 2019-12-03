@@ -233,6 +233,14 @@ ffag() {
   fi
 }
 
+# git commit browser
+ffgshow() {
+    git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+    fzf --ansi --tiebreak=index --toggle-sort=\~ --bind "ctrl-m:execute:
+        echo '{}' | grep -o '[a-f0-9]\{7\}' | head -1 |
+        xargs -I % sh -c 'git show --color=always % | less -R'"
+}
+
 # source autojump
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 
@@ -262,6 +270,8 @@ if [ -f /opt/git/hhighlighter/h.sh ]; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+[ -f ~/.forgit.bash ] && source ~/.forgit.bash
 
 #type fbtmux > /dev/null 2>&1 && fbtmux
 command -v fbtmux > /dev/null 2>&1 && fbtmux

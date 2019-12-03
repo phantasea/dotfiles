@@ -12,7 +12,7 @@ export FZF_DEFAULT_COMMAND='fd --type file --max-depth 3'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 export FZF_DEFAULT_OPTS="--exact --no-multi --no-sort --cycle --reverse --prompt='$=' --height 40%
-                         --bind=ctrl-f:page-down,ctrl-b:page-up --color=hl:14,fg+:7,bg+:1,hl+:14,info:13,prompt:9"
+                         --bind=~:toggle-sort,ctrl-n:page-down,ctrl-p:page-up --color=hl:14,fg+:7,bg+:1,hl+:14,info:13,prompt:9"
 
 # Auto-completion
 # ---------------
