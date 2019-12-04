@@ -561,6 +561,11 @@ func! FZF_Files(cnt)
         \ 'options':'-m -x +s',
         \ 'window': 'enew' })
 endfunc
+
+func! FZF_MRU()
+    return extend(filter(copy(v:oldfiles), "v:val !~ 'fugitive:\\|^/tmp/\\|.git/'"),
+         \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
+endfunc
 "}}}
 
 " autocmd  {{{
@@ -632,6 +637,18 @@ command! -nargs=? -complete=dir FFEdit call fzf#run(fzf#wrap(fzf#vim#with_previe
 command! -bang -nargs=* FFGrep call fzf#vim#grep
          \('ag --vimgrep --smart-case '.shellescape(<q-args>), 1,
          \<bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%:hidden', '?'), <bang>0)
+
+command! FFMRU call fzf#run({
+         \ 'source':  reverse(FZF_MRU()),
+         \ 'sink':    'edit',
+         \ 'options': '-m -x +s',
+         \ 'down':    '40%' })
+
+command! FFMFU call fzf#run({
+         \ 'source':  v:oldfiles,
+         \ 'sink':    'edit',
+         \ 'options': '-m -x +s',
+         \ 'down':    '40%' })
 "}}}
 
 " plugins  {{{
