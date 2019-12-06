@@ -263,6 +263,12 @@ nnoremap   <leader>cd   :cd %:p:h<CR>:pwd<CR>
 nnoremap   <leader>ts   :%s/\t/    /g<CR>
 
 cnoremap   <expr>  %%   getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+inoremap <c-x><c-k> <plug>(fzf-complete-word)
+inoremap <c-x><c-f> <plug>(fzf-complete-path)
+inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
+inoremap <c-x><c-l> <plug>(fzf-complete-line)
+inoremap <expr> <c-x><c-d> fzf#vim#complete#path('blsd')
 "}}}
 
 " function  {{{

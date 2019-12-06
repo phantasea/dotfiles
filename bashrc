@@ -1,19 +1,17 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth:erasedups
-
-HISTIGNORE="cd:ls:ll:l:f:fmfe:mus:e:g:tig:t:w:ww:em:j"
-
 # disable ctrl+s/ctrl-q (stty -ixon ixoff ixany)
 stty stop undef
 stty start undef
+
+# don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL=ignoreboth:erasedups
+
+HISTIGNORE="cd:ls:ll:l:f:fmfe:mus:e:g:tig:t:w:ww:em:j"
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -25,7 +23,6 @@ HISTSIZE=100000
 HISTFILESIZE=20000
 
 # check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
@@ -38,32 +35,6 @@ shopt -s nocaseglob
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
-
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
 rightprompt()
 {
     printf "%*s" $COLUMNS $(date +%Y-%m-%d/%H:%M:%S)
@@ -71,53 +42,28 @@ rightprompt()
 
 # 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
 # 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
+if tmux list-windows | grep active | grep -q vifm; then
+    PS1='\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
 else
-    if tmux list-windows | grep active | grep -q vifm; then
-        PS1='\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
-    else
-        PS1='\[$(tput sc; rightprompt; tput rc)\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
-    fi
-fi
-unset color_prompt force_color_prompt
-
-# enable color support of ls and also add handy aliases
-# if [ -x /usr/bin/dircolors ]; then
-#     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-#     alias ls='ls --color=auto -F'
-#     #alias dir='dir --color=auto'
-#     #alias vdir='vdir --color=auto'
-# 
-#     alias grep='grep --color=auto'
-#     alias fgrep='fgrep --color=auto'
-#     alias egrep='egrep --color=auto'
-# fi
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-# alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.alias ]; then
-    . ~/.alias
+    PS1='\[$(tput sc; rightprompt; tput rc)\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
+# add /opt/util into PATH
+export PATH="/opt/util:$PATH"
+
+unset  MAILCHECK
+export PAGER="/bin/sh -c \"col -b | view -c 'set ts=8 nomod nolist nonu noma' -\""
+export MANPAGER="/bin/sh -c \"col -b | view --noplugin -c 'set ft=man ts=8 nomod nolist nonu noma titlestring=MANPAGE' -\""
+export RANGER_LOAD_DEFAULT_RC=FALSE
+export EDITOR=vim
+export VISUAL=vim
+export LANG=en_US.UTF-8
+export PHO_ARGS=-p
+export WWW_HOME='www.baidu.com'
+export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 
 # zx - archive extractor
-# usage: zx <file>
-zx ()
-{
+zx() {
   if [ -f $1 ] ; then
     case $1 in
       *.tar.bz2)   tar xjf $1   ;;
@@ -174,100 +120,21 @@ ytdl_video() {
     youtube-dl --output ~/temp/"$2.%(ext)s" "$1"
 }
 
-# cdf - cd into the directory of the selected file
-fcd() {
-   local file
-   local dir
-   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
-}
+# Alias definitions.
+if [ -f ~/.alias ]; then
+    . ~/.alias
+fi
 
-ffloc() {
-    locate -b -i "$1" | fzf
-}
+# enable programmable completion features
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
 
-jj() {
-    if [[ "$#" -ne 0 ]]; then
-        j "$@"
-        return
-    fi
-    cd "$(autojump -s | sort -k1gr | cut -d':' -f 2- | sed 's/^\s\+//' | egrep '^\/' | fzf +m --inline-info)"
-}
-
-fff() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs fd -a -t=f . | fzf "$@" | xargs -r vimux ;}
-ffl() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs locate | fzf "$@" | xargs -r vimux ;}
-ffe() { fd -t=f -d=3 --size=-800k . "$@" | fzf | sed 's/ /\\ /g' | xargs -r vimux ;}
-ffv() { fd -t=f -e=mp4 . /media | fzf "$@" | sed 's/ /\\ /g' | xargs -r vidmux ;}
-ffw() { fd -t=f -d=1 . ~/docs/webs | fzf "$@" | sed 's/ /\\ /g' | xargs -r wemux ;}
-ffx() { fd -t=f -d=2 -e=html . /opt/.porn/text | fzf "$@" | sed 's/ /\\ /g' | xargs -r wemux ;}
-fft() {
-    local files
-    IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-    [[ -n "$files" ]] && vimux "${files[@]}"
-}
-
-ffcp() { cp -vi "$1" "$(cat ~/.vifm/bookmark | egrep -v 'bmark|^$' | awk '{print $3}' | grep -v -e '^/$' | fzf | sed "s|~|$HOME|")" ;}
-
-ffpk() {
-    local pid
-    if [ "$UID" != "0" ]; then
-        pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
-    else
-        pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
-    fi
-
-    if [ "x$pid" != "x" ]
-    then
-        echo $pid | xargs kill -${1:-9}
-    fi
-}
-
-# fuzzy grep open via ag
-ffag() {
-  local file
-
-  file="$(ag --nobreak --noheading $@ | fzf -0 -1 | awk -F: '{print $1}')"
-
-  if [[ -n $file ]]
-  then
-     vimux $file
-  fi
-}
-
-# git commit browser
-ffgshow() {
-    git log --graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-    fzf --ansi --tiebreak=index --toggle-sort=\~ --bind "ctrl-m:execute:
-        echo '{}' | grep -o '[a-f0-9]\{7\}' | head -1 |
-        xargs -I % sh -c 'git show --color=always % | less -R'"
-}
-
-# source autojump
 [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
 
-# source tmux completion script
 [[ -s /usr/share/doc/tmux/examples/bash_completion_tmux.sh ]] && source /usr/share/doc/tmux/examples/bash_completion_tmux.sh
 
-#set -o vi
-unset  MAILCHECK
-export PAGER="/bin/sh -c \"col -b | view -c 'set ts=8 nomod nolist nonu noma' -\""
-export MANPAGER="/bin/sh -c \"col -b | view --noplugin -c 'set ft=man ts=8 nomod nolist nonu noma titlestring=MANPAGE' -\""
-export RANGER_LOAD_DEFAULT_RC=FALSE
-export EDITOR=vim
-export VISUAL=vim
-export LANG=en_US.UTF-8
-export PHO_ARGS=-p
-export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
-export WWW_HOME='www.baidu.com'
-export LYNX_CFG='~/.etc/lynx.cfg'
-export PYTHONSTARTUP='~/.pystartup'
-
-if [ -d "/opt/util" ]; then
-    export PATH="/opt/util:$PATH"
-fi
-
-if [ -f /opt/git/hhighlighter/h.sh ]; then
-    . /opt/git/hhighlighter/h.sh
-fi
+[ -f ~/.hhighlighter.sh ] && source ~/.hhighlighter.sh
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
