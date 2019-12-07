@@ -359,7 +359,7 @@ command! reload          :write | restart
 command! iconv           iconv -f GBK -t UTF8 %c -o %c %i
 command! vgrep           vim "+grep %a"
 command! mpv             mpv --vo=drm %c
-command! mpl             vidmux -n %c
+command! mpl             vidmux -b %c
 command! fim             fim %f > /dev/null 2>&1
 command! imgall          imgview -s
 command! imgrall         imgview -rs
@@ -481,7 +481,7 @@ endif
 
 " Audio
 fileview  *.mp3,*.wav,*.flac,*.ogg,*.ape,*.wma  exiftool %c, mediainfo %c
-filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg123 -q %c > /dev/null 2>&1 &, mplayer %c > /dev/null 2>&1 &
+filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg321 -q %c > /dev/null 2>&1 &, mplayer %c > /dev/null 2>&1 &
 filetype  *.wma,*.ape,*.rm                      mplayer %c > /dev/null 2>&1 &, mpv %c > /dev/null 2>&1 &
 
 " Video
@@ -500,10 +500,10 @@ fileview  *.html,*.htm,*.xhtml,*.shtml
           \ w3m -dump -cols %pw -T text/html %c,
           \ elinks -dump -dump-width %pw %c,
 if $DISPLAY == ""
-  filetype  *.html,*.htm,*.xhtml,*.shtml  wemux %c, wemux -e %c
+  filetype  *.html,*.htm,*.xhtml,*.shtml  wemux %c, wemux -b %c
 else
   filextype *.html,*.htm,*.xhtml,*.shtml
-            \ wemux %c, wemux -e %c,
+            \ wemux %c, wemux -b %c, wemux -B %c,
             \ firefox %c, vimb %c, surf %c, dwb %c,
 endif
 
