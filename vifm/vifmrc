@@ -373,8 +373,8 @@ command! ffgoto          fd --type file | fzf --height=0 | xargs -r vifmgoto
 command! ffedit          fd -d=4 -t file --size=-800k | fzf --height=0 | xargs -r vifmedit
 command! fffave          cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f . | fzf --height=0 | xargs -r vifmedit
 command! ffvids          fd -t=f -e mp4 . /media | fzf --height=0 | sed 's/ /\\ /g' | xargs -r vidplay
-command! ffwebs          fd -d=1 -t=f . ~/docs/webs | fzf --height=0 | sed 's/ /\\ /g' | xargs -r wemux
-command! ffporn          fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 | sed 's/ /\\ /g' | xargs -r wemux
+command! ffwebs          fd -d=1 -t=f . ~/docs/webs | fzf --height=0 | sed 's/ /\\ /g' | xargs -r webview
+command! ffporn          fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 | sed 's/ /\\ /g' | xargs -r webview
 " }}}
 
 " autocommand {{{
@@ -500,10 +500,10 @@ fileview  *.html,*.htm,*.xhtml,*.shtml
           \ w3m -dump -cols %pw -T text/html %c,
           \ elinks -dump -dump-width %pw %c,
 if $DISPLAY == ""
-  filetype  *.html,*.htm,*.xhtml,*.shtml  wemux %c, wemux -b %c
+  filetype  *.html,*.htm,*.xhtml,*.shtml  webview %c, webview -b %c
 else
   filextype *.html,*.htm,*.xhtml,*.shtml
-            \ wemux %c, wemux -b %c, wemux -B %c,
+            \ webview %c, webview -b %c, webview -B %c,
             \ firefox %c, vimb %c, surf %c, dwb %c,
 endif
 
