@@ -134,8 +134,6 @@ fi
 
 [[ -s /usr/share/doc/tmux/examples/bash_completion_tmux.sh ]] && source /usr/share/doc/tmux/examples/bash_completion_tmux.sh
 
-[ -f ~/.hhighlighter.sh ] && source ~/.hhighlighter.sh
-
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 [ -f ~/.forgit.bash ] && source ~/.forgit.bash

@@ -14,7 +14,7 @@
 /usr/bin/loadkeys /opt/conf/mykbd
 
 rfkill block bluetooth
-sleep 10
+sleep 7
 rfkill block wifi
 
 exit 0

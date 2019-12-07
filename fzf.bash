@@ -46,16 +46,16 @@ jj() {
     cd "$(autojump -s | sort -k1gr | cut -d':' -f 2- | sed 's/^\s\+//' | egrep '^\/' | fzf +m --inline-info)"
 }
 
-fff() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs fd -a -t=f . | fzf "$@" | xargs -r vimux ;}
-ffl() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs locate | fzf "$@" | xargs -r vimux ;}
-ffe() { fd -t=f -d=3 --size=-800k . "$@" | fzf | sed 's/ /\\ /g' | xargs -r vimux ;}
-ffv() { fd -t=f -e=mp4 . /media | fzf "$@" | sed 's/ /\\ /g' | xargs -r vidmux ;}
-ffw() { fd -t=f -d=1 . ~/docs/webs | fzf "$@" | sed 's/ /\\ /g' | xargs -r wemux ;}
-ffx() { fd -t=f -d=2 -e=html . /opt/.porn/text | fzf "$@" | sed 's/ /\\ /g' | xargs -r wemux ;}
+fff() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs fd -a -t=f . | fzf "$@" | xargs -r fileopen ;}
+ffl() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs locate | fzf "$@" | xargs -r fileopen ;}
+ffe() { fd -t=f -d=3 --size=-800k . "$@" | fzf | sed 's/ /\\ /g' | xargs -r fileopen ;}
+ffv() { fd -t=f -e=mp4 . /media | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
+ffw() { fd -t=f -d=1 . ~/docs/webs | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
+ffx() { fd -t=f -d=2 -e=html . /opt/.porn/text | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
 fft() {
     local files
     IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-    [[ -n "$files" ]] && vimux "${files[@]}"
+    [[ -n "$files" ]] && fileopen "${files[@]}"
 }
 
 ffcp() { cp -vi "$1" "$(cat ~/.vifm/bookmark | egrep -v 'bmark|^$' | awk '{print $3}' | grep -v -e '^/$' | fzf | sed "s|~|$HOME|")" ;}
@@ -82,7 +82,7 @@ ffag() {
 
   if [[ -n $file ]]
   then
-     vimux $file
+      fileopen $file
   fi
 }
 
