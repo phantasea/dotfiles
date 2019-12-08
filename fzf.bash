@@ -56,10 +56,21 @@ ffv() { fd -t=f -e=mp4 . /media | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen
 ffw() { fd -t=f -d=1 . ~/docs/webs | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
 ffx() { fd -t=f -d=2 -e=html . /opt/.porn/text | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
 ffe() { fd -t=f -d=3 -a -H --size=-800k . | fzf --select-1 --query="$*" | sed 's/ /\\ /g' | xargs -r fileopen ;}
-fft() {
+
+ffo() {
     local files
     IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
     [[ -n "$files" ]] && fileopen "${files[@]}"
+}
+
+ffO() {
+    local out file key
+    IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
+    key=${out[0]}
+    file=${out[1]}
+    if [ -n "$file" ]; then
+        [ "$key" = ctrl-o ] && fileopen "$file" || vimux "$file"
+    fi
 }
 
 ffcp() { cp -vi "$1" "$(cat ~/.vifm/bookmark | egrep -v 'bmark|^$' | awk '{print $3}' | grep -v -e '^/$' | fzf | sed "s|~|$HOME|")" ;}
