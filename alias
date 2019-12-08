@@ -21,7 +21,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias -- -='cd -'
 
-alias a='alias'
+alias a='alias | fzf'
 alias ad='adbfs /media/simone/adbfs'
 alias ascii='man ascii'
 alias batt='upower -i $(upower -e | grep "BAT") | grep -E "state|time|percentage"'
