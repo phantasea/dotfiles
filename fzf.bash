@@ -46,6 +46,12 @@ ffloc() {
     locate -b -i "$1" | fzf
 }
 
+ffenv() {
+    local out
+    out=$(env | fzf)
+    echo $(echo $out)
+}
+
 jj() {
     if [[ "$#" -ne 0 ]]; then
         j "$@"
