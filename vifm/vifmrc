@@ -114,7 +114,7 @@ nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  J  qje:if isactive('preview') | switch | endif<cr>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
-nnoremap gl  :auxopen<cr>
+nnoremap gl  :vidauxopen<cr>
 nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
@@ -366,7 +366,7 @@ command! imgrall         imgview -rs
 command! medinfo         medinfo %c %S
 command! manhelp         manmux vifm
 command! weather         curl --silent wttr.in %m
-command! auxopen         auxopen %c
+command! vidauxopen      fileopen -B %c
 command! ffgoto          :exec 'goto' fnameescape(system('locate -i %a | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          :exec 'goto' fnameescape(system('fd -t=f | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          fd --type file | fzf --height=0 | xargs -r vifmgoto
@@ -437,19 +437,19 @@ filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
 filetype  *.tpp  tpp %c
 
 " c/c++ files
-fileview  *.h,*.c,*.cpp  highlight -S c -O ansi -s dante %c
+fileview  *.h,*.c,*.cpp  highlight -S c -O ansi -s dante %c, bat --color=always %c
 
 " xml files
-fileview  *.xml  highlight -S xml -O ansi -s dante %c
+fileview  *.xml  highlight -S xml -O ansi -s dante %c, bat --color=always %c
 
 " makefile
-fileview  Makefile*,makefile*  highlight -S make -O ansi -s dante %c
+fileview  Makefile*,makefile*  highlight -S make -O ansi -s dante %c, bat --color=always %c
 
 " python files
-fileview  *.py  highlight -S python -O ansi -s dante %c
+fileview  *.py  highlight -S python -O ansi -s dante %c, bat --color=always %c
 
 " shell script
-fileview  *.sh  highlight -S sh -O ansi -s dante %c
+fileview  *.sh  highlight -S sh -O ansi -s dante %c, bat --color=always %c
 
 " Directories
 fileview  */,.*/  tree -F -L 3 --dirsfirst %c
@@ -602,11 +602,7 @@ filetype *.sha512
 fileview *.exe  echo Windows binary file: no preview available. %i
 
 " Open all other files with default system programs. By default all unknown files are opened with 'vi[x]cmd'
-" if $DISPLAY == ""
-"   filetype  * vimux %f
-" else
-"   filextype * vim %f
-" endif
+filetype  *  fileopen %f
 " }}}
 
 " What should be saved automatically between vifm runs
