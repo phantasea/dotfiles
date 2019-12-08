@@ -31,11 +31,15 @@ source "$HOME/.fzf/shell/key-bindings.bash"
 # fzf related functions
 #########################
 
-# cdf - cd into the directory of the selected file
+# fcd - cd into the directory of the selected file
 fcd() {
-   local file
+   local file dir
+   file=$(fzf +m -1 -q "$*") && dir=$(dirname "$file") && cd "$dir"
+}
+
+ffcd() {
    local dir
-   file=$(fzf +m -1 -q="$1") && dir=$(dirname "$file") && cd "$dir"
+   dir=$(fd -t=d -d=3 -H -E .git 2>/dev/null | fzf -1 -0 -q "$*") && cd "$dir"
 }
 
 ffloc() {
