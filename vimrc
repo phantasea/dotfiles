@@ -637,12 +637,14 @@ command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincm
 command! -nargs=? -complete=dir FFFave call fzf#run(fzf#wrap(fzf#vim#with_preview
          \({'source':'cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f . '.expand(<q-args>)})))
 
-command! -nargs=? -complete=dir FFEdit call fzf#run(fzf#wrap(fzf#vim#with_preview
-         \({'source':'fd -a -t=f -d=3 --size=-800k . '.expand(<q-args>)})))
-
 command! -bang -nargs=* FFGrep call fzf#vim#grep
          \('ag --vimgrep --smart-case '.shellescape(<q-args>), 1,
          \<bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%:hidden', '?'), <bang>0)
+
+command! -nargs=? -complete=dir FFEdit call fzf#run({
+         \ 'source': 'fd -t=f -d=3 -H -E .git --size=-500k . ',
+         \ 'sink':   'edit',
+         \ 'options': ['--select-1', '--query', <q-args>] })
 
 command! FFMRU call fzf#run({
          \ 'source':  reverse(FZF_MRU()),

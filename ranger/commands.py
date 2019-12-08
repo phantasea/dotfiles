@@ -72,7 +72,7 @@ class fzf_goto(Command):
 class fzf_edit(Command):
     def execute(self):
         import subprocess
-        command="fd -a -t=f --size=-800k . | fzf --height=0 | xargs -r fileopen"
+        command="fd -t=f -H -E .git --size=-800k . | fzf --height=0 | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:

@@ -370,7 +370,7 @@ command! auxopen         auxopen %c
 command! ffgoto          :exec 'goto' fnameescape(system('locate -i %a | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          :exec 'goto' fnameescape(system('fd -t=f | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          fd --type file | fzf --height=0 | xargs -r vifmgoto
-command! ffedit          fd -d=4 -t file --size=-800k | fzf --height=0 | xargs -r vifmedit
+command! ffedit          fd -d=4 -t=f -H -E .git --size=-800k | fzf --height=0 -1 -q "%a" | xargs -r vifmedit
 command! fffave          cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f . | fzf --height=0 | xargs -r vifmedit
 command! ffvids          fd -t=f -e mp4 . /media | fzf --height=0 | sed 's/ /\\ /g' | xargs -r vidplay
 command! ffwebs          fd -d=1 -t=f . ~/docs/webs | fzf --height=0 | sed 's/ /\\ /g' | xargs -r webview

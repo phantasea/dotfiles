@@ -13,11 +13,13 @@ export FZF_COMPLETION_TRIGGER=',,'
 export FZF_DEFAULT_COMMAND='fd --type file --max-depth 3'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-export FZF_DEFAULT_OPTS="--exact --no-multi --no-sort --cycle --reverse --prompt='$=' --height 40%
+export FZF_DEFAULT_OPTS="--exact --no-multi --no-sort --cycle --reverse
+                         --select-1 --prompt='$=' --height 40%
                          --bind=~:toggle-sort,ctrl-n:page-down,ctrl-p:page-up
                          --color=hl:14,fg+:7,bg+:1,hl+:14,info:13,prompt:9"
 
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
+export FZF_ALT_C_OPTS="$FZF_DEFAULT_OPTS"
 
 # Auto-completion
 [[ $- == *i* ]] && source "$HOME/.fzf/shell/completion.bash" 2> /dev/null
@@ -33,7 +35,7 @@ source "$HOME/.fzf/shell/key-bindings.bash"
 fcd() {
    local file
    local dir
-   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+   file=$(fzf +m -1 -q="$1") && dir=$(dirname "$file") && cd "$dir"
 }
 
 ffloc() {
@@ -50,10 +52,10 @@ jj() {
 
 fff() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs fd -a -t=f . | fzf "$@" | xargs -r fileopen ;}
 ffl() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs locate | fzf "$@" | xargs -r fileopen ;}
-ffe() { fd -t=f -d=3 --size=-800k . "$@" | fzf | sed 's/ /\\ /g' | xargs -r fileopen ;}
 ffv() { fd -t=f -e=mp4 . /media | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
 ffw() { fd -t=f -d=1 . ~/docs/webs | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
 ffx() { fd -t=f -d=2 -e=html . /opt/.porn/text | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
+ffe() { fd -t=f -d=3 -a -H --size=-800k . | fzf --select-1 --query="$*" | sed 's/ /\\ /g' | xargs -r fileopen ;}
 fft() {
     local files
     IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
