@@ -62,6 +62,17 @@ export PHO_ARGS=-p
 export WWW_HOME='www.baidu.com'
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 
+export PSTOGGLE=0
+pstoggle() {
+    if [ $PSTOGGLE -eq 0 ]; then
+        PS1='\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
+        export PSTOGGLE=1
+    else
+        PS1='\[$(tput sc; rightprompt; tput rc)\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
+        export PSTOGGLE=0
+    fi
+}
+
 # remove bash history duplicates
 rmhistdups() {
   awk '!visited[$0]++' "$HOME/.bash_history" > /tmp/.bash_history.tmp;
