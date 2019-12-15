@@ -100,6 +100,15 @@ gac() {
     git commit -m "$*"
 }
 
+gcd() {
+    topdir=$(git rev-parse --show-toplevel)
+    if [[ $? -ne 0 ]]; then
+        return 1
+    fi
+
+    cd "${topdir}/${1}"
+}
+
 ytdl_music() {
     youtube-dl --output ~/temp/"$2.%(ext)s" --extract-audio --audio-format mp3 --audio-quality 0 "$1" --add-metadata -x
 }
