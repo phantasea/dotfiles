@@ -31,10 +31,6 @@ $if mode=emacs
 
 # Ctrl-G
 "\C-g": forward-word
-# Ctrl-Y
-"\C-y": backward-word
-# Ctrl-Alt-Y: adapt for Ctrl-R not working in fzf/shell/key-bindings.bash after Ctrl-Y set as backward-word
-"\e\C-y": yank
 # Escape #
 "\e#": "\C-a#\C-m"
 
