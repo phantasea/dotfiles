@@ -142,8 +142,8 @@ nnoremap  sr :source $VIFM/vifmrc<cr>
 nnoremap  ss <c-w>S
 nnoremap  st :tree<cr>
 nnoremap  sy :sync<cr>
-nnoremap  S  :%s//g<left><left>
-vnoremap  S  :%s//g<left><left>
+nnoremap  S  :s//g<left><left>
+vnoremap  S  :s//g<left><left>
 nnoremap gt  gs
 nnoremap  t  tj
 nnoremap  T  kt
