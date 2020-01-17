@@ -25,6 +25,7 @@ keymap   C-T     COMMAND "TAB_GOTO ."
 keymap   C-Y     DOWN
 keymap   C-E     UP
 
+keymap   ~    GOTO_HOME
 keymap   <    PREV_TAB
 keymap   >    NEXT_TAB
 keymap   {    LEFT
