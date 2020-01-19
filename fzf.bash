@@ -16,7 +16,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--exact --no-multi --no-sort --cycle --reverse
                          --select-1 --prompt='$=' --height 40%
                          --bind=~:toggle-sort,ctrl-n:page-down,ctrl-p:page-up
-                         --color=hl:14,fg+:7,bg+:1,hl+:14,info:13,prompt:9"
+                         --color=hl:14,fg+:7,bg+:1,gutter:0,hl+:14,info:13,prompt:9"
 
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
 export FZF_ALT_C_OPTS="$FZF_DEFAULT_OPTS"
