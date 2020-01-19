@@ -130,6 +130,7 @@ nnoremap  r  cW
 nnoremap  R  cw
 qnoremap  s  <c-w>
 nnoremap  s  <c-w>
+nnoremap  sa :%select<cr>
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
@@ -144,6 +145,7 @@ nnoremap  st :tree<cr>
 nnoremap  sy :sync<cr>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
+nnoremap gs  :select //i<left><left>
 nnoremap gt  gs
 nnoremap  t  tj
 nnoremap  T  kt
