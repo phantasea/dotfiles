@@ -368,7 +368,7 @@ command! imgrall         imgview -rs
 command! medinfo         medinfo %c %S
 command! manhelp         manmux vifm
 command! weather         curl --silent wttr.in %m
-command! auxopen         :fileopen -B %c
+command! auxopen         fileopen -bB %c
 command! ffgoto          :exec 'goto' fnameescape(system('locate -i %a | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          :exec 'goto' fnameescape(system('fd -t=f | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          fd --type file | fzf --height=0 | xargs -r vifmgoto
@@ -482,9 +482,9 @@ else
 endif
 
 " Audio
-fileview  *.mp3,*.wav,*.flac,*.ogg,*.ape,*.wma  exiftool %c, mediainfo %c
-filetype  *.mp3,*.wav,*.flac,*.ogg,*.m4a        mpg321 -q %c > /dev/null 2>&1 &, mplayer %c > /dev/null 2>&1 &
-filetype  *.wma,*.ape,*.rm                      mplayer %c > /dev/null 2>&1 &, mpv %c > /dev/null 2>&1 &
+fileview  *.mp3,*.wav,*.ogg,*.ape,*.wma,*.aac  exiftool %c, mediainfo %c
+filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac        mpg321 -q %c > /dev/null 2>&1 &, mplayer %c > /dev/null 2>&1 &
+filetype  *.wma,*.ape,*.rm                     mplayer %c > /dev/null 2>&1 &, mpv %c > /dev/null 2>&1 &
 
 " Video
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
