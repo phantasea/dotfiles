@@ -581,30 +581,30 @@ filetype  *.ftp
        \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,
 
 " MD5
-filetype *.md5
+filetype  *.md5
        \ {Check MD5 hash sum}
        \ md5sum -c %f %S,
 
 " SHA1
-filetype *.sha1
+filetype  *.sha1
        \ {Check SHA1 hash sum}
        \ sha1sum -c %f %S,
 
 " SHA256
-filetype *.sha256
+filetype  *.sha256
        \ {Check SHA256 hash sum}
        \ sha256sum -c %f %S,
 
 " SHA512
-filetype *.sha512
+filetype  *.sha512
        \ {Check SHA512 hash sum}
        \ sha512sum -c %f %S,
 
 " Windows EXE
-fileview *.exe  echo Windows binary file: no preview available. %i
+fileview  *.exe  echo Windows binary file: no preview available. %i
 
 " Open all other files with default system programs. By default all unknown files are opened with 'vi[x]cmd'
-filetype  *  fileopen %f
+filetype  *  vimux %f
 " }}}
 
 " What should be saved automatically between vifm runs
