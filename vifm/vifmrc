@@ -114,8 +114,8 @@ nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  J  qje:if isactive('preview') | switch | endif<cr>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
-nnoremap gl  :if filetype('.') != 'link' | auxopen | else | exec 'normal gf' | endif<cr>
-nnoremap gL  :auxopen2<cr>
+nnoremap gl  :if filetype('.') != 'link' | altopen | else | exec 'normal gf' | endif<cr>
+nnoremap gL  :auxopen<cr>
 nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
@@ -369,8 +369,8 @@ command! imgrall         imgview -rs
 command! medinfo         medinfo %c %S
 command! manhelp         manmux vifm
 command! weather         curl --silent wttr.in %m
-command! auxopen         fileopen -b %c
-command! auxopen2        fileopen -B %c
+command! altopen         fileopen -b %c
+command! auxopen         fileopen -B %c
 command! ffgoto          :exec 'goto' fnameescape(system('locate -i %a | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          :exec 'goto' fnameescape(system('fd -t=f | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto          fd --type file | fzf --height=0 | xargs -r vifmgoto
