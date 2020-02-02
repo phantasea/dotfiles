@@ -71,6 +71,7 @@ set nobackup
 set nocompatible
 set nocursorcolumn
 set noerrorbells
+set noesckeys
 set noshowmatch
 set nostartofline
 set noswapfile
@@ -92,6 +93,7 @@ set tabstop=4
 set tags=tags;
 set termencoding=utf-8
 set textwidth=0
+set ttimeoutlen=0
 set ttyfast
 set updatetime=2000
 set viminfo='49,<0,s10,h,/25,f0,n~/.vim/viminfo
