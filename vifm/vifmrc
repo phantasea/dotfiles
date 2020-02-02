@@ -13,6 +13,7 @@ nnoremap  <F12>    :.!cmatrix -abs -C cyan<cr>
 nnoremap  <cr>     gt
 nnoremap  <bs>     <c-h>
 mnoremap  <bs>     <c-b>
+qnoremap  <s-tab>  <tab>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
 nnoremap  <space>  :switch<cr>
