@@ -121,6 +121,7 @@ nnoremap   <Right>    zl
 nnoremap   <S-Right>  zL
 nnoremap   <C-Right>  ze
 
+map <F5>   :!clear && gcc % -o %:r && ./%:r<cr>
 map <F7>   :set wrap!<CR>
 map <F8>   :nohlsearch<CR>
 
@@ -264,13 +265,13 @@ nnoremap   <leader>te   :tabedit <C-R>=expand("%:p:h")<CR>/
 nnoremap   <leader>cd   :cd %:p:h<CR>:pwd<CR>
 nnoremap   <leader>ts   :%s/\t/    /g<CR>
 
-cnoremap   <expr>  %%   getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-
 inoremap <c-x><c-k> <plug>(fzf-complete-word)
 inoremap <c-x><c-f> <plug>(fzf-complete-path)
 inoremap <c-x><c-j> <plug>(fzf-complete-file-ag)
 inoremap <c-x><c-l> <plug>(fzf-complete-line)
 inoremap <expr> <c-x><c-d> fzf#vim#complete#path('blsd')
+
+"cnoremap   <expr>  %%   getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 "}}}
 
 " function  {{{
