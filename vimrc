@@ -742,14 +742,9 @@ let  g:Tlist_Exit_OnlyWindow = 1
 let  g:Tlist_GainFocus_On_ToggleOpen = 1
 "}}}
 
-"nerdtree {{{
-let NERDTreeIgnore=['\~$', '^lost+found$[[dir]]', '\.o$[[file]]']
-let NERDTreeHijackNetrw=1
-let NERDTreeNaturalSort=1
-let NERDTreeShowBookmarks=1
-let NERDTreeQuitOnOpen=3
-let NERDTreeCaseSensitiveSort=0
-let NERDTreeStatusline=-1
-let NERDTreeWinSize=32
+"delimitMate {{{
+let delimitMate_expand_cr = 1
+let delimitMate_expand_space = 1
+let delimitMate_balance_matchpairs = 1
 "}}}
 "}}}
