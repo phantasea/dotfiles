@@ -98,10 +98,10 @@ nnoremap  cO :sucopytoother<cr>
 vnoremap  cO :sucopytoother<cr>
 nnoremap  d  dd
 nnoremap  D  DD
-nnoremap ge  :empty<cr>
+nnoremap ge  :edit ./.git/config<cr>
 nnoremap  e  :edit %c<cr>
 qnoremap  e  q:edit %c<cr>
-nnoremap  E  :sued<cr>
+nnoremap  E  :empty<cr>
 mnoremap  h  q
 dnoremap  h  q
 nnoremap gi  :imgall<cr>
@@ -137,10 +137,11 @@ nnoremap  sa :%select<cr>
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
+nnoremap  se :sued<cr>
 nnoremap  sf :find . -iname '**'<left><left>
+nnoremap  si :medinfo<cr>
 nnoremap  sl :alink!<cr>
 nnoremap  sm :marks<cr>
-nnoremap  si :medinfo<cr>
 nnoremap  sq :hideui<cr>
 nnoremap  sr :source $VIFM/vifmrc<cr>
 nnoremap  ss <c-w>S
