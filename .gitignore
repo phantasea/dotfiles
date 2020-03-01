@@ -1,3 +1,5 @@
+vim/viminfo
+vim/bundle/**/tags
 w3m/bookmark.html
 w3m/cookie
 w3m/history
