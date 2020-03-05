@@ -14,12 +14,6 @@ $if mode=emacs
 "\eOP":"tty-clock -cB -C 6\n"
 # F2
 "\eOQ":"screenfetch\n"
-# F3
-"\eOR":"fff\n"
-# F4
-"\eOS":"ffe\n"
-# F5
-"\e[15~":"ffw\n"
 # F8
 "\e[19~":"w\n"
 # F9
@@ -33,8 +27,6 @@ $if mode=emacs
 "\C-g": forward-word
 # Escape #
 "\e#": "\C-a#\C-m"
-
-"\ef":"fff\n"
 
 $endif
 
