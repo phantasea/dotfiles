@@ -79,7 +79,7 @@ nnoremap  ?  :file<cr>
 nnoremap  a  GVgg
 vnoremap  a  ggoG
 nnoremap  A  za
-nnoremap gc  <nop>
+nnoremap gc  :edit ./.git/config<cr>
 nnoremap  c. cw<c-a><c-d><cr>
 nnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
