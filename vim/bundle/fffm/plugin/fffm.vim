@@ -1,8 +1,8 @@
-" fff.vim
+" fffm.vim
 
-if exists('g:loaded_fff')
+if exists('g:loaded_fffm')
 	finish
 endif
-let g:loaded_fff = 1
+let g:loaded_fffm = 1
 
-command! -nargs=* -complete=dir F call fff#Run(<q-args>)
+command! -nargs=* -complete=dir F call fffm#Run(<q-args>)

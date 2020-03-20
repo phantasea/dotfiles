@@ -1,17 +1,17 @@
-" fff.vim
+" fffm.vim
 
-let g:fff#split = get(g:, 'fff#split', '10new')
-let g:fff#split_direction = get(g:, 'fff#split_direction',
+let g:fffm#split = get(g:, 'fffm#split', '10new')
+let g:fffm#split_direction = get(g:, 'fffm#split_direction',
                                   \ 'splitbelow splitright')
 
-function! fff#open_file(...)
+function! fffm#open_file(...)
     let tmp_file = $XDG_CACHE_HOME
 
     if !isdirectory(tmp_file)
         let tmp_file = $HOME . "/.cache"
     endif
 
-    let tmp_file .= "/fff/opened_file"
+    let tmp_file .= "/fffm/opened_file"
     let tmp_file = fnameescape(tmp_file)
     bd!
 
@@ -27,19 +27,19 @@ function! fff#open_file(...)
     endif
 endfunction
 
-function! fff#Run(command)
-    execute 'setlocal' . ' ' . g:fff#split_direction
-    execute g:fff#split
+function! fffm#Run(command)
+    execute 'setlocal' . ' ' . g:fffm#split_direction
+    execute g:fffm#split
     execute 'setlocal nonumber'
     execute 'setlocal norelativenumber'
 
     if has('nvim')
-        call termopen('fff -p ' . a:command,
-                    \ {'on_exit': function('fff#open_file') })
+        call termopen('fffm -p ' . a:command,
+                    \ {'on_exit': function('fffm#open_file') })
         startinsert
     else
-        let buffer = term_start([&shell, &shellcmdflag, 'fff -p ' . a:command],
-                    \ {'curwin': 1, 'exit_cb': function('fff#open_file')})
+        let buffer = term_start([&shell, &shellcmdflag, 'fffm -p ' . a:command],
+                    \ {'curwin': 1, 'exit_cb': function('fffm#open_file')})
 
         if !has('patch-8.0.1261')
             call term_wait(buffer, 20)
