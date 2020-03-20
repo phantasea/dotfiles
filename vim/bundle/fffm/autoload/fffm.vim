@@ -1,6 +1,6 @@
 " fffm.vim
 
-let g:fffm#split = get(g:, 'fffm#split', '10new')
+let g:fffm#split = get(g:, 'fffm#split', '20new')
 let g:fffm#split_direction = get(g:, 'fffm#split_direction',
                                   \ 'splitbelow splitright')
 
