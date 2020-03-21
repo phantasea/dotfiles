@@ -1,8 +1,8 @@
 " fffm.vim
 
-let g:fffm#split = get(g:, 'fffm#split', '20new')
+let g:fffm#split = get(g:, 'fffm#split', '32vnew')
 let g:fffm#split_direction = get(g:, 'fffm#split_direction',
-                                  \ 'splitbelow splitright')
+                                  \ 'nosplitbelow nosplitright')
 
 function! fffm#open_file(...)
     let tmp_file = $XDG_CACHE_HOME
