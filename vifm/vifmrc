@@ -155,16 +155,17 @@ nnoremap  t  tj
 nnoremap  T  kt
 nnoremap  U  <c-r>
 qnoremap  v  q
+nnoremap  wc :change<cr>
 nnoremap  wf :file<cr>
 nnoremap  wj :jobs<cr>
+nnoremap  wk :command<cr>
 nnoremap  wm :marks<cr>
+nnoremap  wp :chmod<cr>
+nnoremap  wr :ratings<cr>
+nnoremap  ws :sort<cr>
 nnoremap  wt :lstrash<cr>
 nnoremap  wu :undolist<cr>
 nnoremap  ww :copen<cr>
-nnoremap  ws :sort<cr>
-nnoremap  wp :chmod<cr>
-nnoremap  wc :change<cr>
-nnoremap  wk :command<cr>
 nnoremap  W  :set lsview!<cr>
 nnoremap  xi :movefromother<cr>
 vnoremap  xi :movefromother<cr>
