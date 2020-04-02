@@ -201,7 +201,7 @@ nnoremap   ck   :cprev<CR>
 nnoremap   cn   :cnext<CR>
 nnoremap   cp   :cprev<CR>
 nnoremap   co   :call SmartOpenQfWin()<CR>
-nnoremap   F    :F<CR>
+nnoremap   F    :Fffm<CR>
 nnoremap  gf    :call DirFilePicker("Normal")<CR>
 nnoremap   j    gj
 vnoremap   j    gj
@@ -716,6 +716,20 @@ let g:ranger_map_keys = 0
 let g:ranger_open_new_tab = 0
 let g:ranger_replace_netrw = 0
 let g:ranger_command_override = 'ranger --cmd "set show_hidden=false"'
+"}}}
+
+"fffm {{{
+let g:fffm#split = "32vnew"
+let g:fffm#split_direction = "nosplitbelow nosplitright"
+"}}}
+
+"nnn {{{
+"let g:nnn#command = 'nnn -d'
+let g:nnn#layout = { 'left': '~32%' }
+let g:nnn#action = {
+      \ '<c-t>': 'tab split',
+      \ '<c-s>': 'split',
+      \ '<c-v>': 'vsplit' }
 "}}}
 
 " bclose {{{
