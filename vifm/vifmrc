@@ -502,7 +502,7 @@ filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.v
 
 " Image
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  w3mimg %px %py %pw %ph %c, exiftool %c, mediainfo %c
-filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview %c, jfbview %c, feh %c, pqiv %f, lsix %f
+filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview %c, jfbview %c, feh %c, pqiv %f, sxiv %f
 
 " Web
 fileview  *.html,*.htm,*.xhtml,*.shtml
