@@ -5,4 +5,4 @@ if exists('g:loaded_fffm')
 endif
 let g:loaded_fffm = 1
 
-command! -nargs=* -complete=dir F call fffm#Run(<q-args>)
+command! -nargs=* -complete=dir Fffm call fffm#Run(<q-args>)
