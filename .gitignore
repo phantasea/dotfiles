@@ -1,3 +1,6 @@
+elinks/*
+!elinks/elinks.conf
+!elinks/bookmarks
 vim/viminfo
 vim/bundle/**/tags
 w3m/bookmark.html
