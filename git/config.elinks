@@ -1,0 +1,13 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	url = http://repo.or.cz/elinks.git
+	pushurl = git@github.com:phantasea/elinks.git
+	pushurl = git@gitlab.com:phantasea/elinks.git
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master

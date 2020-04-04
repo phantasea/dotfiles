@@ -1,0 +1,13 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = git://repo.or.cz/fbv.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	pushurl = git@github.com:phantasea/fbv.git
+	pushurl = git@gitlab.com:phantasea/fbv.git
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master

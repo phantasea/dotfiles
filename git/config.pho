@@ -1,0 +1,13 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://github.com/akkana/pho.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	pushurl = git@github.com:phantasea/pho.git
+	pushurl = git@gitlab.com:phantasea/pho.git
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master

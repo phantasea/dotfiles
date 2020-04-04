@@ -1,0 +1,13 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://salsa.debian.org/debian/w3m
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	pushurl = git@github.com:phantasea/w3m.git
+    pushurl = git@gitlab.com:phantasea/w3m.git
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master

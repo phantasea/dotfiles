@@ -1,0 +1,12 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://github.com/hishamhm/htop
+	fetch = +refs/heads/*:refs/remotes/origin/*
+    pushurl = git@github.com:phantasea/htop.git
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
