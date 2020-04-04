@@ -1,0 +1,13 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://github.com/phantasea/priv.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	pushurl = git@github.com:phantasea/priv.git
+	pushurl = git@gitlab.com:phantasea/priv.git
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
