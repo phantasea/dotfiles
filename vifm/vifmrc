@@ -464,57 +464,80 @@ fileview  *.sh  highlight -S sh -O ansi -s dante %c, bat --color=always %c
 " Directories
 fileview  */,.*/  tree -F -L 3 --dirsfirst %c
 
-" Pdf
-fileview  *.pdf
-          \ thumbnail %px %py %pw %ph %c,
-          \ pdftotext -l 3 -nopgbrk -q %c -,
-if $DISPLAY == ""
-  filetype  *.pdf jfbview --cache_size=5 %c, fimgs %c, fbpdf %c
-else
-  filextype *.pdf zathura %c %i, apvlv %c, mupdf %c
-endif
-
-" PostScript
-fileview  *.ps ps2text %c -
-if $DISPLAY == ""
-  filetype  *.ps fimgs %c
-else
-  filextype *.ps,*.ps.gz zathura %c
-endif
-
-" Djvu
-if $DISPLAY == ""
-  filetype  *.djvu fbpdf %c
-else
-  filextype *.djvu zathura %c %i, apvlv %c
-endif
-
 " Audio
 fileview  *.mp3,*.wav,*.ogg,*.ape,*.wma,*.aac  exiftool %c, mediainfo %c
 filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac        mpg321 -q %c > /dev/null 2>&1 &, mplayer %c > /dev/null 2>&1 &
 filetype  *.wma,*.ape,*.rm                     mplayer %c > /dev/null 2>&1 &, mpv %c > /dev/null 2>&1 &
 
 " Video
+filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
+          \ vidplay %c, mplayer %c, mpv %c,
+if $DISPLAY == ""
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
           \ exiftool %c, mediainfo %c,
           \ thumbnail %px %py %pw %ph %c,
-filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
-          \ vidplay %c, mplayer %c, mpv %c,
+else
+fileview  *.avi,*.mp4,*.wmv,*.dat,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.webm,*.mov,
+          \*.fl[icv],*.m2v,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,*.as[fx],*.3gp
+          \ vifmimg videopreview %px %py %pw %ph %c 
+          \ %pc
+          \ vifmimg clear
+endif
 
 " Image
-fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  w3mimg %px %py %pw %ph %c, exiftool %c, mediainfo %c
 filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview %c, jfbview %c, feh %c, pqiv %f, sxiv %f
+if $DISPLAY == ""
+fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  w3mimg %px %py %pw %ph %c, exiftool %c, mediainfo %c
+else
+fileview  *.bmp,*.jpg,*.jpeg,*.png,*.xpm
+          \ vifmimg draw %px %py %pw %ph %c
+          \ %pc
+          \ vifmimg clear
+fileview  *.gif
+          \ vifmimg gifpreview %px %py %pw %ph %c
+          \ %pc
+          \ vifmimg clear
+endif
 
-" Web
+" PDF
+if $DISPLAY == ""
+filetype  *.pdf jfbview --cache_size=5 %c, fimgs %c, fbpdf %c
+fileview  *.pdf
+          \ thumbnail %px %py %pw %ph %c,
+          \ pdftotext -l 3 -nopgbrk -q %c -,
+else
+filetype  *.pdf zathura %c %i, apvlv %c, mupdf %c
+fileview  *.pdf
+          \ vifmimg pdfpreview %px %py %pw %ph %c
+          \ %pc
+          \ vifmimg clear
+endif
+
+" PostScript
+fileview  *.ps ps2text %c -
+if $DISPLAY == ""
+filetype  *.ps fimgs %c
+else
+filetype  *.ps,*.ps.gz zathura %c
+endif
+
+" Djvu
+if $DISPLAY == ""
+filetype  *.djvu fbpdf %c
+else
+filetype  *.djvu zathura %c %i, apvlv %c
+endif
+
+" Webpage
 fileview  *.html,*.htm,*.xhtml,*.shtml
           \ w3m -dump -cols %pw -T text/html %c,
           \ elinks -dump -dump-width %pw %c,
 if $DISPLAY == ""
-  filetype  *.html,*.htm,*.xhtml,*.shtml  webview %c, webview -b %c
+filetype  *.html,*.htm,*.xhtml,*.shtml  webview %c, webview -b %c
 else
-  filextype *.html,*.htm,*.xhtml,*.shtml
-            \ webview %c, webview -b %c, webview -B %c,
-            \ firefox %c, vimb %c, surf %c, dwb %c,
+filetype  *.html,*.htm,*.xhtml,*.shtml
+          \ webview %c, webview -b %c, webview -B %c,
+          \ firefox %c, vimb %c, surf %c, dwb %c,
 endif
 
 " Markdown
@@ -542,71 +565,71 @@ filetype  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo  als %c | less, aunpack %c
 " FuseZipMount
 fileview  *.zip,*.jar,*.war,*.ear  als %c
 filetype  *.zip,*.jar,*.war,*.ear
-       \ {Mount with fuse-zip}
-       \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
-       \ {View contents}
-       \ zip -sf %c | less,
-       \ tar -xf %c,
-       \ aunpack %c,
+          \ {Mount with fuse-zip}
+          \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
+          \ {View contents}
+          \ zip -sf %c | less,
+          \ tar -xf %c,
+          \ aunpack %c,
 
 " ArchiveMount
 fileview  *.tar,*.tgz,*.tar.gz,*.tbz,*.tbz2,*.tar.bz2  als %c
 filetype  *.tar,*.tgz,*.tar.gz,*.tbz,*.tbz2,*.tar.bz2
-       \ {Mount with archivemount}
-       \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
-       \ aunpack %c,
+          \ {Mount with archivemount}
+          \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
+          \ aunpack %c,
 
 " Fuse7z
 fileview  *.7z  als %c, 7z | %c
 filetype  *.7z
-       \ {Mount with fuse-7z}
-       \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
-       \ 7z x %c,
-       \ aunpack %c,
+          \ {Mount with fuse-7z}
+          \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
+          \ 7z x %c,
+          \ aunpack %c,
 
 " Rar2FsMount
 fileview  *.rar  unrar v %c, als --option=use_rar_for_unpack=0 %c
 filetype  *.rar
-       \ {Mount with rar2fs}
-       \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
-       \ unrar x %c,
-       \ aunpack %c,
+          \ {Mount with rar2fs}
+          \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
+          \ unrar x %c,
+          \ aunpack %c,
 
 " IsoMount
 fileview  *.iso  isoinfo -l -i %c
 filetype  *.iso
-       \ {Mount with fuseiso}
-       \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
+          \ {Mount with fuseiso}
+          \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
 
 " SshMount
 filetype  *.ssh
-       \ {Mount with sshfs}
-       \ FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR %FOREGROUND,
+          \ {Mount with sshfs}
+          \ FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR %FOREGROUND,
 
 " FtpMount
 filetype  *.ftp
-       \ {Mount with curlftpfs}
-       \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,
+          \ {Mount with curlftpfs}
+          \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,
 
 " MD5
 filetype  *.md5
-       \ {Check MD5 hash sum}
-       \ md5sum -c %f %S,
+          \ {Check MD5 hash sum}
+          \ md5sum -c %f %S,
 
 " SHA1
 filetype  *.sha1
-       \ {Check SHA1 hash sum}
-       \ sha1sum -c %f %S,
+          \ {Check SHA1 hash sum}
+          \ sha1sum -c %f %S,
 
 " SHA256
 filetype  *.sha256
-       \ {Check SHA256 hash sum}
-       \ sha256sum -c %f %S,
+          \ {Check SHA256 hash sum}
+          \ sha256sum -c %f %S,
 
 " SHA512
 filetype  *.sha512
-       \ {Check SHA512 hash sum}
-       \ sha512sum -c %f %S,
+          \ {Check SHA512 hash sum}
+          \ sha512sum -c %f %S,
 
 " Windows EXE
 fileview  *.exe  echo Windows binary file: no preview available. %i
