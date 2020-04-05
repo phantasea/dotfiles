@@ -327,31 +327,6 @@ endif
 " %i completely ignore command output
 " %m run the command in a menu window
 " %S Show command output in the status bar
-command! time            tty-clock -cBS -C 6
-command! ss              cmatrix -abs -C cyan
-command! sued            sudoedit %c
-command! surm            sudo rm -rf %c
-command! rc              vimux $VIFM/vifmrc
-command! df              df -h %m 2> /dev/null
-command! ps              pstree %m
-command! ctags           ctags -R . %i
-command! du              ncdu .
-command! diff            vimux -d %c %C
-command! diffsamewin     vimux -d %f
-command! uz              tar -zxf %c %i &
-command! uj              tar -jxf %c %i &
-command! zip             zip -r %f.zip %f
-command! zx              zx %f
-command! extract         aunpack %f &>/dev/null &
-command! archive         apack %a %f &>/dev/null &
-command! run             !! ./%f
-command! make            !!make %a
-command! mkcd            :mkdir %a | cd %a
-command! md              mkdir -p %a
-command! mv              mv -r %f %D
-command! cp              cp -r %f %D
-command! link            ln -s %d/%f %D
-command! mkbt            mktorrent -p -a -o %D/%f.torrent %d%f
 command! movetoother     mv -i %f %D %i &
 command! copytoother     cp -R %f %D %i &
 command! movefromother   mv -i %F %d %i &
@@ -362,28 +337,54 @@ command! sumovefromother sudo mv -i %F %d %i
 command! sucopyfromother sudo cp -R %F %d %i
 command! copybasename    tmux setb %c %i &
 command! copyfullname    tmux setb %d/%c %i &
-command! reload          :write | restart
-command! iconv           iconv -f GBK -t UTF8 %c -o %c %i
-command! vgrep           vim "+grep %a"
-command! mpv             mpv --vo=drm %c
-command! mpl             vidplay -b %c
-command! fim             fim %f > /dev/null 2>&1
-command! imgall          imgview -s
-command! imgrall         imgview -rs
-command! medinfo         medinfo %c %S
-command! manhelp         manmux vifm
-command! weather         curl --silent wttr.in %m
-command! altopen         fileopen -b %c
-command! auxopen         fileopen -B %c
-command! ffgoto          :exec 'goto' fnameescape(system('locate -i %a | fzf 2>/dev/tty')) '%IU' | redraw
-command! ffgoto          :exec 'goto' fnameescape(system('fd -t=f | fzf 2>/dev/tty')) '%IU' | redraw
-command! ffgoto          fd --type file | fzf --height=0 | xargs -r vifmgoto
-command! ffedit          fd -d=4 -t=f -H -E .git --size=-800k | fzf --height=0 -1 -q "%a" | xargs -r vifmedit
-command! fffave          cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f . | fzf --height=0 | xargs -r vifmedit
-command! ffauds          fd -t=f -e mp3 . ~/auds/{2.新世紀音樂,4.外語歌曲} | fzf --height=0 | sed 's/ /\\ /g' | xargs -r audplay
-command! ffvids          fd -t=f -e mp4 . /media | fzf --height=0 | sed 's/ /\\ /g' | xargs -r vidplay
-command! ffwebs          fd -d=1 -t=f . ~/docs/webs | fzf --height=0 | sed 's/ /\\ /g' | xargs -r webview
-command! ffporn          fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 | sed 's/ /\\ /g' | xargs -r webview
+command! diff            vimux -d %c %C
+command! diffsamewin     vimux -d %f
+
+command! time     tty-clock -cBS -C 6
+command! ss       cmatrix -abs -C cyan
+command! sued     sudoedit %c
+command! surm     sudo rm -rf %c
+command! rc       vimux $VIFM/vifmrc
+command! df       df -h %m 2> /dev/null
+command! ps       pstree %m
+command! ctags    ctags -R . %i
+command! du       ncdu .
+command! uz       tar -zxf %c %i &
+command! uj       tar -jxf %c %i &
+command! zip      zip -r %f.zip %f
+command! zx       zx %f
+command! extract  aunpack %f &>/dev/null &
+command! archive  apack %a %f &>/dev/null &
+command! run      !! ./%f
+command! make     !!make %a
+command! mkcd     :mkdir %a | cd %a
+command! md       mkdir -p %a
+command! mv       mv -r %f %D
+command! cp       cp -r %f %D
+command! link     ln -s %d/%f %D
+command! mkbt     mktorrent -p -a -o %D/%f.torrent %d%f
+command! reload   :write | restart
+command! iconv    iconv -f GBK -t UTF8 %c -o %c %i
+command! vgrep    vim "+grep %a"
+command! mpv      mpv --vo=drm %c
+command! mpl      vidplay -b %c
+command! fim      fim %f > /dev/null 2>&1
+command! imgall   imgview -s
+command! imgrall  imgview -rs
+command! medinfo  medinfo %c %S
+command! manhelp  manmux vifm
+command! weather  curl --silent wttr.in %m
+command! altopen  fileopen -b %c
+command! auxopen  fileopen -B %c
+command! ffgoto   :exec 'goto' fnameescape(system('locate -i %a | fzf 2>/dev/tty')) '%IU' | redraw
+command! ffgoto   :exec 'goto' fnameescape(system('fd -t=f | fzf 2>/dev/tty')) '%IU' | redraw
+command! ffgoto   fd --type file | fzf --height=0 | xargs -r vifmgoto
+command! ffedit   fd -d=4 -t=f -H -E .git --size=-800k | fzf --height=0 -1 -q "%a" | xargs -r vifmedit
+command! fffave   cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f . | fzf --height=0 | xargs -r vifmedit
+command! ffauds   fd -t=f -e mp3 . ~/auds/{2.新世紀音樂,4.外語歌曲} | fzf --height=0 | sed 's/ /\\ /g' | xargs -r audplay
+command! ffvids   fd -t=f -e mp4 . /media | fzf --height=0 | sed 's/ /\\ /g' | xargs -r vidplay
+command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 | sed 's/ /\\ /g' | xargs -r webview
+command! ffporn   fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 | sed 's/ /\\ /g' | xargs -r webview
 " }}}
 
 " autocommand {{{
