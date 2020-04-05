@@ -9,6 +9,9 @@ w3m/history
 w3m/dirlist
 w3m/w3m*
 vifm/vifminfo
+vimb/closed
+vimb/cookies.db
+vimb/history
 moc/cache/
 moc/last_directory
 moc/pid
