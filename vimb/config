@@ -1,5 +1,6 @@
 # Homepage that vimb opens if started without a URI.
-set home-page=about:blank
+# set home-page=about:blank
+set home-page=/opt/conf/vimb/homepage.html
 
 # Path to the default download directory. If no download directory is set,
 # download will be written into current directory. The following pattern will
