@@ -10,6 +10,7 @@ w3m/dirlist
 w3m/w3m*
 vifm/vifminfo
 vimb/closed
+vimb/command
 vimb/cookies.db
 vimb/history
 moc/cache/
