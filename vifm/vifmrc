@@ -51,14 +51,11 @@ nnoremap  <c-k>  <c-b>H
 mnoremap  <c-k>  <c-b>
 qnoremap  <c-k>  <c-b>
 nnoremap  <c-n>  gt
-qnoremap  <c-n>  gt
 vnoremap  <c-n>  gt
 nnoremap  <c-p>  gT
-qnoremap  <c-p>  gT
 vnoremap  <c-p>  gT
 nnoremap  <c-r>  :restore<cr>
 nnoremap  <c-t>  :tabnew<cr>
-qnoremap  <c-t>  :tabnew<cr>
 vnoremap  <c-t>  :tabnew<cr>
 nnoremap  <c-u>  U
 
@@ -125,6 +122,7 @@ nnoremap  o. zA
 nnoremap  O  zR
 qnoremap  p  <c-b>
 nnoremap  q  ZZ
+vnoremap  q  ZZ
 nnoremap  Q  :qall<cr>
 nnoremap gq  q
 nnoremap gr  :grep<space>
