@@ -431,8 +431,8 @@ autocmd DirEnter '~/misc/dotfiles/**/*'  setl dotfiles
 " :r - root of the filename (without last extension)
 
 " Manpage
-fileview  *.[1-8] man ./%c | col -b
-filetype  *.[1-8] man ./%c
+fileview  *.[1-8]  man ./%c | col -b
+filetype  *.[1-8]  man ./%c
 
 " Office files
 fileview  *.doc  antiword %c, catdoc %c
@@ -477,9 +477,7 @@ fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.v
 else
 fileview  *.avi,*.mp4,*.wmv,*.dat,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.webm,*.mov,
           \*.fl[icv],*.m2v,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,*.as[fx],*.3gp
-          \ vifmimg videopreview %px %py %pw %ph %c 
-          \ %pc
-          \ vifmimg clear
+          \ vifmimg videopreview %px %py %pw %ph %c %pc  vifmimg clear
 endif
 
 " Image
@@ -487,43 +485,34 @@ filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview %c, jfbview %c, fe
 if $DISPLAY == ""
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  w3mimg %px %py %pw %ph %c, exiftool %c, mediainfo %c
 else
-fileview  *.bmp,*.jpg,*.jpeg,*.png,*.xpm
-          \ vifmimg draw %px %py %pw %ph %c
-          \ %pc
-          \ vifmimg clear
-fileview  *.gif
-          \ vifmimg gifpreview %px %py %pw %ph %c
-          \ %pc
-          \ vifmimg clear
+fileview  *.bmp,*.jpg,*.jpeg,*.png,*.xpm  vifmimg draw %px %py %pw %ph %c %pc  vifmimg clear
+fileview  *.gif  vifmimg gifpreview %px %py %pw %ph %c %pc  vifmimg clear
 endif
 
 " PDF
 if $DISPLAY == ""
-filetype  *.pdf jfbview --cache_size=5 %c, fimgs %c, fbpdf %c
+filetype  *.pdf  jfbview --cache_size=5 %c, fimgs %c, fbpdf %c
 fileview  *.pdf
           \ thumbnail %px %py %pw %ph %c,
           \ pdftotext -l 3 -nopgbrk -q %c -,
 else
-filetype  *.pdf zathura %c %i, apvlv %c, mupdf %c
-fileview  *.pdf
-          \ vifmimg pdfpreview %px %py %pw %ph %c
-          \ %pc
-          \ vifmimg clear
+filetype  *.pdf  zathura %c %i, apvlv %c, mupdf %c
+fileview  *.pdf  vifmimg pdfpreview %px %py %pw %ph %c %pc  vifmimg clear
 endif
 
 " PostScript
-fileview  *.ps ps2text %c -
+fileview  *.ps  ps2text %c -
 if $DISPLAY == ""
-filetype  *.ps fimgs %c
+filetype  *.ps  fimgs %c
 else
-filetype  *.ps,*.ps.gz zathura %c
+filetype  *.ps,*.ps.gz  zathura %c
 endif
 
 " Djvu
 if $DISPLAY == ""
-filetype  *.djvu fbpdf %c
+filetype  *.djvu  fbpdf %c
 else
-filetype  *.djvu zathura %c %i, apvlv %c
+filetype  *.djvu  zathura %c %i, apvlv %c
 endif
 
 " Webpage
@@ -546,8 +535,8 @@ fileview  *.log  tac %c, tail -n500 %c
 filetype  *.log  tac %c | less, multitail %f, lnav %f
 
 " Object
-fileview  *.o nm %c
-filetype  *.o nm %c | less
+fileview  *.o  nm %c
+filetype  *.o  nm %c | less
 
 " torrent
 fileview  *.torrent  transmission-show %c
