@@ -2,19 +2,19 @@
 # Please refer to vimivrc(5) for further information
 
 [GENERAL] ######################################################################
-start_fullscreen: no
+start_fullscreen: yes
 start_slideshow: no
-slideshow_delay: 2
+slideshow_delay: 1
 shuffle: no
-display_bar: yes
+display_bar: no
 default_thumbsize: (128, 128)
 geometry: 800x600
 recursive: no
 rescale_svg: yes
 overzoom: 1
-search_case_sensitive: yes
+search_case_sensitive: no
 incsearch: yes
-copy_to_primary: no
+copy_to_primary: yes
 commandline_padding: 6
 thumb_padding: 10
 completion_height: 200
@@ -27,7 +27,7 @@ expand_lib: yes
 border_width: 0
 markup: <span foreground="#875FFF">
 show_hidden: no
-desktop_start_dir: ~
+desktop_start_dir: ~/pics
 file_check_amount: 30
 tilde_in_statusbar: yes
 
