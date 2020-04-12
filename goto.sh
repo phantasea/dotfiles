@@ -129,7 +129,7 @@ _goto_list_aliases()
   local IFS=$' '
   if [ -f "$GOTO_DB" ]; then
     while read -r name directory; do
-      printf '\e[1;36m%20s  \e[0m%s\n' "$name" "$directory"
+      printf '\e[1;33m%8s  \e[1;36m%s\n' "$name" "$directory"
     done < "$GOTO_DB"
   else
     echo "You haven't configured any directory aliases yet."
