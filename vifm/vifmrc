@@ -468,36 +468,27 @@ filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac        mpg321 -q %c > /dev/null 2>&1 &, 
 filetype  *.wma,*.ape,*.rm                     mplayer %c > /dev/null 2>&1 &, mpv %c > /dev/null 2>&1 &
 
 " Video
-filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
+filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
           \ vidplay %c, mplayer %c, mpv %c,
-if $DISPLAY == ""
-fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
+fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
           \ exiftool %c, mediainfo %c,
           \ thumbnail %px %py %pw %ph %c,
-else
-fileview  *.avi,*.mp4,*.wmv,*.dat,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,*.webm,*.mov,
-          \*.fl[icv],*.m2v,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,*.as[fx],*.3gp
-          \ vifmimg videopreview %px %py %pw %ph %c %pc  vifmimg clear
-endif
+          \ vifmimg videopreview %px %py %pw %ph %c %pc  vifmimg clear,
 
 " Image
 filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview %c, jfbview %c, feh %c, pqiv %f, sxiv %f
-if $DISPLAY == ""
-fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  w3mimg %px %py %pw %ph %c, exiftool %c, mediainfo %c
-else
-fileview  *.bmp,*.jpg,*.jpeg,*.png,*.xpm  vifmimg draw %px %py %pw %ph %c %pc  vifmimg clear
+fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm
+          \ w3mimg %px %py %pw %ph %c, exiftool %c, mediainfo %c,
+          \ vifmimg draw %px %py %pw %ph %c %pc  vifmimg clear,
 fileview  *.gif  vifmimg gifpreview %px %py %pw %ph %c %pc  vifmimg clear
-endif
 
 " PDF
+fileview  *.pdf  thumbnail %px %py %pw %ph %c, pdftotext -l 3 -nopgbrk -q %c -
+fileview  *.pdf  vifmimg pdfpreview %px %py %pw %ph %c %pc  vifmimg clear
 if $DISPLAY == ""
 filetype  *.pdf  jfbview --cache_size=5 %c, fimgs %c, fbpdf %c
-fileview  *.pdf
-          \ thumbnail %px %py %pw %ph %c,
-          \ pdftotext -l 3 -nopgbrk -q %c -,
 else
 filetype  *.pdf  zathura %c %i, apvlv %c, mupdf %c
-fileview  *.pdf  vifmimg pdfpreview %px %py %pw %ph %c %pc  vifmimg clear
 endif
 
 " PostScript
@@ -519,16 +510,13 @@ endif
 fileview  *.html,*.htm,*.xhtml,*.shtml
           \ w3m -dump -cols %pw -T text/html %c,
           \ elinks -dump -dump-width %pw %c,
-if $DISPLAY == ""
-filetype  *.html,*.htm,*.xhtml,*.shtml  webview %c, webview -b %c
-else
 filetype  *.html,*.htm,*.xhtml,*.shtml
           \ webview %c, webview -b %c, webview -B %c,
           \ firefox %c, vimb %c, surf %c, dwb %c,
-endif
 
 " Markdown
-fileview  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %f | w3m -dump -cols 128 -T text/html
+fileview  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %c | w3m -dump -cols 128 -T text/html
+filetype  *.md,*.mkd,*.markdown  mdp %c
 
 " Log
 fileview  *.log  tac %c, tail -n500 %c
