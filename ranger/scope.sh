@@ -128,6 +128,11 @@ handle_extension() {
         log)
             tail -n100 "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
             exit 1;;
+
+        # JSON files
+        json)
+            jq '.' "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            exit 1;;
     esac
 }
 
@@ -177,7 +182,7 @@ handle_mime() {
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
 
-        # Directory but not working
+        # Directory
         inode/directory)
             tree -F -L 3 --dirsfirst "${FILE_PATH}" && exit 5
             exit 1;;
@@ -190,7 +195,8 @@ handle_fallback() {
 }
 
 
-MIMETYPE="$( file --dereference --brief --mime-type -- "${FILE_PATH}" )"
+#MIMETYPE="$( file --dereference --brief --mime-type -- "${FILE_PATH}" )"
+MIMETYPE="$( mimetype -L --output-format %m "${FILE_PATH}" )"
 if [[ "${PV_IMAGE_ENABLED}" == 'True' ]]; then
     handle_image "${MIMETYPE}"
 fi
