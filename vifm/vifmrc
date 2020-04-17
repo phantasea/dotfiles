@@ -18,7 +18,7 @@ qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
 nnoremap  <space>  :switch<cr>
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
-nnoremap c<space>  <nop>
+nnoremap c<space>  :set millerview<cr>
 nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
 nnoremap m<space>  :marks<cr>
@@ -36,14 +36,15 @@ cnoremap  <c-r>  <c-x>
 cnoremap  <c-g>  <a-f>
 cnoremap  <c-y>  <a-b>
 
-nnoremap  <c-b>  :tree<cr>
+nnoremap  <c-a>  :ffauds<cr>
 nnoremap  <c-e>  :ffedit<cr>
 nnoremap  <c-f>  :fffave<cr>
 nnoremap  <c-g>  :ffgoto<cr>
-nnoremap  <c-a>  :ffauds<cr>
 nnoremap  <c-v>  :ffvids<cr>
 nnoremap  <c-w>  :ffwebs<cr>
 nnoremap  <c-x>  :ffporn<cr>
+
+nnoremap  <c-b>  :tree<cr>
 mnoremap  <c-j>  <c-f>
 nnoremap  <c-j>  <c-f>L
 qnoremap  <c-j>  <c-f>
@@ -55,6 +56,7 @@ vnoremap  <c-n>  gt
 nnoremap  <c-p>  gT
 vnoremap  <c-p>  gT
 nnoremap  <c-r>  :restore<cr>
+nnoremap  <c-q>  :tabonly<cr>
 nnoremap  <c-t>  :tabnew<cr>
 vnoremap  <c-t>  :tabnew<cr>
 nnoremap  <c-u>  U
@@ -153,10 +155,10 @@ nnoremap  t  tj
 nnoremap  T  kt
 nnoremap  U  <c-r>
 qnoremap  v  q
+nnoremap  w: :command<cr>
 nnoremap  wc :change<cr>
 nnoremap  wf :file<cr>
 nnoremap  wj :jobs<cr>
-nnoremap  wk :command<cr>
 nnoremap  wm :marks<cr>
 nnoremap  wp :chmod<cr>
 nnoremap  wr :ratings<cr>
@@ -614,5 +616,5 @@ filetype  *  vimux %f
 " }}}
 
 " What should be saved automatically between vifm runs
-set vifminfo=tui,chistory,dhistory,shistory,savedirs,ratings
+set vifminfo=tui,tabs,savedirs,ratings
 
