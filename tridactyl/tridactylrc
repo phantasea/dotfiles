@@ -28,10 +28,8 @@ unbind yc
 unbind ym
 unbind yt
 
-bind <C-p> tabprev
-bind <C-n> tabnext
-bind <C-o> jumpprev
-bind <C-i> jumpnext
+bind bp tabprev
+bind bn tabnext
 
 bind g<Space> source
 bind gp followpage prev
@@ -46,7 +44,6 @@ bind j scrollline 5
 bind k scrollline -5
 bind H back
 bind L forward
-bind ; fillcmdline
 bind o fillcmdline open
 bind O current_url open
 bind t fillcmdline tabopen
