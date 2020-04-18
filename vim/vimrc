@@ -125,8 +125,6 @@ map <F5>   :!clear && gcc % -o %:r && ./%:r<cr>
 map <F7>   :set wrap!<CR>
 map <F8>   :nohlsearch<CR>
 
-cmap  jj   <ESC>
-
 onoremap   aa   :<C-U>normal! ggVG<CR>
 onoremap   if   :<C-U>normal! [[jV]]k<CR>
 onoremap   af   :<C-U>normal! [[v%<CR>
