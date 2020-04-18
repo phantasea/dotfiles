@@ -91,8 +91,8 @@
 #
 # Here follows the default configuration:
 background		= cyan		black
-frame			= green  	black
-window_title	        = green         black   reverse
+frame			= green  	black   bold
+window_title	        = green         black   bold,reverse
 directory		= cyan		black
 selected_directory	= cyan		black	reverse
 playlist		= magenta	black	
@@ -102,7 +102,7 @@ selected_file		= yellow	black   reverse
 marked_file		= green  	black   reverse
 marked_selected_file	= green		black	reverse
 info			= yellow	black
-selected_info		= yellow	black	bold
+selected_info		= yellow	black	bold,reverse
 marked_info		= green  	black   bold,reverse
 marked_selected_info	= green		black	bold
 status			= green         black   bold
