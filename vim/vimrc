@@ -2,7 +2,7 @@
 
 " colorscheme  {{{
 highlight Search       ctermbg=blue     ctermfg=white   cterm=bold
-highlight IncSearch    ctermbg=red      ctermfg=white   cterm=bold
+highlight IncSearch    ctermbg=magenta  ctermfg=white   cterm=bold
 highlight ColorColumn  ctermfg=white    ctermbg=green   cterm=bold
 highlight CursorColumn ctermfg=white    ctermbg=red     cterm=bold
 highlight CursorLine   ctermfg=white    ctermbg=red     cterm=bold
