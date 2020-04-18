@@ -471,8 +471,8 @@ fileview  */,.*/  tree -F -L 3 --dirsfirst %c
 
 " Audio
 fileview  *.mp3,*.wav,*.ogg,*.ape,*.wma,*.aac  exiftool %c, mediainfo %c
-filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac        mpg321 -q %c > /dev/null 2>&1 &, mplayer %c > /dev/null 2>&1 &
-filetype  *.wma,*.ape,*.rm                     mplayer %c > /dev/null 2>&1 &, mpv %c > /dev/null 2>&1 &
+filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac        audplay %c, audplay -b %c, audplay -B %c
+filetype  *.wma,*.ape,*.rm                     audplay -b %c, audplay -B %c
 
 " Video
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
@@ -483,23 +483,25 @@ fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.r
           \ vifmimg videopreview %px %py %pw %ph %c %pc  vifmimg clear,
 
 " Image
-filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview %c, jfbview %c, feh %c, pqiv %f, sxiv %f
+filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview %c, imgview -b %c, imgview -B %c
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm
+          \ feh -F %c, feh -F -D 1 %c,
+          \ vimiv %f, vimiv --slideshow,
+          \ sxiv -ft %f, sxiv -fS 1 %f,
+          \ pqiv -f --action="montage_mode_enter()" --thumbnail-size=128x128, pqiv -fs,
 fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm
-          \ w3mimg %px %py %pw %ph %c, exiftool %c, mediainfo %c,
+          \ w3mimg %px %py %pw %ph %c,
+          \ exiftool %c, mediainfo %c,
           \ vifmimg draw %px %py %pw %ph %c %pc  vifmimg clear,
 fileview  *.gif  vifmimg gifpreview %px %py %pw %ph %c %pc  vifmimg clear
 
 " PDF
+filetype  *.pdf  pdfview %c %i, pdfview -b %c, pdfview -B %c
 fileview  *.pdf
           \ thumbnail %px %py %pw %ph %c,
           \ pdftotext -l 3 -nopgbrk -q -- %c -,
-          \ vifmimg pdfpreview %px %py %pw %ph %c %pc  vifmimg clear
+          \ vifmimg pdfpreview %px %py %pw %ph %c %pc  vifmimg clear,
           \ mutool draw -F txt -i -- %c,
-if $DISPLAY == ""
-filetype  *.pdf  jfbview --cache_size=5 %c, fimgs %c, fbpdf %c
-else
-filetype  *.pdf  zathura %c %i, apvlv %c, mupdf %c
-endif
 
 " PostScript
 fileview  *.ps  ps2text %c -
@@ -517,13 +519,11 @@ filetype  *.djvu  zathura %c %i, apvlv %c
 endif
 
 " Webpage
+filetype  *.html,*.htm,*.xhtml,*.shtml  webview %c, webview -b %c, webview -B %c, webview -bB %c
 fileview  *.html,*.htm,*.xhtml,*.shtml
           \ w3m -dump -cols %pw -T text/html %c,
           \ elinks -dump -dump-width %pw %c,
           \ pandoc -s -t markdown -- %c,
-filetype  *.html,*.htm,*.xhtml,*.shtml
-          \ webview %c, webview -b %c, webview -B %c,
-          \ firefox %c, vimb %c, surf %c, dwb %c,
 
 " Markdown
 fileview  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %c | w3m -dump -cols 128 -T text/html
@@ -626,4 +626,3 @@ filetype  *  vimux %f
 
 " What should be saved automatically between vifm runs
 set vifminfo=tui,tabs,savedirs,ratings
-

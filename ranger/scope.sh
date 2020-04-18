@@ -316,6 +316,11 @@ handle_mime() {
             tree -F -L 3 --dirsfirst "${FILE_PATH}" && exit 5
             exit 1;;
 
+        ## Shell scripts
+        application/*shellscript)
+            highlight -S sh -O ansi -s dante "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            exit 1;;
+
         ## RTF and DOC
         text/rtf|*msword)
             ## Preview as text conversion
