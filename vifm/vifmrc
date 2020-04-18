@@ -437,14 +437,19 @@ fileview  *.[1-8]  man ./%c | col -b
 filetype  *.[1-8]  man ./%c
 
 " Office files
-fileview  *.doc  antiword %c, catdoc %c
-fileview  *.docx docx2txt %c -
+filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
+fileview  *.doc  antiword %c, catdoc -- %c
+fileview  *.docx docx2txt %c -, catdoc -- %c, pandoc -s -t markdown -- %c
 fileview  *.ppt  catppt %c
 fileview  *.csv  sed "s/,,,,/,,-,,/g;s/,,/ /g" %c | column -t | sed "s/ - /  /g" | cut -c -%pw
-filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
+fileview  *.xls  xls2csv -- %c, catdoc -- %c
+fileview  *.xlsx xlsx2csv -- %c, catdoc -- %c
 
 " tpp files
 filetype  *.tpp  tpp %c
+
+" json files
+fileview  *.json  jq --color-output '.' %c, python -m json.tool -- %c
 
 " c/c++ files
 fileview  *.h,*.c,*.cpp  highlight -S c -O ansi -s dante %c, bat --color=always %c
@@ -485,8 +490,11 @@ fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm
 fileview  *.gif  vifmimg gifpreview %px %py %pw %ph %c %pc  vifmimg clear
 
 " PDF
-fileview  *.pdf  thumbnail %px %py %pw %ph %c, pdftotext -l 3 -nopgbrk -q %c -
-fileview  *.pdf  vifmimg pdfpreview %px %py %pw %ph %c %pc  vifmimg clear
+fileview  *.pdf
+          \ thumbnail %px %py %pw %ph %c,
+          \ pdftotext -l 3 -nopgbrk -q -- %c -,
+          \ vifmimg pdfpreview %px %py %pw %ph %c %pc  vifmimg clear
+          \ mutool draw -F txt -i -- %c,
 if $DISPLAY == ""
 filetype  *.pdf  jfbview --cache_size=5 %c, fimgs %c, fbpdf %c
 else
@@ -503,7 +511,7 @@ endif
 
 " Djvu
 if $DISPLAY == ""
-filetype  *.djvu  fbpdf %c
+filetype  *.djvu  fbpdf %c, djvutxt %c, exiftool %c
 else
 filetype  *.djvu  zathura %c %i, apvlv %c
 endif
@@ -512,6 +520,7 @@ endif
 fileview  *.html,*.htm,*.xhtml,*.shtml
           \ w3m -dump -cols %pw -T text/html %c,
           \ elinks -dump -dump-width %pw %c,
+          \ pandoc -s -t markdown -- %c,
 filetype  *.html,*.htm,*.xhtml,*.shtml
           \ webview %c, webview -b %c, webview -B %c,
           \ firefox %c, vimb %c, surf %c, dwb %c,
