@@ -71,15 +71,15 @@ handle_extension() {
 
         # PDF
         pdf)
-            pdftotext -l 3 -nopgbrk -q -- "${FILE_PATH}" - | fmt -w ${PV_WIDTH} && exit 5
-            mutool draw -F txt -i -- "${FILE_PATH}" 1-10 | fmt -w "${PV_WIDTH}" && exit 5
+            pdftotext -l 3 -nopgbrk -q -- "${FILE_PATH}" - && exit 5
+            mutool draw -F txt -i -- "${FILE_PATH}" 1-10 && exit 5
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
 
         # MS Document:
         doc)
-            antiword "${FILE_PATH}" | fmt -w ${PV_WIDTH} && exit 5
-            catdoc   "${FILE_PATH}" | fmt -w ${PV_WIDTH} && exit 5
+            antiword "${FILE_PATH}" && exit 5
+            catdoc   "${FILE_PATH}" && exit 5
             exit 1;;
 
         # MS Excel
@@ -110,53 +110,53 @@ handle_extension() {
 
         # C/C++ files
         c|cpp)
-            highlight -S c -O ansi -s dante "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            highlight -S c -O ansi -s dante "${FILE_PATH}" && exit 5
             exit 1;;
 
         # Python script
         py)
-            highlight -S python -O ansi -s dante "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            highlight -S python -O ansi -s dante "${FILE_PATH}" && exit 5
             exit 1;;
 
         # Shell script
         sh)
-            highlight -S sh -O ansi -s dante "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            highlight -S sh -O ansi -s dante "${FILE_PATH}" && exit 5
             exit 1;;
 
         # GnuPG files
         asc)
-            gpg --quiet --no-tty --no-use-agent --no-verbose -d "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            gpg --quiet --no-tty --no-use-agent --no-verbose -d "${FILE_PATH}" && exit 5
             exit 1;;
 
         # ISO files
         iso)
-            isoinfo -l -i "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            isoinfo -l -i "${FILE_PATH}" && exit 5
             exit 1;;
 
         # Audio files
         mp3|wav|flac|ogg|ape|wma)
-            mediainfo "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            mediainfo "${FILE_PATH}" && exit 5
             exit 1;;
 
         # Media files
         rmvb|rmb|swf|avi|mp4|wmv|3gp|ogv|mkv|mpg|vob|flv|rmvb|rmb|vdat|webm)
-            mediainfo "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
 
         # Image files
         bmp|jpg|jpeg|png|gif|xpm|ppm)
-            mediainfo "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
 
         # Log files
         log)
-            tail -n100 "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            tail -n100 "${FILE_PATH}" && exit 5
             exit 1;;
 
         1)
-            man "${FILE_PATH}" | col -b | fmt -s -w ${PV_WIDTH} && exit 5
+            man "${FILE_PATH}" | col -b && exit 5
             exit 1;;
 
         # JSON files
@@ -322,7 +322,7 @@ handle_mime() {
 
         ## Shell scripts
         application/*shellscript)
-            highlight -S sh -O ansi -s dante "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
+            highlight -S sh -O ansi -s dante "${FILE_PATH}" && exit 5
             exit 1;;
 
         ## RTF and DOC
@@ -374,7 +374,7 @@ handle_mime() {
         ## DjVu
         image/vnd.djvu)
             ## Preview as text conversion (requires djvulibre)
-            djvutxt "${FILE_PATH}" | fmt -w "${PV_WIDTH}" && exit 5
+            djvutxt "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
 
