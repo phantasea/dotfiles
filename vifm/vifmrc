@@ -527,7 +527,7 @@ fileview  *.html,*.htm,*.xhtml,*.shtml
 
 " Markdown
 fileview  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %c | w3m -dump -cols 128 -T text/html
-filetype  *.md,*.mkd,*.markdown  mdp %c
+filetype  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %c | w3m -dump -cols 128 -T text/html | less, mdp %c
 
 " Log
 fileview  *.log  tac %c, tail -n500 %c

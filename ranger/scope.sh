@@ -155,6 +155,10 @@ handle_extension() {
             tail -n100 "${FILE_PATH}" | fmt -s -w ${PV_WIDTH} && exit 5
             exit 1;;
 
+        1)
+            man "${FILE_PATH}" | col -b | fmt -s -w ${PV_WIDTH} && exit 5
+            exit 1;;
+
         # JSON files
         json)
             jq --color-output . "${FILE_PATH}" && exit 5
