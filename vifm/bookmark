@@ -3,7 +3,7 @@ mark  c  ~/.config      ranger
 mark  e  /opt/conf      vifm
 mark  h  ~/             temp
 mark  n  ~/docs/note    reinstall_ubuntu_16.04.txt
-mark  o  /opt           misc
+mark  o  /opt/misc/apps
 mark  p  /opt/.priv
 mark  r  /              usr
 mark  t  ~/.Trash
@@ -13,11 +13,16 @@ mark  w  ~/docs/webs
 
 mark  T  /tmp
 mark  P  /opt/.porn     text
-mark  M  /media/simone  sandisk_w
+mark  M  /media/simone  sandisk_s
 mark  S  /media/simone/sandisk_s
 mark  U  /media/simone/sandisk_u
 mark  V  /media/simone/sandisk_v
 mark  W  /media/simone/sandisk_w
 mark  X  /media/simone/sandisk_x1
 
-bmark!  ~/docs  doc
+bmark!  /opt/conf/vifm/vifmrc        vifmrc
+bmark!  /opt/conf/ranger/rc.conf     rc.conf
+bmark!  /opt/conf/ranger/scope.sh    scope
+bmark!  /opt/conf/ranger/rifle.conf  rifle
+bmark!  /opt/conf/i3wm/i3.config     i3
+bmark!  /home/simone/docs/note/reinstall_ubuntu_16.04.txt  reinst
