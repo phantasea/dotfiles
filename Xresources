@@ -9,8 +9,8 @@
 !Xft.lcdfilter: lcdfilter
 
 ! Make alt work
-XTerm*eightBitInput:   false
-XTerm*eightBitOutput:  true
+xterm*eightBitInput:   false
+xterm*eightBitOutput:  true
 
 ! Every shell is a login shell by default (for inclusion of all necessary environment variables)
 xterm*loginshell: true
@@ -43,14 +43,14 @@ xterm*faceName: Monospace
 !            xft:Noto Sans Mono:size=13, \
 !            xft:Monospace:style=Medium:size=13   
 xterm*boldFont: Monospace
-XTerm*utf8: true
-XTerm*locale: true
-XTerm*renderFont: true
-XTerm*scaleHeight: 1.01
+xterm*utf8: true
+xterm*locale: true
+xterm*renderFont: true
+xterm*scaleHeight: 1.01
 xterm*faceNameDoublesize:WenQuanYi Zen Hei Mono
 xterm*faceSize: 12
 
-XTerm.vt100.translations: #override \n\
+xterm.vt100.translations: #override \n\
   Ctrl <Key> j: smaller-vt-font() \n\
   Ctrl <Key> k: larger-vt-font()
 
