@@ -236,9 +236,8 @@ nnoremap   zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 nnoremap   c<space>   :call SmartOpenQfWin()<CR>
 nnoremap   d<space>   :call SmartDiffToggle()<CR>
 nnoremap   g<space>   :edit ~/.vimrc<CR>
-nnoremap   m<space>   <NOP>
+nnoremap   m<space>   :view ~/.vim/bookmark<CR>
 nnoremap   s<space>   :<C-U>call FZF_Files(v:count1)<cr>
-nnoremap   v<space>   :view ~/.vim/bookmark<CR>
 nnoremap   y<space>   :Ranger<cr>
 nnoremap   z<space>   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 nnoremap   [<space>   <NOP>
@@ -578,7 +577,7 @@ augroup autocmds
     autocmd!
 
     autocmd FileType fzf set noshowmode noruler nonu
-    autocmd FileType * setlocal formatoptions-=ro formatoptions+=j cedit=<C-O>
+    autocmd FileType * setlocal tabstop=4 formatoptions-=ro formatoptions+=j cedit=<C-O>
 
     autocmd TerminalOpen call MyPlainStatusLine()
 
