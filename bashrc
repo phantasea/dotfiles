@@ -54,13 +54,14 @@ export PATH="/opt/util:$PATH"
 unset  MAILCHECK
 export PAGER="/bin/sh -c \"col -b | view -c 'set ts=8 nomod nolist nonu noma' -\""
 export MANPAGER="/bin/sh -c \"col -b | view --noplugin -c 'set ft=man ts=8 nomod nolist nonu noma titlestring=MANPAGE' -\""
-export RANGER_LOAD_DEFAULT_RC=FALSE
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export EDITOR=vim
 export VISUAL=vim
 export LANG=en_US.UTF-8
-export PHO_ARGS=-p
 export WWW_HOME='www.baidu.com'
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
+export W3MIMGDISPLAY_PATH="/opt/util/w3mimgdisplay"
+export RANGER_LOAD_DEFAULT_RC=FALSE
 
 export PSTOGGLE=0
 pstoggle() {
