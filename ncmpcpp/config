@@ -7,7 +7,7 @@ mpd_music_dir = "~/auds"
 mpd_connection_timeout = "5"
 
 # visualizer
-visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_fifo_path = "~/.cache/mpd/mpd.fifo"
 visualizer_output_name = "my_fifo"
 visualizer_sync_interval = "30" 
 visualizer_in_stereo = "yes"
@@ -16,8 +16,10 @@ visualizer_look = "+|"
 
 # appearance
 #song_list_format = {$4%a - }{%t}|{$8%f$9}$R{$3(%l)$9}
-song_list_format = "{$7%a $6> $5}{%t$6$R$b} [{%l}]"
-song_status_format = {%a} - {%t}|{%f} - {%b}
+#song_list_format = "{$7%a $6> $5}{%t$6$R$b} [{%l}]"
+#song_list_format = "{$7%f}{%6t} $R[{%l}]"
+song_list_format = {%a} - {%t}|{%f} - {%b}
+song_status_format = {$4%a} - {$3%t}|{$3%f} - {$6%b}
 song_library_format = {%n - }{%t}|{%f}
 alternative_header_first_line_format = $b$1$aqqu$/a$9 {%t}|{%f} $1$atqq$/a$9$/b
 alternative_header_second_line_format = {{$4$b%a$/b$9}{ - $7%b$9}{ ($4%y$9)}}|{%D}
@@ -29,7 +31,7 @@ selected_item_suffix = "$9"
 playlist_display_mode = "columns" # (classic/columns)
 browser_display_mode = "columns" #(classic/columns)
 autocenter_mode = "yes"
-progressbar_look = "━━╸"
+progressbar_look = "||"
 user_interface = "classic" #(classic/alternative)
 header_visibility = "no"
 statusbar_visibility = "yes"
@@ -59,7 +61,7 @@ window_border_color = "magenta"
 active_window_border = "blue"
 
 # more stuff
-playlist_disable_highlight_delay = "3"
+playlist_disable_highlight_delay = "0"
 message_delay_time = "4"
 default_find_mode = "wrapped" #(wrapped/normal)
 follow_now_playing_lyrics = "yes"
