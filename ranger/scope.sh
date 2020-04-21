@@ -54,6 +54,7 @@ handle_extension() {
         rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)
             atool --list -- "${FILE_PATH}" && exit 5
             als "${FILE_PATH}" && exit 5
+            zcat "${FILE_PATH}" && exit 5
             exit 1;;
 
         rar)
@@ -366,7 +367,7 @@ handle_mime() {
                 local pygmentize_format='terminal'
                 local highlight_format='ansi'
             fi
-            env COLORTERM=8bit bat --color=always --style="plain" \
+            env COLORTERM=8bit bat --color=auto --style="plain" \
                 -- "${FILE_PATH}" && exit 5
             env HIGHLIGHT_OPTIONS="${HIGHLIGHT_OPTIONS}" highlight \
                 --out-format="${highlight_format}" \
