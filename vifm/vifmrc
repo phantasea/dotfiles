@@ -454,9 +454,6 @@ fileview  *.xlsx xlsx2csv -- %c, catdoc -- %c
 " tpp files
 filetype  *.tpp  tpp %c
 
-" json files
-fileview  *.json  jq --color-output '.' %c, python -m json.tool -- %c
-
 " c/c++ files
 fileview  *.h,*.c,*.cpp  highlight -S c -O ansi -s dante %c, bat --color=always %c
 
@@ -539,6 +536,9 @@ filetype  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %c | w3m -dump -cols
 fileview  *.log  tac %c, tail -n500 %c
 filetype  *.log  tac %c | less, multitail %f, lnav %f
 
+" json files
+fileview  *.json  jq --color-output '.' %c, python -m json.tool -- %c
+
 " Object
 fileview  *.o  nm %c
 filetype  *.o  nm %c | less
@@ -565,7 +565,7 @@ filetype  *.zip,*.jar,*.war,*.ear
           \ aunpack %c,
 
 " ArchiveMount
-fileview  *.tar,*.tgz,*.tar.gz,*.tbz,*.tbz2,*.tar.bz2  als %c
+fileview  *.tar,*.tgz,*.tar.gz,*.tbz,*.tbz2,*.tar.bz2  als %c, zcat %c
 filetype  *.tar,*.tgz,*.tar.gz,*.tbz,*.tbz2,*.tar.bz2
           \ {Mount with archivemount}
           \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
@@ -604,31 +604,27 @@ filetype  *.ftp
           \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,
 
 " MD5
-filetype  *.md5
-          \ {Check MD5 hash sum}
-          \ md5sum -c %f %S,
+filetype  *.md5  md5sum -c %c %S
 
 " SHA1
-filetype  *.sha1
-          \ {Check SHA1 hash sum}
-          \ sha1sum -c %f %S,
+filetype  *.sha1  sha1sum -c %c %S
 
 " SHA256
-filetype  *.sha256
-          \ {Check SHA256 hash sum}
-          \ sha256sum -c %f %S,
+filetype  *.sha256  sha256sum -c %c %S
 
 " SHA512
-filetype  *.sha512
-          \ {Check SHA512 hash sum}
-          \ sha512sum -c %f %S,
+filetype  *.sha512  sha512sum -c %c %S
 
 " Windows EXE
 fileview  *.exe  echo Windows binary file: no preview available. %i
 
+" Misc
+fileview  *.txt,*.desktop
+          \ bat -- %c, cat -- %c
+
 " Open all other files with default system programs.
 " By default all unknown files are opened with 'vi[x]cmd'
-filetype  *  vimux %f
+filetype  *  fileopen %c
 fileview  *  fileview %c
 " }}}
 
