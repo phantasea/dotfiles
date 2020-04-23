@@ -253,7 +253,7 @@ class fd_next(Command):
 
     def execute(self):
         if len(fd_deq) > 1:
-            fd_deq.rotate(-1) # rotate left
+            fd_deq.rotate(-1)  #rotate left
             self.fm.select_file(fd_deq[0])
         elif len(fd_deq) == 1:
             self.fm.select_file(fd_deq[0])
@@ -266,7 +266,7 @@ class fd_prev(Command):
 
     def execute(self):
         if len(fd_deq) > 1:
-            fd_deq.rotate(1) # rotate right
+            fd_deq.rotate(1)  #rotate right
             self.fm.select_file(fd_deq[0])
         elif len(fd_deq) == 1:
             self.fm.select_file(fd_deq[0])
