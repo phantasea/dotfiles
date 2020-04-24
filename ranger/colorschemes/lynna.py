@@ -33,7 +33,7 @@ class Default(ColorScheme):
 				bg = red
 				fg = black
 			if context.border:
-				fg = default
+				fg = magenta
 			if context.media:
 				if context.image:
 					fg = yellow
@@ -90,17 +90,17 @@ class Default(ColorScheme):
 
 		elif context.in_titlebar:
 			attr |= bold
-			bg = red
+			bg = magenta
 			fg = white
 			if context.tab:
 				if context.good:
 					fg = white
 				else:
-					fg = blue
+					fg = black
 					attr ^= bold
 
 		elif context.in_statusbar:
-			bg = blue
+			bg = magenta
 			fg = white
 			attr |= bold
 
