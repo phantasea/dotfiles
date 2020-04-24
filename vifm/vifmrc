@@ -229,7 +229,7 @@ set shortmess="T"
 set timeoutlen=2000
 set cpoptions="s"
 set caseoptions="pg"
-set grepprg='ag --smart-case --line-numbers %i %a %s'
+
 set prefervsplit
 set maxundotabs=3
 set maxratingstars=7
@@ -242,6 +242,14 @@ else
 set topmidfiller="‖"
 set filenamedisplen=49
 endif
+
+set aproposprg='apropos %a'
+set deleteprg=""
+set findprg='fd %p -i -d=3 -t=f .'
+set grepprg='rg -S --vimgrep %i %a %s'
+set locateprg='locate %a'
+set mediaprg='vifmmed'
+set previewprg=""
 
 set timefmt="%H:%M\ %m/%d/%y"
 set rulerformat="%=%r %l%%%S%[ +%x%]"
