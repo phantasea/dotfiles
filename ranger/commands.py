@@ -9,6 +9,10 @@ from collections import deque
 # You can import any python module as needed.
 import os
 
+class empty(Command):
+    def execute(self):
+        self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]*}")
+
 class paste_as_root(Command):
     def execute(self):
         if self.fm.do_cut:
@@ -69,11 +73,7 @@ class fzf_select(Command):
     """
     :fzf_select
 
-    Find a file using fzf.
-
     With a prefix argument select only directories.
-
-    See: https://github.com/junegunn/fzf
     """
     def execute(self):
         import subprocess
@@ -273,11 +273,10 @@ class fd_prev(Command):
 
 class fzf_rga(Command):
     """
-    :fzf_rga
+    :fzf_rga <string>
+
     Search in PDFs, E-Books and Office documents in current directory.
     Allowed extensions: .epub, .odt, .docx, .fb2, .ipynb, .pdf.
-
-    Usage: fzf_rga <search string>
     """
     def execute(self):
         if self.arg(1):
