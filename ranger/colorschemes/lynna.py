@@ -82,6 +82,12 @@ class Default(ColorScheme):
 				else:
 					fg = magenta
 
+			if context.inactive_pane:
+				if context.selected:
+					attr = normal
+					attr |= bold
+					fg = white
+
 		elif context.in_titlebar:
 			attr |= bold
 			bg = red
