@@ -119,8 +119,8 @@ nnoremap   <S-Right>  zL
 nnoremap   <C-Right>  ze
 
 map <F5>   :!clear && gcc % -o %:r && ./%:r<cr>
-map <F7>   :set wrap!<CR>
 map <F8>   :nohlsearch<CR>
+map <F9>   :set wrap!<CR>
 
 onoremap   aa   :<C-U>normal! ggVG<CR>
 onoremap   if   :<C-U>normal! [[jV]]k<CR>
@@ -208,6 +208,7 @@ nnoremap   J    <C-E>
 nnoremap   K    <C-Y>
 nnoremap   n    nzz
 nnoremap   N    Nzz
+nnoremap  go    :Ranger<cr>
 nnoremap   q    :call SmartQuit()<CR>
 nnoremap   Q    :qall!<CR>
 nnoremap  gs    :write<CR>
@@ -251,7 +252,7 @@ nnoremap   -<space>   :set cursorline!<CR>
 nnoremap  \|<space>   :set cursorcolumn!<CR>
 
 nnoremap   <leader><leader>  <leader>
-nnoremap   <leader><space>   <NOP>
+nnoremap   <leader><space>   :set wrap!<cr>
 
 nnoremap   <leader>be   :BufExplorer<CR>
 nnoremap   <leader>fe   :Ranger<CR>
