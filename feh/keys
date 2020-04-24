@@ -44,7 +44,7 @@ toggle_fullscreen f
 #zoom_default *
 zoom_in  i
 zoom_out o
-zoom_fit a
+zoom_fit =
 
 size_to_image w
 
