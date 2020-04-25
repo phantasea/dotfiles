@@ -1,0 +1,417 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ncmpc &#8212; ncmpc 0.37 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="ncmpc">
+<h1>ncmpc<a class="headerlink" href="#ncmpc" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>ncmpc is a command-line client for the <a class="reference external" href="http://www.musicpd.org/">Music Player Daemon</a> (MPD).</p>
+<p>By default, ncmpc connects to the local MPD instance.  A different MPD
+instance can be selected using the command line options
+<a class="reference internal" href="#cmdoption-host"><code class="xref std std-option docutils literal notranslate"><span class="pre">--host</span></code></a> and <a class="reference internal" href="#cmdoption-port"><code class="xref std std-option docutils literal notranslate"><span class="pre">--port</span></code></a>, or by setting the environment
+variables <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MPD_HOST</span></code> and <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MPD_PORT</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ncmpc</span> <span class="o">--</span><span class="n">host</span><span class="o">=</span><span class="n">musicserver</span> <span class="o">--</span><span class="n">port</span><span class="o">=</span><span class="mi">44000</span>
+</pre></div>
+</div>
+<p>You can connect to a “local” socket by setting the host to a file path
+(e.g. “<code class="file docutils literal notranslate"><span class="pre">/run/mpd/socket</span></code>”).  Abstract sockets can be used with a “<code class="file docutils literal notranslate"><span class="pre">&#64;</span></code>”
+prefix (e.g. “<code class="file docutils literal notranslate"><span class="pre">&#64;mpd</span></code>”).</p>
+<p>To use a password with MPD, set <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MPD_HOST</span></code> to
+<code class="samp docutils literal notranslate"><span class="pre">password&#64;host</span></code> or use the command line option
+<a class="reference internal" href="#cmdoption-p"><code class="xref std std-option docutils literal notranslate"><span class="pre">--password</span></code></a>.  Values from the command line override values
+from the environment.</p>
+</div>
+<div class="section" id="synopsis">
+<h2>Synopsis<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>ncmpc [options]</div></blockquote>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<dl class="option">
+<dt id="cmdoption">
+<code class="descname">-?</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--help</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display help.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-v">
+<code class="descname">-V</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--version</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-v" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display version information and build-time configuration.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-c">
+<code class="descname">-c</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--colors</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable colors.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-no-colors">
+<code class="descname">-C</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--no-colors</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-no-colors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disable colors.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-m">
+<code class="descname">-m</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--mouse</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-m" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable mouse.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-host">
+<code class="descname">--host</code><code class="descclassname">=HOST</code><a class="headerlink" href="#cmdoption-host" title="Permalink to this definition">¶</a></dt>
+<dd><p>The MPD host to connect to.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-port">
+<code class="descname">--port</code><code class="descclassname">=PORT</code><code class="descclassname">, </code><code class="descname">-p</code><code class="descclassname"> PORT</code><a class="headerlink" href="#cmdoption-port" title="Permalink to this definition">¶</a></dt>
+<dd><p>The port to connect to.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-p">
+<code class="descname">-P</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--password</code><code class="descclassname">=PASSWORD</code><a class="headerlink" href="#cmdoption-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use password when connecting.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-f">
+<code class="descname">-f</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--config</code><code class="descclassname">=FILE</code><a class="headerlink" href="#cmdoption-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read configuration from file.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-k">
+<code class="descname">-k</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--key-file</code><code class="descclassname">=FILE</code><a class="headerlink" href="#cmdoption-k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read key bindings from file.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>When ncmpc starts it tries to read the user’s configuration file,
+<code class="file docutils literal notranslate"><span class="pre">$XDG_CONFIG_HOME/ncmpc/config</span></code> (usually
+<code class="file docutils literal notranslate"><span class="pre">~/.config/ncmpc/config</span></code>).  If no user configuration file is
+found then ncmpc tries to load the global settings from
+<code class="file docutils literal notranslate"><span class="pre">$SYSCONFDIR/ncmpc/config</span></code> (the actual path is displayed in the
+output of the <a class="reference internal" href="#cmdoption-v"><code class="xref std std-option docutils literal notranslate"><span class="pre">--version</span></code></a> option).  An example configuration
+file (<code class="file docutils literal notranslate"><span class="pre">config.sample</span></code>) is shipped with ncmpc.</p>
+<div class="section" id="connection">
+<h3>Connection<a class="headerlink" href="#connection" title="Permalink to this headline">¶</a></h3>
+<p><strong class="command">host = HOST</strong> - The MPD host to connect to.</p>
+<p><strong class="command">port = PORT</strong> - The port to connect to.</p>
+<p><strong class="command">password = PASSWORD</strong> - Use password when connecting.</p>
+<p><strong class="command">timeout = TIMEOUT</strong> - Attempt to reconnect to mpd if a
+response to a command is not received within TIMEOUT
+seconds. Specifying a value in the configuration file overrides the
+“<span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">MPD_TIMEOUT</span></code>” environment variable.  If no timeout is
+specified in the configuration file or in the environment, the default
+is 5 seconds.</p>
+</div>
+<div class="section" id="interface">
+<h3>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h3>
+<p><strong class="command">enable-mouse = yes|no</strong> - Enable mouse support (if enabled at compile time).</p>
+<p><strong class="command">screen-list = SCREEN1 SCREEN2...</strong> - A list of screens to
+cycle through when using the previous/next screen commands.  Valid
+choices, if enabled at compile time, are playlist, browse, library,
+help, search, song, keydef, lyrics, outputs, and chat.</p>
+<p><strong class="command">library-page-tags = TAG1 TAG2 ...</strong> - A list of tags to group
+the library page.  The default is <code class="docutils literal notranslate"><span class="pre">artist</span> <span class="pre">album</span></code>.</p>
+<p><strong class="command">search-mode = MODE</strong> - Default search mode for the search
+screen. MODE must be one of title, artist, album, filename, and
+artist+title, or an integer index (0 for title, 1 for artist etc.).</p>
+<p><strong class="command">auto-center = yes|no</strong> - Enable/disable auto center
+mode. When auto center mode is enabled ncmpc centers the current track
+in the playlist window.</p>
+<p><strong class="command">scroll-offset = NUM</strong> - Keep at least NUM lines above and
+below the cursor on list windows, if possible.</p>
+<p><strong class="command">find-show-last = yes|no</strong> - Show the most recent query instead of a blank line for a find.</p>
+<p><strong class="command">find-wrap = yes|no</strong> - Wrapped find mode.</p>
+<p><strong class="command">wrap-around = yes|no</strong> - Wrapped cursor movement.</p>
+<p><strong class="command">bell-on-wrap = yes|no</strong> - Ring bell when find wraps around.</p>
+<p><strong class="command">audible-bell = yes|no</strong> - Sound audible bell on alerts.</p>
+<p><strong class="command">visible-bell = yes|no</strong> - Visible bell on alerts.</p>
+<p><strong class="command">crossfade-time = CROSSFADE TIME</strong> - Default crossfade time in
+seconds.</p>
+<p><strong class="command">seek-time = NUM</strong> - Seek forward/backward by NUM seconds.</p>
+<p><strong class="command">lyrics-timeout = NUM</strong> - Quits downloading lyrics of a song
+after the timeout of NUM seconds is reached, if NUM is greater than
+zero.</p>
+<p><strong class="command">jump-prefix-only = yes|no</strong> - When using the jump command,
+search for the prefix of an entry.  That means typing “m” will start
+to the first entry which begins with “m”.</p>
+<p><strong class="command">lyrics-autosave = yes|no</strong> - Automatically save lyrics after
+receiving them.</p>
+<p><strong class="command">lyrics-show-plugin = yes|no</strong> - Show the name of the plugin
+used to receive lyrics on the lyrics screen.</p>
+<p><strong class="command">text-editor = EDITOR</strong> - The text editor used for editing
+lyrics.</p>
+<p><strong class="command">text-editor-ask = yes|no</strong> - Ask before starting an editor.</p>
+<p><strong class="command">chat-prefix = PREFIX</strong> - Prefix messages send with the chat
+screen with PREFIX.  By default they are prefixed with the current
+user name enclosed by “&lt;” and “&gt;” and a space (i.e. “&lt;name&gt; “).</p>
+<p><strong class="command">second-column = yes|no</strong> - Display song length in a second
+column.</p>
+</div>
+<div class="section" id="display">
+<h3>Display<a class="headerlink" href="#display" title="Permalink to this headline">¶</a></h3>
+<p><strong class="command">welcome-screen-list = yes|no</strong> - Show a list of the screens
+in the top line.</p>
+<p><strong class="command">wide-cursor = yes|no</strong> - Make the cursor as wide as the
+screen.</p>
+<p><strong class="command">hardware-cursor = yes|no</strong> - Use the terminal’s hardware
+cursor instead of inverse colors.</p>
+<p><strong class="command">hide-cursor = NUM</strong> - Hide the playlist cursor after NUM
+seconds of inactivity.</p>
+<p><strong class="command">scroll = yes|no</strong> - Scroll the title if it is too long for
+the screen.</p>
+<p><strong class="command">scroll-sep = STRING</strong> - the separator to show at the end of
+the scrolling title.</p>
+<p><strong class="command">list-format = SONG FORMAT</strong> - The format used to display
+songs in the main window.</p>
+<p><strong class="command">search-format = SONG FORMAT</strong> - The format used to display
+songs in the search window. Default is to use list-format.</p>
+<p><strong class="command">status-format = SONG FORMAT</strong> - The format used to display
+songs on the status line.</p>
+<p><strong class="command">status-message-time = TIME</strong> - The time, in seconds, for
+which status messages will be displayed.</p>
+<p><strong class="command">display-time = yes|no</strong> - Display the time in the status bar
+when idle.</p>
+<p><strong class="command">timedisplay-type = elapsed/remaining</strong> - Sets whether to
+display remaining or elapsed time in the status window.  Default is
+elapsed.</p>
+<p><strong class="command">visible-bitrate = yes|no</strong> - Show the bitrate in the status
+bar when playing a stream.</p>
+<p><strong class="command">set-xterm-title = yes|no</strong> - Change the XTerm title (ncmpc
+will not restore the title).</p>
+<p><strong class="command">xterm-title-format = SONG FORMAT</strong> - The format used to for
+the xterm title when ncmpc is playing.</p>
+</div>
+<div class="section" id="colors">
+<h3>Colors<a class="headerlink" href="#colors" title="Permalink to this headline">¶</a></h3>
+<p><strong class="command">enable-colors = yes|no</strong> - Enable/disable colors.  Defaults
+to <code class="docutils literal notranslate"><span class="pre">yes</span></code>.</p>
+<p>The colors used by <cite>ncmpc</cite> can be customized.  The <code class="docutils literal notranslate"><span class="pre">color</span></code> directive
+can be used to change how a certain style looks.  It can contain a
+text color and attributes.  The following standard colors can be
+specified by name (<a class="reference external" href="https://invisible-island.net/ncurses/man/curs_color.3x.html">official reference</a>):</p>
+<blockquote>
+<div><code class="docutils literal notranslate"><span class="pre">black</span></code>, <code class="docutils literal notranslate"><span class="pre">red</span></code>, <code class="docutils literal notranslate"><span class="pre">green</span></code>, <code class="docutils literal notranslate"><span class="pre">yellow</span></code>, <code class="docutils literal notranslate"><span class="pre">blue</span></code>, <code class="docutils literal notranslate"><span class="pre">magenta</span></code>,
+<code class="docutils literal notranslate"><span class="pre">cyan</span></code>, <code class="docutils literal notranslate"><span class="pre">white</span></code></div></blockquote>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">color</span> <span class="nb">list</span> <span class="o">=</span> <span class="n">cyan</span>
+</pre></div>
+</div>
+<p>Modern terminals support up to 256 colors, but they are not
+standardized.  You can select them by specifying the number.
+Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">color</span> <span class="n">title</span> <span class="o">=</span> <span class="mi">42</span>
+</pre></div>
+</div>
+<p>The background color can be specified after the text color separated
+by a slash.  You can omit the text color if you want to change only
+the background color:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">color</span> <span class="n">title</span> <span class="o">=</span> <span class="n">white</span><span class="o">/</span><span class="n">blue</span>
+<span class="n">color</span> <span class="n">title</span> <span class="o">=</span> <span class="o">/</span><span class="n">blue</span>
+</pre></div>
+</div>
+<p>The color <code class="docutils literal notranslate"><span class="pre">none</span></code> uses the terminal’s default color.</p>
+<p>Attributes can be used to modify the font appearance.  The following
+attributes can be specified (<a class="reference external" href="https://invisible-island.net/ncurses/man/curs_attr.3x.html">official reference</a>),
+though many of them are not supported by prevalent terminals:</p>
+<blockquote>
+<div><code class="docutils literal notranslate"><span class="pre">standout</span></code>, <code class="docutils literal notranslate"><span class="pre">underline</span></code>, <code class="docutils literal notranslate"><span class="pre">reverse</span></code>, <code class="docutils literal notranslate"><span class="pre">blink</span></code>, <code class="docutils literal notranslate"><span class="pre">dim</span></code>,
+<code class="docutils literal notranslate"><span class="pre">bold</span></code></div></blockquote>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">color</span> <span class="n">alert</span> <span class="o">=</span> <span class="n">red</span> <span class="n">blink</span>
+</pre></div>
+</div>
+<p><strong class="command">color background = COLOR</strong> - Set the default background
+color.</p>
+<p><strong class="command">color title = COLOR[,ATTRIBUTE]...</strong> - Set the text color and
+attributes for the title row, which displays the page names.</p>
+<p><strong class="command">color title-bold = COLOR[,ATTRIBUTE]...</strong> - Like <code class="docutils literal notranslate"><span class="pre">title</span></code>,
+but refers to emphasized parts of the title row, i.e. the hot keys for
+switching to a specific page.</p>
+<p><strong class="command">color line = COLOR</strong> - Set the color of the line on the
+second row.</p>
+<p><strong class="command">color line-flags = COLOR[,ATTRIBUTE]...</strong> - Set the text
+color used to indicate mpd flags on the second row.</p>
+<p><strong class="command">color list = COLOR[,ATTRIBUTE]...</strong> - Set the text color in
+the main area of ncmpc.</p>
+<p><strong class="command">color list-bold = COLOR[,ATTRIBUTE]...</strong> - Set the bold text
+color in the main area of ncmpc.</p>
+<p><strong class="command">color browser-directory = COLOR[,ATTRIBUTE]...</strong> - Set the
+text color used to display directories in the browser window.</p>
+<p><strong class="command">color browser-playlist = COLOR[,ATTRIBUTE]...</strong> - Set the
+text color used to display playlists in the browser window.</p>
+<p><strong class="command">color progressbar = COLOR[,ATTRIBUTE]...</strong> - Set the color of
+the progress indicator.</p>
+<p><strong class="command">color progressbar-background = COLOR[,ATTRIBUTE]...</strong> - Set the color of
+the progress indicator background.</p>
+<p><strong class="command">color status-state = COLOR[,ATTRIBUTE]...</strong> - Set the text
+color used to display mpd status in the status window.</p>
+<p><strong class="command">color status-song = COLOR[,ATTRIBUTE]...</strong> - Set the text
+color used to display song names in the status window.</p>
+<p><strong class="command">color status-time = COLOR[,ATTRIBUTE]...</strong> - Set the text
+color used to display time the status window.</p>
+<p><strong class="command">color alert = COLOR[,ATTRIBUTE]...</strong> - Set the text color
+used to display alerts in the status window.</p>
+<p><strong class="command">colordef COLOR = R, G, B</strong> - Redefine any of the base
+colors. The RGB values must be integer values between 0 and 1000.
+<em>Note</em>: Only some terminals allow redefinitions of colors!</p>
+</div>
+</div>
+<div class="section" id="keys">
+<h2>Keys<a class="headerlink" href="#keys" title="Permalink to this headline">¶</a></h2>
+<p>When ncmpc starts it tries to read user-defined key bindings from the
+<code class="file docutils literal notranslate"><span class="pre">$XDG_CONFIG_HOME/ncmpc/keys</span></code> (usually
+<code class="file docutils literal notranslate"><span class="pre">~/.config/ncmpc/keys</span></code>) file.  If no user-defined key bindings
+are found then ncmpc tries to load the global key bindings from
+<code class="file docutils literal notranslate"><span class="pre">$SYSCONFDIR/ncmpc/keys</span></code> (the actual path is displayed on the
+help screen).</p>
+<p>You can view ncmpc’s key bindings by pressing ‘1’ (help) when ncmpc is
+running.  To edit key bindings press ‘K’ and use the key editor in
+ncmpc.</p>
+</div>
+<div class="section" id="song-format">
+<h2>Song Format<a class="headerlink" href="#song-format" title="Permalink to this headline">¶</a></h2>
+<p>Format of song display for status and the list window.  The metadata
+delimiters are: %artist%, %albumartist%, %composer%, %performer%,
+%title%, %album%, %shortalbum%, %track%, %disc, %genre%, %name%,
+%time%, %date%, %file%, %shortfile%.</p>
+<p>The [] operators are used to group output such that if none of the
+metadata delimiters between ‘[‘ and ‘]’ are matched, then none of the
+characters between ‘[‘ and ‘]’ are output; literal text is always
+output. ‘&amp;’ and ‘|’ are logical operators for AND and OR. ‘#’ is used
+to escape characters.</p>
+<p>Some useful examples for format are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;</span><span class="si">%f</span><span class="s2">ile%&quot;</span>
+</pre></div>
+</div>
+<p>and:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;[[</span><span class="si">%a</span><span class="s2">rtist% - ]%title%]|</span><span class="si">%f</span><span class="s2">ile%&quot;</span>
+</pre></div>
+</div>
+<p>Another one is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;[</span><span class="si">%a</span><span class="s2">rtist%|(artist n/a)] - [%title%|(title n/a)]&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="chat-protocol">
+<h2>Chat Protocol<a class="headerlink" href="#chat-protocol" title="Permalink to this headline">¶</a></h2>
+<p>If ncmpc has been compiled with “chat” support, it uses the
+client-to-client protocol available in MPD 0.17 or higher to
+communicate with other clients.  In order to receive messages it
+subscribes to the channel with the name “chat”, and displays any
+message sent there as-is.  When the user enters a message, it is first
+with the prefix specified by the <strong class="command">chat-prefix</strong> option (or the
+default prefix), and then sent to the “chat” channel for others to
+read.</p>
+</div>
+<div class="section" id="bugs">
+<h2>Bugs<a class="headerlink" href="#bugs" title="Permalink to this headline">¶</a></h2>
+<p>Report bugs on <a class="reference external" href="https://github.com/MusicPlayerDaemon/ncmpc/issues">https://github.com/MusicPlayerDaemon/ncmpc/issues</a></p>
+<p>Note
+—</p>
+<p>Since MPD uses UTF-8, ncmpc needs to convert characters to the charset
+used by the local system.  If you get character conversion errors when
+your running ncmpc you probably need to set up your locale.  This is
+done by setting any of the <span class="target" id="index-4"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LC_CTYPE</span></code>, <span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LANG</span></code> or
+<span class="target" id="index-6"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LC_ALL</span></code> environment variables (<span class="target" id="index-7"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">LC_CTYPE</span></code> only
+affects character handling).</p>
+</div>
+<div class="section" id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<p><em class="manpage">mpd(1)</em>, <em class="manpage">mpc(1)</em>, <em class="manpage">locale(5)</em>,
+<em class="manpage">locale(7)</em></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">ncmpc</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;Copyright (C) 2004-2020 The Music Player Daemon Project.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
