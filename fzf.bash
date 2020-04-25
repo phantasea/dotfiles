@@ -119,3 +119,12 @@ ffgshow() {
         echo '{}' | grep -o '[a-f0-9]\{7\}' | head -1 |
         xargs -I % sh -c 'git show --color=always % | less -R'"
 }
+
+# mpd/mpc
+ffmpc() {
+    local song_position
+    song_position=$(mpc -f "%file%" playlist | \
+        fzf-tmux --query="$1" --reverse --select-1 --exit-0 | \
+        sed -n 's/^\([0-9]\+\)).*/\1/p') || return 1
+    [ -n "$song_position" ] && mpc -q play $song_position
+}
