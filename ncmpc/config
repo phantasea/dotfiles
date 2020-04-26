@@ -7,7 +7,7 @@
 host = "localhost"
 
 ## Connect to mpd on the specified port.
-port = 6600
+port = 6609
 
 ## Connect to mpd using the specified password.
 #password = "secret"
@@ -57,7 +57,7 @@ search-mode = 3
 #crossfade-time = 10
 
 ## Seek forward/backward by NUM seconds.
-#seek-time = 1
+seek-time = 5
 
 ############## Display ######################
 ## Show a list of the screens in the top line.
@@ -80,13 +80,14 @@ scroll = yes
 
 ## list-format
 ## The format used to display songs in the main window.
-list-format = "%name%|[[%artist%|%performer%|%composer%] - ][%title%|%shortfile%]"
+list-format = "%file%"
 
 ## The format used to display songs in the search window.
-#search-format = "%name%|[[%artist%|%performer%|%composer%] - ][%title%|%shortfile%]"
+search-format = "%shortfile%"
 
 ## The format used to display songs on the status line.
-status-format = "[[%artist%|%performer%|%composer%] - ][%title%|%shortfile%]"
+#status-format = "[[%artist%|%performer%|%composer%] - ][%title%|%shortfile%]"
+status-format = "%file%"
 
 ## The time, in seconds, for which status messages will be displayed.
 status-message-time = 3
