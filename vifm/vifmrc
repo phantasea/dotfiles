@@ -494,8 +494,12 @@ fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.r
           \ vifmimg videopreview %px %py %pw %ph %c %pc  vifmimg clear,
 
 " Image
-filetype  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm  imgview %c, imgview -b %c, imgview -B %c
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm
+filetype  *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm  imgview %c, imgview -b %c, imgview -B %c
+fileview  *.gif
+          \ mpv %c, pqiv -f %c, vimiv -f %c,
+          \ vifmimg gifpreview %px %py %pw %ph %c %pc  vifmimg clear
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm
+          \ pho -p %c, pho -p -s1 %c,
           \ feh -F %c, feh -F -D 1 %c,
           \ vimiv %f, vimiv --slideshow,
           \ sxiv -ft %f, sxiv -fS 1 %f,
@@ -504,17 +508,14 @@ fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm
           \ w3mimg %px %py %pw %ph %c,
           \ exiftool %c, mediainfo %c,
           \ vifmimg draw %px %py %pw %ph %c %pc  vifmimg clear,
-fileview  *.gif
-          \ mpv %c, pqiv -f %c, vimiv -f %c,
-          \ vifmimg gifpreview %px %py %pw %ph %c %pc  vifmimg clear
 
 " PDF
 filetype  *.pdf  pdfview %c %i, pdfview -b %c, pdfview -B %c
 fileview  *.pdf
           \ thumbnail %px %py %pw %ph %c,
           \ pdftotext -l 3 -nopgbrk -q -- %c -,
-          \ vifmimg pdfpreview %px %py %pw %ph %c %pc  vifmimg clear,
           \ mutool draw -F txt -i -- %c,
+          \ vifmimg pdfpreview %px %py %pw %ph %c %pc  vifmimg clear,
 
 " PostScript
 fileview  *.ps  ps2text %c -
