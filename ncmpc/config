@@ -134,10 +134,10 @@ enable-colors = yes
 color background = black
 
 ## Set the text color for the title row.
-color title = green
+color title = red,reverse
 
 ## Set the text color for the title row (the bold part).
-color title-bold = green,bold
+color title-bold = magenta,bold,reverse
 
 ## Set the color of the line on the second row.
 color line = magenta
@@ -161,13 +161,13 @@ color browser-playlist = red
 color progressbar = magenta,bold
 
 ## Set the text color used to display mpd status in the status window.
-color status-state = green,bold
+color status-state = green,bold,reverse
 
 ## Set the text color used to display song names in the status window.
-color status-song  = green
+color status-song  = green,reverse
 
 ## Set the text color used to display time the status window.
-color status-time  = magenta,bold
+color status-time  = magenta,bold,reverse
 
 ## Text color used to display alerts in the status window.
 color alert = red,bold
