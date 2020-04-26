@@ -13,19 +13,19 @@ port = 6609
 #password = "secret"
 
 ## Reconnect after NUM seconds of MPD not responding.
-#timeout = 5
+timeout = 5
 
 ############## Interface ####################
 ## Enable mouse support (if enabled at compile time).
-#enable-mouse = no
+enable-mouse = no
 
 # Which tags shall be grouped on the library page?
-#library-page-tags = artist album
+library-page-tags = artist
 
 ## A list of screens to cycle through when using
 ## the previous/next screen commands (tab and shift+tab).
 ## names: playlist browse help library search song keydef lyrics outputs chat
-#screen-list = playlist browse
+screen-list = playlist browse
 
 ## Default search mode for the search screen. The mode is an
 ## integer index, with  0  for title, 1 for artist, 2 for album,
@@ -33,50 +33,67 @@ port = 6609
 search-mode = 3
 
 ## Auto center (center the playing track in the playlist)
-#auto-center = no
+auto-center = yes
+
+## Keep at least NUM lines above and below the cursor on list windows, if possible.
+scroll-offset = 0
 
 ## Show the most recent query when using find.
-#find-show-last = no
+find-show-last = yes
 
 ## Wrapped find mode.
-#find-wrap = yes
+find-wrap = yes
 
 ## Wrapped cursor movement.
-#wrap-around = no
+wrap-around = no
 
 ## Ring bell when find wraps around.
-#bell-on-wrap = yes
+bell-on-wrap = yes
 
 ## Sound audible bell on alerts.
-#audible-bell = yes
+audible-bell = yes
 
 ## Enable visible bell on alerts.
-#visible-bell = no
+visible-bell = no
 
 ## Default crossfade time in seconds.
-#crossfade-time = 10
+crossfade-time = 10
 
 ## Seek forward/backward by NUM seconds.
 seek-time = 5
+
+## Quits downloading lyrics of a song after the timeout of  NUM  seconds  is  reached,  if  NUM  is
+# greater than zero.
+lyrics-timeout = 3
+
+## Show the name of the plugin used to receive lyrics on the lyrics screen.
+lyrics-show-plugin = yes
+
+## When using the jump command, search for the prefix of an entry. That means typing "m" will start
+## to the first entry which begins with "m".
+jump-prefix-only = no
 
 ############## Display ######################
 ## Show a list of the screens in the top line.
 welcome-screen-list = yes
 
+## Display the time in the status bar when idle.
+display-time = yes
+
 ## Make the cursor as wide as the screen.
-#wide-cursor = yes
+wide-cursor = yes
 
 ## Use the terminal's hardware cursor instead of inverse colors
-#hardware-cursor = yes
+hardware-cursor = no
 
 ## Hide playlist cursor after x seconds (0 disables this feature).
-#hide-cursor = 5
+hide-cursor = 0
 
 ## Scroll the title if it is too long for the screen.
 scroll = yes
 
 ## The separator to show at the end of the scrolling title.
-#scroll-sep = " *** "
+scroll-sep = " *** "
 
 ## list-format
 ## The format used to display songs in the main window.
@@ -97,22 +114,22 @@ status-message-time = 3
 timedisplay-type = elapsed
 
 ## Show the bitrate in the status bar when playing a stream.
-visible-bitrate = no
+visible-bitrate = yes
 
 ## Change the XTerm title (ncmpc will not restore the title).
-#set-xterm-title = no
+set-xterm-title = no
 
 ## The format used to for the xterm title when ncmpc is playing.
-#xterm-title-format = "ncmpc: [%name%|[[%artist%|%performer%|%composer%] - ][%title%|%shortfile%]]"
+xterm-title-format = "ncmpc: [%file%]"
 
 ## Automatically save the lyrics after receiving them.
-#lyrics-autosave = no
+lyrics-autosave = no
 
 ## The text editor used for editing lyrics.
 text-editor = vim
 
 ## Ask before starting an editor.
-text-editor-ask = yes
+text-editor-ask = no
 
 ## The prefix of chat messages
 #chat-prefix = "<user> "
@@ -149,7 +166,7 @@ color line-flags = white,bold
 color list = yellow
 
 ## Set the bold text color in the main area of ncmpc. #browser file
-color list-bold = white
+color list-bold = white,bold
 
 ## Sets the text color of directories in the browser
 color browser-directory = cyan
