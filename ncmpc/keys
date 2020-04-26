@@ -76,7 +76,7 @@ key volume-up = 43,  'K'
 key volume-down = 45,  'J'
 
 ## Select/deselect song in queue
-key select = 't'
+key select = 0
 
 ## Select all listed items
 key select_all = 'A'
@@ -157,5 +157,5 @@ key rfind = 0
 key rfind-next = 'N'
 
 ## Jump to
-key jump = 'T'
+key jump = 't'
 
