@@ -402,7 +402,7 @@ command! ffporn   fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 | sed 's/ /\\ 
 " }}}
 
 " autocmds {{{
-autocmd DirEnter '/opt/util'             setl previewprg='bat --style="plain" -- %c'
+autocmd DirEnter '/opt/util'             setl lsview previewprg='bat --style="plain" -- %c'
 autocmd DirEnter '~/docs/misc'           exec 'normal zd'
 autocmd DirEnter '~/docs/webs'           exec 'normal zd'
 autocmd DirEnter '~/pics'                exec 'normal fm'
