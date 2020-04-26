@@ -5,40 +5,10 @@
 #  Users can add rules by creating a ".mailcap" file in the home directory.
 ###############################################################################
 
-application/pdf; /usr/bin/zathura '%s'; test=test -n "$DISPLAY"; description=Portable Document Format; nametemplate=%s.pdf
-application/pdf; fbgs -c '%s'; test=test -z "$DISPLAY"; needsterminal
-text/plain; less '%s'; needsterminal
-image/gif; feh '%s'; test=test -n "$DISPLAY" ; description=GIF Image; nametemplate=%s.gif
-image/jpeg; feh '%s'; test=test -n "$DISPLAY" ; description=JPEG Image; nametemplate=%s.jpeg
-image/png; feh '%s'; test=test -n "$DISPLAY" ; description=PNG Image; nametemplate=%s.png
-image/tiff; feh '%s'; test=test -n "$DISPLAY" ; description=TIFF Image; nametemplate=%s.tiff
-image/gif; fbi '%s'; test=test -z "$DISPLAY"; needsterminal
-image/jpeg; fbi '%s'; test=test -z "$DISPLAY"; needsterminal
-image/png; fbi '%s'; test=test -z "$DISPLAY"; needsterminal
-image/tiff; fbi '%s'; test=test -z "$DISPLAY"; needsterminal
-image/bmp; fbi '%s'; test=test -z "$DISPLAY"; needsterminal
-application/postscript; fbgs -c '%s'; test=test -z "$DISPLAY"; needsterminal
-application/ogg; /usr/bin/mplayer '%s'; description="OggVorbis Audio"
-audio/mpeg; /usr/bin/mplayer '%s'; description="MPEG Audio Format"
-video/mpeg; /usr/bin/mplayer '%s'; description="MPEG Video Format"; test=test -n "$DISPLAY"
-video/mpeg; /usr/bin/mplayer '%s'; description="MPEG 2 Video"; test=test -n "$DISPLAY"
-application/x-ttyrec; /usr/bin/ttyplay '%s'; needsterminal; description=tty record file; nametemplate=%s.tty
-application/zip; unzip -l '%s'; nametemplate=%s.zip; copiousoutput
-text/plain; more '%s'; needsterminal
-text/html; /usr/bin/elinks -force-html '%s'; needsterminal; description=HTML Text; nametemplate=%s.html
-image/jpeg; qiv -tfi '%s'; description="JPEG Image"; test=test "$DISPLAY"; nametemplate=%s.jpeg
-image/bmp; qiv -tfi '%s'; description="BMP Image"; test=test "$DISPLAY"; nametemplate=%s.bmp
-image/png; qiv -tfi '%s'; description="PNG Image"; test=test "$DISPLAY"; nametemplate=%s.png
-image/pm; qiv -tfi '%s'; description="PM Image"; test=test "$DISPLAY"; nametemplate=%s.pm
-text/plain; view '%s'; edit=vim '%s'; compose=vim '%s'; test=test -x /usr/bin/vim; needsterminal
-text/html; /usr/bin/w3m -T text/html '%s'; needsterminal; description=HTML Text; nametemplate=%s.html
-text/html; /usr/bin/elinks -force-html -dump '%s'; copiousoutput; description=HTML Text; nametemplate=%s.html
-text/csv; soffice -no-oosplash --calc '%s'; edit=soffice -no-oosplash --calc '%s'; test=test -n "$DISPLAY"; description="CSV Document"; nametemplate=%s.csv
-text/spreadsheet; soffice -no-oosplash --calc '%s'; edit=soffice -no-oosplash --calc '%s'; test=test -n "$DISPLAY"; description="Spreadsheet Interchange Document"; nametemplate=%s.slk
-text/plain; view '%s'; edit=vi '%s'; compose=vi '%s'; needsterminal
-text/html; /usr/bin/w3m -dump -T text/html '%s'; copiousoutput; description=HTML Text; nametemplate=%s.html
-text/*; less '%s'; needsterminal
-text/*; view '%s'; edit=vim '%s'; compose=vim '%s'; test=test -x /usr/bin/vim; needsterminal
-text/*; more '%s'; needsterminal
-text/*; view '%s'; edit=vi '%s'; compose=vi '%s'; needsterminal
+text/plain; $EDITOR %s ;
+text/html; w3m -I %{charset} -T text/html; copiousoutput;
+image/*; muttimage %s ; copiousoutput
+video/*; setsid mpv --quiet %s &; copiousoutput
+application/pdf; fileopen %s ;
+application/pgp-encrypted; gpg -d '%s'; copiousoutput;
 application/msword; /usr/bin/antiword '%s'; copiousoutput; description="Microsoft Word Text"; nametemplate=%s.doc
