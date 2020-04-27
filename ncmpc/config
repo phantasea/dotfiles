@@ -19,9 +19,6 @@ timeout = 5
 ## Enable mouse support (if enabled at compile time).
 enable-mouse = no
 
-# Which tags shall be grouped on the library page?
-library-page-tags = artist
-
 ## A list of screens to cycle through when using
 ## the previous/next screen commands (tab and shift+tab).
 ## names: playlist browse help library search song keydef lyrics outputs chat
@@ -57,7 +54,7 @@ audible-bell = yes
 visible-bell = no
 
 ## Default crossfade time in seconds.
-crossfade-time = 10
+crossfade-time = 3
 
 ## Seek forward/backward by NUM seconds.
 seek-time = 5
@@ -100,14 +97,14 @@ scroll-sep = " *** "
 list-format = "%file%"
 
 ## The format used to display songs in the search window.
-search-format = "%shortfile%"
+search-format = "%file%"
 
 ## The format used to display songs on the status line.
 #status-format = "[[%artist%|%performer%|%composer%] - ][%title%|%shortfile%]"
 status-format = "%file%"
 
 ## The time, in seconds, for which status messages will be displayed.
-status-message-time = 3
+status-message-time = 2
 
 ## Sets whether to display remaining or elapsed time in
 ## the status window. Default is elapsed.
@@ -151,10 +148,10 @@ enable-colors = yes
 color background = black
 
 ## Set the text color for the title row.
-color title = red,reverse
+color title = yellow,reverse
 
 ## Set the text color for the title row (the bold part).
-color title-bold = magenta,bold,reverse
+color title-bold = cyan,bold,reverse
 
 ## Set the color of the line on the second row.
 color line = magenta
