@@ -21,6 +21,7 @@ nnoremap b<cr>     :bmgo<space>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
 nnoremap  <space>  :switch<cr>
+
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
 nnoremap c<space>  :set millerview<cr>
 nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
@@ -30,7 +31,6 @@ nnoremap o<space>  :sort<cr>
 nnoremap s<space>  :set nolaststatus!<cr>
                   \:if !&laststatus | highlight CmdLine ctermfg=white ctermbg=blue cterm=bold
                   \| else | highlight CmdLine ctermfg=yellow ctermbg=none cterm=bold | endif<cr>
-nnoremap w<space>  :set lsview!<cr>
 nnoremap x<space>  <c-w>x
 nnoremap z<space>  <nop>
 
@@ -121,6 +121,19 @@ qnoremap  J  qje:if isactive('preview') | switch | endif<cr>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
 nnoremap gl  :if filetype('.') != 'link' | altopen | else | exec 'normal gf' | endif<cr>
 nnoremap gL  :auxopen<cr>
+nnoremap  mb :bmarks<cr>
+nnoremap  mc :command<cr>
+nnoremap  mC :change<cr>
+nnoremap  mf :file<cr>
+nnoremap  mj :jobs<cr>
+nnoremap  mm :marks<cr>
+nnoremap  mM :media<cr>
+nnoremap  mp :chmod<cr>
+nnoremap  mr :ratings<cr>
+nnoremap  ms :sort<cr>
+nnoremap  mt :lstrash<cr>
+nnoremap  mu :undolist<cr>
+nnoremap  mo :copen<cr>
 nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
@@ -159,20 +172,7 @@ nnoremap  t  tj
 nnoremap  T  kt
 nnoremap  U  <c-r>
 qnoremap  v  q
-nnoremap  wb :bmarks<cr>
-nnoremap  wc :command<cr>
-nnoremap  wC :change<cr>
-nnoremap  wf :file<cr>
-nnoremap  wj :jobs<cr>
-nnoremap  wm :marks<cr>
-nnoremap  wM :media<cr>
-nnoremap  wp :chmod<cr>
-nnoremap  wr :ratings<cr>
-nnoremap  ws :sort<cr>
-nnoremap  wt :lstrash<cr>
-nnoremap  wu :undolist<cr>
-nnoremap  ww :copen<cr>
-nnoremap  W  :set lsview!<cr>
+nnoremap  w  :set lsview!<cr>
 nnoremap  xi :movefromother<cr>
 vnoremap  xi :movefromother<cr>
 nnoremap  xo :movetoother<cr>
@@ -213,7 +213,7 @@ set iooptions=fastfilecloning
 set notitle
 set nolsview
 set millerview
-set tuioptions=""
+set tuioptions="v"
 set tabscope=pane
 set showtabline=multiple
 set dotdirs=rootparent
