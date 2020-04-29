@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+### Author          : gotbletu
+### Name            : fzf_surfraw.cgi
+### Version         : 0.2
+### Date            : 2020-04-27
+### Description     : interactive surfraw smart prefix search engine (mainly use within w3m web browser)
+### Depends On      : surfraw  fzf  xsel  gawk  coreutils  grep  procps-ng
+### Video Demo      : https://youtu.be/p5NZb8f8AHA
+### References      : https://github.com/felipesaa/A-vim-like-firefox-like-configuration-for-w3m
+
+### Setup
+#vim ~/.w3m/keymap
+#keymap  xs  COMMAND  "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; GOTO     /usr/local/libexec/w3m/cgi-bin/goto_clipboard_primary.cgi"
+#keymap  XS  COMMAND  "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; TAB_GOTO /usr/local/libexec/w3m/cgi-bin/goto_clipboard_primary.cgi"
+#keymap  xs  COMMAND  "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; GOTO     /usr/local/libexec/w3m/cgi-bin/goto_clipboard.cgi"
+#keymap  XS  COMMAND  "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; TAB_GOTO /usr/local/libexec/w3m/cgi-bin/goto_clipboard.cgi"
+
+clear
+
+# select your elvi
+PREFIX=$(surfraw -elvi | grep -v 'LOCAL\|GLOBAL'| fzf -e | awk '{print $1}')
+
+# exit script if no elvi is selected (e.g hit ESC)
+if [ "$PREFIX" = "" ]; then exit; fi
+
+# get user input
+read -r -e -p "  $PREFIX >> Enter Your Search Keyword: " INPUT
+
+# print proper url and copy to primary clipboard (aka highlighted clipboard) and tmux clipboard
+surfraw -browser=echo "$PREFIX" "$INPUT" | xsel -p
+# pidof tmux >/dev/null && tmux set-buffer "$(surfraw -browser=echo "$PREFIX" "$INPUT")"
