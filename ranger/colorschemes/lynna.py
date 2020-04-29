@@ -112,8 +112,7 @@ class Default(ColorScheme):
                 fg += BRIGHT
             if context.message:
                 if context.bad:
-                    attr |= bold
-                    fg = red
+                    attr |= reverse
                     fg += BRIGHT
             if context.vcsinfo:
                 fg = blue
