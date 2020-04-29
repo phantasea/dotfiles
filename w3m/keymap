@@ -55,7 +55,7 @@ keymap   d    SAVE_LINK
 keymap   D    SAVE_IMAGE
 keymap   e    EDIT_SCREEN
 keymap   E    EDIT
-keymap   f    LIST_MENU
+keymap   F    LIST_MENU
 keymap   G    END
 keymap   h    MOVE_LEFT
 keymap   H    MOV2TOP
@@ -86,6 +86,8 @@ keymap   C-S  SAVE
 keymap   M-s  SAVE_SCREEN
 keymap   s    SRCH_BD
 keymap   S    TAB_SRCH_BD
+keymap  fs    COMMAND "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; GOTO /usr/local/libexec/w3m/cgi-bin/goto_clipboard_primary.cgi"
+keymap  fS    COMMAND "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; TAB_GOTO /usr/local/libexec/w3m/cgi-bin/goto_clipboard_primary.cgi"
 keymap  gs    SRCH_GG
 keymap  gS    TAB_SRCH_GG
 keymap  zs    SRCH_WK
