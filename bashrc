@@ -42,11 +42,10 @@ rightprompt()
 
 # 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
 # 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
-if tmux list-windows | grep active | grep -q vifm; then
-    PS1='\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
-else
-    PS1='\[$(tput sc; rightprompt; tput rc)\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
-fi
+PS1='\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
+#if tmux list-windows | grep active | grep -q vifm; then
+#    PS1='\[$(tput sc; rightprompt; tput rc)\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
+#fi
 
 # add /opt/util into PATH
 export PATH="/opt/util:$PATH"
@@ -63,7 +62,7 @@ export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 export W3MIMGDISPLAY_PATH="/opt/util/w3mimgdisplay"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 
-export PSTOGGLE=0
+export PSTOGGLE=1
 pstoggle() {
     if [ $PSTOGGLE -eq 0 ]; then
         PS1='\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
