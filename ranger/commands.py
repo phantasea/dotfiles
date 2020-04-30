@@ -9,9 +9,37 @@ from collections import deque
 # You can import any python module as needed.
 import os
 
-class empty(Command):
+
+#class empty(Command):
+#    """
+#    Warning: [^.] is an essential part of the above command.
+#    Without it, all files and directories of the form ..* will be deleted,
+#    wiping out everything in your home directory.
+#    """
+#    def execute(self):
+#        #self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]*}")
+#        self.fm.run("rm -rf /home/simone/.Trash/*")
+
+
+class vidplay(Command):
+    """
+    :vidplay [anything]
+
+    Play video file with mpv or mplayer
+    """
+
     def execute(self):
-        self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]*}")
+        from ranger.ext.shell_escape import shell_escape as esc
+
+        #command = 'mplayer -vo fbdev2 -xy 1024 -fs -zoom -really-quiet '
+        if self.arg(1):
+            command = 'mpv '
+        else:
+            command = 'mplayer -vo x11 '
+
+        filename = esc(self.fm.thisfile.path)
+        self.fm.run(command + filename)
+
 
 class paste_as_root(Command):
     def execute(self):
@@ -19,6 +47,7 @@ class paste_as_root(Command):
             self.fm.execute_console('shell sudo mv %c .')
         else:
             self.fm.execute_console('shell sudo cp -r %c .')
+
 
 class mkcd(Command):
     """
@@ -52,6 +81,7 @@ class mkcd(Command):
         else:
             self.fm.notify("file/directory exists!", bad=True)
 
+
 class toggle_flat(Command):
     """
     :toggle_flat
@@ -68,6 +98,7 @@ class toggle_flat(Command):
             self.fm.thisdir.unload()
             self.fm.thisdir.flat = 0
             self.fm.thisdir.load_content()
+
 
 class fzf_select(Command):
     """
@@ -94,6 +125,7 @@ class fzf_select(Command):
             else:
                 self.fm.select_file(fzf_file)
 
+
 class fzf_locate(Command):
     def execute(self):
         import subprocess
@@ -110,6 +142,7 @@ class fzf_locate(Command):
             else:
                 self.fm.select_file(fzf_file)
 
+
 class fzf_goto(Command):
     def execute(self):
         import subprocess
@@ -122,6 +155,7 @@ class fzf_goto(Command):
                 self.fm.cd(fzf_file)
             else:
                 self.fm.select_file(fzf_file)
+
 
 class fzf_edit(Command):
     def execute(self):
@@ -136,6 +170,7 @@ class fzf_edit(Command):
             else:
                 self.fm.select_file(fzf_file)
 
+
 class fzf_fave(Command):
     def execute(self):
         import subprocess
@@ -148,6 +183,7 @@ class fzf_fave(Command):
                 self.fm.cd(fzf_file)
             else:
                 self.fm.select_file(fzf_file)
+
 
 class fzf_vids(Command):
     def execute(self):
@@ -162,6 +198,7 @@ class fzf_vids(Command):
             else:
                 self.fm.select_file(fzf_file)
 
+
 class fzf_auds(Command):
     def execute(self):
         import subprocess
@@ -174,6 +211,7 @@ class fzf_auds(Command):
                 self.fm.cd(fzf_file)
             else:
                 self.fm.select_file(fzf_file)
+
 
 class fzf_webs(Command):
     def execute(self):
@@ -188,6 +226,7 @@ class fzf_webs(Command):
             else:
                 self.fm.select_file(fzf_file)
 
+
 class fzf_porn(Command):
     def execute(self):
         import subprocess
@@ -200,6 +239,7 @@ class fzf_porn(Command):
                 self.fm.cd(fzf_file)
             else:
                 self.fm.select_file(fzf_file)
+
 
 fd_deq = deque()
 class fd_find(Command):
@@ -245,6 +285,7 @@ class fd_find(Command):
         if len(fd_deq) > 0:
             self.fm.select_file(fd_deq[0])
 
+
 class fd_next(Command):
     """:fd_next
 
@@ -258,6 +299,7 @@ class fd_next(Command):
         elif len(fd_deq) == 1:
             self.fm.select_file(fd_deq[0])
 
+
 class fd_prev(Command):
     """:fd_prev
 
@@ -270,6 +312,7 @@ class fd_prev(Command):
             self.fm.select_file(fd_deq[0])
         elif len(fd_deq) == 1:
             self.fm.select_file(fd_deq[0])
+
 
 class fzf_rga(Command):
     """
