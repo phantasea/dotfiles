@@ -23,7 +23,8 @@ class j(Command):
     """
 
     def execute(self):
-        directory = subprocess.check_output(["autojump", self.arg(1)])
+        #directory = subprocess.check_output(["autojump", self.arg(1)])
+        directory = subprocess.check_output(["autojump", self.rest(1)])
         directory = directory.decode("utf-8", "ignore")
         directory = directory.rstrip('\n')
         self.fm.execute_console("cd " + directory)
