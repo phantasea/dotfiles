@@ -43,9 +43,14 @@ rightprompt()
 # 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
 # 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
 PS1='\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
+
+# for ranger/vifm specific shell prompt indicator
+#if [ -n "$RANGER_LEVEL" ]; then export PS1="[ranger]$PS1"; fi
+#if [ -n "$VIFM" ]; then export PS1="[vifm]$PS1"; fi
 #if tmux list-windows | grep active | grep -q vifm; then
-#    PS1='\[$(tput sc; rightprompt; tput rc)\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
-#fi
+if [ -n "$VIFM" ] || [ -n "$RANGER_LEVEL" ]; then
+    PS1='\[$(tput sc; rightprompt; tput rc)\[\e[07;32m\]\u\[\e[07;37m\]@\[\e[07;35m\]\h\[\e[07;37m\]:\[\e[07;36m\]\w\[\e[07;31m\]\$\[\e[00;37m\] '
+fi
 
 # add /opt/util into PATH
 export PATH="/opt/util:$PATH"
