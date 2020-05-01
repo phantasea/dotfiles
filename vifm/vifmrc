@@ -71,10 +71,11 @@ nnoremap  $  G
 nnoremap  @  <nop>
 nnoremap  &  <nop>
 nnoremap  +  <nop>
-nnoremap  ~  :tabnew ~<cr>
+nnoremap  ~  :cd ~<cr>
+nnoremap  -  :cd -<cr>
 vnoremap  .  :!!<cr>
-nnoremap  -  :invert s<cr>
-vnoremap  -  :invert s<cr>
+nnoremap  \  :invert s<cr>
+vnoremap  \  :invert s<cr>
 nnoremap  <  <c-w><
 nnoremap  >  <c-w>>
 nnoremap  |  <c-w>=
