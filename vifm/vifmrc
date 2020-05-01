@@ -159,7 +159,6 @@ nnoremap  se :sued<cr>
 nnoremap  sf :find . -iname '**'<left><left>
 nnoremap  si :medinfo<cr>
 nnoremap  sl :alink!<cr>
-nnoremap  sm :marks<cr>
 nnoremap  sq :hideui<cr>
 nnoremap  sr :source $VIFM/vifmrc<cr>
 nnoremap  ss <c-w>S
