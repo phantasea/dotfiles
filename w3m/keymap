@@ -70,7 +70,7 @@ keymap   K    DOWN
 keymap   l    MOVE_RIGHT
 keymap   L    MOV2BOT
 keymap   M    MOV2MID
-keymap   mm   MARK_LINE
+keymap   ml   MARK_LINE
 keymap   mw   MARK_WORD
 keymap   mu   MARK_URL
 keymap   n    COMMAND "SEARCH_NEXT; MARK_WORD"
