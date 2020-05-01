@@ -13,6 +13,7 @@ ranger/colorschemes/*.pyo
 vifm/vifminfo*
 vim/viminfo
 vim/bundle/**/tags
+vim/.netrwhist
 vimb/closed
 vimb/command
 vimb/cookies.db
