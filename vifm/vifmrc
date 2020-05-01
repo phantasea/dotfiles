@@ -23,14 +23,13 @@ mnoremap  <space>  <c-f>
 nnoremap  <space>  :switch<cr>
 
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
-nnoremap c<space>  :set millerview<cr>
-nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
+nnoremap c<space>  :set nolaststatus!<cr>
+                  \:if !&laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
+nnoremap f<space>  <nop>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
-nnoremap m<space>  :marks<cr>
-nnoremap o<space>  :sort<cr>
-nnoremap s<space>  :set nolaststatus!<cr>
-                  \:if !&laststatus | highlight CmdLine ctermfg=white ctermbg=blue cterm=bold
-                  \| else | highlight CmdLine ctermfg=yellow ctermbg=none cterm=bold | endif<cr>
+nnoremap m<space>  :set millerview!<cr>
+nnoremap o<space>  <nop>
+nnoremap s<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
 nnoremap x<space>  <c-w>x
 nnoremap z<space>  <nop>
 
