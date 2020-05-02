@@ -127,7 +127,7 @@ class Default(ColorScheme):
                 attr &= ~bold
 
         elif context.in_console:
-            bg = white
+            bg = magenta
             fg = black
             attr |= bold
 
