@@ -52,7 +52,7 @@ ffenv() {
     echo $(echo $out)
 }
 
-jj() {
+ffjj() {
     if [[ "$#" -ne 0 ]]; then
         j "$@"
         return
