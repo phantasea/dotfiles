@@ -124,6 +124,11 @@ class Default(ColorScheme):
                 fg = cyan
                 attr &= ~bold
 
+        elif context.in_console:
+            bg = white
+            fg = black
+            attr |= bold
+
         if context.text:
             if context.highlight:
                 attr |= reverse
