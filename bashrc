@@ -132,15 +132,11 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] && source ~/.autojump/etc/profile.d/autojump.sh
-
 [[ -s /usr/share/doc/tmux/examples/bash_completion_tmux.sh ]] && source /usr/share/doc/tmux/examples/bash_completion_tmux.sh
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 [ -f ~/.forgit.bash ] && source ~/.forgit.bash
-
-[ -f ~/.goto.sh ] && source ~/.goto.sh
 
 #type fbtmux > /dev/null 2>&1 && fbtmux
 command -v fbtmux > /dev/null 2>&1 && fbtmux
