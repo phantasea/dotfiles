@@ -138,5 +138,7 @@ fi
 
 [ -f ~/.forgit.bash ] && source ~/.forgit.bash
 
+[ -f ~/.goto.sh ] && source ~/.goto.sh
+
 #type fbtmux > /dev/null 2>&1 && fbtmux
 command -v fbtmux > /dev/null 2>&1 && fbtmux
