@@ -234,11 +234,10 @@ set maxundotabs=3
 set maxratingstars=7
 set previewmaxsize=3000
 set nofilenamedispall
+set topmidfiller="+"
 if $DISPLAY == ""
-set topmidfiller="∥"
 set filenamedisplen=66
 else
-set topmidfiller="‖"
 set filenamedisplen=49
 endif
 
