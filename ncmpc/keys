@@ -82,7 +82,7 @@ key select = 'm'
 key select_all = 'A'
 
 ## Delete song from queue
-key delete = 'D'
+key delete = 'd'
 
 ## Shuffle queue
 key shuffle = 'Z'

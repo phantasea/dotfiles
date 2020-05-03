@@ -66,6 +66,7 @@ export WWW_HOME='www.baidu.com'
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 export W3MIMGDISPLAY_PATH="/opt/util/w3mimgdisplay"
 export RANGER_LOAD_DEFAULT_RC=FALSE
+export MPD_PORT=6609
 export _Z_CMD=j
 export _Z_DATA="/var/lib/z/z.data"
 
