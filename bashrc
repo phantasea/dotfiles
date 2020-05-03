@@ -66,6 +66,8 @@ export WWW_HOME='www.baidu.com'
 export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 export W3MIMGDISPLAY_PATH="/opt/util/w3mimgdisplay"
 export RANGER_LOAD_DEFAULT_RC=FALSE
+export _Z_CMD=j
+export _Z_DATA="/var/lib/z/z.data"
 
 export PSTOGGLE=1
 pstoggle() {
@@ -134,11 +136,11 @@ fi
 
 [[ -s /usr/share/doc/tmux/examples/bash_completion_tmux.sh ]] && source /usr/share/doc/tmux/examples/bash_completion_tmux.sh
 
+[ -f ~/.z.sh ] && source ~/.z.sh
+
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 [ -f ~/.forgit.bash ] && source ~/.forgit.bash
-
-[ -f ~/.goto.sh ] && source ~/.goto.sh
 
 #type fbtmux > /dev/null 2>&1 && fbtmux
 command -v fbtmux > /dev/null 2>&1 && fbtmux
