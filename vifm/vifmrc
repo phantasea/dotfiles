@@ -15,7 +15,7 @@ nnoremap  <bs>     <c-h>
 mnoremap  <bs>     <c-b>
 vnoremap  <cr>     :select<cr>
 nnoremap  <cr>     <nop>
-nnoremap g<cr>     :shell<cr>
+nnoremap g<cr>     :edit ~/.vim/bookmark<cr>
 nnoremap s<cr>     :shell<cr>
 nnoremap b<cr>     :bmgo<space>
 qnoremap  <space>  <tab>
@@ -23,11 +23,10 @@ mnoremap  <space>  <c-f>
 nnoremap  <space>  :switch<cr>
 
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
-nnoremap c<space>  :set nolaststatus!<cr>
-                  \:if !&laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
+nnoremap c<space>  :set nolaststatus!<cr> :if !&laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
 nnoremap f<space>  <nop>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
-nnoremap m<space>  :set millerview!<cr>
+nnoremap m<space>  <nop>
 nnoremap o<space>  <nop>
 nnoremap s<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
 nnoremap x<space>  <c-w>x
@@ -64,6 +63,9 @@ nnoremap  <c-t>  :tabnew<cr>
 vnoremap  <c-t>  :tabnew<cr>
 nnoremap  <c-u>  U
 
+nnoremap  <a-j>  <space>j<space>
+nnoremap  <a-k>  <space>k<space>
+
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
@@ -78,8 +80,9 @@ vnoremap  \  :invert s<cr>
 nnoremap  <  <c-w><
 nnoremap  >  <c-w>>
 nnoremap  |  <c-w>=
-nnoremap  ?  :file<cr>
+nnoremap  ?  :file<space><tab>
 nnoremap  a  GVgg
+nnoremap  a  :%select<cr>
 vnoremap  a  ggoG
 nnoremap  A  za
 nnoremap gc  :edit ./.git/config<cr>
@@ -162,6 +165,8 @@ nnoremap  sq :hideui<cr>
 nnoremap  sr :source $VIFM/vifmrc<cr>
 nnoremap  ss <c-w>S
 nnoremap  st :tree<cr>
+nnoremap  sv :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' | view! | else | view! | endif<cr>
+nnoremap  sw :!feh --bg-max --no-fehbg %f<cr>
 nnoremap  sy :sync<cr>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
@@ -170,8 +175,10 @@ nnoremap gt  gs
 nnoremap  t  tj
 nnoremap  T  kt
 nnoremap  U  <c-r>
+nnoremap  v  :if !layoutis('only') | view | else | explore | endif<cr>
 qnoremap  v  q
-nnoremap  w  :set lsview!<cr>
+nnoremap  w  :set millerview!<cr>
+nnoremap  W  :if &millerview | set nomillerview | set lsview | else | set millerview | set nolsview | endif<cr>
 nnoremap  xi :movefromother<cr>
 vnoremap  xi :movefromother<cr>
 nnoremap  xo :movetoother<cr>
@@ -183,7 +190,17 @@ vnoremap  xO :sumovetoother<cr>
 nnoremap  y  yy
 nnoremap  Y  :copybasename<cr>
 nnoremap gy  :copyfullname<cr>
-"nnoremap v  :if !layoutis('only') | view | else | explore | endif<cr>
+
+"nnoremap yd :!echo %d | xsel -b %i<cr>
+"nnoremap yf :!echo %c:p | xsel -b %i<cr>
+"nnoremap ccd1 :compare bycontents listdups     ofone<CR>
+"nnoremap cnd1 :compare byname     listdups     ofone<CR>
+"nnoremap ccu1 :compare bycontents listunique   ofone<CR>
+"nnoremap cnu1 :compare byname     listunique   ofone<CR>
+"nnoremap ccd2 :compare bycontents listdups     ofboth<CR>
+"nnoremap cnd2 :compare byname     listdups     ofboth<CR>
+"nnoremap ccu2 :compare bycontents listunique   ofboth<CR>
+"nnoremap cnu2 :compare byname     listunique   ofboth<CR>
 " }}}
 
 " abbrevs {{{
@@ -200,6 +217,9 @@ source $VIFM/bookmark
 " }}}
 
 " options {{{
+"let &syncregs = $USER
+"screen!
+
 " This is the actual command used to start vi.  The default is vim.
 set vicmd="vimux"
 set vixcmd="vimux"
@@ -216,6 +236,7 @@ set tuioptions="v"
 set tabscope=pane
 set showtabline=multiple
 set dotdirs=rootparent
+set nodotfiles
 set fillchars=vborder:\|
 set numberwidth=1
 set viewcolumns=-{name},{rating},17{mtime}
@@ -243,8 +264,8 @@ endif
 
 set aproposprg='apropos %a'
 set deleteprg=""
-set findprg='fd %p -i -d=3 -t=f .'
-set grepprg='rg -S --vimgrep %i %a %s'
+set findprg='fd -i -d=3 -t=f %p'
+set grepprg='rg -S --vimgrep %i %a'
 set locateprg='locate %a'
 set mediaprg='vifmmed'
 set previewprg=""
@@ -397,6 +418,10 @@ command! ffauds   fd -t=f -e mp3 . ~/auds/{2.新世紀音樂,4.外語歌曲} | f
 command! ffvids   fd -t=f -e mp4 . /media | fzf --height=0 | sed 's/ /\\ /g' | xargs -r vidplay
 command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 | sed 's/ /\\ /g' | xargs -r webview
 command! ffporn   fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 | sed 's/ /\\ /g' | xargs -r webview
+command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf 2> /dev/tty")
+                  \| if $FZF_RES != ''
+                  \|     cd $FZF_RES
+                  \| endif
 " }}}
 
 " autocmds {{{
@@ -445,8 +470,8 @@ autocmd DirEnter '~/misc/dotfiles/**/*'  setl dotfiles
 " :r - root of the filename (without last extension)
 
 " Manpage
-fileview  *.[1-8]  man ./%c | col -b
-filetype  *.[1-8]  man ./%c
+filetype  *.[1-8],*.[1-8].gz  man ./%c
+fileview  *.[1-8],*.[1-8].gz  man ./%c | col -b
 
 " Office files
 filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
@@ -456,6 +481,8 @@ fileview  *.ppt  catppt %c
 fileview  *.csv  sed "s/,,,,/,,-,,/g;s/,,/ /g" %c | column -t | sed "s/ - /  /g" | cut -c -%pw
 fileview  *.xls  xls2csv -- %c, catdoc -- %c
 fileview  *.xlsx xlsx2csv -- %c, catdoc -- %c
+fileview  *.odt,*.doc,*.docx  unoconv -f text --stdout %c
+fileview  *.ods,*.xls,*.xlsx  unoconv -f csv  --stdout %c
 
 " tpp files
 filetype  *.tpp  tpp %c
@@ -479,13 +506,14 @@ fileview  *.sh  highlight -S sh -O ansi -s dante %c, bat --color=always %c
 fileview  */,.*/  tree -F -L 3 --dirsfirst %c
 
 " Audio
-fileview  *.mp3,*.wav,*.ogg,*.ape,*.wma,*.aac  exiftool %c, mediainfo %c
+fileview  *.mp3,*.wav,*.ogg,*.ape,*.wma,*.aac  exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1
 filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac        audplay %c, audplay -b %c, audplay -B %c
 filetype  *.wma,*.ape,*.rm                     audplay -b %c, audplay -B %c
 
 " Video
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
           \ vidplay %c, mplayer %c, mpv %c,
+          \ mediainfo %f %m 2>&1,
 fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
           \ exiftool %c, mediainfo %c,
           \ thumbnail %px %py %pw %ph %c,
@@ -496,6 +524,7 @@ filetype  *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm  imgview %c, imgview -b %c, imgvi
 fileview  *.gif
           \ mpv %c, pqiv -f %c, vimiv -f %c,
           \ vifmimg gifpreview %px %py %pw %ph %c %pc  vifmimg clear
+filextype *.svg  vimiv %f
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm
           \ pho -p %c, pho -p -s1 %c,
           \ feh -F %c, feh -F -D 1 %c,
@@ -530,6 +559,10 @@ else
 filetype  *.djvu  zathura %c %i, apvlv %c
 endif
 
+" epub
+filetype  *.epub  zathura %c %i &
+fileview  *.epub  pandoc %c -t plain, vifmimg epubpreview %px %py %pw %ph %c %pc vifmimg clear,
+
 " Webpage
 filetype  *.html,*.htm,*.xhtml,*.shtml  webview %c, webview -b %c, webview -B %c, webview -bB %c
 fileview  *.html,*.htm,*.xhtml,*.shtml
@@ -553,7 +586,8 @@ fileview  *.o  nm %c
 filetype  *.o  nm %c | less
 
 " torrent
-fileview  *.torrent  transmission-show %c
+fileview  *.torrent  transmission-show %c, dumptorrent -v %c
+filetype  *.torrent  ktorrent %f &, aria2c %f &
 
 " PGP
 fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %c
@@ -581,7 +615,7 @@ filetype  *.tar,*.tgz,*.tar.gz,*.tbz,*.tbz2,*.tar.bz2
           \ aunpack %c,
 
 " Fuse7z
-fileview  *.7z  als %c, 7z | %c
+fileview  *.7z  als %c, 7z l %c
 filetype  *.7z
           \ {Mount with fuse-7z}
           \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
@@ -633,6 +667,7 @@ fileview  *.txt,*.desktop
 
 " Open all other files with default system programs.
 " By default all unknown files are opened with 'vi[x]cmd'
+"fileview  *[^/] highlight -O xterm256 --force -s pablo %c
 filetype  *  fileopen %c
 fileview  *  fileview %c
 " }}}

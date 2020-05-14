@@ -104,6 +104,7 @@ alias s='stat'
 alias sd='sdcv'
 alias se='sudoedit'
 alias si='neofetch 2> /dev/null || screenfetch'
+alias sysinfo='neofetch 2> /dev/null || screenfetch'
 alias smi="sudo make install"
 alias src='source'
 alias ss='cmatrix -abs -C cyan'

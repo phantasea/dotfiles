@@ -68,7 +68,7 @@ export W3MIMGDISPLAY_PATH="/opt/util/w3mimgdisplay"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export MPD_PORT=6609
 export _Z_CMD=j
-export _Z_DATA="/var/lib/z/z.data"
+export _Z_DATA="$HOME/.config/z.data"
 
 export PSTOGGLE=1
 pstoggle() {

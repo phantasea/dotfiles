@@ -78,8 +78,8 @@ urimethodmap ~/.w3m/urimethodmap
 editor /usr/bin/vim
 mailto_options 1
 mailer /usr/bin/mutt
-extbrowser ~/.util/tmuxclip
-extbrowser2 
+extbrowser   firefox
+extbrowser2  vimb
 extbrowser3 
 extbrowser4 
 extbrowser5 
