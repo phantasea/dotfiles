@@ -50,9 +50,9 @@
 # the column. Use zero (the default value) to auto-size the column based
 # on the content.
 
-set blame-view	= date:default author:full file-name:auto id:yes,color line-number:no,interval=5 text
+set blame-view	= date:default author:abbreviated,width=0 file-name:auto id:yes,color line-number:no,interval=5 text
 set grep-view	= file-name:no line-number:yes,interval=1 text
-set main-view	= line-number:yes,interval=1 id:no date:default author:full commit-title:yes,graph,refs,overflow=no
+set main-view	= line-number:yes,interval=1 id:no date:default author:abbreviated,width=0 commit-title:yes,refs,overflow=no
 set refs-view	= date:default author:full ref commit-title
 set stash-view	= line-number:no,interval=5 id:no date:default author:full commit-title
 set status-view	= line-number:no,interval=5 status:short file-name
@@ -68,7 +68,7 @@ set diff-view	= line-number:no,interval=5 text:yes,commit-title-overflow=no
 # UI display settings
 set show-changes		= yes		# Show changes commits in the main view?
 set wrap-lines			= no		# Wrap long lines in pager views?
-set tab-size			= 8		# Number of spaces to use when expanding tabs
+set tab-size			= 4		    # Number of spaces to use when expanding tabs
 set line-graphics		= default	# Enum: ascii, default, utf-8
 
 # Format reference names based on type.
@@ -83,29 +83,27 @@ set line-graphics		= default	# Enum: ascii, default, utf-8
 # Similarly, `remote` is used if no `tracked-remote` format exists.
 # Prefix with `hide:` to not show that reference type, e.g. `hide:remote`.
 # Expects a space separated list of format strings.
-set reference-format		= [branch] <tag> {remote} ~replace~
+set reference-format	= [branch] <tag> {remote} ~replace~
 
 # Settings controlling how content is read from Git
 set commit-order		= default	# Enum: default, topo, date, reverse (main)
 set ignore-space		= no		# Enum: no, all, some, at-eol (diff)
 set show-notes			= yes		# When non-bool passed as `--show-notes=...` (diff)
-#set diff-context		= 3		# Number of lines to show around diff changes (diff)
+set diff-context		= 3		# Number of lines to show around diff changes (diff)
 #set diff-options		= -C		# User-defined options for `tig show` (diff)
 #set blame-options		= -C -C -C	# User-defined options for `tig blame` (blame)
 
 # Misc
 set refresh-mode		= auto		# Enum: manual, auto, after-command, periodic
-set refresh-interval		= 10		# Interval in seconds between refreshes
-set ignore-case			= no		# Ignore case when searching?
+set refresh-interval	= 10		# Interval in seconds between refreshes
+set ignore-case			= yes		# Ignore case when searching?
 set focus-child			= yes		# Move focus to child view when opened?
-set horizontal-scroll		= 50%		# Number of columns to scroll as % of width
-set split-view-height		= 67%		# Number of lines for bottom view as % of height
-set vertical-split		= auto		# Enum: horizontal, vertical, auto; Use auto to
-						# switch to horizontal split when width allows it
-set editor-line-number		= yes		# Automatically pass line number to editor? Used
-						# for opening file at specific line e.g. from a diff
-set mouse			= no		# Enable mouse support?
-set mouse-scroll		= 3		# Number of lines to scroll via the mouse
+set horizontal-scroll	= 30%		# Number of columns to scroll as % of width
+set split-view-height	= 80%		# Number of lines for bottom view as % of height
+set vertical-split		= auto		# Enum: horizontal, vertical, auto; Use auto to switch to horizontal split when width allows it
+set editor-line-number	= no		# Automatically pass line number to editor? Used for opening file at specific line e.g. from a diff
+set mouse			    = no		# Enable mouse support?
+set mouse-scroll		= 3		    # Number of lines to scroll via the mouse
 
 # User-defined commands
 # ---------------------
@@ -142,31 +140,96 @@ set mouse-scroll		= 3		# Number of lines to scroll via the mouse
 #   %(diffargs)		The diff options from `diff-options` or `TIG_DIFF_OPTS`
 #   %(prompt)		Prompt for the argument value.
 
-bind main	C	?git cherry-pick %(commit)
-bind status	C	!git commit
-bind stash	P	?git stash pop %(stash)
-bind stash	!	?git stash drop %(stash)
-bind refs	C	?git checkout %(branch)
-bind refs	!	?git branch -D %(branch)
+bind generic  a  none
+bind generic  b  none
+bind generic  c  none
+bind generic  d  none
+bind generic  e  none
+bind generic  f  none
+bind generic  g  none
+bind generic  h  none
+bind generic  i  none
+bind generic  j  none
+bind generic  k  none
+bind generic  l  none
+bind generic  m  none
+bind generic  n  none
+bind generic  o  none
+bind generic  p  none
+bind generic  q  none
+bind generic  r  none
+bind generic  s  none
+bind generic  t  none
+bind generic  u  none
+bind generic  v  none
+bind generic  w  none
+bind generic  x  none
+bind generic  y  none
+bind generic  z  none
+bind generic  A  none
+bind generic  B  none
+bind generic  C  none
+bind generic  D  none
+bind generic  E  none
+bind generic  F  none
+bind generic  G  none
+bind generic  H  none
+bind generic  I  none
+bind generic  J  none
+bind generic  K  none
+bind generic  L  none
+bind generic  M  none
+bind generic  N  none
+bind generic  O  none
+bind generic  P  none
+bind generic  Q  none
+bind generic  R  none
+bind generic  S  none
+bind generic  T  none
+bind generic  U  none
+bind generic  V  none
+bind generic  W  none
+bind generic  X  none
+bind generic  Y  none
+bind generic  Z  none
 
-# Normal commands
-# ---------------
+bind generic  <Esc>o  options
 
 # View switching
-bind generic	m	view-main
-bind generic	d	view-diff
-bind generic	l	view-log
-bind generic	t	view-tree
-bind generic	f	view-blob
-bind generic	b	view-blame
-bind generic	r	view-refs
-bind generic	p	view-pager
-bind generic	h	view-help
-bind generic	s	view-status
-bind generic	S	view-status		# Compat binding to avoid going crazy!
-bind generic	c	view-stage
-bind generic	y	view-stash
-bind generic	g	view-grep
+bind generic  m view-main
+bind generic  d view-diff
+bind generic  l view-log
+bind generic  t view-tree
+bind generic  b view-blob
+bind generic  B view-blame
+bind generic  r view-refs
+bind generic  s view-status
+bind generic  S view-stage
+bind generic  p view-pager
+bind generic  ? view-help
+bind generic gs view-stash
+bind generic gr view-grep
+
+bind generic gj parent
+bind generic gP back
+bind generic gn view-next
+bind generic gR :!git reflog
+bind generic g<Space> @vimux /opt/conf/tigrc
+
+bind generic sr :source /opt/conf/tigrc
+
+bind generic oo :toggle sort-order
+bind generic os :toggle sort-field
+bind generic on :toggle line-number
+bind generic od :toggle date
+bind generic oa :toggle author
+bind generic og :toggle line-graphics
+bind generic of :toggle file-name
+bind generic op :toggle ignore-space
+bind generic oi :toggle id
+bind generic ot :toggle commit-title-overflow
+bind generic oF :toggle file-filter
+bind generic or :toggle commit-title-refs
 
 # View manipulation
 bind generic	<Enter>	enter			# Enter and open selected entry
@@ -175,13 +238,11 @@ bind generic	<Down>	next			# Move to next
 bind generic	<C-N>	next
 bind generic	<Up>	previous		# Move to previous
 bind generic	<C-P>	previous
-bind generic	,	parent			# Move to parent
 bind generic	<Tab>	view-next		# Move focus to the next view
-bind generic	R	refresh			# Reload and refresh view
-bind generic	<F5>	refresh
-bind generic	O	maximize		# Maximize the current view
-bind generic	q	view-close		# Close the current view
-bind generic	Q	quit			# Close all views and quit
+bind generic	R		refresh			# Reload and refresh view
+bind generic	X		maximize		# Maximize the current view
+bind generic	q		view-close		# Close the current view
+bind generic	Q		quit			# Close all views and quit
 
 # View specific
 bind status	u	status-update		# Stage/unstage changes in file
@@ -198,8 +259,7 @@ bind stage	]	:toggle diff-context +1	# Increase the diff context
 bind diff	@	:/^@@			# Jump to next (c)hunk
 bind diff	[	:toggle diff-context -1
 bind diff	]	:toggle diff-context +1
-bind main	G	:toggle commit-title-graph # Toggle revision graph visualization
-bind main	F	:toggle commit-title-refs  # Toggle reference display (tags/branches)
+bind main	sg	:toggle commit-title-graph # Toggle revision graph visualization
 
 # Cursor navigation
 bind generic	k	move-up
@@ -209,22 +269,36 @@ bind generic	<C-J>    move-page-down
 bind generic	<C-D>	 move-page-down
 bind generic	<C-K>	 move-page-up
 bind generic	<C-U>	 move-page-up
+bind generic gg move-first-line
+bind generic G move-last-line
+bind generic <C-f> move-page-down
+bind generic <C-b> move-page-up
+
 
 # Scrolling
-bind generic	|   	scroll-first-col
+bind generic	^   	scroll-first-col
+bind generic	0   	scroll-first-col
 bind generic	<C-Y>	scroll-line-up
 bind generic	<C-E>	scroll-line-down
 bind generic	K   	scroll-line-up
 bind generic	J   	scroll-line-down
+bind generic    H       scroll-left
+bind generic    L       scroll-right
 
 # Searching
 bind generic	/	search
-bind generic	?	search-back
 bind generic	n	find-next
 bind generic	N	find-prev
 
+# Misc
+bind generic	e	edit			# Open in editor
+bind generic	:	prompt			# Open the prompt
+bind generic	;	prompt			# Open the prompt
+bind generic	<C-L>	screen-redraw		# Redraw the screen
+bind generic	x	stop-loading		# Stop all loading views
+bind generic	V	show-version		# Show Tig version
+
 # Option manipulation
-bind generic	o	options			# Open the options menu
 # Bindings for toggling settings
 bind generic	I	:toggle sort-order	# Toggle ascending/descending sort order
 bind generic	i	:toggle sort-field	# Toggle field to sort by
@@ -245,13 +319,6 @@ bind generic	$	:toggle commit-title-overflow
 						# Toggle display of file in untracked directories
 # bind generic	???	:toggle vertical-split	# Toggle vertical split
 bind generic	%	:toggle file-filter
-
-# Misc
-bind generic	e	edit			# Open in editor
-bind generic	:	prompt			# Open the prompt
-bind generic	<C-L>	screen-redraw		# Redraw the screen
-bind generic	z	stop-loading		# Stop all loading views
-bind generic	v	show-version		# Show Tig version
 
 # Colors
 # ------
