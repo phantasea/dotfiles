@@ -235,6 +235,7 @@ set millerview
 set tuioptions="v"
 set tabscope=pane
 set showtabline=multiple
+set tablabel=%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p
 set dotdirs=rootparent
 set nodotfiles
 set fillchars=vborder:\|
