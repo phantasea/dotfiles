@@ -522,7 +522,7 @@ fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.r
 
 " Image
 filetype  *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm  imgview %c, imgview -b %c, imgview -B %c
-fileview  *.gif
+filetype  *.gif
           \ mpv %c, pqiv -f %c, vimiv -f %c,
           \ vifmimg gifpreview %px %py %pw %ph %c %pc  vifmimg clear
 filextype *.svg  vimiv %f
