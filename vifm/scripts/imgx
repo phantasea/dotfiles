@@ -7,3 +7,17 @@ ImageLayer  0< <(
     ImageLayer::add [identifier]="example0" [x]="$2" [y]="$3" [max_width]="$5" [max_height]="$4" [path]="$1"
     read
 )
+
+exit 0
+
+# process substitution example:
+ImageLayer 0< <(
+    # add the image /some/path/some_image0.jpg with the identifier example0 at column 0 row 0 with the maximum width of 10 columns
+    ImageLayer::add [identifier]="example0" [x]="0" [y]="0" [max_width]="10" [path]="/home/simone/111.jpg"
+    # wait for return
+    read
+    # remove the image with the identifier example0
+    ImageLayer::remove [identifier]="example0"
+    # wait for return, exit afterwards
+    read
+)
