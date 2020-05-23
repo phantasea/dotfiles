@@ -3,8 +3,8 @@ text/html; w3m -I %{charset} -T text/html %s; nametemplate=%s.html
 text/html; w3m -dump -I %{charset} -T text/html %s; nametemplate=%s.html; copiousoutput
 
 image/*; pho %s > /dev/null; test=test -n "$DISPLAY"
-#image/*; fim %s > /dev/null
 image/*; fbv %s > /dev/null; test=test -z "$DISPLAY"; needsterminal
+image/*; fim %s > /dev/null
 video/*; mplayer -really-quiet -vo fbdev2 %s > /dev/null
 audio/*; mpg123 -q %s > /dev/null
 
@@ -16,4 +16,22 @@ application/pdf;      pdftotext %s |w3m -dump; nametemplate=%s.html
 
 application/pgp-keys; pgp -f < %s ; copiousoutput
 
+text/csv; less %s; copiousoutput
+text/tab-separated-values; less %s; copiousoutput
+
+application/x-bzip; tar --list %s; copiousoutput
+application/x-bzip1; tar --list %s; copiousoutput
+application/x-bzip-compressed-tar; tar --list %s; copiousoutput
+application/x-bzip1-compressed-tar; tar --list %s; copiousoutput
+application/x-tar; tar --list %s; copiousoutput
+application/x-tarz; tar --list %s; copiousoutput
+application/x-lzma; xz -l %s; copiousoutput
+application/x-lzma-compressed-tar; xz -l %s; copiousoutput
+application/x-xz; xz -l %s; copiousoutput
+application/x-xz-compressed-tar; xz -l %s; copiousoutput
+application/x-7z-compressed; 7z l %s; copiousoutput
+application/x-7z-compressed-tar; tar --list %s; copiousoutput
+application/x-zip; unzip -l %s; copiousoutput
+application/x-zip-compressed; unzip -l %s; copiousoutput
+application/zip; unzip -l %s; copiousoutput
 application/x-rar-compressed; unrar -p- lt %s; copiousoutput 
