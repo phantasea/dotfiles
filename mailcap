@@ -5,10 +5,13 @@
 #  Users can add rules by creating a ".mailcap" file in the home directory.
 ###############################################################################
 
-text/plain; $EDITOR %s ;
+text/plain; vimux %s
 text/html; w3m -I %{charset} -T text/html; copiousoutput;
-image/*; muttimage %s ; copiousoutput
-video/*; setsid mpv --quiet %s &; copiousoutput
+text/html; elinks -dump -default-mime-type %t %s; copiousoutput
+image/*; imgview %s
+video/*; vidplay %s
+audio/*; audplay %s
 application/pdf; fileopen %s ;
 application/pgp-encrypted; gpg -d '%s'; copiousoutput;
 application/msword; /usr/bin/antiword '%s'; copiousoutput; description="Microsoft Word Text"; nametemplate=%s.doc
+application/msword; catdoc -s cp1252 %s; copiousoutput
