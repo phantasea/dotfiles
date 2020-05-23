@@ -1,13 +1,17 @@
 # ~/.inputrc - user defined inputrc for libreadline
-# See readline(3readline) and `info rluserman' for more information.
 
+set completion-ignore-case on
+# do completion on one <tab> press, not two
+set show-all-if-ambiguous off
+# colorize common prefix among completion matches
+set colored-completion-prefix on
+# colorize files on completion according to colors of $LS_COLORS
+set colored-stats on
 # do not bell on tab-completion
-# set bell-style none
-# set bell-style visible
+set bell-style none
 
 # some defaults / modifications for the emacs mode
 $if mode=emacs
-
 # press Ctrl-V and press F1~F12 can show the code, ^[ represents ESC
 # map F1/F12 to run cmd "cmatrix"
 # F1
@@ -27,7 +31,4 @@ $if mode=emacs
 "\C-g": forward-word
 # Escape #
 "\e#": "\C-a#\C-m"
-
 $endif
-
-set completion-ignore-case on
