@@ -1,7 +1,77 @@
 # vim: set ft=dircolors :
 
-#color setting of ls command
+# COLOR needs one of these arguments: 'tty' colorizes output to ttys, but not pipes.
+# 'all' adds color characters to all output. 'none' shuts colorization off.
+COLOR tty
+
+# EIGHTBIT, followed by '1' for on, '0' for off. (8-bit output)
+EIGHTBIT 1
+
+# Attribute codes:
+#   00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
+# Text color codes:
+#   30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+# Background color codes:
+#   40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+
+# For testing
+.ANSI-30-black        30
+.ANSI-01;30-brblack   01;30
+.ANSI-31-red          31
+.ANSI-01;31-brred     01;31
+.ANSI-32-green        32
+.ANSI-01;32-brgreen   01;32
+.ANSI-33-yellow       33
+.ANSI-01;33-bryellow  01;33
+.ANSI-34-blue         34
+.ANSI-01;34-brblue    01;34
+.ANSI-35-magenta      35
+.ANSI-01;35-brmagenta 01;35
+.ANSI-36-cyan         36
+.ANSI-01;36-brcyan    01;36
+.ANSI-37-white        37
+.ANSI-01;37-brwhite   01;37
+
+# global default
+NORMAL  00
+
 FILE 01;33
 DIR  01;36
 EXEC 01;32
 LINK 01;35
+
+FIFO 30;44
+SOCK 35;44
+BLK  33;44
+CHR  37;44
+
+ORPHAN  1;30
+MISSING 05;37;41
+
+.md     31
+.mkd    31
+.7z   1;31
+.apk  1;31
+.arj  1;31
+.bin  1;31
+.bz   1;31
+.bz2  1;31
+.deb  1;31
+.dmg  1;31
+.gem  1;31
+.gz   1;31
+.iso  1;31
+.jar  1;31
+.rar  1;31
+.rpm  1;31
+.tar  1;31
+.tbz  1;31
+.tbz2 1;31
+.tgz  1;31
+.tx   1;31
+.war  1;31
+.xpi  1;31
+.xz   1;31
+.z    1;31
+.Z    1;31
+.zip  1;31
