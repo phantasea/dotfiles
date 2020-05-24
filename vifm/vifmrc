@@ -277,7 +277,7 @@ set statusline="%5*[%A]%9*‥%6*%u:%g%9*‥%2*%d%9*‥%1*%a | %E%9*‥%4* %= \"%
 
 source $VIFM/devicons
 
-windo filter! /(lost\+found|Desktop|sandisk_ext|sandisk_exp
+windo filter! /(lost\+found|Desktop|sandisk_ext|sandisk_exp|downloadhelper
               \|Extreme\ SSD|udisk_hama|3166-6338|d042e951-|华为手机助手)/
 
 " Show list of matches on tab complition in command-line mode
