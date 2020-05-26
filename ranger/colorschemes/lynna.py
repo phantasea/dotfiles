@@ -57,10 +57,11 @@ class Default(ColorScheme):
                 if context.device:
                     attr |= bold
             if context.link:
-                #fg = context.good and magenta
+                attr |= bold
                 if context.good:
-                    attr |= bold
-                fg = magenta
+                    fg = magenta
+                else:
+                    fg = black
             if context.tag_marker and not context.selected:
                 attr |= bold
                 if fg in (red, magenta):

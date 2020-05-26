@@ -14,7 +14,7 @@ highlight clear
 
 highlight  Win          ctermfg=yellow    ctermbg=black     cterm=none
 highlight  OtherWin     ctermfg=yellow    ctermbg=black     cterm=none
-highlight  AuxWin       ctermfg=white     ctermbg=black     cterm=none
+highlight  AuxWin       ctermfg=yellow    ctermbg=black     cterm=none
 highlight  Directory    ctermfg=cyan      ctermbg=none      cterm=none
 highlight  Link         ctermfg=magenta   ctermbg=none      cterm=bold
 if $DISPLAY == ""
