@@ -1,12 +1,5 @@
 # vim: set ft=dircolors :
 
-# COLOR needs one of these arguments: 'tty' colorizes output to ttys, but not pipes.
-# 'all' adds color characters to all output. 'none' shuts colorization off.
-COLOR tty
-
-# EIGHTBIT, followed by '1' for on, '0' for off. (8-bit output)
-EIGHTBIT 1
-
 # Attribute codes:
 #   00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
 # Text color codes:
@@ -47,6 +40,8 @@ CHR  37;44
 
 ORPHAN  1;30
 MISSING 05;37;41
+
+*TODO 1;31
 
 .md     31
 .mkd    31
