@@ -1,12 +1,15 @@
 ! Configuration for xterm
+! xrdb -load ~/.Xresources
+! xrdb -merge ~/.Xresources
+! xrdb -override ~/.Xresources
 
-!Xft.dpi: 96
-!Xft.antialias: true
-!Xft.hinting: true
-!Xft.rgba: rgb
-!Xft.autohint: true
-!Xft.hintstyle: hintfull
-!Xft.lcdfilter: lcdfilter
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgb
+Xft.autohint: true
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcdfilter
 
 ! Make alt work
 xterm*eightBitInput:   false
@@ -32,17 +35,11 @@ xterm*scrollTtyOutput: false
 xterm*cjkWidth:true
 
 ! Default font and size
-xterm*faceName: Monospace
-!xterm*Font: Ubuntu Mono Nerd Font Complete Mono
-!xterm.font: xft:UbuntuMono Nerd Font:size=13, \
-!            xft:Inconsolata Nerd Font Mono:size=13, \
-!            xft:DejaVuSansMono Nerd Font:size=13, \
-!            xft:DroidSansMono Nerd Font:size=13, \
-!            xft:FuraMono Nerd Font:size=13, \
-!            xft:RobotoMono Nerd Font:size=13, \
-!            xft:Noto Sans Mono:size=13, \
-!            xft:Monospace:style=Medium:size=13   
-xterm*boldFont: Monospace
+xterm*font: Monaco
+xterm*boldFont: Monaco
+xterm*faceName: Monaco
+xterm*vt100*geometry: 80x50
+xterm*termName: xterm-256color
 xterm*utf8: true
 xterm*locale: true
 xterm*renderFont: true
@@ -55,23 +52,35 @@ xterm.vt100.translations: #override \n\
   Ctrl <Key> k: larger-vt-font()
 
 ! Colors
-xterm*foreground: rgb:a8/a8/a8
-xterm*background: rgb:22/22/22
-xterm*color0: rgb:00/00/00
-xterm*color1: rgb:a8/00/00
-xterm*color2: rgb:00/a8/00
-xterm*color3: rgb:a8/54/00
-xterm*color4: rgb:58/58/b8
-xterm*color5: rgb:a8/00/a8
-xterm*color6: rgb:00/a8/a8
-xterm*color7: rgb:a8/a8/a8
-xterm*color8: rgb:54/54/54
-xterm*color9: rgb:fc/54/54
-xterm*color10: rgb:54/fc/54
-xterm*color11: rgb:fc/fc/54
-xterm*color12: rgb:54/54/fc
-xterm*color13: rgb:fc/54/fc
-xterm*color14: rgb:54/fc/fc
-xterm*color15: rgb:fc/fc/fc
+xterm*foreground: rgb:74/89/c0
+xterm*background: rgb:2A/2A/2A
+xterm*color0: rgb:5a/5b/5c
+xterm*color1: rgb:cc/00/00
+xterm*color2: rgb:4e/9a/06
+xterm*color3: rgb:c4/a0/00
+xterm*color4: rgb:34/65/a4
+xterm*color5: rgb:d0/60/e1
+xterm*color6: rgb:06/98/9a
+xterm*color7: rgb:d3/d7/cf
+xterm*color8: rgb:47/47/47
+xterm*color9: rgb:ef/29/29
+xterm*color10: rgb:8a/e2/34
+xterm*color11: rgb:fc/e9/4f
+xterm*color12: rgb:89/53/e0
+xterm*color13: rgb:e0/6e/d3
+xterm*color14: rgb:34/e2/e2
+xterm*color15: rgb:ee/ee/ec
+xterm*boldMode: false
+xterm*colorBDMode: true
+xterm*colorBD: rgb:fc/fc/fc
+
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: #273238, #273238, #1e2529
+rofi.color-normal: #273238, #c1c1c1, #273238, #394249, #ffffff
+rofi.color-active: #273238, #80cbc4, #273238, #394249, #80cbc4
+rofi.color-urgent: #273238, #ff1844, #273238, #394249, #ff1844
 
 ! End configuration for xterm
