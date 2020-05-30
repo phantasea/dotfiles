@@ -1,19 +1,23 @@
 # vim: filetype=sh :
 
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    if [[ "$TERM" =~ "256color" ]] || [[ "$TERM" =~ "xterm" ]]; then
+        eval "$(dircolors -b /opt/conf/dircolors.xterm)"
+    else
+        test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    fi
+    alias ls='ls --color=auto --group-directories-first'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
 
-alias l='ls -l'
-alias ll='ls -Al'
-alias la='ls -A'
+alias l='ls -l --group-directories-first'
+alias ll='ls -Al --group-directories-first'
+alias la='ls -A --group-directories-first'
 alias ld='ls -d */'
 alias ld2='ls -aF | grep /'
-alias l.='ls -d .*'
+alias l.='ls -d .* --group-directories-first'
 alias l.d='ls -d .*/'
 
 alias ..='cd ..'
