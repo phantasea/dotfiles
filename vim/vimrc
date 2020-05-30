@@ -235,7 +235,7 @@ nnoremap   yO   O<Esc>j
 nnoremap   zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 nnoremap   c<space>   :call SmartOpenQfWin()<CR>
-nnoremap   d<space>   :call SmartDiffToggle()<CR>
+nnoremap   d<space>   :vert ball<CR>:call SmartDiffToggle()<CR>
 nnoremap   g<space>   :edit ~/.vimrc<CR>
 nnoremap   m<space>   :view ~/.vim/bookmark<CR>
 nnoremap   s<space>   :<C-U>call FZF_Files(v:count1)<cr>
