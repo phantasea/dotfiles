@@ -68,6 +68,10 @@ class Default(ColorScheme):
                     fg = white
                 else:
                     fg = red
+            if context.line_number and not context.selected:
+                fg = green
+                attr |= bold
+                #attr &= ~bold
             if not context.selected and (context.cut or context.copied):
                 fg = black
                 attr |= bold
