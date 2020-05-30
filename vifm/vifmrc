@@ -124,19 +124,24 @@ qnoremap  J  qje:if isactive('preview') | switch | endif<cr>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
 nnoremap gl  :if filetype('.') != 'link' | altopen | else | exec 'normal gf' | endif<cr>
 nnoremap gL  :auxopen<cr>
-nnoremap  mb :bmarks<cr>
-nnoremap  mc :command<cr>
-nnoremap  mC :change<cr>
-nnoremap  mf :file<cr>
-nnoremap  mj :jobs<cr>
-nnoremap  mm :marks<cr>
-nnoremap  mM :media<cr>
-nnoremap  mp :chmod<cr>
-nnoremap  mr :ratings<cr>
-nnoremap  ms :sort<cr>
-nnoremap  mt :lstrash<cr>
-nnoremap  mu :undolist<cr>
-nnoremap  mo :copen<cr>
+nnoremap gmb :bmarks<cr>
+nnoremap gmc :command<cr>
+nnoremap gmC :change<cr>
+nnoremap gmf :file<cr>
+nnoremap gmj :jobs<cr>
+nnoremap gmm :marks<cr>
+nnoremap gmM :media<cr>
+nnoremap gmp :chmod<cr>
+nnoremap gmr :ratings<cr>
+nnoremap gms :sort<cr>
+nnoremap gmt :lstrash<cr>
+nnoremap gmu :undolist<cr>
+nnoremap gmo :copen<cr>
+nnoremap  mb 2gM
+nnoremap  ml 2gM
+nnoremap  mm M
+nnoremap  mt 3gM
+nnoremap  mh 3gM
 nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
