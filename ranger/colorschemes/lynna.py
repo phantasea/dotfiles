@@ -74,16 +74,6 @@ class Lynna(ColorScheme):
                     fg = white
                 else:
                     fg = red
-            if context.line_number:
-                if not context.selected:
-                    fg = green
-                    attr |= bold
-                    #attr &= ~bold
-                else:
-                    fg = red
-                    attr |= bold
-            if context.line_number_separator:
-                fg, bg, attr = default_colors
             if not context.selected and (context.cut or context.copied):
                 fg = black
                 attr |= bold
@@ -106,6 +96,17 @@ class Lynna(ColorScheme):
                     attr = normal
                     attr |= bold
                     fg = blue
+
+            if context.line_number:
+                if not context.selected:
+                    fg = green
+                    attr |= bold
+                    #attr &= ~bold
+                else:
+                    fg = red
+                    attr |= bold
+            if context.line_number_separator:
+                fg, bg, attr = default_colors
 
         elif context.in_titlebar:
             attr |= bold
