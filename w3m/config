@@ -24,7 +24,7 @@ ignore_null_img_alt 1
 view_unseenobject 1
 display_image 0
 pseudo_inlines 1
-auto_image 0
+auto_image 1
 max_load_image 8
 ext_image_viewer 0
 image_scale 100
@@ -122,9 +122,9 @@ ssl_cert_file
 ssl_key_file 
 ssl_ca_path 
 ssl_ca_file 
-use_cookie 1
-show_cookie 1
-accept_cookie 1
+use_cookie 0
+show_cookie 0
+accept_cookie 0
 accept_bad_cookie 0
 cookie_reject_domains 
 cookie_accept_domains 
