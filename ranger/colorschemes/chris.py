@@ -40,10 +40,10 @@ class Chris(ColorScheme):
                     fg = yellow
             if context.container:
                 fg = red
-            if context.text:
-                fg = white
+            if context.mimetext:
+                fg = yellow
             if context.document:
-                fg = red
+                fg = yellow
             if context.special:
                 fg = red
                 attr |= bold
