@@ -120,7 +120,6 @@ nnoremap   <C-Right>  ze
 
 map <F5>   :!clear && gcc % -o %:r && ./%:r<cr>
 map <F8>   :nohlsearch<CR>
-map <F9>   :set wrap!<CR>
 
 onoremap   aa   :<C-U>normal! ggVG<CR>
 onoremap   if   :<C-U>normal! [[jV]]k<CR>
@@ -233,6 +232,7 @@ nnoremap   Y    y$
 nnoremap   yo   o<Esc>k
 nnoremap   yO   O<Esc>j
 nnoremap   zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+nnoremap   zw   :set wrap!<cr>
 
 nnoremap   c<space>   :call SmartOpenQfWin()<CR>
 nnoremap   d<space>   :vert ball<CR>:call SmartDiffToggle()<CR>
