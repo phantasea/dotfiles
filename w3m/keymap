@@ -22,7 +22,8 @@ keymap   {    LEFT
 keymap   }    RIGHT
 keymap   <    SHIFT_LEFT
 keymap   >    SHIFT_RIGHT
-keymap   ,    REDRAW
+keymap   ,    LINK_BEGIN
+keymap   .    LINK_END
 keymap   \'   NEXT_LINE_MARK
 keymap   \"   PREV_LINE_MARK
 keymap   /    ISEARCH
@@ -56,6 +57,7 @@ keymap  C-V   VERSION
 keymap   a    ADD_BOOKMARK
 keymap   b    NEXT_LEFT_UP
 keymap   c    NULL
+keymap   C    NULL
 keymap   B    PREV_WORD
 keymap   d    SAVE_LINK
 keymap   D    SAVE_IMAGE
@@ -77,6 +79,7 @@ keymap   l    MOVE_RIGHT
 keymap   L    MOV2BOT
 keymap   M    MOV2MID
 keymap   ml   MARK_LINE
+keymap   mm   MARK_LINE
 keymap   mw   MARK_WORD
 keymap   mu   MARK_URL
 keymap   n    COMMAND "SEARCH_NEXT; MARK_WORD"
@@ -137,5 +140,45 @@ keymap   gu   UNDO
 keymap   gU   UNDO_CLOSE_ALL
 keymap   gw   DICT_WORD_AT
 keymap   gW   DICT_WORD
+
+# External Commands {{{
+# EXTERN_LINK = under cursor
+# EXTERN      = current page
+
 keymap   gy   EXTERN_LINK
 keymap   gY   EXTERN
+
+# yank url to clipboard
+keymap  yy    EXTERN_LINK   '(echo -n %s | xsel -b)'
+keymap  YY    EXTERN        '(echo -n %s | xsel -b)'
+# yank url to tmux clipboard
+keymap  ys    EXTERN_LINK   'tmux set-buffer'
+keymap  YS    EXTERN        'tmux set-buffer'
+
+# open gui browser
+keymap  xw    EXTERN_LINK   '$BROWSER'
+keymap  XW    EXTERN        '$BROWSER'
+keymap  xn    EXTERN_LINK   '$BROWSER_PRIVATE'
+keymap  XN    EXTERN        '$BROWSER_PRIVATE'
+
+# queue download file (task-spooler)
+keymap  xd    EXTERN_LINK   'TS_SOCKET=/tmp/w3m tsp aria2c -j 1 -x 2 -c -d ~/Downloads'
+keymap  xD    EXTERN_LINK   'TS_SOCKET=/tmp/w3m tsp wget -c -P ~/Downloads'
+
+# queue external media player (task-spooler) e.g youtube, video links
+keymap  xm    EXTERN_LINK   'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
+keymap  XM    EXTERN        'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
+
+# open external image viewer
+keymap  xi    EXTERN_LINK   'w3m -o display_image=1 -o imgdisplay=w3mimgdisplay'
+keymap  xI    EXTERN_LINK   'feh -. -x -B black -g 900x600-15+60 %s &'
+keymap  xg    EXTERN_LINK   'mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
+
+# add torrent or magnetlinks
+keymap  xt    EXTERN_LINK   'transmission-remote --add'
+
+# basic task-spooler view, cat, clear
+keymap  xs    SHELL         'watch TS_SOCKET=/tmp/w3m tsp'
+keymap  XS    SHELL         'clear && TS_SOCKET=/tmp/w3m tsp -c'
+keymap  xc    SHELL         'clear && TS_SOCKET=/tmp/w3m tsp -C'
+# }}}

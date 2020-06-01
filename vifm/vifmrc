@@ -173,6 +173,8 @@ nnoremap  st :tree<cr>
 nnoremap  sv :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' | view! | else | view! | endif<cr>
 nnoremap  sw :!feh --bg-max --no-fehbg %f<cr>
 nnoremap  sy :sync<cr>
+nnoremap  sc :!tsp rsync -a %f %D<cr>
+nnoremap  sx :!tsp rsync -a --remove-source-files %f %D && tsp find %f -type d -empty -exec rmdir {} \; && tsp rmdir %f<cr>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
 nnoremap gs  :select //i<left><left>
