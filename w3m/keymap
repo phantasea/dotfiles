@@ -16,16 +16,18 @@ keymap   UP      MOVE_UP
 keymap   DOWN    MOVE_DOWN
 
 keymap   ~    GOTO_HOME
-keymap   [    COMMAND "SEARCH 上一页; GOTO_LINK"
-keymap   ]    COMMAND "SEARCH 下一页; GOTO_LINK"
+keymap   [    LINK_BEGIN
+keymap   ]    LINK_END
 keymap   {    LEFT
 keymap   }    RIGHT
-keymap   <    SHIFT_LEFT
-keymap   >    SHIFT_RIGHT
-keymap   ,    LINK_BEGIN
-keymap   .    LINK_END
-keymap   \'   NEXT_LINE_MARK
-keymap   \"   PREV_LINE_MARK
+#keymap  <    SHIFT_LEFT
+#keymap  >    SHIFT_RIGHT
+keymap   <    TAB_LEFT
+keymap   >    TAB_RIGHT
+keymap   ,    PREV_LINE_MARK
+keymap   .    NEXT_LINE_MARK
+keymap   \'   NEXT_MARK
+keymap   \"   PREV_MARK
 keymap   /    ISEARCH
 keymap   :    COMMAND
 keymap  ";"   REDRAW
@@ -39,6 +41,7 @@ keymap   $    LINE_END
 keymap   0    LINE_BEGIN
 keymap   ?    HELP
 
+keymap  C-C   INTERRUPT
 keymap  C-N   NEXT_TAB
 keymap  C-P   PREV_TAB
 keymap  C-G   INFO
@@ -55,21 +58,24 @@ keymap  C-U   UNDO_CLOSE_ONE
 keymap  C-V   VERSION
 
 keymap   a    ADD_BOOKMARK
+keymap   A    LIST
 keymap   b    NEXT_LEFT_UP
+keymap   B    PREV_WORD
 keymap   c    NULL
 keymap   C    NULL
-keymap   B    PREV_WORD
 keymap   d    SAVE_LINK
 keymap   D    SAVE_IMAGE
 keymap   e    EDIT_SCREEN
 keymap   E    EDIT
-keymap   F    LIST_MENU
+keymap  ff    COMMAND "SET_OPTION display_link_number=!&display_link_number; RELOAD; REDRAW"
+keymap   F    COMMAND "SET_OPTION display_link_number=!&display_link_number; RELOAD; REDRAW"
 keymap   G    END
 keymap   h    MOVE_LEFT
 keymap   H    MOV2TOP
 keymap   i    GOTO_LINK
-#keymap  I    TAB_LINK
 keymap   I    COMMAND "TAB_LINK; LAST_TAB"
+#keymap M-i   DISPLAY_IMAGE
+#keymap M-I   STOP_IMAGE
 keymap M-i    COMMAND "SET_OPTION display_image=toggle; RELOAD"
 keymap   j    MOVE_DOWN1
 keymap   J    UP
@@ -78,31 +84,35 @@ keymap   K    DOWN
 keymap   l    MOVE_RIGHT
 keymap   L    MOV2BOT
 keymap   M    MOV2MID
+keymap   mc   MARK_CHAR
+keymap   mi   MARK_MID
 keymap   ml   MARK_LINE
 keymap   mm   MARK_LINE
 keymap   mw   MARK_WORD
 keymap   mu   MARK_URL
+keymap   mr   REG_MARK
+keymap M-m    MAIN_MENU
 keymap   n    COMMAND "SEARCH_NEXT; MARK_WORD"
 keymap   N    COMMAND "SEARCH_PREV; MARK_WORD"
 keymap   o    GOTO
 keymap   O    TAB_GOTO
-keymap M-o    EXTERN_LINK
 keymap   p    COMMAND "PREV_PAGE; MOV2TOP; REDRAW"
 keymap   q    CLOSE_TAB
 keymap   Q    QUIT
 keymap   r    RELOAD
-keymap   R    READ_SHELL
+keymap   R    REINIT
 keymap M-s    SAVE_SCREEN
 keymap   s    SRCH_BD
 keymap   S    TAB_SRCH_BD
-keymap  fs    COMMAND "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; GOTO /usr/local/libexec/w3m/cgi-bin/goto_clipboard_primary.cgi"
-keymap  fS    COMMAND "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi ; TAB_GOTO /usr/local/libexec/w3m/cgi-bin/goto_clipboard_primary.cgi"
+keymap  fs    COMMAND "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi; GOTO     /usr/local/libexec/w3m/cgi-bin/goto_clipboard_primary.cgi"
+keymap  fS    COMMAND "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi; TAB_GOTO /usr/local/libexec/w3m/cgi-bin/goto_clipboard_primary.cgi"
 keymap  gs    SRCH_GG
 keymap  gS    TAB_SRCH_GG
 keymap  zs    SRCH_WK
 keymap  zS    TAB_SRCH_WK
 keymap   t    SELECT_MENU
-keymap   T    TAB_GOTO
+keymap   T    SELECT
+keymap  gt    TAB_MENU
 keymap   u    UNDO_CLOSE_ONE
 keymap   U    REDO
 keymap   v    VIEW
@@ -118,28 +128,26 @@ keymap  zz    SCR2MID
 keymap  zb    SCR2BOT
 keymap  zw    WRAP_TOGGLE
 
-keymap   cd   GOTO_RELATIVE
-keymap   gc   COOKIE
+keymap   ga   LIST_MENU
+keymap   gc   GOTO_RELATIVE
 keymap   gd   DOWNLOAD_LIST
 keymap   ge   MSGS
 keymap   gf   LOAD
 keymap   gg   BEGIN
 keymap   gh   HISTORY
-#keymap  gi   COMMAND "FIRST_INPUT; GOTO_LINK"
-keymap   gi   FIRST_INPUT
+keymap   gi   COMMAND "FIRST_INPUT; GOTO_LINK"
 keymap   gk   COOKIE
-keymap   gl   LIST
+keymap   gl   SET_OPTION show_lnum=!&show_lnum
 keymap   gm   VIEW_BOOKMARK
 keymap   gn   COMMAND "SEARCH 下一頁; GOTO_LINK"
 keymap   go   OPTIONS
 keymap   gp   COMMAND "SEARCH 上一頁; GOTO_LINK"
-keymap   gr   REINIT
-keymap   gt   TAB_MENU
+keymap   gr   READ_SHELL
 keymap   gq   ABORT
 keymap   gu   UNDO
 keymap   gU   UNDO_CLOSE_ALL
-keymap   gw   DICT_WORD_AT
-keymap   gW   DICT_WORD
+keymap   gw   COMMAND "DICT_WORD_AT; PREV"
+keymap   gW   COMMAND "DICT_WORD; PREV"
 
 # External Commands {{{
 # EXTERN_LINK = under cursor
@@ -149,36 +157,36 @@ keymap   gy   EXTERN_LINK
 keymap   gY   EXTERN
 
 # yank url to clipboard
-keymap  yy    EXTERN_LINK   '(echo -n %s | xsel -b)'
-keymap  YY    EXTERN        '(echo -n %s | xsel -b)'
+keymap   yy   EXTERN_LINK   '(echo -n %s | xsel -b)'
+keymap   YY   EXTERN        '(echo -n %s | xsel -b)'
 # yank url to tmux clipboard
-keymap  ys    EXTERN_LINK   'tmux set-buffer'
-keymap  YS    EXTERN        'tmux set-buffer'
+keymap   yt   EXTERN_LINK   'tmux set-buffer'
+keymap   YT   EXTERN        'tmux set-buffer'
 
 # open gui browser
-keymap  xw    EXTERN_LINK   '$BROWSER'
-keymap  XW    EXTERN        '$BROWSER'
-keymap  xn    EXTERN_LINK   '$BROWSER_PRIVATE'
-keymap  XN    EXTERN        '$BROWSER_PRIVATE'
+keymap   xw   EXTERN_LINK   '$BROWSER'
+keymap   XW   EXTERN        '$BROWSER'
+keymap   xn   EXTERN_LINK   '$BROWSER_PRIVATE'
+keymap   XN   EXTERN        '$BROWSER_PRIVATE'
 
 # queue download file (task-spooler)
-keymap  xd    EXTERN_LINK   'TS_SOCKET=/tmp/w3m tsp aria2c -j 1 -x 2 -c -d ~/Downloads'
-keymap  xD    EXTERN_LINK   'TS_SOCKET=/tmp/w3m tsp wget -c -P ~/Downloads'
+keymap   xd   EXTERN_LINK   'TS_SOCKET=/tmp/w3m tsp aria2c -j 1 -x 2 -c -d ~/temp'
+keymap   xD   EXTERN_LINK   'TS_SOCKET=/tmp/w3m tsp wget -c -P ~/temp'
 
 # queue external media player (task-spooler) e.g youtube, video links
-keymap  xm    EXTERN_LINK   'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
-keymap  XM    EXTERN        'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
+keymap   xm   EXTERN_LINK   'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
+keymap   XM   EXTERN        'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
 
 # open external image viewer
-keymap  xi    EXTERN_LINK   'w3m -o display_image=1 -o imgdisplay=w3mimgdisplay'
-keymap  xI    EXTERN_LINK   'feh -. -x -B black -g 900x600-15+60 %s &'
-keymap  xg    EXTERN_LINK   'mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
+keymap   xi   EXTERN_LINK   'w3m -o display_image=1 -o imgdisplay=w3mimgdisplay'
+keymap   xI   EXTERN_LINK   'feh -. -x -B black -g 900x600-15+60 %s &'
+keymap   xg   EXTERN_LINK   'mpv --loop --quiet --ontop --no-border --force-window --autofit=900x600 --geometry=-15+60'
 
 # add torrent or magnetlinks
-keymap  xt    EXTERN_LINK   'transmission-remote --add'
+keymap   xt   EXTERN_LINK   'transmission-remote --add'
 
 # basic task-spooler view, cat, clear
-keymap  xs    SHELL         'watch TS_SOCKET=/tmp/w3m tsp'
-keymap  XS    SHELL         'clear && TS_SOCKET=/tmp/w3m tsp -c'
-keymap  xc    SHELL         'clear && TS_SOCKET=/tmp/w3m tsp -C'
+keymap   xs   SHELL         'watch TS_SOCKET=/tmp/w3m tsp'
+keymap   XS   SHELL         'clear && TS_SOCKET=/tmp/w3m tsp -c'
+keymap   xc   SHELL         'clear && TS_SOCKET=/tmp/w3m tsp -C'
 # }}}
