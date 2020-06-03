@@ -111,8 +111,8 @@ keymap  gS    TAB_SRCH_GG
 keymap  zs    SRCH_WK
 keymap  zS    TAB_SRCH_WK
 keymap   t    SELECT_MENU
-keymap   T    SELECT
-keymap  gt    TAB_MENU
+keymap   T    TAB_MENU
+keymap  gt    SELECT
 keymap   u    UNDO_CLOSE_ONE
 keymap   U    REDO
 keymap   v    VIEW
@@ -136,8 +136,7 @@ keymap   gf   LOAD
 keymap   gg   BEGIN
 keymap   gh   HISTORY
 keymap   gi   COMMAND "FIRST_INPUT; GOTO_LINK"
-keymap   gk   COOKIE
-keymap   gl   SET_OPTION show_lnum=!&show_lnum
+keymap   g#   COMMAND "SET_OPTION show_lnum=toggle; REDRAW"
 keymap   gm   VIEW_BOOKMARK
 keymap   gn   COMMAND "SEARCH 下一頁; GOTO_LINK"
 keymap   go   OPTIONS
@@ -153,8 +152,8 @@ keymap   gW   COMMAND "DICT_WORD; PREV"
 # EXTERN_LINK = under cursor
 # EXTERN      = current page
 
-keymap   gy   EXTERN_LINK
-keymap   gY   EXTERN
+keymap   gx   EXTERN_LINK
+keymap   gX   EXTERN
 
 # yank url to clipboard
 keymap   yy   EXTERN_LINK   '(echo -n %s | xsel -b)'
