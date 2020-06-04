@@ -103,8 +103,8 @@ class Lynna(ColorScheme):
                     attr |= bold
                     #attr &= ~bold
                 else:
-                    fg = red
-                    attr |= bold
+                    fg = green
+                    attr |= bold | reverse
             if context.line_number_separator:
                 fg, bg, attr = default_colors
 
@@ -125,6 +125,9 @@ class Lynna(ColorScheme):
             attr |= bold
             if context.marked:
                 attr |= bold | reverse
+                fg += BRIGHT
+            if context.systime:
+                attr |= bold
                 fg += BRIGHT
             if context.frozen:
                 attr |= bold | reverse
