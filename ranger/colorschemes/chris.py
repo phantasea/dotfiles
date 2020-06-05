@@ -151,7 +151,7 @@ class Chris(ColorScheme):
                 attr &= ~bold
 
         elif context.in_console:
-            bg = magenta
+            bg = red
             fg = black
             attr |= bold
 
