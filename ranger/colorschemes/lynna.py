@@ -98,12 +98,10 @@ class Lynna(ColorScheme):
                     fg = white
 
             if context.line_number:
+                fg = white
                 if not context.selected:
-                    fg = green
-                    attr |= bold
-                    #attr &= ~bold
+                    attr &= ~bold
                 else:
-                    fg = green
                     attr |= bold | reverse
             if context.line_number_separator:
                 fg, bg, attr = default_colors

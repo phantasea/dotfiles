@@ -75,12 +75,11 @@ class Chris(ColorScheme):
                 else:
                     fg = red
             if context.line_number:
+                fg = white
                 if not context.selected:
-                    fg = green
-                    attr |= bold
-                    #attr &= ~bold
+                    attr &= ~bold
                 else:
-                    fg = green
+                    fg = white
                     attr |= bold | reverse
             if context.line_number_separator:
                 fg, bg, attr = default_colors
