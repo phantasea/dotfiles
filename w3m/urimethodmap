@@ -1,5 +1,18 @@
+# ~/.w3m/urimethodmap
+
 bd:  file:/cgi-bin/baidu.cgi?%s
 gg:  file:/cgi-bin/google.cgi?%s
 wk:  file:/cgi-bin/wiki.cgi?%s
 np:  file:/cgi-bin/nextpage.cgi
 pp:  file:/cgi-bin/prevpage.cgi
+
+magnet:          file:/cgi-bin/magnet.py?%s
+
+d:               file:/cgi-bin/search_engines.cgi?%s
+g:               file:/cgi-bin/search_engines.cgi?%s
+w:               file:/cgi-bin/search_engines.cgi?%s
+wes:             file:/cgi-bin/search_engines.cgi?%s
+y:               file:/cgi-bin/search_engines.cgi?%s
+se:              file:/cgi-bin/search_engines.cgi?%s
+azlyrics:        file:/cgi-bin/search_engines.cgi?%s
+darklyrics:      file:/cgi-bin/search_engines.cgi?%s

@@ -17,8 +17,12 @@
 ### Source          : https://github.com/felipesaa/A-vim-like-firefox-like-configuration-for-w3m
 ### Install         : put this script in /usr/lib/w3m/cgi-bin/
 
-#GOTO url in clipboard in current page. If the clipboard has a 
-#"non url string/nothing" an blank page is shown.
+#GOTO url in clipboard in current page if the clipboard is not empty
+if [ "$(xsel -ob)" = "" ]; then
+    printf "W3m-control: PREV\r\n"
+    exit
+fi
+
 printf "%s\r\n" "W3m-control: GOTO $(xsel -ob)";
 #delete the buffer (element in history) created between the current page and 
 #the searched page by calling this script.
