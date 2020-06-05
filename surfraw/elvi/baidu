@@ -1,0 +1,108 @@
+#!/bin/sh
+# $Id$
+# elvis: baidu -- Search the web using Baidu (www.baidu.com)
+. surfraw || exit 1
+
+w3_config_hook () {
+    def   SURFRAW_baidu_results "$SURFRAW_results"
+    def   SURFRAW_baidu_search search
+    defyn SURFRAW_baidu_lucky 0
+    def   SURFRAW_baidu_country zh
+    def   SURFRAW_baidu_safe default
+}
+
+w3_usage_hook () {
+    cat <<EOF
+Usage: $w3_argv0 [options] [search words]...
+Description:
+  Surfraw search the web using baidu
+Local options:
+  -results=NUM                  Number of search results returned
+                                Default: $SURFRAW_baidu_results
+                                Environment: SURFRAW_baidu_results
+  -search=                      Specialized search on topic
+          image               | Images
+          v                   | Videos
+          map                 | Maps
+          tieba               | Tieba
+          news                | News
+          zhidao              | Zhidao
+          music               | Music
+          wenku               | Wenku
+  -i, -images                   Image Search (same as -search=image)
+  -v, -videos                   Video Search (same as -search=v)
+  -m, -maps                     Map Search (same as -search=map)
+  -n, -news                     News Search (same as -search=news)
+  -w, -wenku                    Wenku Search (same as -search=wenku)
+  -t, -tieba                    Tieba Search (same as -search=tieba)
+  -z, -zhidao                   Zhidao Search (same as -search=zhidao)
+  -M, -mu, -music               Music Search (same as -search=music)
+EOF
+    w3_global_usage
+}
+
+w3_parse_option_hook () {
+    opt="$1"
+    optarg="$2"
+    case "$opt" in
+    -r*=*)         setopt   SURFRAW_baidu_results "$optarg" ;;
+    -sa*=*)        setopt   SURFRAW_baidu_safe    "$optarg" ;;
+    -s*=*)         setopt   SURFRAW_baidu_search  "$optarg" ;;
+    -w*)           setopt   SURFRAW_baidu_search  wenku     ;;
+    -tb|-tieba)    setopt   SURFRAW_baidu_search  tieba     ;;
+    -z*)           setopt   SURFRAW_baidu_search  zhidao    ;;
+    -i*)           setopt   SURFRAW_baidu_search  image     ;;
+    -v*)           setopt   SURFRAW_baidu_search  v         ;;
+    -m|-map)       setopt   SURFRAW_baidu_search  map       ;;
+    -ns|-news)     setopt   SURFRAW_baidu_search  news      ;;
+    -M|-mu|-music) setopt   SURFRAW_baidu_search  music  ;;
+    *) return 1 ;;
+    esac
+    return 0
+}
+
+w3_config
+w3_parse_args "$@"
+# w3_args now contains a list of arguments
+
+safe=""
+case "$SURFRAW_baidu_safe" in
+  strict)   safe="&safe=strict"   ;;
+  moderate) safe="&safe=moderate" ;;
+  off)      safe="&safe=off"      ;;
+esac
+
+url="http://"
+
+if test -z "$w3_args" ; then
+    case "$SURFRAW_baidu_search" in
+        i*) url="${url}image"  ;;
+        m*) url="${url}map"    ;;
+        b*) url="${url}baike"  ;;
+        n*) url="${url}news"   ;;
+        v*) url="${url}v"      ;;
+        *)  url="${url}www"    ;;
+    esac
+    url="${url}.baidu.com"
+else
+    search="$SURFRAW_baidu_search"
+    case "$SURFRAW_baidu_search" in
+        t*) url="${url}tieba"; search="f" ;;
+        w*) url="${url}wenku"; search="search" ;;
+        z*) url="${url}zhidao"; search="search" ;;
+        map) url="${url}map"; search="m" ;;
+        v*) url="${url}v"; search="v" ;;
+        i*) url="${url}image" ; search="i";;
+        music) url="${url}music"   ; search="search"    ;;
+        n*) url="${url}news"   ; search="ns"    ;;
+        *)  url="${url}www"    ; search="s"     ;;
+    esac
+
+    url="${url}.baidu.com/${search}"
+    escaped_args=`w3_url_of_arg $w3_args`
+    url="${url}?&ie=utf-8&word=${escaped_args}&wd=${escaped_args}&rn=${SURFRAW_baidu_results}"
+    url="${url}${safe}${extra}"
+fi
+
+#echo $url
+w3_browse_url "$url"
