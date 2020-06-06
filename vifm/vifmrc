@@ -511,7 +511,7 @@ fileview  *.py  highlight -S python -O ansi -s dante %c, bat --color=always %c
 fileview  *.sh  highlight -S sh -O ansi -s dante %c, bat --color=always %c
 
 " Directories
-fileview  */,.*/  tree -F -L 3 --dirsfirst %c
+fileview  */,.*/  tree -L 2 -C --dirsfirst %c
 
 " Audio
 fileview  *.mp3,*.wav,*.ogg,*.ape,*.wma,*.aac  exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1

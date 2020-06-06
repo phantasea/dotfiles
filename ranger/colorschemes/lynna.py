@@ -147,7 +147,7 @@ class Lynna(ColorScheme):
 
         elif context.in_console:
             bg = magenta
-            fg = black
+            fg = white
             attr |= bold
 
         if context.text:

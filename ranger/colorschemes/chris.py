@@ -152,7 +152,7 @@ class Chris(ColorScheme):
 
         elif context.in_console:
             bg = red
-            fg = black
+            fg = white
             attr |= bold
 
         if context.text:
