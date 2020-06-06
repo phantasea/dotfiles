@@ -237,7 +237,7 @@ nnoremap   zw   :set wrap!<cr>
 nnoremap   c<space>   :call SmartOpenQfWin()<CR>
 nnoremap   d<space>   :vert ball<CR>:call SmartDiffToggle()<CR>
 nnoremap   g<space>   :edit ~/.vimrc<CR>
-nnoremap   m<space>   :view ~/.vim/bookmark<CR>
+nnoremap   m<space>   :edit ~/.vim/bookmark<CR>
 nnoremap   s<space>   :<C-U>call FZF_Files(v:count1)<cr>
 nnoremap   y<space>   :Ranger<cr>
 nnoremap   z<space>   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
