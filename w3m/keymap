@@ -61,7 +61,7 @@ keymap   a    ADD_BOOKMARK
 keymap   A    LIST
 keymap   b    NEXT_LEFT_UP
 keymap   B    PREV_WORD
-keymap   c    NULL
+keymap   cd   GOTO_RELATIVE
 keymap   C    NULL
 keymap   d    SAVE_LINK
 keymap   D    SAVE_IMAGE
@@ -129,7 +129,6 @@ keymap  zb    SCR2BOT
 keymap  zw    WRAP_TOGGLE
 
 keymap   ga   LIST_MENU
-keymap   gc   GOTO_RELATIVE
 keymap   gd   DOWNLOAD_LIST
 keymap   ge   MSGS
 keymap   gf   LOAD
