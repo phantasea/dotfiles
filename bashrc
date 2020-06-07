@@ -55,6 +55,14 @@ fi
 # add /opt/util into PATH
 export PATH="/opt/util:$PATH"
 
+# find alternative apps if it is installed on your system
+find_alt() { for i;do which "$i" >/dev/null && { echo "$i"; return 0; };done;return 1; }
+
+# Use the first program that it detects in the array as the default app
+export OPENER=$(find_alt xdg-open exo-open gnome-open)
+export BROWSER=$(find_alt firefox vimb chromium chromium-browser google-chrome $OPENER)
+export BROWSERCLI=$(find_alt w3m lynx elinks $OPENER)
+
 unset  MAILCHECK
 export PAGER="/bin/sh -c \"col -b | view -c 'set ts=8 nomod nolist nonu noma' -\""
 export MANPAGER="/bin/sh -c \"col -b | view --noplugin -c 'set ft=man ts=8 nomod nolist nonu noma titlestring=MANPAGE' -\""
