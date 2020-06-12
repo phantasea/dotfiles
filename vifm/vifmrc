@@ -280,7 +280,7 @@ set previewprg=""
 
 set timefmt="%H:%M\ %m/%d/%y"
 set rulerformat="%=%r %l%%%S%[ +%x%]"
-set statusline="%5*[%A]%9*‥%6*%u:%g%9*‥%2*%d%9*‥%1*%a | %E%9*‥%4* %= \"%t%T\""
+set statusline="%5*[%A]%9*⚡%6*%u:%g%9*⚡%2*%d%9*⚡%1*%a | %E%9*⚡%4* %= \"%t%T\""
 
 source $VIFM/devicons
 
@@ -515,8 +515,8 @@ fileview  */,.*/  tree -L 2 -C --dirsfirst %c
 
 " Audio
 fileview  *.mp3,*.wav,*.ogg,*.ape,*.wma,*.aac  exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1
-filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac        audplay %c, audplay -b %c, audplay -B %c
-filetype  *.wma,*.ape,*.rm                     audplay -b %c, audplay -B %c
+filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac        audplay %c &, audplay -b %c &, audplay -B %c &
+filetype  *.wma,*.ape,*.rm                     audplay -b %c &, audplay -B %c &
 
 " Video
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
