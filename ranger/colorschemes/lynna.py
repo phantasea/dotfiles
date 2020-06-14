@@ -108,7 +108,7 @@ class Lynna(ColorScheme):
 
         elif context.in_titlebar:
             attr |= bold
-            bg = magenta
+            bg = red
             fg = white
             if context.tab:
                 if context.good:
@@ -118,7 +118,7 @@ class Lynna(ColorScheme):
                     attr ^= bold
 
         elif context.in_statusbar:
-            bg = magenta
+            bg = red
             fg = white
             attr |= bold
             if context.marked:
