@@ -547,8 +547,8 @@ fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm
 " PDF
 filetype  *.pdf  pdfview %c %i, pdfview -b %c, pdfview -B %c
 fileview  *.pdf
-          \ thumbnail %px %py %pw %ph %c,
           \ pdftotext -l 3 -nopgbrk -q -- %c -,
+          \ thumbnail %px %py %pw %ph %c,
           \ mutool draw -F txt -i -- %c,
           \ vifmimg pdfpreview %px %py %pw %ph %c %pc  vifmimg clear,
 
