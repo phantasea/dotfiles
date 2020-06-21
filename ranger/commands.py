@@ -146,7 +146,7 @@ class fzf_locate(Command):
 class fzf_goto(Command):
     def execute(self):
         import subprocess
-        command="fd -a -t=f . | fzf --height=0"
+        command="fd -a -t=f -t=l . | fzf --height=0"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -160,7 +160,7 @@ class fzf_goto(Command):
 class fzf_edit(Command):
     def execute(self):
         import subprocess
-        command="fd -t=f -H -E .git --size=-800k . | fzf --height=0 | xargs -r fileopen"
+        command="fd -t=f -t=l -H -E .git --size=-800k . | fzf --height=0 | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -174,7 +174,7 @@ class fzf_edit(Command):
 class fzf_fave(Command):
     def execute(self):
         import subprocess
-        command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs fd -a -t=f . | fzf --height=0 | xargs -r fileopen"
+        command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs fd -a -t=f -t=l . | fzf --height=0 | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
