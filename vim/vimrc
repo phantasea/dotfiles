@@ -1,4 +1,5 @@
 " colorscheme  {{{
+highlight Visual       ctermfg=white    ctermbg=black   cterm=reverse
 highlight Search       ctermbg=blue     ctermfg=white   cterm=bold
 highlight IncSearch    ctermbg=magenta  ctermfg=white   cterm=bold
 highlight ColorColumn  ctermfg=white    ctermbg=green   cterm=bold
@@ -581,7 +582,7 @@ endfunc
 augroup autocmds
     autocmd!
 
-    autocmd FileType fzf set noshowmode noruler nonu
+    "autocmd FileType fzf set noshowmode noruler nonu
     autocmd FileType * setlocal tabstop=4 formatoptions-=ro formatoptions+=j cedit=<C-O>
 
     if !has('nvim')
@@ -697,6 +698,10 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 
 " [Tags] Command to generate tags file
 let g:fzf_tags_command = 'ctags -R'
+"}}}
+
+"fzf-preview {{{
+let g:fzf_preview_if_binary_command = '[[ "$(file -bL --mime {})" =~ binary ]]'
 "}}}
 
 "bufexplorer {{{
