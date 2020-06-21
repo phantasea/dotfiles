@@ -68,7 +68,6 @@ set nobackup
 set nocompatible
 set nocursorcolumn
 set noerrorbells
-set noesckeys
 set noshowmatch
 set nostartofline
 set noswapfile
@@ -93,13 +92,18 @@ set textwidth=0
 set ttimeoutlen=0
 set ttyfast
 set updatetime=2000
-set viminfo='49,<0,s10,h,/25,f0,n~/.vim/viminfo
 set wildmenu
 set wildmode=full
 set wildignorecase
+if !has('nvim')
+set noesckeys
+set viminfo='49,<0,s10,h,/25,f0,n~/.vim/viminfo
+else
+set viminfo='49,<0,s10,h,/25,f0,n~/.config/nvim/viminfo
+endif
 if &term =~ '256color'
-    set t_Co=256
-    set t_ut=
+set t_Co=256
+set t_ut=
 endif
 "}}}
 
@@ -580,7 +584,9 @@ augroup autocmds
     autocmd FileType fzf set noshowmode noruler nonu
     autocmd FileType * setlocal tabstop=4 formatoptions-=ro formatoptions+=j cedit=<C-O>
 
+    if !has('nvim')
     autocmd TerminalOpen call MyPlainStatusLine()
+    endif
 
     autocmd WinEnter * set cursorline
     autocmd WinLeave * set nocursorline
