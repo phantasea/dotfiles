@@ -138,9 +138,11 @@ nnoremap gmt :lstrash<cr>
 nnoremap gmu :undolist<cr>
 nnoremap gmo :copen<cr>
 nnoremap  mb 2gM
+nnoremap  mj 2gM
 nnoremap  ml 2gM
 nnoremap  mm M
 nnoremap  mt 3gM
+nnoremap  mk 3gM
 nnoremap  mh 3gM
 nnoremap  oo =
 nnoremap  of zd
