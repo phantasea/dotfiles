@@ -128,6 +128,7 @@ keymap  zz    SCR2MID
 keymap  zb    SCR2BOT
 keymap  zw    WRAP_TOGGLE
 
+keymap   gSPC SHELL "fileopen ~/.w3m/keymap"
 keymap   ga   LIST_MENU
 keymap   gd   DOWNLOAD_LIST
 keymap   ge   MSGS
