@@ -9,7 +9,9 @@ newsbeuter/cache.db
 newsbeuter/history.cmdline
 newsbeuter/history.search
 ranger/plugins/*.pyo
+ranger/plugins/__pycache__
 ranger/colorschemes/*.pyo
+ranger/colorschemes/__pycache__
 vifm/vifminfo*
 vim/viminfo
 vim/bundle/**/tags
