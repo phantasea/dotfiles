@@ -171,7 +171,7 @@ class Chris(ColorScheme):
             if context.vcsconflict:
                 fg = magenta
             elif context.vcsuntracked:
-                fg = cyan
+                fg = red
             elif context.vcschanged:
                 fg = red
             elif context.vcsunknown:
