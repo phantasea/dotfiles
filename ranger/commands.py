@@ -38,12 +38,14 @@ class subst(Command):
 
         pattern = self.arg(1)
         replace = self.rest(2)
-        regexobj = re.compile(pattern)
+        #regexobj = re.compile(pattern)
         #regexobj = re.compile(pattern, re.IGNORECASE)
 
         for file in self.fm.thistab.get_selection():
             filename = esc(file.basename)
-            newfilename = regexobj.sub(replace, filename)
+            #newfilename = regexobj.sub(replace, filename)
+            #newfilename = re.sub(pattern, replace, filename, flags=re.IGNORECASE)
+            newfilename = re.sub(pattern, replace, filename)
             try:
                 self.fm.notify(filename + ' -> ' + newfilename)
                 self.fm.run('mv ' + filename + ' ' + newfilename)
