@@ -8,18 +8,44 @@ from collections import deque
 
 # You can import any python module as needed.
 import os
+import re
 
 
-#class empty(Command):
-#    """
-#    Warning: [^.] is an essential part of the above command.
-#    Without it, all files and directories of the form ..* will be deleted,
-#    wiping out everything in your home directory.
-#    """
-#    def execute(self):
-#        #self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]*}")
-#        #self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]+}")
-#        self.fm.run("rm -rf /home/simone/.Trash/*")
+class empty(Command):
+    """
+    Warning: [^.] is an essential part of the above command.
+    Without it, all files and directories of the form ..* will be deleted,
+    wiping out everything in your home directory.
+    """
+
+    def execute(self):
+        #self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]*}")
+        #self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]+}")
+        self.fm.run("rm -rf /home/simone/.Trash/*")
+
+
+class subst(Command):
+    """
+    :subst <pattern> <replace>
+    """
+
+    def execute(self):
+        from ranger.ext.shell_escape import shell_escape as esc
+
+        if not self.arg(1) or not self.rest(2):
+            self.fm.notify("subst <pattern> <replace>")
+
+        pattern = self.arg(1)
+        replace = self.rest(2)
+
+        filename = esc(self.fm.thisfile.basename)
+        newfilename = re.compile(pattern).sub(replace, filename)
+
+        try:
+            self.fm.notify(filename + ' -> ' + newfilename)
+            self.fm.run('mv ' + filename + ' ' + newfilename)
+        except OSError as err:
+            self.fm.notify(err)
 
 
 class vidplay(Command):
