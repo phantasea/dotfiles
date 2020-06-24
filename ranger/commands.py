@@ -26,26 +26,29 @@ class empty(Command):
 
 class subst(Command):
     """
-    :subst <pattern> <replace>
+    :subst <pattern> [replace]
     """
 
     def execute(self):
         from ranger.ext.shell_escape import shell_escape as esc
 
-        if not self.arg(1) or not self.rest(2):
-            self.fm.notify("subst <pattern> <replace>")
+        if not self.arg(1):
+            self.fm.notify("subst <pattern> [replace]")
+            return
 
         pattern = self.arg(1)
         replace = self.rest(2)
+        regexobj = re.compile(pattern)
+        #regexobj = re.compile(pattern, re.IGNORECASE)
 
-        filename = esc(self.fm.thisfile.basename)
-        newfilename = re.compile(pattern).sub(replace, filename)
-
-        try:
-            self.fm.notify(filename + ' -> ' + newfilename)
-            self.fm.run('mv ' + filename + ' ' + newfilename)
-        except OSError as err:
-            self.fm.notify(err)
+        for file in self.fm.thistab.get_selection():
+            filename = esc(file.basename)
+            newfilename = regexobj.sub(replace, filename)
+            try:
+                self.fm.notify(filename + ' -> ' + newfilename)
+                self.fm.run('mv ' + filename + ' ' + newfilename)
+            except OSError as err:
+                self.fm.notify(err)
 
 
 class vidplay(Command):
