@@ -18,6 +18,7 @@ import os
 #    """
 #    def execute(self):
 #        #self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]*}")
+#        #self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]+}")
 #        self.fm.run("rm -rf /home/simone/.Trash/*")
 
 
