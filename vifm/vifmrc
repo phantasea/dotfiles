@@ -167,6 +167,8 @@ vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 nnoremap  se :sued<cr>
 nnoremap  sf :find . -iname '**'<left><left>
 nnoremap  si :medinfo<cr>
+nnoremap  sj <space>j<space>
+nnoremap  sk <space>k<space>
 nnoremap  sl :alink!<cr>
 nnoremap  sq :hideui<cr>
 nnoremap  sr :source $VIFM/vifmrc<cr>
