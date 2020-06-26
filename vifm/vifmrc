@@ -81,6 +81,8 @@ nnoremap  <  <c-w><
 nnoremap  >  <c-w>>
 nnoremap  |  <c-w>=
 nnoremap  ?  :file<space><tab>
+nnoremap  #  :windo set relativenumber!<cr>
+nnoremap g*  #
 nnoremap  a  GVgg
 nnoremap  a  :%select<cr>
 vnoremap  a  ggoG
