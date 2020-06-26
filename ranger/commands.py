@@ -143,11 +143,11 @@ class fzf_select(Command):
         if self.quantifier:
             # match only directories
             command="find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
-            -o -type d -print 2> /dev/null | sed 1d | cut -b3- | fzf +m --height=0"
+                    -o -type d -print 2> /dev/null | sed 1d | cut -b3- | fzf +m --height=0"
         else:
             # match files and directories
             command="find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
-            -o -print 2> /dev/null | sed 1d | cut -b3- | fzf +m --height=0"
+                    -o -print 2> /dev/null | sed 1d | cut -b3- | fzf +m --height=0"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -162,9 +162,11 @@ class fzf_locate(Command):
     def execute(self):
         import subprocess
         if self.quantifier:
-            command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs locate | fzf --height=0 | xargs -r fileopen"
+            command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs locate | \
+                    fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | xargs -r fileopen"
         else:
-            command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs locate | fzf --height=0 | xargs -r fileopen"
+            command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs locate | \
+                    fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -192,7 +194,8 @@ class fzf_goto(Command):
 class fzf_edit(Command):
     def execute(self):
         import subprocess
-        command="fd -t=f -t=l -H -E .git --size=-800k . | fzf --height=0 | xargs -r fileopen"
+        command="fd -t=f -t=l -H -E .git --size=-800k . | \
+                fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -206,7 +209,8 @@ class fzf_edit(Command):
 class fzf_fave(Command):
     def execute(self):
         import subprocess
-        command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs fd -a -t=f -t=l . | fzf --height=0 | xargs -r fileopen"
+        command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs fd -a -t=f -t=l . | \
+                fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -220,7 +224,8 @@ class fzf_fave(Command):
 class fzf_vids(Command):
     def execute(self):
         import subprocess
-        command="fd -t=f -e=mp4 . /media | fzf --height=0 | sed 's/ /\\ /g' | xargs -r fileopen"
+        command="fd -t=f -e=mp4 . /media | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | \
+                sed 's/ /\\ /g' | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -248,7 +253,8 @@ class fzf_auds(Command):
 class fzf_webs(Command):
     def execute(self):
         import subprocess
-        command="fd -d=1 -t=f . ~/docs/webs | fzf --height=0 | sed 's/ /\\ /g' | xargs -r fileopen"
+        command="fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | \
+                sed 's/ /\\ /g' | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -262,7 +268,8 @@ class fzf_webs(Command):
 class fzf_porn(Command):
     def execute(self):
         import subprocess
-        command="fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 | sed 's/ /\\ /g' | xargs -r fileopen"
+        command="fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | \
+                sed 's/ /\\ /g' | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -364,7 +371,8 @@ class fzf_rga(Command):
         import os.path
         from ranger.container.file import File
         #command="rga '%s' . --rga-adapters=pandoc,poppler | fzf +m | awk -F':' '{print $1}'" % search_string
-        command="rg '%s' . | fzf +m --height=0 | awk -F':' '{print $1}'" % search_string
+        command="rg '%s' . | fzf +m --height=0 --bind 'ctrl-o:execute(fzfopen -sd: {})' | \
+                awk -F':' '{print $1}'" % search_string
         fzf = self.fm.execute_command(command, universal_newlines=True, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
