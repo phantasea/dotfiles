@@ -237,6 +237,10 @@ source $VIFM/bookmark
 set vicmd="vimux"
 set vixcmd="vimux"
 
+" What should be saved automatically between vifm runs
+set vifminfo=tui,tabs,savedirs,ratings
+set sessionoptions=tui,tabs,savedirs,ratings
+
 " IO options
 set syscalls
 set iooptions=fastfilecloning
@@ -684,11 +688,6 @@ fileview  *.txt,*.desktop
 "fileview  *[^/] highlight -O xterm256 --force -s pablo %c
 filetype  *  fileopen %c
 fileview  *  fileview %c
-" }}}
-
-" vifminfo {{{
-" What should be saved automatically between vifm runs
-set vifminfo=tui,tabs,savedirs,ratings
 " }}}
 
 " vim: foldmethod=marker
