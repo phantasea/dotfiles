@@ -181,7 +181,7 @@ class Chris(ColorScheme):
             elif context.vcssync:
                 fg = green
             elif context.vcsignored:
-                fg = default
+                fg = white
 
         elif context.vcsremote and not context.selected:
             attr &= ~bold
