@@ -493,6 +493,7 @@ fileview  *.[1-8],*.[1-8].gz  man ./%c | col -b
 
 " Office files
 filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
+filetype  .xls,*.xlsx,*.csv,*.tsv  vd %c, sc-im %c
 fileview  *.doc  antiword %c, catdoc -- %c
 fileview  *.docx docx2txt %c -, catdoc -- %c, pandoc -s -t markdown -- %c
 fileview  *.ppt  catppt %c

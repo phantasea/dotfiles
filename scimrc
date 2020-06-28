@@ -3,7 +3,13 @@
 set autocalc
 set numeric = 1
 
-nnoremap ";" "/"
+nnoremap "<CR>"   "\"
+nnoremap "<C-w>"  ":wq "
+nnoremap ";"      "/"
+nnoremap "q"      ":q<CR>"
+nnoremap "Q"      ":q!<CR>"
+nnoremap "y"      ":ccopy<cr>"
+nnoremap "p"      ":cpaste<cr>"
 
 color "type=HEADINGS fg=DEFAULT_COLOR bg=DEFAULT_COLOR reverse=1"
 color "type=CELL_SELECTION fg=DEFAULT_COLOR bg=DEFAULT_COLOR bold=1"
