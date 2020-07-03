@@ -232,6 +232,7 @@ source $VIFM/bookmark
 " options {{{
 "let &syncregs = $USER
 "screen!
+"set termguicolors
 
 " This is the actual command used to start vi.  The default is vim.
 set vicmd="vimux"
@@ -352,7 +353,11 @@ set noiec
 set suggestoptions=normal,visual,view
 
 " Selected color scheme
+if $DISPLAY == ""
 colorscheme chris
+else
+colorscheme admin
+endif
 
 " The FUSE_HOME directory will be used as a root dir for all FUSE mounts.
 " Unless it exists with write/exec permissions set, vifm will attempt to create it.
@@ -360,7 +365,7 @@ set fusehome=/tmp/vifm_FUSE
 
 " Don't do too many requests to slow file systems
 if !has('win')
-  set slowfs=curlftpfs
+set slowfs=curlftpfs
 endif
 " }}}
 
