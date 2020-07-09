@@ -353,10 +353,10 @@ set noiec
 set suggestoptions=normal,visual,view
 
 " Selected color scheme
-if $DISPLAY == ""
-colorscheme chris
+if $TERM == 'screen-256color' || $TERM == 'st-256color'
+colorscheme alice
 else
-colorscheme admin
+colorscheme chris
 endif
 
 " The FUSE_HOME directory will be used as a root dir for all FUSE mounts.
