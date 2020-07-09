@@ -154,6 +154,7 @@ function! s:StartVifm(mods, count, editcmd, ...) abort
 
 			let oldbuf = bufname('%')
 			execute 'keepalt file' escape('vifm: '.a:editcmd, ' |')
+			setlocal nonumber norelativenumber
 			execute bufnr(oldbuf).'bwipeout'
 			" Use execute to not break highlighting.
 			execute 'startinsert'
