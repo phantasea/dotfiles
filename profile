@@ -16,10 +16,12 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# dunno why this is not working
-#if [[ "$TERM" =~ "256color" ]] || [[ "$TERM" =~ "xterm" ]]; then
-#    eval "$(dircolors /opt/conf/dircolors.xterm)"
-#fi
+#dunno why this is not working
+if [[ "$TERM" =~ "256color" ]]; then
+    eval "$(dircolors /opt/conf/dircolors.xterm)"
+else
+    eval "$(dircolors /opt/conf/dircolors)"
+fi
 
 # MPD daemon start (if no other user instance exists)
 [ ! -s ~/.cache/mpd/mpd.pid ] && mpd
