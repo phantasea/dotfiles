@@ -108,13 +108,26 @@ class Lynna(ColorScheme):
 
         elif context.in_titlebar:
             attr |= bold
-            bg = red
-            fg = white
+            if context.hostname:
+                fg = context.bad and red or green
+                bg = red
+                fg = white
+            elif context.directory:
+                fg = black
+                bg = cyan
+            elif context.file:
+                fg = black
+                bg = yellow
+            elif context.link:
+                fg = black
+                bg = magenta
             if context.tab:
                 if context.good:
                     fg = white
+                    bg = red
                 else:
-                    fg = black
+                    fg = white
+                    bg = black
                     attr ^= bold
 
         elif context.in_statusbar:

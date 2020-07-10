@@ -105,19 +105,20 @@ class Chris(ColorScheme):
             if context.hostname:
                 fg = context.bad and red or green
                 bg = red
+                fg = white
             elif context.directory:
-                fg = white
-                bg = red
+                fg = black
+                bg = cyan
             elif context.file:
-                fg = white
-                bg = red
+                fg = black
+                bg = yellow
+            elif context.link:
+                fg = black
+                bg = magenta
             elif context.tab:
+                fg = white
                 if context.good:
                     bg = red
-            elif context.link:
-                fg = white
-                bg = red
-            fg = white
 
         elif context.in_statusbar:
             bg = red
