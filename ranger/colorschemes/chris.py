@@ -106,15 +106,15 @@ class Chris(ColorScheme):
                 fg = context.bad and red or green
                 bg = red
                 fg = white
+            elif context.link:
+                fg = black
+                bg = magenta
             elif context.directory:
                 fg = black
                 bg = cyan
             elif context.file:
                 fg = black
                 bg = yellow
-            elif context.link:
-                fg = black
-                bg = magenta
             elif context.tab:
                 fg = white
                 if context.good:
@@ -122,33 +122,57 @@ class Chris(ColorScheme):
 
         elif context.in_statusbar:
             bg = red
-            fg = white
+            fg = black
             attr |= bold
-            if context.marked:
-                attr |= bold | reverse
-                fg += BRIGHT
-            if context.frozen:
-                attr |= bold | reverse
+            if context.permissions:
+                bg = red
                 fg = black
+            elif context.owner or context.group:
+                bg = magenta
+                fg = black
+            elif context.mtime:
+                bg = green
+                fg = black
+            elif context.lspace:
+                bg = white
+                fg = black
+            elif context.space:
+                bg = blue
+                fg = black
+            elif context.rspace:
+                bg = white
+                fg = black
+            elif context.size:
+                bg = green
+                fg = black
+            elif context.ruler:
+                bg = magenta
+                fg = black
+            elif context.top or context.bot or context.all:
+                bg = red
+                fg = black
+            elif context.marked:
+                bg = green
+                fg = black
+            elif context.systime:
+                bg = green
+                fg = black
+            elif context.frozen:
+                attr |= bold | reverse
+                fg = cyan
                 fg += BRIGHT
-            if context.systime:
-                attr |= bold
-                fg += BRIGHT
-            if context.message:
+            elif context.message:
                 if context.bad:
                     attr |= reverse
                     fg += BRIGHT
-            if context.vcsinfo:
-                fg = black
-                bg = green
+            elif context.vcsinfo:
+                fg = blue
                 attr &= ~bold
-            if context.vcscommit:
-                fg = black
-                bg = green
+            elif context.vcscommit:
+                fg = yellow
                 attr &= ~bold
-            if context.vcsdate:
-                fg = black
-                bg = green
+            elif context.vcsdate:
+                fg = cyan
                 attr &= ~bold
 
         elif context.in_console:
