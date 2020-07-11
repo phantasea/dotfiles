@@ -139,6 +139,7 @@ nnoremap gms :sort<cr>
 nnoremap gmt :lstrash<cr>
 nnoremap gmu :undolist<cr>
 nnoremap gmo :copen<cr>
+nnoremap gmq :tsls<cr>
 nnoremap  mb 2gM
 nnoremap  mj 2gM
 nnoremap  ml 2gM
@@ -296,6 +297,7 @@ set statusline="%5*[%A]%9*⚡%6*%u:%g%9*⚡%2*%d%9*⚡%1*%a | %E%9*⚡%4* %= \"%
 source $VIFM/devicons
 
 windo filter! /(lost\+found|Desktop|sandisk_ext|sandisk_exp|downloadhelper
+              \|\.pyo$|\.pyc$|__pycache__
               \|Extreme\ SSD|udisk_hama|3166-6338|d042e951-|华为手机助手)/
 
 " Show list of matches on tab complition in command-line mode
@@ -403,6 +405,7 @@ command! surm     sudo rm -rf %c
 command! rc       vimux $VIFM/vifmrc
 command! df       df -h %m 2> /dev/null
 command! ps       pstree %m
+command! tsls     tsp %m
 command! ctags    ctags -R . %i
 command! du       ncdu .
 command! uz       tar -zxf %c %i &
@@ -531,8 +534,8 @@ fileview  */,.*/  tree -L 2 -C --dirsfirst %c
 
 " Audio
 fileview  *.mp3,*.wav,*.ogg,*.ape,*.wma,*.aac  exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1
-filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac        audplay %c &, audplay -b %c &, audplay -B %c &
-filetype  *.wma,*.ape,*.rm                     audplay -b %c &, audplay -B %c &
+filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac        audplay %c, audplay -b %c, audplay -B %c
+filetype  *.wma,*.ape,*.rm                     audplay -b %c, audplay -B %c
 
 " Video
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
