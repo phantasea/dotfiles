@@ -131,8 +131,6 @@ class Lynna(ColorScheme):
                     attr ^= bold
 
         elif context.in_statusbar:
-            bg = red
-            fg = black
             attr |= bold
             if context.permissions:
                 bg = red
@@ -155,11 +153,8 @@ class Lynna(ColorScheme):
             elif context.size:
                 bg = green
                 fg = black
-            elif context.ruler:
+            elif context.ruler or context.percentage or context.top or context.bot or context.all:
                 bg = magenta
-                fg = black
-            elif context.top or context.bot or context.all:
-                bg = red
                 fg = black
             elif context.marked:
                 bg = green
@@ -176,13 +171,16 @@ class Lynna(ColorScheme):
                     attr |= reverse
                     fg += BRIGHT
             elif context.vcsinfo:
-                fg = blue
+                bg = blue
+                fg = black
                 attr &= ~bold
             elif context.vcscommit:
-                fg = yellow
+                bg = yellow
+                fg = black
                 attr &= ~bold
             elif context.vcsdate:
-                fg = cyan
+                bg = cyan
+                fg = black
                 attr &= ~bold
 
         elif context.in_console:
