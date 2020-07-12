@@ -122,6 +122,9 @@ class Lynna(ColorScheme):
             elif context.file:
                 fg = black
                 bg = yellow
+            elif context.keybuffer:
+                bg = green
+                fg = black
             elif context.tab:
                 if context.good:
                     fg = white
