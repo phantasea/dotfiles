@@ -139,7 +139,6 @@ nnoremap gms :sort<cr>
 nnoremap gmt :lstrash<cr>
 nnoremap gmu :undolist<cr>
 nnoremap gmo :copen<cr>
-nnoremap gmq :tsls<cr>
 nnoremap  mb 2gM
 nnoremap  mj 2gM
 nnoremap  ml 2gM
@@ -170,6 +169,7 @@ vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 nnoremap  se :sued<cr>
 nnoremap  sf :find . -iname '**'<left><left>
 nnoremap  si :medinfo<cr>
+nnoremap  sI :tsls<cr>
 nnoremap  sj <space>j<space>
 nnoremap  sk <space>k<space>
 nnoremap  sl :alink!<cr>
@@ -405,7 +405,6 @@ command! surm     sudo rm -rf %c
 command! rc       vimux $VIFM/vifmrc
 command! df       df -h %m 2> /dev/null
 command! ps       pstree %m
-command! tsls     medinfo -t %m
 command! ctags    ctags -R . %i
 command! du       ncdu .
 command! uz       tar -zxf %c %i &
@@ -431,6 +430,7 @@ command! fim      fim %f > /dev/null 2>&1
 command! imgall   imgview -s
 command! imgrall  imgview -rs
 command! medinfo  medinfo %c %S
+command! tsls     medinfo -t %m
 command! manhelp  manmux vifm
 command! weather  curl --silent wttr.in %m
 command! altopen  fileopen -b %c
