@@ -28,7 +28,8 @@ class Lynna(ColorScheme):
                 bg = red
                 fg = black
             if context.border:
-                fg = magenta
+                fg = blue
+                bg = black
             if context.media:
                 if context.image:
                     fg = yellow
@@ -121,7 +122,7 @@ class Lynna(ColorScheme):
             elif context.file:
                 fg = black
                 bg = yellow
-            if context.tab:
+            elif context.tab:
                 if context.good:
                     fg = white
                     bg = red
@@ -147,7 +148,7 @@ class Lynna(ColorScheme):
             elif context.lspace:
                 bg = white
                 fg = black
-            elif context.space:
+            elif context.mspace:
                 bg = blue
                 fg = black
             elif context.rspace:

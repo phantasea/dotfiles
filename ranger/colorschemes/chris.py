@@ -137,7 +137,7 @@ class Chris(ColorScheme):
             elif context.lspace:
                 bg = white
                 fg = black
-            elif context.space:
+            elif context.mspace:
                 bg = blue
                 fg = black
             elif context.rspace:
