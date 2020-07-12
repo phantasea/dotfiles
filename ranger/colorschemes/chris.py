@@ -141,10 +141,10 @@ class Chris(ColorScheme):
                 bg = white
                 fg = black
             elif context.size:
-                bg = green
+                bg = magenta
                 fg = black
             elif context.ruler or context.percentage or context.top or context.bot or context.all:
-                bg = magenta
+                bg = green
                 fg = black
             elif context.marked:
                 bg = green
