@@ -405,7 +405,7 @@ command! surm     sudo rm -rf %c
 command! rc       vimux $VIFM/vifmrc
 command! df       df -h %m 2> /dev/null
 command! ps       pstree %m
-command! tsls     tsp %m
+command! tsls     medinfo -t %m
 command! ctags    ctags -R . %i
 command! du       ncdu .
 command! uz       tar -zxf %c %i &
