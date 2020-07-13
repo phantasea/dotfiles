@@ -96,11 +96,14 @@ key repeat = 'R'
 ## Toggle random mode
 key random = 'S'
 
+## Toggle single mode
+key single = 'I'
+
 ## Toggle consume mode
-key consume = 0
+key consume = 'X'
 
 ## Toggle crossfade mode
-key crossfade = 'X'
+key crossfade = 'F'
 
 ## Start a music database update
 key db-update = 'U'
@@ -118,7 +121,7 @@ key go-root-directory = 126
 key go-parent-directory = 'h'
 
 ## Locate song in browser
-key locate = 'F'
+key locate = 'f'
 
 ## Move item up
 key move-up = 123
