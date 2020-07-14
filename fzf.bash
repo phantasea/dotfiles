@@ -56,7 +56,7 @@ ffj() { cd "$(cat ~/.config/z.data | cut -d'|' -f 1 | fzf +m --inline-info)" ; }
 ffs() { surfraw "$(cat ~/.config/surfraw/bookmarks | sed '/^$/d' | sort -n | fzf -e -i)" ; }
 fff() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs fd -a -t=f -t=l . | fzf "$@" | xargs -r fileopen ;}
 ffl() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs locate | fzf "$@" | xargs -r fileopen ;}
-ffa() { fd -t=f -e=mp3 . ~/auds/{2.新世紀音樂,4.外語歌曲} | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
+ffa() { fd -t=f -e=mp3 . ~/auds/auds | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
 ffv() { fd -t=f -e=mp4 . /media | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
 ffw() { fd -t=f -d=1 . ~/docs/webs | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
 ffx() { fd -t=f -d=2 -e=html . /opt/.porn/text | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
