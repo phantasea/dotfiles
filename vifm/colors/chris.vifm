@@ -17,11 +17,7 @@ highlight  OtherWin     ctermfg=yellow    ctermbg=black     cterm=none
 highlight  AuxWin       ctermfg=yellow    ctermbg=black     cterm=none
 highlight  Directory    ctermfg=cyan      ctermbg=none      cterm=none
 highlight  Link         ctermfg=magenta   ctermbg=none      cterm=bold
-if $DISPLAY == ""
 highlight  BrokenLink   ctermfg=black     ctermbg=none      cterm=bold
-else
-highlight  BrokenLink   ctermfg=magenta   ctermbg=none      cterm=none
-endif
 highlight  Socket       ctermfg=red       ctermbg=none      cterm=bold
 highlight  Device       ctermfg=red       ctermbg=none      cterm=bold
 highlight  Fifo         ctermfg=blue      ctermbg=none      cterm=bold
@@ -61,3 +57,4 @@ highlight  User9        ctermfg=white     ctermbg=black     cterm=bold,reverse
 highlight  /\.exe$/i                                        ctermfg=green   ctermbg=none    cterm=none
 highlight  /\.(m3u|tar|tgz|iso|rar|gz|7z|zip|deb)$/i        ctermfg=red     ctermbg=none    cterm=bold
 highlight  /^(TODO|Makefile|README|FAQ|ChangeLog|INSTALL)/I ctermfg=red     ctermbg=none    cterm=bold
+highlight  /\.orig$/i                                       ctermfg=black   ctermbg=none    cterm=bold

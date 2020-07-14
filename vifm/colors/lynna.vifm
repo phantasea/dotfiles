@@ -50,3 +50,4 @@ highlight  User9        ctermfg=white     ctermbg=black     cterm=bold,reverse
 highlight  /\.exe$/i                                        ctermfg=green   ctermbg=none    cterm=none
 highlight  /\.(m3u|tar|tgz|iso|rar|gz|7z|zip|deb)$/i        ctermfg=red     ctermbg=none    cterm=bold
 highlight  /^(TODO|Makefile|README|FAQ|ChangeLog|INSTALL)/I ctermfg=red     ctermbg=none    cterm=bold
+highlight  /\.orig$/i                                       ctermfg=black   ctermbg=none    cterm=bold
