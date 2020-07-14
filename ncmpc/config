@@ -72,7 +72,7 @@ jump-prefix-only = no
 
 ############## Display ######################
 ## Show a list of the screens in the top line.
-welcome-screen-list = yes
+welcome-screen-list = no
 
 ## Display the time in the status bar when idle.
 display-time = yes
