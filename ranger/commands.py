@@ -239,7 +239,7 @@ class fzf_vids(Command):
 class fzf_auds(Command):
     def execute(self):
         import subprocess
-        command="fd -t=f -e=mp3 . ~/auds/auds | fzf --height=0 | sed 's/ /\\ /g' | xargs -r fileopen"
+        command="fd -t=f -e=mp3 . ~/auds/auds | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
