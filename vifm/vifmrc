@@ -122,7 +122,7 @@ mnoremap  J  <c-e>
 nnoremap gk  :siblprev<cr>
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
-qnoremap  J  qje:if isactive('preview') | switch | endif<cr>
+qnoremap  J  qje:if &preview | switch | endif<cr>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
 nnoremap gl  :if filetype('.') != 'link' | altopen | else | exec 'normal gf' | endif<cr>
 nnoremap gL  :auxopen<cr>
@@ -152,6 +152,7 @@ nnoremap  od zD
 nnoremap  o. zA
 nnoremap  O  zR
 qnoremap  p  <c-b>
+qnoremap  q  q:if !layoutis('only') | view | endif<cr>
 nnoremap  q  ZZ
 vnoremap  q  ZZ
 nnoremap  Q  :qall<cr>
@@ -190,7 +191,9 @@ nnoremap  t  tj
 nnoremap  T  kt
 nnoremap  U  <c-r>
 nnoremap  v  :if !layoutis('only') | view | else | explore | endif<cr>
+nnoremap zv  :explore<cr>
 qnoremap  v  q
+qnoremap  w  q:set wrap!<cr><tab>
 nnoremap  w  :set millerview!<cr>
 nnoremap  W  :if &millerview | set nomillerview | set lsview | else | set millerview | set nolsview | endif<cr>
 nnoremap  xi :movefromother<cr>
