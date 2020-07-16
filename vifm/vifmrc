@@ -23,7 +23,7 @@ mnoremap  <space>  <c-f>
 nnoremap  <space>  :switch<cr>
 
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
-nnoremap c<space>  :set nolaststatus!<cr> :if !&laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
+nnoremap c<space>  :if &laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
 nnoremap f<space>  <nop>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
 nnoremap m<space>  <nop>
