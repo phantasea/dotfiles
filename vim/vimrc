@@ -576,6 +576,14 @@ func! FZF_MRU()
     return extend(filter(copy(v:oldfiles), "v:val !~ 'fugitive:\\|^/tmp/\\|.git/'"),
          \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
 endfunc
+
+function! FZF_RG(query, fullscreen)
+    let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+    let initial_command = printf(command_fmt, shellescape(a:query))
+    let reload_command = printf(command_fmt, '{q}')
+    let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
 "}}}
 
 " autocmd  {{{
@@ -663,6 +671,18 @@ command! FFMFU call fzf#run({
          \ 'sink':    'edit',
          \ 'options': '-m -x +s',
          \ 'down':    '40%' })
+
+command! -bang -nargs=* FFRGA
+         \ call fzf#vim#grep(
+         \ 'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+         \ fzf#vim#with_preview(), <bang>0)
+
+command! -nargs=* -bang FFRGB call FZF_RG(<q-args>, <bang>0)
+
+command! -bang -nargs=* GitGrep
+         \ call fzf#vim#grep(
+         \ 'git grep --line-number '.shellescape(<q-args>), 0,
+         \ fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 "}}}
 
 " plugins  {{{
@@ -672,11 +692,14 @@ let g:ag_prg = "ag --vimgrep --smart-case"
 
 "fzf {{{
 let g:fzf_layout = { 'down': '~40%' }
+"let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
 
 let g:fzf_action = {
   \ 'ctrl-t':'tab split',
   \ 'ctrl-s':'split',
   \ 'ctrl-v':'vsplit' }
+
+"let $FZF_DEFAULT_COMMAND="rg --files"
 
 let g:fzf_colors = {
   \ 'fg':      ['fg', 'Normal'],
@@ -698,9 +721,7 @@ let g:fzf_commits_log_options = '--graph --color=always --format="%C(auto)%h%d %
 
 " [Tags] Command to generate tags file
 let g:fzf_tags_command = 'ctags -R'
-"}}}
 
-"fzf-preview {{{
 let g:fzf_preview_if_binary_command = '[[ "$(file -bL --mime {})" =~ binary ]]'
 "}}}
 
