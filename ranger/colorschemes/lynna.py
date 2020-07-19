@@ -157,6 +157,9 @@ class Lynna(ColorScheme):
             elif context.rspace:
                 bg = white
                 fg = black
+            elif context.flat:
+                bg = green
+                fg = black
             elif context.size:
                 bg = magenta
                 fg = black
