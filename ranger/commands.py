@@ -114,24 +114,6 @@ class mkcd(Command):
             self.fm.notify("file/directory exists!", bad=True)
 
 
-class toggle_flat(Command):
-    """
-    :toggle_flat
-
-    Flattens or unflattens the directory view.
-    """
-
-    def execute(self):
-        if self.fm.thisdir.flat == 0:
-            self.fm.thisdir.unload()
-            self.fm.thisdir.flat = -1
-            self.fm.thisdir.load_content()
-        else:
-            self.fm.thisdir.unload()
-            self.fm.thisdir.flat = 0
-            self.fm.thisdir.load_content()
-
-
 class fzf_select(Command):
     """
     :fzf_select
