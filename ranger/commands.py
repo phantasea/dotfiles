@@ -350,14 +350,14 @@ class fzf_rga(Command):
             return
 
         import subprocess
-        import os.path
-        from ranger.container.file import File
+        #import os.path
+        #from ranger.container.file import File
         #command="rga '%s' . --rga-adapters=pandoc,poppler | fzf +m | awk -F':' '{print $1}'" % search_string
         command="rg '%s' . | fzf +m --height=0 --bind 'ctrl-o:execute(fzfopen -sd: {})' | \
-                awk -F':' '{print $1}'" % search_string
+                xargs -r fzfopen -sd: " % search_string
         fzf = self.fm.execute_command(command, universal_newlines=True, stdout=subprocess.PIPE)
-        stdout, stderr = fzf.communicate()
-        if fzf.returncode == 0:
-            fzf_file = os.path.abspath(stdout.rstrip('\n'))
-            self.fm.execute_file(File(fzf_file))
+        #stdout, stderr = fzf.communicate()
+        #if fzf.returncode == 0:
+        #    fzf_file = os.path.abspath(stdout.rstrip('\n'))
+        #    self.fm.execute_file(File(fzf_file))
 
