@@ -2,6 +2,7 @@
 # fzf setup
 #########################
 # --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -50'
+# --preview '([[ -f {} ]] && (bat --style=auto --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
 
 if [[ ! "$PATH" == *$HOME/.fzf/bin* ]]; then
   export PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
@@ -15,7 +16,8 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Black=0  Red=1  Green=2  Yellow=3  Blue=4  Magenta=5  Cyan=6  White=7
 export FZF_DEFAULT_OPTS="--exact --no-multi --no-sort --cycle --reverse
                          --select-1 --prompt='$=' --height=40% --info=inline
-                         --bind=change:top,~:toggle-sort,ctrl-n:page-down,ctrl-p:page-up,^:top,!:toggle-preview
+                         --bind change:top,ctrl-s:toggle-sort,ctrl-v:toggle-preview,ctrl-g:top
+                         --bind ctrl-n:page-down,ctrl-p:page-up,ctrl-k:kill-line
                          --color=hl:14,fg+:7,bg+:1,hl+:6,info:7,prompt:1,gutter:0,pointer:3,marker:3"
 
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
