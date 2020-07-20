@@ -2,7 +2,6 @@
 # fzf setup
 #########################
 # --preview '(highlight -O ansi {} || cat {}) 2> /dev/null | head -50'
-# --preview '([[ -f {} ]] && (bat --style=auto --color=always {} || cat {})) || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
 
 if [[ ! "$PATH" == *$HOME/.fzf/bin* ]]; then
   export PATH="${PATH:+${PATH}:}$HOME/.fzf/bin"
@@ -15,9 +14,12 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Black=0  Red=1  Green=2  Yellow=3  Blue=4  Magenta=5  Cyan=6  White=7
 export FZF_DEFAULT_OPTS="--exact --no-multi --no-sort --cycle --reverse
-                         --select-1 --prompt='$=' --height=40% --info=inline
+                         --select-1 --prompt='$=' --height=40% --info=inline --marker='✓' --pointer='▶'
                          --bind change:top,ctrl-s:toggle-sort,ctrl-v:toggle-preview,ctrl-g:top
-                         --bind ctrl-n:page-down,ctrl-p:page-up,ctrl-k:kill-line
+                         --bind ctrl-n:page-down,ctrl-p:page-up,ctrl-y:backward-word
+                         --preview-window=:hidden
+                         --preview '([[ -f {} ]] && (bat --style=auto --color=always {} || cat {}))
+                           || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
                          --color=hl:14,fg+:7,bg+:1,hl+:6,info:7,prompt:1,gutter:0,pointer:3,marker:3"
 
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
@@ -122,4 +124,20 @@ ffmpc() {
         fzf-tmux --query="$1" --reverse --select-1 --exit-0 | \
         sed -n 's/^\([0-9]\+\)).*/\1/p') || return 1
     [ -n "$song_position" ] && mpc -q play $song_position
+}
+
+# ffgrep <SEARCH_TERM>
+ffgrep() {
+  if [ ! "$#" -gt 0 ]; then
+    echo "Need a string to search for!";
+    return 1;
+  fi
+
+  rg --files-with-matches --no-messages "$1" | fzf --preview "rg --ignore-case --pretty --context 10 '$1' {}"
+}
+
+# z.sh with fzf
+ffz() {
+    [ $# -gt 0 ] && _z "$*" && return
+    cd "$(_z -l 2>&1 | fzf --height 40% --nth 2.. --reverse --inline-info +s --tac --query "${*##-* }" | sed 's/^[0-9,.]* *//')"
 }
