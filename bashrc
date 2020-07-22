@@ -54,6 +54,7 @@ fi
 
 # add /opt/util into PATH
 export PATH="/opt/util:$PATH"
+export PATH="/opt/util/pyutil:$PATH"
 
 # find alternative apps if it is installed on your system
 find_alt() { for i;do which "$i" >/dev/null && { echo "$i"; return 0; };done;return 1; }
@@ -138,6 +139,10 @@ if [ -f ~/.alias ]; then
     . ~/.alias
 fi
 
+[ -f ~/.z.sh ] && source ~/.z.sh
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f ~/.forgit.bash ] && source ~/.forgit.bash
+
 # enable programmable completion features
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
@@ -145,11 +150,10 @@ fi
 
 [[ -s /usr/share/doc/tmux/examples/bash_completion_tmux.sh ]] && source /usr/share/doc/tmux/examples/bash_completion_tmux.sh
 
-[ -f ~/.z.sh ] && source ~/.z.sh
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-[ -f ~/.forgit.bash ] && source ~/.forgit.bash
+[ -f /opt/conf/pyutil/buku-completion.bash ] && source /opt/conf/pyutil/buku-completion.bash
+[ -f /opt/conf/pyutil/ddgr-completion.bash ] && source /opt/conf/pyutil/ddgr-completion.bash
+[ -f /opt/conf/pyutil/googler-completion.bash ] && source /opt/conf/pyutil/googler-completion.bash
+[ -f /opt/conf/pyutil/googler.alias ] && source /opt/conf/pyutil/googler.alias
 
 #type fbtmux > /dev/null 2>&1 && fbtmux
 command -v fbtmux > /dev/null 2>&1 && fbtmux
