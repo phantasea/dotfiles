@@ -75,11 +75,6 @@ class Lynna(ColorScheme):
                     fg = white
                 else:
                     fg = red
-            if not context.selected and (context.cut or context.copied):
-                fg = black
-                attr |= bold
-                #fg = white
-                #attr |= bold | reverse
             if context.main_column:
                 if context.selected:
                     attr |= bold
@@ -91,6 +86,10 @@ class Lynna(ColorScheme):
                     bg = magenta
                 else:
                     fg = magenta
+            #if not context.selected and (context.cut or context.copied):
+            if context.cut or context.copied:
+                fg = black
+                attr |= bold
 
             if context.inactive_pane:
                 if context.selected:

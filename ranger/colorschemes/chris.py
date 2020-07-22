@@ -83,11 +83,6 @@ class Chris(ColorScheme):
                     attr |= bold | reverse
             if context.line_number_separator:
                 fg, bg, attr = default_colors
-            if not context.selected and (context.cut or context.copied):
-                fg = black
-                attr |= bold
-                #fg = white
-                #attr |= bold | reverse
             if context.main_column:
                 if context.selected:
                     attr |= bold
@@ -99,6 +94,10 @@ class Chris(ColorScheme):
                     bg = magenta
                 else:
                     fg = magenta
+            #if not context.selected and (context.cut or context.copied):
+            if context.cut or context.copied:
+                fg = black
+                attr |= bold
 
         elif context.in_titlebar:
             attr |= bold
