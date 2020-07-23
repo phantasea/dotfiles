@@ -124,7 +124,7 @@ nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  J  qje:if &preview | switch | endif<cr>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
-nnoremap gl  :if filetype('.') != 'link' | altopen | else | exec 'normal gf' | endif<cr>
+nnoremap gl  :if filetype('.') != 'link' && filetype('.') != 'dir' | altopen | else | exec 'normal gf' | endif<cr>
 nnoremap gL  :auxopen<cr>
 nnoremap gmb :bmarks<cr>
 nnoremap gmc :command<cr>
