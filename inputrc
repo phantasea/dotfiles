@@ -4,7 +4,7 @@ set completion-ignore-case on
 # do completion on one <tab> press, not two
 set show-all-if-ambiguous off
 # colorize common prefix among completion matches
-set colored-completion-prefix on
+set colored-completion-prefix off
 # colorize files on completion according to colors of $LS_COLORS
 set colored-stats on
 # do not bell on tab-completion
