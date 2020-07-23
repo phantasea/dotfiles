@@ -148,6 +148,9 @@ class Chris(ColorScheme):
             elif context.flat:
                 bg = green
                 fg = black
+            elif context.filter:
+                bg = cyan
+                fg = black
             elif context.size:
                 bg = magenta
                 fg = black
