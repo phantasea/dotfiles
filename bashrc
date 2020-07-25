@@ -54,15 +54,19 @@ fi
 
 # add /opt/util into PATH
 export PATH="/opt/util:$PATH"
-export PATH="/opt/util/pyutil:$PATH"
+export PATH="/opt/util/misc:$PATH"
 
 # find alternative apps if it is installed on your system
 find_alt() { for i;do which "$i" >/dev/null && { echo "$i"; return 0; };done;return 1; }
 
 # Use the first program that it detects in the array as the default app
 export OPENER=$(find_alt xdg-open exo-open gnome-open)
-export BROWSER=$(find_alt firefox vimb chromium chromium-browser google-chrome $OPENER)
-export BROWSERCLI=$(find_alt w3m lynx elinks $OPENER)
+export XBROWSER=$(find_alt firefox vimb chromium chromium-browser google-chrome $OPENER)
+if x-is-run; then
+    export BROWSER=elinks
+else
+    export BROWSER=w3m
+fi
 
 unset  MAILCHECK
 export PAGER="/bin/sh -c \"col -b | view -c 'set ts=8 nomod nolist nonu noma' -\""
@@ -148,12 +152,13 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-[[ -s /usr/share/doc/tmux/examples/bash_completion_tmux.sh ]] && source /usr/share/doc/tmux/examples/bash_completion_tmux.sh
+[[ -s /usr/share/doc/tmux/examples/bash_completion_tmux.sh ]] &&
+    source /usr/share/doc/tmux/examples/bash_completion_tmux.sh
 
-[ -f /opt/conf/pyutil/buku-completion.bash ] && source /opt/conf/pyutil/buku-completion.bash
-[ -f /opt/conf/pyutil/ddgr-completion.bash ] && source /opt/conf/pyutil/ddgr-completion.bash
-[ -f /opt/conf/pyutil/googler-completion.bash ] && source /opt/conf/pyutil/googler-completion.bash
-[ -f /opt/conf/pyutil/googler.alias ] && source /opt/conf/pyutil/googler.alias
+[ -f /opt/conf/misc/buku-completion.bash ]    && source /opt/conf/misc/buku-completion.bash
+[ -f /opt/conf/misc/ddgr-completion.bash ]    && source /opt/conf/misc/ddgr-completion.bash
+[ -f /opt/conf/misc/googler-completion.bash ] && source /opt/conf/misc/googler-completion.bash
+[ -f /opt/conf/misc/googler.alias ]           && source /opt/conf/misc/googler.alias
 
 #type fbtmux > /dev/null 2>&1 && fbtmux
 command -v fbtmux > /dev/null 2>&1 && fbtmux
