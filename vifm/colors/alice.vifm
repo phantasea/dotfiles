@@ -7,14 +7,22 @@ highlight clear
 hi Win          cterm=none                    ctermfg=white    ctermbg=232
 hi OtherWin     cterm=none                    ctermfg=default  ctermbg=default
 hi AuxWin       cterm=none                    ctermfg=default  ctermbg=233
+hi OddLine                                    ctermfg=default  ctermbg=default
 
 hi TopLine      cterm=none                    ctermfg=black    ctermbg=grey42
 hi TopLineSel   cterm=bold                    ctermfg=white    ctermbg=red
+
+hi TabLine      cterm=none                    ctermfg=white    ctermbg=black
+hi TabLineSel   cterm=bold,reverse            ctermfg=default  ctermbg=default
+hi TabNr                                      ctermfg=default  ctermbg=default
+
+hi JobLine      cterm=bold                    ctermfg=white    ctermbg=238
 hi StatusLine   cterm=none                    ctermfg=black    ctermbg=white
 hi Border       cterm=none                    ctermfg=white    ctermbg=default
 
 hi CurrLine     cterm=bold,reverse            ctermfg=default  ctermbg=default
 hi OtherLine    cterm=reverse                 ctermfg=234      ctermbg=white
+hi LineNr                                     ctermfg=default  ctermbg=default
 
 hi Selected     cterm=bold                    ctermfg=213      ctermbg=default
 hi CmpMismatch  cterm=bold                    ctermfg=white    ctermbg=88
@@ -54,18 +62,19 @@ highlight {COPYRIGHT,COPYING*,BUGS,ChangeLog*,FAQ,INSTALL*,LICENCE,LICENSE,NEWS,
         \ cterm=none ctermfg=187 ctermbg=default
 " build system files
 highlight {Makefile,Makefile.am,Makefile.in,Makefile.win,*.mak,*.mk,*.m4,*.ac,
-          \configure,CMakeLists.txt,*.cmake,*.pro,*.sln}
+          \configure,CMakeLists.txt,*.cmake,*.pro,*.pri,*.sln}
         \ cterm=none ctermfg=121 ctermbg=default
 " archives
 highlight {*.7z,*.ace,*.arj,*.bz2,*.cpio,*.deb,*.dz,*.gz,*.jar,*.lzh,*.lzma,
           \*.rar,*.rpm,*.rz,*.tar,*.taz,*.tb2,*.tbz,*.tbz2,*.tgz,*.tlz,*.trz,
           \*.txz,*.tz,*.tz2,*.xz,*.z,*.zip,*.zoo,*.apk,*.gzip}
         \ cterm=none ctermfg=215 ctermbg=default
-" documents
+" documents, configuration, text-based formats
 highlight {*.djvu,*.htm,*.html,*.shtml,*.css,*.markdown,*.md,*[^0-9].[1-9],
           \*.mkd,*.org,*.pandoc,*.pdc,*.pdf,*.epub,*.fb2,*.tex,*.txt,*.xhtml,
           \*.xml,*.pptx,*.ppt,*.doc,*.docx,*.xls,*.xlsm,*.xlsx,*.mobi,*.rtf,
-          \*.less,*.scss,*.log,*.rss,*.xul,*.json,*.yaml,*.yml}
+          \*.less,*.scss,*.log,*.rss,*.xul,*.json,*.yaml,*.yml,*.desktop,*.csv,
+          \*.plist,*.ini,*.cfg,*.rc,*.conf,*.spec}
         \ cterm=none ctermfg=217 ctermbg=default
 " media
 highlight {*.aac,*.anx,*.asf,*.au,*.avi,*.ts,*.axa,*.axv,*.divx,*.flac,*.m2a,
@@ -83,8 +92,8 @@ highlight {*.sh,*.bash,*.zsh,*.bat,*.btm,*.cmd,*.com,*.dll,*.exe,*.run,*.msu,
           \*.msi,*.fish}
         \ cterm=none ctermfg=77 ctermbg=default
 " source code
-highlight {*.patch,*.diff,*.py,*.[ch]pp,*.mk,*.c,*.h,*.cpp,*.hpp,*.cc,*.hs,
+highlight {*.patch,*.diff,*.py,*.cpp,*.hpp,*.mk,*.c,*.h,*.cpp,*.hpp,*.cc,*.hs,
           \*.php,*.lua,*.vim,*.vifm,*.asm,*.s,*.java,*.cxx,*.c++,*.go,
           \*.pl,*.pm,*.t,*.cs,*.asp,*.dart,*.js,*.rb,*.scala,*.ts,*.coffee,
-          \*.ml,*.mli,*.rs,*.sql}
+          \*.ml,*.mli,*.rs,*.sql,*.qml,vifmrc,vimrc,.vimrc}
         \ cterm=none ctermfg=193 ctermbg=default

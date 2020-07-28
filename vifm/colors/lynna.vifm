@@ -15,6 +15,7 @@ highlight clear
 highlight  Win          ctermfg=yellow    ctermbg=black     cterm=none
 highlight  OtherWin     ctermfg=yellow    ctermbg=black     cterm=none
 highlight  AuxWin       ctermfg=white     ctermbg=black     cterm=none
+highlight  OddLine      ctermfg=yellow    ctermbg=black     cterm=none
 highlight  Directory    ctermfg=cyan      ctermbg=none      cterm=none
 highlight  Link         ctermfg=magenta   ctermbg=none      cterm=bold
 highlight  BrokenLink   ctermfg=black     ctermbg=none      cterm=bold
@@ -24,6 +25,8 @@ highlight  Fifo         ctermfg=blue      ctermbg=none      cterm=bold
 highlight  Executable   ctermfg=green     ctermbg=none      cterm=none
 highlight  ErrorMsg     ctermfg=red       ctermbg=black     cterm=none
 highlight  Border       ctermfg=magenta   ctermbg=black     cterm=bold
+highlight  TabNr        ctermfg=none      ctermbg=none      cterm=none
+highlight  LineNr       ctermfg=white     ctermbg=black     cterm=bold
 highlight  StatusLine   ctermfg=white     ctermbg=none      cterm=bold
 highlight  CmdLine      ctermfg=white     ctermbg=magenta   cterm=bold
 highlight  TabLine      ctermfg=white     ctermbg=magenta   cterm=none
