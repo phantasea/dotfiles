@@ -110,7 +110,7 @@ handle_extension() {
             exit 1;;
 
         # C/C++ files
-        c|cpp)
+        c|h|cpp)
             highlight -S c -O ansi -s dante "${FILE_PATH}" && exit 5
             exit 1;;
 
@@ -122,6 +122,11 @@ handle_extension() {
         # Shell script
         sh)
             highlight -S sh -O ansi -s dante "${FILE_PATH}" && exit 5
+            exit 1;;
+
+        ## XML
+        xml)
+            highlight -S xml -O ansi -s dante "${FILE_PATH}" && exit 5
             exit 1;;
 
         # GnuPG files
@@ -322,11 +327,11 @@ handle_mime() {
     case "${mimetype}" in
         ## Directory
         inode/directory)
-            tree -F -L 3 --dirsfirst "${FILE_PATH}" && exit 5
+            tree -C -L 2 --dirsfirst "${FILE_PATH}" && exit 5
             exit 1;;
 
         ## Shell scripts
-        application/*shellscript)
+        *shellscript)
             highlight -S sh -O ansi -s dante "${FILE_PATH}" && exit 5
             exit 1;;
 
