@@ -139,13 +139,11 @@ nnoremap gms :sort<cr>
 nnoremap gmt :lstrash<cr>
 nnoremap gmu :undolist<cr>
 nnoremap gmo :copen<cr>
-nnoremap  mb 2gM
+nnoremap  mi :medinfo<cr>
+nnoremap  mI :tsls<cr>
 nnoremap  mj 2gM
-nnoremap  ml 2gM
 nnoremap  mm M
-nnoremap  mt 3gM
 nnoremap  mk 3gM
-nnoremap  mh 3gM
 nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
@@ -169,8 +167,6 @@ nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 nnoremap  se :sued<cr>
 nnoremap  sf :find . -iname '**'<left><left>
-nnoremap  si :medinfo<cr>
-nnoremap  sI :tsls<cr>
 nnoremap  sj <space>j<space>
 nnoremap  sk <space>k<space>
 nnoremap  sl :alink!<cr>
