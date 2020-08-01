@@ -110,6 +110,9 @@ endif
 
 " mapping  {{{
 inoremap   <Tab>      <C-N>
+nnoremap  z<Tab>      i<C-V><Tab><Esc>
+nnoremap  s<Tab>      s<C-V><Tab><Esc>
+nnoremap  c<Tab>      :.retab<CR>
 nnoremap  g<Tab>      :retab<CR>
 nnoremap   <CR>       <C-W>w
 nnoremap   <BS>       <PageUp>H
@@ -150,6 +153,7 @@ inoremap   <C-F>    <Right>
 inoremap   <C-L>    <End>
 inoremap   <C-H>    <BS>
 inoremap   <C-K>    <Esc>lC
+inoremap   <C-T>    <C-V><Tab><C-O>:.retab<CR>
 inoremap   <C-Y>    <C-R><C-R>=VCopy('up')<CR>
 inoremap   <C-E>    <C-R><C-R>=VCopy('down')<CR>
 
