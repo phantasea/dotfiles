@@ -24,8 +24,11 @@ class Lynna(ColorScheme):
                 attr = reverse
             else:
                 attr = normal
-            if context.empty or context.error:
+            if context.error:
                 bg = red
+                fg = black
+            if context.empty:
+                attr |= bold
                 fg = black
             if context.border:
                 fg = blue
