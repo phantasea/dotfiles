@@ -156,6 +156,7 @@ inoremap   <C-K>    <Esc>lC
 inoremap   <C-T>    <C-V><Tab><C-O>:.retab<CR>
 inoremap   <C-Y>    <C-R><C-R>=VCopy('up')<CR>
 inoremap   <C-E>    <C-R><C-R>=VCopy('down')<CR>
+inoremap   <C-S>    <C-O>:update<cr>
 
 nnoremap   <C-E>    :FFEdit<cr>
 nnoremap   <C-F>    :FFFave<cr>
@@ -167,6 +168,7 @@ nnoremap   <C-K>    <PageUp>H
 vnoremap   <C-K>    <PageUp>zz
 nnoremap   <C-N>    :bn<CR>
 nnoremap   <C-P>    :bp<CR>
+nnoremap   <C-S>    :update<cr>
 nnoremap   <C-U>    <C-T>
 
 "vnoremap  #    y:let @/=@"<CR>N
@@ -204,7 +206,6 @@ nnoremap   ck   :cprev<CR>
 nnoremap   cn   :cnext<CR>
 nnoremap   cp   :cprev<CR>
 nnoremap   co   :call SmartOpenQfWin()<CR>
-nnoremap   F    :Fffm<CR>
 nnoremap  gf    :call DirFilePicker("Normal")<CR>
 nnoremap   j    gj
 vnoremap   j    gj
@@ -216,10 +217,10 @@ nnoremap   J    <C-E>
 nnoremap   K    <C-Y>
 nnoremap   n    nzz
 nnoremap   N    Nzz
-nnoremap  go    :Ranger<cr>
+nnoremap  go    :Fffm<CR>
 nnoremap   q    :call SmartQuit()<CR>
 nnoremap   Q    :qall!<CR>
-nnoremap  gs    :write<CR>
+nnoremap  gs    :update<CR>
 nnoremap   S    :%s//g<Left><Left>
 vnoremap   S    :s/\%V/g<left><left>
 nnoremap   s    <C-W>
@@ -235,7 +236,7 @@ vnoremap   s*   y:call ListSrchCurrFile("v")<CR>
 nnoremap   s/   :vimgrep  %<left><left>
 nnoremap   s?   :vimgrepadd  %<left><left>
 nnoremap   U    <C-R>
-nnoremap  gw    :write<CR>
+nnoremap  gw    :update<CR>
 nnoremap  gW    :w !sudo tee % > /dev/null<CR>
 nnoremap   Y    y$
 nnoremap   yo   o<Esc>k
