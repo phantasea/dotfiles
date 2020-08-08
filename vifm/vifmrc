@@ -27,7 +27,7 @@ nnoremap c<space>  :if &laststatus | colorscheme lynna | else | colorscheme chri
 nnoremap f<space>  <nop>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
 nnoremap m<space>  <nop>
-nnoremap o<space>  <nop>
+nnoremap o<space>  :if toggle("bold") | hi OddLine cterm=bold | else | hi OddLine cterm=none | endif<cr>
 nnoremap s<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
 nnoremap x<space>  <c-w>x
 nnoremap z<space>  <nop>
