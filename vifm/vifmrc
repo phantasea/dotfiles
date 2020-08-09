@@ -116,10 +116,10 @@ nnoremap gi  :imgall<cr>
 nnoremap gI  :imgrall<cr>
 nnoremap  i  :touch<space>
 nnoremap  I  :mkdir! ""<left><c-x>c
-nnoremap gj  :siblnext<cr>
+nnoremap gj  ]R
 nnoremap  J  <c-e>
 mnoremap  J  <c-e>
-nnoremap gk  :siblprev<cr>
+nnoremap gk  [R
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  J  qje:if &preview | switch | endif<cr>
@@ -203,6 +203,8 @@ vnoremap  xO :sumovetoother<cr>
 nnoremap  y  yy
 nnoremap  Y  :copybasename<cr>
 nnoremap gy  :copyfullname<cr>
+nnoremap  zj }
+nnoremap  zk {
 
 "nnoremap yd :!echo %d | xsel -b %i<cr>
 "nnoremap yf :!echo %c:p | xsel -b %i<cr>
