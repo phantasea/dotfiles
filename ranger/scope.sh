@@ -83,10 +83,19 @@ handle_extension() {
             catdoc   "${FILE_PATH}" && exit 5
             exit 1;;
 
+        # XLS
+        xls)
+            xls2csv -- "${FILE_PATH}" && exit 5
+            exit 1;;
+
         # MS Excel
         xlsx)
-            ## Uses: https://github.com/dilshod/xlsx2csv
             xlsx2csv -- "${FILE_PATH}" && exit 5
+            exit 1;;
+
+        # CSV
+        csv)
+            sed "s/,,,,/,,-,,/g;s/,,/ /g" "${FILE_PATH}" | column -t | sed "s/ - /  /g" | cut -c -1024 && exit 5
             exit 1;;
 
         # BitTorrent
@@ -103,10 +112,8 @@ handle_extension() {
 
         # HTML
         htm|html|xhtml)
-            # Preview as text conversion
             w3m -dump -T text/html "${FILE_PATH}" && exit 5
             elinks -dump "${FILE_PATH}" && exit 5
-            pandoc -s -t markdown -- "${FILE_PATH}" && exit 5
             exit 1;;
 
         # C/C++ files
