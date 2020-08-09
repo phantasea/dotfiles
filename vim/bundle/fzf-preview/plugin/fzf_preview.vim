@@ -181,7 +181,8 @@ command! -nargs=+ -complete=customlist,fzf_preview#args#complete_files_resources
 augroup fzf_preview_buffers
   autocmd!
   if g:fzf_preview_quit_map
-    autocmd FileType fzf tnoremap <silent> <buffer> <Esc> <C-g>
+    " mod by sim1: comment this line to make <Esc> be able to exit FZF
+    "autocmd FileType fzf tnoremap <silent> <buffer> <Esc> <C-g>
     autocmd FileType fzf nnoremap <silent> <buffer> <C-g> i<C-g>
     autocmd FileType fzf vnoremap <silent> <buffer> <C-g> <Esc>i<C-g>
   endif
