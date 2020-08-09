@@ -143,9 +143,10 @@ if [ -f ~/.alias ]; then
     . ~/.alias
 fi
 
-[ -f ~/.z.sh ] && source ~/.z.sh
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-[ -f ~/.forgit.bash ] && source ~/.forgit.bash
+[ -f /opt/conf/forgit.bash ] && source /opt/conf/forgit.bash
+[ -f /opt/conf/fzf.bash ]    && source /opt/conf/fzf.bash
+[ -f /opt/conf/z.sh ]        && source /opt/conf/z.sh
+[ -f /opt/conf/fz.sh ]       && source /opt/conf/fz.sh
 
 # enable programmable completion features
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
