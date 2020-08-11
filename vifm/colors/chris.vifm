@@ -27,6 +27,7 @@ highlight  ErrorMsg     ctermfg=red       ctermbg=black     cterm=none
 highlight  Border       ctermfg=white     ctermbg=black     cterm=none
 highlight  TopMid       ctermfg=white     ctermbg=black     cterm=bold
 highlight  TabNr        ctermfg=none      ctermbg=none      cterm=none
+highlight  TabNrSel     ctermfg=none      ctermbg=none      cterm=none
 highlight  LineNr       ctermfg=white     ctermbg=black     cterm=bold
 highlight  StatusLine   ctermfg=white     ctermbg=blue      cterm=bold
 highlight  CmdLine      ctermfg=yellow    ctermbg=none      cterm=bold
