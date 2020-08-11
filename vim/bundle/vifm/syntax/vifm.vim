@@ -21,9 +21,9 @@ syntax keyword vifmCommand contained
 		\ mes[sages] mkdir m[ove] noh[lsearch] on[ly] popd pushd pu[t] pw[d] qa[ll]
 		\ q[uit] redr[aw] reg[isters] regular rename restart restore rlink screen
 		\ sh[ell] siblnext siblprev sor[t] sp[lit] s[ubstitute] tabc[lose] tabm[ove]
-		\ tabname tabnew tabn[ext] tabp[revious] touch tr trashes tree sync
+		\ tabname tabnew tabn[ext] tabp[revious] touch tr trashes tree sync session
 		\ undol[ist] ve[rsion] vie[w] vifm vs[plit] winc[md] w[rite] wq wqa[ll]
-		\ xa[ll] x[it] y[ank] select switch ratings tabo[nly] 
+		\ xa[ll] x[it] y[ank] select switch ratings tabo[nly] delsession
 		\ nextgroup=vifmArgs
 syntax keyword vifmCommandCN contained
 		\ alink apropos bmark bmarks bmgo cds change chmod chown clone compare
@@ -33,9 +33,9 @@ syntax keyword vifmCommandCN contained
 		\ mes[sages] mkdir m[ove] noh[lsearch] on[ly] popd pushd pu[t] pw[d] qa[ll]
 		\ q[uit] redr[aw] reg[isters] regular rename restart restore rlink screen
 		\ sh[ell] siblnext siblprev sor[t] sp[lit] s[ubstitute] tabc[lose] tabm[ove]
-		\ tabname tabnew tabn[ext] tabp[revious] touch tr trashes tree sync
+		\ tabname tabnew tabn[ext] tabp[revious] touch tr trashes tree sync session
 		\ undol[ist] ve[rsion] vie[w] vifm vs[plit] winc[md] w[rite] wq wqa[ll]
-		\ xa[ll] x[it] y[ank] select switch ratings
+		\ xa[ll] x[it] y[ank] select switch ratings tabo[nly] delsession
 		\ nextgroup=vifmArgsCN
 
 " commands that might be prepended to a command without changing everything else
@@ -87,7 +87,8 @@ syntax case ignore
 syntax keyword vifmHiGroups contained WildMenu Border Win CmdLine CurrLine
 		\ OtherLine Directory Link Socket Device Executable Selected BrokenLink
 		\ TopLine TopLineSel StatusLine JobLine SuggestBox Fifo ErrorMsg CmpMismatch
-		\ Menu Dialog TopMid AuxWin OtherWin TabLine TabLineSel
+		\ Menu Dialog TopMid AuxWin OtherWin TabLine TabLineSel HardLink LineNr
+		\ OddLine TabNr TabNrSel
 		\ User1 User2 User3 User4 User5 User6 User7 User8 User9
 syntax keyword vifmHiStyles contained
 		\ bold underline reverse inverse standout italic none
@@ -144,11 +145,11 @@ syntax keyword vifmOption contained aproposprg autochpos caseoptions cdpath cd
 		\ numberwidth nuw previewprg quickview relativenumber rnu rulerformat ruf
 		\ runexec scrollbind scb scrolloff so sort sortgroups sortorder sortnumbers
 		\ shell sh shellflagcmd shcf shortmess shm showtabline stal sizefmt slowfs
-		\ smartcase scs statusline stl suggestoptions syncregs syscalls tabscope
+		\ smartcase scs statusline stl suggestoptions syncregs syscalls tabscope tablabel
 		\ tabstop timefmt timeoutlen title tm trash trashdir ts tuioptions to
 		\ undolevels ul vicmd viewcolumns vifminfo vimhelp vixcmd wildmenu wmnu
 		\ prefervsplit maxundotabs previewmaxsize topmidfiller maxratingstars
-		\ filenamedisplen filenamedispall
+		\ filenamedisplen filenamedispall sessionoptions ssop
 		\ wildstyle wordchars wrap wrapscan ws
 
 " Disabled boolean options

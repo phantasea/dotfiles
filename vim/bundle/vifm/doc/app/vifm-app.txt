@@ -1,4 +1,4 @@
-*vifm-app.txt*    For Vifm version 0.10.1  Last change: 2020 Apr 20
+*vifm-app.txt*    For Vifm version 0.10.1  Last change: 2020 August 8
 
  Email for bugs and suggestions: <xaizek@posteo.net>
 
@@ -25,6 +25,7 @@
 |vifm-compare-views|      Kinds, properties and differences of compare views.
 |vifm-startup|            Determining of environment variables on startup.
 |vifm-configure|          Configuration of vifm.
+|vifm-sessions|           Managing sessions.
 |vifm-fuse|               Using automated FUSE mounts.
 |vifm-view-look|          Gives general overview of view displaying variants.
 |vifm-ls-view|            Some details about ls-like view.
@@ -69,7 +70,7 @@ or
 vifm /path/to/directory/one /path/to/directory/two
 
 Specifying two directories triggers split view even when vifm was in
-single-view mode on finishing previous session.  To suppress this behaviour
+single-view mode on finishing previous run.  To suppress this behaviour
 |vifm-:only| command can be put in the vifmrc file.
 
 When only one path argument is found on command-line, the left/top pane is
@@ -307,7 +308,9 @@ typing pattern by hand.
 
 Matches are automatically selected if |vifm-'hlsearch'| is set.  Enabling
 |vifm-'incsearch'| makes search interactive.  |vifm-'ignorecase'| and
-|vifm-'smartcase'| options affect case sensitivity of search queries.
+|vifm-'smartcase'| options affect case sensitivity of search queries as well
+as local filter and other things detailed in the description of
+|vifm-'caseoptions'|.
 
 [count]n                                       *vifm-n*
     go to the next file matching last search pattern.  Takes last search
@@ -602,7 +605,7 @@ ZZ - same as |vifm-:quit|.                       *vifm-ZZ*
 
 .                                              *vifm-.*
     repeat last command-line command (not normal mode command) of this
-    session (does nothing right after startup or |vifm-:restart| command).
+    run (does nothing right after startup or |vifm-:restart| command).
     The command doesn't depend on command-line history and can be used
     with completely disabled history.
 
@@ -1190,10 +1193,9 @@ The builtin commands are:
     execute command via shell.  Accepts macros.
 :[range]!command &
     Same as above, but the command is run in the background using vifm's means.
-    When not on Windows, programs that write to stderr create error dialogs
-    showing errors of the command.  Note the space before ampersand symbol,
-    if you omit it, command is run in the background using job control of
-    your shell.
+    Programs that write to stderr create error dialogs showing errors of the
+    command.  Note the space before ampersand symbol, if you omit it, command
+    is run in the background using job control of your shell.
                                                *vifm-:!!*
 :[range]!!command
     same as :!, but pauses before returning.
@@ -1496,6 +1498,11 @@ The builtin commands are:
 :delm[arks] marks ...
     delete specified marks, each argument is treated as a set of marks.
 
+                                               *vifm-:delsession*
+:delsession name
+    delete specified session if it was stored previously.  Deleting current
+    session doesn't detach it.
+
                                                *vifm-:display* *vifm-:di*
 :di[splay]
     display menu with registers content.
@@ -1621,9 +1628,9 @@ The builtin commands are:
     4. firefox
     5. uzbl
 
-    If there is no graphical environment (checked presence of $DISPLAY
-    environment variable on *nix; never happens on Windows), the list will
-    look like:
+    If there is no graphical environment (checked by presence of non-empty
+    $DISPLAY or $WAYLAND_DISPLAY environment variable on *nix; never happens
+    on Windows), the list will look like:
 
     1. lynx
     2. links
@@ -1772,8 +1779,10 @@ Available group-name values:
  - TabLine - tab line color (for |vifm-'tabscope'| set to "global")
  - TabLineSel - color of the tip of selected tab (regardless of
                 |vifm-'tabscope'|)
- - TopLineSel - top line color of the current pane
+ - TabNr - tab number color
+ - TabNrSel - tab number color for current tab
  - TopLine - top line color of the other pane
+ - TopLineSel - top line color of the current pane
  - CmdLine - the command line/status bar color
  - ErrorMsg - color of error messages in the status bar
  - StatusLine - color of the line above the status bar
@@ -1782,10 +1791,13 @@ Available group-name values:
  - SuggestBox - color of key suggestion box
  - CurrLine - line at cursor position in active view
  - OtherLine - line at cursor position in inactive view
+ - OddLine - color of every second entry line in a pane
+ - LineNr - line number column of views
  - Selected - color of selected files
  - Directory - color of directories
  - Link - color of symbolic links in the views
  - BrokenLink - color of broken symbolic links
+ - HardLink - color of regular files with more than one hard link
  - Socket - color of sockets
  - Device - color of block and character devices
  - Executable - color of executable files
@@ -1932,22 +1944,30 @@ transparency:
   Win
     OtherWin
       AuxWin
-        File name specific highlights
-          Directory
-          Link
-          BrokenLink
-          Socket
-          Device
-          Fifo
-          Executable
-            Selected
-              CurrLine
-              OtherLine
+        OddLine
+          File name specific highlights
+            Directory
+            Link
+            BrokenLink
+            HardLink
+            Socket
+            Device
+            Fifo
+            Executable
+              Selected
+                CurrLine
+                  LineNr (in active pane)
+                OtherLine
+                  LineNr (in inactive pane)
   TopLine
     TopLineSel
       TabLineSel (for pane tabs)
+        TabNr
+          TabNrSel
   TabLine
     TabLineSel
+      TabNr
+        TabNrSel
 
 "none" means default terminal color for highlight groups at the first level
 of the hierarchy and transparency for all others.
@@ -2127,7 +2147,7 @@ order using the '.' operator.  Any whitespace is ignored.
 
 :q[uit][!]                                     *vifm-:quit* *vifm-:q*
     if there is more than one tab, close the current one, otherwise exit
-    vifm (add ! to skip saving changes and checking for active backgrounded
+    vifm (add ! to skip saving state and checking for active backgrounded
     commands).
 
 :redr[aw]                                      *vifm-:redraw* *vifm-:redr*
@@ -2151,10 +2171,10 @@ order using the '.' operator.  Any whitespace is ignored.
     rename each of selected files to a corresponding name.
 
 :restart                                       *vifm-:restart*
-    free a lot of things (histories, commands, etc.), reread vifminfo and
-    vifmrc files and run startup commands passed in the argument list, thus
-    losing all unsaved changes (e.g. recent history or keys mapped in current
-    session).
+    free a lot of things (histories, commands, etc.), reread vifminfo, vifmrc
+    and session files and run startup commands passed in the argument list,
+    thus losing all unsaved changes (e.g. recent history or keys mapped after
+    starting this instance).  Session that wasn't yet stored gets reset.
 
     While many things get reset, some basic UI state and current locations
     are preserved, including tabs.
@@ -2208,6 +2228,17 @@ yet supported) and might be changed in future releases, or get an alias.
     beforehand.
 :[range]select! [{pattern}|!{external command}]
     same as above, but resets previously selected items before proceeding.
+
+                                               *vifm-:session*
+:session?
+    print name of the current session.
+:session
+    detach current session without saving it.  Resets |vifm-v:session|.
+:session name
+    create or load and switch to a session with the specified name.  Name
+    can't contain slashes.  Session active at the moment is saved before the
+    switch.  Session is also automatically saved when quiting the
+    application in usual ways.  Sets |vifm-v:session|.
 
                                                *vifm-:set* *vifm-:se*
 :se[t]
@@ -2475,15 +2506,16 @@ yet supported) and might be changed in future releases, or get an alias.
       - , - other pane
 
 :w[rite]                                       *vifm-:write* *vifm-:w*
-    write current state to vifminfo file.
+    write current state to vifminfo and session files (if a session is
+    active).
 
 :wq[!]                                         *vifm-:wq*
-    same as |vifm-:quit|, but "!" disables only check of backgrounded
-    commands, while vifminfo is always written.
+    same as |vifm-:quit|, but "!" disables only the check of backgrounded
+    commands, while state of the application is always written.
 
 :wqa[ll][!]                                    *vifm-:wqall* *vifm-:wqa*
-    same as |vifm-:qall|, but ! only disables check of backgrounded
-    commands.
+    same as |vifm-:qall|, but ! disables only the check of backgrounded
+    commands, while state of the application is always written.
 
 :xa[ll][!]                                     *vifm-:xall* *vifm-:xa*
     same as |vifm-:qall|.
@@ -2688,6 +2720,7 @@ Use %% if you need to put a percent sign in your command.
 Note that %m, %M, %s, %S, %i, %u and %U macros are mutually exclusive.  Only
 the last one of them on the command will take effect.
 
+                                                     *vifm-filename-modifiers*
 You can use file name modifiers after %c, %C, %f, %F, %b, %d and %D macros.
 Supported modifiers are:
     :p           - full path
@@ -3143,11 +3176,12 @@ occasionally size of directories is possible.
                                                *vifm-'dotdirs'*
 dotdirs
 type: set
-default: nonrootparent
+default: nonrootparent,treeleafsparent
 
 Controls displaying of dot directories.  The following values are possible:
- - rootparent    - show "../" in root directory of file system
- - nonrootparent - show "../" in non-root directories of file system
+ - rootparent      - show "../" in root directory of file system
+ - nonrootparent   - show "../" in non-root directories of file system
+ - treeleafsparent - show "../" in empty directories of tree view
 
 Note that empty directories always contain "../" entry regardless of value of
 this option.  "../" disappears at the moment at least one file is created.
@@ -3335,8 +3369,9 @@ ignorecase ic
 type: boolean
 default: false
 
-Ignore case in search patterns (:substitute, / and ? commands) and
-characters after f and F commands.  It doesn't affect file filtering.
+Ignore case in search patterns (:substitute, / and ? commands), local filter
+(but not the rest of filters) and other things detailed in the description of
+|vifm-'caseoptions'|.
 
                                                *vifm-'incsearch'* *vifm-'is'*
 incsearch is
@@ -3557,12 +3592,15 @@ it's right aligned.  Following macros are supported:
     %x  - number of files excluded by filters
     %0- - old name for %x macro
     %S  - number of displayed files
-    %%  - percent sign
+    %%  - literal percent sign
     %[  - designates beginning of an optional block
     %]  - designates end of an optional block
 
 Percent sign can be followed by optional minimum field width.  Add '-' before
 minimum field width if you want field to be right aligned.
+
+Optional blocks are ignored unless at least one macro inside of them is
+expanded to a non-empty value.
 
 Example: >
  set rulerformat='%2l-%S%[ +%x%]'
@@ -3592,6 +3630,18 @@ Minimal number of screen lines to keep above and below the cursor.  If you
 want cursor line to always be in the middle of the view (except at the
 beginning or end of the file list), set this option to some large value
 (e.g. 999).
+
+                                               *vifm-'sessionoptions'*
+                                               *vifm-'ssop'*
+sessionoptions ssop
+type: set
+default: tui,state,tabs,savedirs,dhistory
+
+An equivalent of |vifm-'vifminfo'| for sessions, uses the same values.  When
+both options include the same value, data from session file has higher
+priority (data from vifminfo isn't necessarily completely discarded,
+instead it's merged with the state of a session the same way state of
+multiple instances is merged on exit).
 
                                                *vifm-'shell'* *vifm-'sh'*
 shell sh
@@ -3686,9 +3736,8 @@ smartcase scs
 type: boolean
 default: false
 
-Overrides the |vifm-'ignorecase'| option if the search pattern contains at
-least one upper case character.  Only used when |vifm-'ignorecase'| option
-is enabled.  It doesn't affect file filtering.
+Overrides the |vifm-'ignorecase'| option if a pattern contains at least one
+upper case character.  Only used when |vifm-'ignorecase'| option is enabled.
 
                                                *vifm-'sort'*
 sort
@@ -3879,6 +3928,46 @@ operations, otherwise system calls are used instead (much faster and supports
 progress tracking).  The option should eventually be removed.  Mostly
 *nix-like systems are affected.
 
+                                               *vifm-'tablabel'*
+tablabel
+type: string
+default: ""
+
+When non-empty, determines format of a single tab's label, excluding tab
+number and tab delimiters.
+
+When empty, tab label is set to either tab name for named tabs or to view
+title (usually current path) for unnamed tabs.
+
+The following macros can appear in the format:
+    %T - flag of a tree mode (see below)
+    %c - description of a custom view
+    %n - name of the tab
+    %p - path of the view (handles |vifm-filename-modifiers|)
+    %t - title of the view (affected by |vifm-'shortmess'| flags)
+    %% - literal percent sign
+    %[ - designates beginning of an optional block
+    %] - designates end of an optional block
+
+In global tabs the view in bullets above refers to currently active view of that
+tab.
+
+Flag macros are a special kind of macros that always expand to an empty value
+and are ment to be used inside optional blocks to control their visibility.
+
+Optional blocks are ignored unless at least one macro inside of them is
+expanded to a non-empty value or is a set flag macro.
+
+Example: >
+ " %[(%n)%]        -- optional name of the tab
+ " %[              -- optional description of the view
+ "   %[%T{tree}%]  -- mark of tree mode
+ "   %[{%c}%]      -- description of custom view
+ "   @             -- just an extra separator before the path
+ ' %]
+ " %p:t            -- tail part of view's location
+ set tablabel=%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p:t
+<
                                                *vifm-'tabscope'*
 tabscope
 type: enumeration
@@ -3968,7 +4057,7 @@ conditions:
                                                *vifm-'tuioptions'* *vifm-'to'*
 tuioptions to
 type: charset
-default: "ps"
+default: "psv"
 
 Each flag configures some aspect of TUI appearance.  The flags are:
                                                *vifm-to-p*
@@ -3981,6 +4070,8 @@ s - when included, left and right borders (side borders, hence "s" character)
 are visible.
                                                *vifm-to-u*
 u - use Unicode characters in the TUI (Unicode ellipsis instead of "...").
+                                               *vifm-to-v*
+v - vary width of middle border to equalize view sizes.
 
                                                *vifm-'undolevels'* *vifm-'ul'*
 undolevels ul
@@ -4052,7 +4143,7 @@ Controls what will be saved in the $VIFM/vifminfo file:
    phistory  - prompt history
    fhistory  - history of local filter (see |vifm-=|)
    dirstack  - directory stack overwrites previous stack, unless stack of
-               current session is empty
+               current instance is empty
    registers - registers content
    tabs      - global or pane tabs
    options   - all options that can be set with the :set command (obsolete)
@@ -4445,6 +4536,14 @@ v:count                                        *vifm-count-variable*
 v:count1                                       *vifm-count1-variable*
     same as v:count, but 1 by default.
 
+                                               *vifm-v:jobcount*
+v:jobcount                                     *vifm-jobcount-variable*
+    number of active jobs (as can be seen in the |vifm-:jobs| menu).
+
+                                               *vifm-v:session*
+v:session                                      *vifm-session-variable*
+    name of the current session or empty string.
+
 See also |vifm-v:servername|.
 
 function call                                  *vifm-expr-function*
@@ -4554,7 +4653,8 @@ The result is a string, which represents file type and is one of the list:
     block   block devices
     fifo    pipes
     sock    *nix domain sockets
-    ?       unknown file type (should not normally appear)
+    ?       unknown file type (should not normally happen) or
+            non-file (pseudo-entries in compare view)
 
 The result can also be an empty string in case of invalid argument.
 
@@ -4564,15 +4664,6 @@ Parameter {fnum} can have following values:
 
 Optional parameter {resolve} is treated as a boolean and specifies whether
 symbolic links should be resolved.
-
-fnameescape({expr})                            *vifm-fnameescape()*
-
-Escapes parameter to make it suitable for use as an argument of a :command.
-List of escaped characters includes %, which is doubled.
-
-Usage example: >
-  " navigate to most recently modified file in current directory
-  execute 'goto' fnameescape(system('ls -t | head -1'))
 
 fnameescape({expr})                            *vifm-fnameescape()*
 
@@ -5107,7 +5198,7 @@ Files are gathered in this way:
 --------------------------------------------------------------------------------
 *vifm-startup*
 
-On startup vifm determines several variables that are used during the session.
+On startup vifm determines several variables that are used during execution.
 They are determined in the order they appear below.
 
                                                *vifm-$HOME*
@@ -5158,21 +5249,23 @@ set<space here>
 equals "set  smartcase".
 
                                                *vifm-vifminfo*
-The $VIFM/vifminfo file contains session settings.  You may edit it by hand
-to change the settings, but it's not recommended to do that, edit vifmrc
-instead.  You can control what settings will be saved in vifminfo by setting
-|vifm-'vifminfo'| option.  Vifm always writes this file on exit unless
-|vifm-'vifminfo'| option is empty.  Marks, bookmarks, commands, histories,
-filetypes, fileviewers and registers in the file are merged with vifm
-configuration.
+The $VIFM/vifminfo file contains generic state of the application.  You can
+control what is stored vifminfo by setting |vifm-'vifminfo'| option.  Vifm
+always writes this file on exit unless |vifm-'vifminfo'| option is empty.
+Marks, bookmarks, commands, histories, filetypes, fileviewers and registers
+in the file are merged with vifm configuration.
 
 Generally, runtime configuration has bigger priority during merging, but there
 are some exceptions:
  - directory stack stored in the file is not overwritten unless something is
-   changed in vifm session that performs merge;
+   changed in vifm instance that performs merge;
  - each mark or bookmark is marked with a timestamp, so that newer value is
    not overwritten by older one, thus no matter from where it comes, the
-   newer one wins.
+   newer one wins;
+ - all histories are marked with timestamps on storing, this means that last
+   instance to quit puts its elements on top of the list;
+ - tabs are merged only if both current instance and stored state contain
+   exactly one tab of any kind.
 
                                                *vifm-scripts*
 The $VIFM/scripts directory can contain shell scripts.  vifm modifies
@@ -5191,6 +5284,53 @@ and for this reason the following rules apply during lookup:
  - if there is no file with .vifm extension, all regular files are listed;
  - otherwise only files with .vifm extension are listed (with the extension
    being truncated).
+
+--------------------------------------------------------------------------------
+*vifm-sessions*
+
+Sessions provide a way to have multiple persistent runtime configurations.
+Think of them as second-level |vifm-vifminfo| files in addition to the
+first-level one used by all sessions.  In other words, they aren't a
+replacement for vifminfo file that exists without sessions, but an addition to
+it.  One can empty |vifm-'vifminfo'| option and rely solely on sessions, but in
+practice one might want to share some state among instances in different
+sessions or have an "out-of-sessions" state for tasks that don't deserve a
+session of their own.
+
+This leads to a two-level structure where data in session files has higher
+priority than data in vifminfo files (where this makes sense) following the
+same rules that merging of vifminfo file obeys.  In addition to that, history
+items from session files are never ordered before history items from vifminfo
+file.
+
+Format~
+
+Sessions have the format of vifminfo files, they do not consist of sequence
+of command-line commands and are not meant to be sourced via |vifm-:source|
+command.
+
+Storage and naming~
+
+`$VIFM/sessions/` directory serves as a storage for sessions.  Consequently
+names should be valid filenames.  The structure of the storage is flat meaning
+that there are no subdirectories, that's why names of sessions can't contain
+slashes.
+
+Usage model~
+
+Contrary to Vim, vifm automates basic management of sessions.  You can start,
+switch, stop or delete a session using builtin means.
+
+Current session is saved at the same time vifminfo is saved (on normal exits
+or explicitly on |vifm-:write| command) and right before switching to another
+session.  To avoid saving in those cases use |vifm-:session| command to detach
+(without saving) from a session before proceeding.
+
+Related topics~
+
+Commands: |vifm-:session|, |vifm-:delsession|
+Options: |vifm-'sessionoptions'|
+Variables: |vifm-v:session|
 
 --------------------------------------------------------------------------------
 *vifm-fuse*

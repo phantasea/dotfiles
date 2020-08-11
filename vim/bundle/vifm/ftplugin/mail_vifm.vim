@@ -41,9 +41,7 @@ endfunction
 
 function! s:HandleRunResults(exitcode, listf)
 	if a:exitcode != 0
-		echohl WarningMsg
-		echo 'Got non-zero code from vifm: ' . a:exitcode
-		echohl None
+		echoerr 'Got non-zero code from vifm: ' . a:exitcode
 		call delete(a:listf)
 		return
 	endif
