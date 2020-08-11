@@ -412,7 +412,7 @@ command! uz       tar -zxf %c %i &
 command! uj       tar -jxf %c %i &
 command! zip      zip -r %f.zip %f
 command! zx       zx %f
-command! extract  aunpack %f &>/dev/null &
+command! extract  aunpack -e %f &>/dev/null &
 command! archive  apack %a %f &>/dev/null &
 command! run      !! ./%f
 command! make     !!make %a
