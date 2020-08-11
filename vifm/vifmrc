@@ -436,8 +436,10 @@ command! manhelp  manmux vifm
 command! weather  curl --silent wttr.in %m
 command! altopen  fileopen -b %c
 command! auxopen  fileopen -B %c
-command! ffgoto   :exec 'goto' fnameescape(system('locate -i %a | fzf 2>/dev/tty')) '%IU' | redraw
-command! ffgoto   :exec 'goto' fnameescape(system('fd -t=f -t=l | fzf 2>/dev/tty')) '%IU' | redraw
+command! ffgotoA  :set noquickview | :exec 'goto' fnameescape(term('locate $HOME | fzf --height=0 2>/dev/tty'))
+command! ffgotoB  :set noquickview | :exec 'goto' fnameescape(term('fd -t=f -t=l | fzf --height=0 2>/dev/tty'))
+command! ffgotoC  :exec 'goto' fnameescape(system('locate -i %a | fzf 2>/dev/tty')) '%IU' | redraw
+command! ffgotoD  :exec 'goto' fnameescape(system('fd -t=f -t=l | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto   fd --type file | fzf --height=0 | xargs -r vifmgoto
 command! ffedit   fd -d=3 -t=f -t=l -H -E .git --size=-800k | fzf --height=0 -1 -q "%a" --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
 command! fffave   cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f -t=l . | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
