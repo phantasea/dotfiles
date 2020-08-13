@@ -6,7 +6,7 @@
 " Available style values (some of them can be combined):
 " bold  underline  reverse/inverse  standout  none
 
-"highlight group        ctermfg=fg_color  ctermbg=bg_color  cterm=attrs 
+"highlight GroupName    ctermfg=fg_color  ctermbg=bg_color  cterm=attrs 
 
 set laststatus
 
@@ -27,7 +27,7 @@ highlight  ErrorMsg     ctermfg=red       ctermbg=black     cterm=none
 highlight  Border       ctermfg=white     ctermbg=black     cterm=none
 highlight  TopMid       ctermfg=white     ctermbg=black     cterm=bold
 highlight  TabNr        ctermfg=none      ctermbg=none      cterm=none
-highlight  TabNrSel     ctermfg=none      ctermbg=none      cterm=none
+highlight  TabNrSel     ctermfg=none      ctermbg=none      cterm=bold
 highlight  LineNr       ctermfg=white     ctermbg=black     cterm=bold
 highlight  StatusLine   ctermfg=white     ctermbg=blue      cterm=bold
 highlight  CmdLine      ctermfg=yellow    ctermbg=none      cterm=bold
