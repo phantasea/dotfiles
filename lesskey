@@ -1,3 +1,6 @@
-#command
+#run lesskey in bash to take effect
  v  quit
 \e  quit
+ p  back-screen
+^J  forw-screen
+^K  back-screen
