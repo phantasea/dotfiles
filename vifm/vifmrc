@@ -24,11 +24,11 @@ nnoremap  <space>  :switch<cr>
 
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
 nnoremap c<space>  :if &laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
-nnoremap f<space>  <nop>
+nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | exec 'normal gg' | else | set sort='+iname' | endif<cr>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
 nnoremap m<space>  <nop>
 nnoremap o<space>  :if toggle("bold") | hi OddLine cterm=bold | else | hi OddLine cterm=none | endif<cr>
-nnoremap s<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | else | set sort='+iname' | endif<cr>
+nnoremap s<space>  <nop>
 nnoremap x<space>  <c-w>x
 nnoremap z<space>  <nop>
 
@@ -251,25 +251,30 @@ set iooptions=fastfilecloning
 " TUI options
 set notitle
 set nolsview
-set millerview
-set tuioptions="v"
-set tabscope=pane
-set showtabline=multiple
-set tablabel=%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p
-set dotdirs=rootparent
 set nodotfiles
-set fillchars=vborder:\|
-set numberwidth=1
-set viewcolumns=-{name},{rating},17{mtime}
-set sizefmt=units:iec,precision:1,nospace
-set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
+set millerview
 set tabstop=4
-set confirm=permdelete
-set dirsize=nitems
+set numberwidth=1
 set shortmess="T"
 set timeoutlen=2000
 set cpoptions="s"
+set tuioptions="v"
 set caseoptions="pg"
+set confirm=permdelete
+set dotdirs=rootparent
+set timefmt="%H:%M\ %m/%d/%y"
+set tabscope=pane
+set showtabline=multiple
+set tabprefix="[%0*%N:"
+set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
+set tabsuffix="]"
+set statusline="%5*[%A]%9*⚡%6*%u:%g%9*⚡%2*%d%9*⚡%1*%a | %E%9*⚡%4* %= \"%t%T\""
+set rulerformat="%=%r %l%%%S%[ +%x%]"
+set fillchars=vborder:\|
+set dirsize=nitems
+set viewcolumns=-{name},{rating},17{mtime}
+set sizefmt=units:iec,precision:1,nospace
+set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
 
 set prefervsplit
 set maxundotabs=3
@@ -290,10 +295,6 @@ set grepprg='rg -S --vimgrep %i %a'
 set locateprg='locate %a'
 set mediaprg='vifmmed'
 set previewprg=""
-
-set timefmt="%H:%M\ %m/%d/%y"
-set rulerformat="%=%r %l%%%S%[ +%x%]"
-set statusline="%5*[%A]%9*⚡%6*%u:%g%9*⚡%2*%d%9*⚡%1*%a | %E%9*⚡%4* %= \"%t%T\""
 
 source $VIFM/devicons
 
