@@ -9,12 +9,11 @@ hi OtherWin     cterm=none                    ctermfg=default  ctermbg=default
 hi AuxWin       cterm=none                    ctermfg=default  ctermbg=233
 hi OddLine                                    ctermfg=default  ctermbg=default
 
-hi TopLine      cterm=none                    ctermfg=black    ctermbg=grey42
+hi TopLine      cterm=none,reverse            ctermfg=black    ctermbg=grey42
 hi TopLineSel   cterm=bold                    ctermfg=white    ctermbg=red
 
 hi TabLine      cterm=none                    ctermfg=white    ctermbg=black
 hi TabLineSel   cterm=bold,reverse            ctermfg=default  ctermbg=default
-hi TabNr                                      ctermfg=default  ctermbg=default
 
 hi JobLine      cterm=bold                    ctermfg=white    ctermbg=238
 hi StatusLine   cterm=none                    ctermfg=black    ctermbg=white
