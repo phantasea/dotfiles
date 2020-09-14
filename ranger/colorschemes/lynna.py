@@ -181,6 +181,9 @@ class Lynna(ColorScheme):
                 attr |= bold | reverse
                 fg = cyan
                 fg += BRIGHT
+            elif context.loaded:
+                bg = white
+                fg = black
             elif context.message:
                 if context.bad:
                     attr |= reverse

@@ -170,6 +170,10 @@ class Chris(ColorScheme):
                 attr |= bold | reverse
                 fg = cyan
                 fg += BRIGHT
+            elif context.loaded:
+                bg = white
+                fg = black
+                attr |= bold
             elif context.message:
                 if context.bad:
                     attr |= reverse
