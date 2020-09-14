@@ -612,6 +612,9 @@ filetype  *.log  tac %c | less, multitail %f, lnav %f
 " json files
 fileview  *.json  jq --color-output '.' %c, python -m json.tool -- %c
 
+" pcap files
+filetype  *.pcap,*.cap  sngrep -iI %c
+
 " Object
 fileview  *.o  nm %c
 filetype  *.o  nm %c | less
