@@ -423,7 +423,7 @@ command! mv       mv -r %f %D
 command! cp       cp -r %f %D
 command! link     ln -s %d/%f %D
 command! mkbt     mktorrent -p -a -o %D/%f.torrent %d%f
-command! reload   :write | restart
+command! reload   :write | restart full
 command! iconv    iconv -f GBK -t UTF8 %c -o %c %i
 command! vgrep    vim "+grep %a"
 command! mpv      mpv --vo=drm %c
@@ -499,6 +499,9 @@ autocmd DirEnter '~/misc/dotfiles/**/*'  setl dotfiles
 " :t - tail of the filename
 " :r - root of the filename (without last extension)
 
+" Directories
+fileview  */,.*/  tree -L 2 -C --dirsfirst %c
+
 " Manpage
 filetype  *.[1-8],*.[1-8].gz  man ./%c
 fileview  *.[1-8],*.[1-8].gz  man ./%c | col -b
@@ -533,28 +536,20 @@ fileview  *.py  highlight -S python -O ansi -s dante %c, bat --color=always %c
 " shell script
 fileview  *.sh  highlight -S sh -O ansi -s dante %c, bat --color=always %c
 
-" Directories
-fileview  */,.*/  tree -L 2 -C --dirsfirst %c
-
 " Audio
-fileview  *.mp3,*.wav,*.ogg,*.ape,*.wma,*.aac  exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1
-filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac        audplay %c &, audplay -b %c &, audplay -B %c &
-filetype  *.wma,*.ape,*.rm                     audplay -b %c &, audplay -B %c &
+filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac  audplay %c &, audplay -b %c &, audplay -B %c &
+filetype  *.wma,*.ape,*.rm               audplay -b %c &, audplay -B %c &
+fileview  <audio/*>  exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1
 
 " Video
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
           \ vidplay %c, mplayer %c, mpv %c,
           \ mediainfo %f %m 2>&1,
-fileview  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
-          \ exiftool %c, mediainfo %c,
-          \ thumbnail %px %py %pw %ph %c,
-          \ vifmimg videopreview %px %py %pw %ph %c %pc  vifmimg clear,
+fileview  <video/*>  exiftool %c, mediainfo %c, thumbnail %px %py %pw %ph %c
 
 " Image
 filetype  *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm  imgview %c, imgview -b %c, imgview -B %c
-filetype  *.gif
-          \ mpv %c, pqiv -f %c, vimiv -f %c,
-          \ vifmimg gifpreview %px %py %pw %ph %c %pc  vifmimg clear
+filetype  *.gif  mpv %c, pqiv -f %c, vimiv -f %c
 filextype *.svg  vimiv %f
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm
           \ pho -p %c, pho -p -s1 %c,
@@ -562,10 +557,7 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm
           \ vimiv %f, vimiv --slideshow,
           \ sxiv -ft %f, sxiv -fS 1 %f,
           \ pqiv -f --action="montage_mode_enter()" --thumbnail-size=128x128, pqiv -fs,
-fileview  *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,*.ppm
-          \ w3mimg %px %py %pw %ph %c,
-          \ exiftool %c, mediainfo %c,
-          \ vifmimg draw %px %py %pw %ph %c %pc  vifmimg clear,
+fileview  <image/*>  w3mimg %px %py %pw %ph %c, exiftool %c, mediainfo %c
 
 " PDF
 filetype  *.pdf  pdfview %c %i, pdfview -b %c, pdfview -B %c
@@ -573,7 +565,6 @@ fileview  *.pdf
           \ pdftotext -l 3 -nopgbrk -q -- %c -,
           \ thumbnail %px %py %pw %ph %c,
           \ mutool draw -F txt -i -- %c,
-          \ vifmimg pdfpreview %px %py %pw %ph %c %pc  vifmimg clear,
 
 " PostScript
 fileview  *.ps  ps2text %c -
@@ -592,7 +583,7 @@ endif
 
 " epub
 filetype  *.epub  zathura %c %i &
-fileview  *.epub  pandoc %c -t plain, vifmimg epubpreview %px %py %pw %ph %c %pc vifmimg clear,
+fileview  *.epub  pandoc %c -t plain
 
 " Webpage
 filetype  *.html,*.htm,*.xhtml,*.shtml  webview %c, webview -b %c, webview -B %c, webview -bB %c
