@@ -164,8 +164,8 @@ fi
 [ -f /opt/conf/misc/googler-completion.bash ] && source /opt/conf/misc/googler-completion.bash
 [ -f /opt/conf/misc/googler.alias ]           && source /opt/conf/misc/googler.alias
 
-#type fbtmux > /dev/null 2>&1 && fbtmux
+# start the crontab
+crontab /opt/conf/mycrontab
+
+# type fbtmux > /dev/null 2>&1 && fbtmux
 command -v fbtmux > /dev/null 2>&1 && fbtmux
-#if x-is-run; then
-#    tmux set status on
-#fi
