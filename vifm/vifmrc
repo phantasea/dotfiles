@@ -283,7 +283,7 @@ set previewmaxsize=3000
 set nofilenamedispall
 set topmidfiller="+"
 if $DISPLAY == ""
-set filenamedisplen=66
+set filenamedisplen=64
 else
 set filenamedisplen=49
 endif
