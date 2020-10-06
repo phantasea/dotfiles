@@ -28,9 +28,9 @@ nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | exec 'norm
 nnoremap g<space>  :edit $MYVIFMRC<cr>
 nnoremap m<space>  <nop>
 nnoremap o<space>  :if toggle("bold") | hi OddLine cterm=bold | else | hi OddLine cterm=none | endif<cr>
-nnoremap s<space>  <nop>
+nnoremap s<space>  :if &sort == '+iname' | set sort='-size,+iname' | exec 'normal gg' | else | set sort='+iname' | endif<cr>
 nnoremap x<space>  <c-w>x
-nnoremap z<space>  <nop>
+nnoremap z<space>  :invert o<cr>
 
 cnoremap  <c-o>  <s-tab>
 cnoremap  <c-j>  <cr>
@@ -299,8 +299,7 @@ set previewprg=""
 source $VIFM/devicons
 
 windo filter! /(lost\+found|Desktop|sandisk_ext|sandisk_exp|downloadhelper
-              \|sandisk_w|\.pyo$|\.pyc$|__pycache__
-              \|Extreme\ SSD|udisk_hama|3166-6338|d042e951-|华为手机助手)/
+              \|\.pyo$|\.pyc$|__pycache__|Extreme\ SSD|3166-6338|d042e951-|华为手机助手)/
 
 " Show list of matches on tab complition in command-line mode
 set wildmenu
