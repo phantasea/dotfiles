@@ -111,7 +111,7 @@ status-message-time = 2
 timedisplay-type = elapsed
 
 ## Show the bitrate in the status bar when playing a stream.
-visible-bitrate = yes
+visible-bitrate = no
 
 ## Change the XTerm title (ncmpc will not restore the title).
 set-xterm-title = no
