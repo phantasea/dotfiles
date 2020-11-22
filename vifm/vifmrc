@@ -50,13 +50,15 @@ nnoremap  <c-b>  :tree<cr>
 mnoremap  <c-j>  <c-f>
 nnoremap  <c-j>  <c-f>L
 qnoremap  <c-j>  <c-f>
-nnoremap  <c-k>  <c-b>H
 mnoremap  <c-k>  <c-b>
+nnoremap  <c-k>  <c-b>H
 qnoremap  <c-k>  <c-b>
 nnoremap  <c-n>  gt
 vnoremap  <c-n>  gt
+qnoremap  <c-n>  a
 nnoremap  <c-p>  gT
 vnoremap  <c-p>  gT
+qnoremap  <c-p>  A
 nnoremap  <c-r>  :restore<cr>
 nnoremap  <c-q>  :tabonly<cr>
 nnoremap  <c-t>  :tabnew<cr>
