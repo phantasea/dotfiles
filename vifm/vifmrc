@@ -330,10 +330,6 @@ set history=9
 set nofollowlinks
 set nochaselinks
 
-" With this option turned on you can run partially entered commands with
-" unambiguous beginning using :! (e.g. :!Te instead of :!Terminal or :!Te<tab>).
-set nofastrun
-
 " Natural sort of (version) numbers within text.
 set sortnumbers
 set sort="+iname"
@@ -472,7 +468,7 @@ autocmd DirEnter '~/misc/dotfiles/**/*'  setl dotfiles
 " :filetype pattern1,pattern2 defaultprogram,program2
 " :fileviewer pattern1,pattern2 consoleviewer
 " The other programs for the file type can be accessed with the :file command
-" The command macros %f, %F, %d, %F may be used in the commands.
+" The command macros %f, %F, %d, %D may be used in the commands.
 " The %a macro is ignored.  To use a % you must put %%.
 
 " For automated FUSE mounts, you must register an extension with :file[x]type
