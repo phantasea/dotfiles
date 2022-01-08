@@ -270,7 +270,7 @@ set showtabline=multiple
 set tabprefix="[%0*%N:"
 set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
-set statusline="%5*[%A]%9*⚡%6*%u:%g%9*⚡%2*%d%9*⚡%1*%a | %E%9*⚡%4* %= \"%t%T\""
+set statusline="%5*[%A]%9*|%6*%u:%g%9*|%2*%d%9*|%1*%a | %E%9*|%4* %= \"%t%T\""
 set rulerformat="%=%r %l%%%S%[(+%x)%] %P"
 set fillchars=vborder:\|
 set dirsize=nitems
