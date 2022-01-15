@@ -87,7 +87,7 @@ set index_format  = "%2C [%S] %D (%X) %-15.15L • %s"
 #set forward_format= "Fwd: %s"
 
 set charset=UTF-8
-set locale=UTF-8
+#set locale=UTF-8
 set send_charset="us-ascii:iso-8859-1:utf-8:gbk:gb2312:big5"
 set assumed_charset="gb2312:gbk:utf-8:big5"
 set rfc2047_parameters=yes
