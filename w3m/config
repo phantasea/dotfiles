@@ -24,7 +24,7 @@ ignore_null_img_alt 1
 view_unseenobject 1
 display_image 0
 pseudo_inlines 1
-auto_image 1
+auto_image 0
 max_load_image 8
 ext_image_viewer 0
 image_scale 100
@@ -54,6 +54,7 @@ confirm_qq 0
 close_tab_back 0
 mark 1
 emacs_like_lineedit 0
+space_autocomplete 0
 vi_prec_num 0
 mark_all_pages 1
 wrap_search 1
@@ -84,8 +85,8 @@ extbrowser3 bash -c 'tsp mpv --ontop --no-border --force-window --autofit=500x28
 extbrowser4 bash -c 'TS_SOCKET=/tmp/w3m tsp youtube-dl -c --restrict-filenames -x --audio-format mp3 -o "~/Downloads/%(title)s.%(ext)s" "$0" && notify-send -t 5000 -i audio-x-generic "Youtube-DL: Ripping Audio" "$0"'
 extbrowser5 bash -c 'transmission-remote -a "$0" && notify-send -t 5000 -i emblem-downloads "Adding Torrent" "$0"'
 extbrowser6 bash -c 'TS_SOCKET=/tmp/w3m tsp aria2c -j 1 -c -d ~/Downloads "$0" && notify-send -t 5000 -i package-x-generic "Aria2c: Downloading" "$0"'
-extbrowser7
-extbrowser8
+extbrowser7 
+extbrowser8 
 extbrowser9 bash -c 'echo -n "$0" | xclip -selection clipboard && notify-send -t 5000 -i edit-copy "W3M URL Yank To Clipboard" "$0"'
 bgextviewer 0
 use_lessopen 0
@@ -112,6 +113,7 @@ max_news 50
 use_proxy 0
 http_proxy 
 https_proxy 
+gopher_proxy 
 ftp_proxy 
 no_proxy 
 noproxy_netaddr 0
