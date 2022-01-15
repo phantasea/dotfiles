@@ -148,7 +148,7 @@ enable-colors = yes
 color background = black
 
 ## Set the text color for the title row.
-color title = yellow,reverse
+color title = yellow,reverse/blue
 
 ## Set the text color for the title row (the bold part).
 color title-bold = cyan,bold,reverse
