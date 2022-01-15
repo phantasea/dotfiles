@@ -27,4 +27,8 @@ fi
 [ ! -s ~/.cache/mpd/mpd.pid ] && mpd
 
 # set PATH so it includes user's private bin directories
-PATH="/opt/util:/opt/util/misc:$HOME/bin:$HOME/.local/bin:$PATH"
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+PATH="/opt/util:/opt/util/misc:$PATH"
