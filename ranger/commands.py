@@ -206,7 +206,8 @@ class fzf_fave(Command):
 class fzf_vids(Command):
     def execute(self):
         import subprocess
-        command="fd -t=f -e=mp4 . /media | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | \
+        command="fd --hidden -d=2 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | \
+                fzf --height=0 --bind 'ctrl-o:execute(fzfopen {}),j:down,k:up' | \
                 sed 's/ /\\ /g' | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
@@ -221,7 +222,8 @@ class fzf_vids(Command):
 class fzf_auds(Command):
     def execute(self):
         import subprocess
-        command="fd -t=f -e=mp3 . ~/auds/auds | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r fileopen"
+        command="fd -t=f -e=mp3 . ~/auds | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | \
+                sed 's/ /\\ /g' | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -260,6 +262,39 @@ class fzf_porn(Command):
                 self.fm.cd(fzf_file)
             else:
                 self.fm.select_file(fzf_file)
+
+
+class fzf_open(Command):
+    def execute(self):
+        if not self.arg(1):
+            self.fm.notify("Usage: fzf_open <directory>", bad=True)
+            return
+
+        import subprocess
+        from os.path import join, expanduser, lexists
+
+        dirname = join(self.fm.thisdir.path, expanduser(self.rest(1)))
+        if not lexists(dirname):
+            self.fm.notify("directory doesn't exists", bad=True)
+            return
+
+        if not os.path.isdir(dirname):
+            self.fm.notify("this isn't a directory!", bad=True)
+            return
+
+        command="fd -d=1 -t=f . '%s' | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | \
+                sed 's/ /\\ /g' | xargs -r fileopen" % dirname
+        fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
+        stdout, stderr = fzf.communicate()
+        if fzf.returncode == 0:
+            fzf_file = os.path.abspath(stdout.decode('utf-8').rstrip('\n'))
+            if os.path.isdir(fzf_file):
+                self.fm.cd(fzf_file)
+            else:
+                self.fm.select_file(fzf_file)
+
+    def tab(self, tabnum):
+        return self._tab_directory_content()
 
 
 fd_deq = deque()
