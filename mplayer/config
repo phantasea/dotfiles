@@ -3,7 +3,8 @@ lirc=no
 really-quiet=yes
 vo=fbdev2
 fs=yes
-xy=1024
+#xy=1024
+xy=2160
 zoom=yes
 ontop=yes
 
