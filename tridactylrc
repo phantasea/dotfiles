@@ -10,11 +10,18 @@ guiset_quiet hoverlink right
 guiset_quiet tabs count
 
 set allowautofocus false
-set editorcmd xterm -e vim
+set editorcmd st -e vim
+"set editorcmd gnome-terminal --disable-factory -- vim
 set findcase insensitive
 set newtab about:blank
 set smoothscroll true
 set yankto both
+
+set hintnames uniform
+set hintchars hjklasdfgyuiopqwernmtvcbxz
+
+"set followpagepatterns.next ^(次へ|進む|もっと見る|もっとみる|次のページ|続き|next|newer|more|(>|→|»|≫|>>)\b)
+"set followpagepatterns.prev ^(前へ|戻る|前のページ|prev(ious)?|older|back|(<|←|«|≪|<<|«|<<)\b)
 
 " Ctrl-F should use the browser's native 'find' functionality.
 unbind <C-f>
@@ -31,34 +38,38 @@ unbind yt
 bind < tabprev
 bind > tabnext
 
-bind g<Space> source
-bind gp followpage prev
-bind gn followpage next
-bind gd tabdetach
+bind g<Space> source ~/.tridactylrc
 
-bind / fillcmdline find
-bind D tabduplicate
-bind n findnext 1
-bind N findnext -1
-bind j scrollline 5
-bind k scrollline -5
-bind H back
-bind L forward
-bind o fillcmdline open
-bind O current_url open
-bind t fillcmdline tabopen
-bind T current_url tabopen
-bind p clipboard open
-bind P clipboard tabopen
-bind s fillcmdline saveas
-bind S saveas
-bind u undo tab
-bind U undo window
-bind v composite hint -pipe a href | exclaim_quiet mpv --ontop --keepaspect-window --profile=protocol.http
-bind V js tri.native.run(`mpv --ontop --keepaspect-window --profile=protocol.http '${document.location.href}'`)
-bind q tabclose
-bind x tabclose
-bind y clipboard yankshort
+bind <C-o> back
+bind <C-i> forward
+
+bind  gp followpage prev
+bind  gn followpage next
+bind  gd tabdetach
+
+bind  /  fillcmdline find
+bind  D  tabduplicate
+bind  H  back
+bind  j  scrollline 5
+bind  k  scrollline -5
+bind  L  forward
+bind  n  findnext 1
+bind  N  findnext -1
+bind  o  fillcmdline open
+bind  O  current_url open
+bind  t  fillcmdline tabopen
+bind  T  current_url tabopen
+bind  p  clipboard open
+bind  P  clipboard tabopen
+bind  q  tabclose
+bind  u  undo tab
+bind  U  undo window
+bind  v  composite hint -pipe a href | exclaim_quiet mpv --ontop --keepaspect-window --profile=protocol.http
+bind  V  js tri.native.run(`mpv --ontop --keepaspect-window --profile=protocol.http '${document.location.href}'`)
+bind  x  stop
+bind  y  clipboard yankshort
+
+bind --mode=ex <Space> ex.insert_space_or_completion
 
 bind --mode=ex          <C-a>   text.beginning_of_line
 bind --mode=insert      <C-a>   text.beginning_of_line
@@ -81,23 +92,23 @@ bind --mode=ex          <C-w>   text.backward_kill_word
 bind --mode=insert      <C-w>   text.backward_kill_word
 bind --mode=input       <C-w>   text.backward_kill_word
 
-" bind --mode=ex          <C-n>   ex.next_completion
-" bind --mode=ex          <C-p>   ex.prev_completion
-" bind --mode=ex          <C-y>   ex.insert_completion
-" bind --mode=ex          <C-e>   ex.deselect_completion
-" bind --mode=ex          <Tab>   ex.complete
+bind --mode=ex          <C-n>   ex.next_completion
+bind --mode=ex          <C-p>   ex.prev_completion
+bind --mode=ex          <C-y>   ex.insert_completion
+bind --mode=ex          <C-e>   ex.deselect_completion
+bind --mode=ex          <Tab>   ex.complete
 bind --mode=ex          <C-w>   composite text.beginning_of_line ; text.forward_word ; text.kill_word
 
 set searchengine g
-set searchurls.ddg https://duckduckgo.com/html?q=%s
-set searchurls.deb https://packages.debian.org/search?keywords=%s&searchon=names&suite=all&section=all
-set searchurls.g https://www.google.com/search?q=%s
-set searchurls.gh https://github.com/search?utf8=%E2%9C%93&q=%s&ref=simplesearch
-set searchurls.gi https://www.google.com/search?q=%s&tbm=isch
-set searchurls.gmaps https://www.google.com/maps/search/%s
-set searchurls.w https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
-set searchurls.wfr https://fr.wikipedia.org/w/index.php?search=%s&title=Sp%E9cial%3ARecherche
-set searchurls.y https://www.youtube.com/results?search_query=%s
+set searchurls.ddg    https://duckduckgo.com/html?q=%s
+set searchurls.deb    https://packages.debian.org/search?keywords=%s&searchon=names&suite=all&section=all
+set searchurls.g      https://www.google.com/search?q=%s
+set searchurls.gh     https://github.com/search?utf8=%E2%9C%93&q=%s&ref=simplesearch
+set searchurls.gi     https://www.google.com/search?q=%s&tbm=isch
+set searchurls.gmaps  https://www.google.com/maps/search/%s
+set searchurls.w      https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
+set searchurls.wfr    https://fr.wikipedia.org/w/index.php?search=%s&title=Sp%E9cial%3ARecherche
+set searchurls.y      https://www.youtube.com/results?search_query=%s
 
 " Make gu take you back to subreddit from comments
 bindurl reddit\.com gu urlparent 4
@@ -134,6 +145,25 @@ bind ;c hint -c summary,[class*="expand"],[class="togg"]
 # bind ;# hint -#
 # bind ;v hint -W exclaim_quiet mpv
 # bind ;w hint -w
+
+" Make quickmarks for the sane Tridactyl issue view
+quickmark a https://www.amazon.co.jp/
+quickmark c https://console.aws.amazon.com/
+quickmark d http://www.dmm.com/
+quickmark f https://feedly.com/i/latest
+quickmark g https://douga.geo-online.co.jp/
+quickmark h https://www.hmv.co.jp/
+quickmark i https://www.instagram.com/
+quickmark l https://www.deepl.com/ja/translator
+quickmark n https://www.netflix.com/jp/Login
+quickmark p https://getpocket.com/a/
+quickmark r https://www.rakuten.co.jp/
+quickmark s https://app.simplenote.com/
+quickmark t https://github.com/tridactyl/tridactyl/issues?utf8=%E2%9C%93&q=sort%3Aupdated-desc+
+quickmark t https://tweetdeck.twitter.com/
+quickmark x https://app.plex.tv/desktop
+quickmark y https://www.youtube.com/?gl=JP
+quickmark z https://us02web.zoom.us/signin
 
 # * AutoCmds
 # Curently, 'TriStart', 'DocStart', 'DocEnd', 'TabEnter' and 'TabLeft' are supported.
