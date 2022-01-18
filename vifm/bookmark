@@ -2,18 +2,20 @@ mark  a  /opt/apps      vifm
 mark  c  ~/.config      ranger
 mark  e  /opt/conf      vifm
 mark  h  ~/             temp
+mark  m  /opt/misc      apps
 mark  n  ~/docs/note    reinstall_ubuntu_16.04.txt
-mark  o  /opt/misc/apps
-mark  p  /opt/.priv
+mark  o  /opt           misc
+mark  p  ~/vids/.porn
+mark  P  /opt/.porn/text
 mark  r  /              usr
-mark  t  ~/.Trash
-mark  u  /opt/util      sandisk
+mark  t  ~/temp
+mark  T  ~/.Trash
+mark  u  /opt/util      mudisk
 mark  v  ~/.vim/bundle  vifm
 mark  w  ~/docs/webs
+mark  x  /opt/.priv
 
-mark  T  /tmp
-mark  P  /opt/.porn     text
-mark  M  /media/simone  sandisk_s
+mark  M  /media/simone sandisk_s
 mark  S  /media/simone/sandisk_s
 mark  U  /media/simone/sandisk_u
 mark  V  /media/simone/sandisk_v
