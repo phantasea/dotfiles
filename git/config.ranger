@@ -5,7 +5,7 @@
 	logallrefupdates = true
 [remote "origin"]
 	fetch = +refs/heads/*:refs/remotes/origin/*
-	url = https://github.com/hut/ranger.git
+	url = https://github.com/ranger/ranger.git
 	pushurl = git@github.com:phantasea/ranger.git
 	pushurl = git@gitlab.com:phantasea/ranger.git
 [branch "master"]
