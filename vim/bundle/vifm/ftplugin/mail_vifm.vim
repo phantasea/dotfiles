@@ -1,6 +1,6 @@
 " Mail file type extension to pick files for attachments via vifm
 " Maintainer:  xaizek <xaizek@posteo.net>
-" Last Change: January 02, 2018
+" Last Change: June 22, 2020
 
 " Insert attachment picked via vifm after 'Subject' header
 function! s:AddMailAttachments()
