@@ -1,3 +1,0 @@
-[submodule "vim/bundle/vim-clap"]
-	path = vim/bundle/vim-clap
-	url = https://github.com/liuchengxu/vim-clap
