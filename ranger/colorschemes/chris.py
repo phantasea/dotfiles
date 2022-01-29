@@ -103,8 +103,9 @@ class Chris(ColorScheme):
                 attr |= bold
 
         elif context.in_titlebar:
-            attr |= bold
+            #attr |= bold
             if context.hostname:
+                attr |= bold
                 fg = context.bad and red or green
                 bg = red
                 fg = white
@@ -121,12 +122,13 @@ class Chris(ColorScheme):
                 bg = green
                 fg = black
             elif context.tab:
+                attr |= bold
                 fg = white
                 if context.good:
                     bg = red
 
         elif context.in_statusbar:
-            attr |= bold
+            #attr |= bold
             if context.permissions:
                 bg = red
                 fg = black

@@ -110,8 +110,9 @@ class Lynna(ColorScheme):
                 fg, bg, attr = default_colors
 
         elif context.in_titlebar:
-            attr |= bold
+            #attr |= bold
             if context.hostname:
+                attr |= bold
                 fg = context.bad and red or green
                 bg = red
                 fg = white
@@ -128,6 +129,7 @@ class Lynna(ColorScheme):
                 bg = green
                 fg = black
             elif context.tab:
+                attr |= bold
                 if context.good:
                     fg = white
                     bg = red
@@ -137,7 +139,7 @@ class Lynna(ColorScheme):
                     attr ^= bold
 
         elif context.in_statusbar:
-            attr |= bold
+            #attr |= bold
             if context.permissions:
                 bg = red
                 fg = black
