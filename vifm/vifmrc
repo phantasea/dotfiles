@@ -178,7 +178,8 @@ nnoremap  ss <c-w>S
 nnoremap  st :tree<cr>
 nnoremap  sv :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' | view! | else | view! | endif<cr>
 nnoremap  sw :!feh --bg-max --no-fehbg %f<cr>
-nnoremap  sy :sync<cr>
+nnoremap  si :switch<cr>:sync<cr>:switch<cr>
+nnoremap  so :sync<cr>
 nnoremap  sc :!tsp rsync -a %f %D<cr>
 nnoremap  sx :!tsp rsync -a --remove-source-files %f %D && tsp find %f -type d -empty -exec rmdir {} \; && tsp rmdir %f<cr>
 nnoremap  S  :s//g<left><left>
@@ -203,8 +204,9 @@ vnoremap  xI :sumovefromother<cr>
 nnoremap  xO :sumovetoother<cr>
 vnoremap  xO :sumovetoother<cr>
 nnoremap  y  yy
-nnoremap  Y  :copybasename<cr>
-nnoremap gy  :copyfullname<cr>
+nnoremap  Y  :yankbasename<cr>
+nnoremap gy  :yankpathname<cr>
+nnoremap gY  :yankfullname<cr>
 nnoremap  zj }
 nnoremap  zk {
 
@@ -393,8 +395,9 @@ command! sumovetoother   sudo mv -i %f %D %i
 command! sucopytoother   sudo cp -R %f %D %i
 command! sumovefromother sudo mv -i %F %d %i
 command! sucopyfromother sudo cp -R %F %d %i
-command! copybasename    tmux setb %c %i &
-command! copyfullname    tmux setb %d/%c %i &
+command! yankbasename    tmux setb %c %i &
+command! yankpathname    tmux setb %d %i &
+command! yankfullname    tmux setb %d/%c %i &
 command! diff            vimux -d %c %C
 command! diffsamewin     vimux -d %f
 
