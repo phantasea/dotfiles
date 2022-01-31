@@ -1,0 +1,7 @@
+#!/bin/bash
+
+TEMP=$(sensors | grep Tctl | cut -d'+' -f2 | sed -e 's/[ \t]*//g')
+
+color="color='#FFFFFF'"
+logo=''
+echo "<span $color>$logo</span> $TEMP"

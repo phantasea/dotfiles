@@ -34,8 +34,8 @@ elif [[ $battery_ststus = "Unknown" ]] || [[ $battery_ststus = "Full" ]]; then
 
 elif [[ $battery_ststus = "Charging" ]] ; then
     logo=""
-	echo "<span $color>$logo</span> $battery_percent% $remaining"
-#	echo "<span $color>$logo</span> $battery_percent%"
+#	echo "<span $color>$logo</span> $battery_percent% $remaining"
+	echo "<span $color>$logo</span> $battery_percent%"
 
 #Not battery found #######################################
 elif [[ -z $battery_ststus ]] ; then

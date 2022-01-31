@@ -25,9 +25,7 @@ Total=$(( $Idle + $NonIdle ))
 totald=$(( $Total - $PrevTotal ))
 idled=$(( $Idle - $PrevIdle))
 
-CPU_Percentage=$(( ($totald-$idled)*100/$totald ))
-echo "<span font_desc='Icons'>CPU=</span>$CPU_Percentage%"
-
-if [[ $CPU_Percentage > 90 ]] ; then
-    echo "<span color='#FF3333' font_desc='Icons'>CPU=</span>$CPU_Percentage%"
-fi
+color="color='#FFFFFF'"
+logo=''
+CPU=$(( ($totald-$idled)*100/$totald ))
+echo "<span $color>$logo</span> $CPU%"
