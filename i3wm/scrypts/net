@@ -4,8 +4,6 @@ IF=$(ip route | awk '/^default/ { print $5 ; exit }')
 
 if [[ "$(cat /sys/class/net/$IF/operstate)" = 'down' ]]; then
   echo   # full text
-  echo   # short text
-  echo \#FF3333 # color
   exit
 fi
 
@@ -14,14 +12,7 @@ if [[ $(echo $IF | tr -d 0-9) = "wlps" ]] ; then
     QUALITY=$(grep $IF /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
     SSID=$(iwgetid -r)
     echo " $SSID $QUALITY%" # full text
-    echo " " # short text
-
-    if [[ $QUALITY -lt 40 ]]; then
-        echo "#FF3333" # color
-    else
-        echo "#FFFFFF"
-    fi
-
+    exit
 fi
 
 # if default route via lan
@@ -43,11 +34,7 @@ esac
 
 if [[ -z $IPADDR ]]; then
   echo   # full text
-  echo   # short text
-  echo \#FF3333 # color
   exit
 fi
 
 echo "  [$IPADDR]" # full text
-echo " " # short text
-echo "#FFFFFF"

@@ -29,8 +29,8 @@ if [[ $battery_ststus  = "Discharging" ]] ; then
 elif [[ $battery_ststus = "Unknown" ]] || [[ $battery_ststus = "Full" ]]; then
 	logo=""
     color="color='#33FF33'"
-	echo "<span $color>$logo</span> 100%"
-#	echo "<span $color>$logo</span> 100%"
+	echo "<span $color>$logo 100%</span>"
+#	echo "<span $color>$logo 100%</span>"
 
 elif [[ $battery_ststus = "Charging" ]] ; then
     logo=""
