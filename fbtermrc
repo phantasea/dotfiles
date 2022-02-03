@@ -8,7 +8,7 @@
 #font-names=Consolas,DejaVu Sans Mono
 #font-size=14
 #font-names=WenQuanYi Zen Hei Mono,Consolas
-font-size=32
+font-size=34
 
 # force font width (and/or height), usually for non-fixed width fonts
 # legal value format: n (fw_new = n), +n (fw_new = fw_old + n), -n (fw_new = fw_old - n)
