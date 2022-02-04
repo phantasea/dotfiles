@@ -180,8 +180,8 @@ nnoremap  sv :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1'
 nnoremap  sw :!feh --bg-max --no-fehbg %f<cr>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
 nnoremap  so :sync<cr>
-nnoremap  sc :!tsp rsync -a %f %D<cr>
-nnoremap  sx :!tsp rsync -a --remove-source-files %f %D && tsp find %f -type d -empty -exec rmdir {} \; && tsp rmdir %f<cr>
+nnoremap  sC :!tsp rsync -a %f %D<cr>
+nnoremap  sX :!tsp rsync -a --remove-source-files %f %D && tsp find %f -type d -empty -exec rmdir {} \; && tsp rmdir %f<cr>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
 nnoremap gs  :select //i<left><left>
@@ -562,7 +562,11 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm
           \ vimiv %f, vimiv --slideshow,
           \ sxiv -ft %f, sxiv -fS 1 %f,
           \ pqiv -f --action="montage_mode_enter()" --thumbnail-size=128x128, pqiv -fs,
+if $DISPLAY == ""
 fileview  <image/*>  w3mimg %px %py %pw %ph %c, exiftool %c, mediainfo %c
+else
+fileview  <image/*>  vifmimg draw %px %py %pw %ph %c %pc vifmimg clear
+endif
 
 " PDF
 filetype  *.pdf  pdfview %c %i, pdfview -b %c, pdfview -B %c
