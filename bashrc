@@ -61,7 +61,7 @@ find_alt() { for i;do which "$i" >/dev/null && { echo "$i"; return 0; };done;ret
 
 # Use the first program that it detects in the array as the default app
 export OPENER=$(find_alt xdg-open exo-open gnome-open)
-export XBROWSER=$(find_alt firefox vimb chromium chromium-browser google-chrome $OPENER)
+export XBROWSER=$(find_alt firefox google-chrome vimb chromium chromium-browser $OPENER)
 if x-is-run; then
     export BROWSER=elinks
 else
@@ -69,9 +69,15 @@ else
 fi
 
 unset  MAILCHECK
+
+batsym='/opt/util/bat'
+if [[ -L $batsym && ! -e $batsym ]]; then
+    export MANPAGER="/bin/sh -c \"col -b | view --noplugin -c 'set ft=man ts=8 nomod nolist nonu noma titlestring=MANPAGE' -\""
+else
+    export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+fi
+
 export PAGER="/bin/sh -c \"col -b | view -c 'set ts=8 nomod nolist nonu noma' -\""
-export MANPAGER="/bin/sh -c \"col -b | view --noplugin -c 'set ft=man ts=8 nomod nolist nonu noma titlestring=MANPAGE' -\""
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export EDITOR=vim
 export VISUAL=vim
 export LANG=en_US.UTF-8
