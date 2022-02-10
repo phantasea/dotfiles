@@ -152,6 +152,7 @@ class Lynna(ColorScheme):
             elif context.link:
                 bg = blue
                 fg =white
+                attr |= bold
             elif context.lspace:
                 bg = white
                 fg = black
