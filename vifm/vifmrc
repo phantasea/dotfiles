@@ -68,6 +68,11 @@ nnoremap  <c-u>  U
 nnoremap  <a-j>  <space>j<space>
 nnoremap  <a-k>  <space>k<space>
 
+"nnoremap <silent> <c-h> :if paneisat('left')   | execute '!tmux select-pane -L %i' | else | execute 'wincmd h' | endif<cr>
+"nnoremap <silent> <c-j> :if paneisat('bottom') | execute '!tmux select-pane -D %i' | else | execute 'wincmd j' | endif<cr>
+"nnoremap <silent> <c-k> :if paneisat('top')    | execute '!tmux select-pane -U %i' | else | execute 'wincmd k' | endif<cr>
+"nnoremap <silent> <c-l> :if paneisat('right')  | execute '!tmux select-pane -R %i' | else | execute 'wincmd l' | endif<cr>
+
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
@@ -204,23 +209,14 @@ nnoremap  xI :sumovefromother<cr>
 vnoremap  xI :sumovefromother<cr>
 nnoremap  xO :sumovetoother<cr>
 vnoremap  xO :sumovetoother<cr>
+nnoremap  xy :!echo -n %c | xclip -selection clipboard %i<cr>:echo expand('%"c') "is yanked to clipboard"<cr>
+nnoremap  xY :!echo -n %d | xclip -selection clipboard %i<cr>:echo expand('%"d') "is yanked to clipboard"<cr>
 nnoremap  y  yy
-nnoremap  Y  :yankbasename<cr>
-nnoremap gy  :yankpathname<cr>
-nnoremap gY  :yankfullname<cr>
+nnoremap  Y  :yankfullname<cr>
+nnoremap gy  :yankbasename<cr>
+nnoremap gY  :yankpathname<cr>
 nnoremap  zj }
 nnoremap  zk {
-
-"nnoremap yd :!echo %d | xsel -b %i<cr>
-"nnoremap yf :!echo %c:p | xsel -b %i<cr>
-"nnoremap ccd1 :compare bycontents listdups     ofone<CR>
-"nnoremap cnd1 :compare byname     listdups     ofone<CR>
-"nnoremap ccu1 :compare bycontents listunique   ofone<CR>
-"nnoremap cnu1 :compare byname     listunique   ofone<CR>
-"nnoremap ccd2 :compare bycontents listdups     ofboth<CR>
-"nnoremap cnd2 :compare byname     listdups     ofboth<CR>
-"nnoremap ccu2 :compare bycontents listunique   ofboth<CR>
-"nnoremap cnu2 :compare byname     listunique   ofboth<CR>
 " }}}
 
 " abbrevs {{{
@@ -305,7 +301,7 @@ set previewprg=""
 source $VIFM/devicons
 
 windo filter! /(lost\+found|Desktop|sandisk_ext|sandisk_exp|downloadhelper
-              \|\.pyo$|\.pyc$|__pycache__|Extreme\ SSD|3166-6338|d042e951-|华为手机助手)/
+              \|\.pyo$|\.pyc$|__pycache__|Extreme\ SSD|3166-6338|d042e951-|google|华为手机助手)/
 
 " Show list of matches on tab complition in command-line mode
 set wildmenu
@@ -452,9 +448,9 @@ command! ffauds   fd -d=2 -t=f -e mp3 . ~/auds | fzf --height=0 --bind 'ctrl-o:e
 command! ffvids   fd -H -d=2 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r vidplay
 command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
 command! ffporn   fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
-command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf 2> /dev/tty")
+command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-tmux --height 10 2> /dev/tty")
                   \| if $FZF_RES != ''
-                  \|     cd $FZF_RES
+                  \|   exec 'cd' fnameescape($FZF_RES)
                   \| endif
 " }}}
 
@@ -632,7 +628,7 @@ filetype  *.asc  !!gpg --verify %c
 
 " Misc archive/zip files
 fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo  als %c
-filetype  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo  als %c | less, aunpack %c
+filetype  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo  als %c | less
 
 " FuseZipMount
 fileview  *.zip,*.jar,*.war,*.ear  als %c
