@@ -6,6 +6,9 @@
 from ranger.api.commands import *
 from collections import deque
 
+# https://github.com/SL-RU/ranger_udisk_menu
+from udisk_menu.mounter import mount
+
 # You can import any python module as needed.
 import os
 import re
