@@ -172,7 +172,7 @@ nnoremap  sa :%select<cr>
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
-nnoremap  sD :compare<cr>
+nnoremap  sD :compare bycontents listall ofboth<cr>
 nnoremap  se :sued<cr>
 nnoremap  sf :find . -iname '**'<left><left>
 nnoremap  sj <space>j<space>
@@ -230,6 +230,10 @@ cabbrev  cs   colorscheme
 
 " marks/bmarks {{{
 source $VIFM/bookmark
+" }}}
+
+" mpc related {{{
+source $VIFM/vifm-mpc
 " }}}
 
 " options {{{
