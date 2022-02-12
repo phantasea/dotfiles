@@ -1,0 +1,53 @@
+# vim: foldmethod=marker filetype=conf:
+
+alias mpcfind    shell mpc play $(mpc playlist | nl | grep -Fv "$(mpc | sed -ne "1p" --)" | fzf --height 40 --with-nth 2.. | cut -f 1 | tr -d " ")
+alias mpcclear   shell mpc clear
+alias mpcadd     shell -s mpc add %f
+alias mpcins     shell -s mpc insert %f
+alias mpcdel     shell -s mpc del 0
+alias mpclast    shell -s mpc play $(mpc playlist | wc -l)
+alias mpcnext    shell -s mpc next
+alias mpcprev    shell -s mpc prev
+alias mpcstop    shell -s mpc stop
+alias mpcplay    shell -s if [ $(mpc | sed -ne 2p -- | cut -d " " -f 1) == '' ]; then mpc toggle; else mpc next; fi
+alias mpcshow    shell -s notify-send $(mpc -f %%file%% current)
+alias mpclist    shell -p mpc playlist
+alias mpctoggle  shell -s mpc toggle
+alias mpcrepeat  shell -s mpc repeat
+
+map mp. eval from ranger.ext.spawn import spawn; fm.select_file(spawn("grep ^music_directory /opt/conf/mpd.conf | grep -oP '(?<=\").*(?=\")'").strip() + "/" + spawn("mpc -f %file% | head -1"))
+map mp. eval from ranger.ext.spawn import spawn; fm.select_file("/home/simone/auds/" + spawn("mpc -f %file% | head -1"))
+map mp<space> chain mpctoggle; mpcshow
+map mpd  mpcdel
+map mpl  mpclist
+map mps  mpcshow
+map mpx  mpcstop
+map mpr  mpcrepeat
+map mpt  mpctoggle
+map mpa  chain mpcadd; mpcshow
+map mpA  chain mpcadd; mpclast
+map mpi  chain mpcins; mpcshow
+map mpI  chain mpcins; mpcnext
+map mpc  chain mpcclear; echo "Playlist cleared!"
+map mpf  chain mpcfind; mpcshow
+map mpn  chain mpcnext; mpcshow
+map mpp  chain mpcprev; mpcshow
+map mpq  shell -s mpc add /
+map mph  shell -s mpc seek -5
+map mpH  shell -s mpc seek -5%%
+map mpl  shell -s mpc seek +5
+map mpL  shell -s mpc seek +5%%
+map mpj  shell -s mpc volume -5
+map mpJ  shell -s mpc volume -10
+map mpk  shell -s mpc volume +5
+map mpK  shell -s mpc volume +10
+map mp0  shell -s mpc seek 0%%
+map mp1  shell -s mpc seek 10%%
+map mp2  shell -s mpc seek 20%%
+map mp3  shell -s mpc seek 30%%
+map mp4  shell -s mpc seek 40%%
+map mp5  shell -s mpc seek 50%%
+map mp6  shell -s mpc seek 60%%
+map mp7  shell -s mpc seek 70%%
+map mp8  shell -s mpc seek 80%%
+map mp9  shell -s mpc seek 90%%
