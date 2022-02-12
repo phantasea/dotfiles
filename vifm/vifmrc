@@ -124,9 +124,11 @@ nnoremap gI  :imgrall<cr>
 nnoremap  i  :touch<space>
 nnoremap  I  :mkdir! ""<left><c-x>c
 nnoremap gj  ]R
+nnoremap zj  }
 nnoremap  J  <c-e>
 mnoremap  J  <c-e>
 nnoremap gk  [R
+nnoremap zk  {
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  J  qje:if &preview | switch | endif<cr>
@@ -209,14 +211,12 @@ nnoremap  xI :sumovefromother<cr>
 vnoremap  xI :sumovefromother<cr>
 nnoremap  xO :sumovetoother<cr>
 vnoremap  xO :sumovetoother<cr>
-nnoremap  xy :!echo -n %c | xclip -selection clipboard %i<cr>:echo expand('%"c') "is yanked to clipboard"<cr>
-nnoremap  xY :!echo -n %d | xclip -selection clipboard %i<cr>:echo expand('%"d') "is yanked to clipboard"<cr>
 nnoremap  y  yy
-nnoremap  Y  :yankfullname<cr>
+nnoremap  Y  :yankbasename<cr>:if $DISPLAY != "" | xyankbasename | endif<cr>
 nnoremap gy  :yankbasename<cr>
 nnoremap gY  :yankpathname<cr>
-nnoremap  zj }
-nnoremap  zk {
+nnoremap xy  :xyankbasename<cr>:echo expand('%"c') "is yanked to clipboard"<cr>
+nnoremap xY  :xyankpathname<cr>:echo expand('%"d') "is yanked to clipboard"<cr>
 " }}}
 
 " abbrevs {{{
@@ -401,6 +401,9 @@ command! sucopyfromother sudo cp -R %F %d %i
 command! yankbasename    tmux setb %c %i &
 command! yankpathname    tmux setb %d %i &
 command! yankfullname    tmux setb %d/%c %i &
+command! xyankbasename   echo -n %c   | xclip -selection clipboard %i &
+command! xyankpathname   echo -n %d   | xclip -selection clipboard %i &
+command! xyankfullname   echo -n %c:p | xclip -selection clipboard %i &
 command! diff            vimux -d %c %C
 command! diffsamewin     vimux -d %f
 
