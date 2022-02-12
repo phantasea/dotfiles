@@ -407,6 +407,10 @@ command! xyankfullname   echo -n %c:p | xclip -selection clipboard %i &
 command! diff            vimux -d %c %C
 command! diffsamewin     vimux -d %f
 
+if $DISPLAY != ""
+command! setwallpaper    feh --bg-scale %c %i
+endif
+
 command! time     tty-clock -cBS -C 6
 command! ss       cmatrix -abs -C cyan
 command! sued     sudoedit %c
