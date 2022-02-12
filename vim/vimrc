@@ -755,30 +755,6 @@ let g:fffm#split = "32vnew"
 let g:fffm#split_direction = "nosplitbelow nosplitright"
 "}}}
 
-"nnn {{{
-"let g:nnn#command = 'nnn -d'
-let g:nnn#layout = { 'left': '~32%' }
-let g:nnn#action = {
-      \ '<c-t>': 'tab split',
-      \ '<c-s>': 'split',
-      \ '<c-v>': 'vsplit' }
-"}}}
-
-"vim-clap {{{
-"let g:clap_theme = { 'search_text': {'guifg': 'red', 'ctermfg': 'red'} }
-let g:clap_layout = { 'relative':'editor', 'width':'67%', 'height':'33%', 'row':'33%', 'col':'17%' }
-let g:clap_open_action = { 'ctrl-t': 'tab split', 'ctrl-x': 'split', 'ctrl-v': 'vsplit' }
-let g:clap_provider_alias = {'hist:': 'command_history'}
-let g:clap_selected_sign = { 'text': ' >', 'texthl': "ClapSelectedSign", "linehl": "ClapSelected" }
-let g:clap_current_selection_sign = { 'text': '>>', 'texthl': "ClapCurrentSelectionSign", "linehl": "ClapCurrentSelection" }
-let g:clap_no_matches_msg = 'NO MATCHES FOUND'
-let g:clap_provider_grep_opts = ''
-"}}}
-
-" bclose {{{
-let g:loaded_bclose = 1
-" }}}
-
 " multiple-cursurs {{{
 let g:multi_cursor_exit_from_visual_mode= 1
 let g:multi_cursor_exit_from_insert_mode= 1
