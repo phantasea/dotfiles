@@ -97,35 +97,34 @@ else
   let s:default_edit_cmd='edit '
 endif
 
-command! -nargs=* -complete=dir Ranger :call s:OpenRanger(<f-args>)
+command! RangerCurrentFile call OpenRangerIn("%", s:default_edit_cmd)
+command! RangerCurrentDirectory call OpenRangerIn("%:p:h", s:default_edit_cmd)
+command! RangerWorkingDirectory call OpenRangerIn(".", s:default_edit_cmd)
+command! Ranger RangerCurrentFile
 
-function! s:EscapePath(path)
-  let path = substitute(a:path, '\', '/', 'g')
-  if has('win32')
-    if len(path) != 0
-      let path = '"'.path.'"'
-    endif
-  else
-    let path = escape(fnameescape(path), '()')
-  endif
-  return path
+" To open the selected file in a new tab
+command! RangerCurrentFileNewTab call OpenRangerIn("%", 'tabedit ')
+command! RangerCurrentFileExistingOrNewTab call OpenRangerIn("%", 'tab drop ')
+command! RangerCurrentDirectoryNewTab call OpenRangerIn("%:p:h", 'tabedit ')
+command! RangerCurrentDirectoryExistingOrNewTab call OpenRangerIn("%:p:h", 'tab drop ')
+command! RangerWorkingDirectoryNewTab call OpenRangerIn(".", 'tabedit ')
+command! RangerWorkingDirectoryExistingOrNewTab call OpenRangerIn(".", 'tab drop ')
+command! RangerNewTab RangerCurrentDirectoryNewTab
+
+" For retro-compatibility
+function! OpenRanger()
+  Ranger
 endfunction
 
 " Open Ranger in the directory passed by argument
-function! s:OpenRanger(...)
-  if a:0 > 1
-    echohl WarningMsg | echo 'Too many arguments' | echohl None
-    return
-  endif
-
-  let path = (a:0 > 0) ? a:1 : expand('%:p:h')
-  let path = s:EscapePath(path)
+function! OpenRangerOnVimLoadDir(argv_path)
+  let path = expand(a:argv_path)
 
   " Delete empty buffer created by vim
-  "Bclose!
+  Bclose!
 
   " Open Ranger
-  call OpenRangerIn(path, s:default_edit_cmd)
+  call OpenRangerIn(path, 'edit')
 endfunction
 
 " To open ranger when vim load a directory
