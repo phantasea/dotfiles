@@ -12,6 +12,7 @@ ranger/plugins/*.pyo
 ranger/plugins/__pycache__
 ranger/colorschemes/*.pyo
 ranger/colorschemes/__pycache__
+ranger/__pycache__/
 vifm/vifminfo*
 vim/viminfo
 vim/bundle/**/tags
