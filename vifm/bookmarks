@@ -1,17 +1,20 @@
+" vim: filetype=vifm:
+
 mark  a  /opt/apps      vifm
 mark  c  ~/.config      ranger
 mark  e  /opt/conf      vifm
-mark  h  ~/             temp
-mark  m  /opt/misc      apps
-mark  n  ~/docs/note    reinstall_ubuntu_16.04.txt
+mark  h  ~/             misc
+mark  i  ~/pics         misc
+mark  m  ~/auds
+mark  n  ~/docs/note    reinstall_ubuntu.txt
 mark  o  /opt           misc
 mark  p  ~/vids/.porn
-mark  P  /opt/.porn/text
+mark  P  /opt/.porn     vids
 mark  r  /              usr
 mark  t  ~/temp
 mark  T  ~/.Trash
 mark  u  /opt/util      mudisk
-mark  v  ~/.vim/bundle  vifm
+mark  v  ~/vids         movie
 mark  w  ~/docs/webs
 mark  x  /opt/.priv
 
@@ -27,4 +30,4 @@ bmark!  /opt/conf/ranger/rc.conf     rc.conf
 bmark!  /opt/conf/ranger/scope.sh    scope
 bmark!  /opt/conf/ranger/rifle.conf  rifle
 bmark!  /opt/conf/i3wm/i3.config     i3
-bmark!  /home/simone/docs/note/reinstall_ubuntu_16.04.txt  reinst
+bmark!  /home/simone/docs/note/reinstall_ubuntu.txt  reinst
