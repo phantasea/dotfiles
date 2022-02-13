@@ -15,7 +15,7 @@ nnoremap  <bs>     <c-h>
 mnoremap  <bs>     <c-b>
 vnoremap  <cr>     :select<cr>
 nnoremap  <cr>     <nop>
-nnoremap g<cr>     :edit ~/.vim/bookmark<cr>
+nnoremap g<cr>     :edit ~/.vim/bookmarks<cr>
 nnoremap s<cr>     :shell<cr>
 nnoremap b<cr>     :bmgo<space>
 qnoremap  <space>  <tab>
@@ -229,7 +229,7 @@ cabbrev  cs   colorscheme
 " }}}
 
 " marks/bmarks {{{
-source $VIFM/bookmark
+source $VIFM/bookmarks
 " }}}
 
 " mpc related {{{
