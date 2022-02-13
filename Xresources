@@ -1,86 +1,223 @@
-! Configuration for xterm
 ! xrdb -load ~/.Xresources
 ! xrdb -merge ~/.Xresources
 ! xrdb -override ~/.Xresources
 
-Xft.dpi: 96
+!*background:            #272827
+!*foreground:            #657b83
+*fading:                20
+*fadeColor:             black
+*cursorColor:           #16A085
+*pointerColorBackground:#2B2C2B
+*pointerColorForeground:#16A085
+
+!! black dark/light
+*color0:                #282928
+*color8:                #272827
+
+!! red dark/light
+*color1:                #983133
+*color9:                #D10404
+
+!! green dark/light
+*color2:                #16A085
+*color10:               #00FF26
+
+!! yellow dark/light
+*color3:                #95FF00
+*color11:               #FFFF00
+
+!! blue dark/light
+*color4:                #040082
+*color12:               #003CFF
+
+!! cyan dark/light
+*color6:                #009AC4
+*color14:               #00EEFF
+
+!! white dark/light
+*color7:                #FDF6E3
+*color15:               #FFFFFF
+
+Xft.dpi: 196
 Xft.antialias: true
 Xft.hinting: true
 Xft.rgba: rgb
-Xft.autohint: true
-Xft.hintstyle: hintfull
-Xft.lcdfilter: lcdfilter
+Xft.autohint: false
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+Xcursor.theme: Chameleon-Pearl-Regular-0.5
+Xcursor.size:  0
 
-! Make alt work
-xterm*eightBitInput:   false
-xterm*eightBitOutput:  true
+XTerm*background: #272827
+XTerm*foreground: #fdf6e3
+XTerm*reverseVideo: on
+XTerm*faceName: Terminus:size=11:antialias=true
+XTerm*selectToClipboard: true
 
-! Every shell is a login shell by default (for inclusion of all necessary environment variables)
-xterm*loginshell: true
+URxvt.font: 9x15
+URxvt.depth: 32
+URxvt.background: [80]#000000
+URxvt*scrollBar:                      false
+URxvt*mouseWheelScrollPage:           false
+URxvt*cursorBlink:                    true
+URxvt*background:                     black
+URxvt*foreground:                     white
+URxvt*saveLines:                      10000
 
-! Scrollbacks
-xterm*savelines: 16384
+URxvt.font: xft:Ubuntu Mono:size=9:autohint=false:antialias=true:hinting=true
+ 			xft:FontAwesome 
+URxvt.boldFont: xft:Ubuntu Mono:size=9:autohint=false:antialias=true:hinting=true 
+ 				xft:FontAwesome 
+URxvt.letterSpace: -1
+!URxvt.lineSpace: 0
 
-! Double-click to select whole URLs :D
-xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+! for 'fake' transparency (without Compton) uncomment the following three lines
+! URxvt*inheritPixmap:                  true
+! URxvt*transparent:                    true
+! URxvt*shading:                        138
 
-! Right-side scrollbar
-xterm*rightScrollBar: false
-xterm*ScrollBar: false
+! other possible settings:
+! Rxvt.perl-ext-common: ...,clipboard
+! URxvt.keysym.M-C-c:   perl:clipboard:copy
+! URxvt.keysym.M-v:   perl:clipboard:paste
+! URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+! URxvt*termName:                       string
+URxvt*geometry:                       130x40
+! URxvt*chdir:                          string
+! URxvt*reverseVideo:                   boolean
+! URxvt*loginShell:                     boolean
+! URxvt*multiClickTime:                 number
+! URxvt*jumpScroll:                     boolean
+! URxvt*skipScroll:                     boolean
+! URxvt*pastableTabs:                   boolean
+! URxvt*scrollstyle:                    plain
+! URxvt*scrollBar_right:                boolean
+! URxvt*scrollBar_floating:             true
+! URxvt*scrollBar_align:                mode
+! URxvt*thickness:                      number
+! URxvt*scrollTtyOutput:                boolean
+! URxvt*scrollTtyKeypress:              boolean
+! URxvt*scrollWithBuffer:               boolean
+! URxvt*tintColor:                      !7DA55
+! URxvt*blurRadius:                     HxV
+! URxvt*fading:                         number
+! URxvt*fadeColor:                      color
+! URxvt*utmpInhibit:                    boolean
+! URxvt*urgentOnBell:                   boolean
+! URxvt*visualBell:                     boolean
+! URxvt*mapAlert:                       boolean
+! URxvt*meta8:                          boolean
+! URxvt*tripleclickwords:               boolean
+! URxvt*insecure:                       boolean
+! URxvt*cursorUnderline:                boolean
+! URxvt*pointerBlank:                   boolean
+! URxvt*color0:                         color
+! URxvt*color1:                         color
+! URxvt*color2:                         color
+! URxvt*color3:                         color
+! URxvt*color4:                         color
+! URxvt*color5:                         color
+! URxvt*color6:                         color
+! URxvt*color7:                         color
+! URxvt*color8:                         color
+! URxvt*color9:                         color
+! URxvt*color10:                        color
+! URxvt*color11:                        color
+! URxvt*color12:                        color
+! URxvt*color13:                        color
+! URxvt*color14:                        color
+! URxvt*color15:                        color
+! URxvt*colorBD:                        color
+! URxvt*colorIT:                        color
+! URxvt*colorUL:                        color
+! URxvt*colorRV:                        color
+! URxvt*underlineColor:                 color
+! URxvt*scrollColor:                    color
+! URxvt*troughColor:                    color
+! URxvt*highlightColor:                 color
+! URxvt*highlightTextColor:             color
+! URxvt*cursorColor:                    color
+! URxvt*cursorColor2:                   color
+! URxvt*pointerColor:                   color
+! URxvt*pointerColor2:                  color
+! URxvt*borderColor:                    color
+! URxvt*iconFile:                       file
+! URxvt*font:                           fontname
+! URxvt*boldFont:                       fontname
+! URxvt*italicFont:                     fontname
+! URxvt*boldItalicFont:                 fontname
+! URxvt*intensityStyles:                boolean
+! URxvt*inputMethod:                    name
+! URxvt*preeditType:                    style
+! URxvt*imLocale:                       string
+! URxvt*imFont:                         fontname
+! URxvt*title:                          string
+! URxvt*iconName:                       string
+! URxvt*buffered:                       boolean
+! URxvt*depth:                          number
+! URxvt*visual:                         number
+! URxvt*transient-for:                  windowid
+! URxvt*override-redirect:              boolean
+! URxvt*hold:                           boolean
+! URxvt*externalBorder:                 number
+! URxvt*internalBorder:                 number
+! URxvt*borderLess:                     true
+! URxvt*lineSpace:                      number
+! URxvt*letterSpace:                    number
+! URxvt*skipBuiltinGlyphs:              boolean
+! URxvt*pointerBlankDelay:              number
+! URxvt*backspacekey:                   string
+! URxvt*deletekey:                      string
+! URxvt*print-pipe:                     string
+! URxvt*modifier:                       modifier
+! URxvt*cutchars:                       string
+! URxvt*answerbackString:               string
+! URxvt*secondaryScreen:                boolean
+! URxvt*secondaryScroll:                boolean
+! URxvt*perl-lib:                       string
+! URxvt*perl-eval:                      perl-eval
+! URxvt*perl-ext-common:                string
+! URxvt*perl-ext:                       string
+! URxvt*iso14755:                       boolean
+! URxvt*iso14755_52:                    boolean
+! URxvt*xrm:                            string
+! URxvt*keysym.sym:                     keysym
+! URxvt*background.border:              boolean
+! URxvt*background.expr:                string
+! URxvt*background.interval:            seconds
+! URxvt*bell-command:                   string
+! URxvt*kuake.hotkey:                   string
+! URxvt*matcher.button:                 string
+! URxvt*matcher.launcher:               string
+! URxvt*matcher.launcher.*:             string
+! URxvt*matcher.pattern.*:              string
+! URxvt*matcher.rend.*:                 string
+! URxvt*remote-clipboard.fetch:         string
+! URxvt*remote-clipboard.store:         string
+! URxvt*searchable-scrollback:          string
+! URxvt*selection-autotransform.*:      string
+! URxvt*selection-pastebin.cmd:         string
+! URxvt*selection-pastebin.url:         string
+! URxvt*selection.pattern-0:            string
+! URxvt*tab-bg:                         colour
+! URxvt*tab-fg:                         colour
+! URxvt*tabbar-bg:                      colour
+! URxvt*tabbar-fg:                      colour
+!URxvt*url-launcher:                   string
 
-! Stop output to terminal from jumping down to bottom of scroll again
-xterm*scrollTtyOutput: false
 
-!true, CJK text column width of 2
-xterm*cjkWidth:true
-
-! Default font and size
-xterm*font: Monaco
-xterm*boldFont: Monaco
-xterm*faceName: Monaco
-xterm*vt100*geometry: 80x50
-xterm*termName: xterm-256color
-xterm*utf8: true
-xterm*locale: true
-xterm*renderFont: true
-xterm*scaleHeight: 1.01
-xterm*faceNameDoublesize:WenQuanYi Zen Hei Mono
-xterm*faceSize: 12
-
-xterm.vt100.translations: #override \n\
-  Ctrl <Key> j: smaller-vt-font() \n\
-  Ctrl <Key> k: larger-vt-font()
-
-! Colors
-xterm*foreground: rgb:74/89/c0
-xterm*background: rgb:2A/2A/2A
-xterm*color0: rgb:5a/5b/5c
-xterm*color1: rgb:cc/00/00
-xterm*color2: rgb:4e/9a/06
-xterm*color3: rgb:c4/a0/00
-xterm*color4: rgb:34/65/a4
-xterm*color5: rgb:d0/60/e1
-xterm*color6: rgb:06/98/9a
-xterm*color7: rgb:d3/d7/cf
-xterm*color8: rgb:47/47/47
-xterm*color9: rgb:ef/29/29
-xterm*color10: rgb:8a/e2/34
-xterm*color11: rgb:fc/e9/4f
-xterm*color12: rgb:89/53/e0
-xterm*color13: rgb:e0/6e/d3
-xterm*color14: rgb:34/e2/e2
-xterm*color15: rgb:ee/ee/ec
-xterm*boldMode: false
-xterm*colorBDMode: true
-xterm*colorBD: rgb:fc/fc/fc
-
-! ------------------------------------------------------------------------------
+! ----------------------------------------------------------------------
 ! ROFI Color theme
-! ------------------------------------------------------------------------------
-rofi.color-enabled: true
-rofi.color-window: #273238, #273238, #1e2529
-rofi.color-normal: #273238, #c1c1c1, #273238, #394249, #ffffff
-rofi.color-active: #273238, #80cbc4, #273238, #394249, #80cbc4
-rofi.color-urgent: #273238, #ff1844, #273238, #394249, #ff1844
-
-! End configuration for xterm
+! ----------------------------------------------------------------------
+! Use extended color scheme
+rofi.color-enabled:                  true
+! Color scheme for normal row
+rofi.color-normal:                   argb:00000000,  #D8DEE9 , argb:00000000,  #FAC863 ,  #1B2B34
+! Color scheme for urgent row
+rofi.color-urgent:                   argb:00000000,  #F99157 , argb:00000000,  #F99157 ,  #1B2B34
+! Color scheme for active row
+rofi.color-active:                   argb:00000000,  #6699CC , argb:00000000,  #6699CC ,  #1B2B34
+! Color scheme window
+rofi.color-window:                   argb:ee222222,  #FAC863 ,  #FAC863
+! Separator style (none, dash, solid)
+rofi.separator-style:                solid
