@@ -21,14 +21,13 @@ nnoremap mpl :!mpc seek +5 %i<cr>:mpcinfo 2<cr>
 nnoremap mpL :!mpc seek +5%% %i<cr>:mpcinfo 2<cr>
 nnoremap mpn :let $IGNORE = system('mpc next')<cr>:ShowSong<cr>
 nnoremap mpp :let $IGNORE = system('mpc prev')<cr>:ShowSong<cr>
-nnoremap mpr :let $IGNORE = system('mpc repeat')<cr>:echo system('mpc status "Repeat is %repeat%"')<cr>
+nnoremap mpr :let $IGNORE = system('mpc repeat')<cr>
 nnoremap mps :!mpc play 1 %i<cr>
 nnoremap mpx :let $IGNORE = system('mpc stop')<cr>
 nnoremap mpz :goto $MUSIC_DIR<cr>i:ffgoto<cr>
 nnoremap mp. :GotoSong<cr>
-nnoremap mp+ :!mpc volume +5 %i<cr>:echo system('mpc status "Volume is:%volume%"')<cr>
-nnoremap mp- :!mpc volume -5 %i<cr>:echo system('mpc status "Volume is:%volume%"')<cr>
-nnoremap mp0 :let $IGNORE = system('mpd_restart')<cr>:echo 'Music player daemon has been restarted'<cr>
+nnoremap mp+ :!mpc volume +5 %i<cr>
+nnoremap mp- :!mpc volume -5 %i<cr>
 nnoremap mp0 :let $IGNORE = system('mpc seek 0%')<cr>:let $IGNORE = system('mpc play')<cr>:mpcinfo 2<cr>
 nnoremap mp1 :let $IGNORE = system('mpc seek 10%')<cr>:let $IGNORE = system('mpc play')<cr>:mpcinfo 2<cr>
 nnoremap mp2 :let $IGNORE = system('mpc seek 20%')<cr>:let $IGNORE = system('mpc play')<cr>:mpcinfo 2<cr>
@@ -44,7 +43,7 @@ nnoremap mp9 :let $IGNORE = system('mpc seek 90%')<cr>:let $IGNORE = system('mpc
 command! PlayListFind :exe '!mpc load "'.system('mpc lsplaylist | fzf --height 40 2>/dev/tty').'"' | redraw
 command! PlayFind  :exe '!mpc play "'.system('mpc playlist | nl | grep -Fv "$(mpc | sed -ne "1p" --)" | fzf --height 40 --with-nth 2.. 2>/dev/tty | cut -f 1 | tr -d " "').'" &>/dev/null %IU' | redraw
 command  DelFind   :exe '!mpc del "'.system('mpc playlist | nl | fzf --height 40 --with-nth 2.. 2>/dev/tty | cut -f 1 | tr -d " "').'" &' | redraw
-command  DelCurr   mpc del $(mpc status %%songpos%%) %i
+command  DelCurr   mpc del 0 %i
 command  ShowSong  mpc -f "$SONG_FORMAT" current %S
 command  GotoSong  :exe 'goto "$MUSIC_DIR/'.system('mpc -f "%%file%%" | sed -ne "1p" --').'"'
 command  mpcinsert :let $IGNORE = system(expand('realpath -s --relative-to=$MUSIC_DIR %%f | mpc insert'))
@@ -53,7 +52,6 @@ command  mpcpls    mpc save %a | echo "Playlist saved." %i
 command  mpcpll    mpc load %a %i
 command  mpcinfo   :echo system('mpc | sed -ne '.%a.'p --')
 command  mpclist   mpc playlist | sed -e "s%%$(mpc | sed -ne '1p')%%& *%%" -- %M
-command  mpcstat   mpc status "vol:%%volume%% rep %%repeat%% rand %%random%% single %%single%%" %S
 command  mpcplay   :if system('mpc | sed -ne 2p -- | cut -d " " -f 1') == '' | execute '!mpc toggle &' | else | execute '!mpc next &' | endif
 " }}}2
 " }}}1
