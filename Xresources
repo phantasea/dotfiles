@@ -15,20 +15,24 @@
 *color8:                #272827
 
 !! red dark/light
-*color1:                #983133
-*color9:                #D10404
+*color1:                #DD113F
+*color9:                #DD0404
 
 !! green dark/light
-*color2:                #16A085
-*color10:               #00FF26
+*color2:                #55AA00
+*color10:               #00FF00
 
 !! yellow dark/light
-*color3:                #95FF00
+*color3:                #EEAA22
 *color11:               #FFFF00
 
 !! blue dark/light
-*color4:                #040082
-*color12:               #003CFF
+*color4:                #4488FF
+*color12:               #2211FF
+
+!! magenta dark/light
+*color5:                #CC44FF
+*color13:               #EE11FF
 
 !! cyan dark/light
 *color6:                #009AC4
