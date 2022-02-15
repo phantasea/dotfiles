@@ -145,7 +145,7 @@ second-column = yes
 enable-colors = yes
 
 ## Set the background color.
-color background = black
+color background = none
 
 ## Set the text color for the title row.
 color title = yellow,reverse/blue
@@ -172,16 +172,16 @@ color browser-directory = cyan
 color browser-playlist = red
 
 ## Set the color of the progress indicator.
-color progressbar = magenta,bold
+color progressbar = white
 
 ## Set the text color used to display mpd status in the status window.
 color status-state = green,bold,reverse
 
 ## Set the text color used to display song names in the status window.
-color status-song  = green,reverse
+color status-song  = yellow,reverse
 
 ## Set the text color used to display time the status window.
-color status-time  = magenta,bold,reverse
+color status-time  = magenta,reverse/white
 
 ## Text color used to display alerts in the status window.
 color alert = red,bold
