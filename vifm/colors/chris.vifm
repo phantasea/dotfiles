@@ -1,7 +1,7 @@
 " The standard ncurses colors are:
-" Default = -1 = None, can be used for transparency or default color
-" Black   = 0  Red     = 1  Green   = 2  Yellow  = 3 
-" Blue    = 4  Magenta = 5  Cyan    = 6  White   = 7
+" Default = -1 = none, can be used for transparency or default color
+" black   = 0  red     = 1  green   = 2  yellow  = 3
+" blue    = 4  magenta = 5  cyan    = 6  white   = 7
 
 " Available style values (some of them can be combined):
 " bold  underline  reverse/inverse  standout  none
@@ -48,15 +48,15 @@ highlight  WildMenu     ctermfg=white     ctermbg=none     cterm=underline
 highlight  SuggestBox   ctermfg=yellow    ctermbg=none     cterm=bold
 highlight  CmpMismatch  ctermfg=red       ctermbg=none     cterm=bold
 
-highlight  User1        ctermfg=cyan      ctermbg=none     cterm=bold,reverse
+highlight  User1        ctermfg=red       ctermbg=black    cterm=bold,reverse
 highlight  User2        ctermfg=green     ctermbg=none     cterm=bold,reverse
 highlight  User3        ctermfg=yellow    ctermbg=none     cterm=bold,reverse
 highlight  User4        ctermfg=white     ctermbg=blue     cterm=bold
-highlight  User5        ctermfg=red       ctermbg=none     cterm=bold,reverse
-highlight  User6        ctermfg=magenta   ctermbg=none     cterm=bold,reverse
-highlight  User9        ctermfg=white     ctermbg=none     cterm=bold,reverse
+highlight  User5        ctermfg=magenta   ctermbg=black    cterm=bold,reverse
+highlight  User6        ctermfg=cyan      ctermbg=none     cterm=bold,reverse
+highlight  User7        ctermfg=white     ctermbg=none     cterm=bold,reverse
 
 highlight  /\.exe$/i                                        ctermfg=green   ctermbg=none    cterm=none
 highlight  /\.(m3u|tar|tgz|iso|rar|gz|7z|zip|deb)$/i        ctermfg=red     ctermbg=none    cterm=bold
 highlight  /^(TODO|Makefile|README|FAQ|ChangeLog|INSTALL)/I ctermfg=red     ctermbg=none    cterm=bold
-highlight  /\.(orig|c_)$/i                                  ctermfg=black   ctermbg=none    cterm=bold
+highlight  /\.(orig|c_|cpp_)$/i                             ctermfg=black   ctermbg=none    cterm=bold
