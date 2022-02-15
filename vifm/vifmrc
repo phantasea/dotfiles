@@ -115,7 +115,7 @@ nnoremap  d  dd
 nnoremap  D  DD
 nnoremap ge  :edit ./.gitignore<cr>
 nnoremap  e  :edit %c<cr>
-qnoremap  e  q:edit %c<cr>
+qnoremap  e  v
 nnoremap  E  :empty<cr>
 mnoremap  h  q
 dnoremap  h  q
@@ -127,14 +127,14 @@ nnoremap gj  ]R
 nnoremap zj  }
 nnoremap  J  <c-e>
 mnoremap  J  <c-e>
+qnoremap  J  qje:if &preview | switch | endif<cr>
 nnoremap gk  [R
 nnoremap zk  {
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
-qnoremap  J  qje:if &preview | switch | endif<cr>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
 nnoremap gl  :if filetype('.') != 'link' && filetype('.') != 'dir' | altopen | else | exec 'normal gf' | endif<cr>
-nnoremap gL  :auxopen<cr>
+nnoremap gL  :if filetype('.') == 'exe' | exec 'normal i' | else | auxopen | endif<cr>
 nnoremap gmb :bmarks<cr>
 nnoremap gmc :command<cr>
 nnoremap gmC :change<cr>
