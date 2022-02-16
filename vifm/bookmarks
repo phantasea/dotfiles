@@ -1,15 +1,15 @@
 " vim: filetype=vifm:
 
 mark  a  /opt/apps      vifm
-mark  c  ~/.config      ranger
+mark  c  ~/.config
 mark  e  /opt/conf      vifm
 mark  h  ~/             misc
-mark  i  ~/pics         misc
+mark  i  ~/pics         geohist
 mark  m  ~/auds
 mark  n  ~/docs/note    reinstall_ubuntu.txt
 mark  o  /opt           misc
 mark  p  ~/vids/.porn
-mark  P  /opt/.porn     vids
+mark  P  /opt/.porn/vids
 mark  r  /              usr
 mark  t  ~/temp
 mark  T  ~/.Trash
