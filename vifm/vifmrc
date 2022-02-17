@@ -73,14 +73,37 @@ nnoremap  <a-k>  <space>k<space>
 "nnoremap <silent> <c-k> :if paneisat('top')    | execute '!tmux select-pane -U %i' | else | execute 'wincmd k' | endif<cr>
 "nnoremap <silent> <c-l> :if paneisat('right')  | execute '!tmux select-pane -R %i' | else | execute 'wincmd l' | endif<cr>
 
+nnoremap  +ar  :chmod a+r<cr>
+nnoremap  +aw  :chmod a+w<cr>
+nnoremap  +ax  :chmod a+x<cr>
+nnoremap  +ur  :chmod u+r<cr>
+nnoremap  +uw  :chmod u+w<cr>
+nnoremap  +ux  :chmod u+x<cr>
+nnoremap  +gr  :chmod g+r<cr>
+nnoremap  +gw  :chmod g+w<cr>
+nnoremap  +gx  :chmod g+x<cr>
+nnoremap  +or  :chmod o+r<cr>
+nnoremap  +ow  :chmod o+w<cr>
+nnoremap  +ox  :chmod o+x<cr>
+nnoremap  -ar  :chmod a-r<cr>
+nnoremap  -aw  :chmod a-w<cr>
+nnoremap  -ax  :chmod a-x<cr>
+nnoremap  -ur  :chmod u-r<cr>
+nnoremap  -uw  :chmod u-w<cr>
+nnoremap  -ux  :chmod u-x<cr>
+nnoremap  -gr  :chmod g-r<cr>
+nnoremap  -gw  :chmod g-w<cr>
+nnoremap  -gx  :chmod g-x<cr>
+nnoremap  -or  :chmod o-r<cr>
+nnoremap  -ow  :chmod o-w<cr>
+nnoremap  -ox  :chmod o-x<cr>
+
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
 nnoremap  @  <nop>
 nnoremap  &  <nop>
-nnoremap  +  <nop>
 nnoremap  ~  :cd ~<cr>
-nnoremap  -  :cd -<cr>
 vnoremap  .  :!!<cr>
 nnoremap  \  :invert s<cr>
 vnoremap  \  :invert s<cr>
