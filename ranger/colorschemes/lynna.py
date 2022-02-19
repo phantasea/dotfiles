@@ -188,9 +188,11 @@ class Lynna(ColorScheme):
                 bg = white
                 fg = black
             elif context.message:
+                fg = green
                 if context.bad:
-                    attr |= reverse
-                    fg += BRIGHT
+                    fg = red
+                attr |= reverse
+                fg += BRIGHT
             elif context.vcsinfo:
                 bg = blue
                 fg = black

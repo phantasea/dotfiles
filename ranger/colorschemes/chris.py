@@ -178,9 +178,11 @@ class Chris(ColorScheme):
                 fg = black
                 attr |= bold
             elif context.message:
+                fg = green
                 if context.bad:
-                    attr |= reverse
-                    fg += BRIGHT
+                    fg = red
+                attr |= reverse
+                fg += BRIGHT
             elif context.vcsinfo:
                 bg = blue
                 fg = black
