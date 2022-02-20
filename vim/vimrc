@@ -110,10 +110,6 @@ endif
 
 " mapping  {{{
 inoremap   <Tab>      <C-N>
-nnoremap  z<Tab>      i<C-V><Tab><Esc>
-nnoremap  s<Tab>      s<C-V><Tab><Esc>
-nnoremap  c<Tab>      :.retab<CR>
-nnoremap  g<Tab>      :retab<CR>
 nnoremap   <CR>       <C-W>w
 nnoremap   <BS>       <PageUp>H
 nnoremap   <Space>    <PageDown>L
@@ -244,19 +240,31 @@ nnoremap   yO   O<Esc>j
 nnoremap   zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 nnoremap   zw   :set wrap!<cr>
 
+nnoremap   c<CR>   <NOP>
+nnoremap   d<CR>   <NOP>
+nnoremap   f<CR>   :Fffm<cr>
+nnoremap   g<CR>   <NOP>
+nnoremap   m<CR>   <NOP>
+nnoremap   s<CR>   <NOP>
+nnoremap   t<CR>   <NOP>
+nnoremap   y<CR>   <NOP>
+nnoremap   z<CR>   zt
+
+nnoremap   d<Tab>  <NOP>
+nnoremap   c<Tab>  :.retab<CR>
+nnoremap   g<Tab>  :retab<CR>
+nnoremap   m<Tab>  <NOP>
+nnoremap   y<Tab>  <NOP>
+nnoremap   s<Tab>  s<C-V><Tab><Esc>
+nnoremap   z<Tab>  i<C-V><Tab><Esc>
+
 nnoremap   c<space>   :call SmartOpenQfWin()<CR>
 nnoremap   d<space>   :vert ball<CR>:call SmartDiffToggle()<CR>
 nnoremap   g<space>   :edit ~/.vimrc<CR>
 nnoremap   m<space>   :edit ~/.vim/bookmarks<CR>
 nnoremap   s<space>   :<C-U>call FZF_Files(v:count1)<cr>
-nnoremap   y<space>   :Ranger<cr>
+nnoremap   y<space>   :Fffm<cr>
 nnoremap   z<space>   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
-nnoremap   [<space>   <NOP>
-nnoremap   ]<space>   <NOP>
-nnoremap   <<space>   <NOP>
-nnoremap   ><space>   <NOP>
-nnoremap   !<space>   <NOP>
-nnoremap   @<space>   <NOP>
 nnoremap   =<space>   :call SmartWinMax()<CR>
 nnoremap   -<space>   :set cursorline!<CR>
 nnoremap  \|<space>   :set cursorcolumn!<CR>
