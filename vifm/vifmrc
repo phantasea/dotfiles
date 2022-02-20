@@ -222,7 +222,7 @@ nnoremap  T  kt
 nnoremap  U  <c-r>
 nnoremap  v  :if !layoutis('only') | view | else | explore | endif<cr>
 nnoremap zv  :explore<cr>
-qnoremap  v  q
+qnoremap  v  q:if !layoutis('only') | view | endif<cr>
 qnoremap  w  q:set wrap!<cr><tab>
 nnoremap  w  :set millerview!<cr>
 nnoremap  W  :if &millerview | set nomillerview | set lsview | else | set millerview | set nolsview | endif<cr>
@@ -238,7 +238,7 @@ nnoremap  y  yy
 nnoremap  Y  :yankbasename<cr>:if $DISPLAY != "" | xyankbasename | endif<cr>
 nnoremap gy  :yankbasename<cr>
 nnoremap gY  :yankpathname<cr>
-nnoremap xy  :xyankbasename<cr>:echo expand('%"c') "is yanked to clipboard"<cr>
+nnoremap xy  :xyankbasename<cr>:echo expand('%"f') "is yanked to clipboard"<cr>
 nnoremap xY  :xyankpathname<cr>:echo expand('%"d') "is yanked to clipboard"<cr>
 " }}}
 
@@ -425,7 +425,7 @@ command! sucopyfromother sudo cp -R %F %d %i
 command! yankbasename    tmux setb %c %i &
 command! yankpathname    tmux setb %d %i &
 command! yankfullname    tmux setb %d/%c %i &
-command! xyankbasename   echo -n %c   | xclip -selection clipboard %i &
+command! xyankbasename   echo -n %f   | xclip -selection clipboard %i &
 command! xyankpathname   echo -n %d   | xclip -selection clipboard %i &
 command! xyankfullname   echo -n %c:p | xclip -selection clipboard %i &
 command! diff            vimux -d %c %C
@@ -580,7 +580,9 @@ fileview  <audio/*>  exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
           \ vidplay %c, mplayer %c, mpv %c,
           \ mediainfo %f %m 2>&1,
-fileview  <video/*>  exiftool %c, mediainfo %c, thumbnail %px %py %pw %ph %c
+fileview  <video/*>
+          \ exiftool %c, mediainfo %c,
+          \ thumbnail %px %py %pw %ph %c,
 
 " Image
 filetype  *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm  imgview %c, imgview -b %c, imgview -B %c
@@ -597,9 +599,14 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm
           \ sxiv -ft %f, sxiv -fS 1 %f,
           \ pqiv -f --action="montage_mode_enter()" --thumbnail-size=128x128, pqiv -fs,
 if $DISPLAY == ""
-fileview  <image/*>  w3mimg %px %py %pw %ph %c, exiftool %c, mediainfo %c
+fileview  <image/*>
+          \ w3mimg %px %py %pw %ph %c, imgcat %c,
+          \ chafa --clear -c 256 --bg blue %c,
+          \ exiftool %c, mediainfo %c,
 else
-fileview  <image/*>  vifmimg draw %px %py %pw %ph %c %pc vifmimg clear
+fileview  <image/*>
+          \ vifmimg draw %px %py %pw %ph %c %pc vifmimg clear,
+          \ chafa --clear -c 256 --bg blue %c,
 endif
 
 " PDF
