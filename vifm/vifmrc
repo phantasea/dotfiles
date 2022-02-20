@@ -193,7 +193,7 @@ nnoremap  r  cW
 nnoremap  R  cw
 qnoremap  s  <c-w>
 nnoremap  s  <c-w>
-nnoremap  sa :%select<cr>
+nnoremap  sa :exec "select /\.".expand('%c:e')."$/i"
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
