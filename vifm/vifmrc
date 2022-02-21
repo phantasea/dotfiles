@@ -13,15 +13,32 @@ nnoremap  <F12>    :.!cmatrix -abs -C cyan<cr>
 qnoremap  <s-tab>  <tab>
 nnoremap  <bs>     <c-h>
 mnoremap  <bs>     <c-b>
+
+nnoremap b<tab>    <nop>
+nnoremap c<tab>    <nop>
+nnoremap f<tab>    <nop>
+nnoremap g<tab>    <nop>
+nnoremap m<tab>    <nop>
+nnoremap o<tab>    <nop>
+nnoremap s<tab>    <nop>
+nnoremap x<tab>    <nop>
+nnoremap z<tab>    <nop>
+
 vnoremap  <cr>     :select<cr>
 nnoremap  <cr>     <nop>
-nnoremap g<cr>     <nop>
-nnoremap s<cr>     :shell<cr>
 nnoremap b<cr>     :bmgo<space>
+nnoremap c<cr>     <nop>
+nnoremap f<cr>     <nop>
+nnoremap g<cr>     <nop>
+nnoremap m<cr>     <nop>
+nnoremap o<cr>     <nop>
+nnoremap s<cr>     :shell<cr>
+nnoremap x<cr>     <nop>
+nnoremap z<cr>     <nop>
+
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
 nnoremap  <space>  :switch<cr>
-
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
 nnoremap c<space>  :if &laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
 nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | exec 'normal gg' | else | set sort='+iname' | endif<cr>
@@ -146,6 +163,7 @@ nnoremap gi  :imgall<cr>
 nnoremap gI  :imgrall<cr>
 nnoremap  i  :touch<space>
 nnoremap  I  :mkdir! ""<left><c-x>c
+nnoremap zI  :!fzfimg<cr>
 nnoremap gj  ]R
 nnoremap zj  }
 nnoremap  J  <c-e>
