@@ -159,11 +159,11 @@ qnoremap  e  v
 nnoremap  E  :empty<cr>
 mnoremap  h  q
 dnoremap  h  q
-nnoremap gi  :imgall<cr>
-nnoremap gI  :imgrall<cr>
 nnoremap  i  :touch<space>
+nnoremap gi  :imgall<cr>
+nnoremap zi  :!fzfimg<cr>
 nnoremap  I  :mkdir! ""<left><c-x>c
-nnoremap zI  :!fzfimg<cr>
+nnoremap gI  :imgrall<cr>
 nnoremap gj  ]R
 nnoremap zj  }
 nnoremap  J  <c-e>
@@ -197,6 +197,9 @@ nnoremap  mk 3gM
 nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
+nnoremap  ol <nop>
+nnoremap  os :invert s<cr>zf
+nnoremap  ot :exec "filter /\.".expand('%c:e')."$/i"
 nnoremap  o. zA
 nnoremap  O  zR
 qnoremap  p  <c-b>
@@ -211,7 +214,7 @@ nnoremap  r  cW
 nnoremap  R  cw
 qnoremap  s  <c-w>
 nnoremap  s  <c-w>
-nnoremap  sa :exec "select /\.".expand('%c:e')."$/i"
+nnoremap  sa :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
