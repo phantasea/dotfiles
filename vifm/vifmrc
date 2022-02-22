@@ -461,7 +461,7 @@ command! ss       cmatrix -abs -C cyan
 command! sued     sudoedit %c
 command! surm     sudo rm -rf %c
 command! rc       vimux $VIFM/vifmrc
-command! df       df -h %m 2> /dev/null
+command! df       df -h %m 2>/dev/null
 command! ps       pstree %m
 command! ctags    ctags -R . %i
 command! du       ncdu .
@@ -483,7 +483,7 @@ command! reload   :write | restart full
 command! iconv    iconv -f GBK -t UTF8 %c -o %c %i
 command! vgrep    vim "+grep %a"
 command! mpv      mpv --vo=drm %c
-command! mpl      vidplay -b %c
+command! mpl      mplayer -vo x11 %c
 command! fim      fim %f > /dev/null 2>&1
 command! imgall   imgview -s
 command! imgrall  imgview -rs
@@ -599,8 +599,8 @@ fileview  <audio/*>  exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1
 
 " Video
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
-          \ vidplay %c, mplayer %c, mpv %c,
-          \ mediainfo %f %m 2>&1,
+          \ vidplay %c, totem 2>/dev/null%c,
+          \ mediainfo %f %m 2>&1, exiftool %c %m 2>&1,
 fileview  <video/*>
           \ exiftool %c, mediainfo %c,
           \ thumbnail %px %py %pw %ph %c,
