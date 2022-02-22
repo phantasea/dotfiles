@@ -197,7 +197,7 @@ nnoremap  mk 3gM
 nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
-nnoremap  ol <nop>
+nnoremap  ol zl
 nnoremap  os :invert s<cr>zf
 nnoremap  ot :exec "filter /\.".expand('%c:e')."$/i"
 nnoremap  o. zA
