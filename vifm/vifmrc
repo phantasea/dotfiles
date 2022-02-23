@@ -10,6 +10,15 @@ nnoremap  <F10>    :diff<cr>
 nnoremap  <F11>    :diffsamewin<cr>
 nnoremap  <F12>    :.!cmatrix -abs -C cyan<cr>
 
+"cycle thru the layouts -- only, vsplit, split
+nnoremap  <s-tab>  :if layoutis('only')
+                  \|    vsplit
+                  \|elseif layoutis('vsplit')
+                  \|    split
+                  \|else
+                  \|    only
+                  \|endif<cr>
+
 qnoremap  <s-tab>  <tab>
 nnoremap  <bs>     <c-h>
 mnoremap  <bs>     <c-b>
@@ -20,12 +29,12 @@ nnoremap f<tab>    <nop>
 nnoremap g<tab>    <nop>
 nnoremap m<tab>    <nop>
 nnoremap o<tab>    <nop>
-nnoremap s<tab>    <nop>
+nnoremap s<tab>    :!tmux split "watch tsp"<cr>
 nnoremap x<tab>    <nop>
 nnoremap z<tab>    <nop>
 
 vnoremap  <cr>     :select<cr>
-nnoremap  <cr>     <nop>
+nnoremap  <cr>     :togglesort<cr>
 nnoremap b<cr>     :bmgo<space>
 nnoremap c<cr>     <nop>
 nnoremap f<cr>     <nop>
@@ -114,6 +123,11 @@ nnoremap  -gx  :chmod g-x<cr>
 nnoremap  -or  :chmod o-r<cr>
 nnoremap  -ow  :chmod o-w<cr>
 nnoremap  -ox  :chmod o-x<cr>
+
+" mount ISO filesystem images(iso,bin,img): list, mount, unmount
+" nnoremap bl  :!ls -1 /tmp/fuseiso<cr>
+" nnoremap bm  :!mkdir -p /tmp/fuseiso && fuseiso -n -p %f "/tmp/fuseiso/%f"<cr>
+" nnoremap bu  :!fusermount -u %f<cr>
 
 nnoremap  0  gg
 nnoremap  ^  gg
@@ -435,6 +449,8 @@ endif
 "  %m runs the command in a menu window
 "  %S Show command output in the status bar
 "  see `:help vifm-macros` and `:help vifm-filename-modifiers` for more
+command! diff            vimux -d %c %C
+command! diffsamewin     vimux -d %f
 command! movetoother     mv -i %f %D %i &
 command! copytoother     cp -R %f %D %i &
 command! movefromother   mv -i %F %d %i &
@@ -446,11 +462,26 @@ command! sucopyfromother sudo cp -R %F %d %i
 command! yankbasename    tmux setb %c %i &
 command! yankpathname    tmux setb %d %i &
 command! yankfullname    tmux setb %d/%c %i &
+if executable('xclip')
 command! xyankbasename   echo -n %f   | xclip -selection clipboard %i &
 command! xyankpathname   echo -n %d   | xclip -selection clipboard %i &
 command! xyankfullname   echo -n %c:p | xclip -selection clipboard %i &
-command! diff            vimux -d %c %C
-command! diffsamewin     vimux -d %f
+elseif executable('xsel')
+command! xyankbasename   echo -n %f   | xsel --clipboard --input %i &
+command! xyankpathname   echo -n %d   | xsel --clipboard --input %i &
+command! xyankfullname   echo -n %c:p | xsel --clipboard --input %i &
+endif
+command! togglesort
+      \ :if &sort == '+iname'
+      \ |    set sort=-mtime
+      \ |    echo 'sorted by -mtime'
+      \ |elseif &sort == '-mtime'
+      \ |    set sort=-size
+      \ |    echo 'sorted by -size'
+      \ |else
+      \ |    set sort=+iname
+      \ |    echo 'sorted by +iname'
+      \ |endif
 
 if $DISPLAY != ""
 command! setwallpaper    feh --bg-scale %c %i
@@ -470,7 +501,13 @@ command! uj       tar -jxf %c %i &
 command! zip      zip -r %f.zip %f
 command! zx       zx %f
 command! extract  aunpack -e %f &>/dev/null &
+command! extract1 tsp atool -x %f
+command! extract2 tsp atool -e -X %D %f
+command! extract3 tsp atool -e -X %D/%f %f
+command! extract4 tsp atool -D -e -X %D %f
 command! archive  apack %a %f &>/dev/null &
+command! archive1 set -- %f; tsp apack "$(echo "$1" | sed 's/\.[^.]*$//').zip" "$@"
+command! archive2 set -- %f; tsp apack "$(echo "$1" | sed 's/\.[^.]*$//').7z" "$@"
 command! run      !! ./%f
 command! make     !!make %a
 command! mkcd     :mkdir %a | cd %a
@@ -599,10 +636,10 @@ fileview  <audio/*>  exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1
 
 " Video
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
-          \ vidplay %c, totem 2>/dev/null%c,
+          \ vidplay %c, totem 2>/dev/null %c, ffplay -v quiet %c,
           \ mediainfo %f %m 2>&1, exiftool %c %m 2>&1,
 fileview  <video/*>
-          \ exiftool %c, mediainfo %c,
+          \ exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1,
           \ thumbnail %px %py %pw %ph %c,
 
 " Image
