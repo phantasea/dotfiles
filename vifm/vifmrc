@@ -500,14 +500,14 @@ command! uz       tar -zxf %c %i &
 command! uj       tar -jxf %c %i &
 command! zip      zip -r %f.zip %f
 command! zx       zx %f
-command! extract  aunpack -e %f &>/dev/null &
-command! extract1 tsp atool -x %f
-command! extract2 tsp atool -e -X %D %f
-command! extract3 tsp atool -e -X %D/%f %f
-command! extract4 tsp atool -D -e -X %D %f
-command! archive  apack %a %f &>/dev/null &
-command! archive1 set -- %f; tsp apack "$(echo "$1" | sed 's/\.[^.]*$//').zip" "$@"
-command! archive2 set -- %f; tsp apack "$(echo "$1" | sed 's/\.[^.]*$//').7z" "$@"
+command! extractA aunpack -e %f &>/dev/null &
+command! extractB tsp atool -x %f
+command! extractC tsp atool -e -X %D %f
+command! extractD tsp atool -e -X %D/%f %f
+command! extractE tsp atool -D -e -X %D %f
+command! archiveA apack %a %f &>/dev/null &
+command! archiveB set -- %f; tsp apack "$(echo "$1" | sed 's/\.[^.]*$//').zip" "$@"
+command! archiveC set -- %f; tsp apack "$(echo "$1" | sed 's/\.[^.]*$//').7z" "$@"
 command! run      !! ./%f
 command! make     !!make %a
 command! mkcd     :mkdir %a | cd %a
