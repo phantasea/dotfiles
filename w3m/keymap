@@ -99,15 +99,16 @@ keymap   n    COMMAND "SEARCH_NEXT; MARK_WORD"
 keymap   N    COMMAND "SEARCH_PREV; MARK_WORD"
 keymap   o    GOTO
 keymap   O    TAB_GOTO
-keymap   p    COMMAND "PREV_PAGE; MOV2TOP; REDRAW"
+keymap   p    GOTO      file:/cgi-bin/search_clipboard.cgi
+keymap   P    TAB_GOTO  file:/cgi-bin/search_clipboard.cgi
 keymap   q    CLOSE_TAB
 keymap   Q    QUIT
 keymap   r    RELOAD
 keymap   R    REINIT
 keymap   s    SRCH_BD
 keymap   S    TAB_SRCH_BD
-keymap  fs    COMMAND "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi; GOTO     /usr/local/libexec/w3m/cgi-bin/goto_clipboard_primary.cgi"
-keymap  fS    COMMAND "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi; TAB_GOTO /usr/local/libexec/w3m/cgi-bin/goto_clipboard_primary.cgi"
+keymap  fs    COMMAND "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi; GOTO     file:/cgi-bin/goto_clipboard_primary.cgi"
+keymap  fS    COMMAND "SHELL ~/.w3m/cgi-bin/fzf_surfraw.cgi; TAB_GOTO file:/cgi-bin/goto_clipboard_primary.cgi"
 keymap  gs    SRCH_GG
 keymap  gS    TAB_SRCH_GG
 keymap  zs    SRCH_WK
@@ -171,8 +172,8 @@ keymap   xn   EXTERN_LINK   '$BROWSER_PRIVATE'
 keymap   XN   EXTERN        '$BROWSER_PRIVATE'
 
 # queue download file (task-spooler)
-keymap   xd   EXTERN_LINK   'TS_SOCKET=/tmp/w3m tsp aria2c -j 1 -x 2 -c -d ~/temp'
-keymap   xD   EXTERN_LINK   'TS_SOCKET=/tmp/w3m tsp wget -c -P ~/temp'
+keymap   xd   EXTERN_LINK   'tsp aria2c -j 1 -x 2 -c -d ~/temp'
+keymap   xD   EXTERN_LINK   'tsp wget -c -P ~/temp'
 
 # queue external media player (task-spooler) e.g youtube, video links
 keymap   xm   EXTERN_LINK   'tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-15-53'
@@ -187,7 +188,7 @@ keymap   xg   EXTERN_LINK   'mpv --loop --quiet --ontop --no-border --force-wind
 keymap   xt   EXTERN_LINK   'transmission-remote --add'
 
 # basic task-spooler view, cat, clear
-keymap   xs   SHELL         'watch TS_SOCKET=/tmp/w3m tsp'
-keymap   XS   SHELL         'clear && TS_SOCKET=/tmp/w3m tsp -c'
-keymap   xc   SHELL         'clear && TS_SOCKET=/tmp/w3m tsp -C'
+keymap   xs   SHELL         'watch tsp'
+keymap   XS   SHELL         'clear && tsp -c'
+keymap   xc   SHELL         'clear && tsp -C'
 # }}}
