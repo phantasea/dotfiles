@@ -18,10 +18,7 @@ nnoremap  <s-tab>  :if layoutis('only')
                   \|else
                   \|    only
                   \|endif<cr>
-
 qnoremap  <s-tab>  <tab>
-nnoremap  <bs>     <c-h>
-mnoremap  <bs>     <c-b>
 
 nnoremap b<tab>    <nop>
 nnoremap c<tab>    <nop>
@@ -33,6 +30,7 @@ nnoremap s<tab>    :!tmux split "watch tsp"<cr>
 nnoremap x<tab>    <nop>
 nnoremap z<tab>    <nop>
 
+" <cr> = <c-m>
 vnoremap  <cr>     :select<cr>
 nnoremap  <cr>     :togglesort<cr>
 nnoremap b<cr>     :bmgo<space>
@@ -45,6 +43,8 @@ nnoremap s<cr>     :shell<cr>
 nnoremap x<cr>     <nop>
 nnoremap z<cr>     <nop>
 
+nnoremap  <bs>     <c-h>
+mnoremap  <bs>     <c-b>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
 nnoremap  <space>  :switch<cr>
@@ -475,7 +475,7 @@ command! togglesort
       \ :if &sort == '+iname'
       \ |    set sort=-mtime
       \ |    echo 'sorted by -mtime'
-      \ |elseif &sort == '-mtime'
+      \ |elseif &sort == '-mtime,+name'
       \ |    set sort=-size
       \ |    echo 'sorted by -size'
       \ |else
