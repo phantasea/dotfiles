@@ -2,14 +2,23 @@
 
 clipb="$(xsel -ob)"
 if [ -z "$clipb" ]; then
-    printf "W3m-control: PREV\r\n"
-    exit
-fi
-
-if [ "$clipb" =~ "www" ] || [ "$clipb" =~ "http" ]; then
-    printf "%s\r\n" "W3m-control: GOTO $clipb";
+    tmuxbuff="$(tmux show-buffer)"
+    if [ "$tmuxbuff" = "NOTHING" ]; then
+        printf "W3m-control: PREV\r\n"
+        exit
+    else
+        if [ "$tmuxbuff" =~ "www" ] || [ "$tmuxbuff" =~ "http" ]; then
+            printf "%s\r\n" "W3m-control: GOTO $(tmux paste-buffer)";
+        else
+            printf "%s\r\n" "W3m-control: SRCH_GG $(tmux paste-buffer)";
+        fi
+    fi
 else
-    printf "%s\r\n" "W3m-control: SRCH_GG $clipb";
+    if [ "$clipb" =~ "www" ] || [ "$clipb" =~ "http" ]; then
+        printf "%s\r\n" "W3m-control: GOTO $clipb";
+    else
+        printf "%s\r\n" "W3m-control: SRCH_GG $clipb";
+    fi
 fi
 
 printf "W3m-control: DELETE_PREVBUF\r\n"
