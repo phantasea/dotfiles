@@ -10,6 +10,7 @@ nnoremap  <F10>    :diff<cr>
 nnoremap  <F11>    :diffsamewin<cr>
 nnoremap  <F12>    :.!cmatrix -abs -C cyan<cr>
 
+"<tab> = <c-i>
 "cycle thru the layouts -- only, vsplit, split
 nnoremap  <s-tab>  :if layoutis('only')
                   \|    vsplit
@@ -238,14 +239,15 @@ nnoremap  sf :find . -iname '**'<left><left>
 nnoremap  sj <space>j<space>
 nnoremap  sk <space>k<space>
 nnoremap  sl :alink!<cr>
+nnoremap  si :switch<cr>:sync<cr>:switch<cr>
+nnoremap  so :sync<cr>
 nnoremap  sq :hideui<cr>
 nnoremap  sr :source $VIFM/vifmrc<cr>
 nnoremap  ss <c-w>S
 nnoremap  st :tree<cr>
 nnoremap  sv :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' | view! | else | view! | endif<cr>
 nnoremap  sw :!feh --bg-max --no-fehbg %f<cr>
-nnoremap  si :switch<cr>:sync<cr>:switch<cr>
-nnoremap  so :sync<cr>
+nnoremap  sx <c-w>x:switch<cr>
 nnoremap  sC :!tsp rsync -a %f %D<cr>
 nnoremap  sX :!tsp rsync -a --remove-source-files %f %D && tsp find %f -type d -empty -exec rmdir {} \; && tsp rmdir %f<cr>
 nnoremap  S  :s//g<left><left>
@@ -258,7 +260,7 @@ nnoremap  U  <c-r>
 nnoremap  v  :if !layoutis('only') | view | else | explore | endif<cr>
 nnoremap zv  :explore<cr>
 qnoremap  v  q:if !layoutis('only') | view | endif<cr>
-qnoremap  w  q:set wrap!<cr><tab>
+qnoremap  w  W
 nnoremap  w  :set millerview!<cr>
 nnoremap  W  :if &millerview | set nomillerview | set lsview | else | set millerview | set nolsview | endif<cr>
 nnoremap  xi :movefromother<cr>
