@@ -1,4 +1,4 @@
-" keymaps {{{
+" keymaps-1 {{{
 map  <left>   <nop>
 map  <right>  <nop>
 map  <up>     <nop>
@@ -129,7 +129,9 @@ nnoremap  -ox  :chmod o-x<cr>
 " nnoremap bl  :!ls -1 /tmp/fuseiso<cr>
 " nnoremap bm  :!mkdir -p /tmp/fuseiso && fuseiso -n -p %f "/tmp/fuseiso/%f"<cr>
 " nnoremap bu  :!fusermount -u %f<cr>
+" }}}
 
+" keymaps-2 {{{
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
@@ -168,10 +170,10 @@ vnoremap  cO :sucopytoother<cr>
 nnoremap gc  :edit ./.git/config<cr>
 nnoremap  d  dd
 nnoremap  D  DD
-nnoremap ge  :edit ./.gitignore<cr>
 nnoremap  e  :edit %c<cr>
 qnoremap  e  v
-nnoremap  E  :empty<cr>
+nnoremap  E  :!vim %c<cr>
+nnoremap ge  :empty<cr>
 mnoremap  h  q
 dnoremap  h  q
 nnoremap  i  :touch<space>
@@ -286,11 +288,8 @@ cabbrev  dno  <c-x><c-x>d
 cabbrev  cs   colorscheme
 " }}}
 
-" marks/bmarks {{{
+" marks/bmarks/mpc {{{
 source $VIFM/bookmarks
-" }}}
-
-" mpc related {{{
 source $VIFM/vifm-mpc
 " }}}
 
@@ -551,15 +550,11 @@ command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-t
 " }}}
 
 " autocmds {{{
-autocmd DirEnter '/opt/util'             setl lsview previewprg='bat --style="plain" -- %c'
+autocmd DirEnter '/opt/util'             setl nomillerview lsview previewprg='bat --style="plain" -- %c'
 autocmd DirEnter '~/docs/misc'           exec 'normal zd'
 autocmd DirEnter '~/docs/webs'           exec 'normal zd'
-autocmd DirEnter '~/pics'                exec 'normal fm'
-autocmd DirEnter '~/auds'                exec 'normal fm'
 autocmd DirEnter '/opt/apps/vifm'        exec 'normal fs;'
-autocmd DirEnter '/opt/auds'             setl nomillerview lsview
-autocmd DirEnter '~/auds/misc'           setl nomillerview lsview
-autocmd DirEnter '~/misc/dotfiles/**/*'  setl dotfiles
+autocmd DirEnter '~/misc/gits/**/*'      setl dotfiles
 " }}}
 
 " filetype/fileview {{{
