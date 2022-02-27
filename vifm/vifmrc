@@ -73,7 +73,7 @@ nnoremap  <c-v>  :ffvids<cr>
 nnoremap  <c-w>  :ffwebs<cr>
 nnoremap  <c-x>  :ffporn<cr>
 
-nnoremap  <c-b>  :tree<cr>
+nnoremap  <c-b>  :tree!<cr>
 mnoremap  <c-j>  <c-f>
 nnoremap  <c-j>  <c-f>L
 qnoremap  <c-j>  <c-f>
@@ -100,30 +100,30 @@ nnoremap  <a-k>  <space>k<space>
 "nnoremap <silent> <c-k> :if paneisat('top')    | execute '!tmux select-pane -U %i' | else | execute 'wincmd k' | endif<cr>
 "nnoremap <silent> <c-l> :if paneisat('right')  | execute '!tmux select-pane -R %i' | else | execute 'wincmd l' | endif<cr>
 
-nnoremap  +ar  :chmod a+r<cr>
-nnoremap  +aw  :chmod a+w<cr>
-nnoremap  +ax  :chmod a+x<cr>
-nnoremap  +ur  :chmod u+r<cr>
-nnoremap  +uw  :chmod u+w<cr>
-nnoremap  +ux  :chmod u+x<cr>
-nnoremap  +gr  :chmod g+r<cr>
-nnoremap  +gw  :chmod g+w<cr>
-nnoremap  +gx  :chmod g+x<cr>
-nnoremap  +or  :chmod o+r<cr>
-nnoremap  +ow  :chmod o+w<cr>
-nnoremap  +ox  :chmod o+x<cr>
-nnoremap  -ar  :chmod a-r<cr>
-nnoremap  -aw  :chmod a-w<cr>
-nnoremap  -ax  :chmod a-x<cr>
-nnoremap  -ur  :chmod u-r<cr>
-nnoremap  -uw  :chmod u-w<cr>
-nnoremap  -ux  :chmod u-x<cr>
-nnoremap  -gr  :chmod g-r<cr>
-nnoremap  -gw  :chmod g-w<cr>
-nnoremap  -gx  :chmod g-x<cr>
-nnoremap  -or  :chmod o-r<cr>
-nnoremap  -ow  :chmod o-w<cr>
-nnoremap  -ox  :chmod o-x<cr>
+"nnoremap  +ar  :chmod a+r<cr>
+"nnoremap  +aw  :chmod a+w<cr>
+"nnoremap  +ax  :chmod a+x<cr>
+"nnoremap  +ur  :chmod u+r<cr>
+"nnoremap  +uw  :chmod u+w<cr>
+"nnoremap  +ux  :chmod u+x<cr>
+"nnoremap  +gr  :chmod g+r<cr>
+"nnoremap  +gw  :chmod g+w<cr>
+"nnoremap  +gx  :chmod g+x<cr>
+"nnoremap  +or  :chmod o+r<cr>
+"nnoremap  +ow  :chmod o+w<cr>
+"nnoremap  +ox  :chmod o+x<cr>
+"nnoremap  -ar  :chmod a-r<cr>
+"nnoremap  -aw  :chmod a-w<cr>
+"nnoremap  -ax  :chmod a-x<cr>
+"nnoremap  -ur  :chmod u-r<cr>
+"nnoremap  -uw  :chmod u-w<cr>
+"nnoremap  -ux  :chmod u-x<cr>
+"nnoremap  -gr  :chmod g-r<cr>
+"nnoremap  -gw  :chmod g-w<cr>
+"nnoremap  -gx  :chmod g-x<cr>
+"nnoremap  -or  :chmod o-r<cr>
+"nnoremap  -ow  :chmod o-w<cr>
+"nnoremap  -ox  :chmod o-x<cr>
 
 " mount ISO filesystem images(iso,bin,img): list, mount, unmount
 " nnoremap bl  :!ls -1 /tmp/fuseiso<cr>
@@ -137,20 +137,23 @@ nnoremap  ^  gg
 nnoremap  $  G
 nnoremap  @  <nop>
 nnoremap  &  <nop>
+nnoremap  !  !!
 nnoremap  ~  :cd ~<cr>
-vnoremap  .  :!!<cr>
+nnoremap  -  :cd -<cr>
+nnoremap  +  <nop>
+nnoremap  ?  :file<space><tab>
+nnoremap  #  :windo set relativenumber!<cr>
+nnoremap g*  #
 nnoremap  \  :invert s<cr>
 vnoremap  \  :invert s<cr>
 nnoremap  <  <c-w><
 nnoremap  >  <c-w>>
 nnoremap  |  <c-w>=
-nnoremap  ?  :file<space><tab>
-nnoremap  #  :windo set relativenumber!<cr>
-nnoremap g*  #
 nnoremap  a  GVgg
 nnoremap  a  :%select<cr>
 vnoremap  a  ggoG
 nnoremap  A  za
+nnoremap ga  gA
 nnoremap  c. cw<c-a><c-d><cr>
 nnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
@@ -246,7 +249,7 @@ nnoremap  sq :hideui<cr>
 nnoremap  sr :source $VIFM/vifmrc<cr>
 nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
-nnoremap  st :tree<cr>
+nnoremap  st :if getpanetype() == regular | tree | else | exec 'norm gh' | endif<cr>
 nnoremap  sv :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' | view! | else | view! | endif<cr>
 nnoremap  sw :!feh --bg-max --no-fehbg %f<cr>
 nnoremap  sx <c-w>x:switch<cr>
