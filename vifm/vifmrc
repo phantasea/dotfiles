@@ -64,6 +64,8 @@ cnoremap  <c-j>  <cr>
 cnoremap  <c-r>  <c-x>
 cnoremap  <c-g>  <a-f>
 cnoremap  <c-y>  <a-b>
+cnoremap  <c-t>  <c-g>
+cnoremap  <c-v>  <c-x>c
 
 nnoremap  <c-a>  :ffauds<cr>
 nnoremap  <c-e>  :ffedit<cr>
