@@ -65,7 +65,7 @@ cnoremap  <c-r>  <c-x>
 cnoremap  <c-g>  <a-f>
 cnoremap  <c-y>  <a-b>
 cnoremap  <c-t>  <c-g>
-cnoremap  <c-v>  <c-x>c
+cnoremap  <c-v>  <c-x>s
 
 nnoremap  <c-a>  :ffauds<cr>
 nnoremap  <c-e>  :ffedit<cr>
@@ -351,6 +351,7 @@ set maxratingstars=7
 set previewmaxsize=3000
 set nofilenamedispall
 set topmidfiller="+"
+set clipboardprg="xsel -ob"
 if $DISPLAY == ""
 set filenamedisplen=64
 else
