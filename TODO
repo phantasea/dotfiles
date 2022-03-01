@@ -1,0 +1,38 @@
+tridactyl  ---GIVE UP
+i3blocks  ---DONE
+ranger: save both tabs' directory when closing, and enter in next opening  ---DONE
+ranger: bulkrename doesn't work  ---DONE
+ranger: https://github.com/SL-RU/ranger_udisk_menu   ---DONE
+elinks: add url/tab search               ---DONE
+elinks: add option.search_engine option  ---DONE
+webcam: cheese, camshot(console), fswebcam(console), streamer, qv4l2   ---DONE
+color picker app   ---DONE
+vifm: ftp, android testing   ---FAILED
+ranger: bookmarks entering to autocd to specified file/dir location   ---DONE
+ranger: add flag to show output on statusline/cmdline (runner.py)   ---DONE
+vifm: filter symlink files   ---DONE
+ranger: star rating feature  ---GIVE UP
+w3m: p/P to search the keyword in clipboard   ---DONE
+elinks: p/P to search the keyword in clipboard   ---FAILED
+vifm: gp to paste forcely with overwrite   ---DONE
+vifm: quickview with wrap 'w'   ---DONE
+vifm: quickview 'ss' to toggle split   ---DONE 
+vifm: fix quickview when pane switch   ---DONE
+ranger: add support to reselect like 'gt/gs' in vifm   ---DONE
+
+vifm:   cmdline paste from clipboard   ---DONE
+ranger: cmdline paste from clipboard   ---
+
+https://github.com/ziahamza/webui-aria2
+https://github.com/agalwood/Motrix/releases/tag/v1.6.11
+https://github.com/akavel/up
+https://github.com/gcla/termshark
+https://github.com/saulpw/visidata
+https://github.com/michael-lazar/rtv
+https://github.com/nerdypepper/dijo
+https://github.com/joehillen/sysz
+https://github.com/kdheepak/taskwarrior-tui
+https://github.com/seebye/ueberzug
+https://github.com/luakit/luakit
+https://github.com/jarun/Buku
+https://github.com/vivien/i3blocks
