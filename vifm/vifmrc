@@ -258,7 +258,7 @@ nnoremap  sx <c-w>x:switch<cr>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
 nnoremap gs  :select //i<left><left>
-nnoremap gt  gs
+nnoremap gt  gS
 nnoremap  t  tj
 nnoremap  T  kt
 nnoremap  U  <c-r>
