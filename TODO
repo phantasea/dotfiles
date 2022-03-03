@@ -21,7 +21,18 @@ vifm: fix quickview when pane switch   ---DONE
 ranger: add support to reselect like 'gt/gs' in vifm   ---DONE
 
 vifm:   cmdline paste from clipboard   ---DONE
-ranger: cmdline paste from clipboard   ---
+ranger: cmdline paste from clipboard   ---DONE
+
+vifm:   smart restore tag/visual selection   ---DONE
+
+ranger: implement <left> function like <space>   ---FAILED
+ranger: gs regex selection   ---GIVE UP
+ranger: gv auto preview   ---DONE
+ranger: t,V,<esc>  when V cancel t selection   ---DONE
+ranger: V,f<char> bug fix  ---DONE (optimize f<any> by move up/down then move down/up)
+
+vifm: gv auto preview   ---DONE
+vifm: display "empty" like ranger if the directory has no file&subdir   ---FAILED
 
 https://github.com/ziahamza/webui-aria2
 https://github.com/agalwood/Motrix/releases/tag/v1.6.11
