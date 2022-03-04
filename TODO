@@ -34,6 +34,8 @@ ranger: V,f<char> bug fix  ---DONE (optimize f<any> by move up/down then move do
 vifm: gv auto preview   ---DONE
 vifm: display "empty" like ranger if the directory has no file&subdir   ---FAILED
 
+ranger: f/F<any>   ---DONE
+
 https://github.com/ziahamza/webui-aria2
 https://github.com/agalwood/Motrix/releases/tag/v1.6.11
 https://github.com/akavel/up
