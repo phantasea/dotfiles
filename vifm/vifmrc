@@ -176,6 +176,7 @@ nnoremap gc  :edit ./.git/config<cr>
 nnoremap  d  dd
 nnoremap  D  DD
 nnoremap  e  :edit %c<cr>
+mnoremap  e  v
 qnoremap  e  v
 nnoremap  E  :!vim %c<cr>
 nnoremap ge  :empty<cr>
@@ -264,11 +265,12 @@ nnoremap  t  tj
 nnoremap  T  kt
 nnoremap  U  <c-r>
 qnoremap  v  q
-nnoremap gv  :if &viewcolumns == '-{name}'
+nnoremap bv  :if &viewcolumns == '-{name}'
            \| set viewcolumns=-{name},{rating},17{mtime}
            \| set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
            \| else | set viewcolumns=-{name}
            \| set milleroptions=lsize:2,csize:3,rsize:5,rpreview:all | endif<cr>
+nnoremap gv  gS
 nnoremap ov  :explore<cr>
 nnoremap zv  :explore<cr>
 qnoremap  w  W

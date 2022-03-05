@@ -441,7 +441,7 @@ endfunc
 func! DelEmptyFile()
     for b in ListedBufs()
         if empty(bufname(b)) && empty(getbufvar(b, "&filetype"))
-            exec("bdelete ".b)
+            exec("bdelete! ".b)
             break
         endif
     endfor
