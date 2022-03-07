@@ -193,6 +193,8 @@ vnoremap  g"   <esc>`<i"<esc>`>a"<esc>
 vnoremap  g'   <esc>`<i'<esc>`>a'<esc>
 vnoremap  g<   <esc>`<i<<esc>`>i><esc>
 
+nnoremap  gb    :buffer<space>
+nnoremap  gB    :buffers<CR>
 nnoremap   c.   :cc<CR>
 nnoremap   cd   :cd 
 nnoremap   ch   :colder<CR>

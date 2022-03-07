@@ -1,3 +1,9 @@
+vifm: vim/vimux adaptation
+      :help/edit/rename
+      q/ q? q:
+      normal/menu   l gl
+      menu          v e
+
 tridactyl  ---GIVE UP
 i3blocks  ---DONE
 ranger: save both tabs' directory when closing, and enter in next opening  ---DONE
