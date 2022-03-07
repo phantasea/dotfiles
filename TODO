@@ -1,4 +1,5 @@
-vifm: vim/vimux adaptation
+vifm: add option vimabs      ---DONE
+vifm: vim/vimux adaptation   ---DONE
       :help/edit/rename
       q/ q? q:
       normal/menu   l gl

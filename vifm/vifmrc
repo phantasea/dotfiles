@@ -315,6 +315,12 @@ source $VIFM/vifm-mpc
 set vicmd="vimux"
 set vixcmd="vimux"
 
+if $DISPLAY == ""
+set vimabs="vim"
+else
+set vimabs="nvim"
+endif
+
 " What should be saved automatically between vifm runs
 set vifminfo=tui,tabs,savedirs,ratings
 set sessionoptions=tui,tabs,savedirs,ratings
