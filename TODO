@@ -1,3 +1,5 @@
+vifm: display "empty" like ranger if the directory has no file&subdir   ---
+      draw_right_column() in fileview.c
 vifm: add option vimabs      ---DONE
 vifm: vim/vimux adaptation   ---DONE
       :help/edit/rename
@@ -39,7 +41,6 @@ ranger: t,V,<esc>  when V cancel t selection   ---DONE
 ranger: V,f<char> bug fix  ---DONE (optimize f<any> by move up/down then move down/up)
 
 vifm: gv auto preview   ---DONE
-vifm: display "empty" like ranger if the directory has no file&subdir   ---FAILED
 
 ranger: f/F<any>   ---DONE
 

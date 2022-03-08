@@ -560,7 +560,7 @@ command! ffgoto   fd --type file | fzf --height=0 | xargs -r vifmgoto
 command! ffedit   fd -d=3 -t=f -t=l -H -E .git --size=-800k | fzf --height=0 -1 -q "%a" --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
 command! fffave   cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f -t=l . | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
 command! ffauds   fd -d=2 -t=f -e mp3 . ~/auds | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r audplay
-command! ffvids   fd -H -d=2 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r vidplay
+command! ffvids   fd -H -L -d=2 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r vidplay
 command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
 command! ffporn   fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
 command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-tmux --height 10 2> /dev/tty")
