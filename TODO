@@ -1,3 +1,6 @@
+ranger: cmap <c-v> not working (use decode('utf8')  ---DONE
+ranger: v to preview directory using 'display_file' ---DONE
+
 vifm: display "empty" like ranger if the directory has no file&subdir   ---
       draw_right_column() in fileview.c
 vifm: add option vimabs      ---DONE
