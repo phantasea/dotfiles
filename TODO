@@ -1,8 +1,11 @@
+ranger: display shell command output to the internal pager ---DONE
+
 ranger: cmap <c-v> not working (use decode('utf8')  ---DONE
 ranger: v to preview directory using 'display_file' ---DONE
 
-vifm: display "empty" like ranger if the directory has no file&subdir   ---
+vifm: display "empty" like ranger if the directory has no file&subdir   ---HARD!!!
       draw_right_column() in fileview.c
+
 vifm: add option vimabs      ---DONE
 vifm: vim/vimux adaptation   ---DONE
       :help/edit/rename
