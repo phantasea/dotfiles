@@ -303,7 +303,7 @@ cabbrev  cs   colorscheme
 
 " marks/bmarks/mpc {{{
 source $VIFM/bookmarks
-source $VIFM/vifm-mpc
+"source $VIFM/vifm-mpc
 " }}}
 
 " options {{{
