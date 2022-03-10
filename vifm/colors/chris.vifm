@@ -49,11 +49,11 @@ highlight  SuggestBox   ctermfg=yellow    ctermbg=none     cterm=bold
 highlight  CmpMismatch  ctermfg=red       ctermbg=none     cterm=bold
 
 highlight  User1        ctermfg=red       ctermbg=black    cterm=bold,reverse
-highlight  User2        ctermfg=green     ctermbg=none     cterm=bold,reverse
+highlight  User2        ctermfg=green     ctermbg=black    cterm=bold,reverse
 highlight  User3        ctermfg=yellow    ctermbg=none     cterm=bold,reverse
 highlight  User4        ctermfg=white     ctermbg=blue     cterm=bold
 highlight  User5        ctermfg=magenta   ctermbg=black    cterm=bold,reverse
-highlight  User6        ctermfg=cyan      ctermbg=none     cterm=bold,reverse
+highlight  User6        ctermfg=cyan      ctermbg=black    cterm=bold,reverse
 highlight  User7        ctermfg=white     ctermbg=none     cterm=bold,reverse
 
 highlight  /\.exe$/i                                        ctermfg=green   ctermbg=none    cterm=none

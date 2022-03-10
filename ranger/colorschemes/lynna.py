@@ -175,7 +175,7 @@ class Lynna(ColorScheme):
                 bg = green
                 fg = black
             elif context.marked:
-                bg = green
+                bg = red
                 fg = black
             elif context.systime:
                 bg = green
