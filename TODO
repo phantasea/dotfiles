@@ -50,6 +50,8 @@ vifm: gv auto preview   ---DONE
 
 ranger: f/F<any>   ---DONE
 
+https://github.com/ranger/ranger/pull/1764
+https://github.com/ranger/ranger/pull/2118
 https://github.com/ziahamza/webui-aria2
 https://github.com/agalwood/Motrix/releases/tag/v1.6.11
 https://github.com/akavel/up

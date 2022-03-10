@@ -3,7 +3,7 @@
 clipb="$(xsel -ob)"
 if [ -z "$clipb" ]; then
     tmuxbuff="$(tmux show-buffer)"
-    if [ "$tmuxbuff" = "NOTHING" ]; then
+    if [[ "$tmuxbuff" = "NOTHING" ]] || [[ -z "$tmuxbuff" ]]; then
         printf "W3m-control: PREV\r\n"
         exit
     else

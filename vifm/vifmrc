@@ -286,6 +286,8 @@ nnoremap  xO :sumovetoother<cr>
 vnoremap  xO :sumovetoother<cr>
 nnoremap  y  yy
 nnoremap  Y  :yankbasename<cr>:if $DISPLAY != "" | xyankbasename | endif<cr>
+nnoremap cy  :yankbasename<cr>
+nnoremap cY  :yankpathname<cr>
 nnoremap gy  :yankbasename<cr>
 nnoremap gY  :yankpathname<cr>
 nnoremap xy  :xyankbasename<cr>:echo expand('%"f') "is yanked to clipboard"<cr>
@@ -351,7 +353,7 @@ set tabprefix="[%0*%N:"
 set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
 set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%6*%a | %E%7*|%4* %= \"%t%T\""
-set rulerformat="%=%r %l%%%S%[(+%x)%] %P"
+set rulerformat="%=%r %l/%S%[(+%x)%] --%P--"
 set fillchars=vborder:\|
 set dirsize=nitems
 set viewcolumns=-{name},{rating},17{mtime}
@@ -365,11 +367,12 @@ set maxratingstars=7
 set previewmaxsize=3000
 set nofilenamedispall
 set topmidfiller="+"
-set clipboardprg="xsel -ob"
 if $DISPLAY == ""
 set filenamedisplen=64
+set clipboardprg="tmux show-buffer"
 else
 set filenamedisplen=49
+set clipboardprg="xsel -ob"
 endif
 
 set aproposprg='apropos %a'
