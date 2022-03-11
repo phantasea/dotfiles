@@ -1,3 +1,6 @@
+vifm: add option keymapsilent to control all map with ":xxxx" as silent  ---DONE
+      cmd_handlers.c -> do_map()
+
 ranger: display shell command output to the internal pager ---DONE
 
 ranger: cmap <c-v> not working (use decode('utf8')  ---DONE

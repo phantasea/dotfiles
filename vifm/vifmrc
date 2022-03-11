@@ -154,6 +154,8 @@ nnoremap  |  <c-w>=
 nnoremap  a  GVgg
 nnoremap  a  :%select<cr>
 vnoremap  a  ggoG
+qnoremap  a  <nop>
+qnoremap  A  <nop>
 nnoremap  A  za
 nnoremap ga  gA
 nnoremap  c. cw<c-a><c-d><cr>
@@ -183,6 +185,7 @@ nnoremap ge  :empty<cr>
 mnoremap  h  q
 dnoremap  h  q
 nnoremap  i  :touch<space>
+qnoremap  i  <nop>
 nnoremap gi  :imgall<cr>
 nnoremap zi  :!fzfimg<cr>
 nnoremap  I  :mkdir! ""<left><c-x>c
@@ -352,7 +355,7 @@ set showtabline=multiple
 set tabprefix="[%0*%N:"
 set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
-set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%6*%a | %E%7*|%4* %= \"%t%T\""
+set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%6*%a | %E%7*|%4* %= \"%T\""
 set rulerformat="%=%r %l/%S%[(+%x)%] --%P--"
 set fillchars=vborder:\|
 set dirsize=nitems
@@ -360,6 +363,7 @@ set viewcolumns=-{name},{rating},17{mtime}
 set sizefmt=units:iec,precision:1,nospace
 set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
 
+set keymapsilent
 set redolastcmdcfm
 set prefervsplit
 set maxundotabs=3
@@ -368,10 +372,10 @@ set previewmaxsize=3000
 set nofilenamedispall
 set topmidfiller="+"
 if $DISPLAY == ""
-set filenamedisplen=64
+set filenamedisplen=46
 set clipboardprg="tmux show-buffer"
 else
-set filenamedisplen=49
+set filenamedisplen=36
 set clipboardprg="xsel -ob"
 endif
 
