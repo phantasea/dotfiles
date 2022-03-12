@@ -186,12 +186,12 @@ vnoremap   *    y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 vnoremap   <    <gv
 vnoremap   >    >gv
 vnoremap   .    :normal .<CR>
-vnoremap  g(   <esc>`<i(<esc>`>a)<esc>
-vnoremap  g[   <esc>`<i[<esc>`>a]<esc>
-vnoremap  g{   <esc>`<i{<esc>`>a}<esc>
-vnoremap  g"   <esc>`<i"<esc>`>a"<esc>
-vnoremap  g'   <esc>`<i'<esc>`>a'<esc>
-vnoremap  g<   <esc>`<i<<esc>`>i><esc>
+vnoremap  g(    <esc>`<i(<esc>`>a)<esc>
+vnoremap  g[    <esc>`<i[<esc>`>a]<esc>
+vnoremap  g{    <esc>`<i{<esc>`>a}<esc>
+vnoremap  g"    <esc>`<i"<esc>`>a"<esc>
+vnoremap  g'    <esc>`<i'<esc>`>a'<esc>
+vnoremap  g<    <esc>`<i<<esc>`>i><esc>
 
 nnoremap  gb    :buffer<space>
 nnoremap  gB    :buffers<CR>
@@ -236,6 +236,8 @@ nnoremap   s?   :vimgrepadd  %<left><left>
 nnoremap   U    <C-R>
 nnoremap  gw    :update<CR>
 nnoremap  gW    :w !sudo tee % > /dev/null<CR>
+vnoremap  gy    y:call SmartVisualYank()<CR>
+vnoremap  gY    "+y
 nnoremap   Y    y$
 nnoremap   yo   o<Esc>k
 nnoremap   yO   O<Esc>j
@@ -291,6 +293,13 @@ inoremap <expr> <c-x><c-d> fzf#vim#complete#path('blsd')
 "}}}
 
 " function  {{{
+func! SmartVisualYank()
+    call system("tmux load-buffer -", @0)
+    if $DISPLAY != ""
+        call system("xsel -b -i", @0)
+    endif
+endfunc
+
 func! SetSmartQuit()
     nnoremap <buffer> <silent> q :call SmartQuit()<CR>
 endfunc

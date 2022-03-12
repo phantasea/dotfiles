@@ -169,7 +169,7 @@ class Lynna(ColorScheme):
                 bg = cyan
                 fg = black
             elif context.size:
-                bg = magenta
+                bg = cyan
                 fg = black
             elif context.ruler or context.percentage or context.top or context.bot or context.all:
                 bg = green

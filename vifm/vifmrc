@@ -349,17 +349,22 @@ set caseoptions="pg"
 set previewoptions="graphicsdelay:30000"
 set confirm=permdelete
 set dotdirs=treeleafsparent
-set timefmt="%H:%M\ %m/%d/%y"
 set tabscope=pane
 set showtabline=multiple
 set tabprefix="[%0*%N:"
 set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
-set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%6*%a | %E%7*|%4* %= \"%T\""
+set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%6*%a ~ %E%7*|%4* %= \"%T\""
 set rulerformat="%=%r %l/%S%[(+%x)%] --%P--"
 set fillchars=vborder:\|
 set dirsize=nitems
+if $DISPLAY == ""
+set timefmt="%H:%M\ %m/%d/%y"
 set viewcolumns=-{name},{rating},17{mtime}
+else
+set timefmt="%Y-%m-%d %H:%M:%S"
+set viewcolumns=-{name},{rating},22{mtime}
+endif
 set sizefmt=units:iec,precision:1,nospace
 set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
 
@@ -389,7 +394,7 @@ set previewprg=""
 
 source $VIFM/devicons
 
-windo filter! /(lost\+found|Desktop|sandisk_ext|sandisk_exp|downloadhelper
+windo filter! /(lost\+found|Desktop|sandisk_ext|sandisk_exp|downloadhelper|snap
               \|\.pyo$|\.pyc$|__pycache__|Extreme\ SSD|3166-6338|d042e951-|google|华为手机助手)/
 
 " Show list of matches on tab complition in command-line mode
