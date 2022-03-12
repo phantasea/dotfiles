@@ -18,6 +18,7 @@ _googler () {
         -V --videos
         -c --tld
         -l --lang
+        -g --geoloc
         -x --exact
         --colorize
         -C --nocolor
@@ -27,6 +28,7 @@ _googler () {
         --from
         --to
         -w --site
+        -e --exclude
         --unfilter
         -p --proxy
         --notweak
@@ -44,12 +46,14 @@ _googler () {
         -n --count
         -c --tld
         -l --lang
+        -g --geoloc
         --colorize
         --colors
         -t --time
         --from
         --to
         -w --site
+        -e --exclude
         -p --proxy
         --url-handler
     )

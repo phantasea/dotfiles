@@ -4,16 +4,14 @@
 <a href="https://github.com/jarun/googler/releases/latest"><img src="https://img.shields.io/github/release/jarun/googler.svg?maxAge=600" alt="Latest release" /></a>
 <a href="https://repology.org/project/googler/versions"><img src="https://repology.org/badge/tiny-repos/googler.svg" alt="Availability"></a>
 <a href="https://github.com/jarun/googler/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-GPLv3-yellowgreen.svg?maxAge=2592000" alt="License" /></a>
-<a href="https://github.com/jarun/googler/actions"><img src="https://github.com/jarun/googler/workflows/test/badge.svg?branch=master" alt="Build Status" /></a>
-<a href="https://repl.it/github/jarun/googler"><img src="https://repl.it/badge/github/jarun/googler?maxAge=2592000" alt="Repl.it" /></a>
-
+<a href="https://github.com/jarun/googler/actions"><img src="https://github.com/jarun/googler/workflows/ci/badge.svg?branch=master" alt="Build Status" /></a>
 </p>
 
 <p align="center">
 <a href="https://asciinema.org/a/85019"><img src="https://i.imgur.com/EbZof9q.png" alt="Asciicast" width="734"/></a>
 </p>
 
-`googler` is a power tool to Google (Web & News) and Google Site Search from the command-line. It shows the title, URL and abstract for each result, which can be directly opened in a browser from the terminal. Results are fetched in pages (with page navigation). Supports sequential searches in a single `googler` instance.
+`googler` is a power tool to Google (web, news, videos and site search) from the command-line. It shows the title, URL and abstract for each result, which can be directly opened in a browser from the terminal. Results are fetched in pages (with page navigation). Supports sequential searches in a single `googler` instance.
 
 `googler` was initially written to cater to headless servers without X. You can integrate it with a text-based browser. However, it has grown into a very handy and flexible utility that delivers much more. For example, fetch any number of results or start anywhere, limit search by any duration, define aliases to google search any number of websites, switch domains easily... all of this in a very clean interface without ads or stray URLs. The shell completion scripts make sure you don't need to remember any options.
 
@@ -119,12 +117,6 @@ More fun stuff you can try with `googler`:
 - [Stream YouTube videos on desktop](https://github.com/jarun/googler/wiki/Search-and-stream-videos-from-the-terminal)
 - [Search error on StackOverflow from terminal](https://github.com/jarun/googler/wiki/Search-error-on-StackOverflow-from-terminal)
 
-*Love smart and efficient utilities? Explore [my repositories](https://github.com/jarun?tab=repositories). Buy me a cup of coffee if they help you.*
-
-<p align="center">
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RMLTQ76JSXJ4Q"><img src="https://img.shields.io/badge/donate-PayPal-1eb0fc.svg" alt="Donate via PayPal!" /></a>
-</p>
-
 ### Table of contents
 
 - [Features](#features)
@@ -171,7 +163,7 @@ More fun stuff you can try with `googler`:
 
 #### Dependencies
 
-`googler` requires Python 3.5 or later. Only the latest patch release of each minor version is supported.
+`googler` requires Python 3.6 or later. Only the latest patch release of each minor version is supported.
 
 To copy url to clipboard at the omniprompt, `googler` looks for `xsel` or `xclip` or `termux-clipboard-set` (in the same order) on Linux, `pbcopy` (default installed) on macOS and `clip` (default installed) on Windows. It also supports GNU Screen and tmux copy-paste buffers in the absence of X11.
 
@@ -229,7 +221,7 @@ To remove `googler` and associated docs, run
 
 To install the latest stable version, run
 
-    $ sudo curl -o /usr/local/bin/googler https://raw.githubusercontent.com/jarun/googler/v4.1/googler && sudo chmod +x /usr/local/bin/googler
+    $ sudo curl -o /usr/local/bin/googler https://raw.githubusercontent.com/jarun/googler/v4.3.2/googler && sudo chmod +x /usr/local/bin/googler
 
 You could then let googler upgrade itself by running
 
@@ -252,11 +244,10 @@ Search keyword and option completion scripts for Bash, Fish and Zsh can be found
 #### Cmdline options
 
 ```
-usage: googler [-h] [-s N] [-n N] [-N] [-V] [-c TLD] [-l LANG] [-x]
-               [--colorize [{auto,always,never}]] [-C] [--colors COLORS] [-j]
-               [-t dN] [--from FROM] [--to TO] [-w SITE] [--unfilter]
-               [-p PROXY] [--noua] [--notweak] [--json] [--url-handler UTIL]
-               [--show-browser-logs] [--np] [-u] [--include-git] [-v] [-d]
+usage: googler [-h] [-s N] [-n N] [-N] [-V] [-c TLD] [-l LANG] [-g CC] [-x]
+               [--colorize [{auto,always,never}]] [-C] [--colors COLORS] [-j] [-t dN] [--from FROM]
+               [--to TO] [-w SITE] [-e SITE] [--unfilter] [-p PROXY] [--notweak] [--json]
+               [--url-handler UTIL] [--show-browser-logs] [--np] [-4] [-6] [-u] [--include-git] [-v] [-d]
                [KEYWORD [KEYWORD ...]]
 
 Google from the command-line.
@@ -270,36 +261,39 @@ optional arguments:
   -n N, --count N       show N results (default 10)
   -N, --news            show results from news section
   -V, --videos          show results from videos section
-  -c TLD, --tld TLD     country-specific search with top-level domain .TLD,
-                        e.g., 'in' for India
+  -c TLD, --tld TLD     country-specific search with top-level domain .TLD, e.g., 'in' for India
   -l LANG, --lang LANG  display in language LANG
+  -g CC, --geoloc CC    country-specific geolocation search with country code CC, e.g. 'in' for India.
+                        Country codes are the same as top-level domains
   -x, --exact           disable automatic spelling correction
   --colorize [{auto,always,never}]
-                        whether to colorize output; defaults to 'auto', which
-                        enables color when stdout is a tty device; using
-                        --colorize without an argument is equivalent to
+                        whether to colorize output; defaults to 'auto', which enables color when stdout
+                        is a tty device; using --colorize without an argument is equivalent to
                         --colorize=always
   -C, --nocolor         equivalent to --colorize=never
   --colors COLORS       set output colors (see man page for details)
   -j, --first, --lucky  open the first result in web browser and exit
-  -t dN, --time dN      time limit search [h5 (5 hrs), d5 (5 days), w5 (5
-                        weeks), m5 (5 months), y5 (5 years)]
-  --from FROM           starting date/month/year of date range; must use
-                        American date format with slashes, e.g., 2/24/2020,
-                        2/2020, 2020; can be used in conjunction with --to,
+  -t dN, --time dN      time limit search [h5 (5 hrs), d5 (5 days), w5 (5 weeks), m5 (5 months), y5 (5
+                        years)]
+  --from FROM           starting date/month/year of date range; must use American date format with
+                        slashes, e.g., 2/24/2020, 2/2020, 2020; can be used in conjunction with --to,
                         and overrides -t, --time
   --to TO               ending date/month/year of date range; see --from
   -w SITE, --site SITE  search a site using Google
+  -e SITE, --exclude SITE
+                        exclude site from results
   --unfilter            do not omit similar results
   -p PROXY, --proxy PROXY
-                        tunnel traffic through an HTTP proxy; PROXY is of the
-                        form [http://][user:password@]proxyhost[:port]
-  --noua                legacy option (no effect)
+                        tunnel traffic through an HTTP proxy; PROXY is of the form
+                        [http://][user:password@]proxyhost[:port]
   --notweak             disable TCP optimizations and forced TLS 1.2
   --json                output in JSON format; implies --noprompt
   --url-handler UTIL    custom script or cli utility to open results
   --show-browser-logs   do not suppress browser output (stdout and stderr)
   --np, --noprompt      search and exit, do not prompt
+  -4, --ipv4            only connect over IPv4 (by default, IPv4 is preferred but IPv6 is used as a
+                        fallback)
+  -6, --ipv6            only connect over IPv6
   -u, --upgrade         perform in-place self-upgrade
   --include-git         when used with --upgrade, get latest git master
   -v, --version         show program's version number and exit
@@ -467,7 +461,7 @@ Pull requests are welcome. Please visit [#209](https://github.com/jarun/googler/
 ### Developers
 
 1. Copyright © 2008 Henri Hakkinen
-2. Copyright © 2015-2020 [Arun Prakash Jana](https://github.com/jarun)
+2. Copyright © 2015-2021 [Arun Prakash Jana](https://github.com/jarun)
 3. [Zhiming Wang](https://github.com/zmwangx)
 4. [Johnathan Jenkins](https://github.com/shaggytwodope)
 5. [SZ Lin](https://github.com/szlin)
