@@ -210,7 +210,7 @@ class fzf_vids(Command):
     def execute(self):
         import subprocess
         command="fd -H -L -d=2 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | \
-                fzf --height=0 --bind 'ctrl-o:execute(fzfopen {}),j:down,k:up' | \
+                fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | \
                 sed 's/ /\\ /g' | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()

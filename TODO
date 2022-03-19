@@ -1,3 +1,10 @@
+ranger: implement sonsole cmd <c-x>f to paste file name  ---DONE
+
+ranger: implement %left function like %space   ---Partial DONE
+        macros like %space %s %f %d are defined in actions.py get_macro()
+        Solution1: chain console shell -px  %%s; eval fm.ui.console.move(left=3)
+        Solution2: console -p10 shell -px  %%s
+
 vifm: add option keymapsilent to control all map with ":xxxx" as silent  ---DONE
       cmd_handlers.c -> do_map()
 
@@ -43,7 +50,6 @@ ranger: cmdline paste from clipboard   ---DONE
 
 vifm:   smart restore tag/visual selection   ---DONE
 
-ranger: implement <left> function like <space>   ---FAILED
 ranger: gs regex selection   ---GIVE UP
 ranger: gv auto preview   ---DONE
 ranger: t,V,<esc>  when V cancel t selection   ---DONE
