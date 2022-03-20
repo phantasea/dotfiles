@@ -380,7 +380,7 @@ if $DISPLAY == ""
 set filenamedisplen=46
 set clipboardprg="tmux show-buffer"
 else
-set filenamedisplen=31
+set filenamedisplen=36
 set clipboardprg="xsel -ob"
 endif
 
