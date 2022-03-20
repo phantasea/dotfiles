@@ -356,7 +356,7 @@ set tabprefix="[%0*%N:"
 set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
 set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%6*%a ~ %E%7*|%4* %= \"%T\""
-set rulerformat="%=%r %l/%S%[(+%x)%] --%P--"
+set rulerformat="%=%r %l/%S%[(+%x)%]%[%H%] --%P--"
 set fillchars=vborder:\|
 set dirsize=nitems
 if $DISPLAY != ""
@@ -377,7 +377,7 @@ set previewmaxsize=3000
 set nofilenamedispall
 set topmidfiller="+"
 if $DISPLAY == ""
-set filenamedisplen=46
+set filenamedisplen=41
 set clipboardprg="tmux show-buffer"
 else
 set filenamedisplen=36
