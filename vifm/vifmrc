@@ -269,8 +269,9 @@ nnoremap  T  kt
 nnoremap  U  <c-r>
 qnoremap  v  q
 nnoremap bv  :if &viewcolumns == '-{name}'
-           \| set viewcolumns=-{name},{rating},17{mtime}
+           \| setdefaultviewcolumns
            \| set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
+           \| imgclear
            \| else | set viewcolumns=-{name}
            \| set milleroptions=lsize:2,csize:3,rsize:5,rpreview:all | endif<cr>
 nnoremap gv  gS
@@ -358,7 +359,7 @@ set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%6*%a ~ %E%7*|%4* %= \"%T\""
 set rulerformat="%=%r %l/%S%[(+%x)%] --%P--"
 set fillchars=vborder:\|
 set dirsize=nitems
-if $DISPLAY == ""
+if $DISPLAY != ""
 set timefmt="%H:%M\ %m/%d/%y"
 set viewcolumns=-{name},{rating},17{mtime}
 else
@@ -368,7 +369,6 @@ endif
 set sizefmt=units:iec,precision:1,nospace
 set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
 
-set keymapsilent
 set redolastcmdcfm
 set prefervsplit
 set maxundotabs=3
@@ -380,7 +380,7 @@ if $DISPLAY == ""
 set filenamedisplen=46
 set clipboardprg="tmux show-buffer"
 else
-set filenamedisplen=36
+set filenamedisplen=31
 set clipboardprg="xsel -ob"
 endif
 
@@ -517,10 +517,18 @@ command! togglesort
       \ |    echo 'sorted by +iname'
       \ |endif
 
+command! setdefaultviewcolumns
+      \ :if $DISPLAY != ""
+      \ |    set viewcolumns=-{name},{rating},17{mtime}
+      \ |else
+      \ |    set viewcolumns=-{name},{rating},22{mtime}
+      \ |endif
+
 if $DISPLAY != ""
 command! setwallpaper    feh --bg-scale %c %i
 endif
 
+command! imgclear vifmimg clear
 command! clock    tty-clock -cBS -C 6
 command! cmatrix  cmatrix -abs -C cyan
 command! sued     sudoedit %c
@@ -689,11 +697,13 @@ filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm
 if $DISPLAY == ""
 fileview  <image/*>
           \ w3mimg %px %py %pw %ph %c, imgcat %c,
-          \ chafa --clear -c 256 --bg blue %c,
           \ exiftool %c, mediainfo %c,
+          \ chafa --clear -c 256 --bg blue %c,
 else
 fileview  <image/*>
           \ vifmimg draw %px %py %pw %ph %c %pc vifmimg clear,
+          \ exiftool %c, mediainfo %c,
+          \ w3mimg %px %py %pw %ph %c, imgcat %c,
           \ chafa --clear -c 256 --bg blue %c,
 endif
 
