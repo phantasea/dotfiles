@@ -24,8 +24,13 @@ highlight  Device       ctermfg=red       ctermbg=none     cterm=bold
 highlight  Fifo         ctermfg=blue      ctermbg=none     cterm=bold
 highlight  Executable   ctermfg=green     ctermbg=none     cterm=none
 highlight  ErrorMsg     ctermfg=red       ctermbg=none     cterm=none
+if $DISPLAY == ""
 highlight  Border       ctermfg=white     ctermbg=none     cterm=none
 highlight  TopMid       ctermfg=white     ctermbg=none     cterm=bold
+else
+highlight  Border       ctermfg=blue      ctermbg=black    cterm=none
+highlight  TopMid       ctermfg=white     ctermbg=black    cterm=bold
+endif
 highlight  LineNr       ctermfg=white     ctermbg=none     cterm=bold
 highlight  StatusLine   ctermfg=white     ctermbg=blue     cterm=bold
 highlight  CmdLine      ctermfg=yellow    ctermbg=none     cterm=bold
