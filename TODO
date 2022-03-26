@@ -1,4 +1,7 @@
-vifm: rightmost column ellipsis with extention   ---
+vifm: rightmost column ellipsis with extention   ---QUIT
+      fileview.c(format_name, redraw_cell)
+      filelist.c(get_short_path_of)
+      ui.c(format_entry_name)
 
 util: medinfo for the mp3 audio duration not correct   ---DONE
 
@@ -11,7 +14,7 @@ ranger: implement %left function like %space   ---Partial DONE
         Solution1: chain console shell -px  %%s; eval fm.ui.console.move(left=3)
         Solution2: console -p10 shell -px  %%s
 
-vifm: add option keymapsilent to control all map with ":xxxx" as silent  ---DONE
+vifm: add option keymapsilent to control all map with ":xxxx" as silent  ---DONE---ROLLBACK
       cmd_handlers.c -> do_map()
 
 ranger: display shell command output to the internal pager ---DONE
