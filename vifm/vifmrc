@@ -313,11 +313,8 @@ source $VIFM/bookmarks
 " }}}
 
 " options {{{
-"let &syncregs = $USER
-"screen!
-"set termguicolors
+source $VIFM/devicons
 
-" This is the actual command used to start vi.  The default is vim.
 set vicmd="vimux"
 set vixcmd="vimux"
 
@@ -327,15 +324,25 @@ else
 set vimabs="nvim"
 endif
 
-" What should be saved automatically between vifm runs
 set vifminfo=tui,tabs,savedirs,ratings
 set sessionoptions=tui,tabs,savedirs,ratings
-
-" IO options
-set syscalls
 set iooptions=fastfilecloning
+set cpoptions="s"
+set tuioptions="uv"
+set caseoptions="pg"
+set previewoptions="graphicsdelay:30000"
+set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
+set suggestoptions=normal,visual,keys,delay:1000
 
-" TUI options
+set aproposprg='apropos %a'
+set deleteprg=""
+set findprg='fd -i -d=3 -t=f %p'
+set grepprg='rg -S --vimgrep %i %a'
+set locateprg='locate %a'
+set mediaprg='vifmmed'
+set previewprg=""
+
+set syscalls
 set notitle
 set nolsview
 set nodotfiles
@@ -344,10 +351,6 @@ set tabstop=4
 set numberwidth=1
 set shortmess="T"
 set timeoutlen=2000
-set cpoptions="s"
-set tuioptions="uv"
-set caseoptions="pg"
-set previewoptions="graphicsdelay:30000"
 set confirm=permdelete
 set dotdirs=treeleafsparent
 set tabscope=pane
@@ -367,8 +370,31 @@ set timefmt="%Y-%m-%d %H:%M:%S"
 set viewcolumns=-{name},{rating},22{mtime}
 endif
 set sizefmt=units:iec,precision:1,nospace
-set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
+set wildmenu
+set wildstyle=popup
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+set wrapscan
+set scrolloff=0
+set trash
+set trashdir="~/.Trash"
+set history=9
+set nofollowlinks
+set nochaselinks
+set sortnumbers
+set sort="+iname"
+set undolevels=9
+set vimhelp
+set norunexec
+set noiec
+set fusehome=/tmp/vifm_FUSE
+if !has('win')
+set slowfs=curlftpfs
+endif
 
+"add by sim1---------------
 set redolastcmdcfm
 set prefervsplit
 set maxundotabs=3
@@ -383,85 +409,15 @@ else
 set filenamedisplen=36
 set clipboardprg="xsel -ob"
 endif
+"add by sim1---------------
 
-set aproposprg='apropos %a'
-set deleteprg=""
-set findprg='fd -i -d=3 -t=f %p'
-set grepprg='rg -S --vimgrep %i %a'
-set locateprg='locate %a'
-set mediaprg='vifmmed'
-set previewprg=""
-
-source $VIFM/devicons
-
-windo filter! /(lost\+found|Desktop|sandisk_ext|sandisk_exp
-              \|\.pyo$|\.pyc$|__pycache__|Extreme\ SSD|3166-6338|d042e951-|google|华为手机助手)/
-
-" Show list of matches on tab complition in command-line mode
-set wildmenu
-set wildstyle=popup
-
-" Ignore case in search patterns unless it contains at least one uppercase letter
-set ignorecase
-set smartcase
-
-" Highlight search, search while typing
-set hlsearch
-set incsearch
-set wrapscan
-
-" Try to leave some space from cursor to upper/lower border in lists
-set scrolloff=0
-
-" Trash Directory
-set trash
-set trashdir="~/.Trash"
-
-" This is how many directories to store in the directory history.
-set history=9
-
-" Follow links on l or Enter.
-set nofollowlinks
-set nochaselinks
-
-" Natural sort of (version) numbers within text.
-set sortnumbers
-set sort="+iname"
-
-" Maximum number of changes that can be undone.
-set undolevels=9
-
-" If you installed the vim.txt help file set vimhelp.
-" If would rather use a plain text help file set novimhelp.
-set vimhelp
-
-" If you would like to run an executable file when you
-" press return on the file name set this.
-set norunexec
-
-" Use KiB, MiB, ... instead of KB, MB, ...
-set noiec
-
-" Display suggestions in normal, visual and view modes for keys, marks and
-" registers (at most 5 files).  In other view, when available.
-"set suggestoptions=normal,visual,view,otherpane,keys,marks,registers
-set suggestoptions=normal,visual,view
-
-" Selected color scheme
 if $TERM == 'screen-256color' || $TERM == 'st-256color'
 colorscheme alice
 else
 colorscheme chris
 endif
 
-" The FUSE_HOME directory will be used as a root dir for all FUSE mounts.
-" Unless it exists with write/exec permissions set, vifm will attempt to create it.
-set fusehome=/tmp/vifm_FUSE
-
-" Don't do too many requests to slow file systems
-if !has('win')
-set slowfs=curlftpfs
-endif
+windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|google|华为手机助手)/
 " }}}
 
 " commands {{{
