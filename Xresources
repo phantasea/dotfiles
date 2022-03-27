@@ -52,11 +52,22 @@ Xft.lcdfilter: lcddefault
 Xcursor.theme: Chameleon-Pearl-Regular-0.5
 Xcursor.size:  0
 
-XTerm*background: #272827
-XTerm*foreground: #fdf6e3
-XTerm*reverseVideo: on
-XTerm*faceName: Terminus:size=11:antialias=true
-XTerm*selectToClipboard: true
+*XTerm*background: #000000
+*XTerm*foreground: #fdf6e3
+*XTerm*faceName: DejaVu Sans Mono:size=15:antialias=true
+*XTerm*selectToClipboard: true
+*XTerm*decTerminalID: vt340
+*XTerm*numColorRegisters: 256
+*XTerm.termName: xterm-256color
+*XTerm.vt100.locale: false
+*XTerm.vt100.utf8: true
+*XTerm.vt100.metaSendsEscape: true
+*XTerm.vt100.backarrowKey: false
+*XTerm.ttyModes: erase ^?
+*XTerm.vt100.foreground: white
+*XTerm.vt100.background: black
+*XTerm.vt100.faceNameDoublesize: WenQuanYi Zen Hei Mono
+*XTerm.vt100.faceSize: 15
 
 URxvt.font: 9x15
 URxvt.depth: 32
