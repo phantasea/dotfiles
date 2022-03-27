@@ -547,10 +547,11 @@ command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-t
 
 " autocmds {{{
 autocmd DirEnter '/opt/util'             setl nomillerview lsview previewprg='bat --style="plain" -- %c'
+autocmd DirEnter '/opt/apps/vifm'        exec 'normal fs;'
 autocmd DirEnter '~/docs/misc'           exec 'normal zd'
 autocmd DirEnter '~/docs/webs'           exec 'normal zd'
-autocmd DirEnter '/opt/apps/vifm'        exec 'normal fs;'
 autocmd DirEnter '~/misc/gits/**/*'      setl dotfiles
+autocmd DirEnter '~/pics/celeb/*/'       setl sort='-mtime,+iname'
 " }}}
 
 " filetype/fileview {{{
