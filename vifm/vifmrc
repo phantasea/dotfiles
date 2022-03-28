@@ -137,13 +137,13 @@ nnoremap  <a-k>  <space>k<space>
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
-nnoremap  @  <nop>
 nnoremap  &  <nop>
 nnoremap  !  !!
 nnoremap  ~  :cd ~<cr>
 nnoremap  -  :cd -<cr>
 nnoremap  +  <nop>
 nnoremap  ?  :file<space><tab>
+nnoremap  @  :windo set number!<cr>
 nnoremap  #  :windo set relativenumber!<cr>
 nnoremap g*  #
 nnoremap  \  :invert s<cr>

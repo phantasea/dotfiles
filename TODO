@@ -1,3 +1,7 @@
+vifm: LineNr current line independant highlight (prepare_col_color)   ---QUIT
+vifm: LineNr current line left alignment   ---PARTIAL DONE by 'set number + set relativenumber'
+      fileview.c (draw_line_number)
+
 vifm: rightmost column ellipsis with extention   ---QUIT
       fileview.c(format_name, redraw_cell)
       filelist.c(get_short_path_of)

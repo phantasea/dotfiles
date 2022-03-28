@@ -14,7 +14,7 @@ mark  r  /              usr
 mark  t  ~/temp
 mark  T  ~/.Trash
 mark  u  /opt/util      mudisk
-mark  v  ~/vids         movie
+mark  v  ~/vids
 mark  w  ~/docs/webs
 mark  x  /opt/.priv
 
