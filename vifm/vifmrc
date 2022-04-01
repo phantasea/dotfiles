@@ -403,10 +403,10 @@ set previewmaxsize=3000
 set nofilenamedispall
 set topmidfiller="+"
 if $DISPLAY == ""
-set filenamedisplen=56
+set filenamedisplen=52
 set clipboardprg="tmux show-buffer"
 else
-set filenamedisplen=51
+set filenamedisplen=47
 set clipboardprg="xsel -ob"
 endif
 "add by sim1---------------
