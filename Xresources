@@ -54,7 +54,7 @@ Xcursor.size:  0
 
 *XTerm*background: #000000
 *XTerm*foreground: #fdf6e3
-*XTerm*faceName: DejaVu Sans Mono:size=15:antialias=true
+*XTerm*faceName: DejaVu Sans Mono:size=15:antialias=true:minspace=False
 *XTerm*selectToClipboard: true
 *XTerm*decTerminalID: vt340
 *XTerm*numColorRegisters: 256
@@ -67,7 +67,8 @@ Xcursor.size:  0
 *XTerm.vt100.foreground: white
 *XTerm.vt100.background: black
 *XTerm.vt100.faceNameDoublesize: WenQuanYi Zen Hei Mono
-*XTerm.vt100.faceSize: 15
+*XTerm.vt100.faceSize: 13
+*XTerm*letterSpace: 4
 
 URxvt.font: 9x15
 URxvt.depth: 32

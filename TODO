@@ -1,3 +1,5 @@
+vifm: statusline auto adapt filenamedisplen with new function   ---DONE
+
 vifm: LineNr current line independant highlight (prepare_col_color)   ---QUIT
 vifm: LineNr current line left alignment   ---PARTIAL DONE by 'set number + set relativenumber'
       fileview.c (draw_line_number)
