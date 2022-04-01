@@ -349,7 +349,7 @@ set nodotfiles
 set millerview
 set tabstop=4
 set numberwidth=1
-set shortmess="T"
+set shortmess="pT"
 set timeoutlen=2000
 set confirm=permdelete
 set dotdirs=treeleafsparent
@@ -358,8 +358,8 @@ set showtabline=multiple
 set tabprefix="[%0*%N:"
 set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
-set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%6*%a ~ %E%7*|%4* %= \"%T\""
-set rulerformat="%=%r %l/%S%[(+%x)%]%[%H%] --%P--"
+set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%[%6*%r%7*|%]%4* %= \"%T\""
+set rulerformat="%=%E/%a %l/%S%[(+%x)%]%[%H%] --%P--"
 set fillchars=vborder:\|
 set dirsize=nitems
 if $DISPLAY != ""
@@ -403,10 +403,10 @@ set previewmaxsize=3000
 set nofilenamedispall
 set topmidfiller="+"
 if $DISPLAY == ""
-set filenamedisplen=41
+set filenamedisplen=56
 set clipboardprg="tmux show-buffer"
 else
-set filenamedisplen=36
+set filenamedisplen=51
 set clipboardprg="xsel -ob"
 endif
 "add by sim1---------------
