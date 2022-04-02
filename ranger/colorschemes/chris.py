@@ -160,6 +160,9 @@ class Chris(ColorScheme):
             elif context.size:
                 bg = cyan
                 fg = black
+            elif context.stars:
+                bg = magenta
+                fg = black
             elif context.ruler or context.percentage or context.top or context.bot or context.all:
                 bg = green
                 fg = black

@@ -1,3 +1,6 @@
+ranger: read and show rating stars in /opt/conf/vifm/vifminfo.json   ---DONE
+        vifm disabling rating info encryption to make this work
+
 vifm: statusline auto adapt filenamedisplen with new function   ---DONE
 
 vifm: LineNr current line independant highlight (prepare_col_color)   ---QUIT
