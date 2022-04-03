@@ -258,7 +258,7 @@ nnoremap   d<Tab>  <NOP>
 nnoremap   c<Tab>  :.retab<CR>
 nnoremap   g<Tab>  :retab<CR>
 nnoremap   m<Tab>  <NOP>
-nnoremap   y<Tab>  <NOP>
+nnoremap   y<Tab>  :FormatJSON<CR>
 nnoremap   s<Tab>  s<C-V><Tab><Esc>
 nnoremap   z<Tab>  i<C-V><Tab><Esc>
 
@@ -668,6 +668,9 @@ iabbrev  xdate    <C-R>=strftime("%d/%m/%y %H:%M:%S")<cr>
 "}}}
 
 " command  {{{
+command! FormatJSON %!jq --color-output .
+command! FormatJSON %!python3 -m json.tool
+
 "See the difference between the current buffer and the file when it was loaded
 command! DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis | wincmd p | diffthis
 

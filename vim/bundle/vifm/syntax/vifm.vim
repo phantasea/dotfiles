@@ -65,9 +65,8 @@ syntax keyword vifmUnletCommand contained unl[et]
 syntax keyword vifmSetCommand contained se[t] setl[ocal] setg[lobal]
 syntax keyword vifmSoCommand contained so[urce]
 syntax keyword vifmMarkCommand contained ma[rk]
-syntax keyword vifmFtCommand contained filet[ype] filex[type] filev[iewer]
-syntax keyword vifmExprCommand contained if ec[ho] elsei[f] exe[cute]
-    \ topmidfiller
+syntax keyword vifmFtCommand contained filet[ype] filex[type] filev[iewer] fileopen
+syntax keyword vifmExprCommand contained if ec[ho] elsei[f] exe[cute] topmidfiller
 syntax keyword vifmNormalCommand contained norm[al]
 		\ nextgroup=vifmColonSubcommand
 syntax match vifmPatternCommands contained /\<\(filter\(!\|\>\)\|select\(!\|\>\)\|unselect\>\)/ skipwhite
