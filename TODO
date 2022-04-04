@@ -1,5 +1,6 @@
-neofetch: DIY picture   ---QUIT (w3mimg not work)
+neofetch: DIY picture   ---QUIT (w3mimg not working)
 
+ranger: filter to only display the files which have rating stars  ---DONE
 ranger: support adding rating stars for fave file   ---DONE
 ranger: show rating info menu   ---DONE
 ranger: add rangerinfo.json to store rating info and tabs path   ---DONE
