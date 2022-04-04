@@ -224,6 +224,7 @@ nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
 nnoremap  ol zl
+nnoremap  or zS
 nnoremap  os :invert s<cr>zf
 nnoremap  ot :exec "filter /\.".expand('%c:e')."$/i"
 nnoremap  o. zA
