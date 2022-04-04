@@ -56,6 +56,26 @@ class subst(Command):
                 self.fm.notify(err)
 
 
+class display_ratings(Command):
+    """
+    :display_ratings
+
+    display rating star info of favorite files
+    """
+
+    def execute(self):
+        lines = []
+        for entry in self.fm.rating_info:
+            line = str(entry['star']) + ':' + entry['path']
+            lines.append(line)
+
+        if lines:
+            pager = self.fm.ui.open_pager()
+            pager.set_source(lines)
+        else:
+            self.fm.notify("There is no rating info to display!", bad=False)
+
+
 class vidplay(Command):
     """
     :vidplay [anything]

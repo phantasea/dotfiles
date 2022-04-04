@@ -202,14 +202,13 @@ mnoremap  K  <c-y>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
 nnoremap gl  :if filetype('.') != 'link' && filetype('.') != 'dir' | altopen | else | exec 'normal gf' | endif<cr>
 nnoremap gL  :if filetype('.') == 'exe' | exec 'normal i' | else | auxopen | endif<cr>
-nnoremap gmb :bmarks<cr>
+nnoremap gmb :marks<cr>
 nnoremap gmc :command<cr>
 nnoremap gmC :change<cr>
 nnoremap gmf :file<cr>
 nnoremap gmj :jobs<cr>
 nnoremap gml :messages<cr>
-nnoremap gmm :marks<cr>
-nnoremap gmM :media<cr>
+nnoremap gmm :media<cr>
 nnoremap gmp :chmod<cr>
 nnoremap gmr :ratings<cr>
 nnoremap gms :sort<cr>
