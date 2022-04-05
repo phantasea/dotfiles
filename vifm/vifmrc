@@ -638,14 +638,15 @@ fileview  <video/*>
           \ thumbnail %px %py %pw %ph %c,
 
 " Image
-filetype  *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm  imgview %c, imgview -b %c, imgview -B %c
+filetype  *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm,*.webp
+          \ imgview %c, imgview -b %c, imgview -B %c
 if $DISPLAY == ""
 filetype  *.gif  mpv -vo=drm %c
 else
 filetype  *.gif  mpv %c, pqiv -f %c, vimiv -f %c
 endif
 filextype *.svg  vimiv %f
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm
+filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm,*.webp
           \ pho -p %c, pho -p -s1 %c,
           \ feh -F %c, feh -F -D 1 %c,
           \ vimiv %f, vimiv --slideshow,

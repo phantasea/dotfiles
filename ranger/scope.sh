@@ -158,7 +158,7 @@ handle_extension() {
             exit 1;;
 
         # Image files
-        bmp|jpg|jpeg|png|gif|xpm|ppm)
+        bmp|jpg|jpeg|png|gif|xpm|ppm|webp)
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
