@@ -1,5 +1,7 @@
 neofetch: DIY picture   ---QUIT (w3mimg not working)
 
+ranger: after visual rename, quit visual mode   ---
+
 ranger: filter to only display the files which have rating stars  ---DONE
 ranger: support adding rating stars for fave file   ---DONE
 ranger: show rating info menu   ---DONE
