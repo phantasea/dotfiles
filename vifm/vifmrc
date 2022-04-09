@@ -144,8 +144,8 @@ nnoremap  ~  :cd ~<cr>
 nnoremap  -  :cd -<cr>
 nnoremap  +  <nop>
 nnoremap  ?  :file<space><tab>
-nnoremap g#  :windo set number!<cr>
-nnoremap  #  :windo set relativenumber!<cr>
+nnoremap g#  :windo set relativenumber!<cr>
+nnoremap  #  :togglelinenumber<cr>
 nnoremap g*  #
 nnoremap  \  :invert s<cr>
 vnoremap  \  :invert s<cr>
@@ -463,6 +463,17 @@ command! xyankbasename   echo -n %f   | xsel --clipboard --input %i &
 command! xyankpathname   echo -n %d   | xsel --clipboard --input %i &
 command! xyankfullname   echo -n %c:p | xsel --clipboard --input %i &
 endif
+
+command! togglelinenumber
+      \ :if &number == 0 && &relativenumber == 0
+      \ |    set relativenumber
+      \ |elseif &number == 0 && &relativenumber == 1
+      \ |    set number
+      \ |else
+      \ |    set nonumber
+      \ |    set norelativenumber
+      \ |endif
+
 command! togglesort
       \ :if &sort == '+iname'
       \ |    set sort=-mtime
