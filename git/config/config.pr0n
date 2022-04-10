@@ -1,0 +1,13 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://github.com/phantasea/pr0n
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	pushurl = git@github.com:phantasea/pr0n.git
+	pushurl = git@gitlab.com:phantasea/pr0n.git
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
