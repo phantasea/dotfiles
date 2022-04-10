@@ -153,7 +153,7 @@ syntax keyword vifmOption contained aproposprg autocd autochpos caseoptions
 		\ tabsuffix timefmt timeoutlen title tm trash trashdir ts tuioptions to
 		\ undolevels ul vicmd viewcolumns vifminfo vimhelp vixcmd wildmenu wmnu
 		\ prefervsplit maxundotabs previewmaxsize topmidfiller maxratingstars vimabs
-    \ filenamedisplen filenamedispall redolastcmdcfm keymapsilent clipboardprg
+    \ filenamedisplen filenamedispall redolastcmdcfm keymapsilent clipboardprg cdaftermkdir
 		\ wildstyle wordchars wrap wrapscan ws
 
 " Disabled boolean options
@@ -163,7 +163,7 @@ syntax keyword vifmOption contained noautocd noautochpos nocf nochaselinks
 		\ nonu noquickview norelativenumber nornu noscrollbind noscb norunexec
 		\ nosmartcase noscs nosortnumbers nosyscalls notitle notrash novimhelp
 		\ nowildmenu nowmnu nowrap nowrapscan nows
-		\ noprefervsplit nofilenamedispall noredolastcmdcfm nokeymapsilent
+		\ noprefervsplit nofilenamedispall noredolastcmdcfm nokeymapsilent nocdaftermkdir
 
 " Inverted boolean options
 syntax keyword vifmOption contained invautocd invautochpos invcf invchaselinks

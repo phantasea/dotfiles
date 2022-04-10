@@ -159,7 +159,21 @@ qnoremap  a  <nop>
 qnoremap  A  <nop>
 nnoremap  A  za
 nnoremap ga  gA
+nnoremap  bb :bmarks<cr>
+nnoremap  bc :command<cr>
+nnoremap  bC :change<cr>
+nnoremap  bf :file<cr>
 nnoremap  bg :bmgo<space>
+nnoremap  bj :jobs<cr>
+nnoremap  bl :messages<cr>
+nnoremap  bm :marks<cr>
+nnoremap  bM :media<cr>
+nnoremap  bp :chmod<cr>
+nnoremap  br :ratings<cr>
+nnoremap  bs :sort<cr>
+nnoremap  bt :lstrash<cr>
+nnoremap  bu :undolist<cr>
+nnoremap  bo :copen<cr>
 nnoremap  c. cw<c-a><c-d><cr>
 nnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
@@ -204,24 +218,12 @@ mnoremap  K  <c-y>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
 nnoremap gl  :if filetype('.') != 'link' && filetype('.') != 'dir' | altopen | else | exec 'normal gf' | endif<cr>
 nnoremap gL  :if filetype('.') == 'exe' | exec 'normal i' | else | auxopen | endif<cr>
-nnoremap gmb :marks<cr>
-nnoremap gmc :command<cr>
-nnoremap gmC :change<cr>
-nnoremap gmf :file<cr>
-nnoremap gmj :jobs<cr>
-nnoremap gml :messages<cr>
-nnoremap gmm :media<cr>
-nnoremap gmp :chmod<cr>
-nnoremap gmr :ratings<cr>
-nnoremap gms :sort<cr>
-nnoremap gmt :lstrash<cr>
-nnoremap gmu :undolist<cr>
-nnoremap gmo :copen<cr>
 nnoremap  mi :medinfo<cr>
 nnoremap  mI :tsls<cr>
 nnoremap  mj 2gM
 nnoremap  mm gM
 nnoremap  mk 3gM
+nnoremap gm  gM
 nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
@@ -410,6 +412,7 @@ set clipboardprg="tmux show-buffer"
 else
 set filenamedisplen=47
 set clipboardprg="xsel -ob"
+set nocdaftermkdir
 endif
 "add by sim1---------------
 
