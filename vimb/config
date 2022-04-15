@@ -8,19 +8,19 @@ set home-page=/opt/conf/vimb/homepage.html
 set download-path=~/temp/
 
 # It's necessary to call it with `-f' to run it in the foreground.
-#set editor-command=st -e vim %s
-set editor-command=gvim -f %s
+set editor-command=st -e vim %s
+#set editor-command=gvim -f %s
 
 # If enabled the inputbox will be hidden whenever it contains no text.
 set input-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
 set input-error-css=color:#f2777a;background-color:#393939;font:12pt DejaVu Sans Mono;
 set input-autohide=true
-set input-bg-normal=#002b36
-set input-fg-normal=#657b83
-set input-font-normal=terminus\ 15
-set input-bg-error=#002b36
-set input-fg-error=#5f676a
-set input-font-error=terminus\ 15
+#set input-bg-normal=#002b36
+#set input-fg-normal=#657b83
+#set input-font-normal=terminus\ 15
+#set input-bg-error=#002b36
+#set input-fg-error=#5f676a
+#set input-font-error=terminus\ 15
 
 # Enable or disable the spell checking feature.
 set spell-checking=false
@@ -58,23 +58,23 @@ set stylesheet=on
 set smooth-scrolling=on
 
 # Status bar
+#set status-font=terminus\ 15
+#set status-ssl-font=terminus\ 15
+#set status-sslinvalid-font=terminus\ 15
 set status-bar=true
-set status-font=terminus\ 15
-set status-ssl-font=terminus\ 15
-set status-sslinvalid-font=terminus\ 15
 set status-css=color:#ffcc66;background-color:#393939;font:12pt DejaVu Sans Mono;
 set status-ssl-css=color:#99cc99;background-color:#393939;font:12pt DejaVu Sans Mono;
 set status-ssl-invalid-css=color:#f2777a;background-color:#393939;font:12pt DejaVu Sans Mono;
-set status-color-bg=#002b36
-set status-color-fg=#657b83
-set status-ssl-color-bg=#002b36
-set status-ssl-color-fg=#657b83
-set status-sslinvalid-color-bg=#002b36
-set status-sslinvalid-color-fg=#657b83
+#set status-color-bg=#002b36
+#set status-color-fg=#657b83
+#set status-ssl-color-bg=#002b36
+#set status-ssl-color-fg=#657b83
+#set status-sslinvalid-color-bg=#002b36
+#set status-sslinvalid-color-fg=#657b83
 
 # Webkit
-set accelerated-compositing=on
-set defaultencoding=utf-8
+#set accelerated-compositing=on
+#set defaultencoding=utf-8
 set html5-database=on
 set html5-local-storage=on
 set images=on
@@ -88,12 +88,12 @@ set javascript-can-access-clipboard=off
 set javascript-can-open-windows-automatically=off
 
 # Zoom in everything by default
-aug zoom_all
-  au LoadCommited * normal zz|8zI
-aug end
+#aug zoom_all
+#  au LoadCommited * normal zz|8zI
+#aug end
 
 # Try to speed things up
-set proxy=off
+#set proxy=off
 
 # Maximum number of stored last closed URLs.
 # If closed-max-items is set to 0, closed URLs will not be stored.
@@ -111,11 +111,11 @@ shortcut-add yt=http://www.youtube.com/results?search_query=$0
 set completion-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
 set completion-hover-css=color:#d3d0c8;background-color:#393939;font:12pt DejaVu Sans Mono;
 set completion-selected-css=color:#d3d0c8;background-color:#515151;font:12pt DejaVu Sans Mono;
-set completion-bg-normal=#002b36
-set completion-fg-normal=#657b83
-set completion-bg-active=#002b36
-set completion-fg-active=#5f676a
-set completion-font=terminus\ 15
+#set completion-bg-normal=#002b36
+#set completion-fg-normal=#657b83
+#set completion-bg-active=#002b36
+#set completion-fg-active=#5f676a
+#set completion-font=terminus\ 15
 
 # Map page zoom in normal mode to keys commonly used across applications
 # + (zoom in), - (zoom out), = (zoom reset)
@@ -123,15 +123,14 @@ nmap + zI
 nmap - zO
 nmap = zz
 
-nnoremap gt :sh! xdotool key --window $VIMB_XID ctrl+shift+l<CR><Esc>
-nnoremap gT :sh! xdotool key --window $VIMB_XID ctrl+shift+h<CR><Esc>
-nnoremap 1gt :sh! xdotool key --window $VIMB_XID ctrl+1<CR><Esc>
-nnoremap 2gt :sh! xdotool key --window $VIMB_XID ctrl+2<CR><Esc>
+#add <C-N>/<C-P>/<C-H> in tabbed(config.h) to support
+#nnoremap gt :sh! xdotool key --window $VIMB_XID ctrl+shift+l<CR><Esc>
+#nnoremap gT :sh! xdotool key --window $VIMB_XID ctrl+shift+h<CR><Esc>
+#nnoremap 1gt :sh! xdotool key --window $VIMB_XID ctrl+1<CR><Esc>
+#nnoremap 2gt :sh! xdotool key --window $VIMB_XID ctrl+2<CR><Esc>
 
 nnoremap <C-J> <C-F>
 nnoremap <C-K> <C-B>
-nnoremap <C-N> gt
-nnoremap <C-P> gT
 nnoremap <BS>  <C-B>
 cnoremap <C-J> <C-M>
 nnoremap <C-S> :save<Space>

@@ -1,3 +1,5 @@
+tabbed: add ctrl+H tab switch with the last tab   ---DONE
+
 neofetch: DIY picture   ---QUIT (w3mimg not working)
 
 ranger: after visual rename, quit visual mode   ---DONE
@@ -86,6 +88,8 @@ vifm: gv auto preview   ---DONE
 
 ranger: f/F<any>   ---DONE
 
+https://github.com/fanglingsu/vimb
+https://github.com/qutebrowser/qutebrowser
 https://github.com/galatolofederico/st-sixel
 https://github.com/uobikiemukot/yaft
 https://github.com/saitoha/libsixel
