@@ -137,9 +137,9 @@ nnoremap  <a-k>  <space>k<space>
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
-nnoremap  &  <nop>
 nnoremap  !  :!./%c:. &<cr>
 nnoremap  @  !!
+nnoremap  &  :!touch -m -t  %f<left><left><left>
 nnoremap  ~  :cd ~<cr>
 nnoremap  -  :cd -<cr>
 nnoremap  +  <nop>
@@ -422,7 +422,7 @@ else
 colorscheme chris
 endif
 
-windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|google|华为手机助手)/
+windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|sogoupinyin|google|华为手机助手)/
 " }}}
 
 " commands {{{
@@ -499,6 +499,9 @@ command! setdefaultviewcolumns
 if $DISPLAY != ""
 command! setwallpaper    feh --bg-scale %c %i
 endif
+
+command! sxivA    sxiv -roqt * %u
+command! sxivB    :select! !sxiv -oqt *
 
 command! imgclear vifmimg clear
 command! clock    tty-clock -cBS -C 6
