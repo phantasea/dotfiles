@@ -352,6 +352,7 @@ set nolsview
 set nodotfiles
 set millerview
 set tabstop=4
+set relativenumber
 set numberwidth=1
 set shortmess="pT"
 set timeoutlen=2000
@@ -501,7 +502,9 @@ command! setwallpaper    feh --bg-scale %c %i
 endif
 
 command! sxivA    sxiv -roqt * %u
+command! fimA     fim * %u
 command! sxivB    :select! !sxiv -oqt *
+command! fimB     :select! !fim *
 
 command! imgclear vifmimg clear
 command! clock    tty-clock -cBS -C 6
