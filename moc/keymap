@@ -64,14 +64,14 @@ hide_message          =
 refresh               = ; ^l
 reload                = ^r
 go_to_playing_file    = .
-go_to_music_directory =	~
-delete_from_playlist  =	D
+go_to_music_directory = ~
+delete_from_playlist  = D
 search_menu           = / f
 save_playlist         = s
-go_to_a_directory     =	o
-go_up                 =	h
-cancel                =	ESCAPE
-go_url                =	U
+go_to_a_directory     = o
+go_up                 = h
+cancel                = ESCAPE
+go_url                = U
 
 volume_10 =	M-1
 volume_20 =	M-2
@@ -85,15 +85,15 @@ volume_90 =	M-9
 
 # Key bindings for directories: defaults are Shift-number
 # shift 1 = ! = Fastdir1
-go_to_fast_dir1 = 1	
-go_to_fast_dir2 = 2	
-go_to_fast_dir3 = 3	
-go_to_fast_dir4 = 4	
-go_to_fast_dir5 = 5	
-go_to_fast_dir6 = 6	
-go_to_fast_dir7 = 7	
-go_to_fast_dir8 = 8	
-go_to_fast_dir9 = 9	
+go_to_fast_dir1 = 1
+go_to_fast_dir2 = 2
+go_to_fast_dir3 = 3
+go_to_fast_dir4 = 4
+go_to_fast_dir5 = 5
+go_to_fast_dir6 = 6
+go_to_fast_dir7 = 7
+go_to_fast_dir8 = 8
+go_to_fast_dir9 = 9
 go_to_fast_dir10 = 0
 
 plist_add_stream =
@@ -105,10 +105,10 @@ plist_move_up    =
 plist_move_down  = 
 theme_menu       = T
 
-toggle_hidden_files =	
+toggle_hidden_files =
 toggle_show_time    = ^t
 toggle_show_format  = 
-toggle_read_tags    =	
+toggle_read_tags    =
 toggle_make_mono    =
 toggle_shuffle      = S
 toggle_repeat       = 
@@ -116,9 +116,9 @@ toggle_auto_next    = R
 toggle_mixer        =
 toggle_softmixer    =
 toggle_equalizer    =
-equalizer_refresh   =	
-equalizer_prev      =	
-equalizer_next      =	
+equalizer_refresh   =
+equalizer_prev      =
+equalizer_next      =
 
 exec_command1 = 	
 exec_command2 = 	
