@@ -221,16 +221,16 @@ nnoremap gL  :if filetype('.') == 'exe' | exec 'normal i' | else | auxopen | end
 nnoremap  mi :medinfo<cr>
 nnoremap  mI :tsls<cr>
 nnoremap  mj 2gM
-nnoremap  mm gM
+nnoremap  mm gMzz
 nnoremap  mk 3gM
-nnoremap gm  gM
+nnoremap gm  gMzz
 nnoremap  oo =
 nnoremap  of zd
 nnoremap  od zD
 nnoremap  ol zl
 nnoremap  or zS
 nnoremap  os :invert s<cr>zf
-nnoremap  ot :exec "filter /\.".expand('%c:e')."$/i"
+nnoremap  ot :exec "filter /\.".expand('%c:e')."$/i"<cr>
 nnoremap  o. zA
 nnoremap  O  zR
 qnoremap  p  <c-b>
@@ -354,7 +354,7 @@ set millerview
 set tabstop=4
 set relativenumber
 set numberwidth=1
-set shortmess="pT"
+set shortmess="p"
 set timeoutlen=2000
 set confirm=permdelete
 set dotdirs=treeleafsparent
@@ -364,7 +364,7 @@ set tabprefix="[%0*%N:"
 set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
 set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%[%6*%r%7*|%]%4* %= \"%T\""
-set rulerformat="%=%E/%a  %l/%S%[(+%x)%]%[%H%] --%P--"
+set rulerformat="%[f='%F'%] %= %E/%a  %l/%S%[(+%x)%]%[%H%] --%P--"
 set fillchars=vborder:\|
 set dirsize=nitems
 if $DISPLAY != ""

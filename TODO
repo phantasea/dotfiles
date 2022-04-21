@@ -1,6 +1,15 @@
 tabbed: add ctrl+H tab switch with the last tab   ---DONE
-
+ibm
 neofetch: DIY picture   ---QUIT (w3mimg not working)
+
+ranger: ot to filter the mime type of the current file  ---TODO
+
+vifm: filter? bug in display_filters_info()   ---WORKAROUND
+      shortmess="pT" --> shortmess="p"
+      ui/statusbar.c: truncate_with_ellipsis --> assert(utf8_strsw(buffer) == width);
+
+vifm: add ruler to show filter like ranger    ---DONE
+      cmd_ctrl_xm in cmd_line
 
 ranger: after visual rename, quit visual mode   ---DONE
 
@@ -115,3 +124,5 @@ https://github.com/seebye/ueberzug
 https://github.com/luakit/luakit
 https://github.com/jarun/Buku
 https://github.com/vivien/i3blocks
+
+" vim: set ft=txt:
