@@ -27,6 +27,21 @@ class empty(Command):
         self.fm.run("rm -rf /home/simone/.Trash/*")
 
 
+class filter_ext_type(Command):
+    """
+    filter files with extention type of the current file
+    """
+
+    def execute(self):
+        ext = os.path.splitext(self.fm.thisfile.relative_path)[-1]
+        if not ext:
+            return
+
+        cmd = "scout -fps " + ext
+        self.fm.execute_console(cmd)
+        self.fm.ui.redraw_window()
+
+
 class subst(Command):
     """
     :subst <pattern> [replace]
