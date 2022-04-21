@@ -139,7 +139,7 @@ nnoremap  ^  gg
 nnoremap  $  G
 nnoremap  !  :!./%c:. &<cr>
 nnoremap  @  !!
-nnoremap  &  :!touch -m -t  %f<left><left><left>
+nnoremap  &  <nop>
 nnoremap  ~  :cd ~<cr>
 nnoremap  -  :cd -<cr>
 nnoremap  +  <nop>
@@ -182,6 +182,7 @@ nnoremap  cg :goto<space>
 nnoremap  cm cp
 vnoremap  cm cp
 nnoremap  cl cl
+nnoremap  ct :!touch -m -t  %f<left><left><left>
 nnoremap  ci :copyfromother<cr>
 vnoremap  ci :copyfromother<cr>
 nnoremap  co :copytoother<cr>
