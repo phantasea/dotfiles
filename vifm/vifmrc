@@ -263,7 +263,7 @@ nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
 nnoremap  st :if getpanetype() == regular | tree | else | exec 'norm gh' | endif<cr>
 nnoremap  sv :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' | view! | else | view! | endif<cr>
-nnoremap  sw :!feh --bg-max --no-fehbg %f<cr>
+nnoremap  sw :!setwallpaper %c %i<cr>
 nnoremap  sx <c-w>x:switch<cr>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
@@ -497,10 +497,6 @@ command! setdefaultviewcolumns
       \ |else
       \ |    set viewcolumns=-{name},{rating},22{mtime}
       \ |endif
-
-if $DISPLAY != ""
-command! setwallpaper    feh --bg-scale %c %i
-endif
 
 command! sxivA    sxiv -roqt * %u
 command! fimA     fim * %u
