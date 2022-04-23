@@ -2,7 +2,7 @@ tabbed: add ctrl+H tab switch with the last tab   ---DONE
 ibm
 neofetch: DIY picture   ---QUIT (w3mimg not working)
 
-ranger: ot to filter the mime type of the current file  ---TODO
+ranger: ot to filter the mime type of the current file  ---DONE
 
 vifm: filter? bug in display_filters_info()   ---WORKAROUND
       shortmess="pT" --> shortmess="p"

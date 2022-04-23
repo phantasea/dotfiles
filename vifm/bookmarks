@@ -17,6 +17,7 @@ mark  u  /opt/util      mudisk
 mark  v  ~/vids
 mark  w  ~/docs/webs
 mark  x  /opt/.priv
+mark  y  /usr/local/.porn vids
 
 mark  M  /media/simone sandisk_s
 mark  S  /media/simone/sandisk_s
