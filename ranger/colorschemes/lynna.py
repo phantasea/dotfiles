@@ -166,10 +166,10 @@ class Lynna(ColorScheme):
                 bg = green
                 fg = black
             elif context.filter:
-                bg = cyan
+                bg = yellow
                 fg = black
             elif context.size:
-                bg = cyan
+                bg = yellow
                 fg = black
             elif context.stars:
                 bg = magenta
