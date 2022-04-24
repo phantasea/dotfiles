@@ -404,7 +404,6 @@ endif
 set redolastcmdcfm
 set prefervsplit
 set maxundotabs=3
-set maxratingstars=7
 set previewmaxsize=3000
 set nofilenamedispall
 set topmidfiller="+"
