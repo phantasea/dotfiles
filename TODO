@@ -1,7 +1,7 @@
 tabbed: add ctrl+H tab switch with the last tab   ---DONE
-ibm
 neofetch: DIY picture   ---QUIT (w3mimg not working)
 
+# {{{
 ranger: ot to filter the mime type of the current file  ---DONE
 
 vifm: filter? bug in display_filters_info()   ---WORKAROUND
@@ -96,11 +96,13 @@ ranger: V,f<char> bug fix  ---DONE (optimize f<any> by move up/down then move do
 vifm: gv auto preview   ---DONE
 
 ranger: f/F<any>   ---DONE
+# }}}
+
 
 https://github.com/fanglingsu/vimb
 https://github.com/qutebrowser/qutebrowser
 https://github.com/galatolofederico/st-sixel
-https://github.com/uobikiemukot/yaft
+https://github.com/uobikiemukot/yaft  *****
 https://github.com/saitoha/libsixel
 https://github.com/topics/pcap
 https://github.com/gcla/termshark
@@ -125,4 +127,4 @@ https://github.com/luakit/luakit
 https://github.com/jarun/Buku
 https://github.com/vivien/i3blocks
 
-" vim: set ft=txt:
+" vim: set ft=txt foldmethod=marker :
