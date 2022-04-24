@@ -1,81 +1,115 @@
-" ztxt.vim for text file
-" by neman, xbeta @ www.newsmth.net
-" 2005ƒÍ9‘¬2»’
-" http://www.newsmth.net/bbsdoc.php?board=VIM
-"Last Change: 2005 Aug 9 or see file date
+" Vim universal .txt syntax file
+" Language:     txt 1.2
+" Maintainer:   Tomasz Kalkosi≈Ñski <spoonman@op.pl>
+" Last change:  3 Jan 2007
+"
+" This is an universal syntax script for all text documents, logs, changelogs, readmes
+" and all other strange and undetected filetypes.
+" The goal is to keep it very simple. It colors numbers, operators, signs,
+" cites, brackets, delimiters, comments, TODOs, errors, debug, changelog tags
+" and basic smileys ;]
+"
+" Changelog:
+" 1.2 (03-01-2007)
+"                       Add: Changelog tags: add, chg, fix, rem, del linked with Keyword
+"                       Add: note to txtTodo group
+"
+" 1.1 (01-07-2006)	Add: International cites
+" 			Chg: txtString color to Normal
+"	 		Chg: Simplified number coloring working better now
+"
+" 1.0 (28-04-2006)	Initial upload
+"
+" For version 5.x: Clear all syntax items
+" For version 6.x: Quit when a syntax file was already loaded
+if version < 600
+  syntax clear
+elseif exists("b:current_syntax")
+  finish
+endif
 
-"set foldcolumn=4
-"set lsp=5
+syn case ignore
 
-"color ****************************************
+syn cluster txtAlwaysContains add=txtTodo,txtError
 
-" ”Ôæ‰µƒŒª÷√∫‹÷ÿ“™£¨‘¯æ≠∞—TxtUrl∑≈‘⁄∫Û√Ê£¨Ω·π˚≤ªÃ´∂‘°£
-syn case ignore	
-syn keyword   TxtOrg     sap erp cnooc cnoocltd ibm oracle zyx zhangyx yxz ey q31 tsinghua tsu "∞—“ª–©◊È÷Ø√˚≥∆∏ﬂ¡¡
-"syn match     TxtBrac        "[  () \[\] ]" "if  include {}, the fold will error
-"syn match     TxtSpecial     "[ ^ ~ ' \- \+ % * \/ ]"
-"syn match     TxtChinese     "[ £¨£ª°£°¢°≠°™£¶°¡£´°™£∫°°£ø£°£®£©°∂°∑£§°˘°∫°ª°Æ°Ø°∞°±]"
-syn match       TxtNum   "\d"
-" "\d\+\S\?\d\+\S\?\d\+" 
-" -\=\<\d*\.\=[0-9_]\>" "TxtNumber
-syn match	  TxtEn			 "[a-zA-Z]"
-"syn region    TxtString     start=+L\="+ skip=+\\\\\|\\"+ end=+"+
+syn cluster txtContains add=txtNumber,txtOperator,txtLink
 
-syn match     br1         "(.\{-})"
-	syn match     br2        "£®.\{-}£©"
-	syn match     br3         "\[.\{-}\]"
-	syn region    br4     start=/°∞/  end=/°±\|$/
-"	syn region    br5     start=/"/  end=/"\|$/
-	syn match	  br6	"°∂.*°∑"
-	syn match	zday "\d\+ƒÍ\|\d\+‘¬\|\d\+»’"
-hi br1 guifg=lightblue
-	hi link br2 br1
-	hi link br3 br1 "guifg=lightblue
-	hi link br4 br1
-	hi link br5 br1
-	hi link br6 br1
-	syn match     TxtUrl1         "http[s]\=://\S*"
-	syn match     TxtUrl2         "mms\=://\S*"
-	syn match     TxtUrl3         "ftp\=://\S*"
-	syn match     TxtUrl4        "file\=://\S*"
-	syn match     TxtUrl5        "\S*@\S*"
-syn region 	  zHead1  		start=/^\s*::/ end=/$/ " ::£¨±Ì æ±ÍÃ‚°£«∞√Êø…“‘”–ø’∏Ò°¢tab
-syn region	  zHead2			start=/^\s*\d\{1,2}\./ end=/$/ " 1-2Œª ˝∏˙–° ˝µ„£¨±Ì æ±ÍÃ‚°£«∞√Êø…“‘”–ø’∏Ò°¢tab
+syn match txtOperator "[~\-_+*<>\[\]{}=|#@$%&\\/:&\^\.,!?]"
 
+" Common strings
+syn match txtString "[[:alpha:]]" contains=txtOperator
 
-"syn match     TxtComment     "^#.*$"  contains=TxtUrl1,TxtUrl5,TxtUrl4,TxtUrl3,TxtUrl2,TxtString
-"syn match     TxtVIPLine     "^__.*$" contains=TxtUrl1,TxtUrl5,TxtUrl4,TxtUrl3,TxtUrl2,TxtString
+" Numbers
+"syn match txtNumber "\d\(\.\d\+\)\?"
+syn match txtNumber "\d"
 
-"hi link       TxtOrg     Special    "cyan
-hi TxtOrg guifg=green  guibg=blue "gui=underline
-hi link       TxtBrac        Identifier "palegreen
-hi link       TxtSpecial     Constant   "gold
-hi link       TxtChinese     Repeat     "
-"hi link 	  TxtEn			 Normal
-"hi link       TxtNum      Constant   "gold
-hi TxtNum guifg=#ffa0a0 guibg=grey20
-hi link       TxtString      String     "lightred
-	hi link       TxtUrl1		Underlined    
-	hi link       TxtUrl2		Underlined    "
-	hi link       TxtUrl3		Underlined       "green
-	hi link       TxtUrl4		Underlined       "green
-	hi link       TxtUrl5		Underlined    "cyan
-hi link       zHead1        Type       "green
-hi link		  zHead2			 Type
-hi link       TxtComment     Comment    "gold
-hi link       TxtVIPLine     cComment   "skyblue
-hi link       TxtVIPWord     cComment   "skyblue
+" Cites
+syn region txtCite      matchgroup=txtOperator  start="\""      end="\""        contains=@txtContains,@txtAlwaysContains
 
-hi zHead1 guifg=green gui=underline guibg=blue
-hi zHead2 guifg=green gui=underline guibg=blue
-hi tst guifg=green gui=underline guibg=blue
-hi TxtEn guifg=lightgreen
-hi zday  guifg=green
+" utf8 international cites:
+" ‚Äö ‚Äô   U+201A (8218), U+2019 (8217)    Polish single quotation
+" ‚Äû ‚Äù   U+201E (8222), U+201d (8221)    Polish double quotation
+" ¬´ ¬ª   U+00AB (171),  U+00BB (187)     French quotes
+" ‚Äò ‚Äô   U+2018 (8216), U+2019 (8217)    British quotes
+" ‚Äû ‚Äú   U+201E (8222), U+2019 (8217)    German quotes
+" ‚Äπ ‚Ä∫   U+2039 (8249), U+203A (8250)    French quotes
+syn region txtCite      matchgroup=txtOperator  start="[‚Äö‚Äû¬´‚Äò‚Äû‚Äπ]"        end="[‚Äô‚Äù¬ª‚Äô‚Äú‚Ä∫]"  contains=@txtContains,@txtAlwaysContains
 
-" fold**************************************** 
-" syn sync fromstart
-"set foldmethod=syntax
-"syn region myFold start="{" end="}" transparent fold
+syn region txtCite      matchgroup=txtOperator  start="\(\s\|^\)\@<='"  end="'"         contains=@txtContains,@txtAlwaysContains
+
+" Comments
+syn region txtComment   start="("       end=")"         contains=@txtContains,txtCite,@txtAlwaysContains
+syn region txtComments  matchgroup=txtComments start="\/\/"     end="$"         contains=@txtAlwaysContains     oneline
+syn region txtComments  start="\/\*"    end="\*\/"      contains=@txtAlwaysContains
+
+syn region txtDelims    matchgroup=txtOperator start="<"        end=">"         contains=@txtContains,@txtAlwaysContains oneline
+syn region txtDelims    matchgroup=txtOperator start="{"        end="}"         contains=@txtContains,@txtAlwaysContains oneline
+syn region txtDelims    matchgroup=txtOperator start="\["       end="\]"        contains=@txtContains,@txtAlwaysContains oneline
+
+syn match txtLink       "\(http\|https\|ftp\)\(\w\|[\-&=,?\:\.\/]\)*"   contains=txtOperator
+
+" Basic smileys
+syn match txtSmile      "[:;=8][\-]\?\([(\/\\)\[\]]\+\|[OoPpDdFf]\+\)"
+
+" Changelog tags: add, chg, rem, fix
+syn match txtChangelogs         "\<add\>\s*:" contains=txtOperator
+syn match txtChangelogs         "\<chg\>\s*:" contains=txtOperator
+syn match txtChangelogs         "\<rem\>\s*:" contains=txtOperator
+syn match txtChangelogs         "\<del\>\s*:" contains=txtOperator
+syn match txtChangelogs         "\<fix\>\s*:" contains=txtOperator
+
+syn keyword txtTodo todo fixme xxx note
+
+syn keyword txtError error bug
+
+syn keyword txtDebug debug
+
+syn case match
+
+" Define the default highlighting.
+" For version 5.7 and earlier: only when not done already
+" For version 5.8 and later: only when an item doesn't have highlighting yet
+  if version < 508
+    command -nargs=+ HiLink hi link <args>
+  else
+    command -nargs=+ HiLink hi def link <args>
+  endif
+
+  HiLink txtNumber              Number
+  HiLink txtString              Normal
+  HiLink txtOperator            Operator
+  HiLink txtCite                String
+  HiLink txtComments            Comment
+  HiLink txtComment             Comment
+  HiLink txtDelims              Delimiter
+  HiLink txtLink                Underlined
+  HiLink txtSmile               PreProc
+  HiLink txtError               Error
+  HiLink txtTodo                Todo
+  HiLink txtDebug               Debug
+  HiLink txtChangelogs          Keyword
+
+  delcommand HiLink
+
 let b:current_syntax = "txt"
-
-
+" vim: ts=8
