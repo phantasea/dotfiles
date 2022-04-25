@@ -4,7 +4,7 @@ mark  a  /opt/apps      vifm
 mark  c  ~/.config
 mark  e  /opt/conf      vifm
 mark  h  ~/             misc
-mark  i  ~/pics         geohist
+mark  i  ~/pics/celeb
 mark  m  ~/auds
 mark  n  ~/docs/note    reinstall_ubuntu.txt
 mark  o  /opt           misc
