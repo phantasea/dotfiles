@@ -22,7 +22,6 @@ hi Border       cterm=none                    ctermfg=white    ctermbg=default
 hi CurrLine     cterm=bold,reverse            ctermfg=default  ctermbg=default
 hi OtherLine    cterm=reverse                 ctermfg=234      ctermbg=white
 hi LineNr       cterm=none                    ctermfg=white    ctermbg=default
-hi LineNrSel    cterm=bold,reverse            ctermfg=white    ctermbg=default
 hi LineNrSep    cterm=none                    ctermfg=default  ctermbg=default
 
 hi Selected     cterm=bold                    ctermfg=213      ctermbg=default
