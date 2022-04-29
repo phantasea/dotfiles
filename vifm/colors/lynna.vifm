@@ -26,6 +26,7 @@ highlight  Executable   ctermfg=green     ctermbg=none     cterm=none
 highlight  ErrorMsg     ctermfg=red       ctermbg=none     cterm=none
 highlight  Border       ctermfg=magenta   ctermbg=none     cterm=bold
 highlight  LineNr       ctermfg=white     ctermbg=none     cterm=bold
+highlight  LineNrSep    ctermfg=none      ctermbg=none     cterm=none
 highlight  StatusLine   ctermfg=white     ctermbg=none     cterm=bold
 highlight  CmdLine      ctermfg=white     ctermbg=magenta  cterm=bold
 highlight  TabLine      ctermfg=white     ctermbg=magenta  cterm=none

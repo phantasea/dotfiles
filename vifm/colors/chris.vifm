@@ -32,6 +32,7 @@ highlight  Border       ctermfg=blue      ctermbg=black    cterm=none
 highlight  TopMid       ctermfg=white     ctermbg=black    cterm=bold
 endif
 highlight  LineNr       ctermfg=white     ctermbg=none     cterm=bold
+highlight  LineNrSep    ctermfg=none      ctermbg=none     cterm=none
 highlight  StatusLine   ctermfg=white     ctermbg=blue     cterm=bold
 highlight  CmdLine      ctermfg=yellow    ctermbg=none     cterm=bold
 highlight  TabLine      ctermfg=none      ctermbg=none     cterm=none
