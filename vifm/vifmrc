@@ -168,7 +168,6 @@ nnoremap  bj :jobs<cr>
 nnoremap  bl :messages<cr>
 nnoremap  bm :marks<cr>
 nnoremap  bM :media<cr>
-nnoremap  bp :chmod<cr>
 nnoremap  br :ratings<cr>
 nnoremap  bs :sort<cr>
 nnoremap  bt :lstrash<cr>
@@ -181,6 +180,8 @@ nnoremap  cs :cds/
 nnoremap  cg :goto<space>
 nnoremap  cm cp
 vnoremap  cm cp
+nnoremap  cM :chmod<space>
+vnoremap  cM :chmod<space>
 nnoremap  cl cl
 nnoremap  ct :!touch -m -t  %f<left><left><left>
 nnoremap  ci :copyfromother<cr>
@@ -570,6 +571,11 @@ autocmd DirEnter '~/docs/misc'           exec 'normal zd'
 autocmd DirEnter '~/docs/webs'           exec 'normal zd'
 autocmd DirEnter '~/misc/gits/**/*'      setl dotfiles
 autocmd DirEnter '~/pics/celeb/*/'       setl sort='-mtime,+iname'
+autocmd DirEnter '~/pics/combo'          setl sort='-mtime,+iname'
+autocmd DirEnter '~/pics/fave'           setl sort='-mtime,+iname'
+autocmd DirEnter '~/pics/gifs'           setl sort='-mtime,+iname'
+autocmd DirEnter '~/pics/geohist'        setl sort='-mtime,+iname'
+autocmd DirEnter '~/pics/misc'           setl sort='-mtime,+iname'
 " }}}
 
 " filetype/fileview {{{
