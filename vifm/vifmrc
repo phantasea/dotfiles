@@ -354,6 +354,7 @@ set nolsview
 set nodotfiles
 set millerview
 set tabstop=4
+set number
 set relativenumber
 set numberwidth=1
 set shortmess="p"
