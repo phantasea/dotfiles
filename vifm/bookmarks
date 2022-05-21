@@ -5,6 +5,7 @@ mark  c  ~/.config
 mark  e  /opt/conf      vifm
 mark  h  ~/             misc
 mark  i  ~/pics/celeb
+mark  I  /usr/local/.porn/pics/Graphis
 mark  m  ~/auds
 mark  n  ~/docs/note    reinstall_ubuntu.txt
 mark  o  /opt           misc
@@ -17,7 +18,6 @@ mark  u  /opt/util      mudisk
 mark  v  ~/vids         celeb-2
 mark  w  ~/docs/webs
 mark  x  /opt/.priv
-mark  y  /usr/local/.porn vids
 
 mark  M  /media/simone sandisk_s
 mark  S  /media/simone/sandisk_s
