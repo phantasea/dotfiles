@@ -269,7 +269,7 @@ nnoremap  sx <c-w>x:switch<cr>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
 nnoremap gs  :select //i<left><left>
-nnoremap gt  gS
+nnoremap gt  gs
 nnoremap  t  tj
 nnoremap  T  kt
 nnoremap  U  <c-r>
@@ -280,7 +280,7 @@ nnoremap bv  :if &viewcolumns == '-{name}'
            \| imgclear
            \| else | set viewcolumns=-{name}
            \| set milleroptions=lsize:2,csize:3,rsize:5,rpreview:all | endif<cr>
-nnoremap gv  gS
+nnoremap gv  gv
 nnoremap ov  :explore<cr>
 nnoremap zv  :explore<cr>
 qnoremap  w  W
@@ -357,7 +357,7 @@ set tabstop=4
 set number
 set relativenumber
 set numberwidth=1
-set shortmess="p"
+set shortmess="pT"
 set timeoutlen=2000
 set confirm=permdelete
 set dotdirs=treeleafsparent
@@ -368,7 +368,7 @@ set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
 set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%[%6*%r%7*|%]%4* %= \"%T\""
 set rulerformat="%[f='%F'%] %= %E/%a  %l/%S%[(+%x)%]%[%H%] --%P--"
-set fillchars=vborder:\|
+set fillchars="vborder:|,hborder:"
 set dirsize=nitems
 if $DISPLAY != ""
 set timefmt="%H:%M\ %m/%d/%y"
