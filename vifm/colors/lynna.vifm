@@ -34,6 +34,7 @@ highlight  TopLine      ctermfg=white     ctermbg=magenta  cterm=none
 highlight  TabLineSel   ctermfg=white     ctermbg=green    cterm=bold
 highlight  TopLineSel   ctermfg=white     ctermbg=magenta  cterm=bold
 highlight  CurrLine     ctermfg=none      ctermbg=none     cterm=bold,reverse
+highlight  AuxCurrLine  ctermfg=none      ctermbg=none     cterm=reverse
 highlight  OtherLine    ctermfg=white     ctermbg=none     cterm=bold
 highlight  Selected     ctermfg=black     ctermbg=white    cterm=bold
 highlight  JobLine      ctermfg=white     ctermbg=blue     cterm=bold

@@ -20,6 +20,7 @@ hi StatusLine   cterm=none                    ctermfg=black    ctermbg=white
 hi Border       cterm=none                    ctermfg=white    ctermbg=default
 
 hi CurrLine     cterm=bold,reverse            ctermfg=default  ctermbg=default
+hi AuxCurrLine  cterm=reverse                 ctermfg=default  ctermbg=default
 hi OtherLine    cterm=reverse                 ctermfg=234      ctermbg=white
 hi LineNr       cterm=none                    ctermfg=white    ctermbg=default
 hi LineNrSep    cterm=none                    ctermfg=default  ctermbg=default
