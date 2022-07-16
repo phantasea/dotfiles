@@ -3,9 +3,9 @@ S:/media/simone/sandisk_s
 U:/media/simone/sandisk_u
 V:/media/simone/sandisk_v
 W:/media/simone/sandisk_w
-X:/media/simone/sandisk_x1
 a:/opt/apps:ranger
 c:/home/simone/.config
+d:/home/simone/.Trash
 e:/opt/conf:ranger
 h:/home/simone:misc
 i:/home/simone/pics/celeb
@@ -13,12 +13,13 @@ I:/usr/local/.porn/pics/Graphis
 m:/home/simone/auds
 n:/home/simone/docs/note:reinstall_ubuntu.txt
 o:/opt:misc
-p:/home/simone/vids/.porn
+p:/opt/.porn/porn
 P:/opt/.porn/vids
 r:/:usr
 t:/home/simone/temp
-T:/home/simone/.Trash
+T:/opt/.porn/text
 u:/opt/util:mudisk
 v:/home/simone/vids:celeb-2
 w:/home/simone/docs/webs
-x:/opt/.priv
+x:/opt/.porn/pr0n
+X:/opt/.priv
