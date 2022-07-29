@@ -1,6 +1,7 @@
 " vim: filetype=vifm:
 
 mark  a  /opt/apps      vifm
+mark  b  /opt/.priv
 mark  c  ~/.config
 mark  d  ~/.Trash
 mark  e  /opt/conf      vifm
@@ -19,7 +20,7 @@ mark  u  /opt/util      mudisk
 mark  v  ~/vids         celeb-2
 mark  w  ~/docs/webs
 mark  x  /opt/.porn/pr0n
-mark  X  /opt/.priv
+mark  X  /opt/.porn/xxxx
 
 mark  M  /media/simone      winD
 mark  S  /media/simone/sandisk_s
