@@ -425,7 +425,7 @@ else
 colorscheme chris
 endif
 
-windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|sogoupinyin|google|华为手机助手)/
+windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sogoupinyin|google|华为手机助手)/
 " }}}
 
 " commands {{{

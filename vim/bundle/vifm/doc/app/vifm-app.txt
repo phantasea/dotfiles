@@ -1,4 +1,4 @@
-*vifm-app.txt*    For Vifm version 0.12  Last change: 2022 Jan 2
+*vifm-app.txt*    For Vifm version 0.12  Last change: 2022 July 14
 
  Email for bugs and suggestions: <xaizek@posteo.net>
 
@@ -15,6 +15,7 @@
 |vifm-cancellation|       Cancellation of commands.
 |vifm-selection|          How selection is handled on launching.
 |vifm-patterns|           Description of file match patterns.
+|vifm-regexp|             Regular expressions.
 |vifm-globs|              How globs work in vifm.
 |vifm-set-options|        Available options.
 |vifm-mappings|           Map arguments and special sequences.
@@ -100,9 +101,10 @@ The other command line arguments are:
     The command may use any of |vifm-macros|.  The command is executed once for
     whole selection.
 --logging[=<startup log path>]                 *vifm---logging*
-    log some operational details $VIFM/log.  If the optional startup log path
-    is specified and permissions allow to open it for writing, then logging of
-    early initialization (before value of $VIFM is determined) is put there.
+    log some operational details to $XDG_DATA_HOME/vifm/log or $VIFM/log.  If
+    the optional startup log path is specified and permissions allow to open
+    it for writing, then logging of early initialization (before configuration
+    directories are determined) is put there.
 --server-list                                  *vifm---server-list*
     list available server names and exit.
 --server-name <name>                           *vifm---server-name*
@@ -140,7 +142,9 @@ See |vifm-startup| section below for the explanations on |vifm-$VIFM|.
 Ctrl-C or Escape                               *vifm-Escape* *vifm-CTRL-C*
     cancel most operations (see |vifm-cancellation|), clear all selected files.
 
-Ctrl-L - clear and redraw the screen.          *vifm-CTRL-L*
+Ctrl-L                                         *vifm-CTRL-L*
+    clear and redraw the screen.  Can also reload file list in appropriate
+    modes (like normal and visual).
 
 --------------------------------------------------------------------------------
 *vifm-normal*
@@ -327,7 +331,7 @@ case if search was already performed on files in the directory, thus selection
 is not reset after clearing selection with escape key and hitting n/N key
 again.
 
-Note: vifm uses extended regular expressions for / and ?.
+See also |vifm-regexp|.
 
 
 [count]f[character]                            *vifm-f*
@@ -380,14 +384,14 @@ Examples:
  :filter /^.*\.files\/$/
 
  " filter files which names end with '.d'
-  :filter {*.d}
+ :filter {*.d}
 
  " filter files and directories which names end with '.o'
  :filter /^.*\.o\/?$/
 <
-Note: vifm uses extended regular expressions.
+See also |vifm-patterns| and |vifm-regexp|.
 
-The basic vim folding key-bindings are used for managing filters.
+The basic Vim folding key-bindings are used for managing filters.
 
 za - toggle visibility of dot files.           *vifm-za*
 zo - show dot files.                           *vifm-zo*
@@ -512,10 +516,14 @@ gv                                             *vifm-gv*
     go to visual mode restoring last selection.
 
 [reg]gs                                        *vifm-gs*
-    when no register is specified, restore last t selection (similar to what
-    gv does for visual mode selection).  If register is present, then all
-    files listed in that register and which are visible in current view are
-    selected.
+    If register is present, then all files listed in that register that are
+    visible in current view are selected.
+
+    When no register is specified, restore the last selection saved for this
+    view (similar to what |vifm-gv| does for visual mode selection).  When you
+    leave a directory, its saved selection is remembered for that path and
+    visiting the directory again restores it.  Selection for up to 10 distinct
+    file-system locations are remembered.
 
 
 gu<selector>                                   *vifm-gu*
@@ -1014,6 +1022,11 @@ Down                                           *vifm-c_Down*
 
 Ctrl-] - trigger abbreviation expansion.       *vifm-c_CTRL-]*
 
+Ctrl-R =                                       *vifm-c_CTRL-R_=*
+    insert result of evaluating an expression.  Expression is to be entered
+    via nested command-line prompt (where this key does nothing).  Expansion
+    of an erroneous expression is empty.
+
 Pasting special values~
 
 The shortcuts listed below insert specified values into current cursor
@@ -1160,6 +1173,7 @@ This means the complete command is nohlsearch, and the short one is noh.
 Most of command-line commands completely reset selection in the current view.
 However, there are several exceptions:
  - `:invert s` most likely leaves some files selected;
+ - :view command;
  - :normal command (when it doesn't leave command-line mode);
  - :if and :else commands don't affect selection on successful execution.
 
@@ -1181,6 +1195,7 @@ These commands see '|' as part of their arguments even when it's escaped:
     :filetype
     :fileviewer
     :filextype
+    :keepsel
     :map
     :mmap
     :mnoremap
@@ -1244,6 +1259,8 @@ The builtin commands are:
 :[range]alink[!] name1 name2...
     create absolute symbolic links of files in directory of other view giving
     each next link a corresponding name from the argument list.
+:[range]alink[!?] -skip ...
+    see |vifm-skip-param|.
 
                                                *vifm-:apropos*
 :apropos keyword...
@@ -1504,6 +1521,8 @@ The builtin commands are:
 :[range]co[py][!] name1 name2...[ &]
     copy files to directory of other view giving each next file a
     corresponding name from the argument list.  "!" forces overwrite.
+:[range]co[py][!?] -skip ...
+    see |vifm-skip-param|.
 
 :cq[uit][!]                                    *vifm-:cquit* *vifm-:cq*
     same as |vifm-:quit|, but also aborts directory choosing via
@@ -2053,7 +2072,8 @@ important in certain cases.
       f[search] or /  show search history and search forward on l key.
       b[search] or ?  show search history and search backward on l key.
       i[nput]   or @  show prompt history (e.g. on one file renaming).
-      fi[lter]  or =  show filter history (see |vifm-=|).
+      fi[lter]  or =  show local filter history (see |vifm-=|).
+      e[xprreg]       show expression register history (see |vifm-c_Ctrl-R_=|).
     See |vifm-menus-and-dialogs| for controls.
 
 :histprev                                      *vifm-:histprev*
@@ -2090,6 +2110,15 @@ important in certain cases.
     display menu of current backgrounded processes.  See
     |vifm-menus-and-dialogs| for controls.
 
+:keepsel [command...]                          *vifm-:keepsel*
+    preserve selection during some :command by default.  Note that this
+    doesn't save and restore selection to preserve it no matter what, but
+    precludes its clearing at the end of a command and thus won't help if
+    selection is cleared explicitly during operation.
+
+    Example: >
+      :keepsel view
+<
                                                *vifm-:let*
 :let $ENV_VAR = <expr>
     set an environment variable.  Note: setting environment variable to an
@@ -2165,6 +2194,8 @@ order using the '.' operator.  Any whitespace is ignored.
 :[range]m[ove][!] name1 name2...[ &]
     move files to directory of other view giving each next file a
     corresponding name from the argument list.  "!" forces overwrite.
+:[range]m[ove][!?] -skip ...
+    see |vifm-skip-param|.
 
 :noh[lsearch]                                  *vifm-:nohlsearch* *vifm-:noh*
     clear selection in current pane.
@@ -2268,6 +2299,8 @@ order using the '.' operator.  Any whitespace is ignored.
     create relative symbolic links of files in directory of other view giving
     each next link a corresponding name from the argument list.  "!" forces
     overwrite.
+:[range]rlink[!?] -skip ...
+    see |vifm-skip-param|.
 
                                                *vifm-:screen*
 :screen
@@ -2556,7 +2589,7 @@ yet supported) and might be changed in future releases, or get an alias.
                                                *vifm-:view* *vifm-:vie*
 :vie[w]
     toggle on and off the quick file view (preview of file's contents).
-    See also |vifm-'quickview'| option.
+    See also |vifm-'quickview'| option and |vifm-commands-and-selection|.
 :vie[w]!
     turn on quick file view if it's off.
 
@@ -2702,6 +2735,22 @@ yet supported) and might be changed in future releases, or get an alias.
 :qun[map] lhs - remove user mapping of lhs from view mode.
 :vu[nmap] lhs - remove user mapping of lhs from visual mode.
 
+:command parameters~
+                                                       *vifm-:command-params*
+Some of the command-line commands accept parameters in the form of
+`-paramname`.  Arguments of such commands can be split into two groups:
+parameters and positional arguments.  Items from the two groups cannot be
+interleaved and parameters always come first.  List of parameters is
+terminated implicitly by the first argument that doesn't start with a
+dash ("-") or explicitly via "--" separator (needs to be a separate
+argument), which is just discarded.  These strict rules allow arbitrary
+positional arguments, such as file names that start with a dash.
+
+-skip                                                      *vifm-skip-param*
+This parameter makes |vifm-:copy|, |vifm-:move|, |vifm-:alink| and
+|vifm-:rlink| automatically skip source files that already exist at the
+destination rather than refusing to perform the operation.
+
 Ranges~
                                                                *vifm-ranges*
 The ranges implemented include:
@@ -2734,10 +2783,16 @@ The command macros may be used in user commands.
                                                                *vifm-%C*
   %C  %"C   the current file under the cursor in the other directory.
                                                                *vifm-%f*
-  %f  %"f   all of the selected files, but see |vifm-selection|.
+  %f  %"f   all of the selected files or the current file, but see
+            |vifm-selection|.
                                                                *vifm-%F*
-  %F  %"F   all of the selected files in the other directory list,
-            but see |vifm-selection|.
+  %F  %"F   same as %f, %"f, but for the inactive pane.
+                                                               *vifm-%l*
+  %l  %"l   list of selected files.  Unlike %f from above, this is only for
+            explicit selection (i.e., not via a range) and is empty if no
+            files are selected.
+                                                               *vifm-%L*
+  %L  %"L   same as %l and %"l, but for the inactive pane.
                                                                *vifm-%b*
   %b  %"b   same as %f %F.
                                                                *vifm-%d*
@@ -3054,6 +3109,26 @@ Associate `evince` to PDF-files only inside `/home/user/downloads/` directory
  :filextype //^/home/user/downloads/[^/]*\.pdf$// evince %f
 
 --------------------------------------------------------------------------------
+*vifm-regexp*
+
+All regular expressions are extended.  See `man 7 regex` for more details on
+what's supported.
+
+The following special sequences are additionally parsed:
+ - `\c` forces matching ignoring case of letters
+ - `\C` forces matching respecting case of letters
+
+`\c` and `\C` have the highest priority in determining whether case is matched
+or not and exist to override |vifm-'ignorecase'|, |vifm-'smartcase'| and
+`i`/`I` flags when necessary.
+
+If multiple sequences are present, the one which appears later takes
+precedence.
+
+Note that unlike in Vim character classes are affected by settings and
+sequences that control case sensitivity in regular expressions.
+
+--------------------------------------------------------------------------------
 *vifm-globs*
 
 Globs are always case insensitive as it makes sense in general case.
@@ -3327,9 +3402,14 @@ Sets characters used to fill borders.
 
     item          default         used for ~
     vborder:c     ' '             left, middle and right vertical borders
+    hborder:c     ''              middle horizontal border
 
-If value is omitted, its default value is used.  Example: >
-    set fillchars=vborder:.
+A null string for vborder is equivalent to a space.
+
+A null string for hborder omits the horizontal border.
+
+Example: >
+    set fillchars=vborder:".",hborder:""
 <
                                                *vifm-'findprg'*
 findprg
@@ -3401,7 +3481,7 @@ directories, which are always entered (use |vifm-gf| for directories).
                                                *vifm-'fusehome'*
 fusehome
 type: string
-default: "($XDG_DATA_HOME/.local/share | $VIFM)/fuse/"
+default: "($XDG_DATA_HOME/vifm | $VIFM)/fuse/"
 
 Directory to be used as a root dir for FUSE mounts.  Value of the option can
 contain environment variables (in form "$envname"), which will be expanded
@@ -3505,9 +3585,15 @@ changed.
                                                *vifm-'iooptions'*
 iooptions
 type: set
-default:
+default: datasync
 
 Controls details of file operations.  The following values are available:
+ - datasync - periodically synchronize writes on copying files when
+              |vifm-'syscalls'| is set.
+              (This makes copying last as long as it takes to actually write
+              data to the medium, which is slower than you might expect;
+              however, this also prevents system hanging due to filling memory
+              with file-system cache.)
  - fastfilecloning - perform fast file cloning (copy-on-write), when available
                      (available on Linux and btrfs file system).
 
@@ -3668,6 +3754,7 @@ view mode).
     item               default  meaning ~
     graphicsdelay:num  0        delay before drawing graphics (microseconds)
     hardgraphicsclear  unset    redraw screen to get rid of graphics
+    maxtreedepth:num   0        max number of levels in preview tree
     toptreestats       unset    show file counts before the tree
 
 graphicsdelay is needed if terminal requires some timeout before it can
@@ -3676,6 +3763,9 @@ draw graphics (otherwise it gets lost).
 hardgraphicsclear seems to be necessary to get rid of sixel graphics in some
 terminals, where it otherwise lingers.  This can cause flicker on the screen
 due to erasure followed by redrawing.
+
+0 for maxtreedepth means "unlimited", 1 will only show selected directory, 2
+adds its children, and so forth.
 
 Default value is used when item is missing from the option.
 
@@ -4005,6 +4095,7 @@ are supported:
     %T - symbolic link target (empty for other filetypes)
     %f - file name relative to current directory (considers 'classify')
     %A - file attributes (permissions on *nix or properties on Windows)
+    %o - file permissions in octal form on *nix (nothing on Windows)
     %u - user name or uid (if it cannot be resolved)
     %g - group name or gid (if it cannot be resolved)
     %s - file size in human readable format
@@ -4187,11 +4278,13 @@ Use |vifm-trash| directory.
 trashdir
 type: string
 default: on *nix:
-         "%r/.vifm-Trash-%u,$VIFM/Trash,%r/.vifm-Trash" or if $VIFM/Trash
-         doesn't exist
-         "%r/.vifm-Trash-%u,$XDG_DATA_HOME/vifm/Trash,%r/.vifm-Trash"
+           "%r/.vifm-Trash-%u,$XDG_DATA_HOME/vifm/Trash,%r/.vifm-Trash"
+           or
+           "%r/.vifm-Trash-%u,$VIFM/Trash,%r/.vifm-Trash"
          on Windows:
-         "%r/.vifm-Trash,$XDG_DATA_HOME/vifm/Trash"
+           "%r/.vifm-Trash,$XDG_DATA_HOME/vifm/Trash"
+           or
+           "%r/.vifm-Trash,$VIFM/vifm/Trash"
 
 List of trash directory path specifications, separated with commas.
 Each list item either defines an absolute path to |vifm-trash| directory
@@ -4211,7 +4304,7 @@ the order of their appearance and uses first trash directory that it was able
 to create or that is already writable.
 
 Default value tries to use trash directory per mount point and falls back to
-~/.vifm/Trash on failure.
+trash common trash directory on failure.
 
 Will attempt to create the directory if it does not exist.
 
@@ -4255,7 +4348,7 @@ are visible.
                                                *vifm-to-u*
 u - use Unicode characters in the TUI (Unicode ellipsis instead of "...").
                                                *vifm-to-v*
-v - vary width of middle border to equalize view sizes.
+v - vary width of vertical middle border to equalize view sizes.
 
 Each pane title contains the path of the listed directory.  If too large, the
 path is truncated on the left for the active pane and on the right for the other
@@ -4331,6 +4424,7 @@ Controls what will be saved in the $VIFM/vifminfo file:
    cs        - primary color scheme
    savedirs  - save last visited directory
    chistory  - command line history
+   ehistory  - expression register history (see |vifm-c_Ctrl-R_=|)
    shistory  - search history (/ and ? commands)
    phistory  - prompt history
    fhistory  - history of local filter (see |vifm-=|)
@@ -4455,18 +4549,29 @@ sequences that can be used in place of them.  They are:
     more common.
 <insert>
     Insert key.
+<s-home> <s-end>
+<s-left> <s-right> <s-up> <s-down>
+<s-pageup> <s-pagedown>
+<s-delete> <s-insert>
+    Shift + one of the keys from above, if terminal and its terminfo supports
+    it.
 <c-a>,<c-b>,...,<c-z>,<c-[>,<c-\>,<c-]>,<c-^>,<c-_>
     Control + some key (see key conflict description below).
 <c-@>                                          {only for *nix}
     Control + Space.
 <a-a>,<a-b>,...,<a-z>
-    Alt + some key.
 <m-a>,<m-b>,...,<m-z>
+<a-0>,<a-1>,...,<a-9>                          {only for *nix}
+<m-0>,<m-1>,...,<m-9>                          {only for *nix}
     Alt + some key.
 <a-c-a>,<a-c-b>,...,<a-c-z>                    {only for *nix}
-    Alt + Ctrl + some key.
 <m-c-a>,<m-c-b>,...,<m-c-z>                    {only for *nix}
     Alt + Ctrl + some key.
+<a-s-a>,<a-s-b>,...,<a-s-z>                    {only for *nix}
+<s-a-a>,<s-a-b>,...,<s-a-z>                    {only for *nix}
+<m-s-a>,<m-s-b>,...,<m-s-z>                    {only for *nix}
+<s-m-a>,<s-m-b>,...,<s-m-z>                    {only for *nix}
+    Alt + Shift + some key.
 <f0> - <f63>
     functional keys.
 <c-f1>,...,<c-f12>                             {only for MS-Windows}
@@ -4809,8 +4914,8 @@ Example: >
 
 expand({expr})                                 *vifm-expand()*
 
-Expands environment variables and macros in {expr} just like it's done for
-command-line commands.  Returns a string.  See |vifm-macros|.
+Expands environment variables and macros in {expr} (in this order).  Returns
+a string.  See |vifm-macros|.
 
 Examples: >
   " percent sign
@@ -4819,6 +4924,8 @@ Examples: >
   :echo expand('%D:t')
   " $PATH environment variable (same as `:echo $PATH`)
   :echo expand('$PATH')
+  " full path to the current file with backslashes
+  :echo expand('%c:p:gs!/!\\!')
 
 extcached({cache}, {path}, {extcmd})           *vifm-extcached()*
 
@@ -5797,11 +5904,11 @@ following piece of file system: >
 <
 Two color schemes: >
 
- # ~/.vifm/colors/for_bin
+ # ~/.config/vifm/colors/for_bin.vifm
  highlight Win cterm=none ctermfg=white ctermbg=red
  highlight CurrLine cterm=none ctermfg=red ctermbg=black
 
- # ~/.vifm/colors/for_bin_my
+ # ~/.config/vifm/colors/for_bin_my.vifm
  highlight CurrLine cterm=none ctermfg=green ctermbg=black
 <
 And these three commands in the vifmrc file: >
@@ -5930,10 +6037,10 @@ commands.
 *vifm-env-vars*
 
 |vifm-$VIFM|
-Points to main configuration directory (usually ~/.vifm/).
+Points to main configuration directory (usually ~/.config/vifm/).
 
 |vifm-$MYVIFMRC|
-Points to main configuration file (usually ~/.vifm/vifmrc).
+Points to main configuration file (usually ~/.config/vifm/vifmrc).
 
 These environment variables are valid inside vifm and also can be used to
 configure it by setting some of them before running vifm.

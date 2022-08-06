@@ -1,4 +1,4 @@
-*vifm-lua.txt*    For Vifm version 1.0  Last change: 2022 Jan 16
+*vifm-lua.txt*    For Vifm version 1.0  Last change: 2022 Aug 2
 
  Email for bugs and suggestions: <xaizek@posteo.net>
 
@@ -159,14 +159,14 @@ The following standard libraries are enabled:
  * input and output (`io` table)
  * mathematical functions (`math` table)
  * time subset of OS facilities (`clock`, `date`, `difftime` and `time`
-   elements of `os` table)
+   elements) and `tmpname` of `os` table
 
 --------------------------------------------------------------------------------
 *vifm-plugins*
 
-After processing of |vifm-vifmrc| contents of the $VIFM/plugins/ directory is
+After processing contents of |vifm-vifmrc| $VIFM/plugins/ directory is
 enumerated in search of plugins.  Directories or symbolic links to directories
-are considered as candidates.
+are considered as candidates.  Those starting with a dot are ignored.
 
 Implications of the default order of initialization:
  * :commands defined in configuration have precedence over :commands defined by
@@ -216,6 +216,140 @@ A viewer can also be called through |vifm-%q|: >
 A handler can be used to generate |vifm-:'statusline'| value like this: >
   set statusline=#pluginname#statusline
 
+Below is a specification of input and output for different kinds of handlers.
+
+:filetype or :filextype handler~
+
+Fields of {info} argument for {handler}.handler for :file[x]type:
+ - "command" (string)
+   Command which handles the file.
+ - "entry" (table)
+   Information about a file list entry as an instance of |vifm-l_VifmEntry|.
+
+There is no return value.
+
+:fileviewer handler~
+
+Fields of {info} argument:
+ - "command" (string)
+   Command with which the viewer was invoked.
+ - "path" (string)
+   Path to the file which is being viewed.
+ - "x" (integer)
+   X coordinate of the preview area in characters.
+ - "y" (integer)
+   Y coordinate of the preview area in characters.
+ - "width" (integer)
+   Width of the preview area in characters.
+ - "height" (integer)
+   Height of the preview area in characters.
+
+Fields of returned table:
+ - "lines" (array of strings)
+   Preview text.
+
+'statusline' handler~
+
+Fields of {info} argument:
+ - "view" (|vifm-l_VifmView|)
+   Current view.
+ - "width" (integer)
+   Width of the status line.
+
+Fields of returned table:
+ - "format" (string)
+   Value for |vifm-'statusline'|.
+
+'vicmd' or 'vixcmd' handler~
+
+Editor is invoked by Vifm in several different contexts with generally
+different input data and sometimes different expectations (like waiting until
+editing is finished).  This is why a handler needs to process several kinds of
+actions which correspond to those contexts.
+
+Format of returned table is currently the same for all actions:
+ - "success" (boolean)
+   Whether opening editor was successful.  If we're interested in the result
+   of editing (e.g., for bulk renaming), success condition also implies
+   receiving non-zero exit code from the editor.
+
+There is also common field of the input table:
+ - "command" (string)
+   Command specified in one of the options.
+
+"open-help" action
+
+Occurs on |vifm-:help| command if |vifm-'vimhelp'| is set.  Should open
+documentation in Vim's format and position cursor at the specified topic (help
+tag).
+
+Fields of {info} argument:
+ - "action" (string)
+   "open-help" string.
+ - "topic" (string)
+   Help topic (help tag).
+ - "vimdocdir" (string)
+   Path to parent of doc/ directory with documentation in Vim format with tags
+   file.
+
+"edit-one" action
+
+Occurs on:
+ - |vifm-:help| command if |vifm-'vimhelp'| is unset
+ - pressing |vifm-v_v| key in view mode
+ - opening file from a menu
+ - opening file with a FUSE mounter using |vifm-i|
+ - using |vifm-q:|, |vifm-q/| and |vifm-q?| commands in normal mode
+ - requests to provide file names (like on :copy? or |vifm-:rename|)
+
+Should open single file at an optionally specified location (line, column) and
+support waiting until editing has finished.
+
+Fields of {info} argument:
+ - "action" (string)
+   "edit-one" string.
+ - "path" (string)
+   Path to the file to open.
+ - "mustwait" (boolean)
+   Whether handler must not return until editor has exited.
+ - "line" (integer) (optional)
+   Line number at which to open the file.
+ - "column" (integer) (optional)
+   Column number at which to open the file.  Present only if "line" field is
+   present.
+
+"edit-many" action
+
+Occurs on:
+ - opening selection or current file on |vifm-Enter| key in normal mode
+ - using |vifm-:edit| command
+
+Should open one or multiple files in an editor, likely as a list of buffers or
+tabs.
+
+Fields of {info} argument:
+ - "action" (string)
+   "edit-many" string.
+ - "paths" (array of strings)
+   Paths to the files to open.
+
+"edit-list" action
+
+Occurs on pressing |vifm-m_v| key in view mode.  Should open list of files or
+quickfix entries in an editor as a navigation list.
+
+Fields of {info} argument:
+ - "action" (string)
+   "edit-list" string.
+ - "current" (integer)
+   Position of the current entry.
+ - "entries" (array of strings)
+   List of entries to pass to an editor.
+ - "isquickfix" (boolean)
+   Whether input entries are of the form "path[:line[:column]][:text]".
+   Because such lists come from external tools, this information is determined
+   using a simple heuristic and might not always be correct.
+
 --------------------------------------------------------------------------------
 *vifm-lua-caps*
 
@@ -225,7 +359,10 @@ This is what one can do by using Lua at the moment:
  * custom columns (|vifm-l_vifm.addcolumntype()|)
  * :filetype/:filextype/:fileviewer/%q handlers in Lua (|vifm-lua-handlers|)
  * 'statusline' generator in Lua (|vifm-lua-handlers|)
+ * fully integrate an arbitrary editor by changing |vifm-'vicmd'| or |vifm-'vixcmd'|
+   (|vifm-lua-handlers|), while builtin logic assumes compatibility with Vim
  * starting background jobs that appear on a job bar (|vifm-l_vifm.startjob()|)
+ * defining custom keys and selectors (|vifm-l_vifm.keys.add()|)
 
 --------------------------------------------------------------------------------
 *vifm-lua-api*
@@ -291,6 +428,9 @@ Possible fields of {column}:
    Whether this column is highlighted with file color and search match
    is highlighted as well.
 
+{column}.handler is executed in a safe environment and can't call API marked
+as {unsafe}.
+
 Fields of {info} argument for {column}.handler:
  - "entry" (table)
    Information about a file list entry as an instance of |vifm-l_VifmEntry|.
@@ -315,7 +455,8 @@ Raises an error:~
 
 vifm.addhandler({handler})                     *vifm-l_vifm.addhandler()*
 Registers a new handler that will be accessible in viewers.  See
-|vifm-lua-handlers|.
+|vifm-lua-handlers| for general description and details about specific
+use-cases.
 
 Possible fields of {handler}:
  - "name" (string)
@@ -323,48 +464,6 @@ Possible fields of {handler}:
    #-separated list of names, e.g. "view#pdf".
  - "handler" (function)
    Handler which accepts {info} and returns a table.  See below.
-
-:filetype or :filextype handler~
-
-Fields of {info} argument for {handler}.handler for :file[x]type:
- - "command" (string)
-   Command which handles the file.
- - "entry" (table)
-   Information about a file list entry as an instance of |vifm-l_VifmEntry|.
-
-There is no return value.
-
-:fileviewer handler~
-
-Fields of {info} argument:
- - "command" (string)
-   Command with which the viewer was invoked.
- - "path" (string)
-   Path to the file which is being viewed.
- - "x" (integer)
-   X coordinate of the preview area in characters.
- - "y" (integer)
-   Y coordinate of the preview area in characters.
- - "width" (integer)
-   Width of the preview area in characters.
- - "height" (integer)
-   Height of the preview area in characters.
-
-Fields of returned table:
- - "lines" (array of strings)
-   Preview text.
-
-'statusline' handler~
-
-Fields of {info} argument:
- - "view" (|vifm-l_VifmView|)
-   Current view.
- - "width" (integer)
-   Width of the status line.
-
-Fields of returned table:
- - "format" (string)
-   Value for |vifm-'statusline'|.
 
 Return:~
   `true` if handler was added, `false` if a handler with such name already
@@ -374,13 +473,13 @@ Raises an error:~
   If {handler}.name has incorrect value.
 
 vifm.currview()                                *vifm-l_vifm.currview()*
-Retrives a reference to current view.
+Retrieves a reference to current view.
 
 Return:~
   Returns an instance of |vifm-l_VifmView|.
 
 vifm.otherview()                               *vifm-l_vifm.otherview()*
-Retrives a reference to current view.
+Retrieves a reference to current view.
 
 Return:~
   Returns an instance of |vifm-l_VifmView|.
@@ -413,6 +512,16 @@ Parameters:~
 Return:~
   Modified path.
 
+vifm.escape({what})                            *vifm-l_vifm.escape()*
+Escapes input to make it suitable for use in an external command for current
+value of |vifm-'shell'|.
+
+Parameters:~
+  {what}  String to escape.
+
+Return:~
+  Modified path.
+
 vifm.exists({path})                            *vifm-l_vifm.exists()*
 Checks existence of a path without resolving symbolic links.
 
@@ -432,8 +541,36 @@ Return:~
   `true` on success.  Trying to create path that already exists is not
   considered to be an error.
 
+vifm.run({info})                               *vifm-l_vifm.run()*
+Runs an external command similar to |vifm-:!|.  Waits for it to finish if
+terminal multiplexer is not involved.
+
+Command is dispatched via a shell, but |vifm-'shellcmdflag'| is always
+ignored.
+
+Possible fields of {info}:
+ - "cmd" (string)
+   Comand to execute.
+ - "pause" (string) (default: "onerror")
+   When to pause after command execution: "never", "onerror", "always".
+ - "usetermmux" (boolean) (default: true)
+   Whether to open terminal multiplexer if support was enabled via
+   |vifm-:screen|.
+
+Parameters:~
+  {info}  Table with information about what and how to run.
+
+Return:~
+  Exit code of the command, see |vifm-l_VifmJob:exitcode()| for details.
+  Mind that if terminal multiplexer is used, this will be exit code of a
+  command that communicates with the multiplexer.
+
+Raises an error:~
+  If {info}.pause has incorrect value.
+
 vifm.startjob({job})                           *vifm-l_vifm.startjob()*
-Launches an external command.  Returns without waiting for it to finish.
+Launches an external command as a background job.  Returns without waiting
+for it to finish.
 
 Command is dispatched via a shell, but |vifm-'shellcmdflag'| is always
 ignored.
@@ -551,8 +688,9 @@ Return:~
 This global `vifm.keys` table provides means of managing key bindings.
 
 vifm.keys.add({key})                           *vifm-l_vifm.keys.add()*
-Registers a new user-defined key in one or several modes or replaces an
-existing one.
+Registers in one or several modes:
+ * a new user-defined key which might replace an existing one
+ * a new selector which must not conflict with an existing one
 
 Possible fields of {key}:
  - "shortcut" (string)
@@ -563,14 +701,32 @@ Possible fields of {key}:
    List of modes to register the key in.  Supported values: cmdline, normal,
    visual, menus, view and dialogs (sort, attributes, change and file info).
    Unsupported values are ignored.
+ - "isselector" (boolean) (default: false)
+   Whether this handler defines a selector rather than a regular key.
+ - "followedby" (string) (default: "none")
+   "none", "selector" (e.g., "j" in "dj") or "keyarg" (e.g., "q" in "'q").
  - "handler" (function)
-   Handler which accepts {info}.
+   Handler which accepts {info} and returns a table for selector handlers.
+   See below.
 
-Fields of {info} argument for "handler":
+{key}.handler for selectors is executed in a safe environment and can't call
+API marked as {unsafe}.
+
+Fields of {info} argument for {key}.handler:
  - "count" (integer)
    Count preceding the key or nil if none.
  - "register" (string)
    Register name or nil if none was specified.
+ - "indexes" (table) (present if key is followed by selector)
+   Table of indexes returned by selector key.
+ - "keyarg" (string) (present if key is followed by keyarg)
+   Key argument (e.g., "x" in "mx" sequence).
+
+Fields of table returned by {key}.handler for selectors:
+ - "indexes" (table)
+   Table of indexes of entries of the current view (|vifm-l_vifm.currview()|)
+   that were selected for the operation.  Out of range values and duplicates
+   are silently ignored.  Indexes are sorted before processing.
 
 Parameters:~
   {cmd}  Table with information about a key.
@@ -658,7 +814,7 @@ This global `vifm.sessions` table provides means for inspecting and
 controlling sessions.
 
 sessions.current()                             *vifm-l_vifm.sessions.current*
-Retrives name of the current session.
+Retrieves name of the current session.
 
 Return:~
   `nil` if there is no active session or its name as a string otherwise.
@@ -669,11 +825,11 @@ Return:~
 This global `vifm.tabs` table provides means for inspecting and controlling
 tabs.
 
-tabs.get({query})                              *vifm-l_vifm.tabs.get()*
-Retrives a tab.
+tabs.get([{query}])                            *vifm-l_vifm.tabs.get()*
+Retrieves a tab.  Omitting {query} is equivalent to passing an empty one.
 
 Possible fields of {query}:
- - "index" (integer)
+ - "index" (integer) (default: `tabs.getcurrent()`)
    Index of the tab.
  - "other" (boolean) (default: false)
    Whether to get a pane tab from inactive view.  Ignored if global tabs are
@@ -875,7 +1031,20 @@ Instances of this type are returned by |vifm-l_vifm.tabs.get()|.
 The corresponding tab exists independently of this type and once the tab is
 closed accessing bound instance raises an error.
 
+VifmTab:getlayout()                            *vifm-l_VifmTab:getlayout()*
+Retrieves layout of a global tab or shared TUI state for a pane tab.
+
+Fields of the result:
+ - "only" (boolean)
+   Whether there is only one visible window.
+ - "split" (string)
+   `nil` when in only one window is visible, "v" or "h" otherwise.
+
+Return:~
+  Returns description of current layout as a table.
+
 VifmTab:getname()                              *vifm-l_VifmTab:getname()*
+Retrieves name of the tab if it was set.
 
 Return:~
   Returns name of the tab as a string, which is empty if unset.

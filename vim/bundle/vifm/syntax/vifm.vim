@@ -1,6 +1,6 @@
 " vifm syntax file
 " Maintainer:  xaizek <xaizek@posteo.net>
-" Last Change: October 5, 2021
+" Last Change: June 29, 2022
 " Inspired By: Vim syntax file by Dr. Charles E. Campbell, Jr.
 
 if exists('b:current_syntax')
@@ -18,7 +18,7 @@ syntax keyword vifmCommand contained
 		\ alink apropos bmark bmarks bmgo cds change chmod chown clone compare
 		\ cope[n] co[py] cq[uit] d[elete] delbmarks delm[arks] delsession di[splay]
 		\ dirs e[dit] el[se] empty en[dif] exi[t] file fin[d] fini[sh] go[to] gr[ep]
-		\ h[elp] hideui histnext his[tory] histprev jobs locate ls lstrash marks
+		\ h[elp] hideui histnext his[tory] histprev keepsel jobs locate ls lstrash marks
 		\ media mes[sages] mkdir m[ove] noh[lsearch] on[ly] plugin plugins popd
 		\ pushd pu[t] pw[d] qa[ll] q[uit] redr[aw] reg[isters] regular rename
 		\ restart restore rlink screen sh[ell] siblnext siblprev sor[t] sp[lit]
@@ -433,7 +433,7 @@ syntax match vifmMapArgList '\(<\(silent\|wait\)>\s*\)*' contained
 
 " Ange-bracket notation
 syntax case ignore
-syntax match vifmNotation '<\(esc\|cr\|space\|del\|nop\|\(s-\)\?tab\|home\|end\|left\|right\|up\|down\|bs\|delete\|insert\|pageup\|pagedown\|\([acms]-\)\?f\d\{1,2\}\|c-s-[a-z[\]^_]\|s-c-[a-z[\]^_]\|c-[a-z[\]^_@]\|[am]-c-[a-z]\|c-[am]-[a-z]\|[am]-[a-z]\)>'
+syntax match vifmNotation '<\(esc\|cr\|space\|del\|nop\|\%(s-\)\?tab\|\%(s-\)\?home\|\%(s-\)\?end\|\%(s-\)\?left\|\%(s-\)\?right\|\%(s-\)\?up\|\%(s-\)\?down\|bs\|\%(s-\)\?delete\|\%(s-\)\?insert\|\%(s-\)\?pageup\|\%(s-\)\?pagedown\|\([acms]-\)\?f\d\{1,2\}\|c-s-[a-z[\]^_]\|s-c-[a-z[\]^_]\|c-[a-z[\]^_@]\|[am]-c-[a-z]\|c-[am]-[a-z]\|[am]-[0-9a-z]\|[am]-s-[a-z]\|s-[am]-[a-z]\)>'
 syntax case match
 
 " Whole line comment
