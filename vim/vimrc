@@ -150,6 +150,7 @@ inoremap   <C-L>    <End>
 inoremap   <C-H>    <BS>
 inoremap   <C-K>    <Esc>lC
 inoremap   <C-T>    <C-V><Tab><C-O>:.retab<CR>
+inoremap   <C-V>    <C-R>*
 inoremap   <C-Y>    <C-R><C-R>=VCopy('up')<CR>
 inoremap   <C-E>    <C-R><C-R>=VCopy('down')<CR>
 inoremap   <C-S>    <C-O>:update<cr>

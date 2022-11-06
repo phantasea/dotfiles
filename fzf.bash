@@ -16,8 +16,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--exact --no-multi --no-sort --cycle --reverse
                          --select-1 --prompt='$=' --height=40% --info=inline --marker='+' --pointer='x'
                          --bind change:top,ctrl-s:toggle-sort,ctrl-v:toggle-preview,ctrl-g:top
-                         --bind ctrl-n:page-down,ctrl-p:page-up,ctrl-y:backward-word
+                         --bind ctrl-n:page-down,ctrl-p:page-up,ctrl-l:clear-query
                          --bind 'ctrl-o:execute#fileopen {}#'
+                         --bind 'ctrl-y:execute-silent(echo {+} | xclip -se c)'
                          --preview-window=:hidden
                          --preview '([[ -f {} ]] && (bat --style=auto --color=always {} || cat {}))
                            || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
