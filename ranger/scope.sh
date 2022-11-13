@@ -163,6 +163,11 @@ handle_extension() {
             exiftool "${FILE_PATH}" && exit 5
             exit 1;;
 
+        # epub files
+        epub)
+            pandoc "${FILE_PATH}" -t plain && exit 5
+            exit 1;;
+
         # Log files
         log)
             tail -n100 "${FILE_PATH}" && exit 5
