@@ -77,10 +77,10 @@ nnoremap  <c-x>  :ffporn<cr>
 
 nnoremap  <c-b>  :tree!<cr>
 mnoremap  <c-j>  <c-f>
-nnoremap  <c-j>  <c-f>L
+nnoremap  <c-j>  <c-f>
 qnoremap  <c-j>  <c-f>
 mnoremap  <c-k>  <c-b>
-nnoremap  <c-k>  <c-b>H
+nnoremap  <c-k>  <c-b>
 qnoremap  <c-k>  <c-b>
 nnoremap  <c-n>  gt
 vnoremap  <c-n>  gt
