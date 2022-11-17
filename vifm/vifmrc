@@ -336,7 +336,7 @@ set iooptions=fastfilecloning
 set cpoptions="s"
 set tuioptions="uv"
 set caseoptions="pg"
-set previewoptions="graphicsdelay:30000"
+set previewoptions=graphicsdelay:30000,maxtreedepth:3,toptreestats
 set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
 set suggestoptions=normal,visual,keys,delay:1000
 
@@ -351,6 +351,7 @@ set previewprg=""
 set syscalls
 set notitle
 set nolsview
+set lsoptions=transposed,columncount:0
 set nodotfiles
 set millerview
 set tabstop=4
@@ -460,14 +461,14 @@ command! moversync       tsp rsync -a --remove-source-files %f %D &&
 command! yankbasename    tmux setb %c %i &
 command! yankpathname    tmux setb %d %i &
 command! yankfullname    tmux setb %d/%c %i &
-if executable('xclip')
-command! xyankbasename   echo -n %f   | xclip -selection clipboard %i &
-command! xyankpathname   echo -n %d   | xclip -selection clipboard %i &
-command! xyankfullname   echo -n %c:p | xclip -selection clipboard %i &
-elseif executable('xsel')
-command! xyankbasename   echo -n %f   | xsel --clipboard --input %i &
-command! xyankpathname   echo -n %d   | xsel --clipboard --input %i &
-command! xyankfullname   echo -n %c:p | xsel --clipboard --input %i &
+if executable('xsel')
+command! xyankbasename   echo -n %f   | xsel --primary --input %i &
+command! xyankpathname   echo -n %d   | xsel --primary --input %i &
+command! xyankfullname   echo -n %c:p | xsel --primary --input %i &
+elseif executable('xclip')
+command! xyankbasename   echo -n %f   | xclip -selection primary %i &
+command! xyankpathname   echo -n %d   | xclip -selection primary %i &
+command! xyankfullname   echo -n %c:p | xclip -selection primary %i &
 endif
 
 command! togglelinenumber
