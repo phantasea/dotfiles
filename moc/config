@@ -264,7 +264,7 @@ Fastdir5 = ${MusicDir}/5.日韓歌曲
 Fastdir6 = ${MusicDir}/6.影視原聲
 Fastdir7 = ${MusicDir}/7.純輕音乐
 Fastdir8 = ${MusicDir}/8.演唱会
-Fastdir9 = ${MusicDir}
+Fastdir9 = /usr/local/.porn/auds
 Fastdir10= ${MusicDir}
 
 # How fast to seek? Number of seconds per key stroke.

@@ -173,6 +173,7 @@ handle_extension() {
             tail -n100 "${FILE_PATH}" && exit 5
             exit 1;;
 
+        # Man page files
         1)
             man "${FILE_PATH}" | col -b && exit 5
             exit 1;;
@@ -183,7 +184,8 @@ handle_extension() {
             python -m json.tool -- "${FILE_PATH}" && exit 5
             exit 1;;
 
-        desktop)
+        # Misc files
+        desktop|url)
             cat -- "${FILE_PATH}" && exit 5
             exit 1;;
     esac
