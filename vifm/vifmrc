@@ -655,7 +655,8 @@ fileview  *.sh  highlight -S sh -O ansi -s dante %c, bat --color=always %c
 " Audio
 filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac  audplay %c &, audplay -b %c &, audplay -B %c &
 filetype  *.wma,*.ape,*.rm               audplay -b %c &, audplay -B %c &
-fileview  <audio/*>  exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1
+fileview  {*.mp3,*.wav,*.ogg,*.m4a,*wma},<audio/*>
+          \ exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1
 
 " Video
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
