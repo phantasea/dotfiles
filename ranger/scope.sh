@@ -58,16 +58,17 @@ handle_extension() {
             exit 1;;
 
         rar)
-            als --option=use_rar_for_unpack=0 "${FILE_PATH}" && exit 5
-            unrar v -- "${FILE_PATH}" && exit 5
             # Avoid password prompt by providing empty password
             unrar lt -p- -- "${FILE_PATH}" && exit 5
+            als --option=use_rar_for_unpack=0 "${FILE_PATH}" && exit 5
+            unrar v -- "${FILE_PATH}" && exit 5
             exit 1;;
 
         7z)
-            als "${FILE_PATH}" && exit 5
             # Avoid password prompt by providing empty password
             7z l -p -- "${FILE_PATH}" && exit 5
+            # big problem if needing the password
+            als "${FILE_PATH}" && exit 5
             exit 1;;
 
         # PDF

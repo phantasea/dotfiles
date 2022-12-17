@@ -18,6 +18,7 @@ export FZF_DEFAULT_OPTS="--exact --no-multi --no-sort --cycle --reverse
                          --bind change:top,ctrl-s:toggle-sort,ctrl-v:toggle-preview,ctrl-g:top
                          --bind ctrl-n:page-down,ctrl-p:page-up,ctrl-l:clear-query
                          --bind 'ctrl-o:execute#fileopen {}#'
+                         --bind 'ctrl-t:execute#filegoto {}#+abort'
                          --bind 'ctrl-y:execute-silent(echo {+} | xclip -se c)'
                          --preview-window=:hidden
                          --preview '([[ -f {} ]] && (bat --style=auto --color=always {} || cat {}))

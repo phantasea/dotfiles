@@ -200,7 +200,7 @@ class fzf_locate(Command):
 class fzf_goto(Command):
     def execute(self):
         import subprocess
-        command="fd -a -t=f -t=l . | fzf --height=0"
+        command="fd -L -a -t=f -t=l . | fzf --height=0"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -260,7 +260,7 @@ class fzf_vids(Command):
 class fzf_auds(Command):
     def execute(self):
         import subprocess
-        command="fd -d=2 -t=f -e=mp3 . ~/auds | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | \
+        command="fd -L -d=2 -t=f -e=mp3 . ~/auds /opt/.porn/asmr | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | \
                 sed 's/ /\\ /g' | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
