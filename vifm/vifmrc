@@ -137,9 +137,9 @@ nnoremap  <a-k>  <space>k<space>
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
-nnoremap  !  :!./%c:. &<cr>
-nnoremap  @  !!
-nnoremap  &  <nop>
+nnoremap  !  !!
+nnoremap  @  <nop>
+nnoremap  &  :!./%c:. &<cr>
 nnoremap  ~  :cd ~<cr>
 nnoremap  -  :cd -<cr>
 nnoremap  +  <nop>
@@ -218,6 +218,7 @@ nnoremap zk  {
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
+nnoremap  l  i
 nnoremap gl  :if filetype('.') != 'link' && filetype('.') != 'dir' | altopen | else | exec 'normal gf' | endif<cr>
 nnoremap gL  :if filetype('.') == 'exe' | exec 'normal i' | else | auxopen | endif<cr>
 nnoremap  mi :medinfo<cr>
@@ -461,14 +462,14 @@ command! moversync       tsp rsync -a --remove-source-files %f %D &&
 command! yankbasename    tmux setb %c %i &
 command! yankpathname    tmux setb %d %i &
 command! yankfullname    tmux setb %d/%c %i &
-if executable('xsel')
-command! xyankbasename   echo -n %f   | xsel --primary --input %i &
-command! xyankpathname   echo -n %d   | xsel --primary --input %i &
-command! xyankfullname   echo -n %c:p | xsel --primary --input %i &
-elseif executable('xclip')
-command! xyankbasename   echo -n %f   | xclip -selection primary %i &
-command! xyankpathname   echo -n %d   | xclip -selection primary %i &
-command! xyankfullname   echo -n %c:p | xclip -selection primary %i &
+if executable('xclip')
+command! xyankbasename   echo -n %f   | xclip -sel p -f | xclip -sel c  %i &
+command! xyankpathname   echo -n %d   | xclip -sel p -f | xclip -sel c  %i &
+command! xyankfullname   echo -n %c:p | xclip -sel p -f | xclip -sel c  %i &
+elseif executable('xsel')
+command! xyankbasename   echo -n %f   | tee >(xsel -i -p) >(xsel -i -b)  %i &
+command! xyankpathname   echo -n %d   | tee >(xsel -i -p) >(xsel -i -b)  %i &
+command! xyankfullname   echo -n %c:p | tee >(xsel -i -p) >(xsel -i -b)  %i &
 endif
 
 command! togglelinenumber
@@ -556,7 +557,7 @@ command! ffgotoD  :exec 'goto' fnameescape(system('fd -t=f -t=l | fzf 2>/dev/tty
 command! ffgoto   fd -L --type file | fzf --height=0 | xargs -r vifmgoto
 command! ffedit   fd -d=3 -t=f -t=l -H -E .git --size=-800k | fzf --height=0 -1 -q "%a" --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
 command! fffave   cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f -t=l . | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
-command! ffauds   fd -d=2 -t=f -e mp3 . ~/auds | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r audplay
+command! ffauds   fd -d=2 -t=f -e=mp3 -e=m4a . ~/auds /opt/.porn/asmr | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r audplay
 command! ffvids   fd -H -L -d=3 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r vidplay
 command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
 command! ffporn   fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview

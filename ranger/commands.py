@@ -244,9 +244,7 @@ class fzf_fave(Command):
 class fzf_vids(Command):
     def execute(self):
         import subprocess
-        command="fd -H -L -d=3 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | \
-                fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | \
-                sed 's/ /\\ /g' | xargs -r fileopen"
+        command="fd -H -L -d=3 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | fzf --height=0"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -260,8 +258,7 @@ class fzf_vids(Command):
 class fzf_auds(Command):
     def execute(self):
         import subprocess
-        command="fd -L -d=2 -t=f -e=mp3 . ~/auds /opt/.porn/asmr | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | \
-                sed 's/ /\\ /g' | xargs -r fileopen"
+        command="fd -L -d=2 -t=f -e=mp3 -e=m4a . ~/auds /opt/.porn/asmr | fzf --height=0"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -275,8 +272,7 @@ class fzf_auds(Command):
 class fzf_webs(Command):
     def execute(self):
         import subprocess
-        command="fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | \
-                sed 's/ /\\ /g' | xargs -r fileopen"
+        command="fd -d=1 -t=f . ~/docs/webs | fzf --height=0"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
@@ -290,8 +286,7 @@ class fzf_webs(Command):
 class fzf_porn(Command):
     def execute(self):
         import subprocess
-        command="fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | \
-                sed 's/ /\\ /g' | xargs -r fileopen"
+        command="fd -d=2 -t=f . /opt/.porn/text | fzf --height=0"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
