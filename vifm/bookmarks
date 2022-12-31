@@ -1,7 +1,7 @@
 " vim: filetype=vifm:
 
 mark  a  /opt/apps      vifm
-mark  A  /opt/.porn/auds
+mark  A  /opt/.porn/asmr
 mark  b  /opt/.priv
 mark  c  ~/.config
 mark  d  ~/.Trash
