@@ -1,14 +1,14 @@
 " vim: filetype=vifm:
 
 mark  a  /opt/apps      vifm
-mark  A  /usr/local/.porn/auds
+mark  A  /opt/.porn/auds
 mark  b  /opt/.priv
 mark  c  ~/.config
 mark  d  ~/.Trash
 mark  e  /opt/conf      vifm
 mark  h  ~/             misc
 mark  i  ~/pics/celeb
-mark  I  /usr/local/.porn/pics/Graphis
+mark  I  /opt/.porn/pics/Graphis
 mark  m  ~/auds
 mark  n  ~/docs/note    reinstall_ubuntu.txt
 mark  o  /opt           misc
