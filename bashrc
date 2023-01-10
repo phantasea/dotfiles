@@ -11,7 +11,7 @@ stty start undef
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth:erasedups
 
-HISTIGNORE="cd*:ls*:ll*:l *:a *:f:fm:fe:m:mus:e *:g *:tig:t:w:x:ww:em:j *:ce:cu:cw:cn:ca:cat*:mm:ff:gd:gs:gpi:gpo:gci*:sda:sdt*:man*:shut*:make:smi:extract*:acv*:vc*"
+HISTIGNORE="cd*:ls*:ll*:l *:a *:f:fm:fe:m:mus:e *:g *:tig:t:w:x:ww:em:j *:ce:cu:cw:cn:ca:cat*:mm:ff:gd:gs:gpi:gpo:gci*:sda:sdt*:man*:shut:make:smi:extract*:acv*:vc*:audcut*:ac *"
 
 # append to the history file, don't overwrite it
 shopt -s histappend

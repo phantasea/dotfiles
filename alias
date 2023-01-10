@@ -27,6 +27,7 @@ alias -- -='cd -'
 
 alias a='alias'
 alias fa='alias | fzf'
+alias ac='audcut'
 alias acv='audconv'
 alias adbm='adbfs /media/simone/adbfs'
 alias adbu='umount /media/simone/adbfs'

@@ -266,15 +266,15 @@ Fastdir4 = ${MusicDir}/4.外語歌曲
 Fastdir5 = ${MusicDir}/5.日韓歌曲
 Fastdir6 = ${MusicDir}/6.影視原聲
 Fastdir7 = ${MusicDir}/7.純輕音乐
-Fastdir8 = ${MusicDir}/8.演唱会
-Fastdir9 = /usr/local/.porn/auds
+Fastdir8 = ${MusicDir}/temp
+Fastdir9 = /opt/.porn/asmr
 Fastdir10= ${MusicDir}
 
 # How fast to seek? Number of seconds per key stroke.
 SeekTime = 5
 
 # How fast to seek (when using silent seeking)? Number of seconds per key stroke.
-#SilentSeekTime	= 5
+SilentSeekTime = 5
 
 # PreferredDecoders allows you to specify which decoder should be used
 # for any given audio format.  It is a colon-separated list in which
