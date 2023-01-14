@@ -266,7 +266,7 @@ Fastdir4 = ${MusicDir}/4.外語歌曲
 Fastdir5 = ${MusicDir}/5.日韓歌曲
 Fastdir6 = ${MusicDir}/6.影視原聲
 Fastdir7 = ${MusicDir}/7.純輕音乐
-Fastdir8 = ${MusicDir}/temp
+Fastdir8 = /home/simone/temp
 Fastdir9 = /opt/.porn/asmr
 Fastdir10= ${MusicDir}
 
