@@ -59,6 +59,14 @@ nnoremap s<space>  :if &sort == '+iname' | set sort='-size,+iname' | exec 'norma
 nnoremap x<space>  <c-w>x
 nnoremap z<space>  :invert o<cr>
 
+anoremap  <c-j>  <pagedown>
+anoremap  <c-k>  <pageup>
+anoremap  <c-h>  <c-o>
+anoremap  <c-l>  <cr>
+anoremap  <c-g>  <home>
+
+"<c-@> means Ctrl+Space to switch to cmdline navigation mode
+cnoremap  <c-@>  <c-y>
 cnoremap  <c-o>  <s-tab>
 cnoremap  <c-j>  <cr>
 cnoremap  <c-r>  <c-x>
