@@ -1,6 +1,6 @@
 " vifm syntax file
 " Maintainer:  xaizek <xaizek@posteo.net>
-" Last Change: June 29, 2022
+" Last Change: January 14, 2023
 " Inspired By: Vim syntax file by Dr. Charles E. Campbell, Jr.
 
 if exists('b:current_syntax')
@@ -18,9 +18,9 @@ syntax keyword vifmCommand contained
 		\ alink apropos bmark bmarks bmgo cds change chmod chown clone compare
 		\ cope[n] co[py] cq[uit] d[elete] delbmarks delm[arks] delsession di[splay]
 		\ dirs e[dit] el[se] empty en[dif] exi[t] file fin[d] fini[sh] go[to] gr[ep]
-		\ h[elp] hideui histnext his[tory] histprev keepsel jobs locate ls lstrash marks
-		\ media mes[sages] mkdir m[ove] noh[lsearch] on[ly] plugin plugins popd
-		\ pushd pu[t] pw[d] qa[ll] q[uit] redr[aw] reg[isters] regular rename
+		\ h[elp] hideui histnext his[tory] histprev keepsel jobs locate ls lstrash
+		\ marks media mes[sages] mkdir m[ove] noh[lsearch] on[ly] plugin plugins
+		\ popd pushd pu[t] pw[d] qa[ll] q[uit] redr[aw] reg[isters] regular rename
 		\ restart restore rlink screen sh[ell] siblnext siblprev sor[t] sp[lit]
 		\ st[op] s[ubstitute] tabc[lose] tabm[ove] tabname tabnew tabn[ext]
 		\ tabo[nly] tabp[revious] touch tr trashes tree session sync undol[ist]
@@ -45,9 +45,9 @@ syntax keyword vifmCommandCN contained
 syntax keyword vifmPrefixCommands contained windo winrun
 
 " Map commands
-syntax keyword vifmMap contained dm[ap] dn[oremap] du[nmap] map mm[ap]
-		\ mn[oremap] mu[nmap] nm[ap] nn[oremap] no[remap] nun[map] qm[ap] qn[oremap]
-		\ qun[map] unm[ap] vm[ap] vn[oremap] vu[nmap]
+syntax keyword vifmMap contained amap anoremap aunmap dm[ap] dn[oremap] du[nmap]
+		\ map mm[ap] mn[oremap] mu[nmap] nm[ap] nn[oremap] no[remap] nun[map] qm[ap]
+		\ qn[oremap] qun[map] unm[ap] vm[ap] vn[oremap] vu[nmap]
 		\ skipwhite nextgroup=vifmMapArgs
 syntax keyword vifmCMapAbbr contained ca[bbrev] cm[ap] cnorea[bbrev] cno[remap]
 		\ cuna[bbrev] cu[nmap]
@@ -79,7 +79,7 @@ syntax case match
 
 " Builtin functions
 syntax match vifmBuiltinFunction
-		\ '\(chooseopt\|expand\|executable\|extcached\|filetype\|fnameescape\|getpanetype\|has\|layoutis\|paneisat\|system\|tabpagenr\|term\)\ze('
+		\ '\(chooseopt\|expand\|executable\|extcached\|filetype\|fnameescape\|getpanetype\|has\|input\|layoutis\|paneisat\|system\|tabpagenr\|term\)\ze('
 
 " Operators
 syntax match vifmOperator "\(==\|!=\|>=\?\|<=\?\|\.\|-\|+\|&&\|||\)" skipwhite
@@ -87,10 +87,11 @@ syntax match vifmOperator "\(==\|!=\|>=\?\|<=\?\|\.\|-\|+\|&&\|||\)" skipwhite
 " Highlight groups
 syntax keyword vifmHiArgs contained cterm ctermfg ctermbg gui guifg guibg
 syntax case ignore
-syntax keyword vifmHiGroups contained WildMenu Border Win CmdLine CurrLine AuxCurrLine
-		\ Menu Dialog TopMid LineNrSep
+syntax keyword vifmHiGroups contained WildMenu Border Win CmdLine CurrLine
+		\ Menu Dialog TopMid LineNrSep AuxCurrLine
 		\ OtherLine Directory Link Socket Device Executable Selected BrokenLink
-		\ TopLine TopLineSel StatusLine JobLine SuggestBox Fifo ErrorMsg CmpMismatch
+		\ TopLine TopLineSel StatusLine JobLine SuggestBox Fifo ErrorMsg
+		\ CmpMismatch CmpUnmatched CmpBlank
 		\ AuxWin OtherWin TabLine TabLineSel HardLink LineNr OddLine
 		\ User1 User2 User3 User4 User5 User6 User7 User8 User9
 syntax keyword vifmHiStyles contained
@@ -144,17 +145,15 @@ syntax keyword vifmOption contained aproposprg autocd autochpos caseoptions
 		\ cvoptions deleteprg dotdirs dotfiles dirsize fastrun fillchars fcs findprg
 		\ followlinks fusehome gdefault grepprg histcursor history hi hlsearch hls
 		\ iec ignorecase ic iooptions incsearch is laststatus lines locateprg ls
-		\ lsoptions lsview mediaprg milleroptions millerview mintimeoutlen number nu
-		\ numberwidth nuw previewoptions previewprg quickview relativenumber rnu
-		\ rulerformat ruf runexec scrollbind scb scrolloff sessionoptions ssop so
-		\ sort sortgroups sortorder sortnumbers shell sh shellflagcmd shcf shortmess
-		\ shm showtabline stal sizefmt slowfs smartcase scs statusline stl
-		\ suggestoptions syncregs syscalls tablabel tabprefix tabscope tabstop
-		\ tabsuffix timefmt timeoutlen title tm trash trashdir ts tuioptions to
-		\ undolevels ul vicmd viewcolumns vifminfo vimhelp vixcmd wildmenu wmnu
-		\ prefervsplit maxundotabs previewmaxsize topmidfiller maxratingstars vimabs
-    \ filenamedisplen filenamedispall redolastcmdcfm keymapsilent clipboardprg cdaftermkdir
-		\ wildstyle wordchars wrap wrapscan ws
+		\ lsoptions lsview mediaprg milleroptions millerview mintimeoutlen mouse
+		\ number nu numberwidth nuw previewoptions previewprg quickview
+		\ relativenumber rnu rulerformat ruf runexec scrollbind scb scrolloff
+		\ sessionoptions ssop so sort sortgroups sortorder sortnumbers shell sh
+		\ shellflagcmd shcf shortmess shm showtabline stal sizefmt slowfs smartcase
+		\ scs statusline stl suggestoptions syncregs syscalls tablabel tabprefix
+		\ tabscope tabstop tabsuffix timefmt timeoutlen title tm trash trashdir ts
+		\ tuioptions to undolevels ul vicmd viewcolumns vifminfo vimhelp vixcmd
+		\ wildmenu wmnu wildstyle wordchars wrap wrapscan ws
 
 " Disabled boolean options
 syntax keyword vifmOption contained noautocd noautochpos nocf nochaselinks
@@ -262,7 +261,7 @@ syntax region vifmMapArgs start='\ze\S\+'
 syntax region vifmCMapArgs start='\S\+'
 		\ end='\n\s*\\' skip='\(\n\s*\\\)\|\(\n\s*".*$\)'
 		\ contained
-		\ contains=vifmMapLhs,vifmMapCRhs
+		\ contains=vifmMapArgList,vifmMapLhs,vifmMapCRhs
 syntax region vifmMapLhs start='\S\+'
 		\ end='\ze\s' skip='\(\s*\\\)\|\(\s*".*$\)'
 		\ contained

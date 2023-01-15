@@ -1,4 +1,4 @@
-*vifm-lua.txt*    For Vifm version 1.0  Last change: 2022 Aug 2
+*vifm-lua.txt*    For Vifm version 1.0  Last change: 2023 Jan 9
 
  Email for bugs and suggestions: <xaizek@posteo.net>
 
@@ -17,6 +17,7 @@ complete removal of this interface (that's an unlikely scenario though).
 |vifm-lua-api|         Root-level API.
 |vifm-l_vifm|          `vifm` global table.
 |vifm-l_vifm.cmds|     `vifm.cmds` global table.
+|vifm-l_vifm.events|   `vifm.events` global table.
 |vifm-l_vifm.keys|     `vifm.keys` global table.
 |vifm-l_vifm.opts|     `vifm.opts` global table.
 |vifm-l_vifm.plugin|   `vifm.plugin` global table.
@@ -97,7 +98,11 @@ Safe ones can be called from anywhere, but unsafe API is not always
 accessible.  As an example, you can't change directory of any view or add a
 view column from a view column handler.
 
-Unsafe API is marked with {unsafe} in its description.
+Unsafe API is marked with {unsafe} in its description.  If description of a
+handler doesn't say that it's run in a safe environment, it can use unsafe API
+as well.  In order to allow use of unsafe API, an execution of a handler might
+be postponed until Vifm reaches a state where it holds the least amount of
+assumptions about what's going on, such handlers are marked as {delayed}.
 
 --------------------------------------------------------------------------------
 *vifm-lua-evolution*
@@ -116,7 +121,7 @@ welcome.
 Current design principles:
  1. Callbacks in Lua accept a table and return one (if they return anything).
     This allows adding new fields to both input and output while staying
-    backward compatible and readable.
+    backward compatible and readable at the cost of being a bit more verbose.
 
 Random ideas~
 
@@ -164,9 +169,24 @@ The following standard libraries are enabled:
 --------------------------------------------------------------------------------
 *vifm-plugins*
 
-After processing contents of |vifm-vifmrc| $VIFM/plugins/ directory is
-enumerated in search of plugins.  Directories or symbolic links to directories
-are considered as candidates.  Those starting with a dot are ignored.
+Loading of plugins is performed after processing contents of |vifm-vifmrc|.
+Plugins are searched in the directories specified via |vifm---plugins-dir|
+command-line option and the last specified directory is searched first.  Then
+$VIFM/plugins/ is enumerated in search of plugins.  Directories or symbolic
+links to directories are considered as candidates.  Those starting with a dot
+are ignored.
+
+For example, running Vifm like >
+
+  vifm --plugins-dir dirA --plugins-dir ~/dirB
+
+results in search for plugins in this order of directories:
+ 1. $PWD/dirA
+ 2. ~/dirB
+ 3. $VIFM/plugins
+The order matters as it defines which of the conflicting plugins gets
+loaded (see below on name conflicts).  Such an ordering allows shadowing
+plugins from default location.
 
 Implications of the default order of initialization:
  * :commands defined in configuration have precedence over :commands defined by
@@ -181,7 +201,9 @@ All plugins are required to contain `init.lua` file at their root.  This file
 gets processed and its return value is interpreted as plugin data.  The return
 value must be a table.  The table is stored in a `vifm.plugins.all` dictionary
 with a key that corresponds to the plugin's name.  At the moment the name of a
-plugin is the name of its directory.
+plugin is the name of its directory.  Name of a plugin must be unique (names
+that differ by only by case are considered unique) or loading it will be
+skipped.
 
 Global variables created by one plugin are local to that plugin and won't
 affect or be visible to other plugins.
@@ -586,8 +608,10 @@ Possible fields of {job}:
     - "r" - reading output of the process (see |vifm-l_VifmJob:stdout()|)
     - "w" - providing input to the process (see |vifm-l_VifmJob:stdin()|)
     - ""  - no I/O interaction
+ - "onexit" (function) (default: `nil`)
+   Handler to invoke when the job is done.  The handler is {delayed}.
  - "mergestreams" (boolean) (default: false)
-   Whether to merge error streams of the command with output stream.
+   Whether to merge error stream of the command with its output stream.
  - "visible" (boolean) (default: false)
    Whether to show this job on a job bar.
 
@@ -645,8 +669,16 @@ Fields of {results} return value of "complete":
    Offset from beginning of the argument.  This is useful to avoid prepending
    prefix that's common to all matches, thus completing only essential part.
    For example, in case of "var=val" use offset=4 to complete part after "=".
- - "matches" (table)
-   List of matches in values of the table (keys are ignored).
+ - "matches" (array of strings or tables)
+   List of items in values of the table (keys are ignored).  Each list item
+   can either be a string or a table.  When item is a string it is used as a
+   completion match.  When item is a table it can contain these keys:
+    - "match" (string)
+      Use "match" as a completion match.
+    - "description" (string) (optional)
+      A string that will be showed along with the "match" but not inserted on
+      the command line.
+   All other items of unspecified types will be silently ignored.
 
 Parameters:~
   {cmd}  Table with information about a command.
@@ -681,6 +713,35 @@ Parameters:~
 
 Return:~
   `true` on success.
+
+--------------------------------------------------------------------------------
+*vifm-l_vifm.events*
+
+This global `vifm.events` table groups items related to events.
+
+events.listen({event})                         *vifm-l_vifm.events.listen()*
+Registers a handler for an event.
+
+Possible fields of {event}:
+ - "event" (string)
+   Name of event to listen for.  See below.
+ - "handler" (function)
+   Handler to invoke when the event happens.
+
+Events:
+ - "app.exit"
+   Occurs before Vifm exits normally.  Does not happen on |vifm-:restart|.
+
+Registering the same handler more than once for the same event has no effect.
+
+Parameters:~
+  {event}  Table with information about event handling.
+
+Return:~
+  `nil`
+
+Raises an error:~
+  On unknown event name.
 
 --------------------------------------------------------------------------------
 *vifm-l_vifm.keys*
@@ -943,6 +1004,9 @@ the Unix epoch.
 VifmEntry.type (string)                        *vifm-l_VifmEntry.type*
 Type of the entry.  See |vifm-filetype()| for the list of values.
 
+VifmEntry.isdir (boolean)                      *vifm-l_VifmEntry.isdir*
+True if an entry is either a directory or a symbolic link to a directory.
+
 VifmEntry.folded (boolean)                     *vifm-l_VifmEntry.folded*
 Whether this entry is folded.
 
@@ -969,6 +1033,13 @@ Return:~
 Raises an error:~
   If entry doesn't correspond to a symbolic link.
   If resolving symbolic link has failed.
+
+VifmEntry:mimetype()                          *vifm-l_VifmEntry.mimetype()*
+Gets a MIME type.  Resolves target of symbolic links.
+
+Return:~
+  Returns MIME type as a string, or `nil` if no MIME type recognisers are
+  available.
 
 --------------------------------------------------------------------------------
 *vifm-l_VifmJob*

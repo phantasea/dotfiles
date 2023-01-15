@@ -1,4 +1,4 @@
-*vifm-app.txt*    For Vifm version 0.12  Last change: 2022 July 14
+*vifm-app.txt*    For Vifm version 0.12.1  Last change: 2023 Jan 14
 
  Email for bugs and suggestions: <xaizek@posteo.net>
 
@@ -35,6 +35,7 @@
 |vifm-trash|              Details about trash directory in vifm.
 |vifm-clientserver|       Client-server communication.
 |vifm-ext-rename|         About editing buffer of file names in an editor.
+|vifm-mouse-using|        Using the mouse.
 |vifm-plugin|             Using the vifm.vim plugin.
 |vifm-reserved|           List of reserved commands.
 |vifm-env-vars|           Environment variables that affect vifm or set by it.
@@ -49,6 +50,7 @@ Tag name structure:
       Menu or dialog command   vifm-m_     :help vifm-m_zh
       Command-line command     vifm-:      :help vifm-:quit
       Command-line editing     vifm-c_     :help vifm-c_CTRL-H
+      Command-line navigation  vifm-a_     :help vifm-a_CTRL-Y
       Vifm command argument    vifm--      :help vifm--f
       Option                   vifm-'      :help vifm-'wrap'
 
@@ -100,6 +102,9 @@ The other command line arguments are:
     sets command to be executed on selected files instead of opening them.
     The command may use any of |vifm-macros|.  The command is executed once for
     whole selection.
+--plugins-dir <path>                           *vifm---plugins-dir*
+    additional plugins directory (can appear multiple times).  The last one
+    added has the highest priority.
 --logging[=<startup log path>]                 *vifm---logging*
     log some operational details to $XDG_DATA_HOME/vifm/log or $VIFM/log.  If
     the optional startup log path is specified and permissions allow to open
@@ -509,11 +514,11 @@ gr                                             {only for MS-Windows}
 
 
 av                                             *vifm-av*
-    go to visual mode into selection amending state preserving current
-    selection.
+    go into visual mode for updating current selection, any existing selection
+    is preserved.
 
 gv                                             *vifm-gv*
-    go to visual mode restoring last selection.
+    go into visual mode restoring last selection.
 
 [reg]gs                                        *vifm-gs*
     If register is present, then all files listed in that register that are
@@ -1027,6 +1032,51 @@ Ctrl-R =                                       *vifm-c_CTRL-R_=*
     via nested command-line prompt (where this key does nothing).  Expansion
     of an erroneous expression is empty.
 
+Fast navigation~
+
+In order to streamline navigation through directory tree, you can enter a
+special form of command-line mode from search or local filter prompt.  Once
+activated, pressing Enter opens currently selected directory and clears the
+prompt in anticipation of the next component of the path.  If entry under the
+cursor is a file, it is opened and the mode is finished.
+
+This behaviour is embedded in a command-line mode, but doesn't update input
+histories nor expands abbreviations and redefines some of the mode's mappings
+for the purpose of faster navigation through the file system rather than
+command-line editing.  When on, prompt gets "nav" prefix.
+
+You can enable this behaviour on search by default via a mapping like: >
+    nnoremap / /<c-y>
+
+Ctrl-Y                                         *vifm-c_CTRL-Y*
+    enter navigation mode.  Works only for search and local filter started
+    from a normal mode and only when |vifm-'incsearch'| is set
+    (|vifm-'wrapscan'| is also nice to have set for search).
+
+Ctrl-Y                                         *vifm-a_CTRL-Y*
+    return to a regular command-line mode.
+
+Enter, Right                                   *vifm-a_Enter* *vifm-a_Right*
+    either enter a directory under the cursor without leaving the mode and
+    clear the prompt or leave the mode and open a file under the cursor.
+Ctrl-O, Left                                   *vifm-a_CTRL-O* *vifm-a_Left*
+    go to parent directory.
+
+Ctrl-N, Down                                   *vifm-a_CTRL-N* *vifm-a_Down*
+    move view cursor down.
+Ctrl-P, Up                                     *vifm-a_CTRL-P* *vifm-a_Up*
+    move view cursor up.
+
+Page Down                                      *vifm-a_PageDown*
+    scroll view down.
+Page Up                                        *vifm-a_PageUp*
+    scroll view up.
+
+Home                                           *vifm-a_Home*
+    move view cursor to the first item.
+End                                            *vifm-a_End*
+    move view cursor to the last item.
+
 Pasting special values~
 
 The shortcuts listed below insert specified values into current cursor
@@ -1184,6 +1234,8 @@ line.  If you want to use '|' in an argument, precede it with '\'.
 These commands see '|' as part of their arguments even when it's escaped:
 
     :[range]!
+    :amap
+    :anoremap
     :autocmd
     :cabbrev
     :cmap
@@ -1500,16 +1552,26 @@ The builtin commands are:
       :%copy
 <
                                                *vifm-:compare*
-:compare [byname | bysize | bycontents | listall | listunique | listdups |
-          ofboth | ofone | groupids | grouppaths | skipempty]...
+:compare [byname | bysize | bycontents |
+          listall | listunique | listdups |
+          ofboth | ofone |
+          groupids | grouppaths |
+          skipempty | withicase | withrcase |
+          showidentical | showdifferent | showuniqueleft | showuniqueright]...
     compare files in one or two views according to the arguments.  The default
-    is "bycontents listall ofboth grouppaths".  See |vifm-compare-views| for
+    is "bycontents listall ofboth grouppaths showidentical showdifferent
+    showuniqueleft showuniqueright".  See |vifm-compare-views| for
     details.  Diff structure is incompatible with alternative representations,
     so values of |vifm-'lsview'| and |vifm-'millerview'| options are ignored.
+:compare! (showidentical | showdifferent | showuniqueleft |
+           showuniqueright)...
+    this invocation form works only when compare view is active and results in
+    redoing of the previous :compare with toggled state of the passed in
+    options.
 
 :cope[n]                                       *vifm-:copen* *vifm-:cope*
-    opens menu with contents of the last displayed menu with navigation to
-    files by default, if any.
+    reopens the last visible menu that has navigation to files by default, if
+    any.
 
                                                *vifm-:copy* *vifm-:co*
 :[range]co[py][!?][ &]
@@ -1868,6 +1930,8 @@ Available group-name values:
  - Executable - color of executable files
  - Fifo - color of fifo pipes
  - CmpMismatch - color of mismatched files in side-by-side comparison by paths
+ - CmpUnmatched - comparison file entry that has no pair in the other pane
+ - CmpBlank - entry placeholder in a compare view, paired with CmpUnmatched
  - User1..User9 - 9 colors which can be used via %* |vifm-'statusline'| macro
 
 Available colors:
@@ -2031,11 +2095,14 @@ transparency:
             Device
             Fifo
             Executable
-              Selected
-                CurrLine
-                  LineNr (in active pane)
-                OtherLine
-                  LineNr (in inactive pane)
+              CmpMismatch
+              CmpUnmatched
+              CmpBlank
+                Selected
+                  CurrLine
+                    LineNr (in active pane)
+                  OtherLine
+                    LineNr (in inactive pane)
   TopLine
     TopLineSel
       TabLineSel (for pane tabs)
@@ -2650,12 +2717,14 @@ yet supported) and might be changed in future releases, or get an alias.
 :map! lhs rhs
     map lhs key sequence to rhs in command line mode.
 
+                                               *vifm-:amap*
                                                *vifm-:cmap* *vifm-:cm*
                                                *vifm-:dmap* *vifm-:dm*
                                                *vifm-:mmap* *vifm-:mm*
                                                *vifm-:nmap* *vifm-:nm*
                                                *vifm-:qmap* *vifm-:qm*
                                                *vifm-:vmap* *vifm-:vm*
+:amap   lhs rhs - map lhs to rhs in navigation mode.
 :cm[ap] lhs rhs - map lhs to rhs in command line mode.
 :dm[ap] lhs rhs - map lhs to rhs in dialog modes.
 :mm[ap] lhs rhs - map lhs to rhs in menu mode.
@@ -2663,6 +2732,7 @@ yet supported) and might be changed in future releases, or get an alias.
 :qm[ap] lhs rhs - map lhs to rhs in view mode.
 :vm[ap] lhs rhs - map lhs to rhs in visual mode.
 
+:amap   - list all maps of navigation mode.
 :cm[ap] - list all maps of command line mode.
 :dm[ap] - list all maps of dialog modes.
 :mm[ap] - list all maps of menu mode.
@@ -2670,6 +2740,8 @@ yet supported) and might be changed in future releases, or get an alias.
 :qm[ap] - list all maps of view mode.
 :vm[ap] - list all maps of visual mode.
 
+:amap beginning
+    list all maps of navigation mode that start with the beginning.
 :cm[ap] beginning
     list all maps of command line mode that start with the beginning.
 :dm[ap] beginning
@@ -2691,12 +2763,16 @@ yet supported) and might be changed in future releases, or get an alias.
     map the key sequence lhs to rhs for command line mode, but don't expand
     user mappings in rhs.
 
+                                               *vifm-:anoremap*
                                                *vifm-:cnoremap* *vifm-:cno*
                                                *vifm-:dnoremap* *vifm-:dn*
                                                *vifm-:mnoremap* *vifm-:mn*
                                                *vifm-:nnoremap* *vifm-:nn*
                                                *vifm-:qnoremap* *vifm-:qn*
                                                *vifm-:vnoremap* *vifm-:vn*
+:anoremap lhs rhs
+    map the key sequence lhs to rhs for navigation mode, but don't expand
+    user mappings in rhs.
 :cno[remap] lhs rhs
     map the key sequence lhs to rhs for command line mode, but don't expand
     user mappings in rhs.
@@ -2722,12 +2798,14 @@ yet supported) and might be changed in future releases, or get an alias.
 :unm[ap]! lhs
     remove user mapping of lhs from command line mode.
 
+                                               *vifm-:aunmap*
                                                *vifm-:cunmap* *vifm-:cu*
                                                *vifm-:dunmap* *vifm-:du*
                                                *vifm-:munmap* *vifm-:mu*
                                                *vifm-:nunmap* *vifm-:nun*
                                                *vifm-:qunmap* *vifm-:qun*
                                                *vifm-:vunmap* *vifm-:vu*
+:aunmap   lhs - remove user mapping of lhs from navigation mode.
 :cu[nmap] lhs - remove user mapping of lhs from command line mode.
 :du[nmap] lhs - remove user mapping of lhs from dialog modes.
 :mu[nmap] lhs - remove user mapping of lhs from menu mode.
@@ -3667,6 +3745,7 @@ scope: local
 Configures ls-like view.
 
     item          used for ~
+    columncount   fixed number of columns to display or 0
     transposed    filling view grid by columns rather than by lines
 
                                                *vifm-'lsview'*
@@ -3724,6 +3803,18 @@ subsequent input polls, which affects various asynchronous
 operations (detecting changes made by external applications, monitoring
 background jobs, redrawing UI).  There are no strict guarantees, however the
 higher this value is, the less is CPU load in idle mode.
+
+                                               *vifm-'mouse'*
+mouse
+type: charset
+default: ""
+
+Contains a sequence of single-character flags:
+ - a - all supported modes (a shorthand for all the rest and future additions)
+ - c - command-line mode
+ - m - menu mode
+ - n - normal mode
+ - v - visual mode
 
                                                *vifm-'number'* *vifm-'nu'*
 number nu
@@ -4502,6 +4593,19 @@ Searches wrap around end of the list.
 --------------------------------------------------------------------------------
 *vifm-mappings*
 
+A user mapping like `nnoremap lhs rhs` defines a substitution of the
+left-hand-side (LHS) with the right-hand-side (RHS) in the input stream.  A
+regular mapping (without "nore" in :command's name) expands recognized
+sequences in the RHS, while "*noremap" mapping always interprets RHS as if no
+user mappings were defined and each key has its builtin meaning.  In most
+cases you want to use noremap variant and if your RHS includes LHS, only
+noremap variant will work because recursion in a mapping is not allowed.
+
+In order to define a mapping determine in which mode you want to activate it
+and use an appropriate "*noremap" :command (e.g., |vifm-:nnoremap| for a
+normal mode mapping).  RHS doesn't have to limit itself to the mode in which
+the mapping was started and can span multiple modes.
+
 Map arguments~
 
 LHS of mappings can be preceded by arguments which take the form of special
@@ -4878,6 +4982,8 @@ filetype({fnum} [, {resolve}])
 fnameescape({expr})   String      Escapes {expr} for use in a :command.
 getpanetype()         String      Returns type of current pane.
 has({property})       Integer     Checks whether instance has {property}.
+input({prompt} [, {initial} [, {completion}]])
+                      String      Prompts user for an input on command-line.
 layoutis({type})      Integer     Checks whether layout is of type {type}.
 paneisat({loc})       Integer     Checks whether current pane is at {loc}.
 system({command})     String      Executes shell command and returns its output.
@@ -5002,6 +5108,27 @@ Usage example: >
 
   execute 'set' 'statusline="  %t%= %A '.$RIGHTS.'%15E %20d  "'
 <
+
+input({prompt} [, {initial} [, {completion}]]) *vifm-input()*
+
+Creates a command-line prompt to obtain user's input.  Initial value can
+be supplied as an optional second parameter, otherwise empty string is used.
+
+Optional third parameter specifies kind of completion, which can be one of:
+    dir   paths to directories
+    file  paths to files and directories
+    ""    (empty string, default) no completion
+
+Note that behaviour differs from Vim where executing a mapping like >
+  nnoremap j :echo input('text: ')<cr>input
+leaves you in a prompt mode with "input" typed in.  Vifm will wait for leaving
+the prompt and then continue executing the mapping.
+
+Usage example: >
+  nnoremap ,m : let $DIR_NAME = input('mkdir: ', '', 'dir')
+             \| if $DIR_NAME != ''
+             \|     execute 'mkdir' fnameescape($DIR_NAME)
+             \| endif<cr>
 
 layoutis({type})                               *vifm-layoutis()*
 
@@ -5427,7 +5554,7 @@ grouping to preserve as all file ids are guaranteed to be distinct.
 
 Creation~
 
-Arguments passed to |vifm-:compare| form four categories each with its own
+Arguments passed to |vifm-:compare| form seven categories each with its own
 prefix and is responsible for particular property of operation.
 
 Which files to compare:
@@ -5454,8 +5581,21 @@ How results are grouped (has no effect if "ofone" specified):
 Which files to omit:
  - skipempty - ignore empty files.
 
+Comparison tweaks:
+ - withicase - ignore case when comparing file names/paths;
+ - withrcase - respect case when comparing file names/paths.
+
+Which results to show (has no effect for single pane comparison):
+ - showidentical   - toggle showing of identical files;
+ - showdifferent   - toggle showing of different files;
+ - showuniqueleft  - toggle showing of unique top/left files;
+ - showuniqueright - toggle showing of unique bottom/right files.
+
 Each argument can appear multiple times, the rightmost one of the group is
 considered.  Arguments alter default behaviour instead of substituting it.
+
+When neither `withicase` nor `withrcase` is specified, case depends on the
+running operating system and the file system on which the files are located.
 
 Examples~
 
@@ -5465,6 +5605,7 @@ files in two trees with grouping by paths, so the following are equivalent: >
  :compare
  :compare bycontents grouppaths
  :compare bycontents listall ofboth grouppaths
+ :compare showidentical showdifferent showuniqueleft showuniqueright
 
 Another use case is to find duplicates in the current sub-tree: >
 
@@ -5481,6 +5622,9 @@ data.
 
 Comparison views have second column displaying id of the file, files with same
 id are considered to be equal.  The view columns configuration is predefined.
+
+The status bar displays only the initial result of the comparison and can be
+out of date.
 
 Behaviour~
 
@@ -5889,9 +6033,9 @@ this way:
      StatusLine, JobLine, SuggestBox and WildMenu are always determined by
      the primary color scheme
    - CurrLine, Selected, Directory, Link, BrokenLink, Socket, Device,
-     Executable, Fifo, CmpMismatch, Win, AuxWin and OtherWin are determined
-     by primary color scheme and a set of local color schemes, which can be
-     empty
+     Executable, Fifo, CmpMismatch, CmpUnmatched, CmpBlank, Win, AuxWin and
+     OtherWin are determined by primary color scheme and a set of local color
+     schemes, which can be empty
 
 There might be a set of local color schemes because they are structured
 hierarchically according to file system structure. For example, having the
@@ -6018,6 +6162,66 @@ vertical split.
 
 You can cancel renaming by removing all non-comments from the buffer.  This
 also erases information about previous edits.
+
+--------------------------------------------------------------------------------
+*vifm-mouse-using*
+
+Note: <ScrollWheelDown> is not available on 32-bit *nix systems, because
+ncurses doesn't support it there (limitation of implementation).
+
+Note: these are not available in mappings at the momemnt.
+
+                                               *vifm-mouse-overview*
+Normal Mode:
+event             position  change  action        ~
+                   cursor   window                ~
+<LeftMouse>         yes      yes    <cr> if cursor wasn't moved
+<LeftRelease>        no      yes
+<MiddleMouse>        no      yes    <c-e>
+<MiddleRelease>      no      yes
+<RightMouse>        yes      yes    |vifm-:file|
+<RightRelease>       no      yes
+<ScrollWheelUp>      no      yes    <c-y> or |vifm-:tabprevious|
+<ScrollWheelDown>    no      yes    <c-e> or |vifm-:tabnext|
+
+Clicking on or scrolling over an inactive pane (including its title), makes it
+active and does nothing else.  Tabs are scrolled when mouse hovers over them.
+
+Visual Mode:
+event             position  selection  action     ~
+                   cursor                         ~
+<LeftMouse>         yes      update    <cr> if cursor wasn't moved
+<LeftRelease>        no
+<MiddleMouse>        no      update    <c-e>
+<MiddleRelease>      no
+<RightMouse>         no
+<RightRelease>       no
+<ScrollWheelUp>      no      update    <c-y>
+<ScrollWheelDown>    no      update    <c-e>
+
+Command-line Mode:
+event             position  action                ~
+                   cursor                         ~
+<LeftMouse>         yes
+<LeftRelease>        no
+<MiddleMouse>        no     <c-n>
+<MiddleRelease>      no
+<RightMouse>         no
+<RightRelease>       no
+<ScrollWheelUp>      no     <c-p>
+<ScrollWheelDown>    no     <c-n>
+
+Menu Mode:
+event             position  action                ~
+                   cursor                         ~
+<LeftMouse>         yes     <cr> if cursor wasn't moved
+<LeftRelease>        no
+<MiddleMouse>        no     <c-e>
+<MiddleRelease>      no
+<RightMouse>         no
+<RightRelease>       no
+<ScrollWheelUp>      no     <c-y>
+<ScrollWheelDown>    no     <c-e>
 
 --------------------------------------------------------------------------------
 *vifm-plugin*
