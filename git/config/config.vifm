@@ -7,7 +7,7 @@
 	url = https://github.com/vifm/vifm.git
 	fetch = +refs/heads/*:refs/remotes/origin/*
 	pushurl = git@github.com:phantasea/vifm.git
-    #pushurl = git@gitlab.com:phantasea/vifm.git
+	pushurl = git@gitlab.com:phantasea/vifm.git
 [branch "master"]
 	remote = origin
 	merge = refs/heads/master

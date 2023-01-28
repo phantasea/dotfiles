@@ -4,8 +4,10 @@
 	bare = false
 	logallrefupdates = true
 [remote "origin"]
-	url = https://github.com/vifm/vifm.vim
-	fetch = +refs/heads/master:refs/remotes/origin/master
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	url = https://github.com/phantasea/vifm.vim.git
+	pushurl = git@github.com:phantasea/vifm.vim.git
+	pushurl = git@gitlab.com:phantasea/vifm.vim.git
 [branch "master"]
 	remote = origin
 	merge = refs/heads/master
