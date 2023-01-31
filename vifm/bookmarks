@@ -28,6 +28,7 @@ mark  S  /media/simone/sandisk_s
 mark  U  /media/simone/sandisk_u
 mark  V  /media/simone/sandisk_v
 mark  W  /media/simone/sandisk_w
+mark  Z  /media/simone/sandisk_z
 
 bmark!  /opt/conf/vifm/vifmrc        vifmrc
 bmark!  /opt/conf/ranger/rc.conf     rc.conf
