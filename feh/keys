@@ -46,10 +46,11 @@ zoom_in  i
 zoom_out o
 zoom_fit equal
 
-size_to_image w
+toggle_auto_zoom w
+size_to_image    W
 
 # I only hit these accidentaly
-save_image s
+save_image    s
 save_filelist S
 
 reload_image  r

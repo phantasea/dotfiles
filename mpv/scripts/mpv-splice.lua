@@ -217,7 +217,7 @@ function delete_slice()
 
 		-- Add shortcut keys to the interval {0..9}.
 		for i=0,9,1 do
-			mp.add_key_binding("Alt+" .. i, "num_key_" .. i,
+			mp.add_key_binding("Ctrl+" .. i, "num_key_" .. i,
 				function()
 					remove_val = remove_val .. i
 					notify(1000, "Slice to remove: "
