@@ -197,20 +197,6 @@ class fzf_locate(Command):
                 self.fm.select_file(fzf_file)
 
 
-class fzf_goto(Command):
-    def execute(self):
-        import subprocess
-        command="fd -L -a -t=f -t=l . | fzf --height=0"
-        fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
-        stdout, stderr = fzf.communicate()
-        if fzf.returncode == 0:
-            fzf_file = os.path.abspath(stdout.decode('utf-8').rstrip('\n'))
-            if os.path.isdir(fzf_file):
-                self.fm.cd(fzf_file)
-            else:
-                self.fm.select_file(fzf_file)
-
-
 class fzf_edit(Command):
     def execute(self):
         import subprocess
@@ -241,52 +227,14 @@ class fzf_fave(Command):
                 self.fm.select_file(fzf_file)
 
 
-class fzf_vids(Command):
+class fzf_exec(Command):
     def execute(self):
         import subprocess
-        command="fd -H -L -d=3 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | fzf --height=0"
-        fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
-        stdout, stderr = fzf.communicate()
-        if fzf.returncode == 0:
-            fzf_file = os.path.abspath(stdout.decode('utf-8').rstrip('\n'))
-            if os.path.isdir(fzf_file):
-                self.fm.cd(fzf_file)
-            else:
-                self.fm.select_file(fzf_file)
+        if not self.arg(1):
+            self.fm.notify("fzf_exec <fd cmd>", bad=True)
+            return
 
-
-class fzf_auds(Command):
-    def execute(self):
-        import subprocess
-        command="fd -L -d=2 -t=f -e=mp3 -e=m4a . ~/auds /opt/.porn/asmr | fzf --height=0"
-        fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
-        stdout, stderr = fzf.communicate()
-        if fzf.returncode == 0:
-            fzf_file = os.path.abspath(stdout.decode('utf-8').rstrip('\n'))
-            if os.path.isdir(fzf_file):
-                self.fm.cd(fzf_file)
-            else:
-                self.fm.select_file(fzf_file)
-
-
-class fzf_webs(Command):
-    def execute(self):
-        import subprocess
-        command="fd -d=1 -t=f . ~/docs/webs | fzf --height=0"
-        fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
-        stdout, stderr = fzf.communicate()
-        if fzf.returncode == 0:
-            fzf_file = os.path.abspath(stdout.decode('utf-8').rstrip('\n'))
-            if os.path.isdir(fzf_file):
-                self.fm.cd(fzf_file)
-            else:
-                self.fm.select_file(fzf_file)
-
-
-class fzf_porn(Command):
-    def execute(self):
-        import subprocess
-        command="fd -d=2 -t=f . /opt/.porn/text | fzf --height=0"
+        command = self.rest(1).strip('"') + ' | fzf --height=0'
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
