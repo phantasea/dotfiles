@@ -569,6 +569,10 @@ command! ffauds   fd -L -d=2 -t=f -e=mp3 -e=m4a . ~/auds /opt/.porn/asmr | fzf -
 command! ffvids   fd -H -L -d=3 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r vidplay
 command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
 command! ffporn   fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
+command! ffauds   fd -L -d=2 -t=f -e=mp3 -e=m4a . ~/auds /opt/.porn/asmr | fzf --height=0 | xargs -r vifmgoto
+command! ffvids   fd -H -L -d=3 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | fzf --height=0 | xargs -r vifmgoto
+command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 | xargs -r vifmgoto
+command! ffporn   fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 | xargs -r vifmgoto
 command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-tmux --height 10 2> /dev/tty")
                   \| if $FZF_RES != ''
                   \|   exec 'cd' fnameescape($FZF_RES)
