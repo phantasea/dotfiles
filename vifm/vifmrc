@@ -84,6 +84,7 @@ nnoremap  <c-w>  :ffwebs<cr>
 nnoremap  <c-x>  :ffporn<cr>
 
 nnoremap  <c-b>  :tree!<cr>
+nnoremap  <c-c>  <nop>
 mnoremap  <c-j>  <c-f>
 nnoremap  <c-j>  <c-f>
 qnoremap  <c-j>  <c-f>
