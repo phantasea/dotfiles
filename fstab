@@ -24,3 +24,16 @@ UUID=2AE83D51E83D1C8F /media/app  ntfs  defaults  0  2
 UUID=E014D88814D86358 /media/rec  ntfs  defaults  0  2
 UUID=38c13fcd-c76a-4928-96c5-43a201db1b7a  /media/sandisk_u  ext4  defaults  0  2
 UUID=3E29-A0FA                             /media/sandisk_v  vfat  rw,uid=1000,gid=1003  0  2
+
+# / was on /dev/nvme0n1p9 during installation
+UUID=6627d3f3-fc5b-471f-87a4-7cefea2ff2b2 /               ext4    errors=remount-ro 0       1
+# /boot/efi was on /dev/nvme0n1p1 during installation
+UUID=606D-43C5  /boot/efi       vfat    umask=0077      0       1
+# /home was on /dev/nvme0n1p12 during installation
+UUID=c855c670-2b7c-4a60-9fca-662fee7b827c /home           ext4    defaults        0       2
+# /opt was on /dev/nvme0n1p11 during installation
+UUID=f027affb-17bc-467c-8e0b-61073f937c08 /opt            ext4    defaults        0       2
+# /usr/local was on /dev/nvme0n1p10 during installation
+UUID=c0a001c2-6699-4cbb-bc4c-531cb3b52e41 /usr/local      ext4    defaults        0       2
+# swap was on /dev/nvme0n1p13 during installation
+UUID=92dca092-66dd-4945-a42a-b8dbf030f9ec none            swap    sw              0       0

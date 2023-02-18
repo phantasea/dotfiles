@@ -26,8 +26,8 @@ nnoremap c<tab>    <nop>
 nnoremap f<tab>    <nop>
 nnoremap g<tab>    <nop>
 nnoremap m<tab>    <nop>
-nnoremap o<tab>    <nop>
-nnoremap s<tab>    :!tmux split "watch tsp"<cr>
+nnoremap o<tab>    :!tmux split "watch tsp"<cr>
+nnoremap s<tab>    <nop>
 nnoremap x<tab>    <nop>
 nnoremap z<tab>    <nop>
 
@@ -48,7 +48,7 @@ nnoremap  <bs>     <c-h>
 mnoremap  <bs>     <c-b>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
-nnoremap  <space>  :switch<cr>
+nnoremap  <space>  :keepsel switch<cr>
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
 nnoremap c<space>  :if &laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
 nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | exec 'normal gg' | else | set sort='+iname' | endif<cr>
@@ -309,8 +309,8 @@ nnoremap cy  :yankbasename<cr>
 nnoremap cY  :yankpathname<cr>
 nnoremap gy  :yankbasename<cr>
 nnoremap gY  :yankpathname<cr>
-nnoremap xy  :xyankbasename<cr>:echo expand('%"f') "is yanked to clipboard"<cr>
-nnoremap xY  :xyankpathname<cr>:echo expand('%"d') "is yanked to clipboard"<cr>
+nnoremap xy  :xyankbasename<cr>
+nnoremap xY  :xyankpathname<cr>:echo expand('%"d') "is yanked"<cr>
 " }}}
 
 " abbrevs {{{
@@ -467,17 +467,18 @@ command! sucopyfromother sudo cp -R %F %d %i
 command! copyrsync       tsp rsync -a %f %D
 command! moversync       tsp rsync -a --remove-source-files %f %D &&
                         \tsp find %f -type d -empty -exec rmdir {} \; && tsp rmdir %f
-command! yankbasename    tmux setb %c %i &
+command! yankbasename    tmux setb "%f" %i &
 command! yankpathname    tmux setb %d %i &
 command! yankfullname    tmux setb %d/%c %i &
 if executable('xclip')
-command! xyankbasename   echo -n %f   | xclip -sel p -f | xclip -sel c  %i &
-command! xyankpathname   echo -n %d   | xclip -sel p -f | xclip -sel c  %i &
-command! xyankfullname   echo -n %c:p | xclip -sel p -f | xclip -sel c  %i &
+command! xyankbasename   echo -n %f   | xclip -sel p -f | xclip -sel c %i &
+command! xyankbasename   printf '%%s' %c | sed "s/\.[^.]*$//" | xclip -sel c %i &
+command! xyankpathname   echo -n %d   | xclip -sel p -f | xclip -sel c %i &
+command! xyankfullname   echo -n %c:p | xclip -sel p -f | xclip -sel c %i &
 elseif executable('xsel')
-command! xyankbasename   echo -n %f   | tee >(xsel -i -p) >(xsel -i -b)  %i &
-command! xyankpathname   echo -n %d   | tee >(xsel -i -p) >(xsel -i -b)  %i &
-command! xyankfullname   echo -n %c:p | tee >(xsel -i -p) >(xsel -i -b)  %i &
+command! xyankbasename   echo -n %f   | tee >(xsel -i -p) >(xsel -i -b) %i &
+command! xyankpathname   echo -n %d   | tee >(xsel -i -p) >(xsel -i -b) %i &
+command! xyankfullname   echo -n %c:p | tee >(xsel -i -p) >(xsel -i -b) %i &
 endif
 
 command! togglelinenumber
