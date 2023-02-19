@@ -155,7 +155,8 @@ inoremap   <C-Y>    <C-R><C-R>=VCopy('up')<CR>
 inoremap   <C-E>    <C-R><C-R>=VCopy('down')<CR>
 inoremap   <C-S>    <C-O>:update<cr>
 
-nnoremap   <C-C>    y:call SmartVisualYank()<CR>
+nnoremap   <C-C>    <nop>
+vnoremap   <C-C>    y:call SmartVisualYank()<CR>
 nnoremap   <C-E>    :FFEdit<cr>
 nnoremap   <C-F>    :FFFave<cr>
 nnoremap   <C-G>    :FFGrep<space>
