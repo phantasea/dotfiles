@@ -12,8 +12,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-alias l='ls -l --group-directories-first'
-alias ll='ls -Al --group-directories-first'
+alias l='ls -hl --group-directories-first'
+alias ll='ls -Ahl --group-directories-first'
 alias la='ls -A --group-directories-first'
 alias ld='ls -d */'
 alias ld2='ls -aF | grep /'
