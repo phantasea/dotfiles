@@ -77,6 +77,7 @@ else
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
 
+#export DISPLAY=':0'
 export PAGER="/bin/sh -c \"col -b | view -c 'set ts=8 nomod nolist nonu noma' -\""
 export EDITOR=vim
 export VISUAL=vim
@@ -162,9 +163,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-[[ -s /usr/share/doc/tmux/examples/bash_completion_tmux.sh ]] &&
-    source /usr/share/doc/tmux/examples/bash_completion_tmux.sh
-
+[ -f /opt/conf/tmux-completion.bash ]         && source /opt/conf/tmux-completion.bash
 [ -f /opt/conf/misc/buku-completion.bash ]    && source /opt/conf/misc/buku-completion.bash
 [ -f /opt/conf/misc/ddgr-completion.bash ]    && source /opt/conf/misc/ddgr-completion.bash
 [ -f /opt/conf/misc/googler-completion.bash ] && source /opt/conf/misc/googler-completion.bash
