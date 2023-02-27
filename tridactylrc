@@ -10,7 +10,7 @@ guiset_quiet tabs always nocount
 set allowautofocus false
 set editorcmd st -e vim
 set findcase smart
-set newtab about:blank
+set newtab https://www.baidu.com
 set yankto both
 
 set hintnames short
@@ -47,13 +47,15 @@ bind  gp  followpage prev
 bind  gn  followpage next
 bind  gd  tabdetach
 
-bind  <C-o>  back
-bind  <C-i>  forward
-bind  <C-s>  saveas
-bind  <C-a>  urlincrement 1
-bind  <C-x>  urlincrement -1
-bind  <C-n>  tabnext
-bind  <C-p>  tabprev
+bind  --mode=normal <C-o>  back
+bind  --mode=normal <C-i>  forward
+bind  --mode=normal <C-s>  saveas
+bind  --mode=normal <C-a>  urlincrement 1
+bind  --mode=normal <C-x>  urlincrement -1
+bind  --mode=normal <C-n>  tabnext
+bind  --mode=normal <C-p>  tabprev
+bind  --mode=ex     <C-n>  ex.next_history
+bind  --mode=ex     <C-p>  ex.prev_history
 
 bind  <  tabnext
 bind  >  tabprev
