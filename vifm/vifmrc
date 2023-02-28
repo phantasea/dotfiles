@@ -430,7 +430,7 @@ set nocdaftermkdir
 endif
 "add by sim1---------------
 
-if $TERM == 'screen-256color' || $TERM == 'st-256color'
+if $TERM == 'screen-256color' || $TERM == 'st-256color' || $TERM == 'xterm-256color'
 colorscheme alice
 else
 colorscheme chris
