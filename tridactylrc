@@ -10,7 +10,8 @@ guiset_quiet tabs always nocount
 set allowautofocus false
 set editorcmd st -e vim
 set findcase smart
-set newtab https://www.baidu.com
+set homepages ["www.baidu.com", "www.google.com"]
+set newtab about:blank
 set yankto both
 
 set hintnames short
@@ -49,7 +50,7 @@ bind  gd  tabdetach
 
 bind  --mode=normal <C-o>  back
 bind  --mode=normal <C-i>  forward
-bind  --mode=normal <C-s>  saveas
+"bind  --mode=normal <C-s>  saveas
 bind  --mode=normal <C-a>  urlincrement 1
 bind  --mode=normal <C-x>  urlincrement -1
 bind  --mode=normal <C-n>  tabnext

@@ -185,7 +185,8 @@ nnoremap  bo :copen<cr>
 nnoremap  c. cw<c-a><c-d><cr>
 nnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
-nnoremap  cs :cds/
+nnoremap  cs :colorscheme<space><tab>
+nnoremap  cS :cds/
 nnoremap  cg :goto<space>
 nnoremap  cm :chmod<space>
 vnoremap  cm :chmod<space>
