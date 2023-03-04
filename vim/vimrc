@@ -309,6 +309,7 @@ endfunc
 
 func! MyDiffSetting()
     syntax     off
+    vnoremap   dd   d
     nnoremap   dj   ]c
     nnoremap   dk   [c
     nnoremap   dn   ]c
