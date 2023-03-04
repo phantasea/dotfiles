@@ -18,7 +18,7 @@ fi
 
 #dunno why this is not working
 if [[ "$TERM" =~ "256color" ]]; then
-    eval "$(dircolors /opt/conf/dircolors.xterm)"
+    eval "$(dircolors /opt/conf/dircolors.256dark)"
 else
     eval "$(dircolors /opt/conf/dircolors)"
 fi
