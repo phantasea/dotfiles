@@ -70,7 +70,7 @@ class Chris(ColorScheme):
                 if context.good:
                     fg = 207
                 else:
-                    fg = black
+                    fg = 241
             if context.tag_marker and not context.selected:
                 attr |= bold
                 if fg in (198, 207):
@@ -99,7 +99,7 @@ class Chris(ColorScheme):
                     fg = 207
             #if not context.selected and (context.cut or context.copied):
             if context.cut or context.copied:
-                fg = black
+                fg = 240
                 attr |= bold
 
         elif context.in_titlebar:
@@ -164,7 +164,7 @@ class Chris(ColorScheme):
                 bg = 207
                 fg = black
             elif context.ruler or context.percentage or context.top or context.bot or context.all:
-                bg = 185
+                bg = 212
                 fg = black
             elif context.marked:
                 bg = 198
