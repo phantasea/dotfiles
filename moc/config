@@ -386,7 +386,7 @@ SilentSeekTime = 10
 # The number of audio files for which MOC will cache tags.  When this limit
 # is reached, file tags are discarded on a least recently used basis.
 #TagsCacheSize		= 256
-TagsCacheSize		= 512
+TagsCacheSize		= 0
 
 # Number items in the playlist.
 PlaylistNumbering	= yes
