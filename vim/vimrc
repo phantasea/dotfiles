@@ -392,7 +392,7 @@ func! SmartQuit()
     bdelete
 endfunc
 
-let s:file_picker = "ranger"
+let s:file_picker = "fffm"
 func! DirFilePicker(mode)
     if s:file_picker == "default"
         if a:mode == "Normal"
@@ -423,6 +423,11 @@ func! DirFilePicker(mode)
 
     if s:file_picker == "ranger"
         let dircmd = "Ranger"
+        let filecmd = "gf"
+    endif
+
+    if s:file_picker == "fffm"
+        let dircmd = "Fffm"
         let filecmd = "gf"
     endif
 
