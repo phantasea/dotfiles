@@ -151,6 +151,7 @@ nnoremap  @  <nop>
 nnoremap  &  :!./%c:. &<cr>
 nnoremap  ~  :cd ~<cr>
 nnoremap  -  :cd -<cr>
+nnoremap g.  hgfl:set nodotfiles<cr>
 nnoremap  +  <nop>
 nnoremap  ?  :file<space><tab>
 nnoremap g#  :windo set relativenumber!<cr>
