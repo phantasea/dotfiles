@@ -307,11 +307,11 @@ vnoremap  xI :sumovefromother<cr>
 nnoremap  xO :sumovetoother<cr>
 vnoremap  xO :sumovetoother<cr>
 nnoremap  y  yy
-nnoremap  Y  :yankbasename<cr>:if $DISPLAY != "" | xyankbasename | endif<cr>
-nnoremap cy  :yankbasename<cr>
-nnoremap cY  :yankpathname<cr>
-nnoremap gy  :yankbasename<cr>
+nnoremap  Y  :yankbasename<cr>
+nnoremap gy  :yankrootname<cr>
 nnoremap gY  :yankpathname<cr>
+nnoremap cy  :cyankbasename<cr>
+nnoremap cY  :cyankpathname<cr>
 nnoremap xy  :xyankbasename<cr>
 nnoremap xY  :xyankpathname<cr>:echo expand('%"d') "is yanked"<cr>
 " }}}
@@ -470,18 +470,31 @@ command! sucopyfromother sudo cp -R %F %d %i
 command! copyrsync       tsp rsync -a %f %D
 command! moversync       tsp rsync -a --remove-source-files %f %D &&
                         \tsp find %f -type d -empty -exec rmdir {} \; && tsp rmdir %f
-command! yankbasename    tmux setb "%f" %i &
-command! yankpathname    tmux setb %d %i &
-command! yankfullname    tmux setb %d/%c %i &
+command! cyankbasename   tmux setb "%f" %i &
+command! cyankpathname   tmux setb %d %i &
+command! cyankfullname   tmux setb %d/%c %i &
+command! cyankrootname   echo -n %c | rev | cut -d\. -f2- | rev | tr -d '\n' | xargs -0 tmux setb %i &
 if executable('xclip')
-command! xyankbasename   echo -n %f   | xclip -sel p -f | xclip -sel c %i &
-command! xyankbasename   printf '%%s' %c | sed "s/\.[^.]*$//" | xclip -sel c %i &
-command! xyankpathname   echo -n %d   | xclip -sel p -f | xclip -sel c %i &
-command! xyankfullname   echo -n %c:p | xclip -sel p -f | xclip -sel c %i &
+command! xyankbasename   echo -n %f   | xclip -i -sel p -f | xclip -i -sel c %i &
+command! xyankrootname   printf '%%s' %c | sed "s/\.[^.]*$//" | xclip -sel c %i &
+command! xyankpathname   echo -n %d   | xclip -i -sel p -f | xclip -i -sel c %i &
+command! xyankfullname   echo -n %c:p | xclip -i -sel p -f | xclip -i -sel c %i &
 elseif executable('xsel')
 command! xyankbasename   echo -n %f   | tee >(xsel -i -p) >(xsel -i -b) %i &
+command! xyankrootname   printf '%%s' %c | sed "s/\.[^.]*$//" | xsel -i -p %i &
 command! xyankpathname   echo -n %d   | tee >(xsel -i -p) >(xsel -i -b) %i &
 command! xyankfullname   echo -n %c:p | tee >(xsel -i -p) >(xsel -i -b) %i &
+endif
+if $DISPLAY == ""
+command!  yankbasename   tmux setb "%f" %i &
+command!  yankrootname   echo -n %c | rev | cut -d\. -f2- | rev | tr -d '\n' | xargs -0 tmux setb %i &
+command!  yankpathname   echo -n %d   | xargs -0 tmux setb %i &
+command!  yankfullname   tmux setb %d/%c %i &
+else
+command!  yankbasename   echo -n %f   | xclip -i -sel p -f | xclip -i -sel c %i &
+command!  yankrootname   echo -n %c | rev | cut -d\. -f2- | rev | tr -d '\n' | xsel -i; xsel -o | xsel -b %i &
+command!  yankpathname   echo -n %d   | xclip -i -sel p -f | xclip -i -sel c %i &
+command!  yankfullname   echo -n %c:p | xclip -i -sel p -f | xclip -i -sel c %i &
 endif
 
 command! togglelinenumber
