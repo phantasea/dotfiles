@@ -16,6 +16,7 @@ hi TabLineSel   cterm=bold,reverse            ctermfg=default  ctermbg=default
 hi JobLine      cterm=bold                    ctermfg=white    ctermbg=238
 hi StatusLine   cterm=none                    ctermfg=black    ctermbg=white
 hi Border       cterm=none                    ctermfg=63       ctermbg=236
+hi TopMid       cterm=bold                    ctermfg=white    ctermbg=63
 
 hi CurrLine     cterm=bold,reverse            ctermfg=default  ctermbg=default
 hi AuxCurrLine  cterm=reverse                 ctermfg=default  ctermbg=default
@@ -30,6 +31,8 @@ hi CmpBlank                                   ctermfg=default  ctermbg=default
 
 hi SuggestBox   cterm=bold,reverse            ctermfg=235      ctermbg=146
 hi WildMenu     cterm=underline,bold,reverse  ctermfg=64       ctermbg=252
+hi Menu         cterm=none                    ctermfg=white    ctermbg=none
+hi Dialog       cterm=bold                    ctermfg=white    ctermbg=none
 
 hi CmdLine      cterm=bold                    ctermfg=215      ctermbg=236
 hi ErrorMsg     cterm=bold                    ctermfg=white    ctermbg=164
