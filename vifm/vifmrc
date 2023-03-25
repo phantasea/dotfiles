@@ -159,8 +159,8 @@ nnoremap  #  :togglelinenumber<cr>
 nnoremap g*  #
 nnoremap  \  :invert s<cr>
 vnoremap  \  :invert s<cr>
-nnoremap  <  <c-w><
-nnoremap  >  <c-w>>
+nnoremap  <  <c-w>h<c-w><
+nnoremap  >  <c-w>h<c-w>>
 nnoremap  |  <c-w>=
 nnoremap  a  GVgg
 nnoremap  a  :%select<cr>
@@ -726,7 +726,7 @@ fileview  <image/*>
 endif
 
 " PDF
-filetype  *.pdf  pdfview %c %i, pdfview -b %c, pdfview -B %c
+filetype  *.pdf  pdfview %c %i, pdfview -b %c %i, pdfview -B %c %i
 fileview  *.pdf
           \ pdftotext -l 3 -nopgbrk -q -- %c -,
           \ thumbnail %px %py %pw %ph %c,

@@ -7,7 +7,7 @@ hi OtherWin     cterm=none                    ctermfg=185      ctermbg=default
 hi AuxWin       cterm=none                    ctermfg=185      ctermbg=default
 hi OddLine                                    ctermfg=185      ctermbg=default
 
-hi TopLine      cterm=none,reverse            ctermfg=black    ctermbg=250
+hi TopLine      cterm=none                    ctermfg=white    ctermbg=234
 hi TopLineSel   cterm=bold                    ctermfg=white    ctermbg=198
 
 hi TabLine      cterm=none                    ctermfg=white    ctermbg=black
@@ -20,7 +20,7 @@ hi TopMid       cterm=bold                    ctermfg=white    ctermbg=63
 
 hi CurrLine     cterm=bold,reverse            ctermfg=default  ctermbg=default
 hi AuxCurrLine  cterm=reverse                 ctermfg=default  ctermbg=default
-hi OtherLine    cterm=reverse                 ctermfg=234      ctermbg=white
+hi OtherLine    cterm=bold,reverse            ctermfg=234      ctermbg=white
 hi LineNr       cterm=none                    ctermfg=white    ctermbg=default
 hi LineNrSep    cterm=none                    ctermfg=default  ctermbg=default
 

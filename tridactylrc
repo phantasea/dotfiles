@@ -6,6 +6,7 @@ sanitise commandline tridactyllocal tridactylsync
 
 guiset_quiet navbar always
 guiset_quiet tabs always nocount
+guiset_quiet hoverlink left
 
 set allowautofocus false
 set editorcmd st -e vim
