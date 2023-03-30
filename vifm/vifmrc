@@ -691,7 +691,7 @@ fileview  {*.mp3,*.wav,*.ogg,*.m4a,*wma},<audio/*>
 
 " Video
 filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
-          \ vidplay %c &, totem 2>/dev/null %c &, ffplay -v quiet %c &,
+          \ vidplay %c, totem 2>/dev/null %c, ffplay -v quiet %c,
           \ mediainfo %f %m 2>&1, exiftool %c %m 2>&1,
 fileview  <video/*>
           \ exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1,
