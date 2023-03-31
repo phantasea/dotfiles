@@ -37,14 +37,14 @@ hi Dialog       cterm=bold                    ctermfg=white    ctermbg=none
 hi CmdLine      cterm=bold                    ctermfg=215      ctermbg=236
 hi ErrorMsg     cterm=bold                    ctermfg=white    ctermbg=164
 
-hi Directory    cterm=bold                    ctermfg=123      ctermbg=default
-hi Executable   cterm=bold                    ctermfg=119      ctermbg=default
-hi Socket       cterm=bold,reverse            ctermfg=182      ctermbg=default
-hi Device       cterm=bold,reverse            ctermfg=204      ctermbg=default
-hi Fifo         cterm=bold,reverse            ctermfg=50       ctermbg=default
-hi Link         cterm=bold                    ctermfg=207      ctermbg=default
-hi BrokenLink   cterm=bold                    ctermfg=242      ctermbg=default
-hi HardLink     cterm=bold                    ctermfg=199      ctermbg=default
+hi Directory    cterm=none                    ctermfg=123      ctermbg=default
+hi Executable   cterm=none                    ctermfg=119      ctermbg=default
+hi Socket       cterm=none,reverse            ctermfg=182      ctermbg=default
+hi Device       cterm=none,reverse            ctermfg=204      ctermbg=default
+hi Fifo         cterm=none,reverse            ctermfg=50       ctermbg=default
+hi Link         cterm=none                    ctermfg=207      ctermbg=default
+hi BrokenLink   cterm=none                    ctermfg=242      ctermbg=default
+hi HardLink     cterm=none                    ctermfg=199      ctermbg=default
 
 " for powerline-like look of statusline
 highlight  User1        ctermfg=32        ctermbg=black     cterm=bold,reverse
