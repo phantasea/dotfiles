@@ -220,12 +220,14 @@ nnoremap zi  :!fzfimg<cr>
 nnoremap  I  :mkdir! ""<left><c-x>c
 nnoremap gI  :imgrall<cr>
 nnoremap gj  ]R
+nnoremap sj  <space>j<space>
 nnoremap zj  }
 nnoremap  J  <c-e>
 mnoremap  J  <c-e>
 qnoremap  J  qje:if &preview | switch | endif<cr>
 nnoremap gk  [R
 nnoremap zk  {
+nnoremap sk  <space>k<space>
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
@@ -265,8 +267,6 @@ vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 nnoremap  sD :compare bycontents listall ofboth<cr>
 nnoremap  se :sued<cr>
 nnoremap  sf :find . -iname '**'<left><left>
-nnoremap  sj <space>j<space>
-nnoremap  sk <space>k<space>
 nnoremap  sl :alink!<cr>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
 nnoremap  so :sync<cr>
@@ -314,6 +314,7 @@ nnoremap cy  :cyankbasename<cr>
 nnoremap cY  :cyankpathname<cr>
 nnoremap xy  :xyankbasename<cr>
 nnoremap xY  :xyankpathname<cr>:echo expand('%"d') "is yanked"<cr>
+nnoremap  ze :if filetype('.') == 'dir' | exec 'normal }k' | else | exec 'normal {j' | endif<cr>
 " }}}
 
 " abbrevs {{{
