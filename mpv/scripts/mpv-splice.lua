@@ -313,15 +313,15 @@ function process_video()
 	end
 end
 
-mp.set_property("keep-open", "yes") -- Prevent mpv from exiting when the video ends
-mp.set_property("quiet", "yes") -- Silence terminal.
-
-mp.add_key_binding('q', "quit", function()
-	prevent_quit("quit")
-end)
-mp.add_key_binding('Shift+q', "quit-watch-later", function()
-	prevent_quit("quit-watch-later")
-end)
+-- mp.set_property("keep-open", "yes") -- Prevent mpv from exiting when the video ends
+-- mp.set_property("quiet", "yes") -- Silence terminal.
+--
+-- mp.add_key_binding('q', "quit", function()
+-- 	prevent_quit("quit")
+-- end)
+-- mp.add_key_binding('Shift+q', "quit-watch-later", function()
+-- 	prevent_quit("quit-watch-later")
+-- end)
 
 mp.add_key_binding('Ctrl+t', "put_time", put_time)
 mp.add_key_binding('Ctrl+p', "show_times", show_times)
