@@ -146,8 +146,8 @@ nnoremap  <a-k>  <space>k<space>
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
-nnoremap  !  !!
-nnoremap  @  <nop>
+nnoremap  @  :shell<cr>
+nnoremap  !  !!  %c<left><left><left>
 nnoremap  &  :!./%c:. &<cr>
 nnoremap  ~  :cd ~<cr>
 nnoremap  -  :cd -<cr>
