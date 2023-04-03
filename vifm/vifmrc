@@ -460,10 +460,10 @@ windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sog
 "  see `:help vifm-macros` and `:help vifm-filename-modifiers` for more
 command! diff            vimux -d %c %C
 command! diffsamewin     vimux -d %f
-command! movetoother     mv -i %f %D %i &
-command! copytoother     cp -R %f %D %i &
-command! movefromother   mv -i %F %d %i &
-command! copyfromother   cp -R %F %d %i &
+command! movetoother     mv -i %f %D %i
+command! copytoother     cp -R %f %D %i
+command! movefromother   mv -i %F %d %i
+command! copyfromother   cp -R %F %d %i
 command! sumovetoother   sudo mv -i %f %D %i
 command! sucopytoother   sudo cp -R %f %D %i
 command! sumovefromother sudo mv -i %F %d %i
@@ -471,31 +471,31 @@ command! sucopyfromother sudo cp -R %F %d %i
 command! copyrsync       tsp rsync -a %f %D
 command! moversync       tsp rsync -a --remove-source-files %f %D &&
                         \tsp find %f -type d -empty -exec rmdir {} \; && tsp rmdir %f
-command! cyankbasename   tmux setb "%f" %i &
-command! cyankpathname   tmux setb %d %i &
-command! cyankfullname   tmux setb %d/%c %i &
-command! cyankrootname   echo -n %c | rev | cut -d\. -f2- | rev | tr -d '\n' | xargs -0 tmux setb %i &
+command! cyankbasename   tmux setb "%f" %i
+command! cyankpathname   tmux setb %d %i
+command! cyankfullname   tmux setb %d/%c %i
+command! cyankrootname   echo -n %c | rev | cut -d\. -f2- | rev | tr -d '\n' | xargs -0 tmux setb %i
 if executable('xclip')
-command! xyankbasename   echo -n %f   | xclip -i -sel p -f | xclip -i -sel c %i &
-command! xyankrootname   printf '%%s' %c | sed "s/\.[^.]*$//" | xclip -sel c %i &
-command! xyankpathname   echo -n %d   | xclip -i -sel p -f | xclip -i -sel c %i &
-command! xyankfullname   echo -n %c:p | xclip -i -sel p -f | xclip -i -sel c %i &
+command! xyankbasename   echo -n %f   | xclip -i -sel p -f | xclip -i -sel c %i
+command! xyankrootname   printf '%%s' %c | sed "s/\.[^.]*$//" | xclip -sel c %i
+command! xyankpathname   echo -n %d   | xclip -i -sel p -f | xclip -i -sel c %i
+command! xyankfullname   echo -n %c:p | xclip -i -sel p -f | xclip -i -sel c %i
 elseif executable('xsel')
-command! xyankbasename   echo -n %f   | tee >(xsel -i -p) >(xsel -i -b) %i &
-command! xyankrootname   printf '%%s' %c | sed "s/\.[^.]*$//" | xsel -i -p %i &
-command! xyankpathname   echo -n %d   | tee >(xsel -i -p) >(xsel -i -b) %i &
-command! xyankfullname   echo -n %c:p | tee >(xsel -i -p) >(xsel -i -b) %i &
+command! xyankbasename   echo -n %f   | tee >(xsel -i -p) >(xsel -i -b) %i
+command! xyankrootname   printf '%%s' %c | sed "s/\.[^.]*$//" | xsel -i -p %i
+command! xyankpathname   echo -n %d   | tee >(xsel -i -p) >(xsel -i -b) %i
+command! xyankfullname   echo -n %c:p | tee >(xsel -i -p) >(xsel -i -b) %i
 endif
 if $DISPLAY == ""
-command!  yankbasename   tmux setb "%f" %i &
-command!  yankrootname   echo -n %c | rev | cut -d\. -f2- | rev | tr -d '\n' | xargs -0 tmux setb %i &
-command!  yankpathname   echo -n %d   | xargs -0 tmux setb %i &
-command!  yankfullname   tmux setb %d/%c %i &
+command!  yankbasename   tmux setb "%f" %i
+command!  yankrootname   echo -n %c | rev | cut -d\. -f2- | rev | tr -d '\n' | xargs -0 tmux setb %i
+command!  yankpathname   echo -n %d   | xargs -0 tmux setb %i
+command!  yankfullname   tmux setb %d/%c %i
 else
-command!  yankbasename   echo -n %f   | xclip -i -sel p -f | xclip -i -sel c %i &
-command!  yankrootname   echo -n %c | rev | cut -d\. -f2- | rev | tr -d '\n' | xsel -i; xsel -o | xsel -b %i &
-command!  yankpathname   echo -n %d   | xclip -i -sel p -f | xclip -i -sel c %i &
-command!  yankfullname   echo -n %c:p | xclip -i -sel p -f | xclip -i -sel c %i &
+command!  yankbasename   echo -n %f   | xclip -i -sel p -f | xclip -i -sel c %i
+command!  yankrootname   echo -n %c | rev | cut -d\. -f2- | rev | tr -d '\n' | xsel -i; xsel -o | xsel -b %i
+command!  yankpathname   echo -n %d   | xclip -i -sel p -f | xclip -i -sel c %i
+command!  yankfullname   echo -n %c:p | xclip -i -sel p -f | xclip -i -sel c %i
 endif
 
 command! togglelinenumber
@@ -542,8 +542,8 @@ command! df       df -h %m 2>/dev/null
 command! ps       pstree %m
 command! ctags    ctags -R . %i
 command! du       ncdu .
-command! uz       tar -zxf %c %i &
-command! uj       tar -jxf %c %i &
+command! uz       tar -zxf %c %i
+command! uj       tar -jxf %c %i
 command! zip      zip -r %f.zip %f
 command! zx       zx %f
 command! extractA aunpack -e %f &>/dev/null &
@@ -749,7 +749,7 @@ filetype  *.djvu  zathura %c %i, apvlv %c
 endif
 
 " epub
-filetype  *.epub  zathura %c %i &
+filetype  *.epub  zathura %c %i
 fileview  *.epub  pandoc %c -t plain
 
 " Webpage
