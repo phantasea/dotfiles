@@ -59,6 +59,7 @@ nnoremap s<space>  :if &sort == '+iname' | set sort='-size,+iname' | exec 'norma
 nnoremap x<space>  <c-w>x
 nnoremap z<space>  :invert o<cr>
 
+"navigation mode
 anoremap  <c-j>  <pagedown>
 anoremap  <c-k>  <pageup>
 anoremap  <c-h>  <c-o>
@@ -195,6 +196,7 @@ nnoremap  cM cp
 vnoremap  cM cp
 nnoremap  cl cl
 nnoremap  ct :!touch -m -t  %f<left><left><left>
+nnoremap  cv av
 nnoremap  ci :copyfromother<cr>
 vnoremap  ci :copyfromother<cr>
 nnoremap  co :copytoother<cr>
