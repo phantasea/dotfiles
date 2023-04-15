@@ -176,6 +176,7 @@ nnoremap  bC :change<cr>
 nnoremap  bf :file<cr>
 nnoremap  bg :bmgo<space>
 nnoremap  bj :jobs<cr>
+nnoremap  bk :nmap<cr>
 nnoremap  bl :messages<cr>
 nnoremap  bm :marks<cr>
 nnoremap  bM :media<cr>
@@ -425,13 +426,14 @@ set maxundotabs=3
 set previewmaxsize=3000
 set nofilenamedispall
 set topmidfiller="+"
+set nocdaftermkdir
+
 if $DISPLAY == ""
 set filenamedisplen=52
 set clipboardprg="tmux show-buffer"
 else
 set filenamedisplen=47
 set clipboardprg="xsel -ob"
-set nocdaftermkdir
 endif
 "add by sim1---------------
 

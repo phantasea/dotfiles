@@ -271,7 +271,7 @@ Fastdir9 = /home/simone/temp
 Fastdir10= ${MusicDir}
 
 # How fast to seek? Number of seconds per key stroke.
-SeekTime = 5
+SeekTime = 10
 
 # How fast to seek (when using silent seeking)? Number of seconds per key stroke.
 SilentSeekTime = 10
