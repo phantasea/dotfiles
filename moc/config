@@ -428,8 +428,8 @@ PlaylistNumbering	= yes
 #             occupy 10 lines and the directory menu the rest.
 #
 #Layout1	= directory(0,0,39%,FILL):playlist(39%,0,FILL,FILL)
-Layout1	= directory(0,0,50%,100%):playlist(50%,0,FILL,100%)
-Layout2	= directory(0,0,100%,100%):playlist(0,0,100%,100%)
+Layout1	= directory(0,0,100%,100%):playlist(0,0,100%,100%)
+Layout2	= directory(0,0,50%,100%):playlist(50%,0,FILL,100%)
 
 # When the song changes, should the menu be scrolled so that the currently played file is visible?
 FollowPlayedFile = yes

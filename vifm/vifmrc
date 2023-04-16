@@ -340,10 +340,10 @@ source $VIFM/devicons
 set vicmd="vimux"
 set vixcmd="vimux"
 
-if $DISPLAY == ""
-set vimabs="vim"
-else
-set vimabs="nvim"
+if executable('vim')
+set vimabs=vim
+elseif executable('nvim')
+set vimabs=nvim
 endif
 
 set vifminfo=tui,tabs,savedirs,ratings
