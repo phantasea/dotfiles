@@ -842,6 +842,11 @@ filetype  *.ftp
           \ {Mount with curlftpfs}
           \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,
 
+" AppImage
+filetype  *.AppImage
+          \ {Mount with squashfuse}
+          \ FUSE_MOUNT|squashfuse -o offset=$(%SOURCE_FILE --appimage-offset) %SOURCE_FILE %DESTINATION_DIR
+
 " MD5
 filetype  *.md5  md5sum -c %c %S
 

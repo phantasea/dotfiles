@@ -29,7 +29,7 @@ hi CmpMismatch  cterm=bold                    ctermfg=white    ctermbg=88
 hi CmpUnmatched cterm=bold                    ctermfg=white    ctermbg=28
 hi CmpBlank                                   ctermfg=default  ctermbg=default
 
-hi SuggestBox   cterm=bold,reverse            ctermfg=235      ctermbg=146
+hi SuggestBox   cterm=none                    ctermfg=white    ctermbg=default
 hi WildMenu     cterm=underline,bold,reverse  ctermfg=64       ctermbg=252
 hi Menu         cterm=none                    ctermfg=white    ctermbg=none
 hi Dialog       cterm=bold                    ctermfg=white    ctermbg=none

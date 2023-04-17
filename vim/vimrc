@@ -176,7 +176,6 @@ nnoremap  \|\|  \|
 nnoremap   '    `
 nnoremap   ['   [`
 nnoremap   ]'   ]`
-nnoremap   0    ^
 nnoremap   &    :&&<CR>
 nnoremap  g/    :Ag  %<left><left>
 nnoremap   #    #n
@@ -276,7 +275,7 @@ nnoremap   =<space>   :call SmartWinMax()<CR>
 nnoremap   -<space>   :set cursorline!<CR>
 nnoremap  \|<space>   :set cursorcolumn!<CR>
 
-nnoremap   <leader><leader>  <leader>
+nnoremap   <leader><leader>  :NERDTreeToggle<CR>
 nnoremap   <leader><space>   :set wrap!<cr>
 
 nnoremap   <leader>be   :BufExplorer<CR>
@@ -668,6 +667,8 @@ augroup autocmds
 
     "auto load vimrc after writing
     "autocmd BufWritePost $MYVIMRC source $MYVIMRC
+
+    autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 augroup END
 "}}}
 
@@ -729,11 +730,7 @@ let g:ag_prg = "ag --vimgrep --smart-case"
 "fzf {{{
 let g:fzf_layout = { 'down': '~40%' }
 "let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
-
-let g:fzf_action = {
-  \ 'ctrl-t':'tab split',
-  \ 'ctrl-s':'split',
-  \ 'ctrl-v':'vsplit' }
+let g:fzf_action = { 'ctrl-t':'tab split', 'ctrl-s':'split', 'ctrl-v':'vsplit' }
 
 "let $FZF_DEFAULT_COMMAND="rg --files"
 
@@ -807,6 +804,10 @@ let g:zdict_configuration_key = '<leader>zc'
 let g:zdict_default_dict = 'yahoo'
 let g:zdict_max_window_width = 50
 let g:zdict_min_window_width = 30
+"}}}
+
+"nerdtree {{{
+let NERDTreeQuitOnOpen = 1
 "}}}
 "}}}
 
