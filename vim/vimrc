@@ -797,13 +797,15 @@ let delimitMate_expand_space = 1
 let delimitMate_balance_matchpairs = 1
 "}}}
 
-"zdict {{{
+"zdict/sdcv {{{
 let g:zdict_query_key = '<leader>zd'
 let g:zdict_close_window_key = '<leader>zq'
 let g:zdict_configuration_key = '<leader>zc'
 let g:zdict_default_dict = 'yahoo'
 let g:zdict_max_window_width = 50
 let g:zdict_min_window_width = 30
+
+nnoremap <leader>sd :call SearchWord()<CR>
 "}}}
 
 "nerdtree {{{
