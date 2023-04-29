@@ -91,6 +91,7 @@ export FZ_CMD=j
 export FZ_SUBDIR_CMD=jj
 export FZ_CASE_INSENSITIVE=1
 export _Z_DATA="$HOME/.config/z.data"
+export TRASH_DIR="$HOME/.Trash"
 
 export PSTOGGLE=1
 pstoggle() {
