@@ -811,6 +811,12 @@ nnoremap <leader>sd :call SearchWord()<CR>
 "nerdtree {{{
 let NERDTreeQuitOnOpen = 1
 "}}}
+
+"highlightedyank {{{
+let g:highlightedyank_highlight_duration = 2000
+let g:highlightedyank_highlight_in_visual = 0
+highlight HighlightedyankRegion cterm=reverse gui=reverse
+"}}}
 "}}}
 
 " vim: set ft=vim foldmethod=marker:
