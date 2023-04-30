@@ -96,6 +96,7 @@ handle_extension() {
 
         # CSV
         csv)
+            mlr --icsv --opprint cat "${FILE_PATH}" && exit 5
             sed "s/,,,,/,,-,,/g;s/,,/ /g" "${FILE_PATH}" | column -t | sed "s/ - /  /g" | cut -c -1024 && exit 5
             exit 1;;
 

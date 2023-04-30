@@ -664,7 +664,8 @@ filetype  .xls,*.xlsx,*.csv,*.tsv  vd %c, sc-im %c
 fileview  *.doc  antiword %c, catdoc -- %c
 fileview  *.docx docx2txt %c -, catdoc -- %c, pandoc -s -t markdown -- %c
 fileview  *.ppt  catppt %c
-fileview  *.csv  sed "s/,,,,/,,-,,/g;s/,,/ /g" %c | column -t | sed "s/ - /  /g" | cut -c -%pw
+fileview  *.csv  mlr --icsv --opprint cat %c,
+               \ sed "s/,,,,/,,-,,/g;s/,,/ /g" %c | column -t | sed "s/ - /  /g" | cut -c -%pw
 fileview  *.xls  xls2csv -- %c, catdoc -- %c
 fileview  *.xlsx xlsx2csv -- %c, catdoc -- %c
 fileview  *.odt,*.doc,*.docx  unoconv -f text --stdout %c
