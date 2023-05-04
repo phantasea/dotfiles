@@ -80,7 +80,7 @@ go_to_music_directory = ~
 delete_from_playlist  = D
 search_menu           = / f
 save_playlist         = s
-go_to_a_directory     = o
+go_to_a_directory     = o =
 go_up                 = h
 cancel                = ESCAPE
 go_url                = U
