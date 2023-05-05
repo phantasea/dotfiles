@@ -22,7 +22,7 @@
 # Omitting the key for a command will disassociate the key from the command.
 # Default key configuration for MOC (and a list of all available commands):
 
-quit                  = q
+quit                  = M-q
 quit_client           = Q
 stop                  = x
 toggle_menu           = TAB
@@ -73,8 +73,8 @@ seek_p90              = 9
 seek_end              = $
 help                  = ?
 hide_message          = 
-refresh               = ^l
-reload                = ^r
+refresh               = ^r
+reload                = ^l
 go_to_playing_file    = .
 go_to_music_directory = ~
 delete_from_playlist  = D
