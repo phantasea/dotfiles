@@ -174,7 +174,5 @@ crontab /opt/conf/mycrontab
 
 # type fbtmux > /dev/null 2>&1 && fbtmux
 command -v fbtmux   > /dev/null 2>&1 && fbtmux
-[[ -z $DISPLAY && ! -z $TMUX ]] && tmux new-session -d -s 13
-
 command -v neofetch > /dev/null 2>&1 && neofetch || screenfetch
-command -v musmux   > /dev/null 2>&1 && musmux -d
+tmux -L default has-session -t 13 2>/dev/null || tmux new-session -d -s 13
