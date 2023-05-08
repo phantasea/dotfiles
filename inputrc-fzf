@@ -1,0 +1,34 @@
+# ~/.inputrc - user defined inputrc for libreadline
+
+set completion-ignore-case on
+# do completion on one <tab> press, not two
+set show-all-if-ambiguous off
+# colorize common prefix among completion matches
+set colored-completion-prefix off
+# colorize files on completion according to colors of $LS_COLORS
+set colored-stats on
+# do not bell on tab-completion
+set bell-style none
+
+# some defaults / modifications for the emacs mode
+$if mode=emacs
+# press Ctrl-V and press F1~F12 can show the code, ^[ represents ESC
+# map F1/F12 to run cmd "cmatrix"
+# F1
+#"\eOP":"tty-clock -cB -C 6\n"
+# F2
+#"\eOQ":"cmatrix -ab -C cyan\n"
+# F12
+#"\e[23~":"vlock\n"
+
+# Ctrl-G
+"\C-g": forward-word
+# Esc,#: insert # in the beginning and execute the cmd
+"\e#": "\C-a#\C-m"
+
+"\C-a":"ffa --height=0\n"
+"\C-f":"fff --height=0\n"
+"\C-v":"ffv --height=0\n"
+"\C-w":"ffw --height=0\n"
+"\C-x":"ffx --height=0\n"
+$endif
