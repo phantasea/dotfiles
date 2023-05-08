@@ -48,6 +48,12 @@
 #set recolor-darkcolor           "#CDD3DE"
 #set recolor                     "true"
 
+# color settings
+set default-bg "#C7EDCC"
+set recolor true
+set recolor-lightcolor "#C7EDCC"
+set recolor-darkcolor "#000000"
+
 # settings
 set window-height 1024
 set window-width  768

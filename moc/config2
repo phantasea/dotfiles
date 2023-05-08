@@ -67,7 +67,7 @@ ReadTags		= no
 # Directory in which you store music files. If you specify it you will be able
 # to quickly go to this directory with the '-m' parameter or the 'm' command.
 # This can also point to a playlist.
-MusicDir		= "/home/simone/auds"
+MusicDir		= "/home/${USER}/auds"
 
 # How to sort? FileName is the only option for now.
 Sort			= FileName
@@ -267,7 +267,7 @@ Fastdir5 = ${MusicDir}/5.日韓歌曲
 Fastdir6 = ${MusicDir}/6.影視原聲
 Fastdir7 = ${MusicDir}/7.純輕音乐
 Fastdir8 = /opt/.porn/asmr
-Fastdir9 = /home/simone/temp
+Fastdir9 = /home/${USER}/temp
 Fastdir10= ${MusicDir}
 
 # How fast to seek? Number of seconds per key stroke.
