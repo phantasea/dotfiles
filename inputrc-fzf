@@ -28,7 +28,7 @@ $if mode=emacs
 
 "\C-a":"ffa --height=0\n"
 "\C-f":"fff --height=0\n"
-"\C-v":"ffv --height=0\n"
+"\C-v":"ffv --height=0 --bind 'ctrl-x:execute(fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 | sed \"s/ /\\ /g\" | xargs -r fileopen)'\n"
 "\C-w":"ffw --height=0\n"
 "\C-x":"ffx --height=0\n"
 $endif
