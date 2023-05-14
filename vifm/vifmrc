@@ -267,6 +267,8 @@ nnoremap  sa :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sc :selcat<space>
 vnoremap  sc :selcat<space>
+nnoremap  sC :! cat %f > %c.html<cr>
+vnoremap  sC :! cat %f > %c.html<cr>
 nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 nnoremap  sD :compare bycontents listall ofboth<cr>
