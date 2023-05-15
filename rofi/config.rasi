@@ -1,6 +1,6 @@
 configuration {
 	font: "mono 22";
-	theme: "/home/simone/.config/rofi/themes/matrix.rasi";
+//	theme: "/home/simone/.config/rofi/themes/matrix.rasi";
 	color-normal: "argb:00000000, #D8DEE9 , argb:00000000, #FAC863 , #1B2B34";
 	color-urgent: "argb:00000000, #F99157 , argb:00000000, #F99157 , #1B2B34";
 	color-active: "argb:00000000, #6699CC , argb:00000000, #6699CC , #1B2B34";
@@ -93,8 +93,8 @@ configuration {
 /*	kb-mode-previous: "Shift+Left,Control+ISO_Left_Tab";*/
 /*	kb-row-left: "Control+Page_Up";*/
 /*	kb-row-right: "Control+Page_Down";*/
-/*	kb-row-up: "Up,Control+p,ISO_Left_Tab";*/
-/*	kb-row-down: "Down,Control+n";*/
+	kb-row-up: "k,Up,Control+p,ISO_Left_Tab";
+	kb-row-down: "j,Down,Control+n";
 /*	kb-row-tab: "Tab";*/
 /*	kb-page-prev: "Page_Up";*/
 /*	kb-page-next: "Page_Down";*/
@@ -143,3 +143,5 @@ configuration {
 /*	me-accept-entry: "MouseDPrimary";*/
 /*	me-accept-custom: "Control+MouseDPrimary";*/
 }
+
+// vim: filetype=cfg
