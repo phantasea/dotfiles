@@ -261,21 +261,22 @@ nnoremap gr  :grep<space>
 vnoremap  r  cw
 nnoremap  r  cW
 nnoremap  R  cw
+nnoremap ,r  cW<c-u>
 qnoremap  s  <c-w>
 nnoremap  s  <c-w>
 nnoremap  sa :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sb :set scrollbind!<cr>
-nnoremap  sc :selcat<space>
-vnoremap  sc :selcat<space>
-nnoremap  sC :! cat %f > %c.html<cr>
-vnoremap  sC :! cat %f > %c.html<cr>
+nnoremap  sc :! cat %f > %c.html<cr>
+vnoremap  sc :! cat %f > %c.html<cr>
+nnoremap  sC :selcat<space>
+vnoremap  sC :selcat<space>
 nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 nnoremap  sD :compare bycontents listall ofboth<cr>
 nnoremap  se :sued<cr>
-nnoremap  sf :find . -iname '**'<left><left>
-nnoremap  sl :alink!<cr>
+nnoremap  sf :find<space>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
+nnoremap  sl :alink!<cr>
 nnoremap  so :sync<cr>
 nnoremap  sq :hideui<cr>
 nnoremap  sr :source $VIFM/vifmrc<cr>
@@ -285,6 +286,7 @@ nnoremap  st :if getpanetype() == regular | tree | else | exec 'norm gh' | endif
 nnoremap  sv :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' | view! | else | view! | endif<cr>
 nnoremap  sw :!setwallpaper %c %i<cr>
 nnoremap  sx <c-w>x:switch<cr>
+nnoremap  sy al
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
 nnoremap gs  :select //i<left><left>
@@ -362,7 +364,7 @@ set suggestoptions=normal,visual,keys,delay:1000
 
 set aproposprg='apropos %a'
 set deleteprg=""
-set findprg='fd -i -d=3 -t=f %p'
+set findprg='fd -i -d=3 -t=f %p %s'
 set grepprg='rg -S --vimgrep %i %a'
 set locateprg='locate %a'
 set mediaprg='vifmmed'
