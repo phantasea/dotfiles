@@ -22,8 +22,8 @@
 # Omitting the key for a command will disassociate the key from the command.
 # Default key configuration for MOC (and a list of all available commands):
 
-quit                  = M-q
-quit_client           = Q
+quit_client           = q
+quit                  = Q
 stop                  = x
 toggle_menu           = TAB
 toggle_layout         = w

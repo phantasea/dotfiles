@@ -698,8 +698,9 @@ fileview  *.py  highlight -S python -O ansi -s dante %c, bat --color=always %c
 fileview  *.sh  highlight -S sh -O ansi -s dante %c, bat --color=always %c
 
 " Audio
-filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac  audplay %c &, audplay -b %c &, audplay -B %c &
-filetype  *.wma,*.ape,*.rm               audplay -b %c &, audplay -B %c &
+filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac
+          \ medinfo %c %S, audplay %c &, audplay -b %c &, audplay -B %c &
+filetype  *.wma,*.ape,*.rm  medinfo %c %S, audplay -b %c &, audplay -B %c &
 fileview  {*.mp3,*.wav,*.ogg,*.m4a,*wma},<audio/*>
           \ exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1
 
