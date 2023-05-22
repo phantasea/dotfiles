@@ -31,4 +31,4 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-PATH="/opt/util:/opt/util/misc:$PATH"
+PATH="/opt/util:/opt/util/bins:/opt/util/misc:$PATH"

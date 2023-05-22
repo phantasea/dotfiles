@@ -86,7 +86,7 @@ if [ -n "$VIFM" ] || [ -n "$RANGER_LEVEL" ]; then
 fi
 
 # add /opt/util into PATH
-export PATH="/opt/util:/opt/util/misc:/opt/util/bins:$PATH"
+export PATH="/opt/util:/opt/util/bins:/opt/util/misc:$PATH"
 
 # find alternative apps if it is installed on your system
 find_alt() { for i;do which "$i" >/dev/null && { echo "$i"; return 0; };done;return 1; }
