@@ -102,9 +102,10 @@ set viminfo='49,<0,s10,h,/25,f0,n~/.vim/viminfo
 else
 set viminfo='49,<0,s10,h,/25,f0,n~/.config/nvim/viminfo
 endif
-if &term =~ '256color'
+if $DISPLAY == ""
+set t_Co=8
+else
 set t_Co=256
-set t_ut=
 endif
 "}}}
 

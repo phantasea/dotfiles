@@ -206,8 +206,9 @@ fi
 crontab /opt/conf/mycrontab
 
 # type fbtmux > /dev/null 2>&1 && fbtmux
-command -v fbtmux     > /dev/null 2>&1 && fbtmux
-command -v neofetch   > /dev/null 2>&1 && neofetch || screenfetch
-command -v scratchpad > /dev/null 2>&1 && scratchpad
+command -v fbtmux   > /dev/null 2>&1 && fbtmux
+command -v neofetch > /dev/null 2>&1 && neofetch || screenfetch
+
+[[ ! -z $DISPLAY ]] && scratchpad
 
 # vim: foldmethod=marker

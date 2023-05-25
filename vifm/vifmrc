@@ -443,7 +443,8 @@ set clipboardprg="xsel -ob"
 endif
 "add by sim1---------------
 
-if $TERM == 'screen-256color' || $TERM == 'st-256color' || $TERM == 'xterm-256color'
+"if $TERM == 'screen-256color' || $TERM == 'st-256color' || $TERM == 'xterm-256color'
+if $DISPLAY != ""
 colorscheme alice
 else
 colorscheme chris
@@ -756,11 +757,9 @@ filetype  *.ps,*.ps.gz  zathura %c
 endif
 
 " Djvu
-if $DISPLAY == ""
-filetype  *.djvu  fbpdf %c, djvutxt %c, exiftool %c
-else
-filetype  *.djvu  zathura %c %i, apvlv %c
-endif
+fileview  *.djvu  djvutxt %c, exiftool %c
+filextype *.djvu  zathura %c %i, apvlv %c
+filetype  *.djvu  fbpdf %c
 
 " epub
 if $DISPLAY == ""
