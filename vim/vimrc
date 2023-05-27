@@ -729,12 +729,19 @@ let g:ag_prg = "ag --vimgrep --smart-case"
 "}}}
 
 "fzf {{{
-let g:fzf_layout = { 'down': '~40%' }
+"let g:fzf_layout = { 'down': '~40%' }
 "let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
+
+let g:fzf_layout = {
+    \ 'window': {
+        \ 'width': 0.8,
+        \ 'height': 0.8,
+        \ 'border': 'rounded',
+        \ 'highlight': 'Identifier'
+    \ }
+\ }
+
 let g:fzf_action = { 'ctrl-t':'tab split', 'ctrl-s':'split', 'ctrl-v':'vsplit' }
-
-"let $FZF_DEFAULT_COMMAND="rg --files"
-
 let g:fzf_colors = {
   \ 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
@@ -743,7 +750,7 @@ let g:fzf_colors = {
   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
   \ 'hl+':     ['fg', 'Statement'],
   \ 'info':    ['fg', 'Title'],
-  \ 'border':  ['fg', 'Ignore'],
+  \ 'border':  ['fg', 'Question'],
   \ 'prompt':  ['fg', 'Conditional'],
   \ 'pointer': ['fg', 'Exception'],
   \ 'marker':  ['fg', 'Keyword'],
