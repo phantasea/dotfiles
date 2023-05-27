@@ -16,8 +16,7 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-#dunno why this is not working
-if [[ "$TERM" =~ "256color" ]]; then
+if [[ ! -z "$DISPLAY" ]] && [[ "$TERM" =~ "256color" ]]; then
     eval "$(dircolors /opt/conf/dircolors.256dark)"
 else
     eval "$(dircolors /opt/conf/dircolors)"
