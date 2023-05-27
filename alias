@@ -117,6 +117,7 @@ alias scratchlist='i3-msg -t get_tree | jq ".nodes|.[]|.|.nodes|.[]|.nodes|.[]|s
 alias scratchcurr='i3-msg -t get_tree | jq ".nodes|.[]|.|.nodes|.[]|.nodes|.[]|select(.name==\"__i3_scratch\")|.floating_nodes|.[]|.nodes|.[]|select(.focused==true).window_properties.class"'
 alias sd='sdcv'
 alias se='sudoedit'
+alias sg='sgpt'
 alias si='(neofetch 2> /dev/null || screenfetch|lolcat); figlet "Me : $USER"|lolcat; echo ""; cal|lolcat'
 alias sysinfo='(neofetch 2> /dev/null || screenfetch); figlet "$USER@$(uname -n)"|lolcat'
 alias smi="sudo make install"
