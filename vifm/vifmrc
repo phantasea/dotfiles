@@ -4,6 +4,7 @@ map  <right>  <nop>
 map  <up>     <nop>
 map  <down>   <nop>
 
+"[n]ormal, [v]isual, [d]ialogue, [q]uickview, [m]enu, [c]ommand"
 nnoremap  <F1>     :manhelp<cr>
 nnoremap  <F5>     :shell<cr>
 nnoremap  <F10>    :diff<cr>
@@ -107,35 +108,35 @@ nnoremap  <c-u>  U
 nnoremap  <a-j>  <space>j<space>
 nnoremap  <a-k>  <space>k<space>
 
-"nnoremap <silent> <c-h> :if paneisat('left')   | execute '!tmux select-pane -L %i' | else | execute 'wincmd h' | endif<cr>
-"nnoremap <silent> <c-j> :if paneisat('bottom') | execute '!tmux select-pane -D %i' | else | execute 'wincmd j' | endif<cr>
-"nnoremap <silent> <c-k> :if paneisat('top')    | execute '!tmux select-pane -U %i' | else | execute 'wincmd k' | endif<cr>
-"nnoremap <silent> <c-l> :if paneisat('right')  | execute '!tmux select-pane -R %i' | else | execute 'wincmd l' | endif<cr>
+nnoremap  +ar  :chmod a+r<cr>
+nnoremap  +aw  :chmod a+w<cr>
+nnoremap  +ax  :chmod a+x<cr>
+nnoremap  +ur  :chmod u+r<cr>
+nnoremap  +uw  :chmod u+w<cr>
+nnoremap  +ux  :chmod u+x<cr>
+nnoremap  +gr  :chmod g+r<cr>
+nnoremap  +gw  :chmod g+w<cr>
+nnoremap  +gx  :chmod g+x<cr>
+nnoremap  +or  :chmod o+r<cr>
+nnoremap  +ow  :chmod o+w<cr>
+nnoremap  +ox  :chmod o+x<cr>
+nnoremap  -ar  :chmod a-r<cr>
+nnoremap  -aw  :chmod a-w<cr>
+nnoremap  -ax  :chmod a-x<cr>
+nnoremap  -ur  :chmod u-r<cr>
+nnoremap  -uw  :chmod u-w<cr>
+nnoremap  -ux  :chmod u-x<cr>
+nnoremap  -gr  :chmod g-r<cr>
+nnoremap  -gw  :chmod g-w<cr>
+nnoremap  -gx  :chmod g-x<cr>
+nnoremap  -or  :chmod o-r<cr>
+nnoremap  -ow  :chmod o-w<cr>
+nnoremap  -ox  :chmod o-x<cr>
 
-"nnoremap  +ar  :chmod a+r<cr>
-"nnoremap  +aw  :chmod a+w<cr>
-"nnoremap  +ax  :chmod a+x<cr>
-"nnoremap  +ur  :chmod u+r<cr>
-"nnoremap  +uw  :chmod u+w<cr>
-"nnoremap  +ux  :chmod u+x<cr>
-"nnoremap  +gr  :chmod g+r<cr>
-"nnoremap  +gw  :chmod g+w<cr>
-"nnoremap  +gx  :chmod g+x<cr>
-"nnoremap  +or  :chmod o+r<cr>
-"nnoremap  +ow  :chmod o+w<cr>
-"nnoremap  +ox  :chmod o+x<cr>
-"nnoremap  -ar  :chmod a-r<cr>
-"nnoremap  -aw  :chmod a-w<cr>
-"nnoremap  -ax  :chmod a-x<cr>
-"nnoremap  -ur  :chmod u-r<cr>
-"nnoremap  -uw  :chmod u-w<cr>
-"nnoremap  -ux  :chmod u-x<cr>
-"nnoremap  -gr  :chmod g-r<cr>
-"nnoremap  -gw  :chmod g-w<cr>
-"nnoremap  -gx  :chmod g-x<cr>
-"nnoremap  -or  :chmod o-r<cr>
-"nnoremap  -ow  :chmod o-w<cr>
-"nnoremap  -ox  :chmod o-x<cr>
+"nnoremap <c-h> :if paneisat('left')   | execute '!tmux select-pane -L %i' | else | execute 'wincmd h' | endif<cr>
+"nnoremap <c-j> :if paneisat('bottom') | execute '!tmux select-pane -D %i' | else | execute 'wincmd j' | endif<cr>
+"nnoremap <c-k> :if paneisat('top')    | execute '!tmux select-pane -U %i' | else | execute 'wincmd k' | endif<cr>
+"nnoremap <c-l> :if paneisat('right')  | execute '!tmux select-pane -R %i' | else | execute 'wincmd l' | endif<cr>
 
 " mount ISO filesystem images(iso,bin,img): list, mount, unmount
 " nnoremap bl  :!ls -1 /tmp/fuseiso<cr>
