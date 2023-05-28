@@ -196,6 +196,10 @@ vnoremap  g"    <esc>`<i"<esc>`>a"<esc>
 vnoremap  g'    <esc>`<i'<esc>`>a'<esc>
 vnoremap  g<    <esc>`<i<<esc>`>i><esc>
 
+"swap 0 and ^ function
+nnoremap  0     ^
+nnoremap  ^     0
+
 nnoremap  gb    :buffer<space>
 nnoremap  gB    :buffers<CR>
 nnoremap   c.   :cc<CR>
