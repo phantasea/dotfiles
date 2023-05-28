@@ -158,9 +158,9 @@ inoremap   <C-S>    <C-O>:update<cr>
 
 nnoremap   <C-C>    <nop>
 vnoremap   <C-C>    y:call SmartVisualYank()<CR>
-nnoremap   <C-E>    :FFEdit<cr>
-nnoremap   <C-F>    :FFFave<cr>
-nnoremap   <C-G>    :FFGrep<space>
+nnoremap   <C-E>    :setlocal ambiwidth=single<cr>:FFEdit<cr>
+nnoremap   <C-F>    :setlocal ambiwidth=single<cr>:FFFave<cr>
+nnoremap   <C-G>    :setlocal ambiwidth=single<cr>:FFGrep<space>
 nnoremap   <C-H>    <C-^>
 nnoremap   <C-J>    <PageDown>L
 vnoremap   <C-J>    <PageDown>zz
@@ -732,13 +732,14 @@ let g:ag_prg = "ag --vimgrep --smart-case"
 "let g:fzf_layout = { 'down': '~40%' }
 "let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp' } }
 
+" the border=rounded only works when encoding=utf-8 && ambiwidth=single in vimrc
 let g:fzf_layout = {
-    \ 'window': {
-        \ 'width': 0.8,
-        \ 'height': 0.8,
-        \ 'border': 'rounded',
-        \ 'highlight': 'Identifier'
-    \ }
+  \ 'window': {
+    \ 'width': 0.8,
+    \ 'height': 0.8,
+    \ 'border': 'rounded',
+    \ 'highlight': 'Identifier'
+  \ }
 \ }
 
 let g:fzf_action = { 'ctrl-t':'tab split', 'ctrl-s':'split', 'ctrl-v':'vsplit' }
