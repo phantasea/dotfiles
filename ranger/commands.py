@@ -278,6 +278,31 @@ class fzf_open(Command):
         return self._tab_directory_content()
 
 
+class fzf_iptv(Command):
+    def execute(self):
+        if not self.arg(1):
+            self.fm.notify("Usage: fzf_iptv <m3u>", bad=True)
+            return
+
+        import subprocess
+        from os.path import join, expanduser, lexists
+
+        iptv_m3u = self.rest(1)
+        command="cat '%s' | fzf -d, --with-nth -1 --height=0 | \
+                xargs -r vidplay -x 2>/dev/null" % iptv_m3u
+        fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
+        stdout, stderr = fzf.communicate()
+        if fzf.returncode == 0:
+            fzf_file = os.path.abspath(stdout.decode('utf-8').rstrip('\n'))
+            if os.path.isdir(fzf_file):
+                self.fm.cd(fzf_file)
+            else:
+                self.fm.select_file(fzf_file)
+
+    def tab(self, tabnum):
+        return self._tab_directory_content()
+
+
 fd_deq = deque()
 class fd_find(Command):
     """:fd_find [-d<depth>] <query>
