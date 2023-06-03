@@ -225,6 +225,7 @@ nnoremap   K    <C-Y>
 nnoremap  go    :Fffm<CR>
 nnoremap   q    :call SmartQuit()<CR>
 nnoremap   Q    :qall!<CR>
+nnoremap  gr    :setlocal ambiwidth=single<cr>:FFRGB<space>
 nnoremap  gs    :update<CR>
 nnoremap   S    :%s//g<Left><Left>
 vnoremap   S    :s/\%V/g<left><left>
@@ -614,13 +615,13 @@ func! FZF_MRU()
          \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
 endfunc
 
-function! FZF_RG(query, fullscreen)
+func! FZF_RG(query, fullscreen)
     let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
     let initial_command = printf(command_fmt, shellescape(a:query))
     let reload_command = printf(command_fmt, '{q}')
     let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
     call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
+endfunc
 "}}}
 
 " autocmd  {{{

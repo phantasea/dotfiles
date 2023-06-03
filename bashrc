@@ -102,8 +102,7 @@ fi
 
 unset  MAILCHECK
 
-batsym='/opt/util/bat'
-if [[ -L $batsym && ! -e $batsym ]]; then
+if ! command -v bat > /dev/null 2>&1; then
     export MANPAGER="/bin/sh -c \"col -b | view --noplugin -c 'set ft=man ts=8 nomod nolist nonu noma titlestring=MANPAGE' -\""
 else
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
@@ -125,6 +124,7 @@ export FZ_SUBDIR_CMD=jj
 export FZ_CASE_INSENSITIVE=1
 export _Z_DATA="$HOME/.config/z.data"
 export TRASH_DIR="$HOME/.Trash"
+export OPENAI_API_KEY="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"
 
 export PSTOGGLE=1
 pstoggle() {
