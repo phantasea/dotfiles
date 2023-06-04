@@ -1,6 +1,6 @@
 [user]
-	name = phantasea
-	email = phantasea@gmail.com
+    name = phantasea
+    email = phantasea@gmail.com
 
 [color]
     ui = true
@@ -14,10 +14,6 @@
     safecrlf = false
     excludesfile = /opt/conf/gitignore
 
-#[pager]
-#    diff = diff-so-fancy | less --tabs=1,5 -RFX
-#    show = diff-so-fancy | less --tabs=1,5 -RFX
-
 [diff]
     tool = vimdiff
 
@@ -25,10 +21,10 @@
     prompt = false
 
 [diff "word"]
-	textconv = strings
+    textconv = strings
 
 [diff "exif"]
-	textconv = exiftool
+    textconv = exiftool
 
 [merge]
     keepBackup = false
@@ -39,7 +35,7 @@
     prompt = false
 
 [push]
-	default = matching
+    default = matching
 
 [svn]
     rmdir = true
@@ -61,4 +57,18 @@
     lg = "log --color --graph --abbrev-commit --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
 
 [credential]
-	helper = store
+    helper = store
+
+# setting for delta
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    light = false
+
+[diff]
+    colorMoved = default
