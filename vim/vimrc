@@ -199,6 +199,8 @@ vnoremap  g<    <esc>`<i<<esc>`>i><esc>
 "swap 0 and ^ function
 nnoremap  0     ^
 nnoremap  ^     0
+vnoremap  0     ^
+vnoremap  ^     0
 
 nnoremap  gb    :buffer<space>
 nnoremap  gB    :buffers<CR>
