@@ -626,8 +626,8 @@ autocmd DirEnter '~/pics/geohist'        setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/gifs'           setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/misc'           setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/preg'           setl sort='-mtime,+iname'
-autocmd DirEnter '~/pics/anime'          setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/wallpaper'      setl sort='-mtime,+iname'
+autocmd DirEnter '/media/simone/s*/'     setl sort='-mtime,+iname'
 " }}}
 
 " filetype/fileview {{{
