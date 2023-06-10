@@ -200,6 +200,7 @@ vnoremap  cM cp
 nnoremap  cl cl
 nnoremap  ct :!touch -m -t  %f<left><left><left>
 nnoremap  cv av
+vnoremap  cv <cr>
 nnoremap  ci :copyfromother<cr>
 vnoremap  ci :copyfromother<cr>
 nnoremap  co :copytoother<cr>
@@ -268,8 +269,8 @@ qnoremap  s  <c-w>
 nnoremap  s  <c-w>
 nnoremap  sa :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sb :set scrollbind!<cr>
-nnoremap  sc :! cat %f > %c.html<cr>
-vnoremap  sc :! cat %f > %c.html<cr>
+nnoremap  sc :! cat %f > %c.html<cr>gs
+vnoremap  sc :! cat %f > %c.html<cr>gv
 nnoremap  sC :selcat<space>
 vnoremap  sC :selcat<space>
 nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
