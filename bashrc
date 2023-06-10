@@ -22,7 +22,7 @@ PROMPT_COMMAND='history -a'
 HISTSIZE=100000
 HISTFILESIZE=20000
 
-#-------- Keybinding {{{
+### Keybinding {{{
 # movement and autocompeletion at the prompt
 #bind 'set completion-ignore-case on'	# case insensitive on tab completion
 #bind '"\t":menu-complete' 		# Tab: Cycle thru completion
@@ -53,7 +53,7 @@ HISTFILESIZE=20000
 #bind '"\e`": "!:0- \n"'     # all but the last word
 
 # bind '"\C-O":"fzf-dmenu\n"'
-# }}}
+### }}}
 
 # check the window size after each command and, if necessary,
 shopt -s checkwinsize
@@ -127,6 +127,7 @@ export TRASH_DIR="$HOME/.Trash"
 export OPENAI_API_KEY="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"
 export DELTA_PAGER="less -R"
 
+### internal functions {{{
 export PSTOGGLE=1
 pstoggle() {
     if [ $PSTOGGLE -eq 0 ]; then
@@ -151,7 +152,7 @@ countdown() {
     echo -e "\a"
 }
 
-up() {
+dirup() {
     times=$1
     while [ "$times" -gt "0" ]; do
         cd ..
@@ -159,13 +160,13 @@ up() {
     done
 }
 
-gac() {
+gitaddcmt() {
     git add -f $1
     shift
     git commit -m "$*"
 }
 
-gcd() {
+gitcd() {
     topdir=$(git rev-parse --show-toplevel)
     if [[ $? -ne 0 ]]; then
         return 1
@@ -181,6 +182,7 @@ ytdl_music() {
 ytdl_video() {
     youtube-dl --output ~/temp/"$2.%(ext)s" "$1"
 }
+### }}}
 
 # Alias definitions.
 if [ -f ~/.alias ]; then
