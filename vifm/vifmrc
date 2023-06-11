@@ -615,20 +615,20 @@ command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-t
 " }}}
 
 " autocmds {{{
-autocmd DirEnter '/opt/util'             setl nomillerview lsview previewprg='bat --style="plain" -- %c'
-autocmd DirEnter '/opt/apps/vifm'        exec 'normal fs;'
-autocmd DirEnter '~/docs/misc'           exec 'normal zd'
-autocmd DirEnter '~/docs/webs'           exec 'normal zd'
-autocmd DirEnter '~/misc/gits/**/*'      setl dotfiles
-autocmd DirEnter '~/pics/celeb/*/'       setl sort='-mtime,+iname'
-autocmd DirEnter '~/pics/combo'          setl sort='-mtime,+iname'
-autocmd DirEnter '~/pics/fave*'          setl sort='-mtime,+iname'
-autocmd DirEnter '~/pics/geohist'        setl sort='-mtime,+iname'
-autocmd DirEnter '~/pics/gifs'           setl sort='-mtime,+iname'
-autocmd DirEnter '~/pics/misc'           setl sort='-mtime,+iname'
-autocmd DirEnter '~/pics/preg'           setl sort='-mtime,+iname'
-autocmd DirEnter '~/pics/wallpaper'      setl sort='-mtime,+iname'
-autocmd DirEnter '/media/simone/s*/'     setl sort='-mtime,+iname'
+autocmd DirEnter '/opt/util'          setl nomillerview lsview previewprg='bat --style="plain" -- %c'
+autocmd DirEnter '/opt/apps/vifm'     exec 'normal fs;'
+autocmd DirEnter '~/docs/misc'        exec 'normal zd'
+autocmd DirEnter '~/docs/webs'        exec 'normal zd'
+autocmd DirEnter '~/misc/gits/**/*'   setl dotfiles
+autocmd DirEnter '~/pics/celeb/*/'    setl sort='-mtime,+iname'
+autocmd DirEnter '~/pics/combo'       setl sort='-mtime,+iname'
+autocmd DirEnter '~/pics/fave*'       setl sort='-mtime,+iname'
+autocmd DirEnter '~/pics/geohist'     setl sort='-mtime,+iname'
+autocmd DirEnter '~/pics/gifs'        setl sort='-mtime,+iname'
+autocmd DirEnter '~/pics/misc'        setl sort='-mtime,+iname'
+autocmd DirEnter '~/pics/preg'        setl sort='-mtime,+iname'
+autocmd DirEnter '~/pics/wallpaper'   setl sort='-mtime,+iname'
+autocmd DirEnter '/media/simone/*_z'  setl sort='-mtime,+iname'
 " }}}
 
 " filetype/fileview {{{
