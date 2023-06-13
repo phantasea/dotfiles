@@ -199,7 +199,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-[ -f /opt/conf/tmux-completion.bash ]         && source /opt/conf/tmux-completion.bash
+[ -f /opt/conf/misc/tmux-completion.bash ]    && source /opt/conf/misc/tmux-completion.bash
+[ -f /opt/conf/misc/cheat-completion.bash ]   && source /opt/conf/misc/cheat-completion.bash
 [ -f /opt/conf/misc/buku-completion.bash ]    && source /opt/conf/misc/buku-completion.bash
 [ -f /opt/conf/misc/ddgr-completion.bash ]    && source /opt/conf/misc/ddgr-completion.bash
 [ -f /opt/conf/misc/googler-completion.bash ] && source /opt/conf/misc/googler-completion.bash
