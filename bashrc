@@ -213,6 +213,14 @@ crontab /opt/conf/mycrontab
 command -v fbtmux   > /dev/null 2>&1 && fbtmux
 command -v neofetch > /dev/null 2>&1 && neofetch || screenfetch
 
-[[ ! -z $DISPLAY ]] && scratchpad
+# only under GUI mode
+if [[ ! -z $DISPLAY ]]; then
+    scratchpad
+
+    powerline-daemon -q
+    POWERLINE_BASH_CONTINUATION=1
+    POWERLINE_BASH_SELECT=1
+    . /opt/misc/apps/powerline/powerline/bindings/bash/powerline.sh
+fi
 
 # vim: foldmethod=marker
