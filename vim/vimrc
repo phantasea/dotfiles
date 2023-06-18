@@ -12,6 +12,7 @@ highlight PmenuThumb   ctermbg=black
 highlight TabLine      ctermfg=white    ctermbg=blue    cterm=bold
 highlight TabLineSel   ctermfg=white    ctermbg=green   cterm=bold
 highlight TabLineFill  ctermfg=white    ctermbg=blue    cterm=bold
+highlight VertSplit    ctermfg=red                      cterm=bold
 " settings below are used by statusline
 highlight User1        ctermfg=magenta  ctermbg=black   cterm=inverse
 highlight User2        ctermfg=cyan     ctermbg=black   cterm=inverse

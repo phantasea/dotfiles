@@ -350,9 +350,9 @@ set vicmd="vimux"
 set vixcmd="vimux"
 
 if executable('vim')
-set vimabs=vim
+set vimabs="vim"
 elseif executable('nvim')
-set vimabs=nvim
+set vimabs="nvim"
 endif
 
 set vifminfo=tui,tabs,savedirs,ratings
@@ -438,9 +438,13 @@ set topmidfiller="+"
 set nocdaftermkdir
 
 if $DISPLAY == ""
+set paneonetag=" ㈠"
+set panetwotag=" ㈡"
 set filenamedisplen=52
 set clipboardprg="tmux show-buffer"
 else
+set paneonetag=" ①"
+set panetwotag=" ②"
 set filenamedisplen=47
 set clipboardprg="xsel -ob"
 endif
