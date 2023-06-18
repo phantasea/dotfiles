@@ -220,7 +220,7 @@ if [[ ! -z $DISPLAY ]]; then
     powerline-daemon -q
     POWERLINE_BASH_CONTINUATION=1
     POWERLINE_BASH_SELECT=1
-    . /opt/conf/powerline/apps/bash/powerline.sh
+    . /opt/conf/powerline/powerline.sh
 fi
 
 # vim: foldmethod=marker
