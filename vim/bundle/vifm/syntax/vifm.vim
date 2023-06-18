@@ -155,7 +155,8 @@ syntax keyword vifmOption contained aproposprg autocd autochpos caseoptions
 		\ tuioptions to undolevels ul vicmd viewcolumns vifminfo vimhelp vixcmd
 		\ wildmenu wmnu wildstyle wordchars wrap wrapscan ws
 		\ prefervsplit filenamedispall redolastcmdcfm cdaftermkdir
-		\ vimabs topmidfiller maxundotabs previewmaxsize filenamedisplen clipboardprg
+		\ vimabs topmidfiller maxundotabs previewmaxsize filenamedisplen
+		\ clipboardprg paneonetag panetwotag
 
 " Disabled boolean options
 syntax keyword vifmOption contained noautocd noautochpos nocf nochaselinks
