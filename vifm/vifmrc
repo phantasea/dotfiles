@@ -593,7 +593,8 @@ command! imgrall  imgview -rs
 command! medinfo  medinfo %c %S
 command! tsls     medinfo -t %m
 command! manhelp  manmux vifm
-command! weather  curl --silent wttr.in %m
+command! weather  curl --silent wttr.in | sed 's/\x1B\[[0-9;]*[mGK]//g' | less
+command! weather  curl --silent wttr.in | bat
 command! altopen  fileopen -b %c
 command! auxopen  fileopen -B %c
 command! ffgotoA  :set noquickview | :exec 'goto' fnameescape(term('locate $HOME | fzf --height=0 2>/dev/tty'))
