@@ -293,6 +293,7 @@ nnoremap   <leader>fm   :Vifm<CR>
 nnoremap   <leader>te   :tabedit <C-R>=expand("%:p:h")<CR>/
 nnoremap   <leader>cd   :cd %:p:h<CR>:pwd<CR>
 nnoremap   <leader>ts   :%s/\t/    /g<CR>
+nnoremap   <leader>cc   :ColorToggle<CR>
 
 inoremap <c-x><c-k> <plug>(fzf-complete-word)
 inoremap <c-x><c-f> <plug>(fzf-complete-path)
