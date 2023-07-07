@@ -152,6 +152,38 @@ class mkcd(Command):
             self.fm.notify("file/directory exists!", bad=True)
 
 
+class goto_music_file(Command):
+    """
+    Go to currently played song in mocp/mpd
+    """
+    def execute(self):
+        if not self.arg(1):
+            self.fm.notify("goto_music_file <moc|mpc>", bad=True)
+            return
+
+        from ranger.ext import spawn
+        from os.path import join, expanduser
+
+        curr_music = ""
+        if self.rest(1) == "moc":
+            curr_music = spawn.check_output(["mocp", '-Q', '%file']).strip()
+            if not curr_music:
+                self.fm.notify("mocp might be in STOP mode!", bad=True)
+                return
+        elif self.rest(1) == "mpc":
+            curr_music = spawn.check_output('mpc -f %file% | head -1').strip()
+            curr_music = expanduser(join('~/auds', curr_music))
+            if ".mp3" not in curr_music:
+                self.fm.notify("mpd might be in STOP mode!", bad=True)
+                return
+        else:
+            self.fm.notify("goto_music_file <moc/mpc>", bad=True)
+            return
+
+        self.fm.notify(curr_music, bad=False)
+        self.fm.select_file(curr_music)
+
+
 class fzf_select(Command):
     """
     :fzf_select
@@ -246,15 +278,32 @@ class fzf_exec(Command):
 
 
 class fzf_open(Command):
+    '''
+    fzf_open [directory] [depth]
+    '''
     def execute(self):
-        if not self.arg(1):
-            self.fm.notify("Usage: fzf_open <directory>", bad=True)
-            return
-
         import subprocess
         from os.path import join, expanduser, lexists
 
-        dirname = join(self.fm.thisdir.path, expanduser(self.rest(1)))
+        if not self.arg(1):
+            dirname = self.fm.thisdir.path
+            depth = 1
+        else:
+            if self.arg(1)[0] == '/' or self.arg(1)[0] == '~':
+                dirname = expanduser(self.arg(1))
+            if self.arg(1) == '.':
+                dirname = self.fm.thisdir.path
+            else:
+                dirname = join(self.fm.thisdir.path, expanduser(self.arg(1)))
+
+            if not self.arg(2):
+                depth = 1
+            else:
+                depth = self.rest(2)
+                if not str(depth).isnumeric:
+                    self.fm.notify("depth must be an integer!", bad=True)
+                    return
+
         if not lexists(dirname):
             self.fm.notify("directory doesn't exists", bad=True)
             return
@@ -263,8 +312,8 @@ class fzf_open(Command):
             self.fm.notify("this isn't a directory!", bad=True)
             return
 
-        command="fd -d=1 -t=f . '%s' | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | \
-                sed 's/ /\\ /g' | xargs -r fileopen" % dirname
+        command="fd -d=%s -t=f . '%s' | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | \
+                sed 's/ /\\ /g' | xargs -r fileopen" % (str(depth), dirname)
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
