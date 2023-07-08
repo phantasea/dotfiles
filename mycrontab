@@ -1,1 +1,2 @@
 */5 * * * * /opt/util/batmon
+*/6 * * * * /opt/util/genm3u -F
