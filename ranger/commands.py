@@ -451,3 +451,41 @@ class fzf_rga(Command):
         #    fzf_file = os.path.abspath(stdout.rstrip('\n'))
         #    self.fm.execute_file(File(fzf_file))
 
+
+class nav_dir_hist(Command):
+    def execute(self):
+        lst = []
+        for d in reversed(self.fm.tabs[self.fm.current_tab].history.history):
+            lst.append(d.path)
+
+        selected = self._select_with_fzf(["fzf"], "\n".join(lst))
+        self._navigate_path(selected)
+
+    def _navigate_path(self, selected):
+        if not selected:
+            return
+
+        selected = os.path.abspath(selected)
+        if os.path.isdir(selected):
+            self.fm.cd(selected)
+        elif os.path.isfile(selected):
+            self.fm.select_file(selected)
+        else:
+            self.fm.notify(f"Neither dir nor file: {selected}", bad=True)
+            return
+
+    def _select_with_fzf(self, fzf_cmd, input):
+        import subprocess
+        self.fm.ui.suspend()
+        try:
+            # stderr is used to open to attach to /dev/tty
+            proc = subprocess.Popen(fzf_cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, text=True)
+            stdout, _ = proc.communicate(input=input)
+
+            # ESC gives 130
+            if proc.returncode not in [0, 130]:
+                raise Exception(f"Bad process exit code: {proc.returncode}, stdout={stdout}")
+        finally:
+            self.fm.ui.initialize()
+        return stdout.strip()
+

@@ -43,7 +43,7 @@ nnoremap m<cr>     <nop>
 nnoremap o<cr>     <nop>
 nnoremap s<cr>     :shell<cr>
 nnoremap x<cr>     <nop>
-nnoremap z<cr>     <nop>
+nnoremap z<cr>     :!dotify %f<cr>
 
 nnoremap  <bs>     <c-h>
 mnoremap  <bs>     <c-b>
@@ -69,25 +69,21 @@ anoremap  <c-g>  <home>
 
 "<c-@> means Ctrl+Space to switch to cmdline navigation mode
 cnoremap  <c-@>  <c-y>
-cnoremap  <c-o>  <s-tab>
-cnoremap  <c-j>  <cr>
-cnoremap  <c-r>  <c-x>
 cnoremap  <c-g>  <a-f>
-cnoremap  <c-y>  <a-b>
+cnoremap  <c-j>  <cr>
+cnoremap  <c-o>  <s-tab>
+cnoremap  <c-r>  <c-x>
 cnoremap  <c-t>  <c-g>
 cnoremap  <c-v>  <c-x>s
+cnoremap  <c-y>  <a-b>
 
 nnoremap  <c-a>  :ffauds<cr>
+nnoremap  <c-b>  :tree!<cr>
+nnoremap  <c-c>  :history<cr>
+vnoremap  <c-c>  :history<cr>
 nnoremap  <c-e>  :ffedit<cr>
 nnoremap  <c-f>  :fffave<cr>
 nnoremap  <c-g>  :ffgoto<cr>
-nnoremap  <c-v>  :ffvids<cr>
-nnoremap  <c-w>  :ffwebs<cr>
-nnoremap  <c-x>  :ffporn<cr>
-nnoremap  <c-d>  :ffiptv /opt/conf/iptv/<tab><tab>
-
-nnoremap  <c-b>  :tree!<cr>
-nnoremap  <c-c>  <nop>
 mnoremap  <c-j>  <c-f>
 nnoremap  <c-j>  <c-f>
 qnoremap  <c-j>  <c-f>
@@ -100,11 +96,18 @@ qnoremap  <c-n>  a
 nnoremap  <c-p>  gT
 vnoremap  <c-p>  gT
 qnoremap  <c-p>  A
-nnoremap  <c-r>  :restore<cr>
 nnoremap  <c-q>  :tabonly<cr>
-nnoremap  <c-t>  :tabnew<cr>
-vnoremap  <c-t>  :tabnew<cr>
+nnoremap  <c-r>  :restore<cr>
+nnoremap  <c-s>  :tabnew<cr>
+vnoremap  <c-s>  :tabnew<cr>
+nnoremap  <c-t>  :tabnew ~<cr>
+vnoremap  <c-t>  :tabnew ~<cr>
 nnoremap  <c-u>  U
+nnoremap  <c-v>  :ffvids<cr>
+nnoremap  <c-w>  :ffwebs<cr>
+nnoremap  <c-x>  :ffporn<cr>
+nnoremap  <c-y>  :ffgotoB<cr>
+nnoremap  <c-z>  :ffiptv /opt/conf/iptv/<tab><tab>
 
 nnoremap  <a-j>  <space>j<space>
 nnoremap  <a-k>  <space>k<space>
