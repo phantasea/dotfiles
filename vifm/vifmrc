@@ -371,7 +371,7 @@ set suggestoptions=normal,visual,keys,delay:1000
 set aproposprg='apropos %a'
 set deleteprg=""
 set findprg='fd -i -d=3 -t=f %p %s'
-set grepprg='rg -S --vimgrep %i %a'
+set grepprg='rg --smart-case --vimgrep %i %a'
 set locateprg='locate %a'
 set mediaprg='vifmmed'
 set previewprg=""
@@ -607,11 +607,11 @@ command! ffgotoD  :exec 'goto' fnameescape(system('fd -t=f -t=l | fzf 2>/dev/tty
 command! ffgoto   fd -L --type file | fzf --height=0 | xargs -r vifmgoto
 command! ffedit   fd -d=3 -t=f -t=l -H -E .git --size=-800k | fzf --height=0 -1 -q "%a" --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
 command! fffave   cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f -t=l . | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
-command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . ~/auds | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r audplay
+command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r audplay
 command! ffvids   fd -H -L -d=3 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r vidplay
 command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
 command! ffporn   fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
-command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . ~/auds | fzf --height=0 | xargs -r vifmgoto
+command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 | xargs -r vifmgoto
 command! ffvids   fd -H -L -d=3 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | fzf --height=0 | xargs -r vifmgoto
 command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 | xargs -r vifmgoto
 command! ffporn   fd -d=2 -t=f . /opt/.porn/text | fzf --height=0 | xargs -r vifmgoto
