@@ -7,7 +7,7 @@ set window playlist
 set songformat $A00[$L] %f$E$R [%l]
 set local-music-dir ~/.auds
 
-set stoponquit
+"set stoponquit
 set notabbar
 set noplaylistnumbers
 set noprogressbar
@@ -43,9 +43,15 @@ highlight song    default   yellow
 " map @ to switch to add next, add a song, then change back
 "map @ :set add next<C-M>a:set add end<C-M>
 
-map <Tab> :tabnext<C-M>
-map q :quitall<C-M>
-map Q :quitall!<C-M>
+map <Tab> gt
+map q :quitall!<Enter>
+map Q :quitall<Enter>
+map J <C-Y>
+map K <C-E>
+map <C-J> <C-F>
+map <C-K> <C-B>
+map x s
+map . f
 
 " Connect to a specific host using the config file
 "connect somehost someport
