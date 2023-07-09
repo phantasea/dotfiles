@@ -1,0 +1,65 @@
+" Set the windows to show at startup
+set windows playlist,help
+
+" Set the default tab
+set window playlist
+
+set songformat $A00[$L] %f$E$R [%l]
+set local-music-dir ~/.auds
+
+set stoponquit
+set notabbar
+set noplaylistnumbers
+set noprogressbar
+set singlequit
+set hlsearch
+set ignorecase
+set smartcase
+set incsearch
+set sortignorecase
+set autoscroll
+set add next
+
+" Color
+highlight tab     red       bold_white
+highlight current default   bold_green
+highlight id      default   yellow
+highlight song    default   yellow
+"highlight progress cyan white
+"hi status
+"hi match
+"hi full
+"hi partial
+"hi error
+"hi pager
+"hi dir
+
+" A silly example of an alias
+"alias smiths deleteall; findartist! The Smiths; play 1
+
+" Example maps
+" map the F key to change to the browse window, go to the first line and enter search mode
+"map F :browse<C-M>gg/
+" map @ to switch to add next, add a song, then change back
+"map @ :set add next<C-M>a:set add end<C-M>
+
+map <Tab> :tabnext<C-M>
+map q :quitall<C-M>
+map Q :quitall!<C-M>
+
+" Connect to a specific host using the config file
+"connect somehost someport
+
+" Turn consume on when we connect
+"consume on
+
+" Ensure that the database is up to date each connect
+"update
+
+" When we start vimpc
+"deleteall
+"addall
+"shuffle
+"play 1
+
+" vim: set ft=vim foldmethod=marker:
