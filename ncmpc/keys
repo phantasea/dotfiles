@@ -167,7 +167,7 @@ key screen-prev = 353
 key screen-swap = 39,  8
 
 ## Forward find  47='/'
-key find = 47, f
+key find = 47, 'f'
 
 ## Forward find next
 key find-next = 'N'
