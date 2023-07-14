@@ -73,7 +73,7 @@ set window-width  768
 set adjust-open   width
 set statusbar-h-padding 0
 set statusbar-v-padding 0
-set page-padding 64
+set page-padding  1
 set pages-per-row 1
 set scroll-wrap false
 set scroll-step 40
