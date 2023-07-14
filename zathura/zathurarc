@@ -58,37 +58,38 @@ set recolor-darkcolor "#000000"
 set selection-clipboard clipboard
 set abort-clear-search  true
 set advance-ds-per-row  true
-set database sqlite
+set database plain
 
 set statusbar-home-tilde true
-set vertical-center true
+set vertical-center false
 set synctex true
 set scroll-full-overlap 0.2
 set scroll-page-aware true
 set window-title-basename true
+set first-page-column 1:1
 
 set window-height 1024
 set window-width  768
 set adjust-open   width
 set statusbar-h-padding 0
 set statusbar-v-padding 0
-set page-padding 1
+set page-padding 64
 set pages-per-row 1
 set scroll-wrap false
 set scroll-step 40
 set zoom-max  1000
 set zoom-min  10
 set zoom-step 10
-#set sandbox strict
 
-set font "Monospace bold 12"
 #c:cmdline, s:statusbar h:horizontal-scrollbar v:vertial-scrollbar
 set guioptions "s"
+set font "Monospace bold 12"
 ### }}}
 
 ### key bindings {{{
-map <Esc>  abort
-map <Tab>  toggle_statusbar
+map <Esc>   abort
+map <Tab>   toggle_statusbar
+map <Enter> toggle_fullscreen
 
 map    +  zoom in
 map    -  zoom out
