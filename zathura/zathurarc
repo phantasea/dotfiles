@@ -1,6 +1,4 @@
-# zathurarc
-
-# colors
+### colors {{{
 #set statusbar-bg "#00FF00"
 #set statusbar-fg red
 
@@ -8,7 +6,6 @@
 #set recolor-lightcolor "#002B36"
 #set recolor true
 
-# colors
 #set statusbar-bg "#000000"
 #set statusbar-fg "#CC0000"
 #set default-fg "#FFFFFF"
@@ -34,6 +31,8 @@
 #
 #set highlight-color             "#FAC863"
 #set highlight-active-color      "#6699CC"
+#set highlight-fg                "#FFFFFF"
+#set highlight-transparency      0.8
 #
 #set completion-highlight-fg     "#4F5B66"
 #set completion-highlight-bg     "#5FB3B3"
@@ -53,80 +52,88 @@ set default-bg "#C7EDCC"
 set recolor true
 set recolor-lightcolor "#C7EDCC"
 set recolor-darkcolor "#000000"
+### }}}
 
-# settings
+### settings {{{
+set selection-clipboard clipboard
+set abort-clear-search  true
+set advance-ds-per-row  true
+set database sqlite
+
+set statusbar-home-tilde true
+set vertical-center true
+set synctex true
+set scroll-full-overlap 0.2
+set scroll-page-aware true
+set window-title-basename true
+
 set window-height 1024
 set window-width  768
 set adjust-open   width
 set statusbar-h-padding 0
 set statusbar-v-padding 0
 set page-padding 1
+set pages-per-row 1
+set scroll-wrap false
+set scroll-step 40
+set zoom-max  1000
+set zoom-min  10
+set zoom-step 10
+#set sandbox strict
 
-# use sqlite as bookmarks database backend
-#set database sqlite
+set font "Monospace bold 12"
+#c:cmdline, s:statusbar h:horizontal-scrollbar v:vertial-scrollbar
+set guioptions "s"
+### }}}
 
-# key bindings
-map <Esc>      abort
-map <Tab>      toggle_statusbar
+### key bindings {{{
+map <Esc>  abort
+map <Tab>  toggle_statusbar
 
-map + zoom in
-map - zoom out
-map a adjust_window best-fit
-map b recolor
-map f toggle_fullscreen
-map F follow
-map i zoom in
-map j scroll down
-map J navigate next
-map k scroll up
-map K navigate previous
-map o zoom out
-map p navigate previous
-map P toggle_presentation
-map q quit
-map r rotate rotate-cw
-map R rotate rotate-ccw
-map s toggle_page_mode
-map w adjust_window width
-map y reload
+map    +  zoom in
+map    -  zoom out
+map    =  zoom default
+map    ~  toggle_index
+map    ;  toggle_inputbar
+map   \'  mark_evaluate
 
-map [fullscreen] + zoom in
-map [fullscreen] - zoom out
-map [fullscreen] a adjust_window best-fit
-map [fullscreen] b recolor
-map [fullscreen] f toggle_fullscreen
-map [fullscreen] F follow
-map [fullscreen] i zoom in
-map [fullscreen] j scroll down
-map [fullscreen] J navigate next
-map [fullscreen] k scroll up
-map [fullscreen] K navigate previous
-map [fullscreen] o zoom out
-map [fullscreen] p navigate previous
-map [fullscreen] P toggle_presentation
-map [fullscreen] q quit
-map [fullscreen] r rotate rotate-cw
-map [fullscreen] R rotate rotate-ccw
-map [fullscreen] s toggle_page_mode
-map [fullscreen] w adjust_window width
+map    a  adjust_window best-fit
+map    c  recolor
+map <C-c> copy_link
+map <C-d> display_link
+map    f  toggle_fullscreen
+map    F  follow
+map   gg  goto top
+map    G  goto bottom
+map    h  scroll left
+map    i  zoom in
+map   gi  focus_inputbar
+map <C-i> jumplist forward
+map    j  scroll down
+map    J  scroll half-down
+map <C-j> scroll full-down
+map    k  scroll up
+map    K  scroll half-up
+map <C-k> scroll full-up
+map    l  scroll right
+map    m  mark_add
+map    n  search forward
+map    N  search backward
+map <C-n> navigate next
+map    o  zoom out
+map   go  focus_inputbar :open
+map <C-o> jumplist backward
+map    P  toggle_presentation
+map <C-p> navigate previous
+map    q  quit
+map    r  rotate rotate-cw
+map    R  rotate rotate-ccw
+map <C-r> reload
+map    s  toggle_page_mode
+map    S  snap_to_page
+map    w  adjust_window width
+map   zi  zoom in
+map   zo  zoom out
+### }}}
 
-map [presentation] + zoom in
-map [presentation] - zoom out
-map [presentation] a adjust_window best-fit
-map [presentation] b recolor
-map [presentation] f toggle_fullscreen
-map [presentation] F follow
-map [presentation] i zoom in
-map [presentation] j scroll down
-map [presentation] J navigate next
-map [presentation] k scroll up
-map [presentation] K navigate previous
-map [presentation] o zoom out
-map [presentation] p navigate previous
-map [presentation] P toggle_presentation
-map [presentation] q quit
-map [presentation] r rotate rotate-cw
-map [presentation] R rotate rotate-ccw
-map [presentation] s toggle_page_mode
-map [presentation] w adjust_window width
-
+# vim: set ft=cfg foldmethod=marker:
