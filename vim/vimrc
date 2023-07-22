@@ -214,6 +214,7 @@ nnoremap   ck   :cprev<CR>
 nnoremap   cn   :cnext<CR>
 nnoremap   cp   :cprev<CR>
 nnoremap   co   :call SmartOpenQfWin()<CR>
+nnoremap  gd    :g//d<Left><Left>
 nnoremap  gf    :call DirFilePicker("Normal")<CR>
 nnoremap   j    gj
 vnoremap   j    gj
