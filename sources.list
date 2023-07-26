@@ -8,3 +8,15 @@ deb-src http://ro.archive.ubuntu.com/ubuntu/ xenial-security main restricted uni
 
 ###### Ubuntu Partner Repo
 # deb-src http://archive.canonical.com/ubuntu xenial partner
+
+###### Ubuntu Main Repos
+deb http://ro.archive.ubuntu.com/ubuntu/ focal main restricted universe
+deb-src http://ro.archive.ubuntu.com/ubuntu/ focal main restricted universe
+
+###### Ubuntu Update Repos
+deb http://ro.archive.ubuntu.com/ubuntu/ focal-security main restricted universe
+deb http://ro.archive.ubuntu.com/ubuntu/ focal-updates main restricted universe
+deb-src http://ro.archive.ubuntu.com/ubuntu/ focal-security main restricted universe
+deb-src http://ro.archive.ubuntu.com/ubuntu/ focal-updates main restricted universe
+
+deb http://archive.ubuntu.com/ubuntu focal main universe restricted multiverse

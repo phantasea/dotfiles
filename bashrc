@@ -217,10 +217,10 @@ command -v neofetch > /dev/null 2>&1 && neofetch || screenfetch
 if [[ ! -z $DISPLAY ]]; then
     scratchpad
 
-    powerline-daemon -q
-    POWERLINE_BASH_CONTINUATION=1
-    POWERLINE_BASH_SELECT=1
-    . /opt/conf/powerline/powerline.sh
+    #powerline-daemon -q
+    #POWERLINE_BASH_CONTINUATION=1
+    #POWERLINE_BASH_SELECT=1
+    #. /opt/conf/powerline/powerline.sh
 fi
 
 # vim: foldmethod=marker

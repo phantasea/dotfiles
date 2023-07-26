@@ -6,7 +6,8 @@
     ui = true
 
 [core]
-    pager = "if x-is-run ; then GIT_PAGER='delta'; else GIT_PAGER='less'; fi; $GIT_PAGER"
+    #pager = "if x-is-run ; then GIT_PAGER='delta'; else GIT_PAGER='less'; fi; $GIT_PAGER"
+    pager = less
     editor = vim
     quotepath = false
     mergeoptions = --no-edit
