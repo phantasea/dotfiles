@@ -396,7 +396,7 @@ set tabprefix="[%0*%N:"
 set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
 set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%[%6*%r%7*|%]%4* %= \"%T\""
-set rulerformat="%[f='%F'%] %= %E/%a  %l/%S%[(+%x)%]%[%H%] --%P--"
+set rulerformat="%[f='%F'%] %= %E/%a  %l/%S%[(+%x)%]%[%H%]  --%P--"
 set fillchars="vborder:|,hborder:,millersep:"
 set dirsize=nitems
 if $DISPLAY != ""
