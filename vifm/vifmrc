@@ -154,7 +154,8 @@ nnoremap  ^  gg
 nnoremap  $  G
 nnoremap  @  :shell<cr>
 nnoremap  !  !!  %c<left><left><left>
-nnoremap  &  :!./%c:. &<cr>
+nnoremap g!  :!./%c:. &<cr>
+nnoremap  &  !!  %c &<left><left><left><left><left>
 nnoremap  ~  :cd ~<cr>
 nnoremap  -  :cd -<cr>
 nnoremap g.  hgfl:set nodotfiles<cr>
