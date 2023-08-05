@@ -11,10 +11,16 @@
 #
 # By default this script does nothing.
 
+# Load customized key maps at startup
 /usr/bin/loadkeys /opt/conf/mykbd
 
-rfkill block bluetooth
-sleep 5
-rfkill block wifi
+# Disable bluetooth & wifi at startup
+rfkill block all
+#rfkill block bluetooth
+#sleep 5
+#rfkill block wifi
+
+# Reinit the volume as 64% at startup
+pactl set-sink-volume 0 64%
 
 exit 0
