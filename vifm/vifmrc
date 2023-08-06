@@ -776,11 +776,11 @@ filetype  *.djvu  fbpdf %c
 
 " epub
 if $DISPLAY == ""
-filetype  *.epub  epr %c %i
+filetype  *.epub  epy %c %i
 else
 filetype  *.epub  zathura %c %i
 endif
-fileview  *.epub  pandoc %c -t plain, epr -d %c
+fileview  *.epub  pandoc %c -t plain, epy -d %c
 
 " Webpage
 filetype  *.html,*.htm,*.xhtml,*.shtml  webview %c, webview -b %c, webview -B %c, webview -bB %c
