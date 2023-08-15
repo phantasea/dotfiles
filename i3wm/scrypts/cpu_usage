@@ -26,6 +26,7 @@ totald=$(( $Total - $PrevTotal ))
 idled=$(( $Idle - $PrevIdle))
 
 color="color='#FFFFFF'"
-logo=''
+#logo=''
+logo=''
 CPU=$(( ($totald-$idled)*100/$totald ))
 echo "<span $color>$logo</span> $CPU%"

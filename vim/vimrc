@@ -230,7 +230,7 @@ nnoremap  go    :Fffm<CR>
 nnoremap   q    :call SmartQuit()<CR>
 nnoremap   Q    :qall!<CR>
 nnoremap  gr    :setlocal ambiwidth=single<cr>:FFRGB<space>
-nnoremap  gs    :update<CR>
+nnoremap  gs    :g//d<Left><Left>
 nnoremap   S    :%s//g<Left><Left>
 vnoremap   S    :s/\%V/g<left><left>
 nnoremap   s    <C-W>
