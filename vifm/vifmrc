@@ -766,7 +766,7 @@ fileview  *.ps  ps2text %c -
 if $DISPLAY == ""
 filetype  *.ps  fimgs %c
 else
-filetype  *.ps,*.ps.gz  zathura %c
+filetype  *.ps,*.ps.gz  zathura %c %i
 endif
 
 " Djvu
