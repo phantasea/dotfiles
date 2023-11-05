@@ -1,10 +1,11 @@
 " Devicons for ViFM
 " https://github.com/cirala/vifm_devicons
 
-" ⚡◘ 
-" 
-" Ξ☰
+" λ◘
+" ⚡
+" Ξ☰
 
+if $DISPLAY != ""
 " Filetypes
 set classify=" :dir:, :reg:, :exe:, :link:, :char:, :block:, :fifo:, :sock:, :?:"
 
@@ -41,4 +42,41 @@ set classify+=' ::*.log::'
 set classify+=' ::*.doc,,*.docx,,*.adoc::'
 set classify+=' ::*.xls,,*.xls,,*.xlsmx::'
 set classify+=' ::*.pptx,,*.ppt::'
+else
+" Filetypes
+set classify=" :dir:, :reg:, :exe:, :link:, :char:, :block:, :fifo:, :sock:, :?:"
 
+" Specific files
+set classify+=' ::../::'
+set classify+=' ::.Xdefaults,,.Xresources,,.bashprofile,,.bash_profile,,.gitconfig,,.gitignore,,.profile::'
+set classify+=' ::TODO,,README,,FAQ,,ChangeLog,,Makefile::'
+set classify+=' ::license,,copyright,,copying,,LICENSE,,COPYRIGHT,,COPYING::'
+
+" File extensions
+set classify+=' ::*.py,,*.pyc,,*.pyd,,*.pyo::'
+set classify+=' ::*.markdown,,*.md::'
+set classify+=' ::*.js::'
+set classify+=' ::*.bmp,,*.gif,,*.ico,,*.jpeg,,*.jpg,,*.png,,*.svg,,*.xpm::'
+set classify+=' ::*.htm,,*.html,,*.xml,,*.php::'
+set classify+=' ::*.css,,*.bat,,*.conf,,*.config,,*.ini,,*.yml,,*.cfg,,*rc::'
+set classify+=' ::*.rss::'
+set classify+=' ::*.coffee::'
+set classify+=' ::*.c++,,*.cc,,*.c,,*.cpp,,*.cxx,,*.c,,*.h::'
+set classify+=' ::*.lua::'
+set classify+=' ::*.json::'
+set classify+=' ::*.scala::'
+set classify+=' ::*.diff,,*.sum,,*.md5,,*.sha512::'
+set classify+=' ::*.db,,*.dump,,*.sql::'
+set classify+=' ::*.exe::'
+set classify+=' ::*.java,,*.jar::'
+set classify+=' ::*.fish,,*.sh,,*.bash::'
+set classify+=' ::*.vim,,*.vimrc::'
+set classify+=' ::*.aac,,*.asf,,*.au,,*.flac,,*.m4a,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.wav,,*.wma::'
+set classify+=' ::*.avi,,*.flv,,*.mkv,,*.mov,,*.mp4,,*.mpeg,,*.mpg,,*.webm,,*.rm,,*.rmvb::'
+set classify+=' ::*.epub,,*.pdf,,*.fb2,,*.djvu::'
+set classify+=' ::*.7z,,*.apk,,*.bz2,,*.cab,,*.deb,,*.gz,,*.gzip,,*.rar,,*.rpm,,*.tar,,*.tgz,,*.xz,,*.zip::'
+set classify+=' ::*.log::'
+set classify+=' ::*.doc,,*.docx,,*.adoc::'
+set classify+=' ::*.xls,,*.xls,,*.xlsmx::'
+set classify+=' ::*.pptx,,*.ppt::'
+endif
