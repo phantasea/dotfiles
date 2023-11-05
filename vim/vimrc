@@ -35,6 +35,7 @@ filetype plugin indent on
 syntax enable
 syntax on
 
+set scrolloff=3
 set ambiwidth=double
 set autochdir
 set autoindent
@@ -224,9 +225,10 @@ vnoremap   k    gk
 nnoremap  gk    K
 nnoremap   J    <C-E>
 nnoremap   K    <C-Y>
-"nnoremap  n    nzz
-"nnoremap  N    Nzz
+nnoremap  n    nzz
+nnoremap  N    Nzz
 nnoremap  go    :Fffm<CR>
+xnoremap   p    "0p
 nnoremap   q    :call SmartQuit()<CR>
 nnoremap   Q    :qall!<CR>
 nnoremap  gr    :setlocal ambiwidth=single<cr>:FFRGB<space>

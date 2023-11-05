@@ -265,6 +265,7 @@ vnoremap  q  ZZ
 nnoremap  Q  :qall<cr>
 nnoremap gq  q
 nnoremap gr  :grep<space>
+mnoremap gr  :grep<space>
 vnoremap  r  cw
 nnoremap  r  cW
 nnoremap  R  cw
