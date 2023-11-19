@@ -441,4 +441,4 @@ def devicon(file):
   if os.getenv('DISPLAY'):
     return file_node_exact_matches.get(file.relative_path, file_node_extensions_gui.get(file.extension, ''))
   else:
-    return file_node_exact_matches.get(file.relative_path, file_node_extensions_tui.get(file.extension, ''))
+    return file_node_exact_matches.get(file.relative_path, file_node_extensions_tui.get(file.extension, ''))
