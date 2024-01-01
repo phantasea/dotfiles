@@ -137,6 +137,31 @@ nnoremap  -or  :chmod o-r<cr>
 nnoremap  -ow  :chmod o-w<cr>
 nnoremap  -ox  :chmod o-x<cr>
 
+vnoremap  +ar  :chmod a+r<cr>
+vnoremap  +aw  :chmod a+w<cr>
+vnoremap  +ax  :chmod a+x<cr>
+vnoremap  +ur  :chmod u+r<cr>
+vnoremap  +uw  :chmod u+w<cr>
+vnoremap  +ux  :chmod u+x<cr>
+vnoremap  +gr  :chmod g+r<cr>
+vnoremap  +gw  :chmod g+w<cr>
+vnoremap  +gx  :chmod g+x<cr>
+vnoremap  +or  :chmod o+r<cr>
+vnoremap  +ow  :chmod o+w<cr>
+vnoremap  +ox  :chmod o+x<cr>
+vnoremap  -ar  :chmod a-r<cr>
+vnoremap  -aw  :chmod a-w<cr>
+vnoremap  -ax  :chmod a-x<cr>
+vnoremap  -ur  :chmod u-r<cr>
+vnoremap  -uw  :chmod u-w<cr>
+vnoremap  -ux  :chmod u-x<cr>
+vnoremap  -gr  :chmod g-r<cr>
+vnoremap  -gw  :chmod g-w<cr>
+vnoremap  -gx  :chmod g-x<cr>
+vnoremap  -or  :chmod o-r<cr>
+vnoremap  -ow  :chmod o-w<cr>
+vnoremap  -ox  :chmod o-x<cr>
+
 "nnoremap <c-h> :if paneisat('left')   | execute '!tmux select-pane -L %i' | else | execute 'wincmd h' | endif<cr>
 "nnoremap <c-j> :if paneisat('bottom') | execute '!tmux select-pane -D %i' | else | execute 'wincmd j' | endif<cr>
 "nnoremap <c-k> :if paneisat('top')    | execute '!tmux select-pane -U %i' | else | execute 'wincmd k' | endif<cr>
