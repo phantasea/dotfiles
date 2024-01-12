@@ -804,7 +804,7 @@ filetype  *.djvu  fbpdf %c
 if $DISPLAY == ""
 filetype  *.epub  epy %c
 else
-filetype  *.epub  zathura %c %i
+filetype  *.epub  zathura %c %i, ebook-viewer -f %c %i
 endif
 fileview  *.epub  pandoc %c -t plain, epy -d %c
 
