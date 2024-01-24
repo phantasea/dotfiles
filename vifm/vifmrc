@@ -320,6 +320,7 @@ nnoremap  st :if getpanetype() == regular | tree | else | exec 'norm gh' | endif
 nnoremap  sv :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' | view! | else | view! | endif<cr>
 nnoremap  sw :!setwallpaper %c %i<cr>
 nnoremap  sx <c-w>x:switch<cr>
+nnoremap gS  :%s//g<left><left>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
 nnoremap gs  :select //i<left><left>
@@ -487,7 +488,7 @@ else
 colorscheme chris
 endif
 
-windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sogoupinyin|google|华为手机助手)/
+windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|snap|sogoupinyin|华为手机助手)/
 " }}}
 
 " commands {{{
