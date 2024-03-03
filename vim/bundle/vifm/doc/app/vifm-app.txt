@@ -1,4 +1,4 @@
-*vifm-app.txt*    For Vifm version 0.12.1  Last change: 2023 Jan 14
+*vifm-app.txt*    For Vifm version 0.13  Last change: 2024 Jan 20
 
  Email for bugs and suggestions: <xaizek@posteo.net>
 
@@ -22,6 +22,7 @@
 |vifm-expression-syntax|  Syntax of supported expressions.
 |vifm-functions|          List of builtin functions with description.
 |vifm-menus-and-dialogs|  Keys and commands for menus and dialogs.
+|vifm-menus-history|      Recalling previous menus.
 |vifm-custom-views|       Differences between regular and custom views.
 |vifm-compare-views|      Kinds, properties and differences of compare views.
 |vifm-startup|            Determining of environment variables on startup.
@@ -233,8 +234,10 @@ zt - redraw pane with file in top of list.     *vifm-zt*
 zz - redraw pane with file in center of list.  *vifm-zz*
 zb - redraw pane with file in bottom of list.  *vifm-zb*
 
-Ctrl-E - scroll pane one line down.            *vifm-CTRL-E*
-Ctrl-Y - scroll pane one line up.              *vifm-CTRL-Y*
+Ctrl-E                                         *vifm-CTRL-E*
+    scroll pane one line down or column right (in transposed ls-like view).
+Ctrl-Y                                         *vifm-CTRL-Y*
+    scroll pane one line up or column left (in transposed ls-like view).
 
 Pane manipulation~
 
@@ -578,19 +581,27 @@ cg - change file group.                        {only for *nix}
 [count]C                                       *vifm-C*
     clone file [count] times.
 
-dd                                             *vifm-dd*
-    move selected file or files to |vifm-trash| directory (if |vifm-'trash'|
-    option is set, otherwise delete).
-d<selector>                                    *vifm-d*
+[count]dd                                      *vifm-dd*
+    move files to |vifm-trash| directory if |vifm-'trash'| option is set,
+    otherwise delete them permanently.
+
+    When |vifm-cpo-s| is present in |vifm-'cpoptions'|, operates on selected
+    files or, in the absence of selection, the current one.  When the flag
+    isn't set, always operates on the current file only.
+d[count]<selector>                             *vifm-d*
     like dd, but accepts motions/selectors.
 
-DD and D<selector>                             *vifm-D* *vifm-DD*
-    like dd and d<selector>, but omitting |vifm-trash|
-    directory (even when |vifm-'trash'| option is set).
+[count]DD and D[count]<selector>               *vifm-D* *vifm-DD*
+    like dd and d<selector>, but always omits |vifm-trash| directory (even
+    when |vifm-'trash'| option is set).  Affected by |vifm-cpo-s|.
 
-yy or Y                                        *vifm-yy* *vifm-Y*
-    yank selected files.
-y<selector>                                    *vifm-y*
+[count]yy or [count]Y                          *vifm-yy* *vifm-Y*
+    yank files.
+
+    When |vifm-cpo-s| is present in |vifm-'cpoptions'|, operates on selected
+    files or, in the absence of selection, the current one.  When the flag
+    isn't set, always operates on the current file only.
+y[count]<selector>                             *vifm-y*
     yank files specified by motion/selector.
 
 p                                              *vifm-p*
@@ -615,14 +626,20 @@ u - undo last change.                          *vifm-u*
 Ctrl-R - redo last change.                     *vifm-CTRL-R*
 
 dp                                             *vifm-dp*
-    in compare view of "ofboth grouppaths" kind, makes corresponding entry
-    of the other pane equal to the current one.  The semantics is as follows:
-     - nothing done for identical entries
+    in compare view of "ofboth grouppaths" kind makes corresponding entries
+    of the other pane equal to the current one.  If at least one file is
+    selected, the command processes selection, otherwise current file.
+
+    The semantics is as follows:
+     - nothing is done for identical entries
      - if file is missing in current view, its pair gets removed
      - if file is missing or differs in other view, it is replaced
+     - file pairs are defined by matching relative paths
+
     File removal obeys |vifm-'trash'| option.  When the option is enabled, the
     operation can be undone/redone (although results won't be visible
     automatically).
+
     Unlike in Vim, this operation is performed on a single line rather than
     a set of adjacent changes.
 do                                             *vifm-do*
@@ -968,12 +985,15 @@ Ctrl-M, Enter                                  *vifm-c_CTRL-M* *vifm-c_Enter*
     execute command and leave command line mode.
 
 Ctrl-I, Tab                                    *vifm-c_CTRL-I* *vifm-c_Tab*
-    complete command or its argument.
+    complete command or its argument on editing of a :command, complete file
+    names in file name prompts, move cursor onto the next search match in
+    file search prompt (including in navigation) when |vifm-'incsearch'| is set.
 Shift-Tab                                      *vifm-c_SHIFT-Tab*
-    complete in reverse order.
+    complete in reverse order or move cursor onto the previous file search
+    match.
 
 Ctrl-_                                         *vifm-c_CTRL-_*
-    stop completion and return original input.
+    stop completion and restore original input.
 
 Ctrl-B, Left  - move cursor to the left.       *vifm-c_CTRL-B* *vifm-c_Left*
 Ctrl-F, Right - move cursor to the right.      *vifm-c_CTRL-F* *vifm-c_Right*
@@ -1058,9 +1078,13 @@ Ctrl-Y                                         *vifm-a_CTRL-Y*
 
 Enter, Right                                   *vifm-a_Enter* *vifm-a_Right*
     either enter a directory under the cursor without leaving the mode and
-    clear the prompt or leave the mode and open a file under the cursor.
+    clear the prompt or leave the mode for files.  If |vifm-'navoptions'|
+    specifies "open:all" a file under the cursor is opened after leaving the
+    mode.
 Ctrl-O, Left                                   *vifm-a_CTRL-O* *vifm-a_Left*
     go to parent directory.
+Ctrl-J                                         *vifm-a_CTRL-J*
+    leave the mode without undoing cursor position or filter state.
 
 Ctrl-N, Down                                   *vifm-a_CTRL-N* *vifm-a_Down*
     move view cursor down.
@@ -1399,6 +1423,11 @@ The builtin commands are:
     rhs can contain spaces and any special sequences accepted in rhs of
     mappings (see |vifm-mappings|).  Abbreviations are expanded non-recursively.
 
+                                               *vifm-:chistory* *vifm-:chi*
+:chi[story]
+    display menu of saved menus.  See |vifm-menus-and-dialogs| for controls,
+    also see |vifm-menus-history|.
+
                                                *vifm-:cnoreabbrev*
                                                *vifm-:cnorea*
 :cnorea[bbrev]
@@ -1571,7 +1600,7 @@ The builtin commands are:
 
 :cope[n]                                       *vifm-:copen* *vifm-:cope*
     reopens the last visible menu that has navigation to files by default, if
-    any.
+    any.  See |vifm-menus-history|.
 
                                                *vifm-:copy* *vifm-:co*
 :[range]co[py][!?][ &]
@@ -1877,27 +1906,19 @@ The builtin commands are:
     filename-specific rules.
 :hi[ghlight] clear ( {pat1,pat2,...} | /regexp/ )
     remove specified rule.
-:hi[ghlight] group-name | {pat1,pat2,...} | /regexp/
+:hi[ghlight] group-name | column:name | {pat1,pat2,...} | /regexp/
     display information on given highlight group or file name pattern of color
     scheme used in the active view.
-:hi[ghlight] ( group-name | {pat1,pat2,...} | /regexp/[iI] )
+:hi[ghlight] ( group-name | column:name | {pat1,pat2,...} | /regexp/[iI] )
              cterm=style | ctermfg=color | ctermbg=color |
              gui=style | guifg=color | guibg=color
     set style (cterm, gui), foreground (ctermfg, guifg) and/or
     background (ctermbg, guibg) parameters of highlight group or file name
     pattern for color scheme used in the active view.
 
-All style values as well as color names are case insensitive.
-
-Available style values (some of them can be combined):
- - bold
- - underline
- - reverse or inverse
- - standout
- - italic (on unsupported systems becomes reverse)
- - combine - add attributes of current group to attributes of the parent in
-             group hierarchy (see below) instead of replacing them
- - none
+Group names, style values and color names are case insensitive.  Note that this
+doesn't include column names as that would make builtin and custom columns
+indistinguishable.
 
 Available group-name values:
  - Win - color of all windows (views, dialogs, menus) and default color for
@@ -1932,7 +1953,25 @@ Available group-name values:
  - CmpMismatch - color of mismatched files in side-by-side comparison by paths
  - CmpUnmatched - comparison file entry that has no pair in the other pane
  - CmpBlank - entry placeholder in a compare view, paired with CmpUnmatched
- - User1..User9 - 9 colors which can be used via %* |vifm-'statusline'| macro
+ - User1..User20 - 20 colors which can be used via %* |vifm-'statusline'|
+   macro
+
+Column names match names of columns of |vifm-'viewcolumns'| option, which in
+turn are based on values of |vifm-'sort'| and custom columns added from Lua.
+Regardless of the source, columns are specified as "column:{name}", for
+example: >
+
+  highlight column:fileext ctermbg=red
+
+Available style values (some of them can be combined):
+ - bold
+ - underline
+ - reverse or inverse
+ - standout
+ - italic (on unsupported systems becomes reverse)
+ - combine - add attributes of current group to attributes of the parent in
+             group hierarchy (see below) instead of replacing them
+ - none
 
 Available colors:
  - -1 or default or none - transparent
@@ -2078,7 +2117,7 @@ transparency:
   SuggestBox
   StatusLine
     WildMenu
-    User1..User9
+    User1..User20
   Border
   CmdLine
     ErrorMsg
@@ -2086,30 +2125,31 @@ transparency:
     OtherWin
       AuxWin
         OddLine
-          File name specific highlights
-            Directory
-            Link
-            BrokenLink
-            HardLink
-            Socket
-            Device
-            Fifo
-            Executable
-              CmpMismatch
-              CmpUnmatched
-              CmpBlank
-                Selected
-                  CurrLine
-                    LineNr (in active pane)
-                  OtherLine
-                    LineNr (in inactive pane)
+          Column highlights
+            File name specific highlights
+              Directory
+              Link
+              BrokenLink
+              HardLink
+              Socket
+              Device
+              Fifo
+              Executable
+                CmpMismatch
+                CmpUnmatched
+                CmpBlank
+                  Selected
+                    CurrLine
+                      LineNr (in active pane)
+                    OtherLine
+                      LineNr (in inactive pane)
   TopLine
     TopLineSel
       TabLineSel (for pane tabs)
-        User1..User9
+        User1..User20
   TabLine
     TabLineSel
-      User1..User9
+      User1..User20
 
 "none" means default terminal color for highlight groups at the first level
 of the hierarchy and transparency for all others.
@@ -2140,7 +2180,8 @@ important in certain cases.
       b[search] or ?  show search history and search backward on l key.
       i[nput]   or @  show prompt history (e.g. on one file renaming).
       fi[lter]  or =  show local filter history (see |vifm-=|).
-      e[xprreg]       show expression register history (see |vifm-c_Ctrl-R_=|).
+      e[xprreg]       show expression register history (see |vifm-c_CTRL-R_=|).
+      mc[md]          show command-line history of menus.
     See |vifm-menus-and-dialogs| for controls.
 
 :histprev                                      *vifm-:histprev*
@@ -2320,6 +2361,14 @@ order using the '.' operator.  Any whitespace is ignored.
 
 :redr[aw]                                      *vifm-:redraw* *vifm-:redr*
     redraw the screen immediately.
+
+                                               *vifm-:regedit* *vifm-:rege*
+:rege[dit] [{reg}]
+    edit register contents using external editor (see |vifm-'vicmd'|).
+    If {reg} is omitted, unnamed register will be edited by default.
+    Edited paths are normalized (no extra `.`, `..`, `/`, etc.) and all
+    relative paths are treated as starting in the directory of the current
+    view.
 
                                                *vifm-:registers* *vifm-:reg*
 :reg[isters]
@@ -2660,7 +2709,7 @@ yet supported) and might be changed in future releases, or get an alias.
 :vie[w]!
     turn on quick file view if it's off.
 
-                                               *vifm-:volume*
+                                               *vifm-:volumes*
 :volumes                                       {only for MS-Windows}
     display menu with volume list.  Hitting l (or Enter) key opens
     appropriate volume in the current pane.  See |vifm-menus-and-dialogs| for
@@ -2911,12 +2960,15 @@ The command macros may be used in user commands.
                                                                *vifm-%n*
   %n        forbid use of terminal multiplexer to run the command.
                                                                *vifm-%N*
-  %N        do not detach viewer from terminal session (leaves `/dev/tty`
-            available).
+  %N        do not detach viewer from terminal session (keeps `/dev/tty`
+            available) or process group (keeps the command in the set of
+            foreground clients of the terminal).  This flag is a workaround
+            for rare commands/terminals which might need a working TTY for
+            |vifm-:fileviewer| command to operate correctly and has no effect
+            otherwise.
                                                                *vifm-%i*
-  %i        completely ignore command output.  For background jobs this
-            suppresses error dialogs, while still storing errors
-            internally for viewing via |vifm-:jobs| menu.
+  %i        run in background and suppress error dialogs, but collect
+            errors internally for viewing via |vifm-:jobs| menu.
 
                                                                *vifm-%Pl*
   %Pl       pipe list of files to standard input of a command.
@@ -2952,10 +3004,10 @@ The command macros may be used in user commands.
 Use %% if you need to put a percent sign in your command.
 
 Note that %i, %Iu, %IU, %m, %M, %n, %q, %s, %S, %u, %U and %v macros are
-mutually exclusive.  Only the last one of them on the command will take
+mutually exclusive.  Only the last one of them in the command will take
 effect.
 
-Note that %Pl and %Pz are mutually exclusive.  Only the last one of them on
+Note that %Pl and %Pz are mutually exclusive.  Only the last one of them in
 the command will take effect.
 
                                                      *vifm-filename-modifiers*
@@ -3122,7 +3174,9 @@ handle it:
 
 |vifm-:highlight|, |vifm-:filetype|, |vifm-:filextype|, |vifm-:fileviewer|
 commands and |vifm-'classify'| option support globs, regular expressions and
-mime types to match file names or their paths.
+mime types to match file names or their paths.  Directory paths get an
+implicit trailing slash on matching against a pattern, keep that in mind for
+globs or regular expressions that end with `$`.
 
 There are six possible ways to write a single pattern:
  1. [!]{comma-separated-name-globs}
@@ -3236,7 +3290,7 @@ makes vifm call `highlight` program to colorize source and header files in C
 language for a 256-color terminal.  Equal command would be >
  :fileviewer *.c,*.h highlight -O xterm256 -s dante --syntax c %c
 
-Inside square brackets `^` or `!` can be used for symbol class negotiation and
+Inside square brackets `^` or `!` can be used for symbol class negation and
 the `-` symbol to set a range.  `^` and `!` should appear right after the opening
 square bracket.  For example >
  :filetype *.[!d]/ inspect_dir
@@ -3351,8 +3405,9 @@ classify
 type: string list
 default: ":dir:/"
 
-Specifies file name prefixes and suffixes depending on file type or name.
-The format is either of:
+Specifies file name prefixes and suffixes depending on file type or name (mind
+that directory names have an implicit trailing slash).  The format is either
+of:
   - [{prefix}]:{filetype}:[{suffix}]
   - [{prefix}]::{pattern}::[{suffix}]
 Possible {pattern} forms are described in |vifm-patterns|.
@@ -3400,8 +3455,9 @@ f - when included, running |vifm-:filter| command results in not inverted
     are left) filter, when omitted, meaning of the exclamation mark changes to
     the opposite;
                                                *vifm-cpo-s*
-s - when included, |vifm-yy|, |vifm-dd| and |vifm-DD| normal mode commands act on
-    selection, otherwise they operate on current file only;
+s - when included, |vifm-yy|, |vifm-Y|, |vifm-dd| and |vifm-DD| normal mode commands act
+    on selection if there is any, otherwise they operate on the current file;
+    when omitted, those commands always operate on the current file;
                                                *vifm-cpo-t*
 t - when included, <tab> (thus <c-i>) behave as <space> and switch active
     pane, otherwise <c-i> goes forward in the view history.  It's possible to
@@ -3479,15 +3535,16 @@ default: ""
 Sets characters used to fill borders.
 
     item          default         used for ~
-    vborder:c     ' '             left, middle and right vertical borders
     hborder:c     ''              middle horizontal border
+    millersep:c   ''              separator of miller columns
+    vborder:c     ' '             left, middle and right vertical borders
 
-A null string for vborder is equivalent to a space.
+An empty string for millersep or vborder is equivalent to a space.
 
-A null string for hborder omits the horizontal border.
+An empty string for hborder omits the horizontal border.
 
 Example: >
-    set fillchars=vborder:".",hborder:""
+    set fillchars=vborder:".",hborder:"",millersep:"|"
 <
                                                *vifm-'findprg'*
 findprg
@@ -3626,6 +3683,21 @@ type: integer
 default: 15
 
 Maximum number of stored items in all histories.
+
+                                               *vifm-'hloptions'*
+type: string list
+default: "filehi:onerow"
+
+Configures behaviour of highlighting.
+
+    item        default~
+    filehi:str  onerow
+
+The "filehi" item specifies which columns of the view get colored according to
+file type and its name:
+ - path    - highlight columns that display file path, name, root or extension
+ - onerow  - same as "path" and also highlight all columns of the current line
+ - allrows - highlight all columns of each row
 
                                                *vifm-'hlsearch'* *vifm-'hls'*
 hlsearch hls
@@ -3777,8 +3849,8 @@ Configures miller view.
 column, but central (main) column can't be disabled.
 
 rpreview specifies what file-system objects should be previewed in the right
-column and can take two values: dirs (only directories) or all.  Both options
-don't include parent directory ("..").
+column and takes three values: dirs (only directories), files (only files) or
+all.  Neither value enables preview of parent directory ("..").
 
 Example of two-column mode which is useful in combination with
 |vifm-:view| command: >
@@ -3811,10 +3883,24 @@ default: ""
 
 Contains a sequence of single-character flags:
  - a - all supported modes (a shorthand for all the rest and future additions)
- - c - command-line mode
+ - c - command-line mode (includes navigation mode)
  - m - menu mode
  - n - normal mode
+ - q - view mode
  - v - visual mode
+
+                                               *vifm-'navoptions'*
+navoptions
+type: string list
+default: "open:dirs"
+
+Configures behaviour of navigation mode.
+
+    item      default~
+    open:str  dirs
+
+The "open" item specifies what file-system objects should be opened on
+|vifm-a_Enter| and can take two values: dirs (only directories) or all.
 
                                                *vifm-'number'* *vifm-'nu'*
 number nu
@@ -3936,7 +4022,7 @@ type: boolean
 default: false
 
 Run executable file on Enter, l or Right Arrow key.  Behaviour of the last two
-depends on the value of the 'lsview' option.
+depends on the value of the |vifm-'lsview'| option.
 
                                                *vifm-'scrollbind'* *vifm-'scb'*
 scrollbind scb
@@ -4199,9 +4285,9 @@ are supported:
     %c - size of current FS
     %z - short tips/tricks/hints that chosen randomly after one minute period
     `%{<expr>}` - evaluate arbitrary vifm expression `<expr>`, e.g. `&sort`
-    %* - resets or applies one of User1..User9 highlight groups; reset happens
-         when width field is 0 or not specified, one of groups gets picked
-         when width field is in the range from 1 to 9
+    %* - resets or applies one of User1..User20 highlight groups; reset happens
+         when width field is 0 or not specified, one of the groups gets picked
+         when width field is in the range from 1 to 20
     all |vifm-'rulerformat'| macros
 Percent sign can be followed by optional minimum field width.  Add '-' before
 minimum field width if you want field to be right aligned.
@@ -4272,30 +4358,31 @@ tablabel
 type: string
 default: ""
 
-When non-empty, determines format of the main part of a single tab's label.
+When non-empty and |vifm-'tabline'| isn't set, determines format of the main
+part of a single tab's label.
 
 When empty, tab label is set to either tab name for named tabs or to view
 title (usually current path) for unnamed tabs.
 
 The following macros can appear in the format (see below for what a flag is):
-    %C      - flag of a current tab
-    %N      - number of the tab
-    %T      - flag of a tree mode
-    %c      - description of a custom view
-    %n      - name of the tab
-    %p      - path of the view (handles |vifm-filename-modifiers|)
-    %t      - title of the view (affected by |vifm-'shortmess'| flags)
-    %%      - literal percent sign
-    %[      - designates beginning of an optional block
-    %]      - designates end of an optional block
-    %*, %0* - resets highlighting
-    %1-%9   - applies one of User1..User9 highlight groups
+    %C         - flag of a current tab
+    %N         - number of the tab
+    %T         - flag of a tree mode
+    %c         - description of a custom view
+    %n         - name of the tab
+    %p         - path of the view (handles |vifm-filename-modifiers|)
+    %t         - title of the view (affected by |vifm-'shortmess'| flags)
+    %%         - literal percent sign
+    %[         - designates beginning of an optional block
+    %]         - designates end of an optional block
+    %*, %0*    - resets highlighting
+    %1* - %20* - applies one of User1..User20 highlight groups
 
 In global tabs the view in bullets above refers to currently active view of that
 tab.
 
 Flag macros are a special kind of macros that always expand to an empty value
-and are ment to be used inside optional blocks to control their visibility.
+and are meant to be used inside optional blocks to control their visibility.
 
 Optional blocks are ignored unless at least one macro inside of them is
 expanded to a non-empty value or is a set flag macro.
@@ -4310,6 +4397,18 @@ Example: >
  " %p:t            -- tail part of view's location
  set tablabel=%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p:t
 <
+                                               *vifm-'tabline'* *vifm-'tal'*
+tabline tal
+type: string
+default: ""
+
+When non-empty, determines format of the tab line.  Note that mouse clicks
+won't be handled when this option is non-empty.
+
+The following macros can appear in the format:
+    %*, %0*    - resets highlighting
+    %1* - %20* - applies one of User1..User20 highlight groups
+
                                                *vifm-'tabprefix'*
 tabprefix
 type: string
@@ -4506,26 +4605,29 @@ default: bookmarks,bmarks
 Controls what will be saved in the $VIFM/vifminfo file:
 
    bmarks    - named bookmarks (see |vifm-:bmark|)
-   bookmarks - marks, except special ones like '< and '>
-   tui       - state of the user interface (sorting, number of windows, quick
-               view state, active view)
-   dhistory  - directory history
+   bookmarks - marks, except for special ones like '< and '>
+   cs        - primary color scheme
+   dirstack  - directory stack (overwrites previous stack, unless stack of
+               current instance is empty)
+   registers - registers content
+   savedirs  - last visited directory
    state     - file name and dot filters and terminal multiplexers integration
                state
-   cs        - primary color scheme
-   savedirs  - save last visited directory
-   chistory  - command line history
-   ehistory  - expression register history (see |vifm-c_Ctrl-R_=|)
-   shistory  - search history (/ and ? commands)
-   phistory  - prompt history
-   fhistory  - history of local filter (see |vifm-=|)
-   dirstack  - directory stack overwrites previous stack, unless stack of
-               current instance is empty
-   registers - registers content
    tabs      - global or pane tabs
-   options   - all options that can be set with the :set command (obsolete)
-   filetypes - associated programs and viewers (obsolete)
+   tui       - state of the user interface (sorting, number of windows, quick
+               view state, active view)
+
+   chistory  - command line history
+   dhistory  - directory history
+   ehistory  - expression register history (see |vifm-c_CTRL-R_=|)
+   fhistory  - history of local filter (see |vifm-=|)
+   mchistory - command line history of menus
+   phistory  - prompt history
+   shistory  - search history (/ and ? commands)
+
    commands  - user defined commands (see :command description) (obsolete)
+   filetypes - associated programs and viewers (obsolete)
+   options   - all options that can be set with the :set command (obsolete)
 
                                                *vifm-'vimhelp'*
 vimhelp
@@ -4677,13 +4779,17 @@ sequences that can be used in place of them.  They are:
 <s-m-a>,<s-m-b>,...,<s-m-z>                    {only for *nix}
     Alt + Shift + some key.
 <f0> - <f63>
-    functional keys.
-<c-f1>,...,<c-f12>                             {only for MS-Windows}
+    functional keys.  These also correspond to keys like <c-f1> and can be
+    used in their place.
+<c-f1>,...,<c-f12>
     functional keys with Control key pressed.
-<a-f1>,...,<a-f12>                             {only for MS-Windows}
+<a-f1>,...,<a-f12>, <m-f1>,...,<m-f12>
     functional keys with Alt key pressed.
-<s-f1>,...,<s-f12>                             {only for MS-Windows}
+<s-f1>,...,<s-f12>
     functional keys with Shift key pressed.
+
+Note that whether and how functional keys work might depend on the terminal
+and corresponding terminfo record.
 
 Note that due to the way terminals process their input, several keyboard keys
 might be mapped to single key code, for example:
@@ -4977,6 +5083,8 @@ expand({expr})        String      Expands special keywords in {expr}.
 extcached({cache}, {path}, {extcmd})
                       String      Caches output of {extcmd} per {cache} and
                                   {path} combination.
+filereadable({path})  Integer     Checks whether {expr} points to a
+                                  non-directory that can be read.
 filetype({fnum} [, {resolve}])
                       String      Returns file type from position.
 fnameescape({expr})   String      Escapes {expr} for use in a :command.
@@ -5016,7 +5124,6 @@ Example: >
           fileview * defviewer %c
       endif
   endif
-<
 
 expand({expr})                                 *vifm-expand()*
 
@@ -5047,6 +5154,12 @@ Example: >
   set statusline+=" Uses: %{ extcached('uses',
                                      \ expand('%c'),
                                      \ expand('stat --format=%%bx%%B %c')) }"
+
+filereadable({path})                           *vifm-filereadable()*
+
+Checks whether {path} exists and refers to a non-directory entry and its
+permissions allow reading.  Returns boolean value describing result of the
+check.
 
 filetype({fnum} [, {resolve}])                 *vifm-filetype()*
 
@@ -5088,6 +5201,7 @@ Retrieves string describing type of current pane.  Possible return values:
     custom       custom file list (%u)
     very-custom  very custom file list (%U)
     tree         tree view
+    compare      compare view
 
 
 has({property})                                *vifm-has()*
@@ -5191,47 +5305,74 @@ Usage example: >
 --------------------------------------------------------------------------------
 *vifm-menus-and-dialogs*
 
-When navigating to some path from a menu there is a difference in end location
-depending on whether path has trailing slash or not.  Files normally don't
-have trailing slashes so "file/" won't work and one can only navigate to
-a file anyway.  On the other hand with directories there are two options:
-navigate to a directory or inside of it.  To allow both use cases, the first
-one is used on paths like "dir" and the second one for "dir/".
+When navigating to some path from a menu there is a difference in the end
+location depending on whether the path has a trailing slash.  Files normally
+don't have trailing slashes so "file/" won't work.  In case of directories
+there are two options: navigate to a directory or inside of it.  To allow both
+use cases, the first action is taken for "dir" and the second one for "dir/".
 
-Commands~
+Menu commands~
 
 :range                                         *vifm-m_:range*
     navigate to a menu line.
 
+                                               *vifm-m_:chistory* *vifm-:m_chi*
+:chi[story]
+    display menu of saved menus.  See |vifm-menus-and-dialogs| for controls,
+    also see |vifm-menus-history|.
+:col[der]                                      *vifm-m_:colder* *vifm-m_:col*
+    load an older navigation menu if there is one.
+    See |vifm-menus-history|.
+:cnew[er]                                      *vifm-m_:cnewer* *vifm-m_:cnew*
+    load a newer navigation menu if there is one.
+    See |vifm-menus-history|.
+
+                                               *vifm-m_:find* *vifm-m_:fin*
+:fin[d] pattern
+:fin[d] -opt...
+:fin[d] path -opt...
+:fin[d]
+    the behaviour matches that of non-menu |vifm-:find| except that no range is
+    accepted.  If active view contained selection before entering menu mode,
+    the command takes it into account.
+                                               *vifm-m_:grep* *vifm-m_:gr*
+:gr[ep][!] pattern
+:gr[ep][!] -opt...
+:gr[ep][!]
+    the behaviour matches that of non-menu |vifm-:grep| except that no range is
+    accepted.  If active view contained selection before entering menu mode,
+    the command takes it into account.
+
 :exi[t][!]                                     *vifm-m_:exit* *vifm-m_:exi*
 :q[uit][!]                                     *vifm-m_:quit* *vifm-m_:q*
 :x[it][!]                                      *vifm-m_:xit*  *vifm-m_:x*
-    leave menu mode.
+    leave the menu mode.
 
 :noh[lsearch]                                  *vifm-m_:nohlsearch*
                                                *vifm-m_:noh*
     reset search match highlighting.
 
-:w[rite] {dest}                                *vifm-m_:write* *vifm-m_:w*
-    write all menu lines into file specified by {dest}.
+:w[rite] {path}                                *vifm-m_:write* *vifm-m_:w*
+    write all menu lines into the file specified by {path}.
 
-General~
+Common keys of all menus and dialogs~
 
-j, Ctrl-N - move down.                         *vifm-m_j* *vifm-m_CTRL-N*
-k, Ctrl-P - move up.                           *vifm-m_k* *vifm-m_CTRL-P*
+j, Ctrl-N                                      *vifm-m_j* *vifm-m_CTRL-N*
+    move the cursor down.
+k, Ctrl-P                                      *vifm-m_k* *vifm-m_CTRL-P*
+    move the cursor up.
 
-Enter, l - select and exit the menu.           *vifm-m_Enter* *vifm-m_l*
-
-Ctrl-L - redraw the menu.                      *vifm-m_CTRL-L*
+Enter                                          *vifm-m_Enter*
+    select and usually close menu/dialog.
+Ctrl-L                                         *vifm-m_CTRL-L*
+    redraw menu/dialog.
 
 Escape, Ctrl-C                                 *vifm-m_Escape* *vifm-m_CTRL-C*
-ZZ, ZQ                                         *vifm-m_ZQ* *vifm-m_ZZ*
+ZZ, ZQ                                         *vifm-m_ZZ* *vifm-m_ZQ*
 q                                              *vifm-m_q*
-    quit.
+    close menu/dialog.
 
-In all menus~
-
-The following set of keys has the same meaning as in normal mode.
+Common keys of all menus~
 
 Ctrl-B, Ctrl-F                                 *vifm-m_CTRL-B* *vifm-m_CTRL-F*
 Ctrl-D, Ctrl-U                                 *vifm-m_CTRL-D* *vifm-m_CTRL-U*
@@ -5240,9 +5381,9 @@ Ctrl-E, Ctrl-Y                                 *vifm-m_CTRL-E* *vifm-m_CTRL-Y*
 n, N                                           *vifm-m_n* *vifm-m_N*
 [count]G, [count]gg                            *vifm-m_G* *vifm-m_gg*
 H, M, L                                        *vifm-m_H* *vifm-m_M* *vifm-m_L*
-
-zb, zt                                         *vifm-m_zb* *vifm-m_zt*
-zz                                             *vifm-m_zz*
+zb, zt, zz                                     *vifm-m_zb* *vifm-m_zt*
+                                               *vifm-m_zz*
+    these keys have the same meaning as in normal mode.
 
 zh                                             *vifm-m_zh*
     scroll menu items [count] characters to the right.
@@ -5250,205 +5391,333 @@ zl                                             *vifm-m_zl*
     scroll menu items [count] characters to the left.
 
 zH                                             *vifm-m_zH*
-    scroll menu items half of screen width characters to the right.
+    scroll menu items half the screen width to the right.
 zL                                             *vifm-m_zL*
-    scroll menu items half of screen width characters to the left.
+    scroll menu items half the screen width to the left.
 
 
-:                                              *vifm-m_:*
-    enter command line mode for menus (currently only :exi[t], :q[uit], :x[it]
-    and :{range} are supported).
+:   enter command line mode for menus.         *vifm-m_:*
 
 
 b                                              *vifm-m_b*
-    interpret content of the menu as list of paths and use it to create
-    custom view in place of previously active pane.  See |vifm-custom-views|.
+    interpret content of the menu as a list of paths and use it to create
+    custom view in place of the previously active pane.  See
+    |vifm-custom-views|.
 B                                              *vifm-m_B*
-    same as above, but creates unsorted view.
+    same as above, but create an unsorted view.
 
 
 v                                              *vifm-m_v*
-    load menu content into quickfix list of the editor (Vim compatible by
-    assumption) or if list doesn't have separators after file names (colons)
-    open each line as a file name.
+    load menu content into quickfix list of an editor (Vim compatible by
+    assumption) or, if the list doesn't have separators after file
+    names (colons), open each line as a file name.
 
+Navigation menus~
 
-Below is description of additional commands and reaction on selection in some
-menus and dialogs.
-
-Apropos menu~
-
-Selecting menu item runs man on a given topic.  Menu won't be closed
-automatically to allow view several pages one by one.
-
-Command-line mode abbreviations menu~
-
-Type dd on an abbreviation to remove it.
-
-Color scheme menu~
-
-Selecting name of a color scheme applies it the same way as if ":colorscheme
-<name>" was executed on the command-line.
-
-Commands menu~
-
-Selecting command executes it with empty arguments (|vifm-%a|).
-
-Type dd on a command to remove.
-
-c leaves menu preserving file selection and inserts right-hand side of
-selected command into command-line.
-
-Marks menu~
-
-Selecting a mark navigates to it.
-
-Type dd on a mark to remove it.
-
-Bookmarks menu~
-
-Selecting a bookmark navigates to it.
-
-Type dd on a bookmark to remove it.
-
-|vifm-m_gf| and |vifm-m_e| also work to make it more convenient to bookmark
-files.
-
-Trash (:lstrash) menu~
-
-r on a file name to restore it from trash.
-
-dd deletes file under the cursor.
-
-Trashes (:trashes) menu~
-
-dd empties selected trash in background.
-
-Directory history and Trashes menus~
-
-Selecting directory name will change directory of the current view as if
-|vifm-:cd| command was used.
-
-Directory stack menu~
-
-Selecting directory name will rotate stack to put selected directory pair at
-the top of the stack.
-
-File (:file) menu~
-
-Commands from vifmrc or typed in command-line are displayed above empty line.
-All commands below empty line are from .desktop files.
-
-c leaves menu preserving file selection and inserts command after :! in
-command-line mode.
-
-Grep, find, locate, bookmarks and user menu with navigation (%M macro)~
+This applies to the following menus:
+ - |vifm-:bmarks|, |vifm-:bmgo|
+ - |vifm-:find|
+ - |vifm-:grep|
+ - |vifm-:locate|
+ - user menu with navigation (|vifm-%M|)
 
 gf                                             *vifm-m_gf*
     navigate previously active view to currently selected item.  Leaves menu
-    mode except for grep menu.  Pressing Enter key has the same effect.
+    mode except for |vifm-:grep| menu.  Pressing Enter or l has the same
+    effect.
 
 e                                              *vifm-m_e*
-    open selected path in the editor, stays in menu mode.
+    open selected path in an editor, stays in menu mode.
 
 c                                              *vifm-m_c*
     leave menu preserving file selection and insert file name after :! in
-    command-line mode.
+    command-line mode.  Does nothing in |vifm-:bmarks| and |vifm-:bmgo|.
 
-User menu without navigation (%m macro)~
+Note that each of these menus can have additional keys, see below.
 
-c leaves menu preserving file selection and inserts whole line after :! in
-command-line mode.
-
-Grep menu~
-
-Selecting file (via Enter or l key) opens it in editor set by |vifm-'vicmd'|
-at given line number.  Menu won't be closed automatically to allow viewing
-more than one result.
-
-See above for "gf" and "e" keys description.
+History menus (:history *)~
+==========================
 
 Command-line history menu~
 
-Selecting an item executes it as command-line command, search query or local
-filter.
+Enter, l
+    execute the item as a command-line command, search query or local filter.
+c
+    leave the menu preserving file selection and insert the item into
+    the command-line of appropriate kind.
 
-c leaves menu preserving file selection and inserts line into command-line of
-appropriate kind.
+Directory history menu~
 
-Volumes menu~
+Enter, l
+    navigate into the selected directory.
 
-Selecting a drive navigates previously active pane to the root of that drive.
+Menu commands history menu~
 
-Fileinfo dialog~
+Enter, l
+    execute command without leaving the menu.
+c
+    insert menu item into the command-line for editing.
 
-Enter, q - close dialog
+Other menus~
+===========
 
-Sort dialog ~
+Apropos (:apropos) menu~
 
-h, Space - switch ascending/descending.
-q - close dialog
+Enter, l
+    run man on a given topic.  Menu won't be closed automatically to allow
+    viewing several pages one by one.
 
-One shortcut per sorting key (see the dialog).
+Bookmarks (:bmarks, :bmgo) menu~
+
+Enter, l
+    navigate to the selected bookmark.
+dd
+    remove bookmark under the cursor.
+
+See above for "gf" and "e" keys.
+
+Command-line mode abbreviations (:cabbrev) menu~
+
+dd
+    remove abbreviation under the cursor.
+
+Color scheme (:colorscheme) menu~
+
+Enter, l
+    apply selected colorscheme as if ":colorscheme <name>" was executed on the
+    command-line.
+
+Commands (:command) menu~
+
+Enter, l
+    execute the command with empty arguments (|vifm-%a|).
+dd
+    remove command under the cursor.
+c
+    leave menu preserving file selection and insert right-hand side of selected
+    command into the command-line.
+
+Directory stack (:dirs) menu~
+
+Enter, l
+    rotate the stack to put selected directory pair at the top.
+
+File (:file) menu~
+
+Commands from vifmrc or typed on the command-line are displayed above an empty
+line if it's present.  All commands below the empty line come from .desktop
+files.
+
+Commands detected as available have "[present]" to the left of them.
+
+Enter, l
+    run selected command (regardless whether it was detected to be present or
+    not).
+c
+    leave menu preserving file selection and insert command after :! in the
+    command-line mode.
+
+Grep (:grep) menu~
+
+Enter, l
+    open file in an editor set by |vifm-'vicmd'| at given line number.  Menu
+    won't be closed automatically to allow viewing more than one result.
+
+See above for "gf", "e" and "c" keys.
+
+Jobs (:jobs) menu~
+
+dd
+    request cancellation of job under the cursor.  The job won't be removed
+    from the list, but marked as being cancelled (if cancellation was
+    successfully requested).  A message will pop up if the job has already
+    stopped.  Note that on Windows cancelling external programs like this might
+    not work, because their parent shell doesn't have any windows.
+e
+    display errors of selected job if any were collected.  They are
+    displayed in a new menu, but you can return to jobs menu by pressing h.
+r
+    reload the list of jobs.
+
+Marks (:marks) menu~
+
+Enter, l
+    navigate to selected mark.
+dd
+    remove mark under the cursor.
+
+Media (:media) menu~
+
+Enter, l
+    behaviour is different for different kinds of lines:
+     - mount an unmounted device
+     - navigate to the first mount point of a mounted device
+     - navigate to a mount point
+     - do nothing for "not mounted" or an empty line
+
+r
+    reload the list.
+m
+    mount/unmount device (cursor should be positioned on lines under device
+    information).
+[
+    put cursor on the previous device.
+]
+    put cursor on the next device.
+
+Menus history (:chistory) menu~
+
+Enter, l
+    load selected menu.
+
+Plugins (:plugins) menu~
+
+e
+    display log messages of selected plugin if any were collected.  They are
+    displayed in a new menu, but you can return to plugins menu by pressing h.
+gf
+    navigate previously active view to the location of selected plugin.
+    Leaves menu mode.
+
+Trash (:lstrash) menu~
+
+r
+    restore a file from the trash to its original location.
+dd
+    delete file under the cursor.
+
+Trashes (:trashes) menu~
+
+Enter, l
+    navigate into current trash directory.
+dd
+    start emptying selected trash in background.
+
+Undolist (:undolist) menu~
+
+r
+    reset undo position to group under the cursor.
+
+User menu without navigation (%m macro)~
+
+c
+    leave menu preserving file selection and insert whole line after :! in
+    command-line mode.
+
+Volumes (:volumes) menu~
+                                               {only for MS-Windows}
+Enter, l
+    navigate into the root of selected drive.
+
+Dialog-specific operations~
+==========================
 
 Attributes (permissions or properties) dialog~
 
-h, Space - check/uncheck.
-q - close dialog
-r - (*nix only) (un)set all read bits
-w - (*nix only) (un)set all write bits
-x - (*nix only) (un)set all execute bits
-s - (*nix only) (un)set all special (SetUID, SetGID, Sticky) bits
-e - (*nix only) (un)set recursion (for directories only)
+h, Space
+    check/uncheck.
+q
+    close the dialog.
+r
+    (*nix only) (un)set all read bits.
+w
+    (*nix only) (un)set all write bits.
+x
+    (*nix only) (un)set all execute bits.
+s
+    (*nix only) (un)set all special (SetUID, SetGID, Sticky) bits.
+e
+    (*nix only) (un)set recursion (for directories only).
 
-Item states:
-* - checked flag.
-X - means that it has different value for files in selection.
-                                               {only for *nix}
-d - (only for execute flags) means u-x+X, g-x+X or o-x+X argument for the
-    chmod program.  If you're not on OS X and want to remove execute permission
-    bit from all files, but preserve it for directories, set all execute flags
-    to 'd' and check 'Set Recursively' flag.
+Possible item states:
+ * - checked flag.
+ X - selected files have inconsistent value of this flag.
+                                                {only for *nix}
+ d - (only for execute flags) means u-x+X, g-x+X or o-x+X argument for the
+     chmod program.  If you're not on OS X and want to remove execute permission
+     bit from all files, but preserve it for directories, set all execute flags
+     to 'd' and check 'Set Recursively' flag.
 
-Jobs menu~
+Fileinfo (Ctrl-G) dialog~
 
-dd requests cancellation of job under cursor.  The job won't be removed from
-the list, but marked as being cancelled (if cancellation was successfully
-requested).  A message will pop up if the job has already stopped.
-Note that on Windows cancelling external programs like this might not work,
-because their parent shell doesn't have any windows.
+Enter, q
+    close the dialog.
 
-e key displays errors of selected job if any were collected.  They are
-displayed in a new menu, but you can get back to jobs menu by pressing h.
+Sort (:sort) dialog ~
 
-Undolist menu~
+h, Space
+    switch ascending/descending order.
+q
+    close the dialog.
 
-r - reset undo position to group under the cursor.
+There is also a shortcut per sorting key (drawn on the dialog).
 
-Media menu~
+--------------------------------------------------------------------------------
+*vifm-menus-history*
 
-Selecting a device either mounts (if it wasn't mounted yet) or navigates to
-its first mount point.
+Menus are often used to present results of operations (like finding or grepping
+files).  Once closed they can be recreated by repeating a command, but it
+might be inconvenient (require changing directory, finding the command and
+possibly finding position in a menu) and time consuming to re-run the
+operation.  To make referring to older menus possible, vifm stores up to 10
+last such menus and provides means for recalling them using familiar set of
+Vim commands.
 
-Selecting a mount point navigates to it.
+As already hinted above, this doesn't apply to every menu because things like
+|vifm-:version| or |vifm-:command| rely solely on internal data and don't
+need to be saved.  Only menus that are derived from external sources and
+support navigation (like via |vifm-m_gf|) are remembered.
 
-Selecting "not mounted" line causes mounting.
+Navigating through history~
 
-Selecting any other line does nothing.
+Re-opening the last viewed menu of relevant type is done by running
+|vifm-:copen| command.  Once opened |vifm-m_:colder| can be used to view older
+menus and |vifm-m_:cnewer| to view newer ones.
 
-r - reload the list.
-m - mount/unmount device (cursor should be positioned on lines under device
-    information).
-[ - put cursor on the previous device.
-] - put cursor on the next device.
+Closing a menu after moving through the history remembers the position such
+that running |vifm-:copen| again will open the last viewed menu and allow to
+continue exploring history in both directions.
 
-Plugins menu~
+The history always contains menus sorted from oldest to newest.  After opening
+more than 10 menus the oldest one is likely to be forgotten.  It's not
+guaranteed to happen because after viewing an older menu new entry replaces
+all more recent ones.  As an example, assume the history looks like this:
 
-e - display log messages of selected plugin if any were collected.  They are
-displayed in a new menu, but you can get back to plugins menu by pressing h.
+ 1. `:find 1`
+ 2. `:find 2`
+ ...
+ 8. `:find 8` (current element)
+ 9. `:find 9`
+10. `:find 10`
 
-gf - navigate previously active view to the location of selected plugin.
-Leaves menu mode.
+Running `:find 11` results in:
+
+ 1. `:find 1`
+ 2. `:find 2`
+ ...
+ 8. `:find 8`
+ 9. `:find 11` (current element)
+10. None
+
+For convenience, |vifm-m_:colder| and |vifm-m_:cnewer| can be used any time
+you're in a menu, not just after |vifm-:copen|.  :cnewer will work only if
+current menu can't be saved and you've moved back in menus history before.
+Behaviour of :colder is like this:
+ - if current menu can be stashed, behave as |vifm-m_:quit|, :copen, :colder
+   sequence (current menu is stashed the same way as described above)
+ - if current menu can't be stashed, behave as |vifm-m_:quit|, :copen sequence
+
+Viewing history~
+
+In order to avoid enumerating menus looking for the matching one,
+|vifm-:chistory| command can be used to get an overview of saved menus,
+maybe search for one and then open it.  The command is also available in menu
+mode (|vifm-m_:chistory|).
+
+Related topics~
+
+Commands: |vifm-:chistory|, |vifm-:copen|
+Menu commands: |vifm-m_:chistory|, |vifm-m_:colder|, |vifm-m_:cnewer|
 
 --------------------------------------------------------------------------------
 *vifm-custom-views*
@@ -5480,8 +5749,8 @@ Custom views have some differences related to navigation in regular views.
 gf - acts similar to |vifm-gf| on symbolic links and navigates to the file at
      its real location
 
-h - go to closes parent node in tree view, otherwise return to the original
-directory.
+h - go to the closest parent node in the tree view; otherwise, return to the
+    original directory.
 
 gh - return to the original directory.
 
@@ -5942,6 +6211,14 @@ Specifies type of text alignment within a column.  Two types are supported:
 
      set viewcolumns={name}
 <
+ - middle align
+
+    It's like left alignment, but when the text is bigger than the column, it
+    is cut in the middle (so the start and the end of the field are always
+    visible). >
+
+     set viewcolumns=^{name}
+<
  - dynamic align
 
     It's like left alignment, but when the text is bigger than the column,
@@ -5978,27 +6255,33 @@ Column contents~
 This is usually a sorting key surrounded with curly braces, e.g. >
     {name},{ext},{mtime}
 <
-{name} and {iname} types are the same and present both for consistency with
-|vifm-'sort'| option.
+{name} and {iname} types are the same and are both present for consistency
+with |vifm-'sort'| option.
 
-Following types don't have corresponding sorting keys:
+The following column types don't have corresponding sorting keys:
  - {root}     - display name without extension (as a complement for {ext})
  - {fileroot} - display name without extension for anything except for
                 directories and symbolic links to directories (as a
                 complement for {fileext})
 
 Empty curly braces ({}) are replaced with the default secondary column for
-primary sort key. So after the next command views will be displayed almost as
-if |vifm-'viewcolumns'| is empty, but adding ellipsis for long file names: >
+primary sort key.  So after the next command views will be displayed almost as
+if |vifm-'viewcolumns'| was empty, but adding ellipsis for long file names: >
     set viewcolumns=-{name}..,6{}.
 
 The last kind of column value is a string literal.  The literal is used as a
-column value for every row.  The syntax is `{#literal}`, for example: >
-    3{#},{#|},{# | }
+column value for every row.  The syntax is `{#literal}`, examples: >
+    " double-character pseudo-padding on both sides
+    set viewcolumns='2{#},*{name}..,{},2{#}'
+    " pseudo-border between columns
+    set viewcolumns='*{name}..,{#|},6{}'
+    " pseudo-border with padding between columns
+    set viewcolumns='*{name}..,{# | },6{}'
 This can be used to draw column separators.  Mind that for convenience
 literals have different defaults: truncation and automatically determined
-absolute size, which is what you usually want for them.  Example: >
-    set viewcolumns=*{name}..,{#|},6{}.
+absolute size, which is what you usually want for them.  Make sure to quote or
+escape spaces, vertical bars and other special symbols when using them as part
+of literals.
 
 Cropping specifier~
 
@@ -6169,7 +6452,7 @@ also erases information about previous edits.
 Note: <ScrollWheelDown> is not available on 32-bit *nix systems, because
 ncurses doesn't support it there (limitation of implementation).
 
-Note: these are not available in mappings at the momemnt.
+Note: these are not available in mappings at the moment.
 
                                                *vifm-mouse-overview*
 Normal Mode:
@@ -6186,6 +6469,9 @@ event             position  change  action        ~
 
 Clicking on or scrolling over an inactive pane (including its title), makes it
 active and does nothing else.  Tabs are scrolled when mouse hovers over them.
+
+Clicking on the left miller column goes to parent directory and clicking the
+right one opens current entry.
 
 Visual Mode:
 event             position  selection  action     ~
@@ -6222,6 +6508,15 @@ event             position  action                ~
 <RightRelease>       no
 <ScrollWheelUp>      no     <c-y>
 <ScrollWheelDown>    no     <c-e>
+
+View Mode:
+event               action                ~
+                                          ~
+<ScrollWheelUp>     k
+<ScrollWheelDown>   j
+
+Clicking on or scrolling over an inactive pane (including its title), detaches
+view mode if it wasn't activated for exploring a file.
 
 --------------------------------------------------------------------------------
 *vifm-plugin*
@@ -6270,8 +6565,5 @@ Vim plugin documentation: |vifm-plugin.txt|
 Website: https://vifm.info/
 Wiki: https://wiki.vifm.info/
 
-Esperanto translation of the documentation by Sebastian Cyprych:
-http://cyprych.neostrada.pl/tekstoj/komputiloj/vifm-help.eo.html
-
 --------------------------------------------------------------------------------
- vim:tw=78:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:ft=help:norl:
+ vim:tw=78:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:sw=4:ft=help:norl:

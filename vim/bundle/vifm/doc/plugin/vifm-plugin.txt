@@ -1,4 +1,4 @@
-*vifm-plugin.txt*    For Vifm version 0.12.1  Last change: 2022 Sep 21
+*vifm-plugin.txt*    For Vifm version 0.13  Last change: 2023 Apr 04
 
  Email for bugs and suggestions: <xaizek@posteo.net>
 
@@ -70,6 +70,9 @@ executable.
 
                                                *g:vifm_exec_args*
 A string variable that specifies arguments for vifm.  Empty by default.
+E.g. to start with a single window, instead of two windows: >
+
+ let vifm_exec_args='-c only'
 
                                                *g:vifm_term*
 A string variable that specifies command to run GUI terminal.
@@ -128,10 +131,7 @@ Repository: https://github.com/vifm/vifm.vim
 Website: https://vifm.info/
 Wiki: https://wiki.vifm.info/
 
-Esperanto translation of the documentation by Sebastian Cyprych:
-http://cyprych.neostrada.pl/tekstoj/komputiloj/vifm-help.eo.html
-
 Vifm's Vim-documentation: |vifm-app.txt|
 
 --------------------------------------------------------------------------------
- vim:tw=78:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:ft=help:norl:
+ vim:tw=78:fo=tcq2:isk=!-~,^*,^\|,^\":ts=8:sw=4:ft=help:norl:

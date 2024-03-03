@@ -1,6 +1,6 @@
 " vifm syntax file
 " Maintainer:  xaizek <xaizek@posteo.net>
-" Last Change: January 14, 2023
+" Last Change: June 2, 2023
 " Inspired By: Vim syntax file by Dr. Charles E. Campbell, Jr.
 
 if exists('b:current_syntax')
@@ -15,30 +15,31 @@ set cpo-=C
 " General commands
 syntax keyword vifmCommand contained
 		\ select switch ratings
-		\ alink apropos bmark bmarks bmgo cds change chmod chown clone compare
-		\ cope[n] co[py] cq[uit] d[elete] delbmarks delm[arks] delsession di[splay]
-		\ dirs e[dit] el[se] empty en[dif] exi[t] file fin[d] fini[sh] go[to] gr[ep]
-		\ h[elp] hideui histnext his[tory] histprev keepsel jobs locate ls lstrash
-		\ marks media mes[sages] mkdir m[ove] noh[lsearch] on[ly] plugin plugins
-		\ popd pushd pu[t] pw[d] qa[ll] q[uit] redr[aw] reg[isters] regular rename
-		\ restart restore rlink screen sh[ell] siblnext siblprev sor[t] sp[lit]
-		\ st[op] s[ubstitute] tabc[lose] tabm[ove] tabname tabnew tabn[ext]
-		\ tabo[nly] tabp[revious] touch tr trashes tree session sync undol[ist]
-		\ ve[rsion] vie[w] vifm vs[plit] winc[md] w[rite] wq wqa[ll] xa[ll] x[it]
-		\ y[ank]
+		\ alink apropos bmark bmarks bmgo cds change chi[story] chmod chown clone
+		\ compare cope[n] co[py] cq[uit] d[elete] delbmarks delm[arks] delsession
+		\ di[splay] dirs e[dit] el[se] empty en[dif] exi[t] file fin[d] fini[sh]
+		\ go[to] gr[ep] h[elp] hideui histnext his[tory] histprev keepsel jobs
+		\ locate ls lstrash marks media mes[sages] mkdir m[ove] noh[lsearch]
+		\ on[ly] plugin plugins popd pushd pu[t] pw[d] qa[ll] q[uit] redr[aw]
+		\ rege[dit] reg[isters] regular rename restart restore rlink screen sh[ell]
+		\ siblnext siblprev sor[t] sp[lit] st[op] s[ubstitute] tabc[lose] tabm[ove]
+		\ tabname tabnew tabn[ext] tabo[nly] tabp[revious] touch tr trashes tree
+		\ session sync undol[ist] ve[rsion] vie[w] vifm vs[plit] winc[md] w[rite]
+		\ wq wqa[ll] xa[ll] x[it] y[ank]
 		\ nextgroup=vifmArgs
 syntax keyword vifmCommandCN contained
 		\ select switch ratings
-		\ alink apropos bmark bmarks bmgo cds change chmod chown clone compare
-		\ cope[n] co[py] cq[uit] d[elete] delbmarks delm[arks] delsession di[splay]
-		\ dirs e[dit] el[se] empty en[dif] exi[t] file fin[d] fini[sh] go[to] gr[ep]
-		\ h[elp] hideui histnext his[tory] histprev jobs locate ls lstrash marks
-		\ media mes[sages] mkdir m[ove] noh[lsearch] on[ly] popd pushd pu[t] pw[d]
-		\ qa[ll] q[uit] redr[aw] reg[isters] regular rename restart restore rlink
-		\ screen sh[ell] siblnext siblprev sor[t] sp[lit] s[ubstitute] tabc[lose]
-		\ tabm[ove] tabname tabnew tabn[ext] tabo[nly] tabp[revious] touch tr
-		\ trashes tree session sync undol[ist] ve[rsion] vie[w] vifm vs[plit]
-		\ winc[md] w[rite] wq wqa[ll] xa[ll] x[it] y[ank]
+		\ alink apropos bmark bmarks bmgo cds change chi[story] chmod chown clone
+		\ compare cope[n] co[py] cq[uit] d[elete] delbmarks delm[arks] delsession
+		\ di[splay] dirs e[dit] el[se] empty en[dif] exi[t] file fin[d] fini[sh]
+		\ go[to] gr[ep] h[elp] hideui histnext his[tory] histprev keepsel jobs
+		\ locate ls lstrash marks media mes[sages] mkdir m[ove] noh[lsearch]
+		\ on[ly] plugin plugins popd pushd pu[t] pw[d] qa[ll] q[uit] redr[aw]
+		\ rege[dit] reg[isters] regular rename restart restore rlink screen sh[ell]
+		\ siblnext siblprev sor[t] sp[lit] st[op] s[ubstitute] tabc[lose] tabm[ove]
+		\ tabname tabnew tabn[ext] tabo[nly] tabp[revious] touch tr trashes tree
+		\ session sync undol[ist] ve[rsion] vie[w] vifm vs[plit] winc[md] w[rite]
+		\ wq wqa[ll] xa[ll] x[it] y[ank]
 		\ nextgroup=vifmArgsCN
 
 " commands that might be prepended to a command without changing everything else
@@ -93,7 +94,8 @@ syntax keyword vifmHiGroups contained WildMenu Border Win CmdLine CurrLine
 		\ TopLine TopLineSel StatusLine JobLine SuggestBox Fifo ErrorMsg
 		\ CmpMismatch CmpUnmatched CmpBlank
 		\ AuxWin OtherWin TabLine TabLineSel HardLink LineNr OddLine
-		\ User1 User2 User3 User4 User5 User6 User7 User8 User9
+		\ User1 User2 User3 User4 User5 User6 User7 User8 User9 User10
+		\ User11 User12 User13 User14 User15 User16 User17 User18 User19 User20
 syntax keyword vifmHiStyles contained
 		\ bold underline reverse inverse standout italic combine none
 syntax keyword vifmHiColors contained black red green yellow blue magenta cyan
@@ -136,24 +138,26 @@ syntax keyword vifmHiColors contained black red green yellow blue magenta cyan
 		\ Khaki1 Wheat1 Cornsilk1 Grey100 Grey3 Grey7 Grey11 Grey15 Grey19 Grey23
 		\ Grey27 Grey30 Grey35 Grey39 Grey42 Grey46 Grey50 Grey54 Grey58 Grey62
 		\ Grey66 Grey70 Grey74 Grey78 Grey82 Grey85 Grey89 Grey93
-
 syntax case match
+syntax match vifmHiGroups contained "column:[A-Z][a-zA-Z]*"
+syntax match vifmHiGroups contained
+		\ "column:\(ext\|name\|size\|atime\|ctime\|mtime\|iname\|dir\|type\|fileext\|nitems\|groups\|target\|root\|fileroot\|gid\|gname\|mode\|uid\|uname\|perms\|nlinks\|inode\)"
 
 " Options
 syntax keyword vifmOption contained aproposprg autocd autochpos caseoptions
 		\ cdpath cd chaselinks classify columns co confirm cf cpoptions cpo
 		\ cvoptions deleteprg dotdirs dotfiles dirsize fastrun fillchars fcs findprg
-		\ followlinks fusehome gdefault grepprg histcursor history hi hlsearch hls
-		\ iec ignorecase ic iooptions incsearch is laststatus lines locateprg ls
-		\ lsoptions lsview mediaprg milleroptions millerview mintimeoutlen mouse
-		\ number nu numberwidth nuw previewoptions previewprg quickview
-		\ relativenumber rnu rulerformat ruf runexec scrollbind scb scrolloff
-		\ sessionoptions ssop so sort sortgroups sortorder sortnumbers shell sh
-		\ shellflagcmd shcf shortmess shm showtabline stal sizefmt slowfs smartcase
-		\ scs statusline stl suggestoptions syncregs syscalls tablabel tabprefix
-		\ tabscope tabstop tabsuffix timefmt timeoutlen title tm trash trashdir ts
-		\ tuioptions to undolevels ul vicmd viewcolumns vifminfo vimhelp vixcmd
-		\ wildmenu wmnu wildstyle wordchars wrap wrapscan ws
+		\ followlinks fusehome gdefault grepprg histcursor history hi hloptions
+		\ hlsearch hls iec ignorecase ic iooptions incsearch is laststatus lines
+		\ locateprg ls lsoptions lsview mediaprg milleroptions millerview
+		\ mintimeoutlen mouse navoptions number nu numberwidth nuw previewoptions
+		\ previewprg quickview relativenumber rnu rulerformat ruf runexec scrollbind
+		\ scb scrolloff sessionoptions ssop so sort sortgroups sortorder sortnumbers
+		\ shell sh shellflagcmd shcf shortmess shm showtabline stal sizefmt slowfs
+		\ smartcase scs statusline stl suggestoptions syncregs syscalls tablabel
+		\ tabline tabprefix tabscope tabstop tabsuffix tal timefmt timeoutlen title
+		\ tm trash trashdir ts tuioptions to undolevels ul vicmd viewcolumns
+		\ vifminfo vimhelp vixcmd wildmenu wmnu wildstyle wordchars wrap wrapscan ws
 		\ prefervsplit filenamedispall redolastcmdcfm cdaftermkdir
 		\ vimabs topmidfiller maxundotabs previewmaxsize filenamedisplen
 		\ clipboardprg paneonetag panetwotag
@@ -219,10 +223,13 @@ syntax region vifmInvertCommandSt start='\(\s\|:\)*invert\>' end='$\||'
 syntax region vifmInvertCommandStN start='\(\s\|:\)*invert\>' end='$\||'
 		\ contained keepend oneline contains=vifmInvertCommand,vifmNotation
 syntax region vifmSoCommandSt start='\(\s\|:\)*so\%[urce]\>' end='$\||'
-		\ keepend oneline contains=vifmSoCommand,vifmEnvVar,vifmStringInExpr
+		\ keepend oneline
+		\ contains=vifmSoCommand,vifmEnvVar,vifmStringInExpr,vifmComment
+		\,vifmInlineComment
 syntax region vifmSoCommandStN start='\(\s\|:\)*so\%[urce]\>' end='$\||'
 		\ contained keepend oneline
 		\ contains=vifmSoCommand,vifmEnvVar,vifmNotation,vifmStringInExpr
+		\,vifmComment,vifmInlineComment
 syntax region vifmMarkCommandSt start='^\(\s\|:\)*ma\%[rk]\>' end='$' keepend
 		\ oneline contains=vifmMarkCommand
 syntax region vifmCdCommandSt start='\(\s\|:\)*cd\>' end='$\||' keepend oneline
