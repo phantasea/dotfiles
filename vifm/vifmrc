@@ -779,6 +779,9 @@ fileview  <image/*>
           \ exiftool %c, mediainfo %c,
           \ w3mimg %px %py %pw %ph %c, imgcat %c,
           \ chafa --clear -c 256 --bg blue %c,
+
+fileview  <font/*>
+          \ vifmimg font %px %py %pw %ph %c %pc vifmimg clear
 endif
 
 " PDF
@@ -843,11 +846,11 @@ fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %c
 filetype  *.asc  !!gpg --verify %c
 
 " Misc archive/zip files
-fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo  als %c
+fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo  als %c, ouch list %c
 filetype  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo  als %c | less
 
 " FuseZipMount
-fileview  *.zip,*.jar,*.war,*.ear  als %c
+fileview  *.zip,*.jar,*.war,*.ear  als %c, ouch list %c
 filetype  *.zip,*.jar,*.war,*.ear
           \ {Mount with fuse-zip}
           \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
@@ -862,14 +865,16 @@ filetype  *.tar,*.tgz,*.tar.gz,*.tbz,*.tbz2,*.tar.bz2
           \ {Mount with archivemount}
           \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
           \ aunpack %c,
+          \ ouch decompress %c,
 
 " Fuse7z
-fileview  *.7z  als %c, 7z l %c
+fileview  *.7z  als %c, 7z l %c, ouch list %c
 filetype  *.7z
           \ {Mount with fuse-7z}
           \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
           \ 7z x %c,
           \ aunpack %c,
+          \ ouch decompress %c,
 
 " Rar2FsMount
 fileview  *.rar  unrar v %c, als --option=use_rar_for_unpack=0 %c
@@ -878,6 +883,7 @@ filetype  *.rar
           \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
           \ unrar x %c,
           \ aunpack %c,
+          \ ouch decompress %c,
 
 " IsoMount
 fileview  *.iso  isoinfo -l -i %c
