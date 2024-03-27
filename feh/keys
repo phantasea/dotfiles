@@ -35,10 +35,15 @@ delete  D
 # toggle options
 toggle_filenames  Tab
 toggle_info       I
-toggle_pause      Return
+toggle_pause      P y
 toggle_menu       m
 toggle_pointer    x
 toggle_fullscreen f
+
+# only with DIY version
+# increase/decrease slideshow delay time 0.5s each time
+reload_plus       u
+reload_minus      U
 
 # zooming
 #zoom_default *
