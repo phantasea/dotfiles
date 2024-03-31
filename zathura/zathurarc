@@ -57,12 +57,18 @@ set recolor-darkcolor "#000000"
 ### settings {{{
 set selection-clipboard clipboard
 set abort-clear-search  true
+set incremental-search  true
 set advance-ds-per-row  true
-set database plain
+set continuous-hist-save false
+set database null
+set show-directories    true
+set show-hidden         true
+set search-hadjust      true
 
 set statusbar-home-tilde true
 set vertical-center false
 set synctex true
+set highlight-transparency 0.5
 set scroll-full-overlap 0.2
 set scroll-page-aware true
 set window-title-basename true
@@ -135,6 +141,111 @@ map    S  snap_to_page
 map    w  adjust_window width
 map   zi  zoom in
 map   zo  zoom out
+
+map [index]   ~  toggle_index
+map [index]   j  scroll down
+map [index]   J  scroll half-down
+map [index]   k  scroll up
+map [index]   K  scroll half-up
+map [index]   l  scroll right
+
+map [fullscreen] <Esc>   abort
+map [fullscreen] <Tab>   toggle_statusbar
+map [fullscreen] <Enter> toggle_fullscreen
+
+map [fullscreen]    +  zoom in
+map [fullscreen]    -  zoom out
+map [fullscreen]    =  zoom default
+map [fullscreen]    ~  toggle_index
+map [fullscreen]    ;  toggle_inputbar
+map [fullscreen]   \'  mark_evaluate
+
+map [fullscreen]    a  adjust_window best-fit
+map [fullscreen]    c  recolor
+map [fullscreen] <C-c> copy_link
+map [fullscreen] <C-d> display_link
+map [fullscreen]    f  toggle_fullscreen
+map [fullscreen]    F  follow
+map [fullscreen]   gg  goto top
+map [fullscreen]    G  goto bottom
+map [fullscreen]    h  scroll left
+map [fullscreen]    i  zoom in
+map [fullscreen]   gi  focus_inputbar
+map [fullscreen] <C-i> jumplist forward
+map [fullscreen]    j  scroll down
+map [fullscreen]    J  scroll half-down
+map [fullscreen] <C-j> scroll full-down
+map [fullscreen]    k  scroll up
+map [fullscreen]    K  scroll half-up
+map [fullscreen] <C-k> scroll full-up
+map [fullscreen]    l  scroll right
+map [fullscreen]    m  mark_add
+map [fullscreen]    n  search forward
+map [fullscreen]    N  search backward
+map [fullscreen] <C-n> navigate next
+map [fullscreen]    o  zoom out
+map [fullscreen]   go  focus_inputbar :open
+map [fullscreen] <C-o> jumplist backward
+map [fullscreen]    P  toggle_presentation
+map [fullscreen] <C-p> navigate previous
+map [fullscreen]    q  quit
+map [fullscreen]    r  rotate rotate-cw
+map [fullscreen]    R  rotate rotate-ccw
+map [fullscreen] <C-r> reload
+map [fullscreen]    s  toggle_page_mode
+map [fullscreen]    S  snap_to_page
+map [fullscreen]    w  adjust_window width
+map [fullscreen]   zi  zoom in
+map [fullscreen]   zo  zoom out
+
+map [presentation] <Esc>   abort
+map [presentation] <Tab>   toggle_statusbar
+map [presentation] <Enter> toggle_fullscreen
+
+map [presentation]    +  zoom in
+map [presentation]    -  zoom out
+map [presentation]    =  zoom default
+map [presentation]    ~  toggle_index
+map [presentation]    ;  toggle_inputbar
+map [presentation]   \'  mark_evaluate
+
+map [presentation]    a  adjust_window best-fit
+map [presentation]    c  recolor
+map [presentation] <C-c> copy_link
+map [presentation] <C-d> display_link
+map [presentation]    f  toggle_fullscreen
+map [presentation]    F  follow
+map [presentation]   gg  goto top
+map [presentation]    G  goto bottom
+map [presentation]    h  scroll left
+map [presentation]    i  zoom in
+map [presentation]   gi  focus_inputbar
+map [presentation] <C-i> jumplist forward
+map [presentation]    j  scroll down
+map [presentation]    J  scroll half-down
+map [presentation] <C-j> scroll full-down
+map [presentation]    k  scroll up
+map [presentation]    K  scroll half-up
+map [presentation] <C-k> scroll full-up
+map [presentation]    l  scroll right
+map [presentation]    m  mark_add
+map [presentation]    n  search forward
+map [presentation]    N  search backward
+map [presentation] <C-n> navigate next
+map [presentation]    o  zoom out
+map [presentation]   go  focus_inputbar :open
+map [presentation] <C-o> jumplist backward
+map [presentation]    P  toggle_presentation
+map [presentation] <C-p> navigate previous
+map [presentation]    q  quit
+map [presentation]    r  rotate rotate-cw
+map [presentation]    R  rotate rotate-ccw
+map [presentation] <C-r> reload
+map [presentation]    s  toggle_page_mode
+map [presentation]    S  snap_to_page
+map [presentation]    w  adjust_window width
+map [presentation]   zi  zoom in
+map [presentation]   zo  zoom out
 ### }}}
 
 # vim: set ft=cfg foldmethod=marker:
