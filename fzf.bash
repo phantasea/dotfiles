@@ -15,7 +15,7 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 # Black=0  Red=1  Green=2  Yellow=3  Blue=4  Magenta=5  Cyan=6  White=7
 export FZF_DEFAULT_OPTS="--exact --no-multi --no-sort --cycle --reverse
        --select-1 --prompt='$=' --height=~64% --info=inline --marker='+' --pointer='x'
-       --bind change:top,ctrl-s:toggle-sort,ctrl-d:toggle-preview,ctrl-g:top
+       --bind change:top,ctrl-s:toggle-sort,ctrl-q:toggle-preview,ctrl-g:top
        --bind ctrl-n:page-down,ctrl-p:page-up,ctrl-l:clear-query
        --bind 'ctrl-o:execute#fileopen {}#'
        --bind 'ctrl-y:execute-silent(echo -n {+} | xclip -i -sel p -f | xclip -i -sel c)'

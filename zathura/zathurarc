@@ -33,7 +33,7 @@ set recolor-lightcolor          "#C7EDCC"
 ### settings {{{
 set selection-clipboard clipboard
 set abort-clear-search  true
-set incremental-search  true
+set incremental-search  false
 set advance-ds-per-row  true
 set continuous-hist-save false
 set database null
