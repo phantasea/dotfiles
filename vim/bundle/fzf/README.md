@@ -1,3 +1,21 @@
+<div align="center">
+<sup>Special thanks to:</sup>
+<br>
+<br>
+<a href="https://warp.dev/?utm_source=github&utm_medium=referral&utm_campaign=fzfvim_20240209">
+  <div>
+    <img src="https://raw.githubusercontent.com/junegunn/i/master/warp.png" width="300" alt="Warp">
+  </div>
+  <b>Warp is a modern, Rust-based terminal with AI built in so you and your team can build great software, faster.</b>
+  <div>
+    <sup>Visit warp.dev to learn more.</sup>
+  </div>
+</a>
+<br>
+<hr>
+</div>
+<br>
+
 fzf :heart: vim
 ===============
 
@@ -53,6 +71,12 @@ so you can omit it if you use a plugin manager that doesn't support hooks.
 - `Ag` requires [The Silver Searcher (ag)][ag]
 - `Rg` requires [ripgrep (rg)][rg]
 - `Tags` and `Helptags` require Perl
+- `Tags PREFIX` requires `readtags` command from [Universal Ctags](https://ctags.io/)
+
+```sh
+# Installing dependencies using Homebrew
+brew install fzf bat ripgrep the_silver_searcher perl universal-ctags
+```
 
 Commands
 --------
@@ -69,7 +93,7 @@ Commands
 | `:RG [PATTERN]`        | [rg][rg] search result; relaunch ripgrep on every keystroke                           |
 | `:Lines [QUERY]`       | Lines in loaded buffers                                                               |
 | `:BLines [QUERY]`      | Lines in the current buffer                                                           |
-| `:Tags [QUERY]`        | Tags in the project (`ctags -R`)                                                      |
+| `:Tags [PREFIX]`       | Tags in the project (`ctags -R`)                                                      |
 | `:BTags [QUERY]`       | Tags in the current buffer                                                            |
 | `:Changes`             | Changelist across all open buffers                                                    |
 | `:Marks`               | Marks                                                                                 |
