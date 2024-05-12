@@ -40,6 +40,7 @@ alias batp='bat --list-themes | fzf --preview="bat --theme={} --color=always /op
 alias cal='ccal -3'
 alias clk='tty-clock -cBS -C 6'
 alias cc='lolcat'
+alias ct='cd ~/temp'
 alias cn='cd ~/docs/note'
 alias cw='cd ~/docs/webs'
 alias ca='cd /opt/apps'
