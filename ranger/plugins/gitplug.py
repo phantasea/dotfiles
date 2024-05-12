@@ -2,6 +2,17 @@ import os
 import subprocess
 from ranger.api.commands import Command
 
+'''
+:git init
+:git status
+:git clone <url>
+:git add <file>
+:git rm <file>
+:git restore <file>
+:git remote add/rm <name> <url>
+:git push
+:git commit <text>
+'''
 
 class git(Command):
 
