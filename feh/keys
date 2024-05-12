@@ -7,58 +7,63 @@
 # Each <key> is an X11 keysym (as output by xev) with optional modifier.
 # For instance, C-x would be Ctrl+X, or 4-space Mod4+Space
 
+# toggle options
+toggle_filenames    Tab
+toggle_info         I
+toggle_pause        P y
+toggle_menu         m
+toggle_pointer      x
+toggle_auto_zoom    w
+toggle_fullscreen   f
+
 # Examples for vim-like menu bindings on a qwerty keyboard:
-menu_parent h Left
-menu_child  l Right
-menu_down   j Down
-menu_up     k Up
-menu_select space Return
-menu_close  q Escape
+menu_parent    h Left
+menu_child     l Right
+menu_down      j Down
+menu_up        k Up
+menu_select    space Return
+menu_close     q Escape
 
 # Same for image navigation ...
-next_img n Right space
-prev_img p Left BackSpace
+next_img       n Right space
+prev_img       p Left BackSpace
 
-jump_first g
-jump_last  G
+jump_first     g
+jump_last      G
 
-# and image movement
-scroll_up    k
-scroll_down  j
-scroll_left  h
-scroll_right l
+# image movement
+scroll_up      k
+scroll_down    j
+scroll_left    h
+scroll_right   l
 
 # File deletion
-remove  d Delete
-delete  D
+remove         d Delete
+delete         D
 
-# toggle options
-toggle_filenames  Tab
-toggle_info       I
-toggle_pause      P y
-toggle_menu       m
-toggle_pointer    x
-toggle_fullscreen f
+# rotate
+orient_1       r
+orient_3       R
+#flip          _
+#mirror        |
 
 # only with DIY version
 # increase/decrease slideshow delay time 0.5s each time
-reload_plus       u
-reload_minus      U
+reload_plus    u
+reload_minus   U
 
-# zooming
-#zoom_default *
-zoom_in  i
-zoom_out o
-zoom_fit equal
-
-toggle_auto_zoom w
-size_to_image    W
+# zoom
+zoom_in        i
+zoom_out       o
+zoom_fit       W
+zoom_default   equal
+size_to_image  equal
 
 # I only hit these accidentaly
-save_image    s
-save_filelist S
+save_image     s
+save_filelist  S
 
-reload_image  r
+reload_image   C-r
 
 # This leaves some conflicts with existing default bindings, but you should
 # get the idea.  And I'm not gonna fix the conflicts, I don't use qwerty ;-)
