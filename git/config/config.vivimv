@@ -1,0 +1,14 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://github.com/karlch/vimiv-qt
+    #fetch = +refs/heads/master:refs/remotes/origin/master
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	pushurl = git@github.com:phantasea/vimiv.git
+	pushurl = git@gitlab.com:phantasea/vimiv.git
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
