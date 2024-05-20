@@ -779,6 +779,8 @@ fileview  <image/*>
           \ exiftool %c, mediainfo %c,
           \ w3mimg %px %py %pw %ph %c, imgcat %c,
           \ chafa --clear -c 256 --bg blue %c,
+          \ viu %c,
+" viu works in Kitty with truecolor, or fallbacks to ansi256 mode
 
 fileview  <font/*>
           \ vifmimg font %px %py %pw %ph %c %pc vifmimg clear
