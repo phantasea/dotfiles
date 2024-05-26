@@ -839,6 +839,11 @@ let g:highlightedyank_highlight_duration = 1000
 let g:highlightedyank_highlight_in_visual = 0
 highlight HighlightedyankRegion cterm=reverse gui=reverse
 "}}}
+
+"floaterm {{{
+let g:floaterm_width  = 0.8
+let g:floaterm_height = 0.8
+"}}}
 "}}}
 
 " vim: set ft=vim foldmethod=marker:
