@@ -27,7 +27,7 @@
     "EndOfCh": "G",
     "Shrink": "o",
     "Enlarge": "i",
-    "SetWidth": "=",
+    "SetWidth": "w",
     "Metadata": "M",
     "DefineWord": "d",
     "TableOfContents": "t",
