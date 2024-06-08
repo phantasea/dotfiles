@@ -440,6 +440,7 @@ set wildstyle=popup
 set ignorecase
 set smartcase
 set hlsearch
+set hloptions=filehi:allrows
 set incsearch
 set wrapscan
 set scrolloff=0
