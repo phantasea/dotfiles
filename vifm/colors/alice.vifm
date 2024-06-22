@@ -39,9 +39,9 @@ hi ErrorMsg     cterm=bold                    ctermfg=white    ctermbg=164
 
 hi Directory    cterm=none                    ctermfg=123      ctermbg=default
 hi Executable   cterm=none                    ctermfg=119      ctermbg=default
-hi Socket       cterm=none,reverse            ctermfg=182      ctermbg=default
-hi Device       cterm=none,reverse            ctermfg=204      ctermbg=default
-hi Fifo         cterm=none,reverse            ctermfg=50       ctermbg=default
+hi Socket       cterm=none                    ctermfg=182      ctermbg=default
+hi Device       cterm=none                    ctermfg=204      ctermbg=default
+hi Fifo         cterm=none                    ctermfg=50       ctermbg=default
 hi Link         cterm=none                    ctermfg=207      ctermbg=default
 hi BrokenLink   cterm=none                    ctermfg=242      ctermbg=default
 hi HardLink     cterm=none                    ctermfg=199      ctermbg=default
