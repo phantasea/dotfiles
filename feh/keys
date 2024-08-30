@@ -30,6 +30,9 @@ prev_img       p Left BackSpace
 
 jump_first     g
 jump_last      G
+jump_random    z
+jump_fwd       C-f
+jump_back      C-b
 
 # image movement
 scroll_up      k

@@ -87,9 +87,11 @@ nnoremap  <c-g>  :ffgoto<cr>
 mnoremap  <c-j>  <c-f>
 nnoremap  <c-j>  <c-f>
 qnoremap  <c-j>  <c-f>
+vnoremap  <c-j>  <c-f>
 mnoremap  <c-k>  <c-b>
 nnoremap  <c-k>  <c-b>
 qnoremap  <c-k>  <c-b>
+vnoremap  <c-k>  <c-b>
 nnoremap  <c-n>  gt
 vnoremap  <c-n>  gt
 qnoremap  <c-n>  a
