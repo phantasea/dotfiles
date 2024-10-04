@@ -817,6 +817,9 @@ filetype  *.epub  zathura %c %i, ebook-viewer -f %c %i
 endif
 fileview  *.epub  pandoc %c -t plain, epy -d %c
 
+" chm
+filextype *.chm  kchmviewer %c %i
+
 " Webpage
 filetype  *.html,*.htm,*.xhtml,*.shtml  webview %c, webview -b %c, webview -B %c, webview -bB %c
 fileview  *.html,*.htm,*.xhtml,*.shtml
