@@ -301,8 +301,8 @@ qnoremap  s  <c-w>
 nnoremap  s  <c-w>
 nnoremap  sa :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sb :set scrollbind!<cr>
-nnoremap  sc :! cat %f > %c.html<cr>gs
-vnoremap  sc :! cat %f > %c.html<cr>gv
+nnoremap  sc :! cat %f > %c.txt<cr>gs
+vnoremap  sc :! cat %f > %c.txt<cr>gv
 nnoremap  sC :selcat<space>
 vnoremap  sC :selcat<space>
 nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
