@@ -845,13 +845,16 @@ filetype  *.pcap,*.cap  sngrep -iI %c
 fileview  *.o  nm %c
 filetype  *.o  nm %c | less
 
-" torrent
-fileview  *.torrent  transmission-show %c, dumptorrent -v %c
-filetype  *.torrent  ktorrent %f &, aria2c %f &
-
 " PGP
 fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %c
 filetype  *.asc  !!gpg --verify %c
+
+" torrent
+fileview  *.torrent  transmission-show %c, dumptorrent -v %c
+filetype  *.torrent
+          \ FUSE_MOUNT|btfs %SOURCE_FILE %DESTINATION_DIR,
+          \ ktorrent %f &,
+          \ aria2c %f &
 
 " Misc archive/zip files
 fileview  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo  als %c, ouch list %c
@@ -860,9 +863,8 @@ filetype  *.a,*.deb,*.alz,*.xz,*.txz,*.tZ,*.tzo  als %c | less
 " FuseZipMount
 fileview  *.zip,*.jar,*.war,*.ear  als %c, ouch list %c
 filetype  *.zip,*.jar,*.war,*.ear
-          \ {Mount with fuse-zip}
           \ FUSE_MOUNT|fuse-zip %SOURCE_FILE %DESTINATION_DIR,
-          \ {View contents}
+          \ FUSE_MOUNT|ratarmount %SOURCE_FILE %DESTINATION_DIR,
           \ zip -sf %c | less,
           \ tar -xf %c,
           \ aunpack %c,
@@ -870,7 +872,6 @@ filetype  *.zip,*.jar,*.war,*.ear
 " ArchiveMount
 fileview  *.tar,*.tgz,*.tar.gz,*.tbz,*.tbz2,*.tar.bz2  als %c, zcat %c
 filetype  *.tar,*.tgz,*.tar.gz,*.tbz,*.tbz2,*.tar.bz2
-          \ {Mount with archivemount}
           \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
           \ aunpack %c,
           \ ouch decompress %c,
@@ -878,7 +879,7 @@ filetype  *.tar,*.tgz,*.tar.gz,*.tbz,*.tbz2,*.tar.bz2
 " Fuse7z
 fileview  *.7z  als %c, 7z l %c, ouch list %c
 filetype  *.7z
-          \ {Mount with fuse-7z}
+          \ FUSE_MOUNT|ratarmount %SOURCE_FILE %DESTINATION_DIR,
           \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
           \ 7z x %c,
           \ aunpack %c,
@@ -887,7 +888,7 @@ filetype  *.7z
 " Rar2FsMount
 fileview  *.rar  unrar v %c, als --option=use_rar_for_unpack=0 %c
 filetype  *.rar
-          \ {Mount with rar2fs}
+          \ FUSE_MOUNT|ratarmount %SOURCE_FILE %DESTINATION_DIR,
           \ FUSE_MOUNT|rar2fs %SOURCE_FILE %DESTINATION_DIR,
           \ unrar x %c,
           \ aunpack %c,
@@ -896,22 +897,21 @@ filetype  *.rar
 " IsoMount
 fileview  *.iso  isoinfo -l -i %c
 filetype  *.iso
-          \ {Mount with fuseiso}
+          \ FUSE_MOUNT|ratarmount %SOURCE_FILE %DESTINATION_DIR,
           \ FUSE_MOUNT|fuseiso %SOURCE_FILE %DESTINATION_DIR,
 
 " SshMount
 filetype  *.ssh
-          \ {Mount with sshfs}
+          \ FUSE_MOUNT|ratarmount %SOURCE_FILE %DESTINATION_DIR,
           \ FUSE_MOUNT2|sshfs %PARAM %DESTINATION_DIR %FOREGROUND,
 
 " FtpMount
 filetype  *.ftp
-          \ {Mount with curlftpfs}
+          \ FUSE_MOUNT|ratarmount %SOURCE_FILE %DESTINATION_DIR,
           \ FUSE_MOUNT2|curlftpfs -o ftp_port=-,,disable_eprt %PARAM %DESTINATION_DIR %FOREGROUND,
 
 " AppImage
 filetype  *.AppImage
-          \ {Mount with squashfuse}
           \ FUSE_MOUNT|squashfuse -o offset=$(%SOURCE_FILE --appimage-offset) %SOURCE_FILE %DESTINATION_DIR
 
 " MD5
