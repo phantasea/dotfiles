@@ -5,23 +5,25 @@ forgit::error() { printf "%b[Error]%b %s\n" '\e[0;31m' '\e[0m' "$@" >&2; return 
 forgit::warn() { printf "%b[Warn]%b %s\n" '\e[0;33m' '\e[0m' "$@" >&2; }
 
 # determine installation path
-if [[ -n "$ZSH_VERSION" ]]; then
-    # shellcheck disable=2277,2296,2299
-    0="${ZERO:-${${0:#$ZSH_ARGZERO}:-${(%):-%N}}}"
-    # shellcheck disable=2277,2296,2298
-    0="${${(M)0:#/*}:-$PWD/$0}"
-    FORGIT_INSTALL_DIR="${0:h}"
-elif [[ -n "$BASH_VERSION" ]]; then
-    FORGIT_INSTALL_DIR="$(dirname -- "${BASH_SOURCE[0]}")"
-else
-    forgit::error "Only zsh and bash are supported"
-fi
+#if [[ -n "$ZSH_VERSION" ]]; then
+#    # shellcheck disable=2277,2296,2299
+#    0="${ZERO:-${${0:#$ZSH_ARGZERO}:-${(%):-%N}}}"
+#    # shellcheck disable=2277,2296,2298
+#    0="${${(M)0:#/*}:-$PWD/$0}"
+#    FORGIT_INSTALL_DIR="${0:h}"
+#elif [[ -n "$BASH_VERSION" ]]; then
+#    FORGIT_INSTALL_DIR="$(dirname -- "${BASH_SOURCE[0]}")"
+#else
+#    forgit::error "Only zsh and bash are supported"
+#fi
+
+FORGIT_INSTALL_DIR="/opt/util"
 
 export FORGIT_INSTALL_DIR
-FORGIT="$FORGIT_INSTALL_DIR/bin/git-forgit"
+FORGIT="$FORGIT_INSTALL_DIR/bins/forgit"
 
 # backwards compatibility:
-# export all user-defined FORGIT variables to make them available in git-forgit
+# export all user-defined FORGIT variables to make them available in forgit
 unexported_vars=0
 # Set posix mode in bash to only get variables, see #256.
 [[ -n "$BASH_VERSION" ]] && set -o posix
