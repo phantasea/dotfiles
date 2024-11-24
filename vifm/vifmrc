@@ -742,52 +742,50 @@ fileview  *.py  highlight -S python -O ansi -s dante %c, bat --color=always %c
 fileview  *.sh  highlight -S sh -O ansi -s dante %c, bat --color=always %c
 
 " Audio
-filetype  *.mp3,*.wav,*.ogg,*.m4a,*.aac
-          \ medinfo %c %S, audplay %c &, audplay -b %c &, audplay -B %c &
-filetype  *.wma,*.ape,*.rm  medinfo %c %S, audplay -b %c &, audplay -B %c &
-fileview  {*.mp3,*.wav,*.ogg,*.m4a,*wma},<audio/*>
-          \ exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1
+filetype  {*.mp3,*.wav,*.ogg,*.m4a,*.aac,*.wma,*.ape,*.rm},<audio/*>
+          \ medinfo %c %S,
+          \ audplay %c &,
+          \ audplay -b %c &,
+          \ audplay -B %c &,
+fileview  <audio/*>
+          \ exiftool %c,
+          \ mediainfo %c,
+          \ ffprobe -pretty %c 2>&1,
 
 " Video
-filetype  *.avi,*.mp4,*.wmv,*.3gp,*.ogv,*.mkv,*.mpg,*.mov,*.vob,*.flv,*.rmvb,*.rmb,*.vdat,*.webm
-          \ vidplay %c &, totem 2>/dev/null %c &, ffplay -v quiet %c &,
-          \ mediainfo %f %m 2>&1, exiftool %c %m 2>&1,
+filetype  {*.avi,*.mp4,*.wmv,*.mkv,*.mpg,*.mov,*.flv,*.rmvb,*.rmb,*.vdat,*.webm},<video/*>
+          \ vidplay %c &,
+          \ totem 2>/dev/null %c &,
+          \ ffplay -v quiet %c &,
+          \ mediainfo %f %m 2>&1,
 fileview  <video/*>
-          \ exiftool %c, mediainfo %c, ffprobe -pretty %c 2>&1,
+          \ exiftool %c,
+          \ mediainfo %c,
+          \ ffprobe -pretty %c 2>&1,
           \ thumbnail %px %py %pw %ph %c,
 
 " Image
-filetype  *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm,*.webp
-          \ imgview %c, imgview -b %c, imgview -B %c
-if $DISPLAY == ""
-filetype  *.gif  mpv -vo=drm %c
-else
-filetype  *.gif  mpv %c, pqiv -f %c, vimiv -f %c %i
-endif
+filetype  {*.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm,*.webp},<image/*>
+          \ imgview %c,
+          \ imgview -b %c,
+          \ imgview -B %c,
 filextype *.svg  vimiv %f
 filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm,*.webp
           \ pho -p %c, pho -p -s1 %c,
           \ feh -F %c, feh -F -D 1 %c,
           \ vimiv %f %i, vimiv --slideshow,
           \ sxiv -ft %f, sxiv -fS 1 %f,
-          \ pqiv -f --action="montage_mode_enter()" --thumbnail-size=128x128, pqiv -fs,
-if $DISPLAY == ""
-fileview  <image/*>
-          \ w3mimg %px %py %pw %ph %c, imgcat %c,
-          \ exiftool %c, mediainfo %c,
-          \ chafa --clear -c 256 --bg blue %c,
-else
-fileview  <image/*>
+          \ pqiv -fs, pqiv -f --action="montage_mode_enter()" --thumbnail-size=128x128,
+if $DISPLAY != ""
+fileview  <image/*>,<font/*>
           \ vifmimg draw %px %py %pw %ph %c %pc vifmimg clear,
-          \ exiftool %c, mediainfo %c,
-          \ w3mimg %px %py %pw %ph %c, imgcat %c,
-          \ chafa --clear -c 256 --bg blue %c,
+          " viu works in Kitty with truecolor, or fallbacks to ansi256 mode
           \ viu %c,
-" viu works in Kitty with truecolor, or fallbacks to ansi256 mode
-
-fileview  <font/*>
-          \ vifmimg font %px %py %pw %ph %c %pc vifmimg clear
 endif
+fileview  <image/*>
+          \ w3mimg %px %py %pw %ph %c,
+          \ exiftool %c, mediainfo %c, imgcat %c,
+          \ chafa --clear -c 256 --bg blue %c,
 
 " PDF
 filetype  *.pdf  pdfview %c %i, pdfview -b %c %i, pdfview -B %c %i
