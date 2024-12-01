@@ -40,7 +40,7 @@ FILE_EXTENSION_LOWER="$(printf "%s" "${FILE_EXTENSION}" | tr '[:upper:]' '[:lowe
 
 ## Settings
 HIGHLIGHT_SIZE_MAX=262143  # 256KiB
-HIGHLIGHT_TABWIDTH="${HIGHLIGHT_TABWIDTH:-8}"
+HIGHLIGHT_TABWIDTH="${HIGHLIGHT_TABWIDTH:-4}"
 HIGHLIGHT_STYLE="${HIGHLIGHT_STYLE:-pablo}"
 HIGHLIGHT_OPTIONS="--replace-tabs=${HIGHLIGHT_TABWIDTH} --style=${HIGHLIGHT_STYLE} ${HIGHLIGHT_OPTIONS:-}"
 PYGMENTIZE_STYLE="${PYGMENTIZE_STYLE:-autumn}"
@@ -167,6 +167,7 @@ handle_extension() {
 
         # epub files
         epub)
+            epy -d "${FILE_PATH}" && exit 5
             pandoc "${FILE_PATH}" -t plain && exit 5
             exit 1;;
 

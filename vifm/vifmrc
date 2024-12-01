@@ -808,11 +808,7 @@ filextype *.djvu  zathura %c %i, apvlv %c
 filetype  *.djvu  fbpdf %c
 
 " epub
-if $DISPLAY == ""
-filetype  *.epub  epy %c
-else
-filetype  *.epub  zathura %c %i, ebook-viewer -f %c %i
-endif
+filetype  *.epub  epubview %c %i, epubview -b %c %i
 fileview  *.epub  pandoc %c -t plain, epy -d %c
 
 " chm

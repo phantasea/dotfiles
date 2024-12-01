@@ -17,7 +17,7 @@ export FZF_DEFAULT_OPTS="--exact --no-multi --no-sort --cycle --reverse
        --select-1 --prompt='$=' --height=~64% --info=inline --marker='+' --pointer='x'
        --bind change:top,ctrl-s:toggle-sort,ctrl-q:toggle-preview,ctrl-g:top
        --bind ctrl-n:page-down,ctrl-p:page-up,ctrl-l:clear-query
-       --bind 'ctrl-o:execute(fileopen {})'
+       --bind 'ctrl-o:execute(fileopen {} &)'
        --bind 'ctrl-x:execute(sdel {})'
        --bind 'ctrl-delete:execute(sdel {})'
        --bind 'ctrl-y:execute-silent(echo -n {+} | xclip -i -sel p -f | xclip -i -sel c)'
