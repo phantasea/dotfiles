@@ -13,6 +13,22 @@ from udisk_menu.mounter import mount
 import os
 import re
 
+import time
+import subprocess
+import json
+import atexit
+import socket
+
+from shlex import quote
+from pathlib import Path
+from subprocess import Popen, PIPE, run
+
+import logging
+logger = logging.getLogger(__name__)
+import traceback
+
+from ranger.ext.img_display import ImageDisplayer, register_image_displayer
+
 
 class empty(Command):
     """
@@ -191,7 +207,6 @@ class fzf_select(Command):
     With a prefix argument select only directories.
     """
     def execute(self):
-        import subprocess
         if self.quantifier:
             # match only directories
             command="find -L . \( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \) -prune \
@@ -212,7 +227,6 @@ class fzf_select(Command):
 
 class fzf_locate(Command):
     def execute(self):
-        import subprocess
         if self.quantifier:
             command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs locate | \
                     fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | xargs -r fileopen"
@@ -231,7 +245,6 @@ class fzf_locate(Command):
 
 class fzf_edit(Command):
     def execute(self):
-        import subprocess
         command="fd -t=f -t=l -H -E .git --size=-800k . | \
                 fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
@@ -246,7 +259,6 @@ class fzf_edit(Command):
 
 class fzf_fave(Command):
     def execute(self):
-        import subprocess
         command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs fd -a -t=f -t=l . | \
                 fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
@@ -261,7 +273,6 @@ class fzf_fave(Command):
 
 class fzf_exec(Command):
     def execute(self):
-        import subprocess
         if not self.arg(1):
             self.fm.notify("fzf_exec <fd cmd>", bad=True)
             return
@@ -282,7 +293,6 @@ class fzf_open(Command):
     fzf_open [directory] [depth]
     '''
     def execute(self):
-        import subprocess
         from os.path import join, expanduser, lexists
 
         if not self.arg(1):
@@ -333,7 +343,6 @@ class fzf_iptv(Command):
             self.fm.notify("Usage: fzf_iptv <m3u>", bad=True)
             return
 
-        import subprocess
         from os.path import join, expanduser, lexists
 
         iptv_m3u = self.rest(1)
@@ -362,7 +371,6 @@ class fd_find(Command):
     """
 
     def execute(self):
-        import subprocess
         from ranger.ext.get_executables import get_executables
         if not 'fd' in get_executables():
             self.fm.notify("Couldn't find fd on the PATH.", bad=True)
@@ -439,7 +447,6 @@ class fzf_rga(Command):
             self.fm.notify("Usage: fzf_rga <search string>", bad=True)
             return
 
-        import subprocess
         #import os.path
         #from ranger.container.file import File
         #command="rga '%s' . --rga-adapters=pandoc,poppler | fzf +m | awk -F':' '{print $1}'" % search_string
@@ -475,7 +482,6 @@ class nav_dir_hist(Command):
             return
 
     def _select_with_fzf(self, fzf_cmd, input):
-        import subprocess
         self.fm.ui.suspend()
         try:
             # stderr is used to open to attach to /dev/tty
@@ -489,3 +495,110 @@ class nav_dir_hist(Command):
             self.fm.ui.initialize()
         return stdout.strip()
 
+
+@register_image_displayer("mpv")
+class MPVImageDisplayer(ImageDisplayer):
+    """Implementation of ImageDisplayer using mpv, a general media viewer.
+    Opens media in a separate X window.
+
+    mpv 0.25+ needs to be installed for this to work.
+    """
+
+    def _send_command(self, path, sock):
+
+        message = '{"command": ["raw","loadfile",%s]}\n' % json.dumps(path)
+        s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+        s.connect(str(sock))
+        logger.info('-> ' + message)
+        s.send(message.encode())
+        message = s.recv(1024).decode()
+        logger.info('<- ' + message)
+
+    def _launch_mpv(self, path, sock):
+
+        proc = subprocess.Popen([
+            * os.environ.get("MPV", "mpv").split(),
+            "--no-terminal",
+            "--force-window",
+            "--input-ipc-server=" + str(sock),
+            "--image-display-duration=inf",
+            "--loop-file=inf",
+            "--no-osc",
+            "--no-input-default-bindings",
+            "--keep-open",
+            "--idle",
+            "--",
+            path,
+        ])
+
+        @atexit.register
+        def cleanup():
+            proc.terminate()
+            sock.unlink()
+
+    def draw(self, path, start_x, start_y, width, height):
+
+        path = os.path.abspath(path)
+        cache = Path(os.environ.get("XDG_CACHE_HOME", "~/.cache")).expanduser()
+        cache = cache / "ranger"
+        cache.mkdir(exist_ok=True)
+        sock = cache / "mpv.sock"
+
+        try:
+            self._send_command(path, sock)
+        except (ConnectionRefusedError, FileNotFoundError):
+            logger.info('LAUNCHING ' + path)
+            self._launch_mpv(path, sock)
+        except Exception as e:
+            logger.exception(traceback.format_exc())
+            sys.exit(1)
+        logger.info('SUCCESS')
+
+
+@register_image_displayer("imv")
+class IMVImageDisplayer(ImageDisplayer):
+    """
+    Implementation of ImageDisplayer using imv
+    """
+    is_initialized = False
+
+    def __init__(self):
+        self.process = None
+
+    def initialize(self):
+        """ start imv """
+        if (self.is_initialized and self.process.poll() is None and
+                not self.process.stdin.closed):
+            return
+
+        self.process = Popen(['imv'], cwd=self.working_dir,
+                             stdin=PIPE, universal_newlines=True)
+        self.is_initialized = True
+        time.sleep(1)
+
+    def draw(self, path, start_x, start_y, width, height):
+        self.initialize()
+        run(['imv-msg', str(self.process.pid), 'close'])
+        run(['imv-msg', str(self.process.pid), 'open', path])
+
+    def clear(self, start_x, start_y, width, height):
+        self.initialize()
+        run(['imv-msg', str(self.process.pid), 'close'])
+
+    def quit(self):
+        if self.is_initialized and self.process.poll() is None:
+            self.process.terminate()
+
+
+@register_image_displayer("wezterm-image-display-method")
+class WeztermImageDisplayer(ImageDisplayer):
+    def draw(self, path, start_x, start_y, width, height):
+        print("\033[%d;%dH" % (start_y, start_x+1))
+        path = quote(path)
+        draw_cmd = "wezterm imgcat {} --width {} --height {}".format(path, width, height)
+        subprocess.run(draw_cmd.split(" "))
+    def clear(self, start_x, start_y, width, height):
+        cleaner = " "*width
+        for i in range(height):
+            print("\033[%d;%dH" % (start_y+i, start_x+1))
+            print(cleaner)

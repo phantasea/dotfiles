@@ -382,6 +382,8 @@ source $VIFM/devicons
 set vicmd="vimux"
 set vixcmd="vimux"
 
+plugin whitelist viewcolumn
+
 if executable('vim')
 set vimabs="vim"
 elseif executable('nvim')
