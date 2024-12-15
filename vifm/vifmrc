@@ -326,6 +326,7 @@ nnoremap gS  :%s//g<left><left>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
 nnoremap gs  :select //i<left><left>
+nnoremap ,s  :! ls -p | grep -v / | sort -t' ' -k2 %m<cr>
 nnoremap gt  gs
 nnoremap  t  tj
 nnoremap  T  kt
