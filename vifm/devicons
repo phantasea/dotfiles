@@ -3,12 +3,12 @@
 
 " λ◘
 " ⚡
-" Ξ☰＝┃
+" Ξ☰＝┃
 " ＋－•＃、一二三四五六七八九十零百０１２３４５６７８９
 
 if $DISPLAY != ""
 " Filetypes
-set classify=" :dir:, :reg:, :exe:, :link:, :char:, :block:, :fifo:, :sock:, :?:"
+set classify=" :dir:, :reg:, :exe:, :link:, :char:, :block:, :fifo:, :sock:, :?:"
 
 " Specific files
 set classify+=' ::../::'
