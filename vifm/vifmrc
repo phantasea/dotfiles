@@ -254,6 +254,7 @@ nnoremap  i  :touch<space>
 qnoremap  i  <nop>
 nnoremap gi  :imgall<cr>
 nnoremap zi  :!fzfimg<cr>
+nnoremap ,i  :mkdir! ""<left>
 nnoremap  I  :mkdir! ""<left><c-x>c
 nnoremap gI  :imgrall<cr>
 nnoremap gj  ]R
@@ -451,7 +452,7 @@ set wrapscan
 set scrolloff=0
 set trash
 set trashdir="~/.Trash"
-set history=9
+set history=18
 set nofollowlinks
 set nochaselinks
 set sortnumbers
