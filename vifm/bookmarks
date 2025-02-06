@@ -1,35 +1,32 @@
 " vim: filetype=vifm:
 
-mark  a  /opt/apps      vifm
-mark  A  /opt/.porn/asmr
-mark  b  /opt/.priv
+mark  a  /opt/apps          vifm
 mark  c  ~/.config
 mark  d  ~/.Trash
-mark  e  /opt/conf      vifm
-mark  h  ~/             misc
-mark  i  ~/pics/celeb
-mark  I  /opt/.porn/pics/Graphis
-mark  m  ~/auds
-mark  n  ~/docs/note    reinstall_ubuntu.txt
-mark  o  /opt           misc
-mark  p  /opt/.porn/porn
-mark  P  /opt/.porn/vids
-mark  r  /              usr
+mark  e  /opt/conf          vifm
+mark  h  ~/                 misc
+mark  i  ~/pics             celeb
+mark  m  ~/misc             repo
+mark  n  ~/docs/note        reinstall_ubuntu.txt
+mark  o  /opt               misc
+mark  p  /opt/.priv
+mark  r  /                  usr
 mark  t  ~/temp
-mark  T  /opt/.porn/text
-mark  u  /opt/util      mudisk
-mark  v  ~/vids         celeb-2
+mark  u  /opt/util          mudisk
+mark  v  ~/vids             celeb-2
 mark  w  ~/docs/webs
-mark  x  /opt/.porn/pr0n
-mark  X  /opt/.porn/xxxx
+mark  x  /opt/.porn         note
 
-mark  M  /media/simone      winD
-mark  O  /media/simone/sandisk_o
-mark  S  /media/simone/sandisk_s
-mark  U  /media/simone/sandisk_u
-mark  V  /media/simone/sandisk_v
-mark  W  /media/simone/sandisk_w
-mark  Z  /media/simone/sandisk_z
+mark  A  /opt/.porn/asmr
+mark  I  /opt/.porn/imgs
+mark  P  /opt/.porn/pics
+mark  T  /opt/.porn/text
+mark  V  /opt/.porn/vids
+
+mark  C  /media/simone/winC
+mark  D  /media/simone/winD
+mark  X  /media/simone/winX
+mark  M  /media/simone      sandisk_t
 
 bmark!  /opt/conf/vifm/vifmrc        vifmrc
 bmark!  /opt/conf/ranger/rc.conf     rc.conf
