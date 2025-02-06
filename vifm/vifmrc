@@ -81,6 +81,7 @@ nnoremap  <c-a>  :ffauds<cr>
 nnoremap  <c-b>  :tree!<cr>
 nnoremap  <c-c>  :history<cr>
 vnoremap  <c-c>  :history<cr>
+nnoremap  <c-d>  :ffdirs<cr>
 nnoremap  <c-e>  :ffedit<cr>
 nnoremap  <c-f>  :fffave<cr>
 nnoremap  <c-g>  :ffgoto<cr>
@@ -392,7 +393,7 @@ elseif executable('nvim')
 set vimabs="nvim"
 endif
 
-set vifminfo=tui,tabs,savedirs,ratings
+set vifminfo=tui,tabs,savedirs,ratings,shistory
 set sessionoptions=tui,tabs,savedirs,ratings
 set iooptions=fastfilecloning
 set cpoptions="s"
@@ -640,6 +641,7 @@ command! ffgotoB  :set noquickview | :exec 'goto' fnameescape(term('fd -t=f -t=l
 command! ffgotoC  :exec 'goto' fnameescape(system('locate -i %a | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgotoD  :exec 'goto' fnameescape(system('fd -t=f -t=l | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgoto   fd -L --type file | fzf --height=0 | xargs -r vifmgoto
+command! ffdirs   fd -L --type directory | fzf --height=0 | xargs -r vifmgoto
 command! ffedit   fd -d=3 -t=f -t=l -H -E .git --size=-800k | fzf --height=0 -1 -q "%a" --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
 command! fffave   cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f -t=l . | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
 command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r audplay
