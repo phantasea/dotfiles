@@ -108,8 +108,8 @@ vnoremap  <c-t>  :tabnew ~<cr>
 nnoremap  <c-u>  U
 nnoremap  <c-v>  :ffvids<cr>
 nnoremap  <c-w>  :ffwebs<cr>
-nnoremap  <c-x>  :ffporn<cr>
-nnoremap  <c-y>  :ffgotoB<cr>
+nnoremap  <c-x>  :fftext<cr>
+nnoremap  <c-y>  :ffpics<cr>
 nnoremap  <c-z>  :ffiptv /opt/conf/iptv/<tab><tab>
 
 nnoremap  <a-j>  <space>j<space>
@@ -647,11 +647,12 @@ command! fffave   cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f -t=l . 
 command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r audplay
 command! ffvids   fd -H -L -d=3 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r vidplay
 command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
-command! ffporn   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/text | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
+command! fftext   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/text | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
 command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 | xargs -r vifmgoto
 command! ffvids   fd -H -L -d=3 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | fzf --height=0 | xargs -r vifmgoto
 command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 | xargs -r vifmgoto
-command! ffporn   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/text | fzf --height=0 | xargs -r vifmgoto
+command! fftext   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/text | fzf --height=0 | xargs -r vifmgoto
+command! ffpics   fd -L -E '*.webp' -E '*.jpg' -E '*.jpeg' -E '*.JPG' -E '*.JPEG' . /opt/.porn/pics | fzf --height=0 | xargs -r vifmgoto
 command! ffiptv   cat %a | fzf -d, --with-nth -1 --height=0 | xargs -r vidplay -x 2>/dev/null
 command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-tmux --height 10 2> /dev/tty")
                   \| if $FZF_RES != ''
