@@ -8,13 +8,22 @@
 # For instance, C-x would be Ctrl+X, or 4-space Mod4+Space
 
 # toggle options
-toggle_filenames    Tab
-toggle_info         I
-toggle_pause        P y
-toggle_menu         m
-toggle_pointer      x
-toggle_auto_zoom    w
-toggle_fullscreen   f
+toggle_filenames       Tab
+toggle_info            I
+toggle_pause           P y
+toggle_menu            m
+toggle_pointer         x
+toggle_auto_zoom       w
+toggle_fullscreen      f
+toggle_keep_vp         K
+
+# zoom
+zoom_in        i
+zoom_out       o
+zoom_fit       X
+zoom_fill      W
+zoom_default   equal
+size_to_image  equal
 
 # Examples for vim-like menu bindings on a qwerty keyboard:
 menu_parent    h Left
@@ -57,13 +66,6 @@ orient_3       R
 # increase/decrease slideshow delay time 0.5s each time
 reload_plus    u
 reload_minus   U
-
-# zoom
-zoom_in        i
-zoom_out       o
-zoom_fit       W
-zoom_default   equal
-size_to_image  equal
 
 # I only hit these accidentaly
 save_image     s
