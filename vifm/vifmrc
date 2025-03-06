@@ -254,8 +254,8 @@ dnoremap  h  q
 nnoremap  i  :touch<space>
 qnoremap  i  <nop>
 nnoremap gi  :imgall<cr>
-nnoremap zi  :!fzfimg<cr>
-nnoremap ,i  :mkdir! ""<left>
+nnoremap ,i  :!fzfimg<cr>
+nnoremap ,I  :mkdir! ""<left>
 nnoremap  I  :mkdir! ""<left><c-x>c
 nnoremap gI  :imgrall<cr>
 nnoremap gj  ]R
@@ -280,14 +280,14 @@ nnoremap  mm gMzz
 nnoremap  mk 3gM
 nnoremap gm  gMzz
 nnoremap  oo =
-nnoremap  of zd
+nnoremap  of zF
 nnoremap  od zD
-nnoremap  ol zl
+nnoremap  ol zL
 nnoremap  or zS
 nnoremap  os :invert s<cr>zf
 nnoremap  ot :exec "filter /\.".expand('%c:e')."$/i"<cr>
 nnoremap  o. zA
-nnoremap  O  zR
+nnoremap  O  zO
 qnoremap  p  <c-b>
 nnoremap  q  ZZ
 vnoremap  q  ZZ
@@ -640,8 +640,8 @@ command! ffgotoA  :set noquickview | :exec 'goto' fnameescape(term('locate $HOME
 command! ffgotoB  :set noquickview | :exec 'goto' fnameescape(term('fd -t=f -t=l | fzf --height=0 2>/dev/tty'))
 command! ffgotoC  :exec 'goto' fnameescape(system('locate -i %a | fzf 2>/dev/tty')) '%IU' | redraw
 command! ffgotoD  :exec 'goto' fnameescape(system('fd -t=f -t=l | fzf 2>/dev/tty')) '%IU' | redraw
-command! ffgoto   fd -L --type file | fzf --height=0 | xargs -r vifmgoto
-command! ffdirs   fd -L --type directory | fzf --height=0 | xargs -r vifmgoto
+command! ffgoto   fd -L --type file | fzf --height=0 --print0 | xargs -0r vifmgoto
+command! ffdirs   fd -L --type directory | fzf --height=0 --print0 | xargs -0r vifmgoto
 command! ffedit   fd -d=3 -t=f -t=l -H -E .git --size=-800k | fzf --height=0 -1 -q "%a" --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
 command! fffave   cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f -t=l . | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
 command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r audplay
@@ -650,9 +650,9 @@ command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --bind 'ctrl-o:exe
 command! fftext   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/text | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
 command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 | xargs -r vifmgoto
 command! ffvids   fd -H -L -d=3 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | fzf --height=0 | xargs -r vifmgoto
-command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 | xargs -r vifmgoto
-command! fftext   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/text | fzf --height=0 | xargs -r vifmgoto
-command! ffpics   fd -L -E '{*.webp,*.jpg,*.jpeg,*.JPG,*.JPEG}' . /opt/.porn/pics | fzf --height=0 | xargs -r vifmgoto
+command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --print0 | xargs -0r vifmgoto
+command! fftext   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/text | fzf --height=0 --print0 | xargs -0r vifmgoto
+command! ffpics   fd -L -E '{*.webp,*.jpg,*.jpeg,*.JPG,*.JPEG}' . /opt/.porn/pics | fzf --height=0 --print0 | xargs -0 -r vifmgoto
 command! ffiptv   cat %a | fzf -d, --with-nth -1 --height=0 | xargs -r vidplay -x 2>/dev/null
 command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-tmux --height 10 2> /dev/tty")
                   \| if $FZF_RES != ''
@@ -663,8 +663,8 @@ command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-t
 " autocmds {{{
 autocmd DirEnter '/opt/util'          setl nomillerview lsview previewprg='bat --style="plain" -- %c'
 autocmd DirEnter '/opt/apps/vifm'     exec 'normal fs;'
-autocmd DirEnter '~/docs/misc'        exec 'normal zd'
-autocmd DirEnter '~/docs/webs'        exec 'normal zd'
+autocmd DirEnter '~/docs/misc'        exec 'normal zF'
+autocmd DirEnter '~/docs/webs'        exec 'normal zF'
 autocmd DirEnter '~/misc/gits/**/*'   setl dotfiles
 autocmd DirEnter '~/pics/celeb/*/'    setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/combo'       setl sort='-mtime,+iname'
