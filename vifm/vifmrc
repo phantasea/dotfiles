@@ -313,7 +313,7 @@ nnoremap  sD :compare bycontents listall ofboth<cr>
 nnoremap  se :sued<cr>
 nnoremap  sf :find<space>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
-nnoremap  sl :alink!<cr>
+nnoremap  sl :alink<cr>
 nnoremap  so :sync<cr>
 nnoremap  sp al
 nnoremap  sq :hideui<cr>
