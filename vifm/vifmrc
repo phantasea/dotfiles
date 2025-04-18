@@ -524,10 +524,13 @@ command! movetoother     mv -i %f %D %i
 command! copytoother     cp -R %f %D %i
 command! movefromother   mv -i %F %d %i
 command! copyfromother   cp -R %F %d %i
-command! sumovetoother   sudo mv -i %f %D %i
-command! sucopytoother   sudo cp -R %f %D %i
-command! sumovefromother sudo mv -i %F %d %i
-command! sucopyfromother sudo cp -R %F %d %i
+command! sumovetoother   sudo mv -i %f %D
+command! sucopytoother   sudo cp -R %f %D
+command! sumovefromother sudo mv -i %F %d
+command! sucopyfromother sudo cp -R %F %d
+command! suremove        sudo rm -i %f
+command! suchgown        sudo chown simone:simone %f
+command! suchgmod        sudo chmod 400 %f
 command! copyrsync       tsp rsync -a %f %D
 command! moversync       tsp rsync -a --remove-source-files %f %D &&
                         \tsp find %f -type d -empty -exec rmdir {} \; && tsp rmdir %f
