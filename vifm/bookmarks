@@ -20,13 +20,13 @@ mark  x  /opt/.porn         note
 mark  A  /opt/.porn/asmr
 mark  I  /opt/.porn/imgs
 mark  P  /opt/.porn/pics
-mark  T  /opt/.porn/text
+mark  T  /opt/.porn/epub
 mark  V  /opt/.porn/vids
 
 mark  C  /media/simone/winC
 mark  D  /media/simone/winD
 mark  X  /media/simone/winX
-mark  M  /media/simone      sandisk_t
+mark  M  /media/simone winC
 
 bmark!  /opt/conf/vifm/vifmrc        vifmrc
 bmark!  /opt/conf/ranger/rc.conf     rc.conf
