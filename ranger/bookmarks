@@ -1,7 +1,6 @@
 a:/opt/apps:ranger
-c:/home/simone/.config
+c:/opt/conf:ranger
 d:/home/simone/.Trash
-e:/opt/conf:ranger
 h:/home/simone:misc
 i:/home/simone/pics:celeb
 m:/opt/misc:repo
@@ -15,9 +14,9 @@ v:/home/simone/vids:celeb-2
 w:/home/simone/docs/webs
 x:/opt/.porn:note
 A:/opt/.porn/asmr
+E:/opt/.porn/epub
 I:/opt/.porn/imgs
 P:/opt/.porn/pics
-T:/opt/.porn/epub
 V:/opt/.porn/vids
 C:/media/simone/winC
 D:/media/simone/winD

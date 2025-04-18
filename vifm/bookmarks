@@ -1,9 +1,8 @@
 " vim: filetype=vifm:
 
 mark  a  /opt/apps          vifm
-mark  c  ~/.config
+mark  c  /opt/conf          vifm
 mark  d  ~/.Trash
-mark  e  /opt/conf          vifm
 mark  h  ~/                 misc
 mark  i  ~/pics             celeb
 mark  m  ~/misc             repo
@@ -18,9 +17,9 @@ mark  w  ~/docs/webs
 mark  x  /opt/.porn         note
 
 mark  A  /opt/.porn/asmr
+mark  E  /opt/.porn/epub
 mark  I  /opt/.porn/imgs
 mark  P  /opt/.porn/pics
-mark  T  /opt/.porn/epub
 mark  V  /opt/.porn/vids
 
 mark  C  /media/simone/winC
@@ -33,4 +32,5 @@ bmark!  /opt/conf/ranger/rc.conf     rc.conf
 bmark!  /opt/conf/ranger/scope.sh    scope
 bmark!  /opt/conf/ranger/rifle.conf  rifle
 bmark!  /opt/conf/i3wm/i3.config     i3
+bmark!  /home/simone/.config         config
 bmark!  /home/simone/docs/note/reinstall_ubuntu.txt  reinst
