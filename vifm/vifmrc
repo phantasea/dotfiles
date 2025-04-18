@@ -310,7 +310,7 @@ vnoremap  sC :selcat<space>
 nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 nnoremap  sD :compare bycontents listall ofboth<cr>
-nnoremap  se :sued<cr>
+nnoremap  se :suedit<cr>
 nnoremap  sf :find<space>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
 nnoremap  sl :alink<cr>
@@ -319,6 +319,7 @@ nnoremap  so :sync<cr>
 nnoremap  sp al
 nnoremap  sq :hideui<cr>
 nnoremap  sr :source $VIFM/vifmrc<cr>
+nnoremap  sR :suremove<cr>
 nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
 nnoremap  st :if getpanetype() == regular | tree | else | exec 'norm gh' | endif<cr>
@@ -528,6 +529,7 @@ command! sumovetoother   sudo mv -i %f %D
 command! sucopytoother   sudo cp -R %f %D
 command! sumovefromother sudo mv -i %F %d
 command! sucopyfromother sudo cp -R %F %d
+command! suedit          sudoedit %c
 command! suremove        sudo rm -i %f
 command! suchgown        sudo chown simone:simone %f
 command! suchgmod        sudo chmod 400 %f
@@ -598,8 +600,6 @@ command! fimB     :select! !fim *
 command! imgclear vifmimg clear
 command! clock    tty-clock -cBS -C 6
 command! cmatrix  cmatrix -abs -C cyan
-command! sued     sudoedit %c
-command! surm     sudo rm -rf %c
 command! editrc   vimux $VIFM/vifmrc
 command! df       df -h %m 2>/dev/null
 command! ps       pstree %m
