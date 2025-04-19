@@ -356,6 +356,7 @@ nnoremap  xI :sumovefromother<cr>
 vnoremap  xI :sumovefromother<cr>
 nnoremap  xO :sumovetoother<cr>
 vnoremap  xO :sumovetoother<cr>
+nnoremap  xx :extractA<cr>
 nnoremap  y  yy
 nnoremap  Y  :yankbasename<cr>
 nnoremap gy  :yankrootname<cr>
@@ -629,7 +630,6 @@ command! du       ncdu .
 command! uz       tar -zxf %c %i
 command! uj       tar -jxf %c %i
 command! zip      zip -r %f.zip %f
-command! zx       zx %f
 command! extractA aunpack -e %f &>/dev/null &
 command! extractB tsp atool -x %f
 command! extractC tsp atool -e -X %D %f
@@ -736,7 +736,8 @@ autocmd DirEnter '/media/simone/*_z'  setl sort='-mtime,+iname'
 " :r - root of the filename (without last extension)
 
 " Directories
-fileview  */,.*/  tree -L 2 -C --dirsfirst %c
+"fileview  */,.*/  tree -L 2 -C --dirsfirst %c
+fileview  */,.*/  eza -A --group-directories-first --no-quotes --color=always --icons=always --tree --level=2 %c
 
 " Manpage
 filetype  *.[1-8],*.[1-8].gz  man ./%c
