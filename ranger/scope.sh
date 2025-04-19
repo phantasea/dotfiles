@@ -344,6 +344,7 @@ handle_mime() {
     case "${mimetype}" in
         ## Directory
         inode/directory)
+            eza -A --group-directories-first --no-quotes --color=always --icons=always --tree "${FILE_PATH}" && exit 5
             tree -C -L 2 --dirsfirst "${FILE_PATH}" && exit 5
             exit 1;;
 
