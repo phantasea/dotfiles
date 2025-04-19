@@ -630,14 +630,6 @@ command! du       ncdu .
 command! uz       tar -zxf %c %i
 command! uj       tar -jxf %c %i
 command! zip      zip -r %f.zip %f
-command! extractA aunpack -e %f &>/dev/null &
-command! extractB tsp atool -x %f
-command! extractC tsp atool -e -X %D %f
-command! extractD tsp atool -e -X %D/%f %f
-command! extractE tsp atool -D -e -X %D %f
-command! archiveA apack %a %f &>/dev/null &
-command! archiveB set -- %f; tsp apack "$(echo "$1" | sed 's/\.[^.]*$//').zip" "$@"
-command! archiveC set -- %f; tsp apack "$(echo "$1" | sed 's/\.[^.]*$//').7z" "$@"
 command! run      !! ./%f
 command! make     !!make %a
 command! mkcd     :mkdir %a | cd %a
@@ -661,6 +653,16 @@ command! weather  curl --silent wttr.in | sed 's/\x1B\[[0-9;]*[mGK]//g' | less
 command! weather  curl --silent wttr.in | bat
 command! altopen  fileopen -b %c
 command! auxopen  fileopen -B %c
+
+command! extractA aunpack -e %f &>/dev/null &
+command! extractB tsp atool -x %f
+command! extractC tsp atool -e -X %D %f
+command! extractD tsp atool -e -X %D/%f %f
+command! extractE tsp atool -D -e -X %D %f
+command! archiveA apack %a %f &>/dev/null &
+command! archiveB set -- %f; tsp apack "$(echo "$1" | sed 's/\.[^.]*$//').zip" "$@"
+command! archiveC set -- %f; tsp apack "$(echo "$1" | sed 's/\.[^.]*$//').7z" "$@"
+
 command! ffgotoA  :set noquickview | :exec 'goto' fnameescape(term('locate $HOME | fzf --height=0 2>/dev/tty'))
 command! ffgotoB  :set noquickview | :exec 'goto' fnameescape(term('fd -t=f -t=l | fzf --height=0 2>/dev/tty'))
 command! ffgotoC  :exec 'goto' fnameescape(system('locate -i %a | fzf 2>/dev/tty')) '%IU' | redraw
@@ -683,6 +685,9 @@ command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-t
                   \| if $FZF_RES != ''
                   \|   exec 'cd' fnameescape($FZF_RES)
                   \| endif
+
+command! epub2txt epub2txt %c &
+command! txt2epub txt2epub %c &
 " }}}
 
 " autocmds {{{
