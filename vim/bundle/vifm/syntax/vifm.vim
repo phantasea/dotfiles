@@ -1,6 +1,6 @@
 " vifm syntax file
 " Maintainer:  xaizek <xaizek@posteo.net>
-" Last Change: June 2, 2023
+" Last Change: January 18, 2025
 " Inspired By: Vim syntax file by Dr. Charles E. Campbell, Jr.
 
 if exists('b:current_syntax')
@@ -20,12 +20,12 @@ syntax keyword vifmCommand contained
 		\ di[splay] dirs e[dit] el[se] empty en[dif] exi[t] file fin[d] fini[sh]
 		\ go[to] gr[ep] h[elp] hideui histnext his[tory] histprev keepsel jobs
 		\ locate ls lstrash marks media mes[sages] mkdir m[ove] noh[lsearch]
-		\ on[ly] plugin plugins popd pushd pu[t] pw[d] qa[ll] q[uit] redr[aw]
+		\ on[ly] o[pen] plugin plugins popd pushd pu[t] pw[d] qa[ll] q[uit] redr[aw]
 		\ rege[dit] reg[isters] regular rename restart restore rlink screen sh[ell]
 		\ siblnext siblprev sor[t] sp[lit] st[op] s[ubstitute] tabc[lose] tabm[ove]
 		\ tabname tabnew tabn[ext] tabo[nly] tabp[revious] touch tr trashes tree
-		\ session sync undol[ist] ve[rsion] vie[w] vifm vs[plit] winc[md] w[rite]
-		\ wq wqa[ll] xa[ll] x[it] y[ank]
+		\ session sync undol[ist] ve[rsion] vie[w] vifm vs[plit] winc[md] wingo
+		\ w[rite] wq wqa[ll] xa[ll] x[it] y[ank]
 		\ nextgroup=vifmArgs
 syntax keyword vifmCommandCN contained
 		\ select switch ratings
@@ -38,8 +38,8 @@ syntax keyword vifmCommandCN contained
 		\ rege[dit] reg[isters] regular rename restart restore rlink screen sh[ell]
 		\ siblnext siblprev sor[t] sp[lit] st[op] s[ubstitute] tabc[lose] tabm[ove]
 		\ tabname tabnew tabn[ext] tabo[nly] tabp[revious] touch tr trashes tree
-		\ session sync undol[ist] ve[rsion] vie[w] vifm vs[plit] winc[md] w[rite]
-		\ wq wqa[ll] xa[ll] x[it] y[ank]
+		\ session sync undol[ist] ve[rsion] vie[w] vifm vs[plit] winc[md] wingo
+		\ w[rite] wq wqa[ll] xa[ll] x[it] y[ank]
 		\ nextgroup=vifmArgsCN
 
 " commands that might be prepended to a command without changing everything else
@@ -67,7 +67,7 @@ syntax keyword vifmSetCommand contained se[t] setl[ocal] setg[lobal]
 syntax keyword vifmSoCommand contained so[urce]
 syntax keyword vifmMarkCommand contained ma[rk]
 syntax keyword vifmFtCommand contained filet[ype] filex[type] filev[iewer] fileopen
-syntax keyword vifmExprCommand contained if ec[ho] elsei[f] exe[cute]
+syntax keyword vifmExprCommand contained if cal[l] ec[ho] elsei[f] exe[cute]
 syntax keyword vifmNormalCommand contained norm[al]
 		\ nextgroup=vifmColonSubcommand
 syntax match vifmPatternCommands contained /\<\(filter\(!\|\>\)\|select\(!\|\>\)\|unselect\>\)/ skipwhite
@@ -80,7 +80,27 @@ syntax case match
 
 " Builtin functions
 syntax match vifmBuiltinFunction
-		\ '\(toggle\|isactive\|selfiles\|chooseopt\|expand\|executable\|extcached\|filetype\|fnameescape\|getpanetype\|has\|input\|layoutis\|paneisat\|system\|tabpagenr\|term\)\ze('
+		\ '\(chooseopt
+		  \\|toggle
+		  \\|isactive
+		  \\|selfiles
+		  \\|escape
+		  \\|expand
+		  \\|executable
+		  \\|extcached
+		  \\|filereadable
+		  \\|filetype
+		  \\|fnameescape
+		  \\|getpanetype
+		  \\|has
+		  \\|input
+		  \\|layoutis
+		  \\|paneisat
+		  \\|selected
+		  \\|system
+		  \\|tabpagenr
+		  \\|term
+		  \\)\ze('
 
 " Operators
 syntax match vifmOperator "\(==\|!=\|>=\?\|<=\?\|\.\|-\|+\|&&\|||\)" skipwhite
@@ -91,7 +111,7 @@ syntax case ignore
 syntax keyword vifmHiGroups contained WildMenu Border Win CmdLine CurrLine
 		\ Menu Dialog TopMid LineNrSep AuxCurrLine
 		\ OtherLine Directory Link Socket Device Executable Selected BrokenLink
-		\ TopLine TopLineSel StatusLine JobLine SuggestBox Fifo ErrorMsg
+		\ TopLine TopLineSel StatusLine JobLine SuggestBox Fifo ErrorMsg WildBox
 		\ CmpMismatch CmpUnmatched CmpBlank
 		\ AuxWin OtherWin TabLine TabLineSel HardLink LineNr OddLine
 		\ User1 User2 User3 User4 User5 User6 User7 User8 User9 User10
@@ -156,8 +176,9 @@ syntax keyword vifmOption contained aproposprg autocd autochpos caseoptions
 		\ shell sh shellflagcmd shcf shortmess shm showtabline stal sizefmt slowfs
 		\ smartcase scs statusline stl suggestoptions syncregs syscalls tablabel
 		\ tabline tabprefix tabscope tabstop tabsuffix tal timefmt timeoutlen title
-		\ tm trash trashdir ts tuioptions to undolevels ul vicmd viewcolumns
-		\ vifminfo vimhelp vixcmd wildmenu wmnu wildstyle wordchars wrap wrapscan ws
+		\ tm trash trashdir ts tuioptions to uioptions undolevels ul vicmd
+		\ viewcolumns vifminfo vimhelp vixcmd wildinc wildmenu wmnu wildstyle
+		\ wordchars wrap wrapscan ws
 		\ prefervsplit filenamedispall redolastcmdcfm cdaftermkdir
 		\ vimabs topmidfiller maxundotabs previewmaxsize filenamedisplen
 		\ clipboardprg paneonetag panetwotag
@@ -168,7 +189,7 @@ syntax keyword vifmOption contained noautocd noautochpos nocf nochaselinks
 		\ noic noincsearch nois nolaststatus nols nolsview nomillerview nonumber
 		\ nonu noquickview norelativenumber nornu noscrollbind noscb norunexec
 		\ nosmartcase noscs nosortnumbers nosyscalls notitle notrash novimhelp
-		\ nowildmenu nowmnu nowrap nowrapscan nows
+		\ nowildmenu nowmnu nowrap nowrapscan nows nogdefault
 		\ noprefervsplit nofilenamedispall noredolastcmdcfm nocdaftermkdir
 
 " Inverted boolean options
@@ -254,7 +275,7 @@ syntax region vifmCMapSt
 		\ skip='\(\n\s*\\\)\|\(\n\s*".*$\)' end='$' keepend
 		\ contains=vifmCMapAbbr
 syntax region vifmExprCommandSt
-		\ start='\<\(if\|ec\%[ho]\|elsei\%[f]\|exe\%[cute]\)\>'
+		\ start='\<\(if\|cal\%[l]\|ec\%[ho]\|elsei\%[f]\|exe\%[cute]\)\>'
 		\ end='$\||'
 		\ contains=vifmExprCommand,vifmString,vifmStringInExpr,vifmBuiltinFunction
 		\,vifmOperator,vifmEnvVar,vifmNumber
