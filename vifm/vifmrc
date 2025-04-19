@@ -397,9 +397,10 @@ endif
 
 set vifminfo=tui,tabs,savedirs,ratings,shistory
 set sessionoptions=tui,tabs,savedirs,ratings
-set iooptions=fastfilecloning
+set iooptions=datasync,fastfilecloning
 set cpoptions="s"
 set tuioptions="uv"
+set uioptions=iodetails
 set caseoptions="pg"
 set previewoptions=graphicsdelay:30000,maxtreedepth:3,toptreestats
 set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
@@ -413,6 +414,23 @@ set locateprg='locate %a'
 set mediaprg='vifmmed'
 set previewprg=""
 
+set noautocd
+set autochpos
+set cdpath=~,/opt
+set cvoptions=autocmds
+set nogdefault
+set histcursor=
+set laststatus
+set mouse=""
+set navoptions="open:dirs"
+set noquickview
+set noscrollbind
+set sortgroups=""
+set sortorder=ascending
+set syncregs=""
+set wildinc=:*
+set wordchars="1-8,14-31,33-255"
+
 set syscalls
 set notitle
 set nolsview
@@ -425,10 +443,12 @@ set relativenumber
 set numberwidth=1
 set shortmess="pT"
 set timeoutlen=2000
+set mintimeoutlen=150
 set confirm=permdelete
 set dotdirs=treeleafsparent
 set tabscope=pane
 set showtabline=multiple
+set tabline=""
 set tabprefix="[%0*%N:"
 set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
@@ -451,6 +471,7 @@ set smartcase
 set hlsearch
 set hloptions=filehi:allrows
 set incsearch
+set nowrap
 set wrapscan
 set scrolloff=0
 set trash
@@ -460,7 +481,7 @@ set nofollowlinks
 set nochaselinks
 set sortnumbers
 set sort="+iname"
-set undolevels=9
+set undolevels=99
 set vimhelp
 set norunexec
 set noiec
