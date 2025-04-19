@@ -380,6 +380,7 @@ cabbrev  cs   colorscheme
 " marks/bmarks/mpc {{{
 source $VIFM/bookmarks
 "source $VIFM/vifm-mpc
+"source $VIFM/vifm-moc
 " }}}
 
 " options {{{
@@ -688,6 +689,7 @@ command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-t
 
 command! epub2txt epub2txt %c &
 command! txt2epub txt2epub %c &
+command! mpcedit  mpc_edit
 " }}}
 
 " autocmds {{{
