@@ -557,9 +557,6 @@ class fzf_mark(Command):
                 self.fm.mark_files(all=False,toggle=True)
 
 
-# Deprecated, use "mount" command now (need to install mmtui)
-# https://github.com/SL-RU/ranger_udisk_menu
-#from udisk_menu.mounter import mount
 class mount(Command):
     """
     :mount
