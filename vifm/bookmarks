@@ -14,7 +14,7 @@ mark  t  ~/temp
 mark  u  /opt/util          mudisk
 mark  v  ~/vids             celeb-2
 mark  w  ~/docs/webs
-mark  x  /opt/.porn         note
+mark  x  /opt/.porn         vids
 
 mark  A  /opt/.porn/asmr
 mark  E  /opt/.porn/epub

@@ -521,7 +521,7 @@ else
 colorscheme chris
 endif
 
-windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|snap|sogoupinyin|华为手机助手)/
+windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|snap|sogoupinyin|vdhcoapp|华为手机助手)/
 " }}}
 
 " commands {{{
@@ -687,6 +687,8 @@ command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-t
                   \|   exec 'cd' fnameescape($FZF_RES)
                   \| endif
 
+command! audconv  audconv  %c &
+command! imgconv  imgconv  %c &
 command! epub2txt epub2txt %c &
 command! txt2epub txt2epub %c &
 command! mpcedit  mpc_edit
