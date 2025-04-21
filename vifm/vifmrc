@@ -345,6 +345,7 @@ nnoremap bv  :if &viewcolumns == '-{name}'
 nnoremap gv  gv
 nnoremap ov  :explore<cr>
 nnoremap zv  :explore<cr>
+nnoremap ,v  :mpvplay<cr>
 qnoremap  w  W
 nnoremap  w  :set millerview!<cr>
 nnoremap  W  :if &millerview | set nomillerview | set lsview | else | set millerview | set nolsview | endif<cr>
@@ -692,6 +693,7 @@ command! imgconv  imgconv  %c &
 command! epub2txt epub2txt %c &
 command! txt2epub txt2epub %c &
 command! mpcedit  mpc_edit
+command! mpvplay  tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-16-60 %c
 " }}}
 
 " autocmds {{{
