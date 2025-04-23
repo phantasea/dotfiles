@@ -180,6 +180,7 @@ vnoremap  -ox  :chmod o-x<cr>
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
+nnoremap  ;  :
 nnoremap  @  :shell<cr>
 nnoremap  !  !!  %c<left><left><left>
 nnoremap g!  :!./%c:. &<cr>
@@ -688,6 +689,7 @@ command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-t
                   \|   exec 'cd' fnameescape($FZF_RES)
                   \| endif
 
+command! audcat   audcat   %f &
 command! audconv  audconv  %c &
 command! imgconv  imgconv  %c &
 command! epub2txt epub2txt %c &
