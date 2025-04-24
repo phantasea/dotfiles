@@ -103,17 +103,15 @@ class Chris(ColorScheme):
                 attr |= bold
 
         elif context.in_titlebar:
-            #attr |= bold
             if context.username:
-                attr |= bold
-                bg = context.bad and red   or green
-                fg = context.bad and white or black
+                #attr |= bold
+                bg = green
+                fg = black
             elif context.hostname:
-                attr |= bold
-                bg = context.bad and red   or magenta
-                fg = context.bad and white or black
+                #attr |= bold
+                bg = magenta
+                fg = black
             elif context.separator:
-                attr |= bold
                 fg = black
                 bg = white
             elif context.link:

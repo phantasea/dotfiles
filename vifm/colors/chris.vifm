@@ -51,8 +51,9 @@ highlight  Selected     ctermfg=white     ctermbg=none     cterm=bold
 highlight  JobLine      ctermfg=white     ctermbg=blue     cterm=bold
 highlight  Menu         ctermfg=white     ctermbg=none     cterm=none
 highlight  Dialog       ctermfg=white     ctermbg=none     cterm=bold
-highlight  WildMenu     ctermfg=white     ctermbg=none     cterm=underline
-highlight  SuggestBox   ctermfg=yellow    ctermbg=none     cterm=bold
+highlight  WildMenu     ctermfg=green     ctermbg=none     cterm=bold
+highlight  WildBox      ctermfg=default   ctermbg=white    cterm=none
+highlight  SuggestBox   ctermfg=white     ctermbg=none     cterm=bold
 highlight  CmpMismatch  ctermfg=red       ctermbg=none     cterm=bold
 
 highlight  User1        ctermfg=red       ctermbg=black    cterm=bold,reverse
