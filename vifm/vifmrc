@@ -301,7 +301,6 @@ nnoremap  r  cW
 nnoremap  R  cw
 nnoremap ,r  cW<c-u>
 qnoremap  s  <c-w>
-nnoremap  s  <c-w>
 nnoremap  sa :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sc :! cat %f > %c.txt<cr>gs
@@ -324,9 +323,14 @@ nnoremap  sR :suremove<cr>
 nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
 nnoremap  st :if getpanetype() == regular | tree | else | exec 'norm gh' | endif<cr>
-nnoremap  sv :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' | view! | else | view! | endif<cr>
+nnoremap  sv :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' | view! | else | set previewprg='' | view | endif<cr>
 nnoremap  sw :!setwallpaper %c %i<cr>
 nnoremap  sx <c-w>x:switch<cr>
+nnoremap  s< <c-w><
+nnoremap  s> <c-w>>
+nnoremap  s= <c-w>=
+nnoremap  s| <c-w>|
+nnoremap  s_ <c-w>_
 nnoremap gS  :%s//g<left><left>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
