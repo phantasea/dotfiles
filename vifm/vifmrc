@@ -200,10 +200,6 @@ nnoremap  >  <c-w>h<c-w>>
 nnoremap  |  <c-w>=
 
 nnoremap  ,, :if expand('%c:e') == 'mp3' || expand('%c:e') == 'm4a' | mpvplay | else | echo 'Nothing!' | endif<cr>
-nnoremap  ,i :imgall<cr>
-nnoremap  ,I :imgrall<cr>
-nnoremap  ,r cW<c-u>
-nnoremap  ,s :! ls -p | grep -v / | sort -t' ' -k2 %m<cr>
 
 nnoremap  a  GVgg
 nnoremap  a  :%select<cr>
@@ -219,7 +215,6 @@ nnoremap  bf :file<cr>
 nnoremap  bg :bmgo<space>
 nnoremap  bj :jobs<cr>
 nnoremap  bk :nmap<cr>
-nnoremap  bi :!fzfimg<cr>
 nnoremap  bl :messages<cr>
 nnoremap  bm :marks<cr>
 nnoremap  bM :media<cr>
@@ -273,6 +268,9 @@ nnoremap  i  :touch  ""<left>
 nnoremap  I  :mkdir! ""<left>
 nnoremap gi  :touch  ""<left><c-x>c
 nnoremap gI  :mkdir! ""<left><c-x>c
+nnoremap zi  :!fzfimg<cr>
+nnoremap ,i  :imgall<cr>
+nnoremap ,I  :imgrall<cr>
 nnoremap gj  ]R
 nnoremap sj  <space>j<space>
 nnoremap zj  }
@@ -313,6 +311,7 @@ mnoremap gr  :grep<space>
 vnoremap  r  cw
 nnoremap  r  cW
 nnoremap  R  cw
+nnoremap ,r  cW<c-u>
 qnoremap  s  <c-w>
 nnoremap  sa :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sb :set scrollbind!<cr>
@@ -337,7 +336,8 @@ nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
 nnoremap  st :if getpanetype() == regular | tree | else | exec 'norm gh' | endif<cr>
 nnoremap  sv :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' | view! | else | set previewprg='' | view | endif<cr>
-nnoremap  sw :!setwallpaper %c %i<cr>
+nnoremap  sw :!tmux split "watch -n 8 tsp"<cr>
+nnoremap  sW :!setwallpaper %c %i<cr>
 nnoremap  sx <c-w>x:switch<cr>
 nnoremap  s< <c-w><
 nnoremap  s> <c-w>>
@@ -348,6 +348,7 @@ nnoremap gS  :%s//g<left><left>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
 nnoremap gs  :select //i<left><left>
+nnoremap ,s  :! ls -p | grep -v / | sort -t' ' -k2 %m<cr>
 nnoremap gt  gs
 nnoremap  t  tj
 nnoremap  T  kt
@@ -703,7 +704,6 @@ command! audconv  audconv  %c &
 command! imgconv  imgconv  %c &
 command! epub2txt epub2txt %c &
 command! txt2epub txt2epub %c &
-command! mpcedit  mpc_edit
 command! mpvplay  tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-16-60 %c
 " }}}
 
