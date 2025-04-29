@@ -199,8 +199,6 @@ nnoremap  <  <c-w>h<c-w><
 nnoremap  >  <c-w>h<c-w>>
 nnoremap  |  <c-w>=
 
-nnoremap  ,, :if expand('%c:e') == 'mp3' || expand('%c:e') == 'm4a' | mpvplay | else | echo 'Nothing!' | endif<cr>
-
 nnoremap  a  GVgg
 nnoremap  a  :%select<cr>
 vnoremap  a  ggoG
@@ -284,8 +282,8 @@ nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
 "nnoremap l  i
-nnoremap gl  :if filetype('.') != 'link' && filetype('.') != 'dir' | altopen | else | exec 'normal gf' | endif<cr>
-nnoremap gL  :if filetype('.') == 'exe' | exec 'normal i' | else | auxopen | endif<cr>
+nnoremap gl  :if filetype('.') == 'link' | exec 'normal gf' | else | altopen | endif<cr>
+nnoremap gL  :if filetype('.') == 'link' | exec 'normal gF' | else | auxopen | endif<cr>
 nnoremap  mi :medinfo<cr>
 nnoremap  mI :tsls<cr>
 nnoremap  mj 2gM
@@ -414,7 +412,7 @@ set sessionoptions=tui,tabs,savedirs,ratings
 set iooptions=datasync,fastfilecloning
 set cpoptions="s"
 set tuioptions="uv"
-set uioptions=iodetails
+set uioptions=
 set caseoptions="pg"
 set previewoptions=graphicsdelay:30000,maxtreedepth:3,toptreestats
 set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
@@ -704,7 +702,8 @@ command! audconv  audconv  %c &
 command! imgconv  imgconv  %c &
 command! epub2txt epub2txt %c &
 command! txt2epub txt2epub %c &
-command! mpvplay  tsp mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-16-60 %c
+command! gif2jpg  gif2jpg  %c &
+command! mpvplay  mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-16-60 %c
 " }}}
 
 " autocmds {{{

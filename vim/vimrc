@@ -256,6 +256,7 @@ vnoremap  gY    "+y
 nnoremap   Y    y$
 nnoremap   yo   o<Esc>k
 nnoremap   yO   O<Esc>j
+nnoremap   zh   :nohlsearch<cr>
 nnoremap   zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 nnoremap   zw   :set wrap!<cr>
 
