@@ -766,7 +766,7 @@ fileview  *.[1-8],*.[1-8].gz  man ./%c | col -b
 
 " Office files
 filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
-filetype  .xls,*.xlsx,*.csv,*.tsv  vd %c, sc-im %c
+filetype  *.xls,*.xlsx,*.csv,*.tsv  vd %c, sc-im %c
 fileview  *.doc  antiword %c, catdoc -- %c
 fileview  *.docx docx2txt %c -, catdoc -- %c, pandoc -s -t markdown -- %c
 fileview  *.ppt  catppt %c
@@ -799,8 +799,6 @@ fileview  *.sh  highlight -S sh -O ansi -s dante %c, bat --color=always %c
 filetype  {*.mp3,*.wav,*.ogg,*.m4a,*.aac,*.wma,*.ape,*.rm},<audio/*>
           \ medinfo %c %S,
           \ audplay %c &,
-          \ audplay -b %c &,
-          \ audplay -B %c &,
 fileview  <audio/*>
           \ exiftool %c,
           \ mediainfo %c,
@@ -819,17 +817,7 @@ fileview  <video/*>
           \ thumbnail %px %py %pw %ph %c,
 
 " Image
-filetype  {*.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm,*.webp},<image/*>
-          \ imgview %c,
-          \ imgview -b %c,
-          \ imgview -B %c,
-filextype *.svg  vimiv %f
-filextype *.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm,*.webp
-          \ pho -p %c, pho -p -s1 %c,
-          \ feh -F %c, feh -F -D 1 %c,
-          \ vimiv %f %i, vimiv --slideshow,
-          \ sxiv -ft %f, sxiv -fS 1 %f,
-          \ pqiv -fs, pqiv -f --action="montage_mode_enter()" --thumbnail-size=128x128,
+filetype  {*.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm,*.webp},<image/*>  imgview %c
 if $DISPLAY != ""
 fileview  <image/*>,<font/*>
           \ vifmimg draw %px %py %pw %ph %c %pc vifmimg clear,
@@ -842,7 +830,7 @@ fileview  <image/*>
           \ chafa --clear -c 256 --bg blue %c,
 
 " PDF
-filetype  *.pdf  pdfview %c %i, pdfview -b %c %i, pdfview -B %c %i
+filetype  *.pdf  pdfview %c %i
 fileview  *.pdf
           \ pdftotext -l 3 -nopgbrk -q -- %c -,
           \ thumbnail %px %py %pw %ph %c,
@@ -858,18 +846,21 @@ endif
 
 " Djvu
 fileview  *.djvu  djvutxt %c, exiftool %c
-filextype *.djvu  zathura %c %i, apvlv %c
+if $DISPLAY == ""
 filetype  *.djvu  fbpdf %c
+else
+filetype  *.djvu  zathura %c %i, apvlv %c
+endif
 
 " epub
-filetype  *.epub  epubview %c %i, epubview -b %c %i
+filetype  *.epub  epubview %c %i
 fileview  *.epub  pandoc %c -t plain, epy -d %c
 
 " chm
 filextype *.chm  kchmviewer %c %i
 
 " Webpage
-filetype  *.html,*.htm,*.xhtml,*.shtml  webview %c, webview -b %c, webview -B %c, webview -bB %c
+filetype  *.html,*.htm,*.xhtml,*.shtml  webview %c
 fileview  *.html,*.htm,*.xhtml,*.shtml
           \ w3m -dump -cols %pw -T text/html %c,
           \ elinks -dump -dump-width %pw %c,
