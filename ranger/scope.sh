@@ -96,6 +96,7 @@ handle_extension() {
 
         # CSV
         csv)
+            bat -- "${FILE_PATH}" && exit 5
             mlr --icsv --opprint cat "${FILE_PATH}" && exit 5
             sed "s/,,,,/,,-,,/g;s/,,/ /g" "${FILE_PATH}" | column -t | sed "s/ - /  /g" | cut -c -1024 && exit 5
             exit 1;;
@@ -231,10 +232,24 @@ handle_image() {
             exit 7;;
 
         ## Video
-        # video/*)
-        #     # Thumbnail
-        #     ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
-        #     exit 1;;
+        #video/*)
+        #    # Get embedded thumbnail
+        #    ffmpeg -i "${FILE_PATH}" -map 0:v -map -0:V -c copy "${IMAGE_CACHE_PATH}" && exit 6
+        #    # Get frame 10% into video
+        #   ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
+        #   exit 1;;
+
+        ## Audio
+        #audio/*)
+        #    # Get embedded thumbnail
+        #    ffmpeg -i "${FILE_PATH}" -map 0:v -map -0:V -c copy \
+        #      "${IMAGE_CACHE_PATH}" && exit 6;;
+
+        ## HTML
+        #text/html)
+        #    wkhtmltoimage -q -f png --width "${DEFAULT_SIZE%x*}" \
+        #      --crop-h "${DEFAULT_SIZE%x*}" "${FILE_PATH}" "${IMAGE_CACHE_PATH}" && exit 6
+        #    exit 1;;
 
         ## PDF
         # application/pdf)
@@ -277,66 +292,7 @@ handle_image() {
                 exit 1
             fi
             ;;
-
-        ## Preview archives using the first image inside.
-        ## (Very useful for comic book collections for example.)
-        # application/zip|application/x-rar|application/x-7z-compressed|\
-        #     application/x-xz|application/x-bzip2|application/x-gzip|application/x-tar)
-        #     local fn=""; local fe=""
-        #     local zip=""; local rar=""; local tar=""; local bsd=""
-        #     case "${mimetype}" in
-        #         application/zip) zip=1 ;;
-        #         application/x-rar) rar=1 ;;
-        #         application/x-7z-compressed) ;;
-        #         *) tar=1 ;;
-        #     esac
-        #     { [ "$tar" ] && fn=$(tar --list --file "${FILE_PATH}"); } || \
-        #     { fn=$(bsdtar --list --file "${FILE_PATH}") && bsd=1 && tar=""; } || \
-        #     { [ "$rar" ] && fn=$(unrar lb -p- -- "${FILE_PATH}"); } || \
-        #     { [ "$zip" ] && fn=$(zipinfo -1 -- "${FILE_PATH}"); } || return
-        #
-        #     fn=$(echo "$fn" | python -c "import sys; import mimetypes as m; \
-        #             [ print(l, end='') for l in sys.stdin if \
-        #               (m.guess_type(l[:-1])[0] or '').startswith('image/') ]" |\
-        #         sort -V | head -n 1)
-        #     [ "$fn" = "" ] && return
-        #     [ "$bsd" ] && fn=$(printf '%b' "$fn")
-        #
-        #     [ "$tar" ] && tar --extract --to-stdout \
-        #         --file "${FILE_PATH}" -- "$fn" > "${IMAGE_CACHE_PATH}" && exit 6
-        #     fe=$(echo -n "$fn" | sed 's/[][*?\]/\\\0/g')
-        #     [ "$bsd" ] && bsdtar --extract --to-stdout \
-        #         --file "${FILE_PATH}" -- "$fe" > "${IMAGE_CACHE_PATH}" && exit 6
-        #     [ "$bsd" ] || [ "$tar" ] && rm -- "${IMAGE_CACHE_PATH}"
-        #     [ "$rar" ] && unrar p -p- -inul -- "${FILE_PATH}" "$fn" > \
-        #         "${IMAGE_CACHE_PATH}" && exit 6
-        #     [ "$zip" ] && unzip -pP "" -- "${FILE_PATH}" "$fe" > \
-        #         "${IMAGE_CACHE_PATH}" && exit 6
-        #     [ "$rar" ] || [ "$zip" ] && rm -- "${IMAGE_CACHE_PATH}"
-        #     ;;
     esac
-
-    # openscad_image() {
-    #     TMPPNG="$(mktemp -t XXXXXX.png)"
-    #     openscad --colorscheme="${OPENSCAD_COLORSCHEME}" \
-    #         --imgsize="${OPENSCAD_IMGSIZE/x/,}" \
-    #         -o "${TMPPNG}" "${1}"
-    #     mv "${TMPPNG}" "${IMAGE_CACHE_PATH}"
-    # }
-
-    # case "${FILE_EXTENSION_LOWER}" in
-    #     ## 3D models
-    #     ## OpenSCAD only supports png image output, and ${IMAGE_CACHE_PATH}
-    #     ## is hardcoded as jpeg. So we make a tempfile.png and just
-    #     ## move/rename it to jpg. This works because image libraries are
-    #     ## smart enough to handle it.
-    #     csg|scad)
-    #         openscad_image "${FILE_PATH}" && exit 6
-    #         ;;
-    #     3mf|amf|dxf|off|stl)
-    #         openscad_image <(echo "import(\"${FILE_PATH}\");") && exit 6
-    #         ;;
-    # esac
 }
 
 handle_mime() {
