@@ -1,21 +1,3 @@
-<div align="center">
-<sup>Special thanks to:</sup>
-<br>
-<br>
-<a href="https://warp.dev/?utm_source=github&utm_medium=referral&utm_campaign=fzfvim_20240209">
-  <div>
-    <img src="https://raw.githubusercontent.com/junegunn/i/master/warp.png" width="300" alt="Warp">
-  </div>
-  <b>Warp is a modern, Rust-based terminal with AI built in so you and your team can build great software, faster.</b>
-  <div>
-    <sup>Visit warp.dev to learn more.</sup>
-  </div>
-</a>
-<br>
-<hr>
-</div>
-<br>
-
 fzf :heart: vim
 ===============
 
@@ -64,7 +46,7 @@ so you can omit it if you use a plugin manager that doesn't support hooks.
 
 ### Dependencies
 
-- [fzf][fzf-main] 0.41.1 or above
+- [fzf][fzf-main] 0.54.0 or above
 - For syntax-highlighted preview, install [bat](https://github.com/sharkdp/bat)
 - If [delta](https://github.com/dandavison/delta) is available, `GF?`,
   `Commits` and `BCommits` will use it to format `git diff` output.
@@ -176,8 +158,20 @@ let g:fzf_vim.preview_window = []
 #### Command-level options
 
 ```vim
-" [Buffers] Jump to the existing window if possible
+" [Buffers] Jump to the existing window if possible (default: 0)
 let g:fzf_vim.buffers_jump = 1
+
+" [Ag|Rg|RG] Display path on a separate line for narrow screens (default: 0)
+" * Requires Perl and fzf 0.56.0 or later
+let g:fzf_vim.grep_multi_line = 0
+   " PATH:LINE:COL:LINE
+let g:fzf_vim.grep_multi_line = 1
+   " PATH:LINE:COL:
+   " LINE
+let g:fzf_vim.grep_multi_line = 2
+   " PATH:LINE:COL:
+   " LINE
+   " (empty line between items using --gap option)
 
 " [[B]Commits] Customize the options used by 'git log':
 let g:fzf_vim.commits_log_options = '--graph --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr"'
@@ -187,6 +181,19 @@ let g:fzf_vim.tags_command = 'ctags -R'
 
 " [Commands] --expect expression for directly executing the command
 let g:fzf_vim.commands_expect = 'alt-enter,ctrl-x'
+```
+
+#### Command-level fzf options
+
+You can set fzf options for each command by setting
+`g:fzf_vim.{command}_options`.
+
+```vim
+" In string
+let g:fzf_vim.buffers_options = '--style full --border-label " Open Buffers "'
+
+" In list (No need to quote or escape values)
+let g:fzf_vim.buffers_options = ['--style', 'full', '--border-label', ' Open Buffers ']
 ```
 
 #### List type to handle multiple selections
