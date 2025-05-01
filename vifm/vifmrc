@@ -282,8 +282,8 @@ nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
 "nnoremap l  i
-nnoremap gl  :if filetype('.') == 'link' | exec 'normal gf' | else | altopen | endif<cr>
-nnoremap gL  :if filetype('.') == 'link' | exec 'normal gF' | else | auxopen | endif<cr>
+nnoremap gl  :if filetype('.') == 'link' | exec 'norm gf' | elseif filetype('.') == 'dir' | exec 'norm gl' | else | altopen | endif<cr>
+nnoremap gL  :if filetype('.') == 'link' | exec 'norm gF' | elseif filetype('.') == 'dir' | firefox        | else | auxopen | endif<cr>
 nnoremap  mi :medinfo<cr>
 nnoremap  mI :tsls<cr>
 nnoremap  mj 2gM
@@ -704,6 +704,7 @@ command! epub2txt epub2txt %c &
 command! txt2epub txt2epub %c &
 command! gif2jpg  gif2jpg  %c &
 command! mpvplay  mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-16-60 %c
+command! firefox  firefox file://%d/%c %i
 " }}}
 
 " autocmds {{{
