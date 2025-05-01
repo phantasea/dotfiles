@@ -7,10 +7,10 @@ hi OtherWin     cterm=none                    ctermfg=185      ctermbg=default
 hi AuxWin       cterm=none                    ctermfg=185      ctermbg=default
 hi OddLine                                    ctermfg=185      ctermbg=default
 
-hi TopLine      cterm=none                    ctermfg=white    ctermbg=234
+hi TopLine      cterm=none                    ctermfg=254      ctermbg=246
 hi TopLineSel   cterm=bold                    ctermfg=white    ctermbg=198
 
-hi TabLine      cterm=none                    ctermfg=white    ctermbg=black
+hi TabLine      cterm=reverse                 ctermfg=default  ctermbg=default
 hi TabLineSel   cterm=bold,reverse            ctermfg=default  ctermbg=default
 
 hi JobLine      cterm=bold                    ctermfg=white    ctermbg=238
@@ -19,8 +19,7 @@ hi Border       cterm=none                    ctermfg=63       ctermbg=236
 hi TopMid       cterm=bold                    ctermfg=white    ctermbg=63
 
 hi CurrLine     cterm=bold,reverse            ctermfg=default  ctermbg=default
-hi AuxCurrLine  cterm=reverse                 ctermfg=default  ctermbg=default
-hi OtherLine    cterm=bold,reverse            ctermfg=234      ctermbg=white
+hi OtherLine    cterm=reverse                 ctermfg=246      ctermbg=254
 hi LineNr       cterm=none                    ctermfg=white    ctermbg=default
 hi LineNrSep    cterm=none                    ctermfg=default  ctermbg=default
 
@@ -31,7 +30,7 @@ hi CmpBlank                                   ctermfg=default  ctermbg=default
 
 hi SuggestBox   cterm=none                    ctermfg=black    ctermbg=247
 hi WildBox      cterm=none                    ctermfg=default  ctermbg=146
-hi WildMenu     cterm=underline,bold,reverse  ctermfg=64       ctermbg=252
+hi WildMenu     cterm=bold,reverse            ctermfg=64       ctermbg=252
 hi Menu         cterm=none                    ctermfg=white    ctermbg=none
 hi Dialog       cterm=bold                    ctermfg=white    ctermbg=none
 
