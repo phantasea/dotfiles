@@ -757,8 +757,8 @@ autocmd DirEnter '/media/simone/*_z'  setl sort='-mtime,+iname'
 " :r - root of the filename (without last extension)
 
 " Directories
-"fileview  */,.*/  tree -L 2 -C --dirsfirst %c
-fileview  */,.*/  eza -A --group-directories-first --no-quotes --color=always --icons=always --tree --level=2 %c
+"fileview */,.*/  tree -L 2 -C --dirsfirst %c
+fileview  */,.*/  eza -A -X --follow-symlinks --group-directories-first --no-quotes --color=always --icons=always --tree --level=2 %c
 
 " Manpage
 filetype  *.[1-8],*.[1-8].gz  man ./%c
