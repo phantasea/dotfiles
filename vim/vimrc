@@ -356,8 +356,8 @@ func! MyColorStatusLine()
     highlight VertSplit    ctermfg=red     ctermbg=black   cterm=none
 
     set fillchars=vert:\|
-    set statusline=%1*\#%n@%{len(ListedBufs())}%7*\ %3*[%{strlen(&ft)?&ft:'none'}]
-    set statusline+=%r%m%7*\ %2*%<\"%F\"%7*\ %0*%=%7*\ %2*\ %l/%L\ \|%c\ %7*\ %1*--%p%%--%0*
+    set statusline=%8*\#%n@%{len(ListedBufs())}%7*\|%3*[%{strlen(&ft)?&ft:'none'}]
+    set statusline+=%r%m%7*\|%2*%<\"%F\"%7*\|%5*%=%7*\|%4*\ %l/%L\|%c\ %7*\|%1*--%p%%--%0*
 endfunc
 
 func! MyPlainStatusLine()
@@ -743,6 +743,9 @@ command! -bang -nargs=* GitGrep
 
 " plugins  {{{
 "blacklist {{{
+if $DISPLAY == ""
+let g:loaded_lightline = 1
+endif
 let g:powerline_loaded = 1
 let g:loaded_vimwiki = 1
 "}}}
