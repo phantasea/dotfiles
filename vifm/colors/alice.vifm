@@ -88,11 +88,11 @@ highlight {*.doc,*.docx,*.xls,*.xlsm,*.xlsx,*.mobi,*.rtf,*.ppt,*.pptx,*.pdf,
 highlight {*.aac,*.ac3,*.anx,*.ape,*.asf,*.au,*.axa,*.cue,*.flac,*.m2a,*.m4a,
           \*.mid,*.midi,*.mka,*.mp3,*.mpc,*.oga,*.ogg,*.ogx,*.ra,*.ram,*.spx,
           \*.wav,*.wma}
-        \ cterm=none ctermfg=79 ctermbg=default
+        \ cterm=none ctermfg=187 ctermbg=default
 " multimedia
 highlight {*.avi,*.axv,*.divx,*.flv,*.m2v,*.m4v,*.mp4,*.m4p,*.mp4v,*.mpeg,*.mpg,
           \*.mkv,*.mov,*.nuv,*.ogv,*.qt,*.rm,*.ts,*.vob,*.webm,*.wmv,*.xvid}
-        \ cterm=none ctermfg=117 ctermbg=default
+        \ cterm=none ctermfg=146 ctermbg=default
 " images
 highlight {*.bmp,*.gif,*.jpeg,*.jpg,*.ico,*.png,*.ppm,*.svg,*.svgz,*.tga,*.tif,
           \*.tiff,*.xbm,*.xcf,*.xpm,*.xspf,*.xwd,*.ai,*.pbm,*.pgm,*.webp}
