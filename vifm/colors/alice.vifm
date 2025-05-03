@@ -8,7 +8,7 @@ hi AuxWin       cterm=none                    ctermfg=185      ctermbg=default
 hi OddLine                                    ctermfg=185      ctermbg=default
 
 hi TopLine      cterm=none                    ctermfg=254      ctermbg=246
-hi TopLineSel   cterm=bold                    ctermfg=white    ctermbg=198
+hi TopLineSel   cterm=bold                    ctermfg=white    ctermbg=202
 
 hi TabLine      cterm=reverse                 ctermfg=default  ctermbg=default
 hi TabLineSel   cterm=bold,reverse            ctermfg=default  ctermbg=default
@@ -34,7 +34,7 @@ hi WildMenu     cterm=bold,reverse            ctermfg=64       ctermbg=252
 hi Menu         cterm=none                    ctermfg=white    ctermbg=none
 hi Dialog       cterm=bold                    ctermfg=white    ctermbg=none
 
-hi CmdLine      cterm=bold                    ctermfg=215      ctermbg=236
+hi CmdLine      cterm=bold                    ctermfg=208      ctermbg=236
 hi ErrorMsg     cterm=bold                    ctermfg=white    ctermbg=164
 
 hi Directory    cterm=none                    ctermfg=117      ctermbg=default
@@ -51,7 +51,7 @@ highlight  User1        ctermfg=32        ctermbg=black     cterm=bold,reverse
 highlight  User2        ctermfg=72        ctermbg=black     cterm=bold,reverse
 highlight  User3        ctermfg=222       ctermbg=black     cterm=bold,reverse
 highlight  User4        ctermfg=white     ctermbg=63        cterm=bold
-highlight  User5        ctermfg=164       ctermbg=black     cterm=bold,reverse
+highlight  User5        ctermfg=168       ctermbg=black     cterm=bold,reverse
 highlight  User6        ctermfg=206       ctermbg=black     cterm=bold,reverse
 highlight  User9        ctermfg=white     ctermbg=black     cterm=bold,reverse
 
