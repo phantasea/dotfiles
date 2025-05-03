@@ -24,13 +24,8 @@ highlight  Device       ctermfg=red       ctermbg=none     cterm=bold
 highlight  Fifo         ctermfg=blue      ctermbg=none     cterm=bold
 highlight  Executable   ctermfg=green     ctermbg=none     cterm=none
 highlight  ErrorMsg     ctermfg=red       ctermbg=none     cterm=none
-if $DISPLAY == ""
-highlight  Border       ctermfg=white     ctermbg=none     cterm=none
-highlight  TopMid       ctermfg=white     ctermbg=none     cterm=bold
-else
-highlight  Border       ctermfg=blue      ctermbg=black    cterm=none
+highlight  Border       ctermfg=blue      ctermbg=none     cterm=bold
 highlight  TopMid       ctermfg=white     ctermbg=black    cterm=bold
-endif
 highlight  LineNr       ctermfg=white     ctermbg=none     cterm=none
 highlight  LineNrSep    ctermfg=none      ctermbg=none     cterm=none
 highlight  StatusLine   ctermfg=white     ctermbg=blue     cterm=bold
@@ -50,8 +45,8 @@ highlight  Selected     ctermfg=white     ctermbg=none     cterm=bold
 highlight  JobLine      ctermfg=white     ctermbg=blue     cterm=bold
 highlight  Menu         ctermfg=white     ctermbg=none     cterm=none
 highlight  Dialog       ctermfg=white     ctermbg=none     cterm=bold
-highlight  WildMenu     ctermfg=green     ctermbg=none     cterm=bold
-highlight  WildBox      ctermfg=default   ctermbg=white    cterm=none
+highlight  WildMenu     ctermfg=green     ctermbg=black    cterm=reverse
+highlight  WildBox      ctermfg=black     ctermbg=white    cterm=none
 highlight  SuggestBox   ctermfg=white     ctermbg=none     cterm=bold
 highlight  CmpMismatch  ctermfg=red       ctermbg=none     cterm=bold
 
