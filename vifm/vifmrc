@@ -34,7 +34,7 @@ nnoremap z<tab>    <nop>
 
 " <cr> = <c-m>
 vnoremap  <cr>     :select<cr>
-nnoremap  <cr>     :togglesort<cr>
+nnoremap  <cr>     :if &lsview == 1 && filetype('.') == 'dir' | exec 'norm! gl' | else | togglesort | endif<cr>
 nnoremap b<cr>     :bmgo<space>
 nnoremap c<cr>     <nop>
 nnoremap f<cr>     <nop>
@@ -52,11 +52,11 @@ mnoremap  <space>  <c-f>
 nnoremap  <space>  :keepsel switch<cr>
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
 nnoremap c<space>  :if &laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
-nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | exec 'normal gg' | else | set sort='+iname' | endif<cr>
+nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | exec 'norm! gg' | else | set sort='+iname' | endif<cr>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
 nnoremap m<space>  <nop>
 nnoremap o<space>  :if toggle("bold") | hi OddLine cterm=bold | else | hi OddLine cterm=none | endif<cr>
-nnoremap s<space>  :if &sort == '+iname' | set sort='-size,+iname' | exec 'normal gg' | else | set sort='+iname' | endif<cr>
+nnoremap s<space>  :if &sort == '+iname' | set sort='-size,+iname' | exec 'norm! gg' | else | set sort='+iname' | endif<cr>
 nnoremap x<space>  <c-w>x
 nnoremap z<space>  :invert o<cr>
 
@@ -282,8 +282,8 @@ nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
 "nnoremap l  i
-nnoremap gl  :if filetype('.') == 'link' | exec 'norm gf' | elseif filetype('.') == 'dir' | exec 'norm gl' | else | altopen | endif<cr>
-nnoremap gL  :if filetype('.') == 'link' | exec 'norm gF' | elseif filetype('.') == 'dir' | firefox        | else | auxopen | endif<cr>
+nnoremap gl  :if filetype('.') == 'link' | exec 'norm! gf' | else | altopen | endif<cr>
+nnoremap gL  :if filetype('.') == 'link' | exec 'norm! gF' | else | auxopen | endif<cr>
 nnoremap  mi :medinfo<cr>
 nnoremap  mI :tsls<cr>
 nnoremap  mj 2gM
@@ -332,7 +332,7 @@ nnoremap  sr :source $VIFM/vifmrc<cr>
 nnoremap  sR :suremove<cr>
 nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
-nnoremap  st :if getpanetype() == regular | tree | else | exec 'norm gh' | endif<cr>
+nnoremap  st :if getpanetype() == regular | tree | else | exec 'norm! gh' | endif<cr>
 nnoremap  sv :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' | view! | else | set previewprg='' | view | endif<cr>
 nnoremap  sw :!tmux split "watch -n 8 tsp"<cr>
 nnoremap  sW :!setwallpaper %c %i<cr>
@@ -375,7 +375,7 @@ nnoremap cy  :cyankbasename<cr>
 nnoremap cY  :cyankpathname<cr>
 nnoremap xy  :xyankbasename<cr>
 nnoremap xY  :xyankpathname<cr>:echo expand('%"d') "is yanked"<cr>
-nnoremap  ze :if filetype('.') == 'dir' | exec 'normal }k' | else | exec 'normal {j' | endif<cr>
+nnoremap  ze :if filetype('.') == 'dir' | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
 " }}}
 
 " abbrevs {{{
@@ -464,7 +464,7 @@ set tabline=""
 set tabprefix="[%0*%N:"
 set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
-set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%[%6*%r%7*|%]%4* %= \"%T\""
+set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%[%6*%r%7*|%]%4*%=%T"
 set rulerformat="%[f='%F'%] %= %E/%a  %l/%S%[(+%x)%]%[%H%]  --%P--"
 set fillchars="vborder:|,hborder:,millersep:"
 set dirsize=nitems
@@ -507,19 +507,16 @@ set redolastcmdcfm
 set prefervsplit
 set maxundotabs=3
 set previewmaxsize=3000
-set nofilenamedispall
 set topmidfiller="+"
 set nocdaftermkdir
 
 if $DISPLAY == ""
 set paneonetag=" ㈠"
 set panetwotag=" ㈡"
-set filenamedisplen=52
 set clipboardprg="tmux show-buffer"
 else
 set paneonetag=" ①"
 set panetwotag=" ②"
-set filenamedisplen=47
 set clipboardprg="xsel -ob"
 endif
 "add by sim1---------------
@@ -607,7 +604,9 @@ command! togglelinenumber
       \ |endif
 
 command! togglesort
-      \ :if &sort == '+iname'
+      \ :if &lsview == 1 && filetype('.') == 'dir'
+      \ |    exec 'norm! gl'
+      \ |elseif &sort == '+iname'
       \ |    set sort=-mtime
       \ |    echo 'sorted by -mtime'
       \ |elseif &sort == '-mtime,+name'
@@ -704,14 +703,13 @@ command! epub2txt epub2txt %c &
 command! txt2epub txt2epub %c &
 command! gif2jpg  gif2jpg  %c &
 command! mpvplay  mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-16-60 %c
-command! firefox  firefox file://%d/%c %i
 " }}}
 
 " autocmds {{{
 autocmd DirEnter '/opt/util'          setl nomillerview lsview previewprg='bat --style="plain" -- %c'
-autocmd DirEnter '/opt/apps/vifm'     exec 'normal fs;'
-autocmd DirEnter '~/docs/misc'        exec 'normal zF'
-autocmd DirEnter '~/docs/webs'        exec 'normal zF'
+autocmd DirEnter '/opt/apps/vifm'     exec 'norm! fs;'
+autocmd DirEnter '~/docs/misc'        exec 'norm! zF'
+autocmd DirEnter '~/docs/webs'        exec 'norm! zF'
 autocmd DirEnter '~/misc/gits/**/*'   setl dotfiles
 autocmd DirEnter '~/pics/celeb/*/'    setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/combo'       setl sort='-mtime,+iname'
