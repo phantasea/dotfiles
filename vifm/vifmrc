@@ -792,7 +792,7 @@ fileview  Makefile*,makefile*  highlight -S make -O ansi -s dante %c, bat --colo
 fileview  *.py  highlight -S python -O ansi -s dante %c, bat --color=always %c
 
 " shell script
-fileview  *.sh  highlight -S sh -O ansi -s dante %c, bat --color=always %c
+fileview  *.sh,*.bash  highlight -S sh -O ansi -s dante %c, bat --color=always %c
 
 " Audio
 filetype  {*.mp3,*.wav,*.ogg,*.m4a,*.aac,*.wma,*.ape,*.rm},<audio/*>
@@ -866,12 +866,12 @@ fileview  *.html,*.htm,*.xhtml,*.shtml
           \ pandoc -s -t markdown -- %c,
 
 " Markdown
-fileview  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %c | w3m -dump -cols 128 -T text/html
+fileview  *.md,*.mkd,*.markdown  highlight -S sh -O ansi -s dante %c, bat --color=always %c
 filetype  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %c | w3m -dump -cols 128 -T text/html | less, mdp %c
 
 " Log
-fileview  *.log  tac %c, tail -n500 %c
-filetype  *.log  tac %c | less, multitail %f, lnav %f
+fileview  *.log  tspin %c, tac %c, tail -n500 %c
+filetype  *.log  tspin %c, tac %c | less, multitail %f, lnav %f
 
 " json files
 fileview  *.json  jq --color-output '.' %c, python -m json.tool -- %c
@@ -967,9 +967,15 @@ filetype  *.sha512  sha512sum -c %c %S
 " Windows EXE
 fileview  *.exe  echo Windows binary file: no preview available. %i
 
+" Config
+fileview  *.conf,*.config,*.cfg
+          \ highlight -S conf -O ansi -s dante %c, bat --color=always %c
+
 " Misc
-fileview  *.txt,*.desktop
-          \ bat -- %c, cat -- %c
+fileview  *.txt,*.vim,*rc
+          \ highlight -O xterm256 --force -s pablo %c,
+          \ bat --color=always %c, cat -- %c
+
 
 " Open all other files with default system programs.
 " By default all unknown files are opened with 'vi[x]cmd'
