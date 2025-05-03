@@ -37,8 +37,8 @@ hi Dialog       cterm=bold                    ctermfg=white    ctermbg=none
 hi CmdLine      cterm=bold                    ctermfg=215      ctermbg=236
 hi ErrorMsg     cterm=bold                    ctermfg=white    ctermbg=164
 
-hi Directory    cterm=none                    ctermfg=123      ctermbg=default
-hi Executable   cterm=none                    ctermfg=119      ctermbg=default
+hi Directory    cterm=none                    ctermfg=117      ctermbg=default
+hi Executable   cterm=none                    ctermfg=78       ctermbg=default
 hi Socket       cterm=none                    ctermfg=182      ctermbg=default
 hi Device       cterm=none                    ctermfg=204      ctermbg=default
 hi Fifo         cterm=none                    ctermfg=50       ctermbg=default
@@ -83,7 +83,7 @@ highlight {*[^0-9].[1-9]}
 highlight {*.doc,*.docx,*.xls,*.xlsm,*.xlsx,*.mobi,*.rtf,*.ppt,*.pptx,*.pdf,
           \*.epub,*.fb2,*.djvu,*.djv,*.htm,*.html,*.shtml,*.xhtml,*.desktop,
           \*.odg,*.odt,*.ods}
-        \ cterm=none ctermfg=210 ctermbg=default
+        \ cterm=none ctermfg=183 ctermbg=default
 " audio
 highlight {*.aac,*.ac3,*.anx,*.ape,*.asf,*.au,*.axa,*.cue,*.flac,*.m2a,*.m4a,
           \*.mid,*.midi,*.mka,*.mp3,*.mpc,*.oga,*.ogg,*.ogx,*.ra,*.ram,*.spx,
@@ -96,11 +96,10 @@ highlight {*.avi,*.axv,*.divx,*.flv,*.m2v,*.m4v,*.mp4,*.m4p,*.mp4v,*.mpeg,*.mpg,
 " images
 highlight {*.bmp,*.gif,*.jpeg,*.jpg,*.ico,*.png,*.ppm,*.svg,*.svgz,*.tga,*.tif,
           \*.tiff,*.xbm,*.xcf,*.xpm,*.xspf,*.xwd,*.ai,*.pbm,*.pgm,*.webp}
-        \ cterm=none ctermfg=117 ctermbg=default
+        \ cterm=none ctermfg=108 ctermbg=default
 " executables
-highlight {*.sh,*.bash,*.zsh,*.bat,*.btm,*.cmd,*.com,*.dll,*.exe,*.run,*.msu,
-          \*.msi,*.fish,*.AppImage}
-        \ cterm=none ctermfg=118 ctermbg=default
+highlight {*.bat,*.btm,*.cmd,*.com,*.dll,*.exe,*.run,*.msu,*.msi,*.fish}
+        \ cterm=none ctermfg=49 ctermbg=default
 " source code
 highlight {*.patch,*.diff,*.py,*.cpp,*.hpp,*.c,*.h,*.cpp,*.hpp,*.cc,*.hh,*.ld,
           \*.hs,*.php,*.lua,*.vim,*.vifm,*.asm,*.s,*.java,*.cxx,*.c++,*.go,
