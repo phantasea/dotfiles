@@ -1,56 +1,112 @@
-" The standard ncurses colors are:
-" Default = -1 = none, can be used for transparency or default color
-" black   = 0  red     = 1  green   = 2  yellow  = 3
-" blue    = 4  magenta = 5  cyan    = 6  white   = 7
-
-" Available style values (some of them can be combined):
-" bold  underline  reverse/inverse  standout  none
-
-"highlight GroupName    ctermfg=fg_color  ctermbg=bg_color  cterm=attrs 
-
-set nolaststatus
+" vim: filetype=vifm :
 
 highlight clear
 
-highlight  Win          ctermfg=yellow    ctermbg=none     cterm=none
-highlight  OtherWin     ctermfg=yellow    ctermbg=none     cterm=none
-highlight  AuxWin       ctermfg=white     ctermbg=none     cterm=none
-highlight  OddLine      ctermfg=yellow    ctermbg=none     cterm=none
-highlight  Directory    ctermfg=cyan      ctermbg=none     cterm=none
-highlight  Link         ctermfg=magenta   ctermbg=none     cterm=bold
-highlight  BrokenLink   ctermfg=black     ctermbg=none     cterm=bold
-highlight  Socket       ctermfg=red       ctermbg=none     cterm=bold
-highlight  Device       ctermfg=red       ctermbg=none     cterm=bold
-highlight  Fifo         ctermfg=blue      ctermbg=none     cterm=bold
-highlight  Executable   ctermfg=green     ctermbg=none     cterm=none
-highlight  ErrorMsg     ctermfg=red       ctermbg=none     cterm=none
-highlight  Border       ctermfg=magenta   ctermbg=none     cterm=bold
-highlight  LineNr       ctermfg=white     ctermbg=none     cterm=none
-highlight  LineNrSep    ctermfg=none      ctermbg=none     cterm=none
-highlight  StatusLine   ctermfg=white     ctermbg=none     cterm=bold
-highlight  CmdLine      ctermfg=white     ctermbg=magenta  cterm=bold
-highlight  TabLine      ctermfg=white     ctermbg=magenta  cterm=none
-highlight  TopLine      ctermfg=white     ctermbg=magenta  cterm=none
-highlight  TabLineSel   ctermfg=white     ctermbg=green    cterm=bold
-highlight  TopLineSel   ctermfg=white     ctermbg=magenta  cterm=bold
-highlight  CurrLine     ctermfg=none      ctermbg=none     cterm=bold,reverse
-highlight  OtherLine    ctermfg=white     ctermbg=none     cterm=bold
-highlight  Selected     ctermfg=black     ctermbg=white    cterm=bold
-highlight  JobLine      ctermfg=white     ctermbg=blue     cterm=bold
-highlight  Menu         ctermfg=white     ctermbg=none     cterm=none
-highlight  WildMenu     ctermfg=white     ctermbg=none     cterm=underline,reverse
-highlight  SuggestBox   ctermfg=yellow    ctermbg=none     cterm=bold
-highlight  CmpMismatch  ctermfg=red       ctermbg=none     cterm=bold
+hi Win          cterm=none                    ctermfg=185      ctermbg=default
+hi OtherWin     cterm=none                    ctermfg=185      ctermbg=default
+hi AuxWin       cterm=none                    ctermfg=185      ctermbg=default
+hi OddLine                                    ctermfg=185      ctermbg=default
 
-highlight  User1        ctermfg=red       ctermbg=black    cterm=bold,reverse
-highlight  User2        ctermfg=green     ctermbg=black    cterm=bold,reverse
-highlight  User3        ctermfg=yellow    ctermbg=none     cterm=bold,reverse
-highlight  User4        ctermfg=white     ctermbg=blue     cterm=bold
-highlight  User5        ctermfg=magenta   ctermbg=black    cterm=bold,reverse
-highlight  User6        ctermfg=cyan      ctermbg=black    cterm=bold,reverse
-highlight  User7        ctermfg=white     ctermbg=none     cterm=bold,reverse
+hi TopLine      cterm=none                    ctermfg=254      ctermbg=246
+hi TopLineSel   cterm=bold                    ctermfg=white    ctermbg=202
 
-highlight  /\.exe$/i                                        ctermfg=green   ctermbg=none    cterm=none
-highlight  /\.(m3u|tar|tgz|iso|rar|gz|7z|zip|deb)$/i        ctermfg=red     ctermbg=none    cterm=bold
-highlight  /^(TODO|Makefile|README|FAQ|ChangeLog|INSTALL)/I ctermfg=red     ctermbg=none    cterm=bold
-highlight  /\.(orig|c_|cpp_)$/i                             ctermfg=black   ctermbg=none    cterm=bold
+hi TabLine      cterm=reverse                 ctermfg=default  ctermbg=default
+hi TabLineSel   cterm=bold,reverse            ctermfg=default  ctermbg=default
+
+hi JobLine      cterm=bold                    ctermfg=white    ctermbg=238
+hi StatusLine   cterm=none                    ctermfg=black    ctermbg=white
+hi Border       cterm=none                    ctermfg=63       ctermbg=236
+hi TopMid       cterm=bold                    ctermfg=white    ctermbg=63
+
+hi CurrLine     cterm=bold,reverse            ctermfg=default  ctermbg=default
+hi OtherLine    cterm=reverse                 ctermfg=246      ctermbg=254
+hi LineNr       cterm=none                    ctermfg=white    ctermbg=default
+hi LineNrSep    cterm=none                    ctermfg=default  ctermbg=default
+
+hi Selected     cterm=bold                    ctermfg=213      ctermbg=default
+hi CmpMismatch  cterm=bold                    ctermfg=white    ctermbg=88
+hi CmpUnmatched cterm=bold                    ctermfg=white    ctermbg=28
+hi CmpBlank                                   ctermfg=default  ctermbg=default
+
+hi SuggestBox   cterm=none                    ctermfg=black    ctermbg=247
+hi WildBox      cterm=none                    ctermfg=default  ctermbg=146
+hi WildMenu     cterm=bold,reverse            ctermfg=64       ctermbg=252
+hi Menu         cterm=none                    ctermfg=white    ctermbg=none
+hi Dialog       cterm=bold                    ctermfg=white    ctermbg=none
+
+hi CmdLine      cterm=bold                    ctermfg=208      ctermbg=236
+hi ErrorMsg     cterm=bold                    ctermfg=white    ctermbg=164
+
+hi Directory    cterm=none                    ctermfg=117      ctermbg=default
+hi Executable   cterm=none                    ctermfg=78       ctermbg=default
+hi Socket       cterm=none                    ctermfg=182      ctermbg=default
+hi Device       cterm=none                    ctermfg=204      ctermbg=default
+hi Fifo         cterm=none                    ctermfg=50       ctermbg=default
+hi Link         cterm=none                    ctermfg=207      ctermbg=default
+hi BrokenLink   cterm=none                    ctermfg=242      ctermbg=default
+hi HardLink     cterm=none                    ctermfg=199      ctermbg=default
+
+" for powerline-like look of statusline
+highlight  User1        ctermfg=32        ctermbg=black     cterm=bold,reverse
+highlight  User2        ctermfg=72        ctermbg=black     cterm=bold,reverse
+highlight  User3        ctermfg=222       ctermbg=black     cterm=bold,reverse
+highlight  User4        ctermfg=white     ctermbg=63        cterm=bold
+highlight  User5        ctermfg=168       ctermbg=black     cterm=bold,reverse
+highlight  User6        ctermfg=206       ctermbg=black     cterm=bold,reverse
+highlight  User9        ctermfg=white     ctermbg=black     cterm=bold,reverse
+
+" software documentation
+highlight {COPYRIGHT,COPYING*,BUGS,ChangeLog*,FAQ,INSTALL*,LICENCE,LICENSE,NEWS,
+          \README,README.*,AUTHORS,TODO,THANKS}
+        \ cterm=none ctermfg=187 ctermbg=default
+" build system files
+highlight {Makefile,Makefile.am,Makefile.in,Makefile.win,*.mak,*.mk,*.m4,*.ac,
+          \configure,CMakeLists.txt,*.cmake,*.pro,*.pri,*.sln,meson.build,
+          \meson_options.txt}
+        \ cterm=none ctermfg=121 ctermbg=default
+" archives
+highlight {*.7z,*.ace,*.arj,*.bz2,*.cpio,*.deb,*.dz,*.gz,*.jar,*.lzh,*.lzma,
+          \*.rar,*.rpm,*.rz,*.tar,*.taz,*.tb2,*.tbz,*.tbz2,*.tgz,*.tlz,*.trz,
+          \*.txz,*.tz,*.tz2,*.xz,*.z,*.zip,*.zoo,*.apk,*.gzip,*.lz}
+        \ cterm=none ctermfg=206 ctermbg=default
+" configuration and other readable textual formats
+highlight {*.css,*.less,*.scss,*.markdown,*.md,*.mkd,*.org,*.pandoc,*.pdc,*.tex,
+          \*.txt,*.xml,*.log,*.rss,*.xul,*.json,*.yaml,*.yml,*.csv,*.plist,
+          \*.ini,*.cfg,*.rc,*.conf,*.spec,*.qrc,*.description,*.list,*.log.old,
+          \*.log.1,*.log.2,*.log.3,*.log.4,*.log.5,*.log.6,*.log.7,*.log.8,
+          \syslog,syslog.1}
+        \ cterm=none ctermfg=217 ctermbg=default
+" still text files, but keeping this unoptimizable glob separately
+highlight {*[^0-9].[1-9]}
+        \ cterm=none ctermfg=217 ctermbg=default
+" documents and text-based formats that need special handling
+highlight {*.doc,*.docx,*.xls,*.xlsm,*.xlsx,*.mobi,*.rtf,*.ppt,*.pptx,*.pdf,
+          \*.epub,*.fb2,*.djvu,*.djv,*.htm,*.html,*.shtml,*.xhtml,*.desktop,
+          \*.odg,*.odt,*.ods}
+        \ cterm=none ctermfg=183 ctermbg=default
+" audio
+highlight {*.aac,*.ac3,*.anx,*.ape,*.asf,*.au,*.axa,*.cue,*.flac,*.m2a,*.m4a,
+          \*.mid,*.midi,*.mka,*.mp3,*.mpc,*.oga,*.ogg,*.ogx,*.ra,*.ram,*.spx,
+          \*.wav,*.wma}
+        \ cterm=none ctermfg=187 ctermbg=default
+" multimedia
+highlight {*.avi,*.axv,*.divx,*.flv,*.m2v,*.m4v,*.mp4,*.m4p,*.mp4v,*.mpeg,*.mpg,
+          \*.mkv,*.mov,*.nuv,*.ogv,*.qt,*.rm,*.ts,*.vob,*.webm,*.wmv,*.xvid}
+        \ cterm=none ctermfg=146 ctermbg=default
+" images
+highlight {*.bmp,*.gif,*.jpeg,*.jpg,*.ico,*.png,*.ppm,*.svg,*.svgz,*.tga,*.tif,
+          \*.tiff,*.xbm,*.xcf,*.xpm,*.xspf,*.xwd,*.ai,*.pbm,*.pgm,*.webp}
+        \ cterm=none ctermfg=108 ctermbg=default
+" executables
+highlight {*.bat,*.btm,*.cmd,*.com,*.dll,*.exe,*.run,*.msu,*.msi,*.fish}
+        \ cterm=none ctermfg=49 ctermbg=default
+" source code
+highlight {*.patch,*.diff,*.py,*.cpp,*.hpp,*.c,*.h,*.cpp,*.hpp,*.cc,*.hh,*.ld,
+          \*.hs,*.php,*.lua,*.vim,*.vifm,*.asm,*.s,*.java,*.cxx,*.c++,*.go,
+          \*.pl,*.pm,*.t,*.cs,*.asp,*.dart,*.js,*.rb,*.scala,*.ts,*.coffee,
+          \*.ml,*.mli,*.rs,*.sql,*.qml,vifmrc,vimrc,.vimrc,*.flex,*.ypp,*.S}
+        \ cterm=none ctermfg=193 ctermbg=default
+" software documentation
+highlight {COPYRIGHT,COPYING*,BUGS,ChangeLog*,FAQ,INSTALL*,LICENCE,LICENSE,NEWS,
+          \README,README.*,AUTHORS,TODO,THANKS}
+        \ cterm=none ctermfg=187 ctermbg=default

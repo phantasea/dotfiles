@@ -11,10 +11,10 @@ from ranger.gui.color import (
 )
 
 
-class Lynna(ColorScheme):
+class Chris(ColorScheme):
     def use(self, context):
         fg, bg, attr = default_colors
-        fg = yellow
+        fg = 185
 
         if context.reset:
             return default_colors
@@ -25,81 +25,60 @@ class Lynna(ColorScheme):
             else:
                 attr = normal
             if context.error:
-                bg = red
+                bg = 198
                 fg = black
             if context.empty:
                 attr |= bold
                 fg = black
             if context.border:
-                fg = blue
-                bg = black
+                fg = default
             if context.media:
                 if context.image:
-                    fg = yellow
+                    fg = 108
                 elif context.audio:
-                    fg = yellow
+                    fg = 187
                 elif context.video:
-                    fg = yellow
+                    fg = 146
                 else:
-                    fg = yellow
+                    fg = 185
             if context.container:
-                fg = red
+                fg = 206
             if context.mimetext:
-                fg = yellow
+                fg = 185
             if context.document:
-                fg = yellow
+                fg = 217
+            if context.ebooks:
+                fg = 183
             if context.special:
-                fg = red
+                fg = 198
                 attr |= bold
             if context.directory:
                 #attr |= bold
-                fg = cyan
+                fg = 39
             elif context.executable and not \
                     any((context.media, context.container,
                         context.fifo, context.socket)):
                 #attr |= bold
-                fg = green
+                fg = 115
             if context.socket:
-                fg = magenta
+                fg = 207
                 attr |= bold
             if context.fifo or context.device:
-                fg = yellow
+                fg = 185
                 if context.device:
                     attr |= bold
             if context.link:
                 attr |= bold
                 if context.good:
-                    fg = magenta
+                    fg = 207
                 else:
-                    fg = black
+                    fg = 241
             if context.tag_marker and not context.selected:
                 attr |= bold
-                if fg in (red, magenta):
+                if fg in (198, 207):
                     fg = white
                 else:
-                    fg = red
-            if context.main_column:
-                if context.selected:
-                    attr |= bold
-                if context.marked:
-                    attr |= bold
-                    fg = white
-            if context.badinfo:
-                if attr & reverse:
-                    bg = magenta
-                else:
-                    fg = magenta
-            #if not context.selected and (context.cut or context.copied):
-            if context.cut or context.copied:
-                fg = black
-                attr |= bold
-
-            if context.inactive_pane:
-                if context.selected:
-                    attr = normal
-                    attr |= bold
-                    fg = white
-
+                    fg = 198
             if context.line_number:
                 fg = white
                 if not context.selected:
@@ -108,6 +87,26 @@ class Lynna(ColorScheme):
                     attr |= bold | reverse
             if context.line_number_separator:
                 fg, bg, attr = default_colors
+            if context.main_column:
+                if context.selected:
+                    attr |= bold
+                if context.marked:
+                    attr |= bold
+                    fg = white
+            if context.badinfo:
+                if attr & reverse:
+                    bg = 207
+                else:
+                    fg = 207
+            #if not context.selected and (context.cut or context.copied):
+            if context.cut or context.copied:
+                fg = 240
+                attr |= bold
+            if context.inactive_pane:
+                if context.selected:
+                    attr |= reverse
+                    fg = 246
+                    bg = 254
 
         elif context.in_titlebar:
             #attr |= bold
@@ -125,99 +124,96 @@ class Lynna(ColorScheme):
                 bg = white
             elif context.link:
                 fg = black
-                bg = magenta
+                bg = 207
             elif context.directory:
                 fg = black
-                bg = cyan
+                bg = 39
             elif context.file:
                 fg = black
-                bg = yellow
+                bg = 185
             elif context.keybuffer:
-                bg = green
+                bg = 115
                 fg = black
             elif context.tab:
                 attr |= bold
+                fg = white
                 if context.good:
-                    fg = white
-                    bg = red
-                else:
-                    fg = white
-                    bg = black
-                    attr ^= bold
+                    bg = 198
 
         elif context.in_statusbar:
             #attr |= bold
             if context.permissions:
-                bg = red
+                bg = 198
                 fg = black
             elif context.owner or context.group:
-                bg = magenta
+                bg = 207
                 fg = black
             elif context.mtime:
-                bg = green
+                bg = 115
                 fg = black
             elif context.link:
-                bg = blue
+                bg = 63
                 fg =white
                 attr |= bold
             elif context.lspace:
                 bg = white
                 fg = black
             elif context.mspace:
-                bg = blue
+                bg = 63
                 fg = black
             elif context.rspace:
                 bg = white
                 fg = black
             elif context.flat:
-                bg = green
+                bg = 115
                 fg = black
             elif context.filter:
-                bg = yellow
+                bg = 185
                 fg = black
             elif context.size:
-                bg = yellow
+                bg = 168
                 fg = black
             elif context.stars:
-                bg = magenta
+                bg = 207
                 fg = black
             elif context.ruler or context.percentage or context.top or context.bot or context.all:
-                bg = yellow
+                bg = 202
                 fg = black
             elif context.marked:
-                bg = red
+                bg = 198
                 fg = black
             elif context.systime:
-                bg = green
+                bg = 115
                 fg = black
             elif context.frozen:
                 attr |= bold | reverse
-                fg = cyan
+                fg = 39
                 fg += BRIGHT
             elif context.loaded:
                 bg = white
                 fg = black
+                attr |= bold
             elif context.message:
-                fg = green
+                fg = 115
                 if context.bad:
-                    fg = red
+                    fg = 198
                 attr |= reverse
                 fg += BRIGHT
             elif context.vcsinfo:
-                bg = blue
+                bg = 63
                 fg = black
                 attr &= ~bold
             elif context.vcscommit:
-                bg = yellow
+                bg = 185
                 fg = black
                 attr &= ~bold
             elif context.vcsdate:
-                bg = cyan
+                bg = 39
                 fg = black
                 attr &= ~bold
 
         elif context.in_console:
-            bg = magenta
+            bg = 198
             fg = white
             attr |= bold
 
@@ -227,7 +223,7 @@ class Lynna(ColorScheme):
 
         if context.in_taskview:
             if context.title:
-                fg = cyan
+                fg = 39
 
             if context.selected:
                 attr |= reverse
@@ -235,31 +231,31 @@ class Lynna(ColorScheme):
         if context.vcsfile and not context.selected:
             attr &= ~bold
             if context.vcsconflict:
-                fg = magenta
+                fg = 207
             elif context.vcsuntracked:
-                fg = red
+                fg = 198
             elif context.vcschanged:
-                fg = red
+                fg = 198
             elif context.vcsunknown:
-                fg = red
+                fg = 198
             elif context.vcsstaged:
-                fg = green
+                fg = 115
             elif context.vcssync:
-                fg = green
+                fg = 115
             elif context.vcsignored:
                 fg = white
 
         elif context.vcsremote and not context.selected:
             attr &= ~bold
             if context.vcssync or context.vcsnone:
-                fg = green
+                fg = 115
             elif context.vcsbehind:
-                fg = red
+                fg = 198
             elif context.vcsahead:
-                fg = blue
+                fg = 63
             elif context.vcsdiverged:
-                fg = magenta
+                fg = 207
             elif context.vcsunknown:
-                fg = red
+                fg = 198
 
         return fg, bg, attr
