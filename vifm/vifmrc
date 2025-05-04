@@ -825,8 +825,8 @@ fileview  <image/*>,<font/*>
 endif
 fileview  <image/*>
           \ w3mimg %px %py %pw %ph %c,
+          \ chafa --clear --colors full %c,
           \ exiftool %c, mediainfo %c, imgcat %c,
-          \ chafa --clear -c 256 --bg blue %c,
 
 " PDF
 filetype  *.pdf  pdfview %c %i
@@ -866,8 +866,16 @@ fileview  *.html,*.htm,*.xhtml,*.shtml
           \ pandoc -s -t markdown -- %c,
 
 " Markdown
-fileview  *.md,*.mkd,*.markdown  highlight -S sh -O ansi -s dante %c, bat --color=always %c
-filetype  *.md,*.mkd,*.markdown  pandoc -f markdown -t html %c | w3m -dump -cols 128 -T text/html | less, mdp %c
+fileview  *.md,*.mkd,*.markdown
+          \ bat --color=always %c,
+          \ highlight -S sh -O ansi -s dante %c,
+          \ glow -w %pw %c,
+          \ vimcat -s %c,
+filetype  *.md,*.mkd,*.markdown
+          \ vimpager -s %c,
+          \ glow -w %pw %c | less,
+          \ pandoc -f markdown -t html %c | w3m -dump -cols %pw -T text/html | less,
+          \ mdp %c,
 
 " Log
 fileview  *.log  tspin %c, tac %c, tail -n500 %c

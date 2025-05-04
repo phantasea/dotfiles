@@ -108,8 +108,13 @@ else
     export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 fi
 
+if ! command -v vimpager > /dev/null 2>&1; then
+    export PAGER="/bin/sh -c \"col -b | view -c 'set ts=8 nomod nolist nonu noma' -\""
+else
+    export PAGER="vimpager"
+fi
+
 #export DISPLAY=':0'
-export PAGER="/bin/sh -c \"col -b | view -c 'set ts=8 nomod nolist nonu noma' -\""
 export EDITOR=vim
 export VISUAL=vim
 export LANG=en_US.UTF-8
@@ -199,14 +204,10 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-[ -f /opt/conf/misc/tmux-completion.bash ]    && source /opt/conf/misc/tmux-completion.bash
-[ -f /opt/conf/misc/ouch-completion.bash ]    && source /opt/conf/misc/ouch-completion.bash
-[ -f /opt/conf/misc/forgit-completion.bash ]  && source /opt/conf/misc/forgit-completion.bash
-[ -f /opt/conf/misc/cheat-completion.bash ]   && source /opt/conf/misc/cheat-completion.bash
-[ -f /opt/conf/misc/buku-completion.bash ]    && source /opt/conf/misc/buku-completion.bash
-[ -f /opt/conf/misc/ddgr-completion.bash ]    && source /opt/conf/misc/ddgr-completion.bash
-[ -f /opt/conf/misc/googler-completion.bash ] && source /opt/conf/misc/googler-completion.bash
-[ -f /opt/conf/misc/googler.alias ]           && source /opt/conf/misc/googler.alias
+for file in /opt/conf/misc/*-completion.bash;
+do
+    source $file;
+done
 
 # start the crontab
 crontab /opt/conf/mycrontab
