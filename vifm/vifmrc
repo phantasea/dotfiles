@@ -973,7 +973,7 @@ fileview  *.conf,*.config,*.cfg
 
 " Misc
 fileview  *.txt,*.vim,*rc
-          \ highlight -O xterm256 --force -s pablo %c,
+          \ highlight -O ansi --force -s pablo %c,
           \ bat --color=always %c, cat -- %c
 
 

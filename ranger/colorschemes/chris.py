@@ -31,7 +31,8 @@ class Chris(ColorScheme):
                 attr |= bold
                 fg = black
             if context.border:
-                fg = default
+                attr |= bold
+                fg = blue
             if context.media:
                 if context.image:
                     fg = yellow
@@ -82,7 +83,6 @@ class Chris(ColorScheme):
                 if not context.selected:
                     attr &= ~bold
                 else:
-                    fg = white
                     attr |= bold | reverse
             if context.line_number_separator:
                 fg, bg, attr = default_colors
@@ -101,6 +101,11 @@ class Chris(ColorScheme):
             if context.cut or context.copied:
                 fg = black
                 attr |= bold
+            if context.inactive_pane:
+                if context.selected:
+                    attr |= reverse
+                    fg = black
+                    bg = white
 
         elif context.in_titlebar:
             if context.username:
@@ -109,7 +114,7 @@ class Chris(ColorScheme):
                 fg = black
             elif context.hostname:
                 #attr |= bold
-                bg = magenta
+                bg = red
                 fg = black
             elif context.separator:
                 fg = black
@@ -160,13 +165,13 @@ class Chris(ColorScheme):
                 bg = green
                 fg = black
             elif context.filter:
-                bg = yellow
+                bg = green
                 fg = black
             elif context.size:
-                bg = yellow
+                bg = cyan
                 fg = black
             elif context.stars:
-                bg = magenta
+                bg = cyan
                 fg = black
             elif context.ruler or context.percentage or context.top or context.bot or context.all:
                 bg = yellow

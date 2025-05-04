@@ -31,7 +31,8 @@ class Chris(ColorScheme):
                 attr |= bold
                 fg = black
             if context.border:
-                fg = default
+                attr |= bold
+                fg = blue
             if context.media:
                 if context.image:
                     fg = 108
