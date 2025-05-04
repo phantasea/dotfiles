@@ -195,9 +195,13 @@ nnoremap  #  :togglelinenumber<cr>
 nnoremap g*  #
 nnoremap  \  :invert s<cr>
 vnoremap  \  :invert s<cr>
+nnoremap  |  <c-w>=
 nnoremap  <  <c-w>h<c-w><
 nnoremap  >  <c-w>h<c-w>>
-nnoremap  |  <c-w>=
+mnoremap  <  3zh
+mnoremap  >  3zl
+mnoremap  [  zH
+mnoremap  ]  zL
 
 nnoremap  a  GVgg
 nnoremap  a  :%select<cr>
@@ -465,7 +469,7 @@ set tabprefix="[%0*%N:"
 set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
 set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%[%6*%r%7*|%]%4*%=%T"
-set rulerformat="%[f='%F'%] %= %E/%a  %l/%S%[(+%x)%]%[%H%]  --%P--"
+set rulerformat="%= %[f='%F'%]  %E/%a  %3l/%-3S%[(+%x)%]%[%H%]  --%P--"
 set fillchars="vborder:|,hborder:,millersep:"
 set dirsize=nitems
 if $DISPLAY != ""
