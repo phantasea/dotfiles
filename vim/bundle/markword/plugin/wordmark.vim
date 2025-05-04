@@ -17,11 +17,11 @@ let s:current_mark_position = ""
 
 " default colors/groups
 " you may define your own colors in you vimrc file, in the form as below:
-hi MarkWord1  cterm=bold ctermbg=Cyan     ctermfg=White  guibg=#8CCBEA    guifg=Black
-hi MarkWord2  cterm=bold ctermbg=Green    ctermfg=White  guibg=#A4E57E    guifg=Black
-hi MarkWord3  cterm=bold ctermbg=Yellow   ctermfg=White  guibg=#FFDB72    guifg=Black
-hi MarkWord4  cterm=bold ctermbg=Red      ctermfg=White  guibg=#FF7272    guifg=Black
-hi MarkWord5  cterm=bold ctermbg=Magenta  ctermfg=White  guibg=#FFB3FF    guifg=Black
+hi MarkWord1  cterm=bold ctermbg=Cyan     ctermfg=Black  guibg=#8CCBEA    guifg=Black
+hi MarkWord2  cterm=bold ctermbg=Green    ctermfg=Black  guibg=#A4E57E    guifg=Black
+hi MarkWord3  cterm=bold ctermbg=Yellow   ctermfg=Black  guibg=#FFDB72    guifg=Black
+hi MarkWord4  cterm=bold ctermbg=Red      ctermfg=Black  guibg=#FF7272    guifg=Black
+hi MarkWord5  cterm=bold ctermbg=Magenta  ctermfg=Black  guibg=#FFB3FF    guifg=Black
 hi MarkWord6  cterm=bold ctermbg=White    ctermfg=Black  guibg=#9999FF    guifg=Black
 
 " Default bindings

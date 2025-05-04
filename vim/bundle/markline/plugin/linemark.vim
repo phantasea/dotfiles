@@ -8,8 +8,8 @@ let g:loaded_linemark = 1
 nnoremap  <silent> ml :call <SID>HighlightLine() \| nohls<CR>
 nnoremap  <silent> mL :call <SID>HighlightClear()<CR>
 
-let g:hili_bg = ["Blue",  "Cyan",  "Green", "Magenta", "Red",   "Yellow", "White"]  
-let g:hili_fg = ["White", "White", "White", "White",   "White", "White",  "Black"]  
+let g:hili_bg = ["Blue",  "Cyan",  "Green", "Magenta", "Red",   "Yellow", "White"]
+let g:hili_fg = ["Black", "Black", "Black", "Black",   "Black", "Black",  "Black"]
 let g:hili_idx = 0
 let g:hili_grp = ["","","","","","",""]
 
