@@ -210,6 +210,7 @@ qnoremap  a  <nop>
 qnoremap  A  <nop>
 nnoremap  A  za
 nnoremap ga  gA
+nnoremap  b/ :find<space>
 nnoremap  bb :bmarks<cr>
 nnoremap  bc :command<cr>
 nnoremap  bC :change<cr>
@@ -325,7 +326,6 @@ nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 nnoremap  sD :compare bycontents listall ofboth<cr>
 nnoremap  se :suedit<cr>
-nnoremap  sf :find<space>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
 nnoremap  sl :alink<cr>
 nnoremap  sL :alink!<cr>
@@ -485,7 +485,7 @@ set wildstyle=popup
 set ignorecase
 set smartcase
 set hlsearch
-set hloptions=filehi:allrows
+set hloptions=filehi:onerow
 set incsearch
 set nowrap
 set wrapscan
@@ -532,7 +532,7 @@ else
 colorscheme chris
 endif
 
-windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|snap|sogoupinyin|vdhcoapp|华为手机助手)/
+windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sogoupinyin|vdhcoapp|华为手机助手)/
 " }}}
 
 " commands {{{
