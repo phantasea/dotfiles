@@ -70,7 +70,7 @@ ffa() { fd -H -L -d=3 -t=f -e=mp3 -e=m4a . ~/auds | fzf "$@" | sed 's/ /\\ /g' |
 fff() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs fd -a -t=f -t=l . | fzf "$@" | xargs -r fileopen ;}
 ffv() { fd -H -L -d=3 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
 ffw() { fd -d=1 -t=f . ~/docs/webs | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
-ffx() { fd -d=2 -t=f . /opt/.porn/text | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
+ffx() { fd -d=2 -t=f . /opt/.porn/epub | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
 
 ffo() {
     local files

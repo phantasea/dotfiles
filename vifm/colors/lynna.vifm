@@ -2,10 +2,10 @@
 
 highlight clear
 
-hi Win          cterm=none                    ctermfg=185      ctermbg=default
-hi OtherWin     cterm=none                    ctermfg=185      ctermbg=default
-hi AuxWin       cterm=none                    ctermfg=185      ctermbg=default
-hi OddLine                                    ctermfg=185      ctermbg=default
+hi Win          cterm=none                    ctermfg=181      ctermbg=default
+hi OtherWin     cterm=none                    ctermfg=182      ctermbg=default
+hi AuxWin       cterm=none                    ctermfg=182      ctermbg=default
+hi OddLine      cterm=none                    ctermfg=181      ctermbg=default
 
 hi TopLine      cterm=none                    ctermfg=254      ctermbg=246
 hi TopLineSel   cterm=bold                    ctermfg=black    ctermbg=202

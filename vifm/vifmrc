@@ -27,8 +27,8 @@ nnoremap c<tab>    <nop>
 nnoremap f<tab>    <nop>
 nnoremap g<tab>    <nop>
 nnoremap m<tab>    <nop>
-nnoremap o<tab>    :!tmux split "watch tsp"<cr>
-nnoremap s<tab>    <nop>
+nnoremap o<tab>    :file<space><tab>
+nnoremap s<tab>    :!tmux split "watch tsp"<cr>
 nnoremap x<tab>    <nop>
 nnoremap z<tab>    <nop>
 
