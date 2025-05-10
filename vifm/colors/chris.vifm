@@ -59,6 +59,10 @@ highlight  User6        ctermfg=cyan      ctermbg=black    cterm=bold,reverse
 highlight  User7        ctermfg=white     ctermbg=none     cterm=bold,reverse
 
 highlight  /\.exe$/i                                        ctermfg=green   ctermbg=none    cterm=none
-highlight  /\.(m3u|tar|tgz|iso|rar|gz|7z|zip|deb)$/i        ctermfg=red     ctermbg=none    cterm=bold
-highlight  /^(TODO|Makefile|README|FAQ|ChangeLog|INSTALL)/I ctermfg=red     ctermbg=none    cterm=bold
-highlight  /\.(orig|c_|cpp_)$/i                             ctermfg=black   ctermbg=none    cterm=bold
+highlight  /\.(m3u|tar|tgz|iso|rar|gz|7z|zip|deb)$/i        ctermfg=green   ctermbg=none    cterm=bold
+highlight  /^(TODO|Makefile|README|FAQ|ChangeLog|INSTALL)/I ctermfg=white   ctermbg=none    cterm=bold
+highlight  /\.(pdf|epub)$/i                                 ctermfg=magenta ctermbg=none    cterm=none
+highlight  /\.(mp3|m4a|mp4)$/i                              ctermfg=yellow  ctermbg=none    cterm=bold
+highlight  /\.(jpg|jpeg|webp)$/i                            ctermfg=red     ctermbg=none    cterm=bold
+highlight  /\.(htm|html|xhtml)$/i                           ctermfg=white   ctermbg=none    cterm=none
+highlight  /\.(orig|o|c_|cpp_)$/i                           ctermfg=black   ctermbg=none    cterm=bold

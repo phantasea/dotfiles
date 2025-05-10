@@ -110,3 +110,6 @@ highlight {*.patch,*.diff,*.py,*.cpp,*.hpp,*.c,*.h,*.cpp,*.hpp,*.cc,*.hh,*.ld,
 highlight {COPYRIGHT,COPYING*,BUGS,ChangeLog*,FAQ,INSTALL*,LICENCE,LICENSE,NEWS,
           \README,README.*,AUTHORS,TODO,THANKS}
         \ cterm=none ctermfg=187 ctermbg=default
+" misc
+highlight {*.orig,*.pyo,*.o}
+        \ cterm=reverse ctermfg=246 ctermbg=254

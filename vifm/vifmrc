@@ -475,9 +475,11 @@ set dirsize=nitems
 if $DISPLAY != ""
 set timefmt="%H:%M\ %m/%d/%y"
 set viewcolumns=-{name},{rating},17{mtime}
+set hloptions=filehi:onerow
 else
 set timefmt="%Y-%m-%d %H:%M:%S"
 set viewcolumns=-{name},{rating},22{mtime}
+set hloptions=filehi:allrows
 endif
 set sizefmt=units:iec,precision:1,nospace
 set wildmenu
@@ -485,7 +487,6 @@ set wildstyle=popup
 set ignorecase
 set smartcase
 set hlsearch
-set hloptions=filehi:onerow
 set incsearch
 set nowrap
 set wrapscan
