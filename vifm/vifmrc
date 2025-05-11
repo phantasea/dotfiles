@@ -52,7 +52,7 @@ mnoremap  <space>  <c-f>
 nnoremap  <space>  :keepsel switch<cr>
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
 nnoremap c<space>  :if &laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
-nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | exec 'norm! gg' | else | set sort='+iname' | endif<cr>
+nnoremap f<space>  :if &sort == '+iname' | set sort='-mtime,+iname' | exec 'norm! zz' | else | set sort='+iname' | endif<cr>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
 nnoremap m<space>  <nop>
 nnoremap o<space>  :if toggle("bold") | hi OddLine cterm=bold | else | hi OddLine cterm=none | endif<cr>
@@ -226,12 +226,22 @@ nnoremap  bs :sort<cr>
 nnoremap  bt :lstrash<cr>
 nnoremap  bu :undolist<cr>
 nnoremap  bo :copen<cr>
+let $DEFAULT_VIEW_COLUMNS = &viewcolumns
 nnoremap  bv :if &viewcolumns == '-{name}'
-           \| setdefaultviewcolumns
-           \| set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
-           \| imgclear
-           \| else | set viewcolumns=-{name}
-           \| set milleroptions=lsize:2,csize:3,rsize:5,rpreview:all | endif<cr>
+           \|   set viewcolumns=$DEFAULT_VIEW_COLUMNS
+           \|   set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
+           \|   imgclear
+           \| else
+           \|   set viewcolumns=-{name}
+           \|   set milleroptions=lsize:2,csize:3,rsize:5,rpreview:all
+           \| endif<cr>
+nnoremap  bv :if layoutis('only') && ! &quickview
+           \|   vsplit
+           \|   view
+           \| elseif layoutis('vsplit') && &quickview
+           \|   view
+           \|   only
+           \| endif<cr>
 nnoremap  c. cw<c-a><c-d><cr>
 nnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
@@ -303,7 +313,8 @@ nnoremap  or zS
 nnoremap  os :invert s<cr>zf
 nnoremap  ot :exec "filter /\.".expand('%c:e')."$/i"<cr>
 nnoremap  o. zA
-nnoremap  O  zO
+nnoremap  O  zr
+nnoremap gO  zO
 qnoremap  p  <c-b>
 nnoremap  q  ZZ
 vnoremap  q  ZZ
@@ -533,7 +544,7 @@ else
 colorscheme chris
 endif
 
-windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sogoupinyin|vdhcoapp|华为手机助手)/
+windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sogoupinyin|华为手机助手)/
 " }}}
 
 " commands {{{
@@ -622,13 +633,6 @@ command! togglesort
       \ |    echo 'sorted by +iname'
       \ |endif
 
-command! setdefaultviewcolumns
-      \ :if $DISPLAY != ""
-      \ |    set viewcolumns=-{name},{rating},17{mtime}
-      \ |else
-      \ |    set viewcolumns=-{name},{rating},22{mtime}
-      \ |endif
-
 command! sxivA    sxiv -roqt * %u
 command! fimA     fim * %u
 command! sxivB    :select! !sxiv -oqt *
@@ -697,9 +701,9 @@ command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --bind 'ctrl-o:exe
 command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --print0 | xargs -0r vifmgoto
 command! ffiptv   cat %a | fzf -d, --with-nth -1 --height=0 | xargs -r vidplay -x 2>/dev/null
 command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-tmux --height 10 2> /dev/tty")
-                  \| if $FZF_RES != ''
-                  \|   exec 'cd' fnameescape($FZF_RES)
-                  \| endif
+                \| if $FZF_RES != ''
+                \|   exec 'cd' fnameescape($FZF_RES)
+                \| endif
 
 command! audcat   audcat   %f &
 command! audconv  audconv  %c &

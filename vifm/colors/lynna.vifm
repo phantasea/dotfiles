@@ -111,5 +111,4 @@ highlight {COPYRIGHT,COPYING*,BUGS,ChangeLog*,FAQ,INSTALL*,LICENCE,LICENSE,NEWS,
           \README,README.*,AUTHORS,TODO,THANKS}
         \ cterm=none ctermfg=187 ctermbg=default
 " misc
-highlight {*.orig,*.pyo,*.o}
-        \ cterm=reverse ctermfg=246 ctermbg=254
+highlight {*.orig}  cterm=reverse ctermfg=246 ctermbg=254

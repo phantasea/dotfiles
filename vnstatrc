@@ -2,7 +2,8 @@
 
 # default interface
 #Interface "ppp0"
-Interface "wls3"
+#Interface "wls3"
+Interface  "wlp1s0"
 
 # location of the database directory
 DatabaseDir "/var/lib/vnstat"
