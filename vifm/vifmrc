@@ -226,21 +226,10 @@ nnoremap  bs :sort<cr>
 nnoremap  bt :lstrash<cr>
 nnoremap  bu :undolist<cr>
 nnoremap  bo :copen<cr>
-let $DEFAULT_VIEW_COLUMNS = &viewcolumns
-nnoremap  bv :if &viewcolumns == '-{name}'
-           \|   set viewcolumns=$DEFAULT_VIEW_COLUMNS
-           \|   set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
-           \|   imgclear
-           \| else
-           \|   set viewcolumns=-{name}
-           \|   set milleroptions=lsize:2,csize:3,rsize:5,rpreview:all
-           \| endif<cr>
 nnoremap  bv :if layoutis('only') && ! &quickview
-           \|   vsplit
-           \|   view
+           \|   exec 'norm ss' | view
            \| elseif layoutis('vsplit') && &quickview
-           \|   view
-           \|   only
+           \|   view | exec 'norm ss'
            \| endif<cr>
 nnoremap  c. cw<c-a><c-d><cr>
 nnoremap  cc :change<cr>
