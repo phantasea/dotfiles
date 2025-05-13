@@ -112,9 +112,6 @@ nnoremap  <c-x>  :ffepub<cr>
 nnoremap  <c-y>  :ffpics<cr>
 nnoremap  <c-z>  :ffiptv /opt/conf/iptv/<tab><tab>
 
-nnoremap  <a-j>  <space>j<space>
-nnoremap  <a-k>  <space>k<space>
-
 nnoremap  +ar  :chmod a+r<cr>
 nnoremap  +aw  :chmod a+w<cr>
 nnoremap  +ax  :chmod a+x<cr>
@@ -177,8 +174,6 @@ vnoremap  -ox  :chmod o-x<cr>
 " }}}
 
 " keymaps-2 {{{
-"nnoremap  l  i
-
 nnoremap <wait>  ,i  :imgall<cr>
 nnoremap <wait>  ,I  :imgrall<cr>
 nnoremap <wait>  ,r  cW<c-u>
