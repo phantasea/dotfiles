@@ -188,9 +188,7 @@ nnoremap  !  !!  %c<left><left><left>
 nnoremap g!  :!./%c:. &<cr>
 nnoremap  &  !!  %c &<left><left><left><left><left>
 nnoremap  ~  :cd ~<cr>
-nnoremap  -  :cd -<cr>
 nnoremap g.  hgfl:set nodotfiles<cr>
-nnoremap  +  <nop>
 nnoremap  ?  :file<space><tab>
 nnoremap g#  :windo set relativenumber!<cr>
 nnoremap  #  :togglelinenumber<cr>
@@ -236,7 +234,7 @@ nnoremap  c. cw<c-a><c-d><cr>
 nnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
 nnoremap  cs :colorscheme<space><tab>
-nnoremap  cS :cds/
+nnoremap  cS :cds///I<left><left><left>
 nnoremap  cg :goto<space>
 nnoremap  cm :chmod<space>
 vnoremap  cm :chmod<space>
@@ -419,7 +417,7 @@ set uioptions=
 set caseoptions="pg"
 set previewoptions=graphicsdelay:30000,maxtreedepth:3,toptreestats
 set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
-set suggestoptions=normal,visual,keys,delay:1000
+set suggestoptions=normal,visual,view,keys,marks,registers:3,delay:1000
 
 set aproposprg='apropos %a'
 set deleteprg=""
