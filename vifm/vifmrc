@@ -112,55 +112,30 @@ nnoremap  <c-x>  :ffepub<cr>
 nnoremap  <c-y>  :ffpics<cr>
 nnoremap  <c-z>  :ffiptv /opt/conf/iptv/<tab><tab>
 
-nnoremap  +ar  :chmod a+r<cr>
-nnoremap  +aw  :chmod a+w<cr>
-nnoremap  +ax  :chmod a+x<cr>
-nnoremap  +ur  :chmod u+r<cr>
-nnoremap  +uw  :chmod u+w<cr>
-nnoremap  +ux  :chmod u+x<cr>
-nnoremap  +gr  :chmod g+r<cr>
-nnoremap  +gw  :chmod g+w<cr>
-nnoremap  +gx  :chmod g+x<cr>
-nnoremap  +or  :chmod o+r<cr>
-nnoremap  +ow  :chmod o+w<cr>
-nnoremap  +ox  :chmod o+x<cr>
-nnoremap  -ar  :chmod a-r<cr>
-nnoremap  -aw  :chmod a-w<cr>
-nnoremap  -ax  :chmod a-x<cr>
-nnoremap  -ur  :chmod u-r<cr>
-nnoremap  -uw  :chmod u-w<cr>
-nnoremap  -ux  :chmod u-x<cr>
-nnoremap  -gr  :chmod g-r<cr>
-nnoremap  -gw  :chmod g-w<cr>
-nnoremap  -gx  :chmod g-x<cr>
-nnoremap  -or  :chmod o-r<cr>
-nnoremap  -ow  :chmod o-w<cr>
-nnoremap  -ox  :chmod o-x<cr>
-
-vnoremap  +ar  :chmod a+r<cr>
-vnoremap  +aw  :chmod a+w<cr>
-vnoremap  +ax  :chmod a+x<cr>
-vnoremap  +ur  :chmod u+r<cr>
-vnoremap  +uw  :chmod u+w<cr>
-vnoremap  +ux  :chmod u+x<cr>
-vnoremap  +gr  :chmod g+r<cr>
-vnoremap  +gw  :chmod g+w<cr>
-vnoremap  +gx  :chmod g+x<cr>
-vnoremap  +or  :chmod o+r<cr>
-vnoremap  +ow  :chmod o+w<cr>
-vnoremap  +ox  :chmod o+x<cr>
-vnoremap  -ar  :chmod a-r<cr>
-vnoremap  -aw  :chmod a-w<cr>
-vnoremap  -ax  :chmod a-x<cr>
-vnoremap  -ur  :chmod u-r<cr>
-vnoremap  -uw  :chmod u-w<cr>
-vnoremap  -ux  :chmod u-x<cr>
-vnoremap  -gr  :chmod g-r<cr>
-vnoremap  -gw  :chmod g-w<cr>
-vnoremap  -gx  :chmod g-x<cr>
-vnoremap  -or  :chmod o-r<cr>
-vnoremap  -ow  :chmod o-w<cr>
-vnoremap  -ox  :chmod o-x<cr>
+map <wait>  +ar  :chmod a+r<cr>
+map <wait>  +aw  :chmod a+w<cr>
+map <wait>  +ax  :chmod a+x<cr>
+map <wait>  +ur  :chmod u+r<cr>
+map <wait>  +uw  :chmod u+w<cr>
+map <wait>  +ux  :chmod u+x<cr>
+map <wait>  +gr  :chmod g+r<cr>
+map <wait>  +gw  :chmod g+w<cr>
+map <wait>  +gx  :chmod g+x<cr>
+map <wait>  +or  :chmod o+r<cr>
+map <wait>  +ow  :chmod o+w<cr>
+map <wait>  +ox  :chmod o+x<cr>
+map <wait>  -ar  :chmod a-r<cr>
+map <wait>  -aw  :chmod a-w<cr>
+map <wait>  -ax  :chmod a-x<cr>
+map <wait>  -ur  :chmod u-r<cr>
+map <wait>  -uw  :chmod u-w<cr>
+map <wait>  -ux  :chmod u-x<cr>
+map <wait>  -gr  :chmod g-r<cr>
+map <wait>  -gw  :chmod g-w<cr>
+map <wait>  -gx  :chmod g-x<cr>
+map <wait>  -or  :chmod o-r<cr>
+map <wait>  -ow  :chmod o-w<cr>
+map <wait>  -ox  :chmod o-x<cr>
 
 "nnoremap <c-h> :if paneisat('left')   | execute '!tmux select-pane -L %i' | else | execute 'wincmd h' | endif<cr>
 "nnoremap <c-j> :if paneisat('bottom') | execute '!tmux select-pane -D %i' | else | execute 'wincmd j' | endif<cr>
@@ -178,6 +153,17 @@ nnoremap <wait>  ,i  :imgall<cr>
 nnoremap <wait>  ,I  :imgrall<cr>
 nnoremap <wait>  ,r  cW<c-u>
 nnoremap <wait>  ,s  :! ls -p | grep -v / | sort -t' ' -k2 %m<cr>
+nnoremap <wait>  gT  :<c-u>
+                   \| if v:count == 0
+                   \|   exec 'normal gT'
+                   \| elseif v:count > tabpagenr('$')
+                   \|   tabmove
+                   \| elseif v:count >= tabpagenr()
+                   \|   exec 'tabmove' v:count
+                   \| elseif v:count < tabpagenr()
+                   \|   exec 'tabmove' v:count - 1
+                   \| endif
+                   \| <cr>
 
 nnoremap  0  gg
 nnoremap  ^  gg
@@ -196,8 +182,8 @@ nnoremap g*  #
 nnoremap  \  :invert s<cr>
 vnoremap  \  :invert s<cr>
 nnoremap  |  <c-w>=
-nnoremap  <  <c-w>h<c-w><
-nnoremap  >  <c-w>h<c-w>>
+nnoremap  <  :if layoutis('vsplit') && paneisat('left') | exec 'norm s<' | elseif layoutis('vsplit') && paneisat('right') | exec 'norm s>' | endif<cr>
+nnoremap  >  :if layoutis('vsplit') && paneisat('left') | exec 'norm s>' | elseif layoutis('vsplit') && paneisat('right') | exec 'norm s<' | endif<cr>
 mnoremap  <  3zh
 mnoremap  >  3zl
 mnoremap  [  zH
@@ -226,10 +212,7 @@ nnoremap  bs :sort<cr>
 nnoremap  bt :lstrash<cr>
 nnoremap  bu :undolist<cr>
 nnoremap  bo :copen<cr>
-nnoremap  bv :if layoutis('only') && ! &quickview
-           \|   exec 'norm ss' | exec 'norm sH' | view
-           \| elseif layoutis('vsplit') && &quickview
-           \|   view | exec 'norm ss' | endif<cr>
+nnoremap  bv :if layoutis('only') && ! &quickview | exec 'norm ss' | exec 'norm sH' | view | elseif layoutis('vsplit') && &quickview | view | exec 'norm ss' | endif<cr>
 nnoremap  c. cw<c-a><c-d><cr>
 nnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
@@ -253,6 +236,7 @@ vnoremap  cI :sucopyfromother<cr>
 nnoremap  cO :sucopytoother<cr>
 vnoremap  cO :sucopytoother<cr>
 nnoremap gc  :edit ./.git/config<cr>
+nnoremap  C  :clone %c.bak
 nnoremap  d  dd
 nnoremap  D  DD
 nnoremap  e  :edit %c<cr>
@@ -408,7 +392,7 @@ elseif executable('nvim')
 set vimabs="nvim"
 endif
 
-set vifminfo=tui,tabs,savedirs,ratings,shistory
+set vifminfo=tui,tabs,savedirs,ratings,chistory,shistory
 set sessionoptions=tui,tabs,savedirs,ratings
 set iooptions=datasync,fastfilecloning
 set cpoptions="s"
@@ -471,11 +455,11 @@ set fillchars="vborder:|,hborder:,millersep:"
 set dirsize=nitems
 if $DISPLAY != ""
 set timefmt="%H:%M\ %m/%d/%y"
-set viewcolumns=-{name},{rating},17{mtime}
+set viewcolumns=*{name},{rating},17{mtime}
 set hloptions=filehi:onerow
 else
 set timefmt="%Y-%m-%d %H:%M:%S"
-set viewcolumns=-{name},{rating},22{mtime}
+set viewcolumns=*{name},{rating},22{mtime}
 set hloptions=filehi:allrows
 endif
 set sizefmt=units:iec,precision:1,nospace
@@ -489,7 +473,7 @@ set nowrap
 set wrapscan
 set scrolloff=0
 set trash
-set trashdir="~/.Trash"
+set trashdir=/var/tmp/Trash,$HOME/.Trash
 set history=18
 set nofollowlinks
 set nochaselinks
@@ -549,6 +533,15 @@ windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sog
 "  %m runs the command in a menu window
 "  %S Show command output in the status bar
 "  see `:help vifm-macros` and `:help vifm-filename-modifiers` for more
+command! diff :if expand('%%c') == expand('%%f')
+            \|   if paneisat('right') && paneisat('bottom')
+            \|     execute '!vim -d %%C %%c'
+            \|   else
+            \|     execute '!vim -d %%c %%C'
+            \|   endif
+            \| else
+            \|   execute '!vim -d %%f'
+            \| endif
 command! selcat          cat %f > %a
 command! diff            vimux -d %c %C
 command! diffsamewin     vimux -d %f
@@ -643,6 +636,7 @@ command! mv       mv -r %f %D
 command! cp       cp -r %f %D
 command! link     ln -s %d/%f %D
 command! mkbt     mktorrent -p -a -o %D/%f.torrent %d%f
+command! sign     gpg2 --armor --detach-sign %c
 command! reload   :write | restart full
 command! iconv    iconv -f GBK -t UTF8 %c -o %c %i
 command! vgrep    vim "+grep %a"

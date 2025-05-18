@@ -38,6 +38,11 @@ filetype plugin indent on
 syntax enable
 syntax on
 
+if has('gui_running')
+    "use 256 colors in :terminal
+    let $TERM = 'xterm-256color'
+endif
+
 set scrolloff=3
 set ambiwidth=double
 set autochdir
@@ -45,6 +50,9 @@ set autoindent
 set autoread
 set background=dark
 set backspace=indent,eol,start
+set whichwrap=b,s,<,>,[,],l,h
+set formatoptions+=j
+set virtualedit=block
 set completeopt=menu
 set cursorline
 set diffopt=internal,indent-heuristic,filler,vertical,context:3,foldcolumn:0
@@ -640,9 +648,6 @@ endfunc
 " autocmd  {{{
 augroup autocmds
     autocmd!
-
-    "autocmd FileType fzf set noshowmode noruler nonu
-    autocmd FileType * setlocal tabstop=4 formatoptions-=ro formatoptions+=j cedit=<C-O>
 
     if !has('nvim')
     autocmd TerminalOpen call MyPlainStatusLine()
