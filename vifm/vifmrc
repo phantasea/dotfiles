@@ -237,7 +237,7 @@ vnoremap  cI :sucopyfromother<cr>
 nnoremap  cO :sucopytoother<cr>
 vnoremap  cO :sucopytoother<cr>
 nnoremap gc  :edit ./.git/config<cr>
-nnoremap  C  :clone %c.bak
+nnoremap  C  :clone %c.bak<cr>
 nnoremap  d  dd
 nnoremap  D  DD
 nnoremap  e  :edit %c<cr>
@@ -352,7 +352,7 @@ nnoremap  xI :sumovefromother<cr>
 vnoremap  xI :sumovefromother<cr>
 nnoremap  xO :sumovetoother<cr>
 vnoremap  xO :sumovetoother<cr>
-nnoremap  xx :extractA<cr>
+nnoremap  xx :extract<cr>
 nnoremap  y  yy
 nnoremap  Y  :yankbasename<cr>
 nnoremap gy  :yankrootname<cr>
@@ -654,6 +654,7 @@ command! weather  curl --silent wttr.in | bat
 command! altopen  fileopen -b %c
 command! auxopen  fileopen -B %c
 
+command! extract  extract %c %i
 command! extractA aunpack -e %f &>/dev/null &
 command! extractB tsp atool -x %f
 command! extractC tsp atool -e -X %D %f
