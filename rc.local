@@ -12,7 +12,10 @@
 # By default this script does nothing.
 
 # Load customized key maps at startup
+# map Caps_Lock to Escape
 /usr/bin/loadkeys /opt/conf/mykbd
+# map Win/Super_L to Insert
+#/usr/bin/setkeycodes e05b 110
 
 # Disable bluetooth & wifi at startup
 rfkill block all

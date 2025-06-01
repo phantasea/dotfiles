@@ -28,7 +28,7 @@ nnoremap f<tab>    <nop>
 nnoremap g<tab>    <nop>
 nnoremap m<tab>    <nop>
 nnoremap o<tab>    :file<space><tab>
-nnoremap s<tab>    :!tmux split "watch tsp"<cr>
+nnoremap s<tab>    <nop>
 nnoremap x<tab>    <nop>
 nnoremap z<tab>    <nop>
 
@@ -213,6 +213,7 @@ nnoremap  bt :lstrash<cr>
 nnoremap  bu :undolist<cr>
 nnoremap  bo :copen<cr>
 nnoremap  bv :if layoutis('only') && ! &quickview | exec 'norm ss' | exec 'norm sH' | view | elseif layoutis('vsplit') && &quickview | view | exec 'norm ss' | endif<cr>
+nnoremap  bw :!tsp -l<cr>
 nnoremap  c. cw<c-a><c-d><cr>
 nnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
