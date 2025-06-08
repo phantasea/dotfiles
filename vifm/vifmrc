@@ -27,7 +27,7 @@ nnoremap c<tab>    <nop>
 nnoremap f<tab>    <nop>
 nnoremap g<tab>    <nop>
 nnoremap m<tab>    <nop>
-nnoremap o<tab>    :file<space><tab>
+nnoremap o<tab>    <nop>
 nnoremap s<tab>    <nop>
 nnoremap x<tab>    <nop>
 nnoremap z<tab>    <nop>
@@ -214,6 +214,7 @@ nnoremap  bu :undolist<cr>
 nnoremap  bo :copen<cr>
 nnoremap  bv :if layoutis('only') && ! &quickview | exec 'norm ss' | exec 'norm sH' | view | elseif layoutis('vsplit') && &quickview | view | exec 'norm ss' | endif<cr>
 nnoremap  bw :!tsp -l<cr>
+nnoremap gb  :file &<cr>l
 nnoremap  c. cw<c-a><c-d><cr>
 nnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
@@ -751,8 +752,8 @@ autocmd DirEnter '/media/simone/*_z'  setl sort='-mtime,+iname'
 fileview  */,.*/  eza -A -X --follow-symlinks --group-directories-first --no-quotes --color=always --icons=always --tree --level=2 %c
 
 " Manpage
-filetype  *.[1-8],*.[1-8].gz  man ./%c
-fileview  *.[1-8],*.[1-8].gz  man ./%c | col -b
+filetype  {*.[1-8]},<text/troff>  man ./%c
+fileview  {*.[1-8]},<text/troff>  man ./%c | col -b
 
 " Office files
 filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
@@ -792,7 +793,7 @@ filetype  {*.mp3,*.wav,*.ogg,*.m4a,*.aac,*.wma,*.ape,*.rm},<audio/*>
 fileview  <audio/*>
           \ exiftool %c,
           \ mediainfo %c,
-          \ ffprobe -pretty %c 2>&1,
+          \ ffprobe -hide_banner -pretty %c 2>&1,
 
 " Video
 filetype  {*.avi,*.mp4,*.wmv,*.mkv,*.mpg,*.mov,*.flv,*.rmvb,*.rmb,*.vdat,*.webm},<video/*>
@@ -801,9 +802,9 @@ filetype  {*.avi,*.mp4,*.wmv,*.mkv,*.mpg,*.mov,*.flv,*.rmvb,*.rmb,*.vdat,*.webm}
           \ ffplay -v quiet %c &,
           \ mediainfo %f %m 2>&1,
 fileview  <video/*>
+          \ ffprobe -hide_banner -pretty %c 2>&1,
           \ exiftool %c,
           \ mediainfo %c,
-          \ ffprobe -pretty %c 2>&1,
           \ thumbnail %px %py %pw %ph %c,
 
 " Image
@@ -879,8 +880,8 @@ fileview  *.json  jq --color-output '.' %c, python -m json.tool -- %c
 filetype  *.pcap,*.cap  sngrep -iI %c
 
 " Object
-fileview  *.o  nm %c
-filetype  *.o  nm %c | less
+fileview  {*.o},<application/x-object>  nm %c
+filetype  {*.o},<application/x-object>  nm %c | less
 
 " PGP
 fileview  *.asc  gpg --quiet --no-tty --no-use-agent --no-verbose -d %c
