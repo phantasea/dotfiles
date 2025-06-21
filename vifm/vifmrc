@@ -257,14 +257,14 @@ nnoremap gi  :touch  ""<left><c-x>c
 nnoremap gI  :mkdir! ""<left><c-x>c
 nnoremap zi  :!fzfimg<cr>
 nnoremap gj  ]R
-nnoremap sj  <space>j<space>
+nnoremap sj  ]S
 nnoremap zj  }
 nnoremap  J  <c-e>
 mnoremap  J  <c-e>
 qnoremap  J  qje:if &preview | switch | endif<cr>
 nnoremap gk  [R
 nnoremap zk  {
-nnoremap sk  <space>k<space>
+nnoremap sk  [S
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
