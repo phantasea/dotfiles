@@ -183,6 +183,7 @@ nnoremap   <C-N>    :bn<CR>
 nnoremap   <C-P>    :bp<CR>
 nnoremap   <C-S>    :update<cr>
 nnoremap   <C-U>    <C-T>
+nnoremap   <C-Y>    :History<CR>
 
 "vnoremap  #    y:let @/=@"<CR>N
 "vnoremap  *    y/<C-R>"<CR>
