@@ -148,22 +148,23 @@ map <wait>  -ox  :chmod o-x<cr>
 " nnoremap bu  :!fusermount -u %f<cr>
 " }}}
 
+" :exec 'norm \<C-w>s' works since vifm v0.15
 " keymaps-2 {{{
 nnoremap <wait>  ,i  :imgall<cr>
 nnoremap <wait>  ,I  :imgrall<cr>
 nnoremap <wait>  ,r  cW<c-u>
 nnoremap <wait>  ,s  :! ls -p | grep -v / | sort -t' ' -k2 %m<cr>
-nnoremap <wait>  gT  :<c-u>
-                   \| if v:count == 0
-                   \|   exec 'normal gT'
-                   \| elseif v:count > tabpagenr('$')
-                   \|   tabmove
-                   \| elseif v:count >= tabpagenr()
-                   \|   exec 'tabmove' v:count
-                   \| elseif v:count < tabpagenr()
-                   \|   exec 'tabmove' v:count - 1
-                   \| endif
-                   \| <cr>
+nnoremap gT  :<c-u>
+          \| if v:count == 0
+          \|   exec 'normal gT'
+          \| elseif v:count > tabpagenr('$')
+          \|   tabmove
+          \| elseif v:count >= tabpagenr()
+          \|   exec 'tabmove' v:count
+          \| elseif v:count < tabpagenr()
+          \|   exec 'tabmove' v:count - 1
+          \| endif
+          \| <cr>
 
 nnoremap  0  gg
 nnoremap  ^  gg
