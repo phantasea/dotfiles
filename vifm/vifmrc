@@ -12,14 +12,7 @@ nnoremap  <F11>    :diffsamewin<cr>
 nnoremap  <F12>    :!cmatrix -abs -C cyan<cr>
 
 "<tab> = <c-i>
-"cycle thru the layouts -- only, vsplit, split
-nnoremap  <s-tab>  :if layoutis('only')
-                  \|    vsplit
-                  \|elseif layoutis('vsplit')
-                  \|    split
-                  \|else
-                  \|    only
-                  \|endif<cr>
+nnoremap  <s-tab>  :cyclesplit<cr>
 qnoremap  <s-tab>  <tab>
 
 nnoremap b<tab>    <nop>
@@ -34,7 +27,7 @@ nnoremap z<tab>    <nop>
 
 " <cr> = <c-m>
 vnoremap  <cr>     :select<cr>
-nnoremap  <cr>     :if &lsview == 1 && filetype('.') == 'dir' | exec 'norm! gl' | else | togglesort | endif<cr>
+nnoremap  <cr>     :cyclesort<cr>
 nnoremap b<cr>     :bmgo<space>
 nnoremap c<cr>     <nop>
 nnoremap f<cr>     <nop>
@@ -137,10 +130,10 @@ map <wait>  -or  :chmod o-r<cr>
 map <wait>  -ow  :chmod o-w<cr>
 map <wait>  -ox  :chmod o-x<cr>
 
-"nnoremap <c-h> :if paneisat('left')   | execute '!tmux select-pane -L %i' | else | execute 'wincmd h' | endif<cr>
-"nnoremap <c-j> :if paneisat('bottom') | execute '!tmux select-pane -D %i' | else | execute 'wincmd j' | endif<cr>
-"nnoremap <c-k> :if paneisat('top')    | execute '!tmux select-pane -U %i' | else | execute 'wincmd k' | endif<cr>
-"nnoremap <c-l> :if paneisat('right')  | execute '!tmux select-pane -R %i' | else | execute 'wincmd l' | endif<cr>
+"nnoremap <c-h> :if paneisat('left')   | exec '!tmux select-pane -L %i' | else | exec 'wincmd h' | endif<cr>
+"nnoremap <c-j> :if paneisat('bottom') | exec '!tmux select-pane -D %i' | else | exec 'wincmd j' | endif<cr>
+"nnoremap <c-k> :if paneisat('top')    | exec '!tmux select-pane -U %i' | else | exec 'wincmd k' | endif<cr>
+"nnoremap <c-l> :if paneisat('right')  | exec '!tmux select-pane -R %i' | else | exec 'wincmd l' | endif<cr>
 
 " mount ISO filesystem images(iso,bin,img): list, mount, unmount
 " nnoremap bl  :!ls -1 /tmp/fuseiso<cr>
@@ -154,17 +147,6 @@ nnoremap <wait>  ,i  :imgall<cr>
 nnoremap <wait>  ,I  :imgrall<cr>
 nnoremap <wait>  ,r  cW<c-u>
 nnoremap <wait>  ,s  :! ls -p | grep -v / | sort -t' ' -k2 %m<cr>
-nnoremap gT  :<c-u>
-          \| if v:count == 0
-          \|   exec 'normal gT'
-          \| elseif v:count > tabpagenr('$')
-          \|   tabmove
-          \| elseif v:count >= tabpagenr()
-          \|   exec 'tabmove' v:count
-          \| elseif v:count < tabpagenr()
-          \|   exec 'tabmove' v:count - 1
-          \| endif
-          \| <cr>
 
 nnoremap  0  gg
 nnoremap  ^  gg
@@ -178,13 +160,13 @@ nnoremap  ~  :cd ~<cr>
 nnoremap g.  hgfl:set nodotfiles<cr>
 nnoremap  ?  :file<space><tab>
 nnoremap g#  :windo set relativenumber!<cr>
-nnoremap  #  :togglelinenumber<cr>
+nnoremap  #  :cyclelinenumber<cr>
 nnoremap g*  #
 nnoremap  \  :invert s<cr>
 vnoremap  \  :invert s<cr>
 nnoremap  |  <c-w>=
-nnoremap  <  :if layoutis('vsplit') && paneisat('left') | exec 'norm s<' | elseif layoutis('vsplit') && paneisat('right') | exec 'norm s>' | endif<cr>
-nnoremap  >  :if layoutis('vsplit') && paneisat('left') | exec 'norm s>' | elseif layoutis('vsplit') && paneisat('right') | exec 'norm s<' | endif<cr>
+nnoremap  <  :vswinmoveleft<cr>
+nnoremap  >  :vswinmoveright<cr>
 mnoremap  <  3zh
 mnoremap  >  3zl
 mnoremap  [  zH
@@ -213,7 +195,7 @@ nnoremap  bs :sort<cr>
 nnoremap  bt :lstrash<cr>
 nnoremap  bu :undolist<cr>
 nnoremap  bo :copen<cr>
-nnoremap  bv :if layoutis('only') && ! &quickview | exec 'norm ss' | exec 'norm sH' | view | elseif layoutis('vsplit') && &quickview | view | exec 'norm ss' | endif<cr>
+nnoremap  bv :batchpreview<cr>
 nnoremap  bw :!tsp -l<cr>
 nnoremap gb  :file &<cr>l
 nnoremap  c. cw<c-a><c-d><cr>
@@ -318,7 +300,7 @@ nnoremap  sR :suremove<cr>
 nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
 nnoremap  st :if getpanetype() == regular | tree | else | exec 'norm! gh' | endif<cr>
-nnoremap  sv :if &previewprg == '' | set previewprg='git log --color -- %c 2>&1' | view! | else | set previewprg='' | view | endif<cr>
+nnoremap  sv :setpreviewprg<cr>
 nnoremap  sw :!tmux split "watch -n 8 tsp"<cr>
 nnoremap  sW :!setwallpaper %c %i<cr>
 nnoremap  sx <c-w>x:switch<cr>
@@ -345,7 +327,7 @@ nnoremap ov  :explore<cr>
 nnoremap zv  :explore<cr>
 qnoremap  w  W
 nnoremap  w  :set millerview!<cr>
-nnoremap  W  :if &millerview | set nomillerview | set lsview | else | set millerview | set nolsview | endif<cr>
+nnoremap  W  :toggleultrawide<cr>
 nnoremap  xi :movefromother<cr>
 vnoremap  xi :movefromother<cr>
 nnoremap  xo :movetoother<cr>
@@ -536,15 +518,6 @@ windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sog
 "  %m runs the command in a menu window
 "  %S Show command output in the status bar
 "  see `:help vifm-macros` and `:help vifm-filename-modifiers` for more
-command! diff :if expand('%%c') == expand('%%f')
-            \|   if paneisat('right') && paneisat('bottom')
-            \|     execute '!vim -d %%C %%c'
-            \|   else
-            \|     execute '!vim -d %%c %%C'
-            \|   endif
-            \| else
-            \|   execute '!vim -d %%f'
-            \| endif
 command! selcat          cat %f > %a
 command! diff            vimux -d %c %C
 command! diffsamewin     vimux -d %f
@@ -591,36 +564,114 @@ command!  yankpathname   echo -n %d   | xclip -i -sel p -f | xclip -i -sel c %i
 command!  yankfullname   echo -n %c:p | xclip -i -sel p -f | xclip -i -sel c %i
 endif
 
-command! togglelinenumber
-      \ :if &number == 0 && &relativenumber == 0
-      \ |    set relativenumber
-      \ |elseif &number == 0 && &relativenumber == 1
-      \ |    set number
-      \ |else
-      \ |    set nonumber
-      \ |    set norelativenumber
-      \ |endif
+command! vimdiff
+     \ : if expand('%%c') == expand('%%f')
+     \ |   if paneisat('right') && paneisat('bottom')
+     \ |     exec '!vim -d %%C %%c'
+     \ |   else
+     \ |     exec '!vim -d %%c %%C'
+     \ |   endif
+     \ | else
+     \ |   exec '!vim -d %%f'
+     \ | endif
 
-command! togglesort
-      \ :if &lsview == 1 && filetype('.') == 'dir'
-      \ |    exec 'norm! gl'
-      \ |elseif &sort == '+iname'
-      \ |    set sort=-mtime
-      \ |    echo 'sorted by -mtime'
-      \ |elseif &sort == '-mtime,+name'
-      \ |    set sort=-size
-      \ |    echo 'sorted by -size'
-      \ |else
-      \ |    set sort=+iname
-      \ |    echo 'sorted by +iname'
-      \ |endif
+command! toggleultrawide
+     \ : if &millerview
+     \ |   set nomillerview
+     \ |   set lsview
+     \ | else
+     \ |   set millerview
+     \ |   set nolsview
+     \ | endif
+
+command! cyclelinenumber
+     \ : if &number == 0 && &relativenumber == 0
+     \ |   set relativenumber
+     \ | elseif &number == 0 && &relativenumber == 1
+     \ |   set number
+     \ | else
+     \ |   set nonumber
+     \ |   set norelativenumber
+     \ | endif
+
+command! cyclesplit
+     \ : if layoutis('only')
+     \ |   vsplit
+     \ | elseif layoutis('vsplit')
+     \ |   split
+     \ | else
+     \ |   only
+     \ | endif
+
+command! cyclesort
+     \ : if &lsview == 1 && filetype('.') == 'dir'
+     \ |   exec 'norm! gl'
+     \ | elseif &sort == '+iname'
+     \ |   set sort=-mtime
+     \ |   echo 'sorted by -mtime'
+     \ | elseif &sort == '-mtime,+name'
+     \ |   set sort=-size
+     \ |   echo 'sorted by -size'
+     \ | else
+     \ |   set sort=+iname
+     \ |   echo 'sorted by +iname'
+     \ | endif
+
+command! smarttabmove
+     \ : if v:count == 0
+     \ |   exec 'normal gT'
+     \ | elseif v:count > tabpagenr('$')
+     \ |   tabmove
+     \ | elseif v:count >= tabpagenr()
+     \ |   exec 'tabmove' v:count
+     \ | elseif v:count < tabpagenr()
+     \ |   exec 'tabmove' v:count - 1
+     \ | endif
+
+command! vswinmoveleft
+     \ : if layoutis('vsplit') && paneisat('left')
+     \ |   exec 'norm s<'
+     \ | elseif layoutis('vsplit') && paneisat('right')
+     \ |   exec 'norm s>'
+     \ | endif
+
+command! vswinmoveright
+     \ : if layoutis('vsplit') && paneisat('left')
+     \ |   exec 'norm s>'
+     \ | elseif layoutis('vsplit') && paneisat('right')
+     \ |   exec 'norm s<'
+     \ | endif
+
+command! batchpreview
+     \ : if layoutis('only') && ! &quickview
+     \ |   exec 'norm ss'
+     \ |   exec 'norm sH'
+     \ |   view
+     \ | elseif layoutis('vsplit') && &quickview
+     \ |   view
+     \ |   exec 'norm ss'
+     \ | endif
+
+command! setpreviewprg
+     \ : if &previewprg == ''
+     \ |   set previewprg='git log --color -- %c 2>&1'
+     \ |   view!
+     \ | else
+     \ |   set previewprg=''
+     \ |   view
+     \ | endif
 
 command! sxivA    sxiv -roqt * %u
 command! fimA     fim * %u
 command! sxivB    :select! !sxiv -oqt *
 command! fimB     :select! !fim *
-
+command! fim      fim %f > /dev/null 2>&1
+command! imgall   imgview -s
+command! imgrall  imgview -rs
+command! medinfo  medinfo %c %S
+command! tsls     medinfo -t %m
 command! imgclear vifmimg clear
+
 command! clock    tty-clock -cBS -C 6
 command! cmatrix  cmatrix -abs -C cyan
 command! editrc   vimux $VIFM/vifmrc
@@ -632,7 +683,6 @@ command! uz       tar -zxf %c %i
 command! uj       tar -jxf %c %i
 command! zip      zip -r %f.zip %f
 command! run      !! ./%f
-command! make     !!make %a
 command! mkcd     :mkdir %a | cd %a
 command! md       mkdir -p %a
 command! mv       mv -r %f %D
@@ -645,11 +695,6 @@ command! iconv    iconv -f GBK -t UTF8 %c -o %c %i
 command! vgrep    vim "+grep %a"
 command! mpv      mpv --vo=drm %c
 command! mpl      mplayer -vo x11 %c
-command! fim      fim %f > /dev/null 2>&1
-command! imgall   imgview -s
-command! imgrall  imgview -rs
-command! medinfo  medinfo %c %S
-command! tsls     medinfo -t %m
 command! manhelp  manmux vifm
 command! weather  curl --silent wttr.in | sed 's/\x1B\[[0-9;]*[mGK]//g' | less
 command! weather  curl --silent wttr.in | bat

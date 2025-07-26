@@ -49,7 +49,7 @@ bind  gp  followpage prev
 "bind  gn  followpage next
 bind  gd  tabdetach
 
-bind  --mode=normal <C-o>  back
+bind  --mode=normal <C-u>  back
 bind  --mode=normal <C-i>  forward
 "bind  --mode=normal <C-s>  saveas
 bind  --mode=normal <C-a>  urlincrement 1

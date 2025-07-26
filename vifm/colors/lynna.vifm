@@ -11,7 +11,7 @@ hi TopLine      cterm=none                    ctermfg=254      ctermbg=246
 hi TopLineSel   cterm=bold                    ctermfg=black    ctermbg=202
 
 hi TabLine      cterm=reverse                 ctermfg=default  ctermbg=default
-hi TabLineSel   cterm=bold,reverse            ctermfg=default  ctermbg=default
+hi TabLineSel   cterm=bold                    ctermfg=default  ctermbg=red
 
 hi JobLine      cterm=bold                    ctermfg=white    ctermbg=238
 hi StatusLine   cterm=none                    ctermfg=black    ctermbg=white
