@@ -45,7 +45,7 @@ unbind ym
 unbind yt
 
 bind  g<Space>  source ~/.tridactylrc
-bind  gp  followpage prev
+"bind  gp  followpage prev
 "bind  gn  followpage next
 bind  gd  tabdetach
 

@@ -212,10 +212,10 @@ nnoremap  cl cl
 nnoremap  ct :!touch -m -t  %f<left><left><left>
 nnoremap  cv av
 vnoremap  cv <cr>
-nnoremap  ci :copyfromother<cr>
-vnoremap  ci :copyfromother<cr>
-nnoremap  co :copytoother<cr>
-vnoremap  co :copytoother<cr>
+nnoremap  ci :switch<cr>:copy<cr>:switch<cr>
+vnoremap  ci :switch<cr>:copy<cr>:switch<cr>
+nnoremap  co :copy<cr>
+vnoremap  co :copy<cr>
 nnoremap  cI :sucopyfromother<cr>
 vnoremap  cI :sucopyfromother<cr>
 nnoremap  cO :sucopytoother<cr>
@@ -328,10 +328,10 @@ nnoremap zv  :explore<cr>
 qnoremap  w  W
 nnoremap  w  :set millerview!<cr>
 nnoremap  W  :toggleultrawide<cr>
-nnoremap  xi :movefromother<cr>
-vnoremap  xi :movefromother<cr>
-nnoremap  xo :movetoother<cr>
-vnoremap  xo :movetoother<cr>
+nnoremap  xi :switch<cr>:move<cr>:switch<cr>
+vnoremap  xi :switch<cr>:move<cr>:switch<cr>
+nnoremap  xo :move<cr>
+vnoremap  xo :move<cr>
 nnoremap  xI :sumovefromother<cr>
 vnoremap  xI :sumovefromother<cr>
 nnoremap  xO :sumovetoother<cr>
