@@ -226,4 +226,6 @@ if [[ ! -z $DISPLAY ]]; then
     #. /opt/conf/powerline/powerline.sh
 fi
 
+cd ~/temp
+
 # vim: foldmethod=marker

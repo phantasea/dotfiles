@@ -34,6 +34,7 @@ set searchurls.y      https://www.youtube.com/results?search_query=%s
 
 " Ctrl-F should use the browser's native 'find' functionality.
 unbind <C-f>
+unbind <C-o>
 
 " Let Ctrl-c to copy in the commandline
 unbind --mode=ex <C-c>

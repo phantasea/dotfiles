@@ -740,8 +740,8 @@ command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --hei
 command! ffepub   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/epub | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
 command! ffepub   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/epub | fzf --height=0 --print0 | xargs -0r vifmgoto
 command! ffpics   fd -L -E '{*.webp,*.jpg,*.jpeg,*.JPG,*.JPEG}' . /opt/.porn/pics | fzf --height=0 --print0 | xargs -0 -r vifmgoto
-command! ffvids   fd -H -L -d=3 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . /opt/.porn/vids | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r vidplay
-command! ffvids   fd -H -L -d=3 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . /opt/.porn/vids | fzf --height=0 | xargs -r vifmgoto
+command! ffvids   fd -H -L -d=4 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . /opt/.porn/vids | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r vidplay
+command! ffvids   fd -H -L -d=4 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . /opt/.porn/vids | fzf --height=0 | xargs -r vifmgoto
 command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
 command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --print0 | xargs -0r vifmgoto
 command! ffiptv   cat %a | fzf -d, --with-nth -1 --height=0 | xargs -r vidplay -x 2>/dev/null
