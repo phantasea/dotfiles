@@ -826,7 +826,7 @@ filetype  {*.[1-8]},<text/troff>  man ./%c
 fileview  {*.[1-8]},<text/troff>  man ./%c | col -b
 
 " Office files
-filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice %c &
+filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice 2>/dev/null %c &
 filetype  *.xls,*.xlsx,*.csv,*.tsv  vd %c, sc-im %c
 fileview  *.doc  antiword %c, catdoc -- %c
 fileview  *.docx docx2txt %c -, catdoc -- %c, pandoc -s -t markdown -- %c
@@ -1021,6 +1021,9 @@ filetype  *.ftp
 " AppImage
 filetype  *.AppImage
           \ FUSE_MOUNT|squashfuse -o offset=$(%SOURCE_FILE --appimage-offset) %SOURCE_FILE %DESTINATION_DIR
+
+" Rclone
+filetype  *.rclone FUSE_MOUNT2|rclone %PARAM %DESTINATION_DIR
 
 " MD5
 filetype  *.md5  md5sum -c %c %S
