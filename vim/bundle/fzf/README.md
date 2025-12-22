@@ -1,3 +1,17 @@
+<div align="center" markdown="1">
+  <sup>Special thanks to:</sup>
+  <br>
+  <a href="https://tuple.app/fzf.vim">
+    <img alt="Tuple's sponsorship image" src="https://raw.githubusercontent.com/junegunn/i/master/tuple.png" width="400">
+  </a>
+
+### [Tuple, the premier screen sharing app for developers](https://tuple.app/fzf.vim)
+[Available for MacOS & Windows](https://tuple.app/fzf.vim)<br>
+
+</div>
+
+---
+
 fzf :heart: vim
 ===============
 
@@ -79,6 +93,7 @@ Commands
 | `:BTags [QUERY]`       | Tags in the current buffer                                                            |
 | `:Changes`             | Changelist across all open buffers                                                    |
 | `:Marks`               | Marks                                                                                 |
+| `:BMarks`              | Marks in the current buffer                                                           |
 | `:Jumps`               | Jumps                                                                                 |
 | `:Windows`             | Windows                                                                               |
 | `:Locate PATTERN`      | `locate` command output                                                               |
