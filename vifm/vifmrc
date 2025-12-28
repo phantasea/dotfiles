@@ -267,6 +267,8 @@ nnoremap  oo =
 nnoremap  of zF
 nnoremap  od zD
 nnoremap  ol zL
+nnoremap  oj :<c-u>exec '.+'.v:count '| open'<cr>
+nnoremap  ok :<c-u>exec '.-'.v:count '| norm gf'<cr>
 nnoremap  or zS
 nnoremap  os :invert s<cr>zf
 nnoremap  ot :exec "filter /\.".expand('%c:e')."$/i"<cr>
@@ -327,7 +329,8 @@ nnoremap  T  kt
 nnoremap  U  <c-r>
 qnoremap  v  q
 nnoremap gv  gv
-nnoremap ov  :explore<cr>
+nnoremap ovn :view next<cr>
+nnoremap ovp :view prev<cr>
 nnoremap zv  :explore<cr>
 qnoremap  w  W
 nnoremap  w  :set millerview!<cr>
@@ -742,7 +745,7 @@ command! ffgotoD  :exec 'goto' fnameescape(system('fd -t=f -t=l | fzf 2>/dev/tty
 command! ffgoto   fd -L --type file | fzf --height=0 --print0 | xargs -0r vifmgoto
 command! ffdirs   fd -L --type directory | fzf --height=0 --print0 | xargs -0r vifmgoto
 command! ffedit   fd -d=3 -t=f -t=l -H -E .git --size=-800k | fzf --height=0 -1 -q "%a" --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
-command! fffave   cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f -t=l . | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
+command! fffave   cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f -t=l . | fzf --tmux=80%% --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
 command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r audplay
 command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 --print0 | xargs -0 -r vifmgoto
 command! ffepub   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/epub | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview

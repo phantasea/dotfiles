@@ -10,7 +10,7 @@
 # toggle options
 toggle_filenames       Tab
 toggle_info            I
-toggle_pause           P y
+toggle_pause           P y period
 toggle_menu            m
 toggle_pointer         x
 toggle_auto_zoom       w
@@ -59,13 +59,14 @@ delete         D
 # rotate
 orient_1       r
 orient_3       R
-#flip          _
-#mirror        |
+#flip          _ underscore
+#mirror        | bar
 
 # only with DIY version
 # increase/decrease slideshow delay time 0.5s each time
-reload_plus    u
-reload_minus   U
+# bracketright/left, plus/minus not working
+reload_plus    u bracketright greater plus
+reload_minus   U bracketleft  less    minus
 
 # I only hit these accidentaly
 save_image     s

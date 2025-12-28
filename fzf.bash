@@ -67,7 +67,7 @@ ffl() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs locate | fzf "$@" | xargs -r
 ffe() { fd -t=f -t=l -d=3 -a -H --size=-800k . | fzf --select-1 --query="$*" | sed 's/ /\\ /g' | xargs -r fileopen ;}
 
 ffa() { fd -H -L -d=3 -t=f -e=mp3 -e=m4a . ~/auds | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
-fff() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs fd -a -t=f -t=l . | fzf "$@" | xargs -r fileopen ;}
+fff() { cat ~/.favedirs | sed "s%\~%$HOME%" | xargs fd -a -t=f -t=l . | fzf --tmux 80% "$@" | xargs -r fileopen ;}
 ffv() { fd -H -L -d=3 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . ~/vids | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
 ffw() { fd -d=1 -t=f . ~/docs/webs | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}
 ffx() { fd -d=2 -t=f . /opt/.porn/epub | fzf "$@" | sed 's/ /\\ /g' | xargs -r fileopen ;}

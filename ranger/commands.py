@@ -257,7 +257,7 @@ class fzf_edit(Command):
 class fzf_fave(Command):
     def execute(self):
         command="cat ~/.favedirs | sed \"s%\~%$HOME%\" | xargs fd -a -t=f -t=l . | \
-                fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | xargs -r fileopen"
+                fzf --tmux 80% --bind 'ctrl-o:execute(fzfopen {})' | xargs -r fileopen"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
