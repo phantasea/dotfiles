@@ -1,0 +1,7 @@
+#!/bin/bash
+
+RX=$(vnstat | grep 'today' | cut -d'|' -f1 | cut -d'y' -f2 | sed -e 's/\s//g')
+
+color="color='#FFFFFF'"
+logo='☯'
+echo "<span $color>$logo</span> $RX"
