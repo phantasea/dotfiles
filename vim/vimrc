@@ -216,6 +216,8 @@ vnoremap  0     ^
 vnoremap  ^     0
 
 nnoremap  gq:   q:
+nnoremap  gN    :g/\v/norm<space><left><left><left><left><left><left>
+
 nnoremap  gb    :buffer<space>
 nnoremap  gB    :buffers<CR>
 nnoremap   c.   :cc<CR>

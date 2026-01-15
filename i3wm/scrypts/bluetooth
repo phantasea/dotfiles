@@ -1,0 +1,16 @@
+#!/bin/bash
+
+BT="NULL"
+color="color='#FFFFFF'"
+
+STATE=$(bluetoothctl info 0C:17:73:D9:EB:09 | grep 'Connected' | cut -d':' -f2)
+if [[ $STATE =~ 'yes' ]]; then
+    BT='ON'
+    color="color='#33FF33'"
+elif [[ $STATE =~ 'no' ]]; then
+    BT='OFF'
+    color="color='#FF3333'"
+fi
+
+logo=''
+echo "<span $color>$logo</span> $BT"

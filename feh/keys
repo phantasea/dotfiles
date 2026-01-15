@@ -10,7 +10,7 @@
 # toggle options
 toggle_filenames       Tab
 toggle_info            I
-toggle_pause           P y period
+toggle_pause           y period
 toggle_menu            m
 toggle_pointer         x
 toggle_auto_zoom       w
@@ -40,8 +40,8 @@ prev_img       p Left BackSpace
 jump_first     g
 jump_last      G
 jump_random    z
-jump_fwd       C-f
-jump_back      C-b
+jump_fwd       C-f N
+jump_back      C-b P
 
 # image movement
 scroll_up      k
