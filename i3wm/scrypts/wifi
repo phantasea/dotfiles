@@ -3,15 +3,16 @@
 IF=$(ip route | awk '/^default/ { print $5 ; exit }')
 
 if [[ "$(cat /sys/class/net/$IF/operstate)" = 'down' ]]; then
-  echo   # full text
+  echo  
   exit
 fi
 
 # if default route via wifi
 if [[ $(echo $IF | tr -d 0-9) = "wlps" ]] ; then
-    QUALITY=$(grep $IF /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
+    #QUALITY=$(grep $IF /proc/net/wireless | awk '{ print int($3 * 100 / 70) }')
     SSID=$(iwgetid -r)
-    echo " $SSID $QUALITY%" # full text
+    #echo " $SSID $QUALITY%" # full text
+    echo " $SSID"
     exit
 fi
 
@@ -33,8 +34,8 @@ case $BLOCK_BUTTON in
 esac
 
 if [[ -z $IPADDR ]]; then
-  echo   # full text
+  echo  
   exit
 fi
 
-echo "  [$IPADDR]" # full text
+echo " [$IPADDR]"
