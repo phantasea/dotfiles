@@ -79,11 +79,15 @@ highlight {*.css,*.less,*.scss,*.markdown,*.md,*.mkd,*.org,*.pandoc,*.pdc,*.tex,
 " still text files, but keeping this unoptimizable glob separately
 highlight {*[^0-9].[1-9]}
         \ cterm=none ctermfg=217 ctermbg=default
-" documents and text-based formats that need special handling
-highlight {*.doc,*.docx,*.xls,*.xlsm,*.xlsx,*.mobi,*.rtf,*.ppt,*.pptx,*.pdf,
-          \*.epub,*.fb2,*.djvu,*.djv,*.htm,*.html,*.shtml,*.xhtml,*.desktop,
-          \*.odg,*.odt,*.ods}
+" windows office
+highlight {*.doc,*.docx,*.xls,*.xlsm,*.xlsx,*.rtf,*.ppt,*.pptx}
+        \ cterm=none ctermfg=98 ctermbg=default
+" ebooks
+highlight {*.epub,*.pdf,*.mobi,*azw,*.fb2,*.djvu,*.djv}
         \ cterm=none ctermfg=183 ctermbg=default
+" wepages
+highlight {*.htm,*.html,*.shtml,*.xhtml,*.desktop}
+        \ cterm=none ctermfg=147 ctermbg=default
 " audio
 highlight {*.aac,*.ac3,*.anx,*.ape,*.asf,*.au,*.axa,*.cue,*.flac,*.m2a,*.m4a,
           \*.mid,*.midi,*.mka,*.mp3,*.mpc,*.oga,*.ogg,*.ogx,*.ra,*.ram,*.spx,

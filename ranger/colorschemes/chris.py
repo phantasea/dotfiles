@@ -35,21 +35,26 @@ class Chris(ColorScheme):
                 fg = blue
             if context.media:
                 if context.image:
-                    fg = yellow
+                    fg = white
                 elif context.audio:
-                    fg = yellow
+                    fg = white
                 elif context.video:
-                    fg = yellow
+                    fg = white
                 else:
-                    fg = yellow
+                    fg = white
             if context.container:
                 fg = red
             if context.mimetext:
                 fg = yellow
             if context.document:
-                fg = yellow
+                fg = green
+                attr |= bold
+            if context.ebooks:
+                fg = white
+            if context.www:
+                fg = white
             if context.special:
-                fg = red
+                fg = yellow
                 attr |= bold
             if context.directory:
                 #attr |= bold
@@ -112,7 +117,7 @@ class Chris(ColorScheme):
                 bg = green
                 fg = black
             elif context.hostname:
-                bg = magenta
+                bg = yellow
                 fg = black
             elif context.separator:
                 fg = black

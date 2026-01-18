@@ -50,6 +50,8 @@ class Chris(ColorScheme):
                 fg = 217
             if context.ebooks:
                 fg = 183
+            if context.www:
+                fg = 147
             if context.special:
                 fg = 198
                 attr |= bold

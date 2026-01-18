@@ -69,7 +69,7 @@ highlight  /\.(md|mkd|markdown)$/i
 highlight  /\.(txt|csv)$/i 
                                  \ ctermfg=white    ctermbg=none   cterm=bold
 
-highlight  /\.(pdf|epub)$/i        ctermfg=white    ctermbg=none   cterm=none
+highlight  /\.(pdf|epub|mobi)$/i   ctermfg=white    ctermbg=none   cterm=none
 highlight  /\.(mp3|m4a|mp4)$/i     ctermfg=white    ctermbg=none   cterm=none
 highlight  /\.(jpg|jpeg|webp)$/i   ctermfg=white    ctermbg=none   cterm=none
 highlight  /\.(htm|html|xhtml)$/i  ctermfg=white    ctermbg=none   cterm=none
