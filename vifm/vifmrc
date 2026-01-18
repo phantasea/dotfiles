@@ -937,7 +937,7 @@ fileview  *.md,*.mkd,*.markdown
           \ glow -w %pw %c,
           \ vimcat -s %c,
 filetype  *.md,*.mkd,*.markdown
-          \ vimpager -s %c,
+          \ vimpager -s %c | less,
           \ glow -w %pw %c | less,
           \ pandoc -f markdown -t html %c | w3m -dump -cols %pw -T text/html | less,
           \ mdp %c,

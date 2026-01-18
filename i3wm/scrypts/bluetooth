@@ -4,16 +4,16 @@ BT=""
 
 BUDS=$(bluetoothctl info 0C:17:73:D9:EB:09 | grep 'Connected' | cut -d':' -f2)
 if [[ $BUDS =~ 'yes' ]]; then
-    BT='🖱️'
+    BT='🎧'
 fi
 
 MOUSE=$(bluetoothctl info D6:35:94:46:93:A8 | grep 'Connected' | cut -d':' -f2)
 if [[ $MOUSE =~ 'yes' ]]; then
-    BT+='🎧'
+    BT+='🖱️'
 fi
 
 if [[ -z $BT ]]; then
-    BT="卐"
+    BT=""
     color="color='#FFFFFF'"
 else
     color="color='#33FF33'"

@@ -1,84 +1,52 @@
 " Devicons for ViFM
 " https://github.com/cirala/vifm_devicons
 
-" λ☢️
-" ◘
-" ⚡Ξ☰＝┃☀️
-" 🔇🔈🔉🔊🎙️🎧🖱️🔋⊹
-" ＋－•＃、一二三四五六七八九十零百０１２３４５６７８９
+" λ
+" 
+" ⚡Ξ☰＝┃☀️ ☢️ ◘ ♀️♂️
+" ＋－•＃、♤♡♢♧▲▼●◆▪■★▶◀♠♥♦♣☼♀☀☹♂∷※ §®卍卐▬
+" ↖↑↗↙↓↘↕↔▫▣☒△▽○◇□☆▷◁✖✚✪❤☢❂✲❈❉✿❀❃❁☸
+" 〇一二三四五六七八九十零百０１２３４５６７８９
+" ㈠ ㈡ ㈢ ㈣ ㈤ ㈥ ㈦ ㈧ ㈨ ㈩
+" 零 壹 贰 叁 肆 伍 陆 柒 捌 玖 拾 佰 仟 万 亿 兆 分 厘 毫 微
+" ﹢ ﹣ · / = ﹤ ﹥ ≦ ≧ ≮ ≯ ≡ ＋ － × ÷ ＝ ＜ ＞ ≤ ≥ ≈ ≒ ≠ ± ∶ ∵ ∴ ∷
+" ㏒ ㏑ ∑ ∏ ∅ ∝ ∽ ∈ ∩ ∧ ⊙ ⌒ ∥ ∟ ∣ ∂ ∆ ∞ ≌ ∉ ∪ ∨ ⊕ ⊿ ⊥ ∠ ∫ ∬ ∭
+" º ¹ ² ³ ⁿ ℅ ∮ ₁ ₂ ₃ ½ ⅓ ⅔ ¼ ¾ ° ℃ ℉ 〒 ㎎ ㎏ μ m ㎜ ㎝ ㎞ ％ % ‰
+" ¥ $ €฿ ￡ ㎡
+" Α Β Γ Δ Ε ζ Η Θ ΐ Κ Λ μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω
+" α β γ δ ε ζ η θ ι κ λ μ ν ξ ο π ρ σ τ υ φ χ ψ ω
+" ↖  ↑  ↗    ◤  ㊤  ◥    ☴   ☲   ☷
+" ←  ㊣  →    ㊧  ㊥  ㊨    ☳   ☯   ☱
+" ↙  ↓  ↘    ◣  ㊦  ◢    ☶   ☵   ☰
+" ＋－〓•·★♡❤＊×▫ ◇◈▽￥□▣～？！：；＂“”`‘’〝〞
+" ～＆＠，。？！：；· ‥ … ﹝﹞«»〔〕〖〗
+" ．，。、—…┅﹍‥（）「」『』【】［］＜＞〈〉
 
-if $DISPLAY != ""
 " Filetypes
-set classify=" :dir:, :reg:, :exe:, :link:, :char:, :block:, :fifo:, :sock:, :?:"
+set classify=" :dir:, :reg:, :exe:, :link:, :char:, :block:, :fifo:, :sock:, :?:"
 
 " Specific files
 set classify+=' ::../::'
-set classify+=' ::.Xdefaults,,.Xresources,,.bashprofile,,.bash_profile,,.gitconfig,,.gitignore,,.profile::'
 set classify+=' ::TODO,,README,,FAQ,,ChangeLog,,Makefile::'
 set classify+=' ::license,,copyright,,copying,,LICENSE,,COPYRIGHT,,COPYING::'
 
 " File extensions
 set classify+=' ::*.py,,*.pyc,,*.pyd,,*.pyo::'
 set classify+=' ::*.markdown,,*.md::'
-set classify+=' ::*.js::'
-set classify+=' ::*.bmp,,*.gif,,*.ico,,*.webp,,*.jpeg,,*.jpg,,*.png,,*.svg,,*.xpm::'
-set classify+=' ::*.htm,,*.html,,*.xhtml,,*.xml,,*.php::'
-set classify+=' ::*.css,,*.bat,,*.conf,,*.config,,*.ini,,*.yml,,*.cfg,,*rc::'
-set classify+=' ::*.rss::'
-set classify+=' ::*.coffee::'
-set classify+=' ::*.c++,,*.cc,,*.c,,*.cpp,,*.cxx,,*.c,,*.h::'
-set classify+=' ::*.lua::'
-set classify+=' ::*.json::'
-set classify+=' ::*.scala::'
-set classify+=' ::*.diff,,*.sum,,*.md5,,*.sha512::'
-set classify+=' ::*.db,,*.dump,,*.sql::'
-set classify+=' ::*.exe::'
-set classify+=' ::*.java,,*.jar::'
-set classify+=' ::*.fish,,*.sh,,*.bash::'
-set classify+=' ::*.vim,,*.vimrc::'
-set classify+=' ::*.aac,,*.asf,,*.au,,*.flac,,*.m4a,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.wav,,*.wma::'
-set classify+=' ::*.avi,,*.flv,,*.mkv,,*.mov,,*.mp4,,*.mpeg,,*.mpg,,*.webm,,*.rm,,*.rmvb::'
-set classify+=' ::*.epub,,*.pdf,,*.fb2,,*.djvu::'
-set classify+=' ::*.7z,,*.apk,,*.bz2,,*.cab,,*.deb,,*.gz,,*.gzip,,*.rar,,*.rpm,,*.tar,,*.tgz,,*.xz,,*.zip::'
-set classify+=' ::*.log::'
-set classify+=' ::*.doc,,*.docx,,*.adoc::'
-set classify+=' ::*.xls,,*.xls,,*.xlsmx::'
-set classify+=' ::*.pptx,,*.ppt::'
-else
-" Filetypes
-set classify=" :dir:, :reg:, :exe:, :link:, :char:, :block:, :fifo:, :sock:, :?:"
-
-" Specific files
-set classify+=' ::../::'
-set classify+=' ::.Xdefaults,,.Xresources,,.bashprofile,,.bash_profile,,.gitconfig,,.gitignore,,.profile::'
-set classify+=' ::TODO,,README,,FAQ,,ChangeLog,,Makefile::'
-set classify+=' ::license,,copyright,,copying,,LICENSE,,COPYRIGHT,,COPYING::'
-
-" File extensions
-set classify+=' ::*.py,,*.pyc,,*.pyd,,*.pyo::'
-set classify+=' ::*.markdown,,*.md::'
-set classify+=' ::*.js::'
-set classify+=' ::*.bmp,,*.gif,,*.ico,,*.webp,,*.jpeg,,*.jpg,,*.png,,*.svg,,*.xpm::'
-set classify+=' ::*.htm,,*.html,,*.xhtml,,*.xml,,*.php::'
-set classify+=' ::*.css,,*.bat,,*.conf,,*.config,,*.ini,,*.yml,,*.cfg,,*rc::'
-set classify+=' ::*.rss::'
-set classify+=' ::*.coffee::'
+set classify+=' ::*.bmp,,*.gif,,*.ico,,*.webp,,*.jpeg,,*.jpg,,*.png,,*.svg,,*.xpm::'
+set classify+=' ::*.htm,,*.html,,*.xhtml,,*.xml,,*.php::'
+set classify+=' ::*.log,,*.bat,,*.conf,,*.config,,*.ini,,*.yml,,*.cfg,,*rc::'
 set classify+=' ::*.c++,,*.cc,,*.c,,*.cpp,,*.cxx,,*.c,,*.h::'
-set classify+=' ::*.lua::'
-set classify+=' ::*.json::'
-set classify+=' ::*.scala::'
-set classify+=' ::*.diff,,*.sum,,*.md5,,*.sha512::'
-set classify+=' ::*.db,,*.dump,,*.sql::'
+set classify+=' ::*.lua,,*.json,,*.rss::'
+set classify+=' ::*.diff,,*.sum,,*.md5,,*.sha512::'
 set classify+=' ::*.exe::'
-set classify+=' ::*.java,,*.jar::'
-set classify+=' ::*.fish,,*.sh,,*.bash::'
+set classify+=' ::*.js,,*.java,,*.jar::'
+set classify+=' ::*.fish,,*.sh,,*.bash::'
 set classify+=' ::*.vim,,*.vimrc::'
 set classify+=' ::*.aac,,*.asf,,*.au,,*.flac,,*.m4a,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.wav,,*.wma::'
 set classify+=' ::*.avi,,*.flv,,*.mkv,,*.mov,,*.mp4,,*.mpeg,,*.mpg,,*.webm,,*.rm,,*.rmvb::'
-set classify+=' ::*.epub,,*.pdf,,*.fb2,,*.djvu::'
-set classify+=' ::*.7z,,*.apk,,*.bz2,,*.cab,,*.deb,,*.gz,,*.gzip,,*.rar,,*.rpm,,*.tar,,*.tgz,,*.xz,,*.zip::'
-set classify+=' ::*.log::'
-set classify+=' ::*.doc,,*.docx,,*.adoc::'
-set classify+=' ::*.xls,,*.xls,,*.xlsmx::'
-set classify+=' ::*.pptx,,*.ppt::'
-endif
+set classify+=' ::*.epub,,*.pdf,,*.fb2,,*.djvu::'
+set classify+=' ::*.7z,,*.apk,,*.bz2,,*.cab,,*.deb,,*.gz,,*.gzip,,*.rar,,*.rpm,,*.tar,,*.tgz,,*.xz,,*.zip::'
+set classify+=' ::*.doc,,*.docx::'
+set classify+=' ::*.xls,,*.xlsx::'
+set classify+=' ::*.ppt,,*.pptx::'

@@ -109,12 +109,10 @@ class Chris(ColorScheme):
 
         elif context.in_titlebar:
             if context.username:
-                #attr |= bold
                 bg = green
                 fg = black
             elif context.hostname:
-                #attr |= bold
-                bg = red
+                bg = magenta
                 fg = black
             elif context.separator:
                 fg = black
