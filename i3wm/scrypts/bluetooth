@@ -1,15 +1,22 @@
 #!/bin/bash
 
-BT="NULL"
-color="color='#FFFFFF'"
+BT=""
 
-STATE=$(bluetoothctl info 0C:17:73:D9:EB:09 | grep 'Connected' | cut -d':' -f2)
-if [[ $STATE =~ 'yes' ]]; then
-    BT='ON'
+BUDS=$(bluetoothctl info 0C:17:73:D9:EB:09 | grep 'Connected' | cut -d':' -f2)
+if [[ $BUDS =~ 'yes' ]]; then
+    BT='🖱️'
+fi
+
+MOUSE=$(bluetoothctl info D6:35:94:46:93:A8 | grep 'Connected' | cut -d':' -f2)
+if [[ $MOUSE =~ 'yes' ]]; then
+    BT+='🎧'
+fi
+
+if [[ -z $BT ]]; then
+    BT="卐"
+    color="color='#FFFFFF'"
+else
     color="color='#33FF33'"
-elif [[ $STATE =~ 'no' ]]; then
-    BT='OFF'
-    color="color='#FF3333'"
 fi
 
 logo=''
