@@ -1,0 +1,34 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:lsar"
+rev = "de33976"
+hash = "41f41f311d92259e09e8750958034915"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "de33976"
+hash = "8da0b15a97b5dfd13941d1ecc617ac7c"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:jump-to-char"
+rev = "de33976"
+hash = "ce67445ebb1bf3d97b8e44f50904b2c5"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "de33976"
+hash = "56fdabc96fc1f4d53c96eb884b02a5be"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:full-border"
+rev = "de33976"
+hash = "3996fc74044bc44144b323686f887e1"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "de33976"
+hash = "8a7c58225816a163a6e8730c0adafbc8"
+
+[[flavor.deps]]
+use = "dangooddd/kanagawa"
+rev = "04985d1"
+hash = "c69a63981e254a3a06a11c2bf0e6af1d"
