@@ -12,9 +12,9 @@ nnoremap  <F11>    :diffsamewin<cr>
 nnoremap  <F12>    :!cmatrix -abs -C cyan<cr>
 
 "<tab> = <c-i>
-nnoremap  <s-tab>  :cyclesplit<cr>
 qnoremap  <s-tab>  <tab>
-
+nnoremap  <s-tab>  :toggletabfunc<cr>
+nnoremap  <tab>    :medinfo<cr>
 nnoremap b<tab>    <nop>
 nnoremap c<tab>    <nop>
 nnoremap f<tab>    <nop>
@@ -586,6 +586,16 @@ command! vimdiff
      \ |   exec '!vim -d %%f'
      \ | endif
 
+let $TABFUNC = 0
+command! toggletabfunc
+     \ : if $TABFUNC == 0
+     \ |   exec 'nnoremap  <tab>  <c-i>'
+     \ |   let $TABFUNC = 1
+     \ | else
+     \ |   exec 'nnoremap  <tab>  :medinfo<cr>'
+     \ |   let $TABFUNC = 0
+     \ | endif
+
 command! toggleultrawide
      \ : if &millerview
      \ |   set nomillerview
@@ -696,7 +706,7 @@ command! fim      fim %f > /dev/null 2>&1
 command! imgall   imgview -s
 command! imgrall  imgview -rs
 command! medinfo  medinfo %c %S
-command! tsls     medinfo -t %m
+command! tsls     medinfo -t %c %m
 command! imgclear vifmimg clear
 
 command! clock    tty-clock -cBS -C 6
@@ -746,8 +756,8 @@ command! ffgoto   fd -L --type file | fzf --height=0 --print0 | xargs -0r vifmgo
 command! ffdirs   fd -L --type directory | fzf --height=0 --print0 | xargs -0r vifmgoto
 command! ffedit   fd -d=3 -t=f -t=l -H -E .git --size=-800k | fzf --height=0 -1 -q "%a" --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
 command! fffave   cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f -t=l . | fzf --tmux=80%% --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
-command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r audplay
-command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 --print0 | xargs -0 -r vifmgoto
+command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r audplay -x
+command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 --bind 'ctrl-o:execute(fzfopen -x {})' --print0 | xargs -0 -r vifmgoto
 command! ffepub   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/epub | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
 command! ffepub   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/epub | fzf --height=0 --print0 | xargs -0r vifmgoto
 command! ffpics   fd -L -E '{*.webp,*.jpg,*.jpeg,*.JPG,*.JPEG}' . /opt/.porn/pics | fzf --height=0 --print0 | xargs -0r vifmgoto
@@ -861,8 +871,8 @@ fileview  *.sh,*.bash  highlight -S sh -O ansi -s dante %c, bat --color=always %
 
 " Audio
 filetype  {*.mp3,*.wav,*.ogg,*.m4a,*.aac,*.wma,*.ape,*.rm},<audio/*>
+          \ audplay -x %c &,
           \ medinfo %c %S,
-          \ audplay %c &,
 fileview  <audio/*>
           \ exiftool %c,
           \ mediainfo %c,

@@ -183,3 +183,4 @@ alias xasmr='tree -D --timefmt %F -l -L 2 --dirsfirst /opt/.porn/asmr > /opt/.po
 alias xepub='tree -D --timefmt %F -L 2 --dirsfirst    /opt/.porn/epub > /opt/.porn/epub.txt'
 alias xvids='tree -D --timefmt %F -L 3 --dirsfirst    /opt/.porn/vids > /opt/.porn/vids.txt'
 alias xpics='fd -L -E "{*.webp,*.jpg,*.jpeg,*.JPG,*.JPEG}" . /opt/.porn/pics | sort > /opt/.porn/pics.txt'
+alias yz='yazi 2>/dev/null'
