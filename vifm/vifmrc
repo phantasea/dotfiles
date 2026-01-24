@@ -756,7 +756,7 @@ command! ffgoto   fd -L --type file | fzf --height=0 --print0 | xargs -0r vifmgo
 command! ffdirs   fd -L --type directory | fzf --height=0 --print0 | xargs -0r vifmgoto
 command! ffedit   fd -d=3 -t=f -t=l -H -E .git --size=-800k | fzf --height=0 -1 -q "%a" --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
 command! fffave   cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f -t=l . | fzf --tmux=80%% --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
-command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r audplay -x
+command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r audplay -b
 command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/asmr | fzf --height=0 --bind 'ctrl-o:execute(fzfopen -x {})' --print0 | xargs -0 -r vifmgoto
 command! ffepub   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/epub | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
 command! ffepub   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/epub | fzf --height=0 --print0 | xargs -0r vifmgoto
@@ -871,7 +871,7 @@ fileview  *.sh,*.bash  highlight -S sh -O ansi -s dante %c, bat --color=always %
 
 " Audio
 filetype  {*.mp3,*.wav,*.ogg,*.m4a,*.aac,*.wma,*.ape,*.rm},<audio/*>
-          \ audplay -x %c &,
+          \ audplay -b %c &,
           \ medinfo %c %S,
 fileview  <audio/*>
           \ exiftool %c,
