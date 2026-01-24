@@ -14,7 +14,7 @@ nnoremap  <F12>    :!cmatrix -abs -C cyan<cr>
 "<tab> = <c-i>
 qnoremap  <s-tab>  <tab>
 nnoremap  <s-tab>  :toggletabfunc<cr>
-nnoremap  <tab>    :medinfo<cr>
+nnoremap  <tab>    :fileinfo<cr>
 nnoremap b<tab>    <nop>
 nnoremap c<tab>    <nop>
 nnoremap f<tab>    <nop>
@@ -257,7 +257,7 @@ mnoremap  K  <c-y>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
 nnoremap gl  :if filetype('.') == 'link' | exec 'norm! gf' | else | altopen | endif<cr>
 nnoremap gL  :if filetype('.') == 'link' | exec 'norm! gF' | else | auxopen | endif<cr>
-nnoremap  mi :medinfo<cr>
+nnoremap  mi :fileinfo<cr>
 nnoremap  mI :tsls<cr>
 nnoremap  mj 2gM
 nnoremap  mm gMzz
@@ -592,7 +592,7 @@ command! toggletabfunc
      \ |   exec 'nnoremap  <tab>  <c-i>'
      \ |   let $TABFUNC = 1
      \ | else
-     \ |   exec 'nnoremap  <tab>  :medinfo<cr>'
+     \ |   exec 'nnoremap  <tab>  :fileinfo<cr>'
      \ |   let $TABFUNC = 0
      \ | endif
 
@@ -705,8 +705,8 @@ command! fimB     :select! !fim *
 command! fim      fim %f > /dev/null 2>&1
 command! imgall   imgview -s
 command! imgrall  imgview -rs
-command! medinfo  medinfo %c %S
-command! tsls     medinfo -t %c %m
+command! fileinfo fileinfo %c %S
+command! tsls     fileinfo -t %c %m
 command! imgclear vifmimg clear
 
 command! clock    tty-clock -cBS -C 6
@@ -872,7 +872,7 @@ fileview  *.sh,*.bash  highlight -S sh -O ansi -s dante %c, bat --color=always %
 " Audio
 filetype  {*.mp3,*.wav,*.ogg,*.m4a,*.aac,*.wma,*.ape,*.rm},<audio/*>
           \ audplay -b %c &,
-          \ medinfo %c %S,
+          \ fileinfo %c %S,
 fileview  <audio/*>
           \ exiftool %c,
           \ mediainfo %c,
