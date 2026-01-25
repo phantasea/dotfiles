@@ -11,7 +11,7 @@ sort_dir_first = true
 sort_translit  = false
 linemode       = "size"
 show_hidden    = false
-show_symlink   = true
+show_symlink   = false
 scrolloff      = 1
 mouse_events   = [ "click", "scroll" ]
 title_format   = "Yazi: {cwd}"
@@ -30,7 +30,7 @@ ueberzug_offset = [ 0, 0, 0, 0 ]
 
 [opener]
 edit = [
-	{ run = "${EDITOR:-vi} %s", desc = "$EDITOR",      for = "unix", block = true },
+	{ run = "${EDITOR:-vim} %s", desc = "$EDITOR",      for = "unix", block = true },
 	{ run = "code %s",          desc = "code",         for = "windows", orphan = true },
 	{ run = "code -w %s",       desc = "code (block)", for = "windows", block = true },
 ]
@@ -62,6 +62,9 @@ download = [
 	{ run = "ya emit download --open %S", desc = "Download and open" },
 	{ run = "ya emit download %S",        desc = "Download" },
 ]
+imgview = [
+	{ run = "imgview %s1",    desc = "Open", for = "linux" },
+]
 
 [open]
 rules = [
@@ -70,7 +73,7 @@ rules = [
 	# Text
 	{ mime = "text/*", use = [ "edit", "reveal" ] },
 	# Image
-	{ mime = "image/*", use = [ "open", "reveal" ] },
+	{ mime = "image/*", use = [ "imgview", "reveal" ] },
 	# Media
 	{ mime = "{audio,video}/*", use = [ "play", "reveal" ] },
 	# Archive
