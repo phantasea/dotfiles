@@ -5,6 +5,8 @@
 [mgr]
 
 keymap = [
+	{ on = "!", run = 'shell "$SHELL" --block', desc = "Open $SHELL here" },
+
 	{ on = "<Backspace>", run = "noop",         desc = "no operation" },
 	{ on = "<Esc>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },
 #	{ on = "<C-[>", run = "escape",             desc = "Exit visual mode, clear selection, or cancel search" },

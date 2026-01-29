@@ -35,6 +35,7 @@ edit = [
 	{ run = "code -w %s",       desc = "code (block)", for = "windows", block = true },
 ]
 play = [
+	{ run = "fileopen %s1",    desc = "Play", for = "linux" },
 	{ run = "xdg-open %s1",    desc = "Play", for = "linux", orphan = true },
 	{ run = "open %s",         desc = "Play", for = "macos" },
 	{ run = 'start "" %s1',    desc = "Play", for = "windows", orphan = true },
@@ -43,6 +44,7 @@ play = [
 	{ run = "mediainfo %s1 & pause", block = true, desc = "Show media info", for = "windows" },
 ]
 open = [
+	{ run = "fileopen %s1",    desc = "Open", for = "linux" },
 	{ run = "xdg-open %s1",    desc = "Open", for = "linux" },
 	{ run = "open %s",         desc = "Open", for = "macos" },
 	{ run = 'start "" %s1',    desc = "Open", for = "windows", orphan = true },

@@ -1,3 +1,5 @@
+require("dir-rules"):setup()
+
 require("smart-enter"):setup {
     functionopen_multi = true,
 }

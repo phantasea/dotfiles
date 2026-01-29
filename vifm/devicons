@@ -1,7 +1,7 @@
 " Devicons for ViFM
 " https://github.com/cirala/vifm_devicons
 
-" λ
+" λ
 " 
 " ⚡Ξ☰＝┃☀️ ☢️ ◘ ♀️♂️
 " ＋－•＃、♤♡♢♧▲▼●◆▪■★▶◀♠♥♦♣☼♀☀☹♂∷※ §®卍卐▬
@@ -45,7 +45,7 @@ set classify+=' ::*.fish,,*.sh,,*.bash::'
 set classify+=' ::*.vim,,*.vimrc::'
 set classify+=' ::*.aac,,*.asf,,*.au,,*.flac,,*.m4a,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.wav,,*.wma::'
 set classify+=' ::*.avi,,*.flv,,*.mkv,,*.mov,,*.mp4,,*.mpeg,,*.mpg,,*.webm,,*.rm,,*.rmvb::'
-set classify+=' ::*.epub,,*.pdf,,*.fb2,,*.djvu::'
+set classify+=' ::*.epub,,*.pdf,,*.fb2,,*.djvu::'
 set classify+=' ::*.7z,,*.apk,,*.bz2,,*.cab,,*.deb,,*.gz,,*.gzip,,*.rar,,*.rpm,,*.tar,,*.tgz,,*.xz,,*.zip::'
 set classify+=' ::*.doc,,*.docx::'
 set classify+=' ::*.xls,,*.xlsx::'
