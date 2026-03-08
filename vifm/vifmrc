@@ -147,6 +147,7 @@ nnoremap <wait>  ,i  :imgall<cr>
 nnoremap <wait>  ,I  :imgrall<cr>
 nnoremap <wait>  ,r  cW<c-u>
 nnoremap <wait>  ,s  :! ls -p | grep -v / | sort -t' ' -k2 %m<cr>
+nnoremap <wait>  ,c  :s/\.html$/.txt/g<cr>
 
 nnoremap  0  gg
 nnoremap  ^  gg
@@ -774,7 +775,7 @@ command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-t
 command! audcat   audcat   %f &
 command! audconv  audconv  %c &
 command! imgconv  imgconv  %c &
-command! epub2txt epub2txt %c &
+command! epub2txt epub2txt %a %c &
 command! txt2epub txt2epub %c &
 command! gif2jpg  gif2jpg  %c &
 command! mpvplay  mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-16-60 %c
@@ -958,6 +959,7 @@ filetype  *.log  tspin %c, tac %c | less, multitail %f, lnav %f
 
 " json files
 fileview  *.json  jq --color-output '.' %c, python -m json.tool -- %c
+fileview  *.json,*.toml,*.yaml,*.yml  fx %c
 
 " pcap files
 filetype  *.pcap,*.cap  sngrep -iI %c

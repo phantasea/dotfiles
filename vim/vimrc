@@ -869,6 +869,11 @@ highlight HighlightedyankRegion cterm=reverse gui=reverse
 let g:floaterm_width  = 0.8
 let g:floaterm_height = 0.8
 "}}}
+
+" disable plugins {{{
+let loaded_matchit = 1
+"}}}
+
 "}}}
 
 " vim: set ft=vim foldmethod=marker:
