@@ -8,6 +8,10 @@ guiset_quiet navbar always
 guiset_quiet tabs always nocount
 guiset_quiet hoverlink left
 
+set modeindicatormodes.normal false
+
+fixamo_quiet
+set csp clobber
 set allowautofocus false
 set editorcmd st -e vim
 set findcase smart
@@ -21,16 +25,17 @@ set hintchars hjklasdfgyuiopqwernmtvcbxz
 set followpagepatterns.next ^(next|newer)\b|»|>>|^(more|更多結果|下一頁|older)$
 set followpagepatterns.prev ^(prev(ious)?|older)\b|«|<<|^上一頁$
 
-set searchengine g
+set searchengine gg
 set searchurls.ddg    https://duckduckgo.com/html?q=%s
 set searchurls.deb    https://packages.debian.org/search?keywords=%s&searchon=names&suite=all&section=all
-set searchurls.g      https://www.google.com/search?q=%s
+set searchurls.gg     https://www.google.com/search?q=%s
 set searchurls.gh     https://github.com/search?utf8=%E2%9C%93&q=%s&ref=simplesearch
 set searchurls.gi     https://www.google.com/search?q=%s&tbm=isch
 set searchurls.gmaps  https://www.google.com/maps/search/%s
-set searchurls.w      https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
+set searchurls.wk     https://en.wikipedia.org/w/index.php?search=%s&title=Special%3ASearch
 set searchurls.wfr    https://fr.wikipedia.org/w/index.php?search=%s&title=Sp%E9cial%3ARecherche
-set searchurls.y      https://www.youtube.com/results?search_query=%s
+set searchurls.yt     https://www.youtube.com/results?search_query=%s
+set searchurls.18     https://www.cool18.com/search.php?keyword=%s
 
 " Ctrl-F should use the browser's native 'find' functionality.
 unbind <C-f>
@@ -52,7 +57,6 @@ bind  gd  tabdetach
 
 bind  --mode=normal <C-u>  back
 bind  --mode=normal <C-i>  forward
-"bind  --mode=normal <C-s>  saveas
 bind  --mode=normal <C-a>  urlincrement 1
 bind  --mode=normal <C-x>  urlincrement -1
 bind  --mode=normal <C-n>  tabnext
@@ -63,8 +67,8 @@ bind  --mode=ex     <C-p>  ex.prev_history
 bind  <  tabnext
 bind  >  tabprev
 
+bind  w  saveas
 bind  /  fillcmdline find
-bind  D  tabduplicate
 bind  H  back
 bind  j  scrollline 5
 bind  k  scrollline -5
@@ -74,7 +78,7 @@ bind  N  findnext -?
 bind  o  fillcmdline open
 bind  O  current_url open
 bind  t  fillcmdline tabopen
-bind  T  current_url tabopen
+bind  T  tabduplicate
 bind  p  clipboard open
 bind  P  clipboard tabopen
 bind  q  tabclose
@@ -84,18 +88,31 @@ bind  v  composite hint -pipe a href | exclaim_quiet mpv --ontop --keepaspect-wi
 bind  V  js tri.native.run(`mpv --ontop --keepaspect-window --profile=protocol.http '${document.location.href}'`)
 bind  x  stop
 bind  y  clipboard yankshort
+bind  .  mute toggle
+bind  Q  text2qr --popup
+
+bind <Enter> mute toggle
 
 bind --mode=ex <Space> ex.insert_space_or_completion
 
 bind --mode=ex          <C-a>   text.beginning_of_line
 bind --mode=insert      <C-a>   text.beginning_of_line
 bind --mode=input       <C-a>   text.beginning_of_line
+bind --mode=ex          <C-b>   text.backward_char
+bind --mode=insert      <C-b>   text.backward_char
+bind --mode=input       <C-b>   text.backward_char
+bind --mode=ex          <C-d>   text.delete_char
+bind --mode=insert      <C-d>   text.delete_char
+bind --mode=input       <C-d>   text.delete_char
 bind --mode=ex          <C-e>   text.end_of_line
 bind --mode=insert      <C-e>   text.end_of_line
 bind --mode=input       <C-e>   text.end_of_line
 bind --mode=ex          <C-f>   text.forward_word
 bind --mode=insert      <C-f>   text.forward_word
 bind --mode=input       <C-f>   text.forward_word
+bind --mode=ex          <C-h>   text.delete_backward_char
+bind --mode=insert      <C-h>   text.delete_backward_char
+bind --mode=input       <C-h>   text.delete_backward_char
 bind --mode=ex          <C-k>   text.kill_line
 bind --mode=insert      <C-k>   text.kill_line
 bind --mode=input       <C-k>   text.kill_line
@@ -112,7 +129,6 @@ bind --mode=ex          <C-n>   ex.next_completion
 bind --mode=ex          <C-p>   ex.prev_completion
 bind --mode=ex          <C-y>   ex.insert_completion
 bind --mode=ex          <C-e>   ex.deselect_completion
-bind --mode=ex          <Tab>   ex.complete
 bind --mode=ex          <C-w>   composite text.beginning_of_line ; text.forward_word ; text.kill_word
 
 " Make gu take you back to subreddit from comments
@@ -131,46 +147,38 @@ bindurl github\.com/.*/.*/issues ;F hint -Jbc a.h4
 bindurl github\.com/.*/.*/commits ;f hint -Jc a.message
 bindurl github\.com/.*/.*/commits ;F hint -Jbc a.message
 
-# ** Hinting
+" ** Hinting
 bind ;s hint -a
 bind ;S hint -s
-bind ;c hint -c summary,[class*="expand"],[class="togg"]
-# bind ;i hint -i
-# bind ;I hint -I
-# bind ;k hint -k
-# bind ;y hint -y
-# bind ;p hint -p
-# bind ;P hint -P
-# bind ;r hint -r
-# bind ;s hint -s
-# bind ;S hint -S
-# bind ;a hint -a
-# bind ;A hint -A
-# bind ;; hint -;
-# bind ;# hint -#
-# bind ;v hint -W exclaim_quiet mpv
-# bind ;w hint -w
+" bind ;i hint -i
+" bind ;I hint -I
+" bind ;k hint -k
+" bind ;y hint -y
+" bind ;p hint -p
+" bind ;P hint -P
+" bind ;r hint -r
+" bind ;s hint -s
+" bind ;S hint -S
+" bind ;a hint -a
+" bind ;A hint -A
+" bind ;; hint -;
+" bind ;# hint -#
+" bind ;v hint -W exclaim_quiet mpv
+" bind ;w hint -w
 
 " Make quickmarks for the sane Tridactyl issue view
-quickmark a https://www.amazon.co.jp/
-quickmark c https://console.aws.amazon.com/
-quickmark d http://www.dmm.com/
-quickmark f https://feedly.com/i/latest
-quickmark g https://douga.geo-online.co.jp/
-quickmark h https://www.hmv.co.jp/
-quickmark i https://www.instagram.com/
-quickmark l https://www.deepl.com/ja/translator
-quickmark n https://www.netflix.com/jp/Login
-quickmark p https://getpocket.com/a/
-quickmark r https://www.rakuten.co.jp/
-quickmark s https://app.simplenote.com/
-quickmark t https://github.com/tridactyl/tridactyl/issues?utf8=%E2%9C%93&q=sort%3Aupdated-desc+
-quickmark t https://tweetdeck.twitter.com/
-quickmark x https://app.plex.tv/desktop
-quickmark y https://www.youtube.com/?gl=JP
-quickmark z https://us02web.zoom.us/signin
-
-# * AutoCmds
-# Curently, 'TriStart', 'DocStart', 'DocEnd', 'TabEnter' and 'TabLeft' are supported.
+quickmark f https://github.com/vifm/vifm
+quickmark j https://jable.tv/latest-updates
+quickmark a https://asmrs.us/movies
+quickmark b https://www.asmr.pw/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97
+quickmark c https://sis001.com/forum/forum-368-1.html
+quickmark d https://www.uaa.com/audio/list
+quickmark p https://allporncomic.com/home-3/
+quickmark q https://gedecomix.com/main/
+quickmark r https://www.wnacg.com/albums-index-page-1-cate-22.html
+quickmark s https://18comic.vip/search/photos?search_query=3D&page=1
+quickmark t https://www.cool18.com/bbs4/index.php
+quickmark v https://www.iyf.tv/list/movie
+quickmark x https://www.pixiv.net/novel
 
 " vim:ft=tridactyl

@@ -13,7 +13,7 @@ nnoremap  <F12>    :!cmatrix -abs -C cyan<cr>
 
 "<tab> = <c-i>
 qnoremap  <s-tab>  <tab>
-nnoremap  <s-tab>  :toggletabfunc<cr>
+nnoremap  <s-tab>  :toggletabmap<cr>
 nnoremap  <tab>    :fileinfo<cr>
 nnoremap b<tab>    <nop>
 nnoremap c<tab>    <nop>
@@ -129,6 +129,9 @@ map <wait>  -gx  :chmod g-x<cr>
 map <wait>  -or  :chmod o-r<cr>
 map <wait>  -ow  :chmod o-w<cr>
 map <wait>  -ox  :chmod o-x<cr>
+
+nnoremap    --   :<c-u>exec '.-'.v:count '| normal gf'<cr>
+nnoremap    ++   :<c-u>exec '.+'.v:count '| normal gf'<cr>
 
 "nnoremap <c-h> :if paneisat('left')   | exec '!tmux select-pane -L %i' | else | exec 'wincmd h' | endif<cr>
 "nnoremap <c-j> :if paneisat('bottom') | exec '!tmux select-pane -D %i' | else | exec 'wincmd j' | endif<cr>
@@ -515,25 +518,38 @@ windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sog
 " }}}
 
 " commands {{{
-" :com[mand][!] command_name action
-" These are some of the macros that can be used in a command:
-"  %a for user arguments
-"  %c for current file under the cursor
-"  %C for current file under the cursor of inactive pane
-"  %f for selected file(s)
-"  %F for selected file(s) of inactive pane
-"  %b is the same as %f %F
-"  %d for current directory name
-"  %D for current directory name of inactive pane
-"  %i completely ignore command output
-"  %r{x} for list of files in register {x}
-"  %m runs the command in a menu window
-"  %S Show command output in the status bar
-"  see `:help vifm-macros` and `:help vifm-filename-modifiers` for more
+" see `:help vifm-macros` and `:help vifm-filename-modifiers` for more
+" %a  for user arguments
+" %c  for current file under the cursor
+" %C  for current file under the cursor of inactive pane
+" %f  for selected file(s)
+" %F  for selected file(s) of inactive pane
+" %l  list of selected files, is empty if no files are selected
+" %L  same as %l, but for the inactive pane
+" %b  is the same as %f %F
+" %d  for current directory name
+" %D  for current directory name of inactive pane
+" %i  completely ignore command output
+" %m  runs the command in a menu window
+" %M  same as %m, but l (or Enter) key is handled like :locate and :find
+" %n  forbid use of terminal multiplexer to run the command.
+" %q  redirect command output to quickview, which is activated if disabled
+" %s  execute command in horizontally split window of active terminal multiplexer (ignored if not running inside one)
+" %v  same as %s, but splits vertically
+" %S  show command output in the status bar
+" %u  process command output as list of paths and compose custom view out of it
+" %U  same as %u, but absence of sorting
+" %Iu same as %u, but gives up terminal before running external command
+" %IU same as %U, but gives up terminal before running external command
+" %Pl pipe list of files to standard input of a command
+" %Pz same as %Pl, but separates paths by null ('\0') character
+" %r{x} for list of files in register {x}
 command! selcat          cat %f > %a
 command! diff            vimux -d %c %C
 command! diffsamewin     vimux -d %f
 command! diffallsels     vimux -b
+command! saveselto       cat > %a %Pl
+command! saveallto       :select * | saveselto %a
 command! movetoother     mv -i %f %D %i
 command! copytoother     cp -R %f %D %i
 command! movefromother   mv -i %F %d %i
@@ -577,7 +593,7 @@ command!  yankfullname   echo -n %c:p | xclip -i -sel p -f | xclip -i -sel c %i
 endif
 
 command! vimdiff
-     \ : if expand('%%c') == expand('%%f')
+     \ : if selected() < 2
      \ |   if paneisat('right') && paneisat('bottom')
      \ |     exec '!vim -d %%C %%c'
      \ |   else
@@ -587,15 +603,14 @@ command! vimdiff
      \ |   exec '!vim -d %%f'
      \ | endif
 
-let $TABFUNC = 0
-command! toggletabfunc
-     \ : if $TABFUNC == 0
+let g:tabmap = 1
+command! toggletabmap
+     \ : if g:tabmap
      \ |   exec 'nnoremap  <tab>  <c-i>'
-     \ |   let $TABFUNC = 1
      \ | else
      \ |   exec 'nnoremap  <tab>  :fileinfo<cr>'
-     \ |   let $TABFUNC = 0
      \ | endif
+     \ | let g:tabmap = !g:tabmap
 
 command! toggleultrawide
      \ : if &millerview
@@ -996,6 +1011,7 @@ filetype  *.zip,*.jar,*.war,*.ear
 fileview  *.tar,*.tgz,*.tar.gz,*.tbz,*.tbz2,*.tar.bz2  als %c, zcat %c
 filetype  *.tar,*.tgz,*.tar.gz,*.tbz,*.tbz2,*.tar.bz2
           \ FUSE_MOUNT|archivemount %SOURCE_FILE %DESTINATION_DIR,
+          \ FUSE_MOUNT|fuse-archive %SOURCE_FILE %DESTINATION_DIR,
           \ aunpack %c,
           \ ouch decompress %c,
 
@@ -1004,6 +1020,7 @@ fileview  *.7z  als %c, 7z l %c, ouch list %c
 filetype  *.7z
           \ FUSE_MOUNT|ratarmount %SOURCE_FILE %DESTINATION_DIR,
           \ FUSE_MOUNT|fuse-7z %SOURCE_FILE %DESTINATION_DIR,
+          \ FUSE_MOUNT|fuse3-p7zip %SOURCE_FILE %DESTINATION_DIR,
           \ 7z x %c,
           \ aunpack %c,
           \ ouch decompress %c,
