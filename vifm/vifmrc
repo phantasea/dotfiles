@@ -292,8 +292,8 @@ nnoremap  R  cw
 qnoremap  s  <c-w>
 nnoremap  sa :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sb :set scrollbind!<cr>
-nnoremap  sc :! cat %f > %c.txt<cr>gs
-vnoremap  sc :! cat %f > %c.txt<cr>gv
+nnoremap  sc :txtcat<cr>gs
+vnoremap  sc :txtcat<cr>gv
 nnoremap  sC :selcat<space>
 vnoremap  sC :selcat<space>
 nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
@@ -323,6 +323,7 @@ nnoremap  s> <c-w>>
 nnoremap  s= <c-w>=
 nnoremap  s| <c-w>|
 nnoremap  s_ <c-w>_
+nnoremap  s\ :togglesortord<cr>
 nnoremap gS  :%s//g<left><left>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
@@ -518,7 +519,7 @@ windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sog
 " }}}
 
 " commands {{{
-" see `:help vifm-macros` and `:help vifm-filename-modifiers` for more
+" see ':help vifm-macros' and ':help vifm-filename-modifiers' for more
 " %a  for user arguments
 " %c  for current file under the cursor
 " %C  for current file under the cursor of inactive pane
@@ -544,6 +545,7 @@ windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sog
 " %Pl pipe list of files to standard input of a command
 " %Pz same as %Pl, but separates paths by null ('\0') character
 " %r{x} for list of files in register {x}
+command! txtcat          cat %f > %c.txt %i
 command! selcat          cat %f > %a
 command! diff            vimux -d %c %C
 command! diffsamewin     vimux -d %f
@@ -611,6 +613,15 @@ command! toggletabmap
      \ |   exec 'nnoremap  <tab>  :fileinfo<cr>'
      \ | endif
      \ | let g:tabmap = !g:tabmap
+
+let g:sortord = 1
+command! togglesortord
+     \ : if g:sortord
+     \ |   exec 'set sortorder=descending'
+     \ | else
+     \ |   exec 'set sortorder=ascending'
+     \ | endif
+     \ | let g:sortord = !g:sortord
 
 command! toggleultrawide
      \ : if &millerview
@@ -787,13 +798,13 @@ command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-t
                 \|   exec 'cd' fnameescape($FZF_RES)
                 \| endif
 
-command! audcat   audcat   %f &
-command! audconv  audconv  %c &
-command! imgconv  imgconv  %c &
-command! epub2txt epub2txt %a %c &
-command! txt2epub txt2epub %c &
-command! gif2jpg  gif2jpg  %c &
-command! mpvplay  mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-16-60 %c
+command! mpvplay   mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-16-60 %c
+command! audcat    audcat   %f &
+command! audconv   audconv  %c &
+command! imgconv   imgconv  %c &
+command! gif2jpg   gif2jpg  %c &
+command! text2epub txt2epub %c &
+command! epub2text epub2txt %a %c &
 " }}}
 
 " autocmds {{{

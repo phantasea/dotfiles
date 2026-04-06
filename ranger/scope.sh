@@ -188,6 +188,11 @@ handle_extension() {
             python -m json.tool -- "${FILE_PATH}" && exit 5
             exit 1;;
 
+        # toml/yaml files
+        toml/yaml/yml)
+            fx "${FILE_PATH}" && exit 5
+            exit 1;;
+
         # Misc files
         desktop|url)
             cat -- "${FILE_PATH}" && exit 5

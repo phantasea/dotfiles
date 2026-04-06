@@ -50,7 +50,7 @@ unbind yc
 unbind ym
 unbind yt
 
-bind  g<Space>  source ~/.tridactylrc
+"bind  g<Space>  source ~/.tridactylrc
 "bind  gp  followpage prev
 "bind  gn  followpage next
 bind  gd  tabdetach
@@ -91,10 +91,6 @@ bind  y  clipboard yankshort
 bind  .  mute toggle
 bind  Q  text2qr --popup
 
-bind <Enter> mute toggle
-
-bind --mode=ex <Space> ex.insert_space_or_completion
-
 bind --mode=ex          <C-a>   text.beginning_of_line
 bind --mode=insert      <C-a>   text.beginning_of_line
 bind --mode=input       <C-a>   text.beginning_of_line
@@ -132,53 +128,34 @@ bind --mode=ex          <C-e>   ex.deselect_completion
 bind --mode=ex          <C-w>   composite text.beginning_of_line ; text.forward_word ; text.kill_word
 
 " Make gu take you back to subreddit from comments
-bindurl reddit\.com gu urlparent 4
-bindurl news\.ycombinator\.com/item gu urlparent 2
+"bindurl reddit\.com gu urlparent 4
+"bindurl news\.ycombinator\.com/item gu urlparent 2
 
 " ;f and ;F are used to hint only the urls I'm most likely to click (like search results)
-bindurl next\.duckduckgo\.com ;f hint -Jc  a.result__a
-bindurl next\.duckduckgo\.com ;F hint -Jbc a.result__a
-bindurl www\.google\.com ;f hint -Jc .rc > .r > a
-bindurl www\.google\.com ;F hint -Jbc .rc > .r > a
-bindurl github\.com/search ;f hint -Jc  .repo-list-item * > a.v-align-middle
-bindurl github\.com/search ;F hint -Jbc .repo-list-item * > a.v-align-middle
-bindurl github\.com/.*/.*/issues ;f hint -Jc a.h4
-bindurl github\.com/.*/.*/issues ;F hint -Jbc a.h4
-bindurl github\.com/.*/.*/commits ;f hint -Jc a.message
-bindurl github\.com/.*/.*/commits ;F hint -Jbc a.message
-
-" ** Hinting
-bind ;s hint -a
-bind ;S hint -s
-" bind ;i hint -i
-" bind ;I hint -I
-" bind ;k hint -k
-" bind ;y hint -y
-" bind ;p hint -p
-" bind ;P hint -P
-" bind ;r hint -r
-" bind ;s hint -s
-" bind ;S hint -S
-" bind ;a hint -a
-" bind ;A hint -A
-" bind ;; hint -;
-" bind ;# hint -#
-" bind ;v hint -W exclaim_quiet mpv
-" bind ;w hint -w
+"bindurl next\.duckduckgo\.com ;f hint -Jc  a.result__a
+"bindurl next\.duckduckgo\.com ;F hint -Jbc a.result__a
+"bindurl www\.google\.com ;f hint -Jc .rc > .r > a
+"bindurl www\.google\.com ;F hint -Jbc .rc > .r > a
+"bindurl github\.com/search ;f hint -Jc  .repo-list-item * > a.v-align-middle
+"bindurl github\.com/search ;F hint -Jbc .repo-list-item * > a.v-align-middle
+"bindurl github\.com/.*/.*/issues ;f hint -Jc a.h4
+"bindurl github\.com/.*/.*/issues ;F hint -Jbc a.h4
+"bindurl github\.com/.*/.*/commits ;f hint -Jc a.message
+"bindurl github\.com/.*/.*/commits ;F hint -Jbc a.message
 
 " Make quickmarks for the sane Tridactyl issue view
-quickmark f https://github.com/vifm/vifm
-quickmark j https://jable.tv/latest-updates
-quickmark a https://asmrs.us/movies
-quickmark b https://www.asmr.pw/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97
-quickmark c https://sis001.com/forum/forum-368-1.html
-quickmark d https://www.uaa.com/audio/list
-quickmark p https://allporncomic.com/home-3/
-quickmark q https://gedecomix.com/main/
-quickmark r https://www.wnacg.com/albums-index-page-1-cate-22.html
-quickmark s https://18comic.vip/search/photos?search_query=3D&page=1
-quickmark t https://www.cool18.com/bbs4/index.php
-quickmark v https://www.iyf.tv/list/movie
-quickmark x https://www.pixiv.net/novel
+"quickmark f https://github.com/vifm/vifm
+"quickmark a https://asmrs.us/movies
+"quickmark b https://www.asmr.pw/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97
+"quickmark c https://sis001.com/forum/forum-368-1.html
+"quickmark d https://www.uaa.com/audio/list
+"quickmark j https://jable.tv/latest-updates
+"quickmark p https://allporncomic.com/home-3
+"quickmark q https://gedecomix.com/main
+"quickmark r https://www.wnacg.com/albums-index-page-1-cate-22.html
+"quickmark s https://18comic.vip/search/photos?search_query=3D&page=1
+"quickmark t https://www.cool18.com/bbs4/index.php
+"quickmark v https://www.iyf.tv/list/movie
+"quickmark x https://www.pixiv.net/novel
 
 " vim:ft=tridactyl
