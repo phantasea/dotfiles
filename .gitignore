@@ -29,3 +29,8 @@ w3m/w3m*
 ncmpcpp/error.log
 yong/pinyin.usr
 zathura/xid
+clifm/profiles/default/dirhist.clifm
+clifm/profiles/default/history.clifm
+clifm/profiles/default/cmdlogs.clifm
+clifm/profiles/default/msglogs.clifm
+clifm/profiles/default/jump.clifm
