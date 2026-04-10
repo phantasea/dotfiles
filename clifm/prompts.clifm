@@ -1,6 +1,4 @@
-                ##################################
-                #     Prompts File for Clifm     #
-                ##################################
+# Prompts File for Clifm {{{
 
 # This configuration file defines the structure and appearance of the command
 # prompt in Clifm.
@@ -33,10 +31,8 @@
 # \u: The username
 # \H: The full hostname
 # \h: The hostname, up to the first dot (.)
-# \s: The name of the shell (everything after the last slash) currently
-#     used by Clifm
-# \S: Current workspace number (colored according to wsx code in the color
-#     scheme file)
+# \s: The name of the shell (everything after the last slash) currently used by Clifm
+# \S: Current workspace number (colored according to wsx code in the color scheme file)
 # \l: Print an L if running in light mode
 # \P: The current profile name
 # \n: A newline character
@@ -47,8 +43,7 @@
 # \T: The time, in 12-hour HH:MM:SS format
 # \@: The time, in 12-hour am/pm format
 # \A: The time, in 24-hour HH:MM format
-# \w: The full current working directory, with the home directory abbreviated
-#     with a tilde (~).
+# \w: The full current working directory, with the home directory abbreviated with a tilde (~).
 # \W: The basename of the current directory, with $HOME abbreviated with a tilde.
 # \p: Abbreviate the current working directory only if longer than 40 characters.
 #     To change this value set the CLIFM_P_MAX_PATH to a value greater than zero.
@@ -223,6 +218,7 @@
 #
 # NOTE: Since the prompts below are designed for Clifm's default color scheme, you may
 # want to edit the one you choose manually to make it fit your current color scheme.
+# }}}
 
 [clifm]
 Notifications=true
@@ -326,3 +322,5 @@ Notifications=false
 RegularPrompt="%{reset}╭─%{239}%{15}%{k:239}\I%{160}\#%{160}\(%{3}\)%{76}\=%{6}\%%{76}\*%{15}[\S%{15}]  \A \u %{n:239}%{k:70}%{0} \w %{n:70}%{reset}\n╰─%{70}▶%{reset} "
 EnableWarningPrompt=true
 WarningPrompt="%{reset}╰─%{160}▶%{n:dim} "
+
+# vim: foldmethod=marker

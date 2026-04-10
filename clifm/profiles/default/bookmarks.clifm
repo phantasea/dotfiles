@@ -1,10 +1,21 @@
 ### This is the bookmarks file for clifm ###
-
-# Empty and commented lines are ignored.
-# Make your changes, save, and exit.
-# To remove a bookmark, delete the corresponding line, save, and exit
-# Changes are applied automatically at exit (to cancel just quit the editor).
-
 # The bookmarks syntax is: name:path
-# Example:
+
 clifm:/home/simone/.config/clifm/profiles/default
+
+temp:/home/simone/temp
+note:/home/simone/docs/note
+webs:/home/simone/docs/webs
+trash:/var/tmp/Trash
+priv:/opt/.priv
+apps:/opt/apps
+conf:/opt/conf
+misc:/opt/misc
+util:/opt/util
+asmr:/opt/.porn/asmr
+epub:/opt/.porn/epub
+pics:/opt/.porn/pics
+vids:/opt/.porn/vids
+winc:/media/simone/winC
+wind:/media/simone/winD
+winx:/media/simone/winX

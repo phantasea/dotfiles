@@ -128,9 +128,10 @@ export FZ_CMD=j
 export FZ_SUBDIR_CMD=jj
 export FZ_CASE_INSENSITIVE=1
 export _Z_DATA="$HOME/.config/z.data"
-export TRASH_DIR="$HOME/.Trash"
 export OPENAI_API_KEY="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"
 export DELTA_PAGER="less -R"
+export TRASH_DIR="/var/tmp/Trash"
+#export TRASH_DIR="$HOME/.Trash"
 
 ### internal functions {{{
 export PSTOGGLE=1

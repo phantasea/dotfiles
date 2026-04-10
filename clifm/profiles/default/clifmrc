@@ -1,15 +1,6 @@
-		###########################################
-		#                  CLIFM                  #
-		#      The Command-Line File Manager      #
-		###########################################
-
-# This is Clifm's main configuration file.
-
+# This is Clifm's main configuration file
 # Lines starting with either '#' or ';' are commented out (ignored).
 # Options starting with ';' show default values and are commented out.
-# To override a default, uncomment the corresponding option (remove
-# the leading ';') and set it to a supported value.
-
 
 #=====================================#
 #          1. INTERFACE               #
@@ -17,8 +8,7 @@
 
 # Show hidden files (i.e., files starting with a dot).
 # Supported values: true, false, first, last.
-# If 'true', hidden files are sorted according to the value of the Sort
-# option (see below).
+# If 'true', hidden files are sorted according to the value of the Sort option (see below).
 ;ShowHiddenFiles=false
 
 # Files listed in a '.hidden' file in the current directory are hidden when
@@ -34,7 +24,7 @@
 ;Filter=""
 
 # List directories before files.
-;ListDirsFirst=true
+ListDirsFirst=true
 
 # Display the number of files inside each directory next to the directory
 # name. This feature may slow down performance when, for example, listing
@@ -42,7 +32,7 @@
 # the --no-file-counter option, or using the 'fc' command while in the
 # program itself.
 # Note: This option requires Classify (see below) to be set to true.
-;FileCounter=true
+FileCounter=true
 
 # When colors are enabled, append directory indicator to directories. When
 # colors are disabled (via the --no-color option), append file type
@@ -59,10 +49,10 @@
 # files is not performed, and thereby no indicator is added to executable
 # files.
 # Note: Disabling this option also disables the file counter.
-;Classify=true
+Classify=true
 
 # Dereference symbolic links when listing files
-;FollowSymlinks=true
+FollowSymlinks=true
 
 # Colorize symbolic links according to their target. A link indicator
 # (by default '@') is prefixed to the file name.
@@ -183,7 +173,7 @@
 # Set to a percentage (e.g., 20%) to use that fraction of terminal columns.
 # Note: if the computed value is below MinNameTruncate, MinNameTruncate is
 # used instead.
-;MaxFilenameLen=25%
+MaxFilenameLen=50%
 
 # Truncate filenames longer than MaxFilenameLen.
 ;TruncateNames=true
@@ -353,8 +343,7 @@
 # are disabled). Consult the manpage for the list of affected commands.
 ;Readonly=false
 
-# Make the 'r' command move files to the trash instead of permanently
-# removing them.
+# Make the 'r' command move files to the trash instead of permanently removing them.
 ;TrashAsRm=false
 
 # If set to true, do not ask for confirmation before moving files to the trash.
@@ -551,10 +540,10 @@
 ;ShareSelbox=false
 
 # Print a usage tip at startup.
-;Tips=true
+Tips=false
 
 # Just a kind welcome message at startup.
-;WelcomeMessage=true
+WelcomeMessage=false
 
 # Set a custom welcome message.
 # Use escape codes to add colors: e.g., "\e[34mWelcome!\e[0m".
@@ -562,7 +551,7 @@
 ;WelcomeMessageStr=""
 
 # Print Clifm's logo screen at startup.
-;SplashScreen=false
+SplashScreen=false
 
 
 #=====================================#
@@ -614,3 +603,5 @@
 
 # I want files in the third workspace to be listed in long view.
 #autocmd @ws3 lv=1
+
+# vim: foldmethod=marker

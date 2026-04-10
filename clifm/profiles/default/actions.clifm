@@ -1,6 +1,4 @@
-              ######################
-              # Clifm Actions File #
-              ######################
+# Clifm Actions File {{{
 
 # Empty and commented lines are ignored.
 
@@ -16,6 +14,7 @@
 
 # All parameters passed to the action command will be passed to the
 # corresponding plugin as well.
+# }}}
 
 +=finder.sh
 ++=jumper.sh
@@ -47,3 +46,5 @@ vid=vid_viewer.sh
 vt=virtualize.sh
 wall=wallpaper_setter.sh
 plugin1=xclip.sh
+
+# vim: foldmethod=marker

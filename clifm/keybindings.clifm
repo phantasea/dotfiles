@@ -1,6 +1,4 @@
-                ##################################
-                #   Keybindings File for Clifm   #
-                ##################################
+# Keybindings File for Clifm {{{
 
 # Empty and commented lines are ignored.
 
@@ -21,10 +19,9 @@
 # bookmarks:\C-t
 #
 # will bind Alt+b, Ctrl+Alt+b, and Ctrl+t to the bookmarks function.
+# }}}
 
-# ---------------------------
 # 1. NAVIGATION
-# ---------------------------
 
 # Alt+j
 previous-dir:\ej
@@ -80,9 +77,7 @@ mountpoints:\em
 show-dirhist:\eh
 launch-view:\e-
 
-# ---------------------------
 # 2. FILE OPERATIONS
-# ---------------------------
 
 archive-sel:\e\C-a
 copy-sel:\e\C-v
@@ -99,9 +94,7 @@ selbox:\es
 trash-sel:\e\C-t
 #untrash-all:\e\C-u
 
-# ---------------------------
 # 3. SETTINGS
-# ---------------------------
 
 dirs-first:\eg
 only-dirs:\e,
@@ -120,9 +113,7 @@ toggle-virtualdir-full-paths:\ew
 next-profile:\e\C-p
 previous-profile:\e\C-o
 
-# ---------------------------
 # 4. MISC
-# ---------------------------
 
 clear-line:\ec
 clear-msgs:\et
@@ -135,9 +126,7 @@ run-pager:\e0
 toggle-vi-mode:\e\C-j
 quit:\e[24~
 
-# ---------------------------
 # 5. CONFIG FILES (F6-F11)
-# ---------------------------
 
 open-mime:\e[17~
 open-preview:\e[18~
@@ -147,9 +136,7 @@ open-keybinds:\e[20~
 open-config:\e[21~
 open-bookmarks:\e[23~
 
-# ---------------------------
 # 6. HELP (F1-F3)
-# ---------------------------
 
 show-manpage:\eOP
 show-manpage:\e[11~
@@ -158,17 +145,15 @@ show-cmds:\e[12~
 show-kbinds:\eOR
 show-kbinds:\e[13~
 
-# ---------------------------
 # 7. KEYBINDINGS FOR PLUGINS
-# ---------------------------
-#
-# 1) Make sure your plugin is in the plugins directory (or use any of the
-#    plugins in there)
-# 2) Link pluginx to your plugin using the 'actions edit' command: e.g.,
-#    "plugin1=myplugin.sh"
+
+# 1) Make sure your plugin is in the plugins directory (or use any of the plugins in there)
+# 2) Link pluginx to your plugin using the 'actions edit' command: e.g., "plugin1=myplugin.sh"
 # 3) Set a keybinding here for pluginx: e.g., "plugin1:\C-y"
 #
 # Note: Up to 16 plugins are supported, i.e., from plugin1 through plugin16.
 
 # Bound to the xclip plugin
 plugin1:\C-y
+
+# vim: foldmethod=marker
