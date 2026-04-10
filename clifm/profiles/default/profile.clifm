@@ -7,3 +7,5 @@
 # Uncommented, non-empty lines are executed line by line. If you
 # want a multi-line command, just write a script for it:
 #sh /path/to/my/script.sh
+
+fortune | cowsay; read -r

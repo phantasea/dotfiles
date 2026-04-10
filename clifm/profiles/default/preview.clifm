@@ -3,9 +3,7 @@
                   #       Clifm's File Previewer       #
                   ######################################
 
-#--------------------------------
-# Description
-#--------------------------------
+# Description {{{
 
 # This configuration file is used to customize the behavior of Clifm's
 # file previewer.
@@ -25,19 +23,11 @@
 
 # Uncomment and edit this line to use Ranger's scope script:
 ;.*=~/.config/ranger/scope.sh %f 120 80 /tmp/clifm/ True
+# }}}
 
-#--------------------------------
+# remove the leading ';' to enable image previews for the specified file types.
+
 # Image previews
-#--------------------------------
-#
-# Uncomment the lines below (by removing the leading ';') to enable image
-# previews for the specified file types.
-#
-# Consult the clifmimg script for information on how images are displayed
-# (supported methods: sixel, iterm, ueberzug, kitty, ansi).
-# If this script is not found under ~/.config/clifm, you can copy it from
-# the data directory (usually /usr/share/clifm/plugins).
-#
 ;^(text|application)/rtf$|^application/.*(officedocument|msword|ms-excel|ms-powerpoint|opendocument|vnd\.(sun\.xml|ms-office|wordperfect)).*=~/.config/clifm/clifmimg doc %f %u;
 ;^application/pdf$=~/.config/clifm/clifmimg pdf %f %u;
 ;^application/epub\+zip$=~/.config/clifm/clifmimg epub %f %u;
@@ -60,58 +50,36 @@
 ;^font/.*|^application/(font.*|.*opentype)=~/.config/clifm/clifmimg font %f %u;
 ;N:.*\.(cbz|cbr|cbt)$=~/.config/clifm/clifmimg comic %f %u;
 
-#--------------------------------
 # Directories
-#--------------------------------
-
 inode/directory=exa -a --tree --level=1;eza -a --tree --level=1;lsd -A --tree --depth=1 --color=always;tree -a -L 1;ls -Ap --color=always --indicator-style=none;
 
-#--------------------------------
 # Text
-#--------------------------------
-
 ^text/rtf=catdoc;
 N:.*\.json$=jq --color-output .;python -m json.tool;
 N:.*\.md$=glow -s dark;mdcat;
 ^text/html$=w3m -dump;lynx -dump;elinks -dump;pandoc -s -t markdown;
 ^text/.*|^application/javascript$=highlight -f --out-format=xterm256 --force;bat --style=plain --color=always;cat;
 
-#--------------------------------
 # Office documents
-#--------------------------------
-
 N:.*\.xlsx$=xlsx2csv;file -b;
 N:.*\.(odt|ods|odp|sxw)$=odt2txt;pandoc -s -t markdown;
 ^application/(.*wordprocessingml.document|.*epub\+zip|x-fictionbook\+xml)=pandoc -s -t markdown;
 ^application/msword=catdoc;
 ^application/ms-excel=xls2csv;
 
-#--------------------------------
 # Archives
-#--------------------------------
-
 ^application/x-bzip3=file -b;
 ^application/(gzip|java-archive|vnd.debian.binary-package|x-(archive|bzip|compress|cpio|lha|lrzip|lz4|lzh|lzip|lzma|lzop|rpm|tar|tzo|xz)|zip|zstd)=bsdtar -tvf;
 ^application/(vnd.(ms-cab-compressed|rar)|x-(7z-compressed|ace-compressed|arc|arj))=atool -l;bsdtar -tvf;
 
-#--------------------------------
 # PDF
-#--------------------------------
-
 ^application/pdf$=pdftotext -l 10 -nopgbrk -q -- %f -;mutool draw -F txt -i;exiftool;
 
-#--------------------------------
 # Image, video, and audio
-#--------------------------------
-
 ^image/vnd.djvu=djvutxt;exiftool;
 ^image/.*=exiftool;
 ^video/.*=mediainfo;exiftool;
 ^audio/.*=mediainfo;exiftool;
-
-#--------------------------------
-# Misc
-#--------------------------------
 
 # Torrent files
 ^application/x-bittorrent$=dumptorrent -v;transmission-show;
@@ -120,10 +88,9 @@ N:.*\.(odt|ods|odp|sxw)$=odt2txt;pandoc -s -t markdown;
 # Object files (*.o)
 ^application/x-object$=nm;
 
-#--------------------------------
 # Fallback
-#--------------------------------
-
 .*=file -b;
 # Add true(1) to silence the 'no application found' warning
 #.*=file -b;true;
+
+# vim: foldmethod=marker
