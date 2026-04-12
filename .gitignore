@@ -34,3 +34,5 @@ clifm/profiles/default/history.clifm
 clifm/profiles/default/cmdlogs.clifm
 clifm/profiles/default/msglogs.clifm
 clifm/profiles/default/jump.clifm
+clifm/profiles/default/selbox.clifm
+clifm/profiles/default/.last
