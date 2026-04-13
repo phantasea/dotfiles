@@ -263,7 +263,7 @@ MaxFilenameLen=50%
 # Set the tab completion mode. Supported values: standard, fzf, fnf, smenu.
 # Defaults to 'fzf', 'fnf', or 'smenu' (in this order), if the corresponding
 # binary is found in PATH. Othwerwise, the standard mode is used.
-;TabCompletionMode=
+TabCompletionMode=smenu
 
 # Enable file previews for tab completion (fzf mode only). Supported values:
 # true, false, hidden (enabled, but hidden; toggle with Alt-p).
@@ -341,7 +341,7 @@ MaxFilenameLen=50%
 
 # Run in read-only mode (internal commands able to modify the filesystem
 # are disabled). Consult the manpage for the list of affected commands.
-;Readonly=false
+Readonly=true
 
 # Make the 'r' command move files to the trash instead of permanently removing them.
 ;TrashAsRm=false
@@ -519,7 +519,7 @@ MaxFilenameLen=50%
 
 # Start Clifm in the last visited directory (and in the last used
 # workspace). This option is overriden by StartingPath (if set).
-;RestoreLastPath=true
+RestoreLastPath=false
 
 # Set the readline editing mode: 0 for vi and 1 for emacs (default).
 ;RlEditMode=1
@@ -534,7 +534,7 @@ MaxFilenameLen=50%
 # Save the last visited directory to $XDG_CONFIG_HOME/clifm/.last, allowing
 # it to be accessed by the corresponding shell function upon program exit.
 # To enable this feature consult the manpage.
-;CdOnQuit=false
+CdOnQuit=false
 
 # Share the Selection Box among different profiles.
 ;ShareSelbox=false

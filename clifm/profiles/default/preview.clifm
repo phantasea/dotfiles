@@ -89,7 +89,8 @@ N:.*\.(odt|ods|odp|sxw)$=odt2txt;pandoc -s -t markdown;
 ^application/x-object$=nm;
 
 # Fallback
-.*=file -b;
+.*=fileview;
+#.*=file -b;
 # Add true(1) to silence the 'no application found' warning
 #.*=file -b;true;
 
