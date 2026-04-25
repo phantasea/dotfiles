@@ -655,13 +655,13 @@ command! cyclesort
      \ : if &lsview == 1 && filetype('.') == 'dir'
      \ |   exec 'norm! gl'
      \ | elseif &sort == '+iname'
-     \ |   set sort=-mtime
+     \ |   setl sort=-mtime
      \ |   echo 'sorted by -mtime'
      \ | elseif &sort == '-mtime,+name'
-     \ |   set sort=-size
+     \ |   setl sort=-size
      \ |   echo 'sorted by -size'
      \ | else
-     \ |   set sort=+iname
+     \ |   setl sort=+iname
      \ |   echo 'sorted by +iname'
      \ | endif
 
@@ -702,7 +702,7 @@ command! batchpreview
 
 command! setpreviewprg
      \ : if &previewprg == ''
-     \ |   set previewprg='git log --color -- %c 2>&1'
+     \ |   setl previewprg='git log --color -- %c 2>&1'
      \ |   view!
      \ | else
      \ |   set previewprg=''
@@ -711,18 +711,18 @@ command! setpreviewprg
 
 command! smartsortbytime
      \ : if &sort == '+iname'
-     \ |   set sort='-mtime,+iname'
+     \ |   setl sort='-mtime,+iname'
      \ |   exec 'norm! zz'
      \ | else
-     \ |   set sort='+iname'
+     \ |   setl sort='+iname'
      \ | endif
 
 command! smartsortbysize
      \ : if &sort == '+iname'
-     \ |   set sort='-size,+iname'
+     \ |   setl sort='-size,+iname'
      \ |   exec 'norm! gg'
      \ | else
-     \ |   set sort='+iname'
+     \ |   setl sort='+iname'
      \ | endif
 
 command! sxivA    sxiv -roqt * %u
@@ -800,7 +800,7 @@ command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-t
 
 command! mpvplay   mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-16-60 %c
 command! audcat    audcat   %f &
-command! audconv   audconv  %c &
+command! audconv   audconv  %a %c &
 command! imgconv   imgconv  %c &
 command! gif2jpg   gif2jpg  %c &
 command! text2epub txt2epub %c &

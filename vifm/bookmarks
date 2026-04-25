@@ -11,7 +11,7 @@ mark  o  /opt               misc
 mark  p  /opt/.priv
 mark  r  /                  usr
 mark  t  ~/temp
-mark  u  /opt/util          mudisk
+mark  u  /opt/util          mymount
 mark  v  ~/vids             celeb-2
 mark  w  ~/docs/webs
 mark  x  /opt/.porn         vids

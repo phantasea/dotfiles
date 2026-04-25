@@ -9,7 +9,7 @@ o:/opt:misc
 p:/opt/.priv
 r:/:usr
 t:/home/simone/temp
-u:/opt/util:mudisk
+u:/opt/util:mymount
 v:/home/simone/vids:celeb-2
 w:/home/simone/docs/webs
 x:/opt/.porn:vids
