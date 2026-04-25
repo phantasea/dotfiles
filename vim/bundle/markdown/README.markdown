@@ -1,15 +1,10 @@
 # Vim Markdown runtime files
 
+![link](https://github.com/tpope/vim-markdown)
+
 This is the development version of Vim's included syntax highlighting and
 filetype plugins for Markdown.  Generally you don't need to install these if
 you are running a recent version of Vim.
-
-One difference between this repository and the upstream files in Vim is that
-the former forces `*.md` as Markdown, while the latter detects it as Modula-2,
-with an exception for `README.md`.  If you'd like to force Markdown without
-installing from this repository, add the following to your vimrc:
-
-    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 If you want to enable fenced code block syntax highlighting in your markdown
 documents you can enable it in your `.vimrc` like so:
@@ -19,6 +14,14 @@ documents you can enable it in your `.vimrc` like so:
 To disable markdown syntax concealing add the following to your vimrc:
 
     let g:markdown_syntax_conceal = 0
+
+Syntax highlight is synchronized in 50 lines. It may cause collapsed
+highlighting at large fenced code block.
+In the case, please set larger value in your vimrc:
+
+    let g:markdown_minlines = 100
+
+Note that setting too large value may cause bad performance on highlighting.
 
 ## License
 
