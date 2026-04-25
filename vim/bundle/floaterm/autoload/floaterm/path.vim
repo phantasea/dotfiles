@@ -126,9 +126,10 @@ function! s:path_join(home, name) abort
   endif
 endfunction
 
-function! floaterm#path#get_root(path=getcwd()) abort
+function! floaterm#path#get_root(...) abort
+  let l:path = a:0 > 0 ? a:1 : getcwd()
   let strict = 0
-  let l:hr = s:find_root(a:path, g:floaterm_rootmarkers, strict)
+  let l:hr = s:find_root(l:path, g:floaterm_rootmarkers, strict)
   if s:is_windows
     let l:hr = s:string_replace(l:hr, '/', "\\")
   endif
@@ -136,6 +137,10 @@ function! floaterm#path#get_root(path=getcwd()) abort
 endfunction
 
 function! floaterm#path#chdir(path) abort
-  let l:cd = { 0: 'cd', 1: 'lcd', 2: 'tcd' }[haslocaldir()]
+  if has('nvim')
+    let l:cd = haslocaldir()? 'lcd' : (haslocaldir(-1, 0)? 'tcd' : 'cd')
+  else
+    let l:cd = { 0: 'cd', 1: 'lcd', 2: 'tcd' }[haslocaldir()]
+  endif
   silent execute l:cd . ' ' . fnameescape(a:path)
 endfunction
