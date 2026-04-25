@@ -107,7 +107,7 @@ packages. ARM builds are also available for macOS, Linux, FreeBSD and OpenBSD.
 Or just install it with `go`:
 
 ```bash
-go install github.com/charmbracelet/glow@latest
+go install github.com/charmbracelet/glow/v2@latest
 ```
 
 ### Build (requires Go 1.21+)
@@ -209,7 +209,17 @@ pager: true
 width: 80
 # show all files, including hidden and ignored.
 all: false
+# show line numbers (TUI-mode only)
+showLineNumbers: false
+# preserve newlines in the output
+preserveNewLines: false
 ```
+
+## Contributing
+
+See [contributing][contribute].
+
+[contribute]: https://github.com/charmbracelet/glow/contribute
 
 ## Feedback
 
