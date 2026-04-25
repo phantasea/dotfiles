@@ -886,6 +886,7 @@ fileview  *.h,*.c,*.cpp  highlight -S c -O ansi -s dante %c, bat --color=always 
 
 " xml files
 fileview  *.xml  highlight -S xml -O ansi -s dante %c, bat --color=always %c
+filetype  *.xml  xmlshow %c
 
 " makefile
 fileview  Makefile*,makefile*  highlight -S make -O ansi -s dante %c, bat --color=always %c
@@ -983,9 +984,10 @@ filetype  *.md,*.mkd,*.markdown
 fileview  *.log  tspin %c, tac %c, tail -n500 %c
 filetype  *.log  tspin %c, tac %c | less, multitail %f, lnav %f
 
-" json files
+" json/yaml/toml files
 fileview  *.json  jq --color-output '.' %c, python -m json.tool -- %c
-fileview  *.json,*.toml,*.yaml,*.yml  fx %c
+fileview  *.yaml,*.yml,*.toml,*.json  yq --colors %c
+filetype  *.yaml,*.yml,*.toml,*.json  fx %c
 
 " pcap files
 filetype  *.pcap,*.cap  sngrep -iI %c

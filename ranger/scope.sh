@@ -189,8 +189,8 @@ handle_extension() {
             exit 1;;
 
         # toml/yaml files
-        toml/yaml/yml)
-            fx "${FILE_PATH}" && exit 5
+        toml|yaml|yml|json)
+            yq --colors "${FILE_PATH}" && exit 5
             exit 1;;
 
         # Misc files
