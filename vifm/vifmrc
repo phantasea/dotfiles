@@ -658,6 +658,9 @@ command! cyclesort
      \ |   setl sort=-mtime
      \ |   echo 'sorted by -mtime'
      \ | elseif &sort == '-mtime,+name'
+     \ |   setl sort=+mtime
+     \ |   echo 'sorted by +mtime'
+     \ | elseif &sort == '+mtime,+name'
      \ |   setl sort=-size
      \ |   echo 'sorted by -size'
      \ | else
