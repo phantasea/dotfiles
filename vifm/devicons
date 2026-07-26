@@ -1,7 +1,7 @@
 " Devicons for ViFM
 " https://github.com/cirala/vifm_devicons
 
-" λ
+" λ
 " 
 " ⚡Ξ☰＝┃☀️ ☢️ ◘ ♀️♂️
 " ＋－•＃、♤♡♢♧▲▼●◆▪■★▶◀♠♥♦♣☼♀☀☹♂∷※ §®卍卐▬
@@ -23,7 +23,7 @@
 " ．，。、—…┅﹍‥（）「」『』【】［］＜＞〈〉
 
 " Filetypes
-set classify=" :dir:, :reg:, :exe:, :link:, :char:, :block:, :fifo:, :sock:, :?:"
+set classify=" :dir:, :reg:, :exe:, :link:, :char:, :block:, :fifo:, :sock:, :?:"
 
 " Specific files
 set classify+=' ::../::'
@@ -33,16 +33,15 @@ set classify+=' ::license,,copyright,,copying,,LICENSE,,COPYRIGHT,,COPYING::'
 " File extensions
 set classify+=' ::*.py,,*.pyc,,*.pyd,,*.pyo::'
 set classify+=' ::*.markdown,,*.md::'
-set classify+=' ::*.bmp,,*.gif,,*.ico,,*.webp,,*.jpeg,,*.jpg,,*.png,,*.svg,,*.xpm::'
+set classify+=' ::*.bmp,,*.gif,,*.ico,,*.webp,,*.jpeg,,*.jpg,,*.png,,*.svg,,*.xpm::'
 set classify+=' ::*.htm,,*.html,,*.xhtml,,*.xml,,*.php::'
 set classify+=' ::*.log,,*.bat,,*.conf,,*.config,,*.ini,,*.yml,,*.cfg,,*rc::'
 set classify+=' ::*.c++,,*.cc,,*.c,,*.cpp,,*.cxx,,*.c,,*.h::'
 set classify+=' ::*.lua,,*.json,,*.rss::'
 set classify+=' ::*.diff,,*.sum,,*.md5,,*.sha512::'
-set classify+=' ::*.exe::'
-set classify+=' ::*.js,,*.java,,*.jar::'
-set classify+=' ::*.fish,,*.sh,,*.bash::'
-set classify+=' ::*.vim,,*.vimrc::'
+set classify+=' ::*.exe::'
+set classify+=' ::*.fish,,*.sh,,*.bash::'
+set classify+=' ::*.vim,,*.vimrc::'
 set classify+=' ::*.aac,,*.asf,,*.au,,*.flac,,*.m4a,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.wav,,*.wma::'
 set classify+=' ::*.avi,,*.flv,,*.mkv,,*.mov,,*.mp4,,*.mpeg,,*.mpg,,*.webm,,*.rm,,*.rmvb::'
 set classify+=' ::*.epub,,*.pdf,,*.fb2,,*.djvu::'

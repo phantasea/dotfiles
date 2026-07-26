@@ -432,6 +432,7 @@ set wordchars="1-8,14-31,33-255"
 set syscalls
 set notitle
 set nolsview
+set nokeepsel
 set lsoptions=transposed,columncount:0
 set nodotfiles
 set millerview
@@ -804,7 +805,7 @@ command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-t
 command! mpvplay   mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-16-60 %c
 command! audcat    audcat   %f &
 command! audconv   audconv  %a %c &
-command! imgconv   imgconv  %c &
+command! imgconv   imgconv  %a %c &
 command! gif2jpg   gif2jpg  %c &
 command! text2epub txt2epub %c &
 command! epub2text epub2txt %a %c &
@@ -861,8 +862,8 @@ autocmd DirEnter '/media/simone/*_z'  setl sort='-mtime,+iname'
 " :r - root of the filename (without last extension)
 
 " Directories
-"fileview */,.*/  tree -L 2 -C --dirsfirst %c
-fileview  */,.*/  eza -A -X --follow-symlinks --group-directories-first --no-quotes --color=always --icons=always --tree --level=2 %c
+fileview */,.*/  tree -L 2 -C --dirsfirst %c
+"fileview  */,.*/  eza -A -X --follow-symlinks --group-directories-first --no-quotes --color=always --icons=always --tree --level=2 %c
 
 " Manpage
 filetype  {*.[1-8]},<text/troff>  man ./%c
