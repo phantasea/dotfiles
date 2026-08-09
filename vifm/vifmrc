@@ -246,7 +246,6 @@ nnoremap  i  :touch  ""<left>
 nnoremap  I  :mkdir! ""<left>
 nnoremap gi  :touch  ""<left><c-x>c
 nnoremap gI  :mkdir! ""<left><c-x>c
-nnoremap zi  :!fzfimg<cr>
 nnoremap gj  ]R
 nnoremap sj  ]S
 nnoremap zj  }
@@ -277,8 +276,7 @@ nnoremap  or zS
 nnoremap  os :invert s<cr>zf
 nnoremap  ot :exec "filter /\.".expand('%c:e')."$/i"<cr>
 nnoremap  o. zA
-nnoremap  O  zr
-nnoremap gO  zO
+nnoremap  O  zo
 qnoremap  p  <c-b>
 nnoremap  q  ZZ
 vnoremap  q  ZZ
@@ -301,8 +299,10 @@ vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
 nnoremap  sD :compare bycontents listall ofboth<cr>
 nnoremap  se :suedit<cr>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
+nnoremap  sI :switch<cr>:sync %c<cr>:switch<cr>
 nnoremap  sl :alink<cr>
 nnoremap  so :sync<cr>
+nnoremap  sO :sync %c<cr>
 nnoremap  sp al
 nnoremap  sq :hideui<cr>
 nnoremap  sr :source $VIFM/vifmrc<cr>
@@ -362,6 +362,7 @@ nnoremap cY  :cyankpathname<cr>
 nnoremap xy  :xyankbasename<cr>
 nnoremap xY  :xyankpathname<cr>:echo expand('%"d') "is yanked"<cr>
 nnoremap  ze :if filetype('.') == 'dir' | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
+nnoremap  z. zA
 " }}}
 
 " abbrevs {{{
@@ -395,8 +396,8 @@ endif
 
 set vifminfo=tui,tabs,savedirs,ratings,chistory,shistory
 set sessionoptions=tui,tabs,savedirs,ratings
-set iooptions=datasync,fastfilecloning
-set cpoptions="s"
+set iooptions-=datasync
+set cpoptions="fs"
 set tuioptions="uv"
 set uioptions=
 set caseoptions="pg"
@@ -476,7 +477,7 @@ set wrapscan
 set scrolloff=0
 set trash
 set trashdir=/var/tmp/Trash,$HOME/.Trash
-set history=18
+set history=32
 set nofollowlinks
 set nochaselinks
 set sortnumbers
@@ -516,7 +517,12 @@ else
 colorscheme chris
 endif
 
-windo filter! /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sogoupinyin|华为手机助手)/
+"1.dot files filter
+"2.local filter (see "=" norm_cmd)
+"3.name/perm filter
+"  :filter -- manu/explicit filter
+"  "zf/zs" -- auto/implicit filter
+windo filter /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sogoupinyin|华为手机助手)/
 " }}}
 
 " commands {{{
@@ -862,8 +868,8 @@ autocmd DirEnter '/media/simone/*_z'  setl sort='-mtime,+iname'
 " :r - root of the filename (without last extension)
 
 " Directories
-fileview */,.*/  tree -L 2 -C --dirsfirst %c
-"fileview  */,.*/  eza -A -X --follow-symlinks --group-directories-first --no-quotes --color=always --icons=always --tree --level=2 %c
+"fileview */,.*/  tree -L 2 -C --dirsfirst %c
+fileview  */,.*/  eza -A -X --follow-symlinks --group-directories-first --no-quotes --color=always --icons=always --tree --level=2 %c
 
 " Manpage
 filetype  {*.[1-8]},<text/troff>  man ./%c

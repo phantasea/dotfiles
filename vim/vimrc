@@ -64,7 +64,7 @@ set grepprg=ag\ --nogroup\ --nocolor\ --smart-case
 set helplang=en
 set hidden
 set hlsearch
-set history=64
+set history=128
 set ignorecase
 set incsearch
 set iskeyword-=.

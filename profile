@@ -31,3 +31,7 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 PATH="/opt/util:/opt/util/bins:/opt/util/misc:$PATH"
+
+if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi

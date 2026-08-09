@@ -195,6 +195,10 @@ if [ -f ~/.alias ]; then
     . ~/.alias
 fi
 
+if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi
+
 [ -f /opt/conf/forgit.bash ] && source /opt/conf/forgit.bash
 [ -f /opt/conf/fzf.bash ]    && source /opt/conf/fzf.bash
 [ -f /opt/conf/z.sh ]        && source /opt/conf/z.sh

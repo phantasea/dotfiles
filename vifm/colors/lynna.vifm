@@ -23,7 +23,7 @@ hi OtherLine    cterm=reverse                 ctermfg=246      ctermbg=254
 hi LineNr       cterm=none                    ctermfg=white    ctermbg=default
 hi LineNrSep    cterm=none                    ctermfg=default  ctermbg=default
 
-hi Selected     cterm=bold                    ctermfg=213      ctermbg=default
+hi Selected     cterm=bold                    ctermfg=15       ctermbg=default
 hi CmpMismatch  cterm=bold                    ctermfg=white    ctermbg=88
 hi CmpUnmatched cterm=bold                    ctermfg=white    ctermbg=28
 hi CmpBlank                                   ctermfg=default  ctermbg=default
