@@ -274,9 +274,9 @@ nnoremap  oj :<c-u>exec '.+'.v:count '| open'<cr>
 nnoremap  ok :<c-u>exec '.-'.v:count '| norm gf'<cr>
 nnoremap  or zS
 nnoremap  os :invert s<cr>zf
-nnoremap  ot :exec "filter /\.".expand('%c:e')."$/i"<cr>
+nnoremap  ot :exec "filter! /\.".expand('%c:e')."$/i"<cr>
 nnoremap  o. zA
-nnoremap  O  zo
+nnoremap  O  zO
 qnoremap  p  <c-b>
 nnoremap  q  ZZ
 vnoremap  q  ZZ
@@ -372,6 +372,7 @@ cabbrev  dn   <c-x>d
 cabbrev  fno  <c-x><c-x>c
 cabbrev  dno  <c-x><c-x>d
 cabbrev  cs   colorscheme
+cabbrev  fs   filter
 " }}}
 
 " marks/bmarks/mpc {{{
