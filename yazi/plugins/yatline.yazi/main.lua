@@ -514,7 +514,7 @@ function Yatline.string.get:tab_path(config)
 	local cwd = cx.active.current.cwd
 	local filter = cx.active.current.files.filter
 
-	local search = cwd.is_search and string.format(" (search: %s", cwd.frag) or ""
+	local search = cwd.spec.is_search and string.format(" (search: %s", cwd.frag) or ""
 
 	local suffix
 	if not filter then
@@ -811,7 +811,7 @@ function Yatline.coloreds.get:count(filter)
 	end
 
 	local files_count_fg, files_count_icon
-	if cx.active.current.files.filter or cx.active.current.cwd.is_search then
+	if cx.active.current.files.filter or cx.active.current.cwd.spec.is_search then
 		files_count_icon = filtereds_icon
 		files_count_fg = filtereds_fg
 	else
