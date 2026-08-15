@@ -130,9 +130,6 @@ map <wait>  -or  :chmod o-r<cr>
 map <wait>  -ow  :chmod o-w<cr>
 map <wait>  -ox  :chmod o-x<cr>
 
-nnoremap    --   :<c-u>exec '.-'.v:count '| normal gf'<cr>
-nnoremap    ++   :<c-u>exec '.+'.v:count '| normal gf'<cr>
-
 "nnoremap <c-h> :if paneisat('left')   | exec '!tmux select-pane -L %i' | else | exec 'wincmd h' | endif<cr>
 "nnoremap <c-j> :if paneisat('bottom') | exec '!tmux select-pane -D %i' | else | exec 'wincmd j' | endif<cr>
 "nnoremap <c-k> :if paneisat('top')    | exec '!tmux select-pane -U %i' | else | exec 'wincmd k' | endif<cr>
@@ -150,8 +147,10 @@ nnoremap <wait>  ,i  :imgall<cr>
 nnoremap <wait>  ,I  :imgrall<cr>
 nnoremap <wait>  ,r  cW<c-u>
 nnoremap <wait>  ,s  :! ls -p | grep -v / | sort -t' ' -k2 %m<cr>
-nnoremap <wait>  ,c  :s/\.html$/.txt/g<cr>
 nnoremap <wait>  ,f  :filter<space>
+nnoremap <wait>  ,k  :<c-u>exec '.-'.v:count '| normal gf'<cr>
+nnoremap <wait>  ,j  :<c-u>exec '.+'.v:count '| normal gf'<cr>
+nnoremap <wait>  ,x  :s/\.html$/.txt/g<cr>
 
 nnoremap  0  gg
 nnoremap  ^  gg
@@ -295,8 +294,8 @@ nnoremap  sc :txtcat<cr>gs
 vnoremap  sc :txtcat<cr>gv
 nnoremap  sC :selcat<space>
 vnoremap  sC :selcat<space>
-nnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
-vnoremap  sd :if selfiles() != 2 | diff | else | diffsamewin | endif<cr>
+nnoremap  sd :if selected() != 2 | diff | else | diffsamewin | endif<cr>
+vnoremap  sd :if selected() != 2 | diff | else | diffsamewin | endif<cr>
 nnoremap  sD :compare bycontents listall ofboth<cr>
 nnoremap  se :suedit<cr>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
@@ -398,7 +397,7 @@ endif
 
 set vifminfo=tui,tabs,savedirs,ratings,chistory,shistory
 set sessionoptions=tui,tabs,savedirs,ratings
-set iooptions-=datasync
+set iooptions=datasync,fastfilecloning
 set cpoptions="fs"
 set tuioptions="uv"
 set uioptions=
@@ -409,7 +408,7 @@ set suggestoptions=normal,visual,view,keys,marks,registers:3,delay:1000
 
 set aproposprg='apropos %a'
 set deleteprg=""
-set findprg='fd -i -d=3 -t=f %p %s'
+set findprg='fd -i -d=3 -t=f %p %s %u'
 set grepprg='rg --smart-case --vimgrep %i %a'
 set locateprg='locate %a'
 set mediaprg='vifmmed'
@@ -870,8 +869,11 @@ autocmd DirEnter '/media/simone/*_z'  setl sort='-mtime,+iname'
 " :r - root of the filename (without last extension)
 
 " Directories
-"fileview */,.*/  tree -L 2 -C --dirsfirst %c
+if $DISPLAY == ""
+fileview  */,.*/  tree -L 2 -C --dirsfirst %c
+else
 fileview  */,.*/  eza -A -X --follow-symlinks --group-directories-first --no-quotes --color=always --icons=always --tree --level=2 %c
+endif
 
 " Manpage
 filetype  {*.[1-8]},<text/troff>  man ./%c
