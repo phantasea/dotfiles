@@ -510,8 +510,8 @@ set clipboardprg="tmux show-buffer"
 else
 set paneonetag=" ❶"
 set panetwotag=" ❷"
-set sbaronetag="壹"
-set sbartwotag="贰"
+set sbaronetag="壹•"
+set sbartwotag="贰•"
 set clipboardprg="xsel -ob"
 endif
 "add by sim1---------------
