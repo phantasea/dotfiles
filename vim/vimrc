@@ -263,6 +263,7 @@ nnoremap   sb   :windo set scrollbind!<CR>
 nnoremap   sd   :DiffOrig<CR>
 nnoremap   sf   :call DirFilePicker("HSplit")<CR>
 nnoremap   sq   :call QuitAllBufButMe()<CR>
+nnoremap   st   :terminal<cr>
 nnoremap   s}   :call OpenTagPreviewWin()<CR>
 nnoremap   s#   :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nnoremap   s*   :call ListSrchCurrFile("n")<CR>

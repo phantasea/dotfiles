@@ -454,7 +454,7 @@ set tabprefix="[%0*%N:"
 set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
 set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%[%6*%r%7*|%]%4*%=%T"
-set rulerformat="%B%= %[='%F'%]  %E/%a  %3l/%-3S%[(+%x)%]%[%H%]  --%P--"
+set rulerformat="%= %[='%F'%]  %E/%a  %3l/%-3S%[(+%x)%]%[%H%]  --%P--"
 set fillchars="vborder:|,hborder:,millersep:"
 set dirsize=nitems
 if $DISPLAY != ""
@@ -499,14 +499,19 @@ set maxundotabs=3
 set previewmaxsize=3000
 set topmidfiller="+"
 set nocdaftermkdir
+set noshowsystime
 
 if $DISPLAY == ""
 set paneonetag=" ㈠"
 set panetwotag=" ㈡"
+set sbaronetag="＃1 "
+set sbartwotag="＃2 "
 set clipboardprg="tmux show-buffer"
 else
-set paneonetag=" ①"
-set panetwotag=" ②"
+set paneonetag=" ❶"
+set panetwotag=" ❷"
+set sbaronetag="壹"
+set sbartwotag="贰"
 set clipboardprg="xsel -ob"
 endif
 "add by sim1---------------
