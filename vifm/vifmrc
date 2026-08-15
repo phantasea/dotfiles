@@ -151,6 +151,7 @@ nnoremap <wait>  ,I  :imgrall<cr>
 nnoremap <wait>  ,r  cW<c-u>
 nnoremap <wait>  ,s  :! ls -p | grep -v / | sort -t' ' -k2 %m<cr>
 nnoremap <wait>  ,c  :s/\.html$/.txt/g<cr>
+nnoremap <wait>  ,f  :filter<space>
 
 nnoremap  0  gg
 nnoremap  ^  gg
@@ -416,7 +417,7 @@ set previewprg=""
 
 set noautocd
 set autochpos
-set cdpath=~,/opt
+set cdpath=""
 set cvoptions=autocmds
 set nogdefault
 set histcursor=dirmark,direnter
@@ -454,7 +455,7 @@ set tabprefix="[%0*%N:"
 set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
 set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%[%6*%r%7*|%]%4*%=%T"
-set rulerformat="%= %[f='%F'%]  %E/%a  %3l/%-3S%[(+%x)%]%[%H%]  --%P--"
+set rulerformat="%B%= %[='%F'%]  %E/%a  %3l/%-3S%[(+%x)%]%[%H%]  --%P--"
 set fillchars="vborder:|,hborder:,millersep:"
 set dirsize=nitems
 if $DISPLAY != ""

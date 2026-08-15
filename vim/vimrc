@@ -70,7 +70,6 @@ set incsearch
 set iskeyword-=.
 set keywordprg=
 set nolazyredraw
-set laststatus=2
 set linebreak
 set list
 set listchars=tab:▸\     "set listchars+=eol:¬
@@ -100,7 +99,6 @@ set softtabstop=4
 set statusline=%{MyColorStatusLine()}
 set tabstop=4
 set tags=tags;
-set termencoding=utf-8
 set textwidth=0
 set ttimeoutlen=0
 set ttyfast
@@ -108,16 +106,25 @@ set updatetime=2000
 set wildmenu
 set wildmode=full
 set wildignorecase
-if !has('nvim')
-set noesckeys
-set viminfo='49,<0,s10,h,/25,f0,n~/.vim/viminfo
-else
-set viminfo='49,<0,s10,h,/25,f0,n~/.config/nvim/viminfo
-endif
 if $DISPLAY == ""
 set t_Co=8
 else
 set t_Co=256
+endif
+
+if !has('nvim')
+set laststatus=2
+set noesckeys
+set termencoding=utf-8
+set viminfo='49,<0,s10,h,/25,f0,n~/.vim/viminfo
+else
+set cmdheight=0
+set laststatus=3
+set viminfo='49,<0,s10,h,/25,f0,n~/.config/nvim/viminfo
+
+highlight Normal     guibg=NONE ctermbg=NONE
+highlight NonText    guibg=NONE ctermbg=NONE
+highlight SignColumn guibg=NONE ctermbg=NONE
 endif
 "}}}
 
