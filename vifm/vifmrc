@@ -143,19 +143,24 @@ map <wait>  -ox  :chmod o-x<cr>
 
 " :exec "norm \<C-w>s" works since vifm v0.15 (must use double-quotes)
 " keymaps-2 {{{
-nnoremap <wait>  ,i  :imgall<cr>
-nnoremap <wait>  ,I  :imgrall<cr>
-nnoremap <wait>  ,r  cW<c-u>
-nnoremap <wait>  ,s  :! ls -p | grep -v / | sort -t' ' -k2 %m<cr>
-nnoremap <wait>  ,f  :filter<space>
-nnoremap <wait>  ,k  :<c-u>exec '.-'.v:count '| normal gf'<cr>
-nnoremap <wait>  ,j  :<c-u>exec '.+'.v:count '| normal gf'<cr>
-nnoremap <wait>  ,x  :s/\.html$/.txt/g<cr>
+nnoremap <wait>  ;f  :filter<space>
+nnoremap <wait>  ;j  :<c-u>exec '.+'.v:count '| normal gf'<cr>
+nnoremap <wait>  ;k  :<c-u>exec '.-'.v:count '| normal gf'<cr>
+nnoremap <wait>  ;i  :imgall<cr>
+nnoremap <wait>  ;I  :imgrall<cr>
+nnoremap <wait>  ;r  cW<c-u>
+nnoremap <wait>  ;s  :! ls -p | grep -v / | sort -t' ' -k2 %m<cr>
+nnoremap <wait>  ;x  :s/\.html$/.txt/g<cr>
+nnoremap <wait>  ;y  "AY
+nnoremap <wait>  ;p  "Ap
+nnoremap <wait>  ;P  "AP
+
+nnoremap  ;; ;
+nnoremap  ,, ,
 
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
-nnoremap  ;  :
 nnoremap  @  :shell<cr>
 nnoremap  !  !!  %c<left><left><left>
 nnoremap g!  :!./%c:. &<cr>
@@ -237,8 +242,6 @@ mnoremap  e  v
 qnoremap  e  v
 nnoremap  E  :!vim %c<cr>
 nnoremap ge  :empty<cr>
-nnoremap  f, ,
-nnoremap  f; ;
 mnoremap  h  q
 dnoremap  h  q
 qnoremap  i  <nop>
@@ -510,8 +513,8 @@ set clipboardprg="tmux show-buffer"
 else
 set paneonetag=" ❶"
 set panetwotag=" ❷"
-set sbaronetag="壹•"
-set sbartwotag="贰•"
+set sbaronetag="陽•"
+set sbartwotag="陰•"
 set clipboardprg="xsel -ob"
 endif
 "add by sim1---------------
