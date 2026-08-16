@@ -164,13 +164,12 @@ nnoremap  $  G
 nnoremap  @  :shell<cr>
 nnoremap  !  !!  %c<left><left><left>
 nnoremap g!  :!./%c:. &<cr>
+nnoremap g#  :cyclelinenumber<cr>
+nnoremap g*  :cyclesplit<cr>
+nnoremap g.  hgfl:set nodotfiles<cr>
 nnoremap  &  !!  %c &<left><left><left><left><left>
 nnoremap  ~  :cd ~<cr>
-nnoremap g.  hgfl:set nodotfiles<cr>
 nnoremap  ?  :file<space><tab>
-nnoremap g#  :windo set relativenumber!<cr>
-nnoremap  #  :cyclelinenumber<cr>
-nnoremap g*  #
 nnoremap  \  :invert s<cr>
 vnoremap  \  :invert s<cr>
 nnoremap  |  <c-w>=
@@ -509,12 +508,16 @@ set paneonetag=" ㈠"
 set panetwotag=" ㈡"
 set sbaronetag="㊧"
 set sbartwotag="㊨"
+set systimeprefix="〔"
+set systimesuffix="〕"
 set clipboardprg="tmux show-buffer"
 else
 set paneonetag=" ☰"
 set panetwotag=" ☷"
 set sbaronetag="陽•"
 set sbartwotag="陰•"
+set systimeprefix="【"
+set systimesuffix="】"
 set clipboardprg="xsel -ob"
 endif
 "add by sim1---------------

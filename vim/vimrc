@@ -60,7 +60,7 @@ set expandtab
 set fileencoding=chinese
 set fileencodings=utf-8,gb2312,gbk,gb18030
 set foldmethod=manual
-set grepprg=ag\ --nogroup\ --nocolor\ --smart-case
+set grepprg=rg\ --vimgrep\ --no-hidden\ --no-heading
 set helplang=en
 set hidden
 set hlsearch
