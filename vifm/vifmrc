@@ -7,8 +7,8 @@ map  <down>   <nop>
 "[n]ormal, [v]isual, [d]ialogue, [q]uickview, [m]enu, [c]ommand"
 nnoremap  <F1>     :manhelp<cr>
 nnoremap  <F5>     :shell<cr>
-nnoremap  <F10>    :diff<cr>
-nnoremap  <F11>    :diffsamewin<cr>
+nnoremap  <F10>    :difftwowin<cr>
+nnoremap  <F11>    :diffonewin<cr>
 nnoremap  <F12>    :!cmatrix -abs -C cyan<cr>
 
 "<tab> = <c-i>
@@ -292,12 +292,10 @@ nnoremap  R  cw
 qnoremap  s  <c-w>
 nnoremap  sa :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sb :set scrollbind!<cr>
-nnoremap  sc :txtcat<cr>gs
-vnoremap  sc :txtcat<cr>gv
-nnoremap  sC :selcat<space>
-vnoremap  sC :selcat<space>
-nnoremap  sd :if selected() != 2 | diff | else | diffsamewin | endif<cr>
-vnoremap  sd :if selected() != 2 | diff | else | diffsamewin | endif<cr>
+nnoremap  sc :selcat<cr>gs
+vnoremap  sc :selcat<cr>gv
+nnoremap  sd :if selected() < 2 | difftwowin | else | diffonewin | endif<cr>
+vnoremap  sd :if selected() < 2 | difftwowin | else | diffonewin | endif<cr>
 nnoremap  sD :compare bycontents listall ofboth<cr>
 nnoremap  se :suedit<cr>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
@@ -459,15 +457,6 @@ set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%[%6*%r%7*|%]%4*%=%T"
 set rulerformat="%= %[='%F'%]  %E/%a  %3l/%-3S%[(+%x)%]%[%H%]  --%P--"
 set fillchars="vborder:|,hborder:,millersep:"
 set dirsize=nitems
-if $DISPLAY != ""
-set timefmt="%H:%M\ %m/%d/%y"
-set viewcolumns=-{name},{rating},17{mtime}
-set hloptions=filehi:onerow
-else
-set timefmt="%Y-%m-%d %H:%M:%S"
-set viewcolumns=-{name},{rating},22{mtime}
-set hloptions=filehi:allrows
-endif
 set sizefmt=units:iec,precision:1,nospace
 set wildmenu
 set wildstyle=popup
@@ -490,11 +479,19 @@ set vimhelp
 set norunexec
 set noiec
 set fusehome=/tmp/vifm_FUSE
-if !has('win')
 set slowfs=curlftpfs
+
+if $DISPLAY != ""
+set timefmt="%H:%M\ %m/%d/%y"
+set viewcolumns=-{name},{rating},17{mtime}
+set hloptions=filehi:onerow
+else
+set timefmt="%Y-%m-%d %H:%M:%S"
+set viewcolumns=-{name},{rating},22{mtime}
+set hloptions=filehi:allrows
 endif
 
-"add by sim1---------------
+"add by sim1+++++++++++++++
 set redolastcmdcfm
 set prefervsplit
 set maxundotabs=3
@@ -502,6 +499,7 @@ set previewmaxsize=3000
 set topmidfiller="+"
 set nocdaftermkdir
 set noshowsystime
+set systimeoffset=15
 
 if $DISPLAY == ""
 set paneonetag=" ㈠"
@@ -514,8 +512,8 @@ set clipboardprg="tmux show-buffer"
 else
 set paneonetag=" ☰"
 set panetwotag=" ☷"
-set sbaronetag="陽•"
-set sbartwotag="陰•"
+set sbaronetag="陽☯"
+set sbartwotag="陰☯"
 set systimeprefix="【"
 set systimesuffix="】"
 set clipboardprg="xsel -ob"
@@ -529,11 +527,15 @@ else
 colorscheme chris
 endif
 
+"statusline: left-bar, right-bar
+"cmdline: status-bar, input-bar, ruler-bar
+
 "1.dot files filter
 "2.local filter (see "=" norm_cmd)
 "3.name/perm filter
 "  :filter -- manu/explicit filter
 "  "zf/zs" -- auto/implicit filter
+
 windo filter /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sogoupinyin|华为手机助手)/
 " }}}
 
@@ -564,13 +566,9 @@ windo filter /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sogo
 " %Pl pipe list of files to standard input of a command
 " %Pz same as %Pl, but separates paths by null ('\0') character
 " %r{x} for list of files in register {x}
-command! txtcat          cat %f > %c.txt %i
-command! selcat          cat %f > %a
-command! diff            vimux -d %c %C
-command! diffsamewin     vimux -d %f
-command! diffallsels     vimux -b
-command! saveselto       cat > %a %Pl
-command! saveallto       :select * | saveselto %a
+command! diffonewin      vimux -d %f
+command! difftwowin      vimux -d %c %C
+command! diffallsel      vimux -b
 command! movetoother     mv -i %f %D %i
 command! copytoother     cp -R %f %D %i
 command! movefromother   mv -i %F %d %i
@@ -784,8 +782,7 @@ command! mpl      mplayer -vo x11 %c
 command! manhelp  manmux vifm
 command! weather  curl --silent wttr.in | sed 's/\x1B\[[0-9;]*[mGK]//g' | less
 command! weather  curl --silent wttr.in | bat
-command! altopen  fileopen -b %c
-command! auxopen  fileopen -B %c
+command! mpvplay  mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-16-60 %c
 
 command! extract  extract %c %i
 command! extractA aunpack -e %f &>/dev/null &
@@ -820,13 +817,17 @@ command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-t
                 \|   exec 'cd' fnameescape($FZF_RES)
                 \| endif
 
-command! mpvplay   mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-16-60 %c
-command! audcat    audcat   %f &
-command! audconv   audconv  %a %c &
-command! imgconv   imgconv  %a %c &
-command! gif2jpg   gif2jpg  %c &
-command! text2epub txt2epub %c &
-command! epub2text epub2txt %a %c &
+command! altopen  fileopen -b %c
+command! auxopen  fileopen -B %c
+command! lsselto  cat > %a %Pl
+command! lsallto  :select * | lsselto %a
+command! selcat   cat %f > %c.txt %i
+command! audcat   audcat   %f &
+command! audconv  audconv  %a %c &
+command! imgconv  imgconv  %a %c &
+command! gif2jpg  gif2jpg  %c &
+command! txt2epub txt2epub %c &
+command! epub2txt epub2txt %a %c &
 " }}}
 
 " autocmds {{{
