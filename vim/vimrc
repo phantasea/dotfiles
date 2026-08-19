@@ -129,6 +129,11 @@ endif
 "}}}
 
 " mapping  {{{
+" showkey -a  -- bash command to check if <Ctrl+I> works
+"execute "set <F37>=\<Esc>[105;5u"
+"nnoremap <F37> :echo "You pressed ONLY Ctrl+I!"<CR>
+"nnoremap <Tab> :echo "You pressed ONLY Tab!"<CR>
+
 inoremap   <Tab>      <C-N>
 nnoremap   <CR>       <C-W>w
 nnoremap   <BS>       <PageUp>H

@@ -24,7 +24,7 @@ export FZF_DEFAULT_OPTS="--exact --no-multi --no-sort --cycle --reverse
        --preview-window=:hidden
        --preview '([[ -f {} ]] && (bat --style=auto --color=always {} || cat {}))
          || ([[ -d {} ]] && (tree -C {} | less)) || echo {} 2> /dev/null | head -200'
-       --color=hl:14,fg+:7,bg+:2,border:2,hl+:6,info:7,prompt:1,gutter:0,pointer:3,marker:3"
+       --color=hl:14,fg+:7,bg+:1,border:2,hl+:6,info:7,prompt:1,gutter:0,pointer:3,marker:3"
 
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS"
 export FZF_ALT_C_OPTS="$FZF_DEFAULT_OPTS"

@@ -164,7 +164,7 @@ nnoremap  $  G
 nnoremap  @  :shell<cr>
 nnoremap  !  !!  %c<left><left><left>
 nnoremap g!  :!./%c:. &<cr>
-nnoremap g#  :cyclelinenumber<cr>
+nnoremap g#  :cyclenumber<cr>
 nnoremap g*  :cyclesplit<cr>
 nnoremap g.  hgfl:set nodotfiles<cr>
 nnoremap  &  !!  %c &<left><left><left><left><left>
@@ -241,6 +241,7 @@ mnoremap  e  v
 qnoremap  e  v
 nnoremap  E  :!vim %c<cr>
 nnoremap ge  :empty<cr>
+nnoremap  f/ =
 mnoremap  h  q
 dnoremap  h  q
 qnoremap  i  <nop>
@@ -496,10 +497,11 @@ set redolastcmdcfm
 set prefervsplit
 set maxundotabs=3
 set previewmaxsize=3000
-set topmidfiller="+"
 set nocdaftermkdir
 set noshowsystime
 set systimeoffset=15
+set topmidfiller="+"
+set botmidfiller="☯"
 
 if $DISPLAY == ""
 set paneonetag=" ㈠"
@@ -512,8 +514,8 @@ set clipboardprg="tmux show-buffer"
 else
 set paneonetag=" ☰"
 set panetwotag=" ☷"
-set sbaronetag="陽☯"
-set sbartwotag="陰☯"
+set sbaronetag="卍"
+set sbartwotag="卐"
 set systimeprefix="【"
 set systimesuffix="】"
 set clipboardprg="xsel -ob"
@@ -649,7 +651,7 @@ command! toggleultrawide
      \ |   set nolsview
      \ | endif
 
-command! cyclelinenumber
+command! cyclenumber
      \ : if &number == 0 && &relativenumber == 0
      \ |   set relativenumber
      \ | elseif &number == 0 && &relativenumber == 1
