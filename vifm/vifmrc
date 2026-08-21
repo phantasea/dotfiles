@@ -53,7 +53,7 @@ nnoremap s<space>  :smartsortbysize<cr>
 nnoremap x<space>  <c-w>x
 nnoremap z<space>  :invert o<cr>
 
-"navigation mode
+"navigation mode: works only for / or = cmd
 anoremap  <c-j>  <pagedown>
 anoremap  <c-k>  <pageup>
 anoremap  <c-h>  <c-o>
@@ -455,7 +455,7 @@ set tabprefix="[%0*%N:"
 set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
 set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%[%6*%r%7*|%]%4*%=%T"
-set rulerformat="%= %[='%F'%]  %E/%a  %3l/%-3S%[(+%x)%]%[%H%]  --%P--"
+set rulerformat="%= %[='%F'%] %E/%a %3l/%-3S%[(+%x)%]%[%H%] --%P--"
 set fillchars="vborder:|,hborder:,millersep:"
 set dirsize=nitems
 set sizefmt=units:iec,precision:1,nospace
