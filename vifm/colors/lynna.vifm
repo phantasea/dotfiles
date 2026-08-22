@@ -47,7 +47,7 @@ hi BrokenLink   cterm=none                    ctermfg=242      ctermbg=default
 hi HardLink     cterm=none                    ctermfg=199      ctermbg=default
 
 " for powerline-like look of statusline
-highlight  User1        ctermfg=32        ctermbg=black     cterm=bold,reverse
+highlight  User1        ctermfg=198       ctermbg=black     cterm=bold,reverse
 highlight  User2        ctermfg=72        ctermbg=black     cterm=bold,reverse
 highlight  User3        ctermfg=222       ctermbg=black     cterm=bold,reverse
 highlight  User4        ctermfg=white     ctermbg=63        cterm=bold

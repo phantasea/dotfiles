@@ -13,7 +13,7 @@ nnoremap  <F12>    :!cmatrix -abs -C cyan<cr>
 
 "<tab> = <c-i>
 qnoremap  <s-tab>  <tab>
-nnoremap  <s-tab>  :toggletabmap<cr>
+nnoremap  <s-tab>  :toggletab<cr>
 nnoremap  <tab>    :fileinfo<cr>
 nnoremap b<tab>    <nop>
 nnoremap c<tab>    <nop>
@@ -164,10 +164,10 @@ nnoremap  $  G
 nnoremap  @  :shell<cr>
 nnoremap  !  !!  %c<left><left><left>
 nnoremap g!  :!./%c:. &<cr>
-nnoremap g#  :cyclenumber<cr>
-nnoremap g*  :cyclesplit<cr>
+nnoremap b!  !!  %c &<left><left><left><left><left>
 nnoremap g.  hgfl:set nodotfiles<cr>
-nnoremap  &  !!  %c &<left><left><left><left><left>
+nnoremap  &  #
+nnoremap  #  :cyclenumber<cr>
 nnoremap  ~  :cd ~<cr>
 nnoremap  ?  :file<space><tab>
 nnoremap  \  :invert s<cr>
@@ -324,7 +324,7 @@ nnoremap  s> <c-w>>
 nnoremap  s= <c-w>=
 nnoremap  s| <c-w>|
 nnoremap  s_ <c-w>_
-nnoremap  s\ :togglesortord<cr>
+nnoremap  s\ :togglesort<cr>
 nnoremap gS  :%s//g<left><left>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
@@ -340,7 +340,7 @@ nnoremap ovp :view prev<cr>
 nnoremap zv  :explore<cr>
 qnoremap  w  W
 nnoremap  w  :set millerview!<cr>
-nnoremap  W  :toggleultrawide<cr>
+nnoremap  W  :togglewide<cr>
 nnoremap  xi :switch<cr>:move<cr>:switch<cr>
 vnoremap  xi :switch<cr>:move<cr>:switch<cr>
 nnoremap  xo :move<cr>
@@ -448,14 +448,14 @@ set timeoutlen=2000
 set mintimeoutlen=150
 set confirm=permdelete
 set dotdirs=treeleafsparent
-set tabscope=pane
 set showtabline=multiple
+set tabscope=pane
 set tabline=""
 set tabprefix="[%0*%N:"
 set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
 set tabsuffix="]"
 set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%[%6*%r%7*|%]%4*%=%T"
-set rulerformat="%= %[='%F'%] %E/%a %3l/%-3S%[(+%x)%]%[%H%] --%P--"
+set rulerformat="%[%H%]%[='%F'%]%[(+%x)%]%= %E/%a %3l/%-3S --%P--"
 set fillchars="vborder:|,hborder:,millersep:"
 set dirsize=nitems
 set sizefmt=units:iec,precision:1,nospace
@@ -625,7 +625,7 @@ command! vimdiff
      \ | endif
 
 let g:tabmap = 1
-command! toggletabmap
+command! toggletab
      \ : if g:tabmap
      \ |   exec 'nnoremap  <tab>  <c-i>'
      \ | else
@@ -634,7 +634,7 @@ command! toggletabmap
      \ | let g:tabmap = !g:tabmap
 
 let g:sortord = 1
-command! togglesortord
+command! togglesort
      \ : if g:sortord
      \ |   exec 'set sortorder=descending'
      \ | else
@@ -642,7 +642,7 @@ command! togglesortord
      \ | endif
      \ | let g:sortord = !g:sortord
 
-command! toggleultrawide
+command! togglewide
      \ : if &millerview
      \ |   set nomillerview
      \ |   set lsview

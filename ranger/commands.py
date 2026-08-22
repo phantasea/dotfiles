@@ -84,6 +84,26 @@ class subst(Command):
                 self.fm.notify(err)
 
 
+class cycle_sort(Command):
+    """
+    toggle sort: natural, mtime, mtime(reverse), size
+    """
+
+    def execute(self):
+        curr = self.fm.settings.sort
+        if curr == "natural":
+            self.fm.settings['sort'] = 'mtime'
+            self.fm.settings['sort_reverse'] = False
+        elif curr == 'mtime' and not self.fm.settings['sort_reverse']:
+            self.fm.settings['sort_reverse'] = True
+        elif curr == 'mtime' and self.fm.settings['sort_reverse']:
+            self.fm.settings['sort'] = 'size'
+            self.fm.settings['sort_reverse'] = True
+        else:
+            self.fm.settings['sort'] = 'natural'
+            self.fm.settings['sort_reverse'] = False
+
+
 class display_ratings(Command):
     """
     :display_ratings
