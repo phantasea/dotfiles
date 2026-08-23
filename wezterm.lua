@@ -1,11 +1,36 @@
 local wezterm = require 'wezterm'
 local config = {}
 
-config.font = wezterm.font 'JetBrains Mono'
-config.font_size = 11
-config.color_scheme = 'Batman'
-config.tab_bar_at_bottom = false
+--config.font = wezterm.font 'JetBrains Mono'
+config.font = wezterm.font 'Noto Color Emoji'
+config.font_size = 13
+config.cell_widths = 0.7
+config.treat_east_asian_ambiguous_width_as_wide = true
+
+config.window_background_opacity = 0.8
+config.window_background_image = '/opt/conf/wallpaper/1.qianyuqianxun.jpg'
+config.window_background_image_hsb = {
+  hue = 1.0,
+  saturation = 1.0,
+  brightness = 0.3,
+}
+
 config.enable_tab_bar = true
+config.tab_bar_at_bottom = false
 config.hide_tab_bar_if_only_one_tab = true
+
+config.color_scheme_dirs = { '/opt/conf/colors' }
+config.color_scheme = 'Kanagawa'
+config.color_schemes = {
+  ['Batman'] = {
+    background = "black"
+  },
+}
+
+config.hyperlink_rules = wezterm.default_hyperlink_rules()
+table.insert(config.hyperlink_rules, {
+  regex = [[["]?([\w\d]{1}[-\w\d]+)(/){1}([-\w\d\.]+)["]?]],
+  format = 'https://www.github.com/$1/$3',
+})
 
 return config
