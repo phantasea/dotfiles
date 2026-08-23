@@ -84,9 +84,28 @@ class subst(Command):
                 self.fm.notify(err)
 
 
+class toggle_split(Command):
+    """
+    toggle split:
+    1. miller-view(one-win), linemode=devicon, dirname-in-tabs=NO
+    2. multi-pane(vsplit), linemode=filename, dirname-in-tabs=YES
+    """
+
+    def execute(self):
+        curr = self.fm.settings.viewmode
+        if curr == "miller":
+            self.fm.settings.viewmode = "multipane"
+            self.fm.settings.dirname_in_tabs = True
+            self.fm.execute_console("default_linemode filename")
+        else:
+            self.fm.settings.viewmode = "miller"
+            self.fm.settings.dirname_in_tabs = False
+            self.fm.execute_console("default_linemode devicons")
+
+
 class cycle_sort(Command):
     """
-    toggle sort: natural, mtime, mtime(reverse), size
+    cycle sort: natural, mtime, mtime(reverse), size
     """
 
     def execute(self):
