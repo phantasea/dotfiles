@@ -4,10 +4,6 @@ require("smart-enter"):setup {
     functionopen_multi = true,
 }
 
-require("full-border"):setup {
-    functiontype = ui.Border.ROUNDED,
-}
-
 Status:children_add(function()
 	local h = cx.active.current.hovered
 	if h == nil or ya.target_family() ~= "unix" then
