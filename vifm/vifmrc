@@ -520,6 +520,10 @@ set systimeprefix="【"
 set systimesuffix="】"
 set clipboardprg="xsel -ob"
 endif
+
+if $TERM == "xterm-256color"
+set botmidfiller="+"
+endif
 "add by sim1---------------
 
 "if $TERM == 'screen-256color' || $TERM == 'st-256color' || $TERM == 'xterm-256color'

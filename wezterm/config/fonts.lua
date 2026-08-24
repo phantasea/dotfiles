@@ -1,6 +1,7 @@
 local wezterm = require('wezterm')
 
-local font_family = 'JetBrains Mono'
+--local font_family = 'JetBrains Mono'
+local font_family = 'NotoColorEmoji'
 
 local font_size = 10
 
