@@ -269,6 +269,7 @@ nnoremap  mj 2gM
 nnoremap  mm gMzz
 nnoremap  mk 3gM
 nnoremap gm  gMzz
+vnoremap  m  gM
 nnoremap  oo =
 nnoremap  of zF
 nnoremap  od zD
