@@ -123,15 +123,10 @@ export VIDIR_EDITOR_ARGS='-c :set nolist | :set ft=vidir-ls'
 export W3MIMGDISPLAY_PATH="/opt/util/bins/w3mimgdisplay"
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export MPD_PORT=6609
-export _Z_CMD=J
-export FZ_CMD=j
-export FZ_SUBDIR_CMD=jj
-export FZ_CASE_INSENSITIVE=1
-export _Z_DATA="$HOME/.config/z.data"
 export OPENAI_API_KEY="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"
 export DELTA_PAGER="less -R"
 export TRASH_DIR="/var/tmp/Trash"
-#export TRASH_DIR="$HOME/.Trash"
+export _ZO_EXCLUDE_DIRS="$HOME:/opt/.porn/*:/media/simone/*"
 
 ### internal functions {{{
 export PSTOGGLE=1
@@ -195,14 +190,8 @@ if [ -f ~/.alias ]; then
     . ~/.alias
 fi
 
-if [ -f "$HOME/.cargo/env" ]; then
-    . "$HOME/.cargo/env"
-fi
-
 [ -f /opt/conf/forgit.bash ] && source /opt/conf/forgit.bash
 [ -f /opt/conf/fzf.bash ]    && source /opt/conf/fzf.bash
-[ -f /opt/conf/z.sh ]        && source /opt/conf/z.sh
-[ -f /opt/conf/fz.sh ]       && source /opt/conf/fz.sh
 
 # enable programmable completion features
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
@@ -219,16 +208,17 @@ crontab /opt/conf/mycrontab
 
 # type fbtmux > /dev/null 2>&1 && fbtmux
 command -v fbtmux   > /dev/null 2>&1 && fbtmux
-command -v neofetch > /dev/null 2>&1 && neofetch || screenfetch
+command -v neofetch > /dev/null 2>&1 && neofetch
 
 # only under GUI mode
 if [[ ! -z $DISPLAY ]]; then
     scratchpad
+fi
 
-    #powerline-daemon -q
-    #POWERLINE_BASH_CONTINUATION=1
-    #POWERLINE_BASH_SELECT=1
-    #. /opt/conf/powerline/powerline.sh
+eval "$(zoxide init bash)"
+
+if [ -f "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
 fi
 
 cd ~/temp
