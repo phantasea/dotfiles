@@ -26,7 +26,8 @@ nnoremap x<tab>    <nop>
 nnoremap z<tab>    <nop>
 
 " <cr> = <c-m>
-vnoremap  <cr>     :select<cr>
+"use built-in map, :select<cr> has side-effect for where stop
+"vnoremap <cr>     :select<cr>
 nnoremap  <cr>     :cyclesort<cr>
 nnoremap b<cr>     :bmgo<space>
 nnoremap c<cr>     <nop>
@@ -78,6 +79,7 @@ nnoremap  <c-d>  :ffdirs<cr>
 nnoremap  <c-e>  :ffedit<cr>
 nnoremap  <c-f>  :fffave<cr>
 nnoremap  <c-g>  :ffgoto<cr>
+vnoremap  <c-g>  <c-g>
 mnoremap  <c-j>  <c-f>
 nnoremap  <c-j>  <c-f>
 qnoremap  <c-j>  <c-f>
@@ -256,8 +258,8 @@ nnoremap  J  <c-e>
 mnoremap  J  <c-e>
 qnoremap  J  qje:if &preview | switch | endif<cr>
 nnoremap gk  [R
-nnoremap zk  {
 nnoremap sk  [S
+nnoremap zk  {
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
@@ -266,8 +268,8 @@ nnoremap gL  :if filetype('.') == 'link' | exec 'norm! gF' | else | auxopen | en
 nnoremap  mi :fileinfo<cr>
 nnoremap  mI :tsls<cr>
 nnoremap  mj 2gM
-nnoremap  mm gMzz
 nnoremap  mk 3gM
+nnoremap  mm gMzz
 nnoremap gm  gMzz
 vnoremap  m  gM
 nnoremap  oo =
@@ -281,7 +283,7 @@ nnoremap  os :invert s<cr>zf
 nnoremap  ot :exec "filter! /\.".expand('%c:e')."$/i"<cr>
 nnoremap  o. zA
 nnoremap  O  zO
-qnoremap  p  <c-b>
+qnoremap  p  N
 nnoremap  q  ZZ
 vnoremap  q  ZZ
 nnoremap  Q  :qall<cr>
@@ -398,15 +400,20 @@ set vimabs="nvim"
 endif
 
 set vifminfo=tui,tabs,savedirs,ratings,chistory,shistory
-set sessionoptions=tui,tabs,savedirs,ratings
-set iooptions=datasync,fastfilecloning
+
+"toptreestats only works while using built-in tree viewer
+set previewoptions=graphicsdelay:30000,maxtreedepth:3,toptreestats
+set caseoptions="pg"
 set cpoptions="fs"
+set cvoptions=autocmds
+set iooptions=datasync,fastfilecloning
+set lsoptions=transposed,columncount:0
+set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
+set navoptions="open:dirs"
+set sessionoptions=tui,tabs,savedirs,ratings
+set suggestoptions=normal,visual,view,keys,marks,registers:3,delay:1000
 set tuioptions="uv"
 set uioptions=
-set caseoptions="pg"
-set previewoptions=graphicsdelay:30000,maxtreedepth:3,toptreestats
-set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
-set suggestoptions=normal,visual,view,keys,marks,registers:3,delay:1000
 
 set aproposprg='apropos %a'
 set deleteprg=""
@@ -419,12 +426,10 @@ set previewprg=""
 set noautocd
 set autochpos
 set cdpath=""
-set cvoptions=autocmds
 set nogdefault
 set histcursor=dirmark,direnter
 set laststatus
 set mouse=""
-set navoptions="open:dirs"
 set noquickview
 set noscrollbind
 set sortgroups=""
@@ -437,7 +442,6 @@ set syscalls
 set notitle
 set nolsview
 set nokeepsel
-set lsoptions=transposed,columncount:0
 set nodotfiles
 set millerview
 set tabstop=4
@@ -887,7 +891,7 @@ autocmd DirEnter '/media/simone/*_z'  setl sort='-mtime,+iname'
 " :t - tail of the filename
 " :r - root of the filename (without last extension)
 
-" Directories
+" Directories (fallback to /opt/util/fileview if not set here)
 if $DISPLAY == ""
 fileview  */,.*/  tree -L 2 -C --dirsfirst %c
 else
