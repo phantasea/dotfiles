@@ -386,21 +386,17 @@ source $VIFM/bookmarks
 " }}}
 
 " options {{{
-source $VIFM/devicons
-
-set vicmd="vimux"
-set vixcmd="vimux"
-
 plugin whitelist viewcolumn
 
-if executable('vim')
-set vimabs="vim"
-elseif executable('nvim')
-set vimabs="nvim"
+if $DISPLAY != ""
+colorscheme lynna
+else
+colorscheme chris
 endif
 
-set vifminfo=tui,tabs,savedirs,ratings,chistory,shistory
+source $VIFM/devicons
 
+"xxxoptions
 "toptreestats only works while using built-in tree viewer
 set previewoptions=graphicsdelay:30000,maxtreedepth:3,toptreestats
 set caseoptions="pg"
@@ -415,6 +411,7 @@ set suggestoptions=normal,visual,view,keys,marks,registers:3,delay:1000
 set tuioptions="uv"
 set uioptions=
 
+"xxxprg
 set aproposprg='apropos %a'
 set deleteprg=""
 set findprg='fd -i -d=3 -t=f %p %s %u'
@@ -423,120 +420,129 @@ set locateprg='locate %a'
 set mediaprg='vifmmed'
 set previewprg=""
 
+"general options
 set noautocd
 set autochpos
 set cdpath=""
+set nochaselinks
+set confirm=permdelete
+set dirsize=nitems
+set dotdirs=treeleafsparent
+set nodotfiles
+set fillchars="vborder:|,hborder:,millersep:"
+set nofollowlinks
+set fusehome=/tmp/vifm_FUSE
 set nogdefault
 set histcursor=dirmark,direnter
-set laststatus
-set mouse=""
-set noquickview
-set noscrollbind
-set sortgroups=""
-set sortorder=ascending
-set syncregs=""
-set wildinc=:*
-set wordchars="1-8,14-31,33-255"
-
-set syscalls
-set notitle
-set nolsview
-set nokeepsel
-set nodotfiles
-set millerview
-set tabstop=4
-set number
-set relativenumber
-set numberwidth=1
-set shortmess="pT"
-set timeoutlen=2000
-set mintimeoutlen=150
-set confirm=permdelete
-set dotdirs=treeleafsparent
-set showtabline=multiple
-set tabscope=pane
-set tabline=""
-set tabprefix="[%0*%N:"
-set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
-set tabsuffix="]"
-set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%[%6*%r%7*|%]%4*%=%T"
-set rulerformat="%[%H%]%[='%F'%]%[(+%x)%]%= %E/%a %3l/%-3S --%P--"
-set fillchars="vborder:|,hborder:,millersep:"
-set dirsize=nitems
-set sizefmt=units:iec,precision:1,nospace
-set wildmenu
-set wildstyle=popup
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
-set nowrap
-set wrapscan
-set scrolloff=0
-set trash
-set trashdir=/var/tmp/Trash,$HOME/.Trash
 set history=32
-set nofollowlinks
-set nochaselinks
-set sortnumbers
-set sort="+iname"
-set undolevels=99
-set vimhelp
-set norunexec
-set noiec
-set fusehome=/tmp/vifm_FUSE
-set slowfs=curlftpfs
-
 if $DISPLAY != ""
-set timefmt="%H:%M\ %m/%d/%y"
-set viewcolumns=-{name},{rating},17{mtime}
 set hloptions=filehi:onerow
 else
-set timefmt="%Y-%m-%d %H:%M:%S"
-set viewcolumns=-{name},{rating},22{mtime}
 set hloptions=filehi:allrows
 endif
+set hlsearch
+set noiec
+set ignorecase
+set incsearch
+set nokeepsel
+set laststatus
+set nolsview
+set millerview
+set mintimeoutlen=150
+set mouse=""
+set number
+set numberwidth=1
+set noquickview
+set relativenumber
+set rulerformat="%[%H%]%[='%F'%]%[(+%x)%]%= %E/%a %3l/%-3S --%P--"
+set norunexec
+set noscrollbind
+set scrolloff=0
+set shortmess="pT"
+set showtabline=multiple
+set sizefmt=units:iec,precision:1,nospace
+set slowfs=curlftpfs
+set smartcase
+set sort="+iname"
+set sortgroups=""
+set sortnumbers
+set sortorder=ascending
+set statusline="%1*[%A]%7*|%5*%u:%g%7*|%2*%d%7*|%[%6*%r%7*|%]%4*%=%T"
+set syncregs=""
+set syscalls
+set tablabel="%0*%[(%n)%]%[%[%T{tree}%]%[{%c}%]@%]%p%0*"
+set tabline=""
+set tabprefix="[%0*%N:"
+set tabsuffix="]"
+set tabscope=pane
+set tabstop=4
+if $DISPLAY != ""
+set timefmt="%H:%M\ %m/%d/%y"
+else
+set timefmt="%Y-%m-%d %H:%M:%S"
+endif
+set timeoutlen=2000
+set notitle
+set trash
+set trashdir=/var/tmp/Trash,$HOME/.Trash
+set undolevels=99
+if $DISPLAY != ""
+set viewcolumns=-{name},{rating},17{mtime}
+else
+set viewcolumns=-{name},{rating},22{mtime}
+endif
+set vicmd="vimux"
+set vixcmd="vimux"
+set vifminfo=tui,tabs,savedirs,ratings,chistory,shistory
+set vimhelp
+set wildinc=:*
+set wildmenu
+set wildstyle=popup
+set wordchars="1-8,14-31,33-255"
+set nowrap
+set wrapscan
 
 "add by sim1+++++++++++++++
-set redolastcmdcfm
-set prefervsplit
-set maxundotabs=3
-set previewmaxsize=3000
+if executable('vim')
+set vimabs="vim"
+elseif executable('nvim')
+set vimabs="nvim"
+endif
+
 set nocdaftermkdir
+set maxundotabs=3
+set prefervsplit
+set previewmaxsize=3000
+set redolastcmdcfm
 set noshowsystime
 set systimeoffset=15
 set topmidfiller="+"
+
+"if $TERM == 'screen-256color' || $TERM == 'st-256color' || $TERM == 'xterm-256color'
+if $TERM == "xterm-256color"
+set botmidfiller="+"
+else
 set botmidfiller="☯"
+endif
 
 if $DISPLAY == ""
+set clipboardprg="tmux show-buffer"
 set paneonetag=" ㈠"
 set panetwotag=" ㈡"
 set sbaronetag="㊧"
 set sbartwotag="㊨"
 set systimeprefix="〔"
 set systimesuffix="〕"
-set clipboardprg="tmux show-buffer"
 else
+set clipboardprg="xsel -ob"
 set paneonetag=" ☰"
 set panetwotag=" ☷"
 set sbaronetag="卍"
 set sbartwotag="卐"
 set systimeprefix="【"
 set systimesuffix="】"
-set clipboardprg="xsel -ob"
-endif
-
-if $TERM == "xterm-256color"
-set botmidfiller="+"
 endif
 "add by sim1---------------
-
-"if $TERM == 'screen-256color' || $TERM == 'st-256color' || $TERM == 'xterm-256color'
-if $DISPLAY != ""
-colorscheme lynna
-else
-colorscheme chris
-endif
 
 "statusline: left-bar, right-bar
 "cmdline: status-bar, input-bar, ruler-bar
