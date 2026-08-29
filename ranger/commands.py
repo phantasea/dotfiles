@@ -102,6 +102,10 @@ class toggle_split(Command):
             self.fm.settings.dirname_in_tabs = False
             self.fm.execute_console("default_linemode devicons")
 
+        self.fm.reset()
+        self.fm.tab_move(1)
+        self.fm.tab_move(1)
+
 
 class cycle_sort(Command):
     """
