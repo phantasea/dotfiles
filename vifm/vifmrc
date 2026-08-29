@@ -28,7 +28,7 @@ nnoremap z<tab>    <nop>
 " <cr> = <c-m>
 "use built-in map, :select<cr> has side-effect for where stop
 "vnoremap <cr>     :select<cr>
-nnoremap  <cr>     :cyclesort<cr>
+nnoremap  <cr>     :if &lsview == 1 && filetype('.') == 'dir' | exec 'norm! gl' | else | togglesort | endif<cr>
 nnoremap b<cr>     :bmgo<space>
 nnoremap c<cr>     <nop>
 nnoremap f<cr>     <nop>
@@ -39,7 +39,7 @@ nnoremap s<cr>     :shell<cr>
 nnoremap x<cr>     <nop>
 nnoremap z<cr>     :!dotify %f<cr>
 
-nnoremap  <bs>     <c-h>
+nnoremap  <bs>     :cyclesort<cr>
 mnoremap  <bs>     <c-b>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
@@ -327,7 +327,6 @@ nnoremap  s> <c-w>>
 nnoremap  s= <c-w>=
 nnoremap  s| <c-w>|
 nnoremap  s_ <c-w>_
-nnoremap  s\ :togglesort<cr>
 nnoremap gS  :%s//g<left><left>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
@@ -651,9 +650,11 @@ command! toggletab
 let g:sortord = 1
 command! togglesort
      \ : if g:sortord
-     \ |   exec 'set sortorder=descending'
+     \ |   setl sortorder=descending
+     \ |   echo 'sortorder=descending'
      \ | else
-     \ |   exec 'set sortorder=ascending'
+     \ |   setl sortorder=ascending
+     \ |   echo 'sortorder=ascending'
      \ | endif
      \ | let g:sortord = !g:sortord
 
@@ -686,9 +687,7 @@ command! cyclesplit
      \ | endif
 
 command! cyclesort
-     \ : if &lsview == 1 && filetype('.') == 'dir'
-     \ |   exec 'norm! gl'
-     \ | elseif &sort == '+iname'
+     \ : if &sort == '+iname'
      \ |   setl sort=-mtime
      \ |   echo 'sorted by -mtime'
      \ | elseif &sort == '-mtime,+name'
