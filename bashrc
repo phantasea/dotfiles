@@ -221,6 +221,19 @@ if [ -f "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
 
+#in new tmux window, the $GUITERM lost
+tmux_sid=$(tmux display-message -p '#S')
+if [ $tmux_sid -eq 1 ]; then
+    export GUITERM="myst"
+    tmux set-environment GUITERM "myst"
+elif [ $tmux_sid -eq 2 ]; then
+    export GUITERM="wezterm"
+    tmux set-environment GUITERM "wezterm"
+elif [ $tmux_sid -eq 3 ]; then
+    export GUITERM="xterm"
+    tmux set-environment GUITERM "xterm"
+fi
+
 cd ~/temp
 
 # vim: foldmethod=marker

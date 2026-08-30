@@ -393,7 +393,9 @@ else
 colorscheme chris
 endif
 
+if $GUITERM != "xterm"
 source $VIFM/devicons
+endif
 
 "xxxoptions
 "toptreestats only works while using built-in tree viewer
@@ -518,7 +520,7 @@ set systimeoffset=15
 set topmidfiller="+"
 
 "if $TERM == 'screen-256color' || $TERM == 'st-256color' || $TERM == 'xterm-256color'
-if $TERM == "xterm-256color"
+if $GUITERM == "wezterm"
 set botmidfiller="+"
 else
 set botmidfiller="☯"
