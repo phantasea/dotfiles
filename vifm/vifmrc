@@ -150,15 +150,16 @@ nnoremap <wait>  ;j  :<c-u>exec '.+'.v:count '| normal gf'<cr>
 nnoremap <wait>  ;k  :<c-u>exec '.-'.v:count '| normal gf'<cr>
 nnoremap <wait>  ;i  :imgall<cr>
 nnoremap <wait>  ;I  :imgrall<cr>
+nnoremap <wait>  ;p  "Ap
+nnoremap <wait>  ;P  "AP
 nnoremap <wait>  ;r  cW<c-u>
 nnoremap <wait>  ;s  :! ls -p | grep -v / | sort -t' ' -k2 %m<cr>
 nnoremap <wait>  ;x  :s/\.html$/.txt/g<cr>
 nnoremap <wait>  ;y  "AY
-nnoremap <wait>  ;p  "Ap
-nnoremap <wait>  ;P  "AP
+nnoremap <wait>  ;w  :!tmux split "watch -n 8 tsp"<cr>
 
-nnoremap  ;; ;
-nnoremap  ,, ,
+nnoremap <wait>  ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
+nnoremap <wait>  ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
 
 nnoremap  0  gg
 nnoremap  ^  gg
@@ -294,14 +295,17 @@ vnoremap  r  cw
 nnoremap  r  cW
 nnoremap  R  cw
 qnoremap  s  <c-w>
-nnoremap  sa :exec "select /\.".expand('%c:e')."$/i"<cr>
+nnoremap  S  :s//g<left><left>
+vnoremap  S  :s//g<left><left>
+nnoremap  sa :%s//g<left><left>
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sc :selcat<cr>gs
 vnoremap  sc :selcat<cr>gv
-nnoremap  sd :if selected() < 2 | difftwowin | else | diffonewin | endif<cr>
-vnoremap  sd :if selected() < 2 | difftwowin | else | diffonewin | endif<cr>
+nnoremap  sd :if selected() >= 2 | diffonewin | else | difftwowin | endif<cr>
+vnoremap  sd :if selected() >= 2 | diffonewin | endif<cr>
 nnoremap  sD :compare bycontents listall ofboth<cr>
-nnoremap  se :suedit<cr>
+nnoremap  se :exec "select /\.".expand('%c:e')."$/i"<cr>
+nnoremap  sE :suedit<cr>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
 nnoremap  sI :switch<cr>:sync %c<cr>:switch<cr>
 nnoremap  sl :alink<cr>
@@ -314,9 +318,8 @@ nnoremap  sR :suremove<cr>
 nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
 nnoremap  st :if getpanetype() == regular | tree | else | exec 'norm! gh' | endif<cr>
-nnoremap  sv :setpreviewprg<cr>
-nnoremap  sw :!tmux split "watch -n 8 tsp"<cr>
-nnoremap  sW :!setwallpaper %c %i<cr>
+nnoremap  sv :setpreviewprog<cr>
+nnoremap  sw :!setwallpaper %c %i<cr>
 nnoremap  sx <c-w>x:switch<cr>
 nnoremap  sH <c-w>H
 nnoremap  sL <c-w>L
@@ -327,9 +330,6 @@ nnoremap  s> <c-w>>
 nnoremap  s= <c-w>=
 nnoremap  s| <c-w>|
 nnoremap  s_ <c-w>_
-nnoremap gS  :%s//g<left><left>
-nnoremap  S  :s//g<left><left>
-vnoremap  S  :s//g<left><left>
 nnoremap gs  :select //i<left><left>
 nnoremap gt  gs
 nnoremap  t  tj
@@ -337,9 +337,6 @@ nnoremap  T  kt
 nnoremap  U  <c-r>
 qnoremap  v  q
 nnoremap gv  gv
-nnoremap ovn :view next<cr>
-nnoremap ovp :view prev<cr>
-nnoremap zv  :explore<cr>
 qnoremap  w  W
 nnoremap  w  :set millerview!<cr>
 nnoremap  W  :togglewide<cr>
@@ -364,7 +361,9 @@ nnoremap cy  :cyankbasename<cr>
 nnoremap cY  :cyankpathname<cr>
 nnoremap xy  :xyankbasename<cr>
 nnoremap xY  :xyankpathname<cr>:echo expand('%"d') "is yanked"<cr>
-nnoremap  ze :if filetype('.') == 'dir' | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
+nnoremap  zn :view next<cr>
+nnoremap  zp :view prev<cr>
+nnoremap  zv :explore<cr>
 nnoremap  z. zA
 " }}}
 
@@ -738,7 +737,7 @@ command! batchpreview
      \ |   exec 'norm ss'
      \ | endif
 
-command! setpreviewprg
+command! setpreviewprog
      \ : if &previewprg == ''
      \ |   setl previewprg='git log --color -- %c 2>&1'
      \ |   view!
