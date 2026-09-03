@@ -150,12 +150,9 @@ nnoremap <wait>  ;j  :<c-u>exec '.+'.v:count '| normal gf'<cr>
 nnoremap <wait>  ;k  :<c-u>exec '.-'.v:count '| normal gf'<cr>
 nnoremap <wait>  ;i  :imgall<cr>
 nnoremap <wait>  ;I  :imgrall<cr>
-nnoremap <wait>  ;p  "Ap
-nnoremap <wait>  ;P  "AP
 nnoremap <wait>  ;r  cW<c-u>
 nnoremap <wait>  ;s  :! ls -p | grep -v / | sort -t' ' -k2 %m<cr>
 nnoremap <wait>  ;x  :s/\.html$/.txt/g<cr>
-nnoremap <wait>  ;y  "AY
 nnoremap <wait>  ;w  :!tmux split "watch -n 8 tsp"<cr>
 
 nnoremap <wait>  ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
@@ -191,16 +188,15 @@ qnoremap  A  <nop>
 nnoremap  A  za
 nnoremap ga  gA
 nnoremap  b/ :find<space>
-nnoremap  bb :bmarks<cr>
+nnoremap  bb :marks<cr>
 nnoremap  bc :command<cr>
-nnoremap  bC :change<cr>
 nnoremap  bf :file<cr>
 nnoremap  bg :bmgo<space>
+nnoremap  bh :help<cr>
 nnoremap  bj :jobs<cr>
 nnoremap  bk :nmap<cr>
 nnoremap  bl :messages<cr>
-nnoremap  bm :marks<cr>
-nnoremap  bM :media<cr>
+nnoremap  bm :media<cr>
 nnoremap  br :ratings<cr>
 nnoremap  bs :sort<cr>
 nnoremap  bt :lstrash<cr>
@@ -209,28 +205,26 @@ nnoremap  bo :copen<cr>
 nnoremap  bv :batchpreview<cr>
 nnoremap  bw :!tsp -l<cr>
 nnoremap gb  :file &<cr>l
-nnoremap  c. cw<c-a><c-d><cr>
 nnoremap  cc :change<cr>
+vnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
-nnoremap  cs :colorscheme<space><tab>
-nnoremap  cS :cds///I<left><left><left>
 nnoremap  cg :goto<space>
+nnoremap  cl cl
+vnoremap  cl cl
 nnoremap  cm :chmod<space>
 vnoremap  cm :chmod<space>
-nnoremap  cM cp
-vnoremap  cM cp
-nnoremap  cl cl
+nnoremap  cp cp
+vnoremap  cp cp
+nnoremap  cs :colorscheme<space><tab>
+nnoremap  cS :cds///I<left><left><left>
 nnoremap  ct :!touch -m -t  %f<left><left><left>
 nnoremap  cv av
 vnoremap  cv <cr>
+nnoremap  cy "AY
 nnoremap  ci :switch<cr>:copy<cr>:switch<cr>
 vnoremap  ci :switch<cr>:copy<cr>:switch<cr>
 nnoremap  co :copy<cr>
 vnoremap  co :copy<cr>
-nnoremap  ci :copyfromother<cr>
-vnoremap  ci :copyfromother<cr>
-nnoremap  co :copytoother<cr>
-vnoremap  co :copytoother<cr>
 nnoremap  cI :sucopyfromother<cr>
 vnoremap  cI :sucopyfromother<cr>
 nnoremap  cO :sucopytoother<cr>
@@ -285,6 +279,8 @@ nnoremap  ot :exec "filter! /\.".expand('%c:e')."$/i"<cr>
 nnoremap  o. zA
 nnoremap  O  zO
 qnoremap  p  N
+nnoremap gp  "Ap
+nnoremap gP  "AP
 nnoremap  q  ZZ
 vnoremap  q  ZZ
 nnoremap  Q  :qall<cr>
@@ -303,7 +299,7 @@ nnoremap  sc :selcat<cr>gs
 vnoremap  sc :selcat<cr>gv
 nnoremap  sd :if selected() >= 2 | diffonewin | else | difftwowin | endif<cr>
 vnoremap  sd :if selected() >= 2 | diffonewin | endif<cr>
-nnoremap  sD :compare bycontents listall ofboth<cr>
+nnoremap  sD :compare groupids<cr>
 nnoremap  se :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sE :suedit<cr>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
@@ -317,7 +313,7 @@ nnoremap  sr :source $VIFM/vifmrc<cr>
 nnoremap  sR :suremove<cr>
 nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
-nnoremap  st :if getpanetype() == regular | tree | else | exec 'norm! gh' | endif<cr>
+nnoremap  st :if getpanetype() == "regular" | tree | else | exec 'norm! gh' | endif<cr>
 nnoremap  sv :setpreviewprog<cr>
 nnoremap  sw :!setwallpaper %c %i<cr>
 nnoremap  sx <c-w>x:switch<cr>
@@ -344,10 +340,6 @@ nnoremap  xi :switch<cr>:move<cr>:switch<cr>
 vnoremap  xi :switch<cr>:move<cr>:switch<cr>
 nnoremap  xo :move<cr>
 vnoremap  xo :move<cr>
-nnoremap  xi :movefromother<cr>
-vnoremap  xi :movefromother<cr>
-nnoremap  xo :movetoother<cr>
-vnoremap  xo :movetoother<cr>
 nnoremap  xI :sumovefromother<cr>
 vnoremap  xI :sumovefromother<cr>
 nnoremap  xO :sumovetoother<cr>
