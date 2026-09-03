@@ -39,7 +39,7 @@ nnoremap s<cr>     :shell<cr>
 nnoremap x<cr>     <nop>
 nnoremap z<cr>     :!dotify %f<cr>
 
-nnoremap  <bs>     :cyclesort<cr>
+nnoremap  <bs>     :if &lsview == 1 | exec 'norm! gh' | else | cyclesort | endif<cr>
 mnoremap  <bs>     <c-b>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
@@ -161,14 +161,15 @@ nnoremap <wait>  ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  |
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
-nnoremap  @  :shell<cr>
+nnoremap  %  %zz
+nnoremap  &  #
 nnoremap  !  !!  %c<left><left><left>
 nnoremap g!  :!./%c:. &<cr>
 nnoremap b!  !!  %c &<left><left><left><left><left>
 nnoremap g.  hgfl:set nodotfiles<cr>
-nnoremap  &  #
-nnoremap  #  :cyclenumber<cr>
 nnoremap  ~  :cd ~<cr>
+nnoremap  @  :shell<cr>
+nnoremap  #  :cyclenumber<cr>
 nnoremap  ?  :file<space><tab>
 nnoremap  \  :invert s<cr>
 vnoremap  \  :invert s<cr>
@@ -183,6 +184,7 @@ mnoremap  ]  zL
 nnoremap  a  GVgg
 nnoremap  a  :%select<cr>
 vnoremap  a  ggoG
+vnoremap  a  :%select<cr>
 qnoremap  a  <nop>
 qnoremap  A  <nop>
 nnoremap  A  za
@@ -217,7 +219,7 @@ nnoremap  cp cp
 vnoremap  cp cp
 nnoremap  cs :colorscheme<space><tab>
 nnoremap  cS :cds///I<left><left><left>
-nnoremap  ct :!touch -m -t  %f<left><left><left>
+nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
 nnoremap  cv av
 vnoremap  cv <cr>
 nnoremap  cy "AY
@@ -229,22 +231,20 @@ nnoremap  cI :sucopyfromother<cr>
 vnoremap  cI :sucopyfromother<cr>
 nnoremap  cO :sucopytoother<cr>
 vnoremap  cO :sucopytoother<cr>
-nnoremap gc  :edit ./.git/config<cr>
 nnoremap  C  :clone %c.bak<cr>
 nnoremap  d  dd
 nnoremap  D  DD
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
-nnoremap  E  :!vim %c<cr>
-nnoremap ge  :empty<cr>
+nnoremap  E  :empty
 nnoremap  f/ =
 mnoremap  h  q
 dnoremap  h  q
 qnoremap  i  <nop>
-nnoremap  i  :touch  ""<left>
+nnoremap  i  :touch ""<left>
+nnoremap gi  :touch ""<left><c-x>c
 nnoremap  I  :mkdir! ""<left>
-nnoremap gi  :touch  ""<left><c-x>c
 nnoremap gI  :mkdir! ""<left><c-x>c
 nnoremap gj  ]R
 nnoremap sj  ]S
