@@ -143,7 +143,8 @@ map <wait>  -ox  :chmod o-x<cr>
 " nnoremap bu  :!fusermount -u %f<cr>
 " }}}
 
-" :exec "norm \<C-w>s" works since vifm v0.15 (must use double-quotes)
+" :exec "norm \<C-w>s" works since vifm v0.15
+" (must use double-quotes to accept escape-sequence)
 " keymaps-2 {{{
 nnoremap <wait>  ;f  :filter<space>
 nnoremap <wait>  ;j  :<c-u>exec '.+'.v:count '| normal gf'<cr>
@@ -281,7 +282,7 @@ nnoremap  or zS
 nnoremap  os :invert s<cr>zf
 nnoremap  ot :exec "filter! /\.".expand('%c:e')."$/i"<cr>
 nnoremap  o. zA
-nnoremap  O  zO
+nnoremap  O  O
 qnoremap  p  N
 nnoremap gp  "Ap
 nnoremap gP  "AP
@@ -297,7 +298,8 @@ nnoremap  R  cw
 qnoremap  s  <c-w>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
-nnoremap  sa :%s//g<left><left>
+nnoremap gS  :%s//g<left><left>
+nnoremap  sa :select //i<left><left>
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sc :selcat<cr>gs
 vnoremap  sc :selcat<cr>gv
@@ -329,7 +331,7 @@ nnoremap  s> <c-w>>
 nnoremap  s= <c-w>=
 nnoremap  s| <c-w>|
 nnoremap  s_ <c-w>_
-nnoremap gs  :select //i<left><left>
+nnoremap gs  gS
 nnoremap gt  gs
 nnoremap  t  tj
 nnoremap  T  kt
