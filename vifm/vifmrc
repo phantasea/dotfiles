@@ -157,6 +157,7 @@ nnoremap <wait>  ;w  :!tmux split "watch -n 8 tsp"<cr>
 
 nnoremap <wait>  ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
 nnoremap <wait>  ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
+nnoremap <wait>  ,c  :cds///i<left><left><left>
 
 nnoremap  0  gg
 nnoremap  ^  gg
@@ -175,7 +176,7 @@ nnoremap  \  :invert s<cr>
 vnoremap  \  :invert s<cr>
 nnoremap  |  <c-w>=
 nnoremap  <  :vswinmoveleft<cr>
-nnoremap  >  :vswinmoveright<cr>
+nnoremap  >  :vswinmoverite<cr>
 mnoremap  <  3zh
 mnoremap  >  3zl
 mnoremap  [  zH
@@ -206,7 +207,6 @@ nnoremap  bu :undolist<cr>
 nnoremap  bo :copen<cr>
 nnoremap  bv :batchpreview<cr>
 nnoremap  bw :!tsp -l<cr>
-nnoremap gb  :file &<cr>l
 nnoremap  cc :change<cr>
 vnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
@@ -218,7 +218,6 @@ vnoremap  cm :chmod<space>
 nnoremap  cp cp
 vnoremap  cp cp
 nnoremap  cs :colorscheme<space><tab>
-nnoremap  cS :cds///I<left><left><left>
 nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
 nnoremap  cv av
 vnoremap  cv <cr>
@@ -264,9 +263,14 @@ nnoremap  mi :fileinfo<cr>
 nnoremap  mI :tsls<cr>
 nnoremap  mj 2gM
 nnoremap  mk 3gM
-nnoremap  mm gMzz
 nnoremap gm  gMzz
 vnoremap  m  gM
+nnoremap  mc :cmap<cr>
+nnoremap  md :dmap<cr>
+nnoremap  mm :mmap<cr>
+nnoremap  mn :nmap<cr>
+nnoremap  mq :qmap<cr>
+nnoremap  mv :vmap<cr>
 nnoremap  oo =
 nnoremap  of zF
 nnoremap  od zD
@@ -299,7 +303,6 @@ nnoremap  sc :selcat<cr>gs
 vnoremap  sc :selcat<cr>gv
 nnoremap  sd :if selected() >= 2 | diffonewin | else | difftwowin | endif<cr>
 vnoremap  sd :if selected() >= 2 | diffonewin | endif<cr>
-nnoremap  sD :compare groupids<cr>
 nnoremap  se :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sE :suedit<cr>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
@@ -336,6 +339,7 @@ nnoremap gv  gv
 qnoremap  w  W
 nnoremap  w  :set millerview!<cr>
 nnoremap  W  :togglewide<cr>
+nnoremap  xc :compare groupids<cr>
 nnoremap  xi :switch<cr>:move<cr>:switch<cr>
 vnoremap  xi :switch<cr>:move<cr>:switch<cr>
 nnoremap  xo :move<cr>
@@ -353,10 +357,10 @@ nnoremap cy  :cyankbasename<cr>
 nnoremap cY  :cyankpathname<cr>
 nnoremap xy  :xyankbasename<cr>
 nnoremap xY  :xyankpathname<cr>:echo expand('%"d') "is yanked"<cr>
+nnoremap  zh :set hlsearch!<cr>
 nnoremap  zn :view next<cr>
 nnoremap  zp :view prev<cr>
 nnoremap  zv :explore<cr>
-nnoremap  z. zA
 " }}}
 
 " abbrevs {{{
@@ -712,7 +716,7 @@ command! vswinmoveleft
      \ |   exec 'norm s>'
      \ | endif
 
-command! vswinmoveright
+command! vswinmoverite
      \ : if layoutis('vsplit') && paneisat('left')
      \ |   exec 'norm s>'
      \ | elseif layoutis('vsplit') && paneisat('right')
