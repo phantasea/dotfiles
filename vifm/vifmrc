@@ -403,6 +403,8 @@ source $VIFM/bookmarks
 " options {{{
 plugin whitelist viewcolumn
 
+screen!
+
 if $DISPLAY != ""
 colorscheme lynna
 else
@@ -415,18 +417,19 @@ endif
 
 "xxxoptions
 "toptreestats only works while using built-in tree viewer
-set previewoptions=graphicsdelay:30000,maxtreedepth:3,toptreestats
+set previewoptions=graphicsdelay:50000,maxtreedepth:3,toptreestats
 set caseoptions="pg"
 set cpoptions="fs"
 set cvoptions=autocmds
+set hloptions=filehi:allrows
 set iooptions=datasync,fastfilecloning
 set lsoptions=transposed,columncount:0
 set milleroptions=lsize:2,csize:5,rsize:3,rpreview:dirs
 set navoptions="open:dirs"
 set sessionoptions=tui,tabs,savedirs,ratings
-set suggestoptions=normal,visual,view,keys,marks,registers:3,delay:1000
+set suggestoptions=normal,visual,view,keys,marks,registers:5,delay:1000
 set tuioptions="uv"
-set uioptions=
+set uioptions=iodetails
 
 "xxxprg
 set aproposprg='apropos %a'
@@ -452,11 +455,6 @@ set fusehome=/tmp/vifm_FUSE
 set nogdefault
 set histcursor=dirmark,direnter
 set history=32
-if $DISPLAY != ""
-set hloptions=filehi:onerow
-else
-set hloptions=filehi:allrows
-endif
 set hlsearch
 set noiec
 set ignorecase
@@ -465,7 +463,7 @@ set nokeepsel
 set laststatus
 set nolsview
 set millerview
-set mintimeoutlen=150
+set mintimeoutlen=200
 set mouse=""
 set number
 set numberwidth=1
@@ -475,6 +473,8 @@ set rulerformat="%[%H%]%[='%F'%]%[(+%x)%]%= %E/%a %3l/%-3S --%P--"
 set norunexec
 set noscrollbind
 set scrolloff=0
+set shell="$SHELL"
+set shellcmdflag="-c"
 set shortmess="pT"
 set showtabline=multiple
 set sizefmt=units:iec,precision:1,nospace
@@ -494,11 +494,11 @@ set tabsuffix="]"
 set tabscope=pane
 set tabstop=4
 if $DISPLAY != ""
-set timefmt="%H:%M\ %m/%d/%y"
+set timefmt="%H:%M %m/%d/%y"
 else
 set timefmt="%Y-%m-%d %H:%M:%S"
 endif
-set timeoutlen=2000
+set timeoutlen=1000
 set notitle
 set trash
 set trashdir=/var/tmp/Trash,$HOME/.Trash
@@ -512,9 +512,9 @@ set vicmd="vimux"
 set vixcmd="vimux"
 set vifminfo=tui,tabs,savedirs,ratings,chistory,shistory
 set vimhelp
-set wildinc=:*
+set wildinc=":*"
 set wildmenu
-set wildstyle=popup
+set wildstyle=bar
 set wordchars="1-8,14-31,33-255"
 set nowrap
 set wrapscan
@@ -561,6 +561,10 @@ set systimesuffix="】"
 endif
 "add by sim1---------------
 
+windo filter /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume
+             \|RECYCLE|sogoupinyin|华为手机助手)/
+" }}}
+
 "statusline: left-bar, right-bar
 "cmdline: status-bar, input-bar, ruler-bar
 
@@ -569,9 +573,6 @@ endif
 "3.name/perm filter
 "  :filter -- manu/explicit filter
 "  "zf/zs" -- auto/implicit filter
-
-windo filter /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume|RECYCLE|sogoupinyin|华为手机助手)/
-" }}}
 
 " commands {{{
 " see ':help vifm-macros' and ':help vifm-filename-modifiers' for more

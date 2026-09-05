@@ -9,7 +9,7 @@ fi
 
 export FZF_COMPLETION_TRIGGER='**'
 
-export FZF_DEFAULT_COMMAND='fd --type file --max-depth 3'
+export FZF_DEFAULT_COMMAND='fd --follow --type file --max-depth 3'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Black=0  Red=1  Green=2  Yellow=3  Blue=4  Magenta=5  Cyan=6  White=7
