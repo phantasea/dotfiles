@@ -127,6 +127,41 @@ class cycle_sort(Command):
             self.fm.settings['sort_reverse'] = False
 
 
+class smart_cycle_sels(Command):
+    """
+    cancel filters if no file is selected
+    cycle selection boundaries if files are selected
+    """
+
+    def execute(self):
+        cwd = self.fm.thisdir
+        all = len(set(cwd.marked_items))
+        if all == 0:
+            self.fm.execute_console('scout -fpsv')
+            self.fm.execute_console('filter_stack clear')
+            self.fm.execute_console('narrow False')
+            self.fm.execute_console('filter_inode_type')
+            return
+
+        self.fm.cycle_sels()
+
+
+class smart_goto_mid(Command):
+    """
+    in visual mode: jump to the middle of current visual selection
+    in normal mode: jump to the middle of current file list
+    """
+
+    def execute(self):
+        if self.mode == 'normal':
+            self.fm.move_mid(2)
+            return
+
+        if self.mode == 'visual':
+            self.fm.visual_to_mid
+            return
+
+
 class display_ratings(Command):
     """
     :display_ratings
