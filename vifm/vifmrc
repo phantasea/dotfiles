@@ -306,6 +306,7 @@ nnoremap gp  "Ap
 nnoremap gP  "AP
 nnoremap  q  ZZ
 vnoremap  q  ZZ
+qnoremap  q  <c-w>z
 nnoremap  Q  :qall<cr>
 nnoremap gq  q
 nnoremap gr  :grep<space>
@@ -473,7 +474,7 @@ set rulerformat="%[%H%]%[='%F'%]%[(+%x)%]%= %E/%a %3l/%-3S --%P--"
 set norunexec
 set noscrollbind
 set scrolloff=0
-set shell="$SHELL"
+set shell="/usr/bin/bash"
 set shellcmdflag="-c"
 set shortmess="pT"
 set showtabline=multiple
