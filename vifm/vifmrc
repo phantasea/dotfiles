@@ -12,9 +12,9 @@ nnoremap  <F11>    :diffonewin<cr>
 nnoremap  <F12>    :!cmatrix -abs -C cyan<cr>
 
 "<tab> = <c-i>
+"nnoremap <tab>    :toggletab<cr>
 qnoremap  <s-tab>  <tab>
-nnoremap  <s-tab>  :toggletab<cr>
-nnoremap  <tab>    :fileinfo<cr>
+nnoremap  <s-tab>  :fileinfo<cr>
 nnoremap b<tab>    <nop>
 nnoremap c<tab>    <nop>
 nnoremap f<tab>    <nop>

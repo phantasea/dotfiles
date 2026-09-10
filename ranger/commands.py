@@ -37,7 +37,8 @@ class empty(Command):
     def execute(self):
         #self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]*}")
         #self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]+}")
-        self.fm.run("rm -rf $HOME/.Trash/*")
+        #self.fm.run("rm -rf $HOME/.Trash/*")
+        self.fm.run("rm -rf $TRASH_DIR/*")
 
 
 class filter_ext_type(Command):
