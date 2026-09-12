@@ -152,22 +152,23 @@ map <wait>  -ox  :chmod o-x<cr>
 " nnoremap bu  :!fusermount -u %f<cr>
 " }}}
 
-" :exec "norm \<C-w>s" works since vifm v0.15
+" :exec "norm \<c-w>s" works since vifm v0.15
 " (must use double-quotes to accept escape-sequence)
 " keymaps-2 {{{
+nnoremap <wait>  ;d  :!sdcv  %m<left><left><left>
 nnoremap <wait>  ;f  :filter<space>
 nnoremap <wait>  ;j  :<c-u>exec '.+'.v:count '| normal gf'<cr>
 nnoremap <wait>  ;k  :<c-u>exec '.-'.v:count '| normal gf'<cr>
 nnoremap <wait>  ;i  :imgall<cr>
 nnoremap <wait>  ;I  :imgrall<cr>
-nnoremap <wait>  ;r  cW<c-u>
 nnoremap <wait>  ;s  :! ls -p | grep -v / | sort -t' ' -k2 %m<cr>
 nnoremap <wait>  ;x  :s/\.html$/.txt/g<cr>
 nnoremap <wait>  ;w  :!tmux split "watch -n 8 tsp"<cr>
 
+nnoremap <wait>  ,d  :!sdcv  %q<left><left><left>
+
 nnoremap <wait>  ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
 nnoremap <wait>  ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
-nnoremap <wait>  ,c  :cds///i<left><left><left>
 
 nnoremap  0  gg
 nnoremap  ^  gg
@@ -312,8 +313,8 @@ nnoremap gq  q
 nnoremap gr  :grep<space>
 mnoremap gr  :grep<space>
 vnoremap  r  cw
-nnoremap  r  cW
-nnoremap  R  cw
+nnoremap  r  cw
+nnoremap  R  cW<c-u>
 qnoremap  s  <c-w>
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
@@ -404,7 +405,8 @@ source $VIFM/bookmarks
 " options {{{
 plugin whitelist viewcolumn
 
-screen!
+"when enabled the 'l' cmd not working to open picture
+"screen!
 
 if $DISPLAY != ""
 colorscheme lynna

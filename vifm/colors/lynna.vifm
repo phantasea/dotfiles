@@ -35,7 +35,7 @@ hi Menu         cterm=none                    ctermfg=white    ctermbg=none
 hi Dialog       cterm=bold                    ctermfg=white    ctermbg=none
 
 hi CmdLine      cterm=bold                    ctermfg=208      ctermbg=236
-hi ErrorMsg     cterm=bold                    ctermfg=white    ctermbg=164
+hi ErrorMsg     cterm=bold                    ctermfg=white    ctermbg=99
 
 hi Directory    cterm=none                    ctermfg=117      ctermbg=default
 hi Executable   cterm=none                    ctermfg=78       ctermbg=default
