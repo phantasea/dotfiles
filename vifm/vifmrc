@@ -29,13 +29,13 @@ nnoremap z<tab>    <nop>
 "use built-in map, :select<cr> has side-effect for where stop
 "vnoremap <cr>     :select<cr>
 nnoremap  <cr>     :if &lsview == 1 && filetype('.') == 'dir' | exec 'norm! gl' | else | togglesort | endif<cr>
-nnoremap b<cr>     :bmgo<space>
+nnoremap b<cr>     <nop>
 nnoremap c<cr>     <nop>
 nnoremap f<cr>     <nop>
-nnoremap g<cr>     <nop>
+nnoremap g<cr>     <c-g>
 nnoremap m<cr>     <nop>
 nnoremap o<cr>     <nop>
-nnoremap s<cr>     :shell<cr>
+nnoremap s<cr>     <nop>
 nnoremap x<cr>     <nop>
 nnoremap z<cr>     :!dotify %f<cr>
 
@@ -227,6 +227,8 @@ nnoremap  bv :batchpreview<cr>
 nnoremap  bV :version<cr>
 nnoremap  bw :!tsp -l<cr>
 nnoremap  bW :pwd<cr>
+nnoremap  B  av
+vnoremap  B  <cr>
 nnoremap  cc :change<cr>
 vnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
@@ -432,7 +434,7 @@ set navoptions="open:dirs"
 set sessionoptions=tui,tabs,savedirs,ratings
 set suggestoptions=normal,visual,view,keys,marks,registers:5,delay:1000
 set tuioptions="uv"
-set uioptions=iodetails
+set uioptions=
 
 "xxxprg
 set aproposprg='apropos %a'
