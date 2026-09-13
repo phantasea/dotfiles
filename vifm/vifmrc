@@ -324,14 +324,14 @@ vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  cW<c-u>
 qnoremap  s  <c-w>
-nnoremap  sa :select //i<left><left>
+nnoremap  sa :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sc :selcat<cr>gs
 vnoremap  sc :selcat<cr>gv
+nnoremap  sC :!cat %f >  %i<left><left><left>
 nnoremap  sd :if selected() >= 2 | diffonewin | else | difftwowin | endif<cr>
 vnoremap  sd :if selected() >= 2 | diffonewin | endif<cr>
-nnoremap  se :exec "select /\.".expand('%c:e')."$/i"<cr>
-nnoremap  sE :suedit<cr>
+nnoremap  se :sudoedit<cr>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
 nnoremap  sI :switch<cr>:sync %c<cr>:switch<cr>
 nnoremap  sl :alink<cr>
@@ -627,7 +627,7 @@ command! sumovetoother   sudo mv -i %f %D
 command! sucopytoother   sudo cp -R %f %D
 command! sumovefromother sudo mv -i %F %d
 command! sucopyfromother sudo cp -R %F %d
-command! suedit          sudoedit %c
+command! sudoedit        sudoedit %c
 command! suremove        sudo rm -i %f
 command! suchgown        sudo chown simone:simone %f
 command! suchgmod        sudo chmod 400 %f
