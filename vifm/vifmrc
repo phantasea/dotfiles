@@ -176,8 +176,8 @@ nnoremap  $  G
 nnoremap  %  %zz
 nnoremap  &  #
 nnoremap  !  !!  %c<left><left><left>
-nnoremap g!  :!./%c:. &<cr>
 nnoremap b!  !!  %c &<left><left><left><left><left>
+nnoremap g!  :!./%c:. &<cr>
 nnoremap g.  hgfl:set nodotfiles<cr>
 nnoremap g/  /<c-y>
 nnoremap g=  =<c-y>
@@ -229,6 +229,7 @@ nnoremap  bw :!tsp -l<cr>
 nnoremap  bW :pwd<cr>
 nnoremap  B  av
 vnoremap  B  <cr>
+nnoremap gb  <nop>
 nnoremap  cc :change<cr>
 vnoremap  cc :change<cr>
 nnoremap  cd :cd<space>
@@ -253,12 +254,15 @@ vnoremap  cI :sucopyfromother<cr>
 nnoremap  cO :sucopytoother<cr>
 vnoremap  cO :sucopytoother<cr>
 nnoremap  C  :clone %c.bak<cr>
+nnoremap gc  :edit ./.git/config
 nnoremap  d  dd
 nnoremap  D  DD
+nnoremap gd  <nop>
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
 nnoremap  E  :empty<cr>
+nnoremap ge  <nop>
 nnoremap  f/ =
 mnoremap  h  q
 dnoremap  h  q
@@ -293,6 +297,7 @@ nnoremap  mm :mmap<cr>
 nnoremap  mn :nmap<cr>
 nnoremap  mq :qmap<cr>
 nnoremap  mv :vmap<cr>
+nnoremap gn  <nop>
 nnoremap  oo =
 nnoremap  of zF
 nnoremap  od zD
@@ -304,6 +309,7 @@ nnoremap  os :invert s<cr>zf
 nnoremap  ot :exec "filter! /\.".expand('%c:e')."$/i"<cr>
 nnoremap  o. zA
 nnoremap  O  gO
+nnoremap go  <nop>
 qnoremap  p  N
 nnoremap gp  "Ap
 nnoremap gP  "AP
@@ -318,9 +324,6 @@ vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  cW<c-u>
 qnoremap  s  <c-w>
-nnoremap  S  :s//g<left><left>
-vnoremap  S  :s//g<left><left>
-nnoremap gS  :%s//g<left><left>
 nnoremap  sa :select //i<left><left>
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sc :selcat<cr>gs
@@ -353,16 +356,20 @@ nnoremap  s> <c-w>>
 nnoremap  s= <c-w>=
 nnoremap  s| <c-w>|
 nnoremap  s_ <c-w>_
-nnoremap gs  gS
-nnoremap gt  gs
+nnoremap gs  :select //i<left><left>
+nnoremap  S  :s//g<left><left>
+vnoremap  S  :s//g<left><left>
+nnoremap gS  :%s//g<left><left>
 nnoremap  t  tj
 nnoremap  T  kt
+nnoremap gt  gS
 nnoremap  U  <c-r>
 qnoremap  v  q
-nnoremap gv  gv
+nnoremap gv  gS
 qnoremap  w  W
 nnoremap  w  :set millerview!<cr>
 nnoremap  W  :togglewide<cr>
+nnoremap gw  <nop>
 nnoremap  xc :compare groupids<cr>
 nnoremap  xi :switch<cr>:move<cr>:switch<cr>
 vnoremap  xi :switch<cr>:move<cr>:switch<cr>
@@ -374,6 +381,7 @@ nnoremap  xO :sumovetoother<cr>
 vnoremap  xO :sumovetoother<cr>
 nnoremap  xx :extract<cr>
 nnoremap  X  <c-w>x:switch<cr>
+nnoremap gx  <nop>
 nnoremap  y  yy
 nnoremap  Y  :yankbasename<cr>
 nnoremap gy  :yankrootname<cr>
@@ -387,6 +395,7 @@ nnoremap  zn :view next<cr>
 nnoremap  zp :view prev<cr>
 nnoremap  zv :explore<cr>
 nnoremap  zx :screen<cr>
+nnoremap gz  <nop>
 " }}}
 
 " abbrevs {{{
