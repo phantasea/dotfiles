@@ -33,12 +33,20 @@ class empty(Command):
     Without it, all files and directories of the form ..* will be deleted,
     wiping out everything in your home directory.
     """
-
     def execute(self):
-        #self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]*}")
-        #self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]+}")
-        #self.fm.run("rm -rf $HOME/.Trash/*")
-        self.fm.run("rm -rf $TRASH_DIR/*")
+        from functools import partial
+        self.fm.ui.console.ask(
+            "Confirm trash empty (y/N)",
+            partial(self._empty_trash_callback),
+            ('n', 'N', 'y', 'Y'),
+        )
+
+    def _empty_trash_callback(self, answer):
+        if answer.lower() == 'y':
+            #self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]*}")
+            #self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]+}")
+            #self.fm.run("rm -rf $HOME/.Trash/*")
+            self.fm.run("rm -rf $TRASH_DIR/*")
 
 
 class filter_ext_type(Command):

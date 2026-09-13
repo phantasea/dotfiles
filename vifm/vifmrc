@@ -258,7 +258,7 @@ nnoremap  D  DD
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
-nnoremap  E  :empty
+nnoremap  E  :empty<cr>
 nnoremap  f/ =
 mnoremap  h  q
 dnoremap  h  q
@@ -373,6 +373,7 @@ vnoremap  xI :sumovefromother<cr>
 nnoremap  xO :sumovetoother<cr>
 vnoremap  xO :sumovetoother<cr>
 nnoremap  xx :extract<cr>
+nnoremap  X  <c-w>x:switch<cr>
 nnoremap  y  yy
 nnoremap  Y  :yankbasename<cr>
 nnoremap gy  :yankrootname<cr>
@@ -871,6 +872,7 @@ command! epub2txt epub2txt %a %c &
 " }}}
 
 " autocmds {{{
+autocmd DirEnter '/var/tmp/Trash'     setl dotfiles
 autocmd DirEnter '/opt/util'          setl nomillerview lsview previewprg='bat --style="plain" -- %c'
 autocmd DirEnter '/opt/apps/vifm'     exec 'norm! fs;'
 autocmd DirEnter '~/docs/misc'        exec 'norm! zF'
@@ -884,7 +886,7 @@ autocmd DirEnter '~/pics/gifs'        setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/misc'        setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/preg'        setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/wallpaper'   setl sort='-mtime,+iname'
-autocmd DirEnter '/media/simone/*_z'  setl sort='-mtime,+iname'
+autocmd DirEnter '/media/simone/sandisk_*/**'  setl sort='-mtime,+iname'
 " }}}
 
 " filetype/fileview {{{
