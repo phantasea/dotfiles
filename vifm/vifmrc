@@ -155,6 +155,7 @@ map <wait>  -ox  :chmod o-x<cr>
 " :exec "norm \<c-w>s" works since vifm v0.15
 " (must use double-quotes to accept escape-sequence)
 " keymaps-2 {{{
+nnoremap <wait>  ;c :!cat %f >  %i<left><left><left>
 nnoremap <wait>  ;d  :!sdcv  %m<left><left><left>
 nnoremap <wait>  ;f  :filter<space>
 nnoremap <wait>  ;j  :<c-u>exec '.+'.v:count '| normal gf'<cr>
@@ -195,9 +196,7 @@ mnoremap  >  3zl
 mnoremap  [  zH
 mnoremap  ]  zL
 
-nnoremap  a  GVgg
 nnoremap  a  :%select<cr>
-vnoremap  a  ggoG
 vnoremap  a  :%select<cr>
 qnoremap  a  <nop>
 qnoremap  A  <nop>
@@ -249,10 +248,10 @@ nnoremap  ci :switch<cr>:copy<cr>:switch<cr>
 vnoremap  ci :switch<cr>:copy<cr>:switch<cr>
 nnoremap  co :copy<cr>
 vnoremap  co :copy<cr>
-nnoremap  cI :sucopyfromother<cr>
-vnoremap  cI :sucopyfromother<cr>
-nnoremap  cO :sucopytoother<cr>
-vnoremap  cO :sucopytoother<cr>
+nnoremap  cI :sudocopyin<cr>
+vnoremap  cI :sudocopyin<cr>
+nnoremap  cO :sudocopyout<cr>
+vnoremap  cO :sudocopyout<cr>
 nnoremap  C  :clone %c.bak<cr>
 nnoremap gc  :edit ./.git/config
 nnoremap  d  dd
@@ -262,7 +261,7 @@ nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
 nnoremap  E  :empty<cr>
-nnoremap ge  <nop>
+nnoremap ge  :sudoedit<cr>
 nnoremap  f/ =
 mnoremap  h  q
 dnoremap  h  q
@@ -324,14 +323,15 @@ vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  cW<c-u>
 qnoremap  s  <c-w>
-nnoremap  sa :exec "select /\.".expand('%c:e')."$/i"<cr>
+nnoremap  sa GVgg
+vnoremap  sa ggoG
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sc :selcat<cr>gs
 vnoremap  sc :selcat<cr>gv
-nnoremap  sC :!cat %f >  %i<left><left><left>
 nnoremap  sd :if selected() >= 2 | diffonewin | else | difftwowin | endif<cr>
 vnoremap  sd :if selected() >= 2 | diffonewin | endif<cr>
-nnoremap  se :sudoedit<cr>
+nnoremap  se :exec "select /\.".expand('%c:e')."$/i"<cr>
+nnoremap  sf :select //i<left><left>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
 nnoremap  sI :switch<cr>:sync %c<cr>:switch<cr>
 nnoremap  sl :alink<cr>
@@ -340,7 +340,6 @@ nnoremap  sO :sync %c<cr>
 nnoremap  sp al
 nnoremap  sq :hideui<cr>
 nnoremap  sr :source $VIFM/vifmrc<cr>
-nnoremap  sR :suremove<cr>
 nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
 nnoremap  st :if getpanetype() == "regular" | tree | else | exec 'norm! gh' | endif<cr>
@@ -356,16 +355,16 @@ nnoremap  s> <c-w>>
 nnoremap  s= <c-w>=
 nnoremap  s| <c-w>|
 nnoremap  s_ <c-w>_
-nnoremap gs  :select //i<left><left>
+nnoremap gs  gS
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
 nnoremap gS  :%s//g<left><left>
 nnoremap  t  tj
 nnoremap  T  kt
-nnoremap gt  gS
+nnoremap gt  gs
 nnoremap  U  <c-r>
 qnoremap  v  q
-nnoremap gv  gS
+nnoremap gv  gv
 qnoremap  w  W
 nnoremap  w  :set millerview!<cr>
 nnoremap  W  :togglewide<cr>
@@ -375,10 +374,10 @@ nnoremap  xi :switch<cr>:move<cr>:switch<cr>
 vnoremap  xi :switch<cr>:move<cr>:switch<cr>
 nnoremap  xo :move<cr>
 vnoremap  xo :move<cr>
-nnoremap  xI :sumovefromother<cr>
-vnoremap  xI :sumovefromother<cr>
-nnoremap  xO :sumovetoother<cr>
-vnoremap  xO :sumovetoother<cr>
+nnoremap  xI :sudomovein<cr>
+vnoremap  xI :sudomovein<cr>
+nnoremap  xO :sudomoveout<cr>
+vnoremap  xO :sudomoveout<cr>
 nnoremap  xx :extract<cr>
 nnoremap  X  <c-w>x:switch<cr>
 nnoremap gx  <nop>
@@ -405,7 +404,6 @@ cabbrev  dn   <c-x>d
 cabbrev  fno  <c-x><c-x>c
 cabbrev  dno  <c-x><c-x>d
 cabbrev  cs   colorscheme
-cabbrev  fs   filter
 " }}}
 
 " marks/bmarks/mpc {{{
@@ -619,18 +617,18 @@ windo filter /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume
 command! diffonewin      vimux -d %f
 command! difftwowin      vimux -d %c %C
 command! diffallsel      vimux -b
-command! movetoother     mv -i %f %D %i
-command! copytoother     cp -R %f %D %i
-command! movefromother   mv -i %F %d %i
-command! copyfromother   cp -R %F %d %i
-command! sumovetoother   sudo mv -i %f %D
-command! sucopytoother   sudo cp -R %f %D
-command! sumovefromother sudo mv -i %F %d
-command! sucopyfromother sudo cp -R %F %d
+command! copyin          cp -R %F %d %i
+command! copyout         cp -R %f %D %i
+command! movein          mv -i %F %d %i
+command! moveout         mv -i %f %D %i
+command! sudocopyin      sudo cp -R %F %d
+command! sudocopyout     sudo cp -R %f %D
+command! sudomovein      sudo mv -i %F %d
+command! sudomoveout     sudo mv -i %f %D
 command! sudoedit        sudoedit %c
-command! suremove        sudo rm -i %f
-command! suchgown        sudo chown simone:simone %f
-command! suchgmod        sudo chmod 400 %f
+command! sudoremove      sudo rm -i %f
+command! sudochgown      sudo chown simone:simone %f
+command! sudochgmod      sudo chmod 400 %f
 command! copyrsync       tsp rsync -a %f %D
 command! moversync       tsp rsync -a --remove-source-files %f %D &&
                         \tsp find %f -type d -empty -exec rmdir {} \; && tsp rmdir %f
