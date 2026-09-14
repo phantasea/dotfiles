@@ -155,21 +155,34 @@ map <wait>  -ox  :chmod o-x<cr>
 " :exec "norm \<c-w>s" works since vifm v0.15
 " (must use double-quotes to accept escape-sequence)
 " keymaps-2 {{{
-nnoremap <wait>  ;c :!cat %f >  %i<left><left><left>
-nnoremap <wait>  ;d  :!sdcv  %m<left><left><left>
-nnoremap <wait>  ;f  :filter<space>
-nnoremap <wait>  ;j  :<c-u>exec '.+'.v:count '| normal gf'<cr>
-nnoremap <wait>  ;k  :<c-u>exec '.-'.v:count '| normal gf'<cr>
-nnoremap <wait>  ;i  :imgall<cr>
-nnoremap <wait>  ;I  :imgrall<cr>
-nnoremap <wait>  ;s  :! ls -p | grep -v / | sort -t' ' -k2 %m<cr>
-nnoremap <wait>  ;x  :s/\.html$/.txt/g<cr>
-nnoremap <wait>  ;w  :!tmux split "watch -n 8 tsp"<cr>
+nnoremap <wait> ;/  :find<space>
+nnoremap <wait> ;b  :marks<cr>
+nnoremap <wait> ;c  :command<cr>
+nnoremap <wait> ;d  :dirs<cr>
+nnoremap <wait> ;f  :file<cr>
+nnoremap <wait> ;g  :bmgo<space>
+nnoremap <wait> ;h  :help<cr>
+nnoremap <wait> ;i  :imgall<cr>
+nnoremap <wait> ;I  :imgrall<cr>
+nnoremap <wait> ;J  :jobs<cr>
+nnoremap <wait> ;j  :<c-u>exec '.+'.v:count '| normal gf'<cr>
+nnoremap <wait> ;k  :<c-u>exec '.-'.v:count '| normal gf'<cr>
+nnoremap <wait> ;l  :messages<cr>
+nnoremap <wait> ;L  :locate<space>
+nnoremap <wait> ;m  :media<cr>
+nnoremap <wait> ;o  :copen<cr>
+nnoremap <wait> ;p  :plugins<cr>
+nnoremap <wait> ;r  :ratings<cr>
+nnoremap <wait> ;R  :registers<cr>
+nnoremap <wait> ;s  :sort<cr>
+nnoremap <wait> ;t  :lstrash<cr>
+nnoremap <wait> ;u  :undolist<cr>
+nnoremap <wait> ;v  :version<cr>
+nnoremap <wait> ;w  :pwd<cr>
+nnoremap <wait> ;x  :s/\.html$/.txt/g<cr>
 
-nnoremap <wait>  ,d  :!sdcv  %q<left><left><left>
-
-nnoremap <wait>  ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
-nnoremap <wait>  ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
+nnoremap <wait> ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
+nnoremap <wait> ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
 
 nnoremap  0  gg
 nnoremap  ^  gg
@@ -202,32 +215,14 @@ qnoremap  a  <nop>
 qnoremap  A  <nop>
 nnoremap  A  za
 nnoremap ga  gA
-nnoremap  b/ :find<space>
-nnoremap  bb :marks<cr>
-nnoremap  bc :command<cr>
-nnoremap  bd :dirs<cr>
-nnoremap  bf :file<cr>
-nnoremap  bg :bmgo<space>
-nnoremap  bh :help<cr>
-nnoremap  bi <c-g>
-nnoremap  bj :jobs<cr>
-nnoremap  bk :nmap<cr>
-nnoremap  bl :messages<cr>
-nnoremap  bL :locate<space>
-nnoremap  bm :media<cr>
-nnoremap  bo :copen<cr>
-nnoremap  bp :plugins<cr>
-nnoremap  br :ratings<cr>
-nnoremap  bR :registers<cr>
-nnoremap  bs :sort<cr>
-nnoremap  bt :lstrash<cr>
-nnoremap  bu :undolist<cr>
+nnoremap  bb "AY
+nnoremap  bc :!cat %f >  %i<left><left><left>
+nnoremap  bd :!sdcv  %q<left><left><left>
+nnoremap  bi  <c-g>
+nnoremap  bl :! ls -p | grep -v / | sort -t' ' -k2 %q<cr>
 nnoremap  bv :batchpreview<cr>
-nnoremap  bV :version<cr>
-nnoremap  bw :!tsp -l<cr>
-nnoremap  bW :pwd<cr>
-nnoremap  B  av
-vnoremap  B  <cr>
+nnoremap  bw :!tmux split "watch -n 8 tsp"<cr>
+nnoremap  B  <nop>
 nnoremap gb  <nop>
 nnoremap  cc :change<cr>
 vnoremap  cc :change<cr>
@@ -241,9 +236,6 @@ nnoremap  cp cp
 vnoremap  cp cp
 nnoremap  cs :colorscheme<space><tab>
 nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
-nnoremap  cv av
-vnoremap  cv <cr>
-nnoremap  cy "AY
 nnoremap  ci :switch<cr>:copy<cr>:switch<cr>
 vnoremap  ci :switch<cr>:copy<cr>:switch<cr>
 nnoremap  co :copy<cr>
@@ -260,8 +252,8 @@ nnoremap gd  <nop>
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
-nnoremap  E  :empty<cr>
-nnoremap ge  :sudoedit<cr>
+nnoremap  E  e
+nnoremap ge  :empty<cr>
 nnoremap  f/ =
 mnoremap  h  q
 dnoremap  h  q
@@ -314,8 +306,9 @@ nnoremap gp  "Ap
 nnoremap gP  "AP
 nnoremap  q  ZZ
 vnoremap  q  ZZ
-qnoremap  q  <c-w>z
+qnoremap  q  Q
 nnoremap  Q  :qall<cr>
+qnoremap  Q  <c-w>z
 nnoremap gq  q
 nnoremap gr  :grep<space>
 mnoremap gr  :grep<space>
@@ -363,10 +356,12 @@ nnoremap  t  tj
 nnoremap  T  kt
 nnoremap gt  gs
 nnoremap  U  <c-r>
-qnoremap  v  q
+qnoremap  v  Q
 nnoremap gv  gv
-qnoremap  w  W
+nnoremap  V  av
+vnoremap  V  <cr>
 nnoremap  w  :set millerview!<cr>
+qnoremap  w  W
 nnoremap  W  :togglewide<cr>
 nnoremap gw  <nop>
 nnoremap  xc :compare groupids<cr>
