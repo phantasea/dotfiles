@@ -252,8 +252,8 @@ nnoremap gd  <nop>
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
-nnoremap  E  e
-nnoremap ge  :empty<cr>
+nnoremap  E  :empty<cr>
+nnoremap ge  :sudoedit<cr>
 nnoremap  f/ =
 mnoremap  h  q
 dnoremap  h  q
@@ -374,7 +374,8 @@ vnoremap  xI :sudomovein<cr>
 nnoremap  xO :sudomoveout<cr>
 vnoremap  xO :sudomoveout<cr>
 nnoremap  xx :extract<cr>
-nnoremap  X  <c-w>x:switch<cr>
+nnoremap  X  :explore<cr>
+nnoremap  X  e
 nnoremap gx  <nop>
 nnoremap  y  yy
 nnoremap  Y  :yankbasename<cr>
@@ -387,7 +388,6 @@ nnoremap xY  :xyankpathname<cr>:echo expand('%"d') "is yanked"<cr>
 nnoremap  zh :set hlsearch!<cr>
 nnoremap  zn :view next<cr>
 nnoremap  zp :view prev<cr>
-nnoremap  zv :explore<cr>
 nnoremap  zx :screen<cr>
 nnoremap gz  <nop>
 " }}}
