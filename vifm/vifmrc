@@ -1,3 +1,54 @@
+" Docs & Help {{{
+"Command Macros (see ':help vifm-macros')
+" %"x means using of double quotes and escape only backslash and double quote chars
+" %%  put a percent sign
+" %a  for user arguments
+" %c  %"c  for current file under the cursor (rel path)
+" %C  %"C  for current file under the cursor of inactive pane (abs path)
+" %f  %"f  for selected file(s) (rel path)
+" %F  %"F  for selected file(s) of inactive pane (abs path)
+" %l  %"l  list of selected files, is empty if no files are selected
+" %L  %"L  same as %l, but for the inactive pane
+" %b  %"b  is the same as both: %f plus %F
+" %d  %"d  for current directory name
+" %D  %"D  for current directory name of inactive pane
+" %rx %"rx full paths to files in the register {x}
+" %i  run in background and suppress error dialogs
+" %m  show command output in a menu
+" %M  same as %m, but l/Enter key is handled like for :locate and :find
+" %n  forbid use of terminal multiplexer to run the command
+" %N  do not detach viewer from terminal session or process group
+" %q  redirect command output to quickview
+" %s  execute command in horizontal split window of active terminal mux
+" %v  same as %s, but splits vertically
+" %S  show command output in the status bar
+" %u  process command output as list of paths and compose custom view
+" %U  same as %u, but absence of sorting
+" %Iu same as %u, but gives up terminal before running external command
+" %IU same as %U, but gives up terminal before running external command
+" %Pl pipe list of files to standard input of a command
+" %Pz same as %Pl, but separates paths by null ('\0') character
+
+"Filename Modifiers (':help vifm-filename-modifiers')
+"used after %c, %C, %f, %F, %b, %d and %D macros
+" :.  relative to current directory
+" :~  relative to the home directory
+" :p  full path
+" :h  head of the file name
+" :t  tail of the file name
+" :r  root of the file name (without last extension)
+" :e  extension of the file name (last one)
+
+"statusline: left-bar, right-bar
+"cmdline: status-bar, input-bar, ruler-bar
+
+"1.dot files filter
+"2.local filter (see "=" norm_cmd)
+"3.name/perm filter
+"  :filter -- manu/explicit filter
+"  "zf/zs" -- auto/implicit filter
+" }}}
+
 " keymaps-1 {{{
 map  <left>   <nop>
 map  <right>  <nop>
@@ -215,9 +266,9 @@ qnoremap  a  <nop>
 qnoremap  A  <nop>
 nnoremap  A  za
 nnoremap ga  gA
-nnoremap  bb "AY
 nnoremap  bc :!cat %f >  %i<left><left><left>
 nnoremap  bd :!sdcv  %q<left><left><left>
+nnoremap  bg :hideui<cr>
 nnoremap  bi  <c-g>
 nnoremap  bl :! ls -p | grep -v / | sort -t' ' -k2 %q<cr>
 nnoremap  bv :batchpreview<cr>
@@ -331,12 +382,10 @@ nnoremap  sl :alink<cr>
 nnoremap  so :sync<cr>
 nnoremap  sO :sync %c<cr>
 nnoremap  sp al
-nnoremap  sq :hideui<cr>
 nnoremap  sr :source $VIFM/vifmrc<cr>
 nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
 nnoremap  st :if getpanetype() == "regular" | tree | else | exec 'norm! gh' | endif<cr>
-nnoremap  sv :setpreviewprog<cr>
 nnoremap  sw :!setwallpaper %c %i<cr>
 nnoremap  sx <c-w>x:switch<cr>
 nnoremap  sH <c-w>H
@@ -378,17 +427,15 @@ nnoremap  X  :explore<cr>
 nnoremap  X  e
 nnoremap gx  <nop>
 nnoremap  y  yy
-nnoremap  Y  :yankbasename<cr>
-nnoremap gy  :yankrootname<cr>
-nnoremap gY  :yankpathname<cr>
-nnoremap cy  :cyankbasename<cr>
-nnoremap cY  :cyankpathname<cr>
-nnoremap xy  :xyankbasename<cr>
-nnoremap xY  :xyankpathname<cr>:echo expand('%"d') "is yanked"<cr>
+nnoremap gy  "AY
+nnoremap  Y  :yankrootname<cr>:echo expand('%"c:r') "is yanked"<cr>
+nnoremap by  :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
+nnoremap cy  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
 nnoremap  zh :set hlsearch!<cr>
 nnoremap  zn :view next<cr>
 nnoremap  zp :view prev<cr>
 nnoremap  zx :screen<cr>
+nnoremap  Z  zz
 nnoremap gz  <nop>
 " }}}
 
@@ -573,42 +620,7 @@ windo filter /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume
              \|RECYCLE|sogoupinyin|华为手机助手)/
 " }}}
 
-"statusline: left-bar, right-bar
-"cmdline: status-bar, input-bar, ruler-bar
-
-"1.dot files filter
-"2.local filter (see "=" norm_cmd)
-"3.name/perm filter
-"  :filter -- manu/explicit filter
-"  "zf/zs" -- auto/implicit filter
-
 " commands {{{
-" see ':help vifm-macros' and ':help vifm-filename-modifiers' for more
-" %a  for user arguments
-" %c  for current file under the cursor
-" %C  for current file under the cursor of inactive pane
-" %f  for selected file(s)
-" %F  for selected file(s) of inactive pane
-" %l  list of selected files, is empty if no files are selected
-" %L  same as %l, but for the inactive pane
-" %b  is the same as %f %F
-" %d  for current directory name
-" %D  for current directory name of inactive pane
-" %i  completely ignore command output
-" %m  runs the command in a menu window
-" %M  same as %m, but l (or Enter) key is handled like :locate and :find
-" %n  forbid use of terminal multiplexer to run the command.
-" %q  redirect command output to quickview, which is activated if disabled
-" %s  execute command in horizontally split window of active terminal multiplexer (ignored if not running inside one)
-" %v  same as %s, but splits vertically
-" %S  show command output in the status bar
-" %u  process command output as list of paths and compose custom view out of it
-" %U  same as %u, but absence of sorting
-" %Iu same as %u, but gives up terminal before running external command
-" %IU same as %U, but gives up terminal before running external command
-" %Pl pipe list of files to standard input of a command
-" %Pz same as %Pl, but separates paths by null ('\0') character
-" %r{x} for list of files in register {x}
 command! diffonewin      vimux -d %f
 command! difftwowin      vimux -d %c %C
 command! diffallsel      vimux -b
@@ -627,21 +639,7 @@ command! sudochgmod      sudo chmod 400 %f
 command! copyrsync       tsp rsync -a %f %D
 command! moversync       tsp rsync -a --remove-source-files %f %D &&
                         \tsp find %f -type d -empty -exec rmdir {} \; && tsp rmdir %f
-command! cyankbasename   tmux setb "%f" %i
-command! cyankpathname   tmux setb %d %i
-command! cyankfullname   tmux setb %d/%c %i
-command! cyankrootname   echo -n %c | rev | cut -d\. -f2- | rev | tr -d '\n' | xargs -0 tmux setb %i
-if executable('xclip')
-command! xyankbasename   echo -n %f   | xclip -i -sel p -f | xclip -i -sel c %i
-command! xyankrootname   printf '%%s' %c | sed "s/\.[^.]*$//" | xclip -sel c %i
-command! xyankpathname   echo -n %d   | xclip -i -sel p -f | xclip -i -sel c %i
-command! xyankfullname   echo -n %c:p | xclip -i -sel p -f | xclip -i -sel c %i
-elseif executable('xsel')
-command! xyankbasename   echo -n %f   | tee >(xsel -i -p) >(xsel -i -b) %i
-command! xyankrootname   printf '%%s' %c | sed "s/\.[^.]*$//" | xsel -i -p %i
-command! xyankpathname   echo -n %d   | tee >(xsel -i -p) >(xsel -i -b) %i
-command! xyankfullname   echo -n %c:p | tee >(xsel -i -p) >(xsel -i -b) %i
-endif
+
 if $DISPLAY == ""
 command!  yankbasename   tmux setb "%f" %i
 command!  yankrootname   echo -n %c | rev | cut -d\. -f2- | rev | tr -d '\n' | xargs -0 tmux setb %i
@@ -652,6 +650,23 @@ command!  yankbasename   echo -n %f   | xclip -i -sel p -f | xclip -i -sel c %i
 command!  yankrootname   echo -n %c | rev | cut -d\. -f2- | rev | tr -d '\n' | xsel -i; xsel -o | xsel -b %i
 command!  yankpathname   echo -n %d   | xclip -i -sel p -f | xclip -i -sel c %i
 command!  yankfullname   echo -n %c:p | xclip -i -sel p -f | xclip -i -sel c %i
+endif
+
+command! cyankbasename   tmux setb "%f" %i
+command! cyankpathname   tmux setb %d %i
+command! cyankfullname   tmux setb %d/%c %i
+command! cyankrootname   echo -n %c | rev | cut -d\. -f2- | rev | tr -d '\n' | xargs -0 tmux setb %i
+
+if executable('xclip')
+command! xyankbasename   echo -n %f   | xclip -i -sel p -f | xclip -i -sel c %i
+command! xyankrootname   printf '%%s' %c | sed "s/\.[^.]*$//" | xclip -sel c %i
+command! xyankpathname   echo -n %d   | xclip -i -sel p -f | xclip -i -sel c %i
+command! xyankfullname   echo -n %c:p | xclip -i -sel p -f | xclip -i -sel c %i
+elseif executable('xsel')
+command! xyankbasename   echo -n %f   | tee >(xsel -i -p) >(xsel -i -b) %i
+command! xyankrootname   printf '%%s' %c | sed "s/\.[^.]*$//" | xsel -i -p %i
+command! xyankpathname   echo -n %d   | tee >(xsel -i -p) >(xsel -i -b) %i
+command! xyankfullname   echo -n %c:p | tee >(xsel -i -p) >(xsel -i -b) %i
 endif
 
 command! vimdiff
@@ -761,15 +776,6 @@ command! batchpreview
      \ | elseif layoutis('vsplit') && &quickview
      \ |   view
      \ |   exec 'norm ss'
-     \ | endif
-
-command! setpreviewprog
-     \ : if &previewprg == ''
-     \ |   setl previewprg='git log --color -- %c 2>&1'
-     \ |   view!
-     \ | else
-     \ |   set previewprg=''
-     \ |   view
      \ | endif
 
 command! smartsortbytime
@@ -889,6 +895,7 @@ autocmd DirEnter '~/pics/misc'        setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/preg'        setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/wallpaper'   setl sort='-mtime,+iname'
 autocmd DirEnter '/media/simone/sandisk_*/**'  setl sort='-mtime,+iname'
+autocmd DirEnter '/opt/conf/wezterm/**/*'      setl previewprg='git log --color -- %c 2>&1'
 " }}}
 
 " filetype/fileview {{{
