@@ -203,6 +203,7 @@ nnoremap   '    `
 nnoremap   ['   [`
 nnoremap   ]'   ]`
 nnoremap   &    :&&<CR>
+vnoremap   $    $<left>
 nnoremap  g/    :Ag  %<left><left>
 nnoremap   #    #n
 nnoremap  g#    g#n
