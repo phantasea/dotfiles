@@ -67,13 +67,11 @@ nnoremap  <F12>    :!cmatrix -abs -C cyan<cr>
 qnoremap  <s-tab>  <tab>
 nnoremap  <s-tab>  :fileinfo<cr>
 nnoremap b<tab>    <nop>
-nnoremap c<tab>    <nop>
 nnoremap f<tab>    <nop>
 nnoremap g<tab>    <nop>
 nnoremap m<tab>    <nop>
 nnoremap o<tab>    <nop>
 nnoremap s<tab>    <nop>
-nnoremap x<tab>    <nop>
 nnoremap z<tab>    <nop>
 
 " <cr> = <c-m>
@@ -81,13 +79,11 @@ nnoremap z<tab>    <nop>
 "vnoremap <cr>     :select<cr>
 nnoremap  <cr>     :if &lsview == 1 && filetype('.') == 'dir' | exec 'norm! gl' | else | togglesort | endif<cr>
 nnoremap b<cr>     <nop>
-nnoremap c<cr>     <nop>
 nnoremap f<cr>     <nop>
 nnoremap g<cr>     <c-g>
 nnoremap m<cr>     <nop>
 nnoremap o<cr>     <nop>
 nnoremap s<cr>     <nop>
-nnoremap x<cr>     <nop>
 nnoremap z<cr>     :!dotify %f<cr>
 
 nnoremap  <bs>     :if &lsview == 1 | exec 'norm! gh' | else | cyclesort | endif<cr>
@@ -96,13 +92,11 @@ qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
 nnoremap  <space>  :keepsel switch<cr>
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
-nnoremap c<space>  :if &laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
 nnoremap f<space>  :smartsortbytime<cr>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
-nnoremap m<space>  <nop>
+nnoremap m<space>  :if &laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
 nnoremap o<space>  :if toggle("bold") | hi OddLine cterm=bold | else | hi OddLine cterm=none | endif<cr>
 nnoremap s<space>  :smartsortbysize<cr>
-nnoremap x<space>  <c-w>x
 nnoremap z<space>  :invert o<cr>
 
 "navigation mode: works only for / or = cmd
@@ -167,6 +161,9 @@ nnoremap  <c-y>  :ffpics<cr>
 nnoremap  <c-z>  :restart<cr>
 nnoremap  <c-z>  :ffiptv /opt/conf/iptv/<tab><tab>
 
+map <wait>  ++   :chgperm<cr>
+map <wait>  +-   :change<cr>
+map <wait>  --   :chmod<space>
 map <wait>  +ar  :chmod a+r<cr>
 map <wait>  +aw  :chmod a+w<cr>
 map <wait>  +ax  :chmod a+x<cr>
@@ -231,6 +228,7 @@ nnoremap <wait> ;u  :undolist<cr>
 nnoremap <wait> ;v  :version<cr>
 nnoremap <wait> ;w  :pwd<cr>
 nnoremap <wait> ;x  :s/\.html$/.txt/g<cr>
+nnoremap <wait> ;y  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
 
 nnoremap <wait> ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
 nnoremap <wait> ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
@@ -271,41 +269,24 @@ nnoremap  bd :!sdcv  %q<left><left><left>
 nnoremap  bg :hideui<cr>
 nnoremap  bi  <c-g>
 nnoremap  bl :! ls -p | grep -v / | sort -t' ' -k2 %q<cr>
+nnoremap  bt :!touch -m -t 202612312058 %f<left><left><left>
 nnoremap  bv :batchpreview<cr>
 nnoremap  bw :!tmux split "watch -n 8 tsp"<cr>
 nnoremap  B  <nop>
 nnoremap gb  <nop>
-nnoremap  cc :change<cr>
-vnoremap  cc :change<cr>
-nnoremap  cd :cd<space>
-nnoremap  cg :goto<space>
-nnoremap  cl cl
-vnoremap  cl cl
-nnoremap  cm :chmod<space>
-vnoremap  cm :chmod<space>
-nnoremap  cp cp
-vnoremap  cp cp
-nnoremap  cs :colorscheme<space><tab>
-nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
-nnoremap  ci :switch<cr>:copy<cr>:switch<cr>
-vnoremap  ci :switch<cr>:copy<cr>:switch<cr>
-nnoremap  co :copy<cr>
-vnoremap  co :copy<cr>
-nnoremap  cI :sudocopyin<cr>
-vnoremap  cI :sudocopyin<cr>
-nnoremap  cO :sudocopyout<cr>
-vnoremap  cO :sudocopyout<cr>
-nnoremap  C  :clone %c.bak<cr>
-nnoremap gc  :edit ./.git/config
+nnoremap  c  :copy<cr>
+vnoremap  c  :copy<cr>
+nnoremap  C  :clone<cr>
+vnoremap  C  :clone<cr>
+nnoremap gc  :compare groupids<cr>
 nnoremap  d  dd
 nnoremap  D  DD
 nnoremap gd  <nop>
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
-nnoremap  E  :empty<cr>
-nnoremap ge  :sudoedit<cr>
-nnoremap  f/ =
+nnoremap  E  e
+nnoremap ge  :empty<cr>
 mnoremap  h  q
 dnoremap  h  q
 qnoremap  i  <nop>
@@ -343,15 +324,15 @@ nnoremap gn  <nop>
 nnoremap  oo =
 nnoremap  of zF
 nnoremap  od zD
+nnoremap  oe :exec "filter! /\.".expand('%c:e')."$/i"<cr>
 nnoremap  ol zL
 nnoremap  oj :<c-u>exec '.+'.v:count '| open'<cr>
 nnoremap  ok :<c-u>exec '.-'.v:count '| norm gf'<cr>
 nnoremap  or zS
 nnoremap  os :invert s<cr>zf
-nnoremap  ot :exec "filter! /\.".expand('%c:e')."$/i"<cr>
 nnoremap  o. zA
 nnoremap  O  gO
-nnoremap go  <nop>
+nnoremap go  :goto<space>
 qnoremap  p  N
 nnoremap gp  "Ap
 nnoremap gP  "AP
@@ -361,11 +342,11 @@ qnoremap  q  Q
 nnoremap  Q  :qall<cr>
 qnoremap  Q  <c-w>z
 nnoremap gq  q
-nnoremap gr  :grep<space>
-mnoremap gr  :grep<space>
 vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  cW<c-u>
+nnoremap gr  :grep<space>
+mnoremap gr  :grep<space>
 qnoremap  s  <c-w>
 nnoremap  sa GVgg
 vnoremap  sa ggoG
@@ -376,11 +357,8 @@ nnoremap  sd :if selected() >= 2 | diffonewin | else | difftwowin | endif<cr>
 vnoremap  sd :if selected() >= 2 | diffonewin | endif<cr>
 nnoremap  se :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sf :select //i<left><left>
-nnoremap  si :switch<cr>:sync<cr>:switch<cr>
-nnoremap  sI :switch<cr>:sync %c<cr>:switch<cr>
-nnoremap  sl :alink<cr>
-nnoremap  so :sync<cr>
-nnoremap  sO :sync %c<cr>
+nnoremap  sl :symlink<cr>
+vnoremap  sl :symlink<cr>
 nnoremap  sp al
 nnoremap  sr :source $VIFM/vifmrc<cr>
 nnoremap  ss <c-w>S
@@ -388,6 +366,7 @@ qnoremap  ss <c-w>S
 nnoremap  st :if getpanetype() == "regular" | tree | else | exec 'norm! gh' | endif<cr>
 nnoremap  sw :!setwallpaper %c %i<cr>
 nnoremap  sx <c-w>x:switch<cr>
+nnoremap  sy :if isdir('.') | sync %c | else | sync | endif<cr>
 nnoremap  sH <c-w>H
 nnoremap  sL <c-w>L
 nnoremap  sJ <c-w>J
@@ -409,34 +388,25 @@ qnoremap  v  Q
 nnoremap gv  gv
 nnoremap  V  av
 vnoremap  V  <cr>
-nnoremap  w  :set millerview!<cr>
 qnoremap  w  W
+nnoremap  w  :set millerview!<cr>
 nnoremap  W  :togglewide<cr>
-nnoremap gw  <nop>
-nnoremap  xc :compare groupids<cr>
-nnoremap  xi :switch<cr>:move<cr>:switch<cr>
-vnoremap  xi :switch<cr>:move<cr>:switch<cr>
-nnoremap  xo :move<cr>
-vnoremap  xo :move<cr>
-nnoremap  xI :sudomovein<cr>
-vnoremap  xI :sudomovein<cr>
-nnoremap  xO :sudomoveout<cr>
-vnoremap  xO :sudomoveout<cr>
-nnoremap  xx :extract<cr>
-nnoremap  X  :explore<cr>
-nnoremap  X  e
-nnoremap gx  <nop>
+nnoremap gw  :set wrap!<cr>
+nnoremap  x  :move<cr>
+vnoremap  x  :move<cr>
+nnoremap  X  <nop>
+nnoremap gx  :extract<cr>
 nnoremap  y  yy
 nnoremap gy  "AY
 nnoremap  Y  :yankrootname<cr>:echo expand('%"c:r') "is yanked"<cr>
-nnoremap by  :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
-nnoremap cy  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
+nnoremap gY  :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
 nnoremap  zh :set hlsearch!<cr>
 nnoremap  zn :view next<cr>
 nnoremap  zp :view prev<cr>
+nnoremap  zv :explore<cr>
 nnoremap  zx :screen<cr>
 nnoremap  Z  zz
-nnoremap gz  <nop>
+nnoremap gz  :archive<cr>
 " }}}
 
 " abbrevs {{{
@@ -839,6 +809,7 @@ command! extractB tsp atool -x %f
 command! extractC tsp atool -e -X %D %f
 command! extractD tsp atool -e -X %D/%f %f
 command! extractE tsp atool -D -e -X %D %f
+command! archive  tar -czf %a.tar.gz %f
 command! archiveA apack %a %f &>/dev/null &
 command! archiveB set -- %f; tsp apack "$(echo "$1" | sed 's/\.[^.]*$//').zip" "$@"
 command! archiveC set -- %f; tsp apack "$(echo "$1" | sed 's/\.[^.]*$//').7z" "$@"
