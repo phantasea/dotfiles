@@ -50,12 +50,12 @@
 " }}}
 
 " keymaps-1 {{{
+" [n]ormal, [v]isual, [d]ialogue, [q]uickview, [m]enu, [c]ommand
 map  <left>   <nop>
 map  <right>  <nop>
 map  <up>     <nop>
 map  <down>   <nop>
 
-"[n]ormal, [v]isual, [d]ialogue, [q]uickview, [m]enu, [c]ommand"
 nnoremap  <F1>     :manhelp<cr>
 nnoremap  <F5>     :shell<cr>
 nnoremap  <F10>    :difftwowin<cr>
@@ -74,7 +74,7 @@ nnoremap o<tab>    <nop>
 nnoremap s<tab>    <nop>
 nnoremap z<tab>    <nop>
 
-" <cr> = <c-m>
+"<cr> = <c-m>
 "use built-in map, :select<cr> has side-effect for where stop
 "vnoremap <cr>     :select<cr>
 nnoremap  <cr>     :if &lsview == 1 && filetype('.') == 'dir' | exec 'norm! gl' | else | togglesort | endif<cr>
@@ -200,9 +200,9 @@ map <wait>  -ox  :chmod o-x<cr>
 " nnoremap bu  :!fusermount -u %f<cr>
 " }}}
 
+" keymaps-2 {{{
 " :exec "norm \<c-w>s" works since vifm v0.15
 " (must use double-quotes to accept escape-sequence)
-" keymaps-2 {{{
 nnoremap <wait> ;/  :find<space>
 nnoremap <wait> ;b  :marks<cr>
 nnoremap <wait> ;c  :command<cr>
@@ -425,10 +425,10 @@ source $VIFM/bookmarks
 " }}}
 
 " options {{{
-plugin whitelist viewcolumn
-
-"when enabled the 'l' cmd not working to open picture
+" when enabled the 'l' cmd not working to open picture
 "screen!
+
+plugin whitelist viewcolumn
 
 if $DISPLAY != ""
 colorscheme lynna
@@ -865,8 +865,8 @@ autocmd DirEnter '~/pics/gifs'        setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/misc'        setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/preg'        setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/wallpaper'   setl sort='-mtime,+iname'
-autocmd DirEnter '/media/simone/sandisk_*/**'  setl sort='-mtime,+iname'
-autocmd DirEnter '/opt/conf/wezterm/**/*'      setl previewprg='git log --color -- %c 2>&1'
+autocmd DirEnter '/media/simone/sandisk_*/**/*'  setl sort='-mtime,+iname'
+autocmd DirEnter '/opt/conf/wezterm/**/*'  setl previewprg='git log --color -- %c 2>&1'
 " }}}
 
 " filetype/fileview {{{
