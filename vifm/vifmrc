@@ -57,10 +57,7 @@ map  <up>     <nop>
 map  <down>   <nop>
 
 nnoremap  <F1>     :manhelp<cr>
-nnoremap  <F5>     :shell<cr>
-nnoremap  <F10>    :difftwowin<cr>
-nnoremap  <F11>    :diffonewin<cr>
-nnoremap  <F12>    :!cmatrix -abs -C cyan<cr>
+nnoremap  <F2>     :!cmatrix -abs -C cyan<cr>
 
 "<tab> = <c-i>
 "nnoremap <tab>    :toggletab<cr>
@@ -195,9 +192,9 @@ map <wait>  -ox  :chmod o-x<cr>
 "nnoremap <c-l> :if paneisat('right')  | exec '!tmux select-pane -R %i' | else | exec 'wincmd l' | endif<cr>
 
 " mount ISO filesystem images(iso,bin,img): list, mount, unmount
-" nnoremap bl  :!ls -1 /tmp/fuseiso<cr>
-" nnoremap bm  :!mkdir -p /tmp/fuseiso && fuseiso -n -p %f "/tmp/fuseiso/%f"<cr>
-" nnoremap bu  :!fusermount -u %f<cr>
+"nnoremap bl  :!ls -1 /tmp/fuseiso<cr>
+"nnoremap bm  :!mkdir -p /tmp/fuseiso && fuseiso -n -p %f "/tmp/fuseiso/%f"<cr>
+"nnoremap bu  :!fusermount -u %f<cr>
 " }}}
 
 " keymaps-2 {{{
@@ -213,8 +210,8 @@ nnoremap <wait> ;h  :help<cr>
 nnoremap <wait> ;i  :imgall<cr>
 nnoremap <wait> ;I  :imgrall<cr>
 nnoremap <wait> ;J  :jobs<cr>
-nnoremap <wait> ;j  :<c-u>exec '.+'.v:count '| normal gf'<cr>
-nnoremap <wait> ;k  :<c-u>exec '.-'.v:count '| normal gf'<cr>
+nnoremap <wait> ;j  :<c-u>exec '.+'.v:count '| open'<cr>
+nnoremap <wait> ;k  :<c-u>exec '.-'.v:count '| norm! gf'<cr>
 nnoremap <wait> ;l  :messages<cr>
 nnoremap <wait> ;L  :locate<space>
 nnoremap <wait> ;m  :media<cr>
@@ -232,6 +229,8 @@ nnoremap <wait> ;y  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
 
 nnoremap <wait> ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
 nnoremap <wait> ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
+
+nnoremap <wait> ,r  :source $VIFM/vifmrc<cr>
 
 nnoremap  0  gg
 nnoremap  ^  gg
@@ -272,7 +271,7 @@ nnoremap  bl :! ls -p | grep -v / | sort -t' ' -k2 %q<cr>
 nnoremap  bt :!touch -m -t 202612312058 %f<left><left><left>
 nnoremap  bv :batchpreview<cr>
 nnoremap  bw :!tmux split "watch -n 8 tsp"<cr>
-nnoremap  B  <nop>
+nnoremap  B  :invert o<cr>
 nnoremap gb  <nop>
 nnoremap  c  :copy<cr>
 vnoremap  c  :copy<cr>
@@ -299,13 +298,13 @@ nnoremap sj  ]S
 nnoremap zj  }
 nnoremap  J  <c-e>
 mnoremap  J  <c-e>
-qnoremap  J  qje:if &preview | switch | endif<cr>
+qnoremap  J  Qjv:if &quickview | switch | endif<cr>
 nnoremap gk  [R
 nnoremap sk  [S
 nnoremap zk  {
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
-qnoremap  K  qke:if isactive('preview') | switch | endif<cr>
+qnoremap  K  Qkv:if isactive('preview') | switch | endif<cr>
 nnoremap gl  :if filetype('.') == 'link' | exec 'norm! gf' | else | altopen | endif<cr>
 nnoremap gL  :if filetype('.') == 'link' | exec 'norm! gF' | else | auxopen | endif<cr>
 nnoremap  mi :fileinfo<cr>
@@ -326,8 +325,6 @@ nnoremap  of zF
 nnoremap  od zD
 nnoremap  oe :exec "filter! /\.".expand('%c:e')."$/i"<cr>
 nnoremap  ol zL
-nnoremap  oj :<c-u>exec '.+'.v:count '| open'<cr>
-nnoremap  ok :<c-u>exec '.-'.v:count '| norm gf'<cr>
 nnoremap  or zS
 nnoremap  os :invert s<cr>zf
 nnoremap  o. zA
@@ -359,8 +356,7 @@ nnoremap  se :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sf :select //i<left><left>
 nnoremap  sl :symlink<cr>
 vnoremap  sl :symlink<cr>
-nnoremap  sp al
-nnoremap  sr :source $VIFM/vifmrc<cr>
+nnoremap  sp :putlink<cr>
 nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
 nnoremap  st :if getpanetype() == "regular" | tree | else | exec 'norm! gh' | endif<cr>
@@ -418,12 +414,6 @@ cabbrev  dno  <c-x><c-x>d
 cabbrev  cs   colorscheme
 " }}}
 
-" marks/bmarks/mpc {{{
-source $VIFM/bookmarks
-"source $VIFM/vifm-mpc
-"source $VIFM/vifm-moc
-" }}}
-
 " options {{{
 " when enabled the 'l' cmd not working to open picture
 "screen!
@@ -435,6 +425,10 @@ colorscheme lynna
 else
 colorscheme chris
 endif
+
+source $VIFM/bookmarks
+"source $VIFM/vifm-mpc
+"source $VIFM/vifm-moc
 
 if $GUITERM != "xterm"
 source $VIFM/devicons
