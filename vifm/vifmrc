@@ -100,7 +100,6 @@ nnoremap z<tab>    <nop>
 "<cr> = <c-m>
 "use built-in map, :select<cr> has side-effect for where stop
 "vnoremap <cr>     :select<cr>
-nnoremap  <cr>     <cr>
 nnoremap b<cr>     <nop>
 nnoremap f<cr>     <nop>
 nnoremap g<cr>     <c-g>
@@ -302,7 +301,7 @@ nnoremap  bl :! ls -p | grep -v / | sort -t' ' -k2 %q<cr>
 nnoremap  bt :!touch -m -t 202612312058 %f<left><left><left>
 nnoremap  bv :batchpreview<cr>
 nnoremap  bw :!tmux split "watch -n 8 tsp"<cr>
-nnoremap  B  :invert o<cr>
+nnoremap  B  <nop>
 nnoremap gb  <nop>
 nnoremap  c  :copy<cr>
 vnoremap  c  :copy<cr>
@@ -336,7 +335,6 @@ nnoremap zk  {
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  K  Qkv:if isactive('preview') | switch | endif<cr>
-nnoremap gl  gl
 nnoremap  mi :fileinfo<cr>
 nnoremap  mI :tsls<cr>
 nnoremap  mj 2gM
@@ -549,7 +547,7 @@ endif
 set timeoutlen=1000
 set notitle
 set trash
-set trashdir=/var/tmp/Trash,$HOME/.Trash
+set trashdir=/var/tmp/Trash
 set undolevels=99
 if $DISPLAY != ""
 set viewcolumns=-{name},{rating},17{mtime}
