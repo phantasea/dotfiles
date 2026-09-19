@@ -171,6 +171,51 @@ class smart_goto_mid(Command):
             return
 
 
+class smart_symlink(Command):
+    def execute(self):
+        thisdir = self.fm.thisdir
+        thisfile = self.fm.thisfile
+        all = len(thisdir.marked_items)
+        if all == 0:
+            if thisfile.is_link:
+                self.fm.open_console('relink ')
+                self.fm.ui.console.tab()
+            else:
+                self.fm.execute_console('copy')
+                self.fm.execute_console('tab_move 1')
+                self.fm.execute_console('paste_symlink relative=False')
+                self.fm.execute_console('uncut')
+            return
+
+        symlinks = 0
+        nonlinks = 0
+        for fobj in thisdir.marked_items:
+            if fobj.is_link:
+                symlinks += 1
+            else:
+                nonlinks += 1
+
+        if symlinks == all and all > 1:
+            self.fm.notify("Only one symlink changed at a time!", bad=True)
+            return
+
+        if nonlinks == all:
+            self.fm.execute_console('copy')
+            self.fm.execute_console('tab_move 1')
+            self.fm.execute_console('paste_symlink relative=False')
+            self.fm.execute_console('uncut')
+            self.fm.notify('Total {} symlinks created!'.format(nonlinks), bad=False)
+            return
+
+        self.fm.notify('Cancelled: symlinks={}, nonlinks={}!'
+                       .format(symlinks, nonlinks), bad=True)
+
+    def tab(self, tabnum):
+        if not self.rest(1):
+            return self.line + os.readlink(self.fm.thisfile.path)
+        return self._tab_directory_content()
+
+
 class display_ratings(Command):
     """
     :display_ratings
