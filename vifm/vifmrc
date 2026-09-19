@@ -38,6 +38,32 @@
 " :t  tail of the file name
 " :r  root of the file name (without last extension)
 " :e  extension of the file name (last one)
+"
+" "string" - string constant, \ is special
+" 'string' - string constant, ' is doubled
+" &option  - option value
+" $VAR     - environment variable
+" g:var    - global variable
+" v:var    - builtin variable (read-only)
+
+"Builtin Functions:
+" input({prompt} [, {init} [, {completion}]]) - String - Prompts user for an input on command-line.
+" extcached({cache}, {path}, {extcmd})    - String - Caches output of {extcmd} per {cache} and {path} combination.
+" escape({string}, {chars})      - String - Returns {string} after escaping {chars} in it.
+" filetype({file} [, {resolve}]) - String - Returns file type from position/path.
+" chooseopt({opt})     - String  - Queries choose parameters passed on startup.
+" executable({expr})   - Integer - Checks whether {expr} command available.
+" expand({expr})       - String  - Expands special keywords in {expr}.
+" filereadable({path}) - Integer - Checks whether {expr} points to a non-directory that can be read.
+" fnameescape({expr})  - String  - Escapes {expr} for use in a :command.
+" getpanetype()        - String  - Returns type of current pane.
+" has({property})      - Integer - Checks whether instance has {property}.
+" layoutis({type})     - Integer - Checks whether layout is of type {type}.
+" paneisat({loc})      - Integer - Checks whether current pane is at {loc}.
+" selected()           - Integer - Returns number of currently selected files.
+" system({command})    - String  - Executes shell command and returns its output.
+" tabpagenr([{arg}])   - Integer - Returns number of current or last tab.
+" term({command})      - String  - Like system(), but for interactive commands.
 
 "statusline: left-bar, right-bar
 "cmdline: status-bar, input-bar, ruler-bar
@@ -74,7 +100,7 @@ nnoremap z<tab>    <nop>
 "<cr> = <c-m>
 "use built-in map, :select<cr> has side-effect for where stop
 "vnoremap <cr>     :select<cr>
-nnoremap  <cr>     :if &lsview == 1 && filetype('.') == 'dir' | exec 'norm! gl' | else | togglesort | endif<cr>
+nnoremap  <cr>     <cr>
 nnoremap b<cr>     <nop>
 nnoremap f<cr>     <nop>
 nnoremap g<cr>     <c-g>
@@ -83,7 +109,7 @@ nnoremap o<cr>     <nop>
 nnoremap s<cr>     <nop>
 nnoremap z<cr>     :!dotify %f<cr>
 
-nnoremap  <bs>     :if &lsview == 1 | exec 'norm! gh' | else | cyclesort | endif<cr>
+nnoremap  <bs>     :invert o<cr>
 mnoremap  <bs>     <c-b>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
@@ -94,7 +120,8 @@ nnoremap g<space>  :edit $MYVIFMRC<cr>
 nnoremap m<space>  :if &laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
 nnoremap o<space>  :if toggle("bold") | hi OddLine cterm=bold | else | hi OddLine cterm=none | endif<cr>
 nnoremap s<space>  :smartsortbysize<cr>
-nnoremap z<space>  :invert o<cr>
+nnoremap z<space>  :togglezcmd<space>
+
 
 "navigation mode: works only for / or = cmd
 "nav-mode is to control normal-mode ops
@@ -230,7 +257,11 @@ nnoremap <wait> ;y  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
 nnoremap <wait> ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
 nnoremap <wait> ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
 
-nnoremap <wait> ,r  :source $VIFM/vifmrc<cr>
+"nnoremap <wait> ,r :source $VIFM/vifmrc<cr>
+"nnoremap <wait> ,s :if &lsview == 1 | exec 'norm! gh' | else | cyclesort | endif<cr>
+"nnoremap <wait> ,S :if &lsview == 1 && filetype('.') == 'dir' | exec 'norm! gl' | else | invert o | endif<cr>
+"nnoremap <wait> ,l :if filetype('.') == 'link' | exec 'norm! gf' | else | altopen | endif<cr>
+"nnoremap <wait> ,L :if filetype('.') == 'link' | exec 'norm! gF' | else | auxopen | endif<cr>
 
 nnoremap  0  gg
 nnoremap  ^  gg
@@ -305,8 +336,7 @@ nnoremap zk  {
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  K  Qkv:if isactive('preview') | switch | endif<cr>
-nnoremap gl  :if filetype('.') == 'link' | exec 'norm! gf' | else | altopen | endif<cr>
-nnoremap gL  :if filetype('.') == 'link' | exec 'norm! gF' | else | auxopen | endif<cr>
+nnoremap gl  gl
 nnoremap  mi :fileinfo<cr>
 nnoremap  mI :tsls<cr>
 nnoremap  mj 2gM
@@ -401,7 +431,6 @@ nnoremap  zn :view next<cr>
 nnoremap  zp :view prev<cr>
 nnoremap  zv :explore<cr>
 nnoremap  zx :screen<cr>
-nnoremap  Z  zz
 nnoremap gz  :archive<cr>
 " }}}
 
@@ -653,17 +682,6 @@ command! toggletab
      \ | endif
      \ | let g:tabmap = !g:tabmap
 
-let g:sortord = 1
-command! togglesort
-     \ : if g:sortord
-     \ |   setl sortorder=descending
-     \ |   echo 'sortorder=descending'
-     \ | else
-     \ |   setl sortorder=ascending
-     \ |   echo 'sortorder=ascending'
-     \ | endif
-     \ | let g:sortord = !g:sortord
-
 command! togglewide
      \ : if &millerview
      \ |   set nomillerview
@@ -757,6 +775,17 @@ command! smartsortbysize
      \ | else
      \ |   setl sort='+iname'
      \ | endif
+
+let g:zcmd = 0
+command! togglezcmd
+     \ : if g:zcmd == 0
+     \ |   exec "nnoremap Z :%a<cr>"
+     \ |   echo "Z -> %a"
+     \ | else
+     \ |   exec "nunmap Z"
+     \ |   echo 'unmap Z cmd!'
+     \ | endif
+     \ | let g:zcmd = !g:zcmd
 
 command! sxivA    sxiv -roqt * %u
 command! fimA     fim * %u
