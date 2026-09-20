@@ -244,6 +244,7 @@ nnoremap <wait>  ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  |
 " keymaps-2
 " :exec "norm \<c-w>s" works since vifm v0.15
 " (must use double-quotes to accept escape-sequence)
+" special chars {{{
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
@@ -270,6 +271,7 @@ mnoremap  <  3zh
 mnoremap  >  3zl
 mnoremap  [  zH
 mnoremap  ]  zL
+" }}}
 
 nnoremap  a  :%select<cr>
 vnoremap  a  :%select<cr>
@@ -294,7 +296,7 @@ vnoremap  C  :clone<cr>
 nnoremap gc  :compare groupids<cr>
 nnoremap  d  dd
 nnoremap  D  DD
-nnoremap gd  <nop>
+nnoremap gd  :vimdiff<cr>
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
@@ -307,22 +309,24 @@ nnoremap  i  :touch ""<left>
 nnoremap gi  :touch ""<left><c-x>c
 nnoremap  I  :mkdir! ""<left>
 nnoremap gI  :mkdir! ""<left><c-x>c
+nnoremap bj  <nop>
 nnoremap gj  ]R
+nnoremap mj  2gM
+nnoremap oj  <nop>
 nnoremap sj  ]S
 nnoremap zj  }
 nnoremap  J  <c-e>
 mnoremap  J  <c-e>
 qnoremap  J  Qjv:if &quickview | switch | endif<cr>
+nnoremap bk  <nop>
 nnoremap gk  [R
+nnoremap mk  3gM
+nnoremap ok  <nop>
 nnoremap sk  [S
 nnoremap zk  {
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  K  Qkv:if isactive('preview') | switch | endif<cr>
-nnoremap  mi :fileinfo<cr>
-nnoremap  mI :tsls<cr>
-nnoremap  mj 2gM
-nnoremap  mk 3gM
 nnoremap gm  gMzz
 vnoremap  m  gM
 nnoremap  mc :cmap<cr>
@@ -362,8 +366,8 @@ vnoremap  sa ggoG
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sc :selcat<cr>gs
 vnoremap  sc :selcat<cr>gv
-nnoremap  sd :if selected() >= 2 | diffonewin | else | difftwowin | endif<cr>
-vnoremap  sd :if selected() >= 2 | diffonewin | endif<cr>
+nnoremap  sd :vimdiff<cr>
+vnoremap  sd :vimdiff<cr>
 nnoremap  se :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sf :select //i<left><left>
 nnoremap  sl :symlink<cr>
@@ -616,10 +620,10 @@ windo filter /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume
 command! diffonewin      vimux -d %f
 command! difftwowin      vimux -d %c %C
 command! diffallsel      vimux -b
-command! copyin          cp -R %F %d %i
-command! copyout         cp -R %f %D %i
-command! movein          mv -i %F %d %i
-command! moveout         mv -i %f %D %i
+command! copyin          cp -i -R %F %d
+command! copyout         cp -i -R %f %D
+command! movein          mv -i %F %d
+command! moveout         mv -i %f %D
 command! sudocopyin      sudo cp -R %F %d
 command! sudocopyout     sudo cp -R %f %D
 command! sudomovein      sudo mv -i %F %d
@@ -662,14 +666,12 @@ command! xyankfullname   echo -n %c:p | tee >(xsel -i -p) >(xsel -i -b) %i
 endif
 
 command! vimdiff
-     \ : if selected() < 2
-     \ |   if paneisat('right') && paneisat('bottom')
-     \ |     exec '!vim -d %%C %%c'
-     \ |   else
-     \ |     exec '!vim -d %%c %%C'
-     \ |   endif
-     \ | else
+     \ : if selected() == 0
+     \ |   exec '!vim -d %%c %%C'
+     \ | elseif selected() >= 2 && selected() <= 3
      \ |   exec '!vim -d %%f'
+     \ | else
+     \ |   echo 'Diff selected files == '.selected().'!'
      \ | endif
 
 let g:tabmap = 1
