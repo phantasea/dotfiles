@@ -98,8 +98,8 @@ nnoremap s<tab>    <nop>
 nnoremap z<tab>    <nop>
 
 "<cr> = <c-m>
-"use built-in map, :select<cr> has side-effect for where stop
-"vnoremap <cr>     :select<cr>
+vnoremap  <cr>     :select<cr>
+nnoremap  <cr>     :if filetype('.') == 'link' | exec 'norm! gf' | else | open | endif
 nnoremap b<cr>     <nop>
 nnoremap f<cr>     <nop>
 nnoremap g<cr>     <c-g>
@@ -108,7 +108,7 @@ nnoremap o<cr>     <nop>
 nnoremap s<cr>     <nop>
 nnoremap z<cr>     :!dotify %f<cr>
 
-nnoremap  <bs>     :invert o<cr>
+nnoremap  <bs>     :fileinfo<cr>
 mnoremap  <bs>     <c-b>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
@@ -277,7 +277,7 @@ nnoremap  ~  :cd ~<cr>
 nnoremap  @  :shell<cr>
 nnoremap  #  :cyclenumber<cr>
 nnoremap  ?  :file<space><tab>
-nnoremap  \  :invert s<cr>
+nnoremap  \  :if selected() > 0 | invert s | else | invert o | endif
 vnoremap  \  :invert s<cr>
 nnoremap  |  <c-w>=
 nnoremap  <  :vswinmoveleft<cr>
