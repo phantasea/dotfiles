@@ -82,9 +82,6 @@ map  <right>  <nop>
 map  <up>     <nop>
 map  <down>   <nop>
 
-nnoremap  <F1>     :manhelp<cr>
-nnoremap  <F2>     :!cmatrix -abs -C cyan<cr>
-
 "<tab> = <c-i>
 "nnoremap <tab>    :toggletab<cr>
 qnoremap  <s-tab>  <tab>
@@ -212,60 +209,46 @@ map <wait>  -or  :chmod o-r<cr>
 map <wait>  -ow  :chmod o-w<cr>
 map <wait>  -ox  :chmod o-x<cr>
 
-"nnoremap <c-h> :if paneisat('left')   | exec '!tmux select-pane -L %i' | else | exec 'wincmd h' | endif<cr>
-"nnoremap <c-j> :if paneisat('bottom') | exec '!tmux select-pane -D %i' | else | exec 'wincmd j' | endif<cr>
-"nnoremap <c-k> :if paneisat('top')    | exec '!tmux select-pane -U %i' | else | exec 'wincmd k' | endif<cr>
-"nnoremap <c-l> :if paneisat('right')  | exec '!tmux select-pane -R %i' | else | exec 'wincmd l' | endif<cr>
+nnoremap <wait>  ;/  :find<space>
+nnoremap <wait>  ;b  :marks<cr>
+nnoremap <wait>  ;c  :command<cr>
+nnoremap <wait>  ;d  :dirs<cr>
+nnoremap <wait>  ;f  :file<cr>
+nnoremap <wait>  ;g  :bmgo<space>
+nnoremap <wait>  ;h  :manhelp<cr>
+nnoremap <wait>  ;H  :help<cr>
+nnoremap <wait>  ;i  :imgall<cr>
+nnoremap <wait>  ;I  :imgrall<cr>
+nnoremap <wait>  ;J  :jobs<cr>
+nnoremap <wait>  ;j  :<c-u>exec '.+'.v:count '| open'<cr>
+nnoremap <wait>  ;k  :<c-u>exec '.-'.v:count '| norm! gf'<cr>
+nnoremap <wait>  ;l  :messages<cr>
+nnoremap <wait>  ;L  :locate<space>
+nnoremap <wait>  ;m  :media<cr>
+nnoremap <wait>  ;o  :copen<cr>
+nnoremap <wait>  ;p  :plugins<cr>
+nnoremap <wait>  ;r  :ratings<cr>
+nnoremap <wait>  ;R  :registers<cr>
+nnoremap <wait>  ;s  :sort<cr>
+nnoremap <wait>  ;t  :lstrash<cr>
+nnoremap <wait>  ;u  :undolist<cr>
+nnoremap <wait>  ;v  :version<cr>
+nnoremap <wait>  ;w  :pwd<cr>
+nnoremap <wait>  ;x  :s/\.html$/.txt/g<cr>
+nnoremap <wait>  ;y  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
 
-" mount ISO filesystem images(iso,bin,img): list, mount, unmount
-"nnoremap bl  :!ls -1 /tmp/fuseiso<cr>
-"nnoremap bm  :!mkdir -p /tmp/fuseiso && fuseiso -n -p %f "/tmp/fuseiso/%f"<cr>
-"nnoremap bu  :!fusermount -u %f<cr>
+nnoremap <wait>  ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
+nnoremap <wait>  ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
 " }}}
 
-" keymaps-2 {{{
+" keymaps-2
 " :exec "norm \<c-w>s" works since vifm v0.15
 " (must use double-quotes to accept escape-sequence)
-nnoremap <wait> ;/  :find<space>
-nnoremap <wait> ;b  :marks<cr>
-nnoremap <wait> ;c  :command<cr>
-nnoremap <wait> ;d  :dirs<cr>
-nnoremap <wait> ;f  :file<cr>
-nnoremap <wait> ;g  :bmgo<space>
-nnoremap <wait> ;h  :help<cr>
-nnoremap <wait> ;i  :imgall<cr>
-nnoremap <wait> ;I  :imgrall<cr>
-nnoremap <wait> ;J  :jobs<cr>
-nnoremap <wait> ;j  :<c-u>exec '.+'.v:count '| open'<cr>
-nnoremap <wait> ;k  :<c-u>exec '.-'.v:count '| norm! gf'<cr>
-nnoremap <wait> ;l  :messages<cr>
-nnoremap <wait> ;L  :locate<space>
-nnoremap <wait> ;m  :media<cr>
-nnoremap <wait> ;o  :copen<cr>
-nnoremap <wait> ;p  :plugins<cr>
-nnoremap <wait> ;r  :ratings<cr>
-nnoremap <wait> ;R  :registers<cr>
-nnoremap <wait> ;s  :sort<cr>
-nnoremap <wait> ;t  :lstrash<cr>
-nnoremap <wait> ;u  :undolist<cr>
-nnoremap <wait> ;v  :version<cr>
-nnoremap <wait> ;w  :pwd<cr>
-nnoremap <wait> ;x  :s/\.html$/.txt/g<cr>
-nnoremap <wait> ;y  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
-
-nnoremap <wait> ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
-nnoremap <wait> ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
-
-"nnoremap <wait> ,r :source $VIFM/vifmrc<cr>
-"nnoremap <wait> ,s :if &lsview == 1 | exec 'norm! gh' | else | cyclesort | endif<cr>
-"nnoremap <wait> ,S :if &lsview == 1 && filetype('.') == 'dir' | exec 'norm! gl' | else | invert o | endif<cr>
-"nnoremap <wait> ,l :if filetype('.') == 'link' | exec 'norm! gf' | else | altopen | endif<cr>
-"nnoremap <wait> ,L :if filetype('.') == 'link' | exec 'norm! gF' | else | auxopen | endif<cr>
-
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
 nnoremap  %  %zz
+nnoremap  *  *
 nnoremap  &  #
 nnoremap  !  !!  %c<left><left><left>
 nnoremap b!  !!  %c &<left><left><left><left><left>
@@ -279,6 +262,7 @@ nnoremap  #  :cyclenumber<cr>
 nnoremap  ?  :file<space><tab>
 nnoremap  \  :if selected() > 0 | invert s | else | invert o | endif
 vnoremap  \  :invert s<cr>
+nnoremap g\  :invert f<cr>
 nnoremap  |  <c-w>=
 nnoremap  <  :vswinmoveleft<cr>
 nnoremap  >  :vswinmoverite<cr>
@@ -430,6 +414,23 @@ nnoremap  zp :view prev<cr>
 nnoremap  zv :explore<cr>
 nnoremap  zx :screen<cr>
 nnoremap gz  :archive<cr>
+
+" keymaps-3 {{{
+"nnoremap <c-h> :if paneisat('left')   | exec '!tmux select-pane -L %i' | else | exec 'wincmd h' | endif<cr>
+"nnoremap <c-j> :if paneisat('bottom') | exec '!tmux select-pane -D %i' | else | exec 'wincmd j' | endif<cr>
+"nnoremap <c-k> :if paneisat('top')    | exec '!tmux select-pane -U %i' | else | exec 'wincmd k' | endif<cr>
+"nnoremap <c-l> :if paneisat('right')  | exec '!tmux select-pane -R %i' | else | exec 'wincmd l' | endif<cr>
+
+"nnoremap <wait> ,r :source $VIFM/vifmrc<cr>
+"nnoremap <wait> ,s :if &lsview == 1 | exec 'norm! gh' | else | cyclesort | endif<cr>
+"nnoremap <wait> ,S :if &lsview == 1 && filetype('.') == 'dir' | exec 'norm! gl' | else | invert o | endif<cr>
+"nnoremap <wait> ,l :if filetype('.') == 'link' | exec 'norm! gf' | else | altopen | endif<cr>
+"nnoremap <wait> ,L :if filetype('.') == 'link' | exec 'norm! gF' | else | auxopen | endif<cr>
+
+" mount ISO filesystem images(iso,bin,img): list, mount, unmount
+"nnoremap bl  :!ls -1 /tmp/fuseiso<cr>
+"nnoremap bm  :!mkdir -p /tmp/fuseiso && fuseiso -n -p %f "/tmp/fuseiso/%f"<cr>
+"nnoremap bu  :!fusermount -u %f<cr>
 " }}}
 
 " abbrevs {{{
