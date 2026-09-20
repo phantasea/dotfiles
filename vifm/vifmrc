@@ -96,7 +96,7 @@ nnoremap z<tab>    <nop>
 
 "<cr> = <c-m>
 vnoremap  <cr>     :select<cr>
-nnoremap  <cr>     :if filetype('.') == 'link' | exec 'norm! gf' | else | open | endif
+nnoremap  <cr>     :if filetype('.') == 'link' | exec 'norm! gf' | else | open | endif<cr>
 nnoremap b<cr>     <nop>
 nnoremap f<cr>     <nop>
 nnoremap g<cr>     <c-g>
@@ -257,7 +257,7 @@ nnoremap g!  :!./%c:. &<cr>
 nnoremap g.  hgfl:set nodotfiles<cr>
 nnoremap g/  /<c-y>
 nnoremap g=  =<c-y>
-nnoremap  ~  :cd ~<cr>
+nnoremap  ~  :cd ~/.
 nnoremap  @  :shell<cr>
 nnoremap  #  :cyclenumber<cr>
 nnoremap  ?  :file<space><tab>
@@ -293,10 +293,10 @@ nnoremap  c  :copy<cr>
 vnoremap  c  :copy<cr>
 nnoremap  C  :clone<cr>
 vnoremap  C  :clone<cr>
-nnoremap gc  :compare groupids<cr>
+nnoremap gc  :cd<space>
 nnoremap  d  dd
 nnoremap  D  DD
-nnoremap gd  :vimdiff<cr>
+nnoremap gd  :compare groupids<cr>
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
@@ -552,7 +552,7 @@ endif
 set timeoutlen=1000
 set notitle
 set trash
-set trashdir=/var/tmp/Trash
+set trashdir=/var/tmp/Trash_vifm
 set undolevels=99
 if $DISPLAY != ""
 set viewcolumns=-{name},{rating},17{mtime}
@@ -875,7 +875,7 @@ command! epub2txt epub2txt %a %c &
 " }}}
 
 " autocmds {{{
-autocmd DirEnter '/var/tmp/Trash'     setl dotfiles
+autocmd DirEnter '/var/tmp/Trash*'     setl dotfiles
 autocmd DirEnter '/opt/util'          setl nomillerview lsview previewprg='bat --style="plain" -- %c'
 autocmd DirEnter '/opt/apps/vifm'     exec 'norm! fs;'
 autocmd DirEnter '~/docs/misc'        exec 'norm! zF'

@@ -126,6 +126,8 @@ export MPD_PORT=6609
 export OPENAI_API_KEY="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"
 export DELTA_PAGER="less -R"
 export TRASH_DIR="/var/tmp/Trash"
+export TRASH_RANGER="/var/tmp/Trash_ranger"
+export TRASH_VIFM="/var/tmp/Trash_vifm"
 export _ZO_EXCLUDE_DIRS="$HOME:/opt/.porn/*:/media/simone/*"
 
 ### internal functions {{{
