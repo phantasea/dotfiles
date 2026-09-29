@@ -213,7 +213,7 @@ command -v fbtmux   > /dev/null 2>&1 && fbtmux
 command -v neofetch > /dev/null 2>&1 && neofetch
 
 # only under GUI mode
-if [[ ! -z $DISPLAY ]]; then
+if [ ! -z $DISPLAY ]; then
     scratchpad
 fi
 
@@ -225,13 +225,13 @@ fi
 
 #in new tmux window, the $GUITERM lost
 tmux_sid=$(tmux display-message -p '#S')
-if [ $tmux_sid -eq 1 ]; then
+if [[ $tmux_sid -eq 1 ]]; then
     export GUITERM="myst"
     tmux set-environment GUITERM "myst"
-elif [ $tmux_sid -eq 2 ]; then
+elif [[ $tmux_sid -eq 2 ]]; then
     export GUITERM="wezterm"
     tmux set-environment GUITERM "wezterm"
-elif [ $tmux_sid -eq 3 ]; then
+elif [[ $tmux_sid -eq 3 ]]; then
     export GUITERM="xterm"
     tmux set-environment GUITERM "xterm"
 fi

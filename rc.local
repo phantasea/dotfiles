@@ -18,7 +18,7 @@
 #/usr/bin/setkeycodes e05b 110
 
 # Disable bluetooth & wifi at startup
-rfkill block all
+#rfkill block all
 #rfkill block bluetooth
 #sleep 5
 #rfkill block wifi
