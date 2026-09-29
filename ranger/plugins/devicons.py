@@ -12,7 +12,7 @@ import os
 xdgs_dirs = {
     os.path.basename(os.getenv(key).rstrip('/')): icon
     for key, icon in (
-        ('XDG_DOCUMENTS_DIR', ''),
+        ('XDG_DOCUMENTS_DIR', ''),
         ('XDG_DOWNLOAD_DIR', ''),
         ('XDG_CONFIG_DIR', ''),
         ('XDG_MUSIC_DIR', ''),
@@ -47,7 +47,6 @@ file_node_extensions = {
     'css'      : '',
     'cue'      : '',
     'cvs'      : '',
-    'db'       : '',
     'deb'      : '',
     'diff'     : '',
     'dll'      : '',
@@ -60,7 +59,7 @@ file_node_extensions = {
     'epub'     : '',
     'exe'      : '',
     'fifo'     : '',
-    'fish'     : '',
+    'fish'     : '',
     'flac'     : '',
     'flv'      : '',
     'gif'      : '',
@@ -96,8 +95,8 @@ file_node_extensions = {
     'mpeg'     : '',
     'mpg'      : '',
     'msi'      : '',
-    'o'        : '',
-    'ogg'      : '',
+    'o'        : '',
+    'ogg'      : '',
     'pdf'      : '',
     'php'      : '',
     'png'      : '',
@@ -136,14 +135,14 @@ file_node_extensions = {
     'yaml'     : '',
     'yml'      : '',
     'zip'      : '',
-    'zsh'      : '',
+    'zsh'      : '',
 }
 
 
 dir_node_exact_matches = {
 # English
     'Desktop'                          : '',
-    'Documents'                        : '',
+    'Documents'                        : '',
     'Downloads'                        : '',
     'Dotfiles'                         : '',
     'Music'                            : '',
@@ -152,7 +151,7 @@ dir_node_exact_matches = {
     'Templates'                        : '',
     'Videos'                           : '',
 # Chinese
-    '文档'                             : '',
+    '文档'                             : '',
     '下载'                             : '',
     '音乐'                             : '',
     '图片'                             : '',
@@ -189,9 +188,8 @@ file_node_exact_matches = {
     'config.ac'                        : '',
     'config.m4'                        : '',
     'config.mk'                        : '',
-    'configure'                        : '',
+    'configure'                        : '',
     'ini'                              : '',
-    'ledger'                           : '',
     'license'                          : '',
     'LICENSE'                          : '',
     'LICENSE.md'                       : '',
@@ -200,7 +198,7 @@ file_node_exact_matches = {
     'makefile'                         : '',
     'Makefile.ac'                      : '',
     'Makefile.in'                      : '',
-    'playlists'                        : '',
+    'playlists'                        : '',
     'README'                           : '',
     'README.markdown'                  : '',
     'README.md'                        : '',

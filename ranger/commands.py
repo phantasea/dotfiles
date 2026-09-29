@@ -43,10 +43,7 @@ class empty(Command):
 
     def _empty_trash_callback(self, answer):
         if answer.lower() == 'y':
-            #self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]*}")
-            #self.fm.run("rm -rf /home/simone/.Trash/{*,.[^.]+}")
-            #self.fm.run("rm -rf $HOME/.Trash/*")
-            self.fm.run("rm -rf $TRASH_DIR/{*,.[^.]*}")
+            self.fm.run("rm -rf /var/tmp/Trash_ranger/{*,.[^.]*}")
 
 
 class filter_ext_type(Command):
