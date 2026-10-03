@@ -14,6 +14,7 @@ core:
     verbose: true
   permanent_delete:
     enable: false
+  trash_dir: ""
 ui:
   density: spacious
   style:

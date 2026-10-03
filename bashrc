@@ -206,6 +206,7 @@ do
 done
 
 # start the crontab
+#sudo chown simone:crontab /var/spool/cron/crontabs/simone
 crontab /opt/conf/mycrontab
 
 # type fbtmux > /dev/null 2>&1 && fbtmux
