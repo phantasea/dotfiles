@@ -603,8 +603,8 @@ set systimeprefix="〔"
 set systimesuffix="〕"
 else
 set clipboardprg="xsel -ob"
-set paneonetag=" ☰"
-set panetwotag=" ☷"
+set paneonetag=" 陽"
+set panetwotag=" 陰"
 set sbaronetag="卍"
 set sbartwotag="卐"
 set systimeprefix="【"
@@ -793,8 +793,8 @@ command! fimA     fim * %u
 command! sxivB    :select! !sxiv -oqt *
 command! fimB     :select! !fim *
 command! fim      fim %f > /dev/null 2>&1
-command! imgall   imgview -s
-command! imgrall  imgview -rs
+command! imgall   imgopen -s
+command! imgrall  imgopen -rs
 command! fileinfo fileinfo %c %S
 command! tsls     fileinfo -t %c %m
 command! imgclear vifmimg clear
@@ -848,12 +848,12 @@ command! ffedit   fd -d=3 -t=f -t=l -H -E .git --size=-800k | fzf --height=0 -1 
 command! fffave   cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f -t=l . | fzf --tmux=80%% --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
 command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/auds | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r audplay -b
 command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/auds | fzf --height=0 --bind 'ctrl-o:execute(fzfopen -x {})' --print0 | xargs -0 -r vifmgoto
-command! fferos   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/eros | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
+command! fferos   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/eros | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webopen
 command! fferos   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/eros | fzf --height=0 --print0 | xargs -0r vifmgoto
 command! ffpics   fd -L -E '{*.webp,*.jpg,*.jpeg,*.JPG,*.JPEG}' . /opt/.porn/pics | fzf --height=0 --print0 | xargs -0r vifmgoto
 command! ffvids   fd -H -L -d=4 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . /opt/.porn/vids | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r vidplay
 command! ffvids   fd -H -L -d=4 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . /opt/.porn/vids | fzf --height=0 --print0 | xargs -0r vifmgoto
-command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webview
+command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webopen
 command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --print0 | xargs -0r vifmgoto
 command! ffiptv   cat %a | fzf -d, --with-nth -1 --height=0 | xargs -r vidplay -x 2>/dev/null
 command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-tmux --height 10 2> /dev/tty")
@@ -991,7 +991,7 @@ fileview  <video/*>
           \ thumbnail %px %py %pw %ph %c,
 
 " Image
-filetype  {*.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm,*.webp},<image/*>  imgview %c
+filetype  {*.bmp,*.jpg,*.jpeg,*.png,*.xpm,*.ppm,*.webp},<image/*>  imgopen %c
 if $DISPLAY != ""
 fileview  <image/*>,<font/*>
           \ vifmimg draw %px %py %pw %ph %c %pc vifmimg clear,
@@ -1004,7 +1004,7 @@ fileview  <image/*>
           \ exiftool %c, mediainfo %c, imgcat %c,
 
 " PDF
-filetype  *.pdf  pdfview %c %i
+filetype  *.pdf  pdfopen %c %i
 fileview  *.pdf
           \ pdftotext -l 3 -nopgbrk -q -- %c -,
           \ thumbnail %px %py %pw %ph %c,
@@ -1027,14 +1027,14 @@ filetype  *.djvu  zathura %c %i, apvlv %c
 endif
 
 " epub
-filetype  *.epub  epubview %c %i
+filetype  *.epub  epubopen %c %i
 fileview  *.epub  pandoc %c -t plain, epy -d %c
 
 " chm
 filextype *.chm  kchmviewer %c %i
 
 " Webpage
-filetype  *.html,*.htm,*.xhtml,*.shtml  webview %c
+filetype  *.html,*.htm,*.xhtml,*.shtml  webopen %c
 fileview  *.html,*.htm,*.xhtml,*.shtml
           \ w3m -dump -cols %pw -T text/html %c,
           \ elinks -dump -dump-width %pw %c,
