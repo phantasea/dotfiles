@@ -87,22 +87,28 @@ map  <down>   <nop>
 qnoremap  <s-tab>  <tab>
 nnoremap  <s-tab>  :fileinfo<cr>
 nnoremap b<tab>    <nop>
+nnoremap c<tab>    <nop>
+nnoremap d<tab>    <nop>
 nnoremap f<tab>    <nop>
 nnoremap g<tab>    <nop>
 nnoremap m<tab>    <nop>
 nnoremap o<tab>    <nop>
 nnoremap s<tab>    <nop>
+nnoremap x<tab>    <nop>
 nnoremap z<tab>    <nop>
 
 "<cr> = <c-m>
 vnoremap  <cr>     :select<cr>
 nnoremap  <cr>     :if filetype('.') == 'link' | exec 'norm! gf' | else | open | endif<cr>
 nnoremap b<cr>     <nop>
+nnoremap c<cr>     <nop>
+nnoremap d<cr>     <nop>
 nnoremap f<cr>     <nop>
 nnoremap g<cr>     <c-g>
 nnoremap m<cr>     <nop>
 nnoremap o<cr>     <nop>
 nnoremap s<cr>     <nop>
+nnoremap x<cr>     <nop>
 nnoremap z<cr>     :!dotify %f<cr>
 
 nnoremap  <bs>     :fileinfo<cr>
@@ -111,11 +117,14 @@ qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
 nnoremap  <space>  :keepsel switch<cr>
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
+nnoremap c<space>  :if &laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
+nnoremap d<space>  <nop>
 nnoremap f<space>  :smartsortbytime<cr>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
-nnoremap m<space>  :if &laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
+nnoremap m<space>  <nop>
 nnoremap o<space>  :if toggle("bold") | hi OddLine cterm=bold | else | hi OddLine cterm=none | endif<cr>
 nnoremap s<space>  :smartsortbysize<cr>
+nnoremap x<space>  <c-w>x
 nnoremap z<space>  :togglezcmd<space>
 
 
@@ -235,7 +244,6 @@ nnoremap <wait>  ;u  :undolist<cr>
 nnoremap <wait>  ;v  :version<cr>
 nnoremap <wait>  ;w  :pwd<cr>
 nnoremap <wait>  ;x  :s/\.html$/.txt/g<cr>
-nnoremap <wait>  ;y  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
 
 nnoremap <wait>  ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
 nnoremap <wait>  ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
@@ -257,7 +265,7 @@ nnoremap g!  :!./%c:. &<cr>
 nnoremap g.  hgfl:set nodotfiles<cr>
 nnoremap g/  /<c-y>
 nnoremap g=  =<c-y>
-nnoremap  ~  :cd ~/.
+nnoremap  ~  :cd ~<cr>
 nnoremap  @  :shell<cr>
 nnoremap  #  :cyclenumber<cr>
 nnoremap  ?  :file<space><tab>
@@ -284,19 +292,40 @@ nnoremap  bd :!sdcv  %q<left><left><left>
 nnoremap  bg :hideui<cr>
 nnoremap  bi  <c-g>
 nnoremap  bl :! ls -p | grep -v / | sort -t' ' -k2 %q<cr>
-nnoremap  bt :!touch -m -t 202612312058 %f<left><left><left>
 nnoremap  bv :batchpreview<cr>
 nnoremap  bw :!tmux split "watch -n 8 tsp"<cr>
+nnoremap  by :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
 nnoremap  B  <nop>
 nnoremap gb  <nop>
-nnoremap  c  :copy<cr>
-vnoremap  c  :copy<cr>
+nnoremap  cc :change<cr>
+vnoremap  cc :change<cr>
+nnoremap  cd :cd<space>
+vnoremap  cd :cd<space>
+nnoremap  cl cl
+vnoremap  cl cl
+nnoremap  cm :chmod<space>
+vnoremap  cm :chmod<space>
+nnoremap  cp cp
+vnoremap  cp cp
+nnoremap  cs :colorscheme<space><tab>
+nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
+ noremap  ci :switch<cr>:copy<cr>:switch<cr>
+nnoremap  ci :copyin<cr>
+vnoremap  ci :copyin<cr>
+nnoremap  co :copyout<cr>
+vnoremap  co :copyout<cr>
+nnoremap  cy :yankfullname<cr>:echo expand('%"c:p') "is yanked"<cr>
 nnoremap  C  :clone<cr>
 vnoremap  C  :clone<cr>
-nnoremap gc  :cd<space>
-nnoremap  d  dd
+nnoremap gc  <nop>
+nnoremap  da :%delete<cr>
+nnoremap  dc :compare groupids<cr>
+nnoremap  di do
+nnoremap  do dp
+nnoremap  d\ dS
+nnoremap  dy :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
 nnoremap  D  DD
-nnoremap gd  :compare groupids<cr>
+nnoremap gd  <nop>
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
@@ -347,8 +376,8 @@ nnoremap  o. zA
 nnoremap  O  gO
 nnoremap go  :goto<space>
 qnoremap  p  N
-nnoremap gp  "Ap
-nnoremap gP  "AP
+nnoremap gp  "Rp
+nnoremap gP  "RP
 nnoremap  q  ZZ
 vnoremap  q  ZZ
 qnoremap  q  Q
@@ -357,6 +386,7 @@ qnoremap  Q  <c-w>z
 nnoremap gq  q
 vnoremap  r  cw
 nnoremap  r  cw
+nnoremap cr  cw<c-u><c-k>
 nnoremap  R  cW<c-u>
 nnoremap gr  :grep<space>
 mnoremap gr  :grep<space>
@@ -366,13 +396,18 @@ vnoremap  sa ggoG
 nnoremap  sb :set scrollbind!<cr>
 nnoremap  sc :selcat<cr>gs
 vnoremap  sc :selcat<cr>gv
-nnoremap  sd :vimdiff<cr>
-vnoremap  sd :vimdiff<cr>
+nnoremap  sd :smartdiff<cr>
+vnoremap  sd :smartdiff<cr>
 nnoremap  se :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sf :select //i<left><left>
+nnoremap  si :switch<cr>:sync<cr>:switch<cr>
+nnoremap  so :sync<cr>
 nnoremap  sl :symlink<cr>
 vnoremap  sl :symlink<cr>
+nnoremap  sl :alink<cr>
+vnoremap  sl :alink<cr>
 nnoremap  sp :putlink<cr>
+nnoremap  sp al
 nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
 nnoremap  st :if getpanetype() == "regular" | tree | else | exec 'norm! gh' | endif<cr>
@@ -404,14 +439,18 @@ qnoremap  w  W
 nnoremap  w  :set millerview!<cr>
 nnoremap  W  :togglewide<cr>
 nnoremap gw  :set wrap!<cr>
-nnoremap  x  :move<cr>
-vnoremap  x  :move<cr>
-nnoremap  X  <nop>
+nnoremap  xi :movein<cr>
+vnoremap  xi :movein<cr>
+nnoremap  xo :moveout<cr>
+vnoremap  xo :moveout<cr>
+nnoremap  X  <c-w>x:switch<cr>
 nnoremap gx  :extract<cr>
 nnoremap  y  yy
-nnoremap gy  "AY
+nnoremap gy  "RY
+nnoremap by  :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
+nnoremap cy  :yankfullname<cr>:echo expand('%"c:p') "is yanked"<cr>
+nnoremap dy  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
 nnoremap  Y  :yankrootname<cr>:echo expand('%"c:r') "is yanked"<cr>
-nnoremap gY  :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
 nnoremap  zh :set hlsearch!<cr>
 nnoremap  zn :view next<cr>
 nnoremap  zp :view prev<cr>
@@ -620,11 +659,11 @@ windo filter /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume
 command! diffonewin      vimux -d %f
 command! difftwowin      vimux -d %c %C
 command! diffallsel      vimux -b
-command! copyin          cp -i -R %F %d
-command! copyout         cp -i -R %f %D
-command! movein          mv -i %F %d
-command! moveout         mv -i %f %D
-command! sudocopyin      sudo cp -R %F %d
+command! systcopyin      cp -i -R %F %d
+command! systcopyout     cp -i -R %f %D
+command! systmovein      mv -i %F %d
+command! systmoveout     mv -i %f %D
+command! sudtocopyin     sudo cp -R %F %d
 command! sudocopyout     sudo cp -R %f %D
 command! sudomovein      sudo mv -i %F %d
 command! sudomoveout     sudo mv -i %f %D
@@ -665,7 +704,7 @@ command! xyankpathname   echo -n %d   | tee >(xsel -i -p) >(xsel -i -b) %i
 command! xyankfullname   echo -n %c:p | tee >(xsel -i -p) >(xsel -i -b) %i
 endif
 
-command! vimdiff
+command! smartdiff
      \ : if selected() == 0
      \ |   exec '!vim -d %%c %%C'
      \ | elseif selected() >= 2 && selected() <= 3
