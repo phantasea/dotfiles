@@ -290,23 +290,21 @@ nnoremap ga  gA
 nnoremap  bc :!cat %f >  %i<left><left><left>
 nnoremap  bd :!sdcv  %q<left><left><left>
 nnoremap  bg :hideui<cr>
-nnoremap  bi  <c-g>
+nnoremap  bi <c-g>
 nnoremap  bl :! ls -p | grep -v / | sort -t' ' -k2 %q<cr>
 nnoremap  bv :batchpreview<cr>
 nnoremap  bw :!tmux split "watch -n 8 tsp"<cr>
 nnoremap  by :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
 nnoremap  B  <nop>
 nnoremap gb  <nop>
-nnoremap  cc :change<cr>
-vnoremap  cc :change<cr>
+nnoremap  cc cp
+vnoremap  cc cp
 nnoremap  cd :cd<space>
 vnoremap  cd :cd<space>
-nnoremap  cl cl
-vnoremap  cl cl
+nnoremap  cl :symlink<cr>
+vnoremap  cl :symlink<cr>
 nnoremap  cm :chmod<space>
 vnoremap  cm :chmod<space>
-nnoremap  cp cp
-vnoremap  cp cp
 nnoremap  cs :colorscheme<space><tab>
 nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
  noremap  ci :switch<cr>:copy<cr>:switch<cr>
@@ -402,12 +400,12 @@ nnoremap  se :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sf :select //i<left><left>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
 nnoremap  so :sync<cr>
-nnoremap  sl :symlink<cr>
-vnoremap  sl :symlink<cr>
 nnoremap  sl :alink<cr>
 vnoremap  sl :alink<cr>
-nnoremap  sp :putlink<cr>
+nnoremap  sl :symlink<cr>
+vnoremap  sl :symlink<cr>
 nnoremap  sp al
+nnoremap  sp :putlink<cr>
 nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
 nnoremap  st :if getpanetype() == "regular" | tree | else | exec 'norm! gh' | endif<cr>
@@ -658,7 +656,6 @@ windo filter /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume
 " commands {{{
 command! diffonewin      vimux -d %f
 command! difftwowin      vimux -d %c %C
-command! diffallsel      vimux -b
 command! systcopyin      cp -i -R %F %d
 command! systcopyout     cp -i -R %f %D
 command! systmovein      mv -i %F %d
@@ -828,10 +825,10 @@ command! togglezcmd
      \ | let g:zcmd = !g:zcmd
 
 command! sxivA    sxiv -roqt * %u
-command! fimA     fim * %u
 command! sxivB    :select! !sxiv -oqt *
-command! fimB     :select! !fim *
 command! fim      fim %f > /dev/null 2>&1
+command! fimA     fim * %u
+command! fimB     :select! !fim *
 command! imgall   imgopen -s
 command! imgrall  imgopen -rs
 command! fileinfo fileinfo %c %S
