@@ -130,6 +130,10 @@ export TRASH_RANGER="/var/tmp/Trash_ranger"
 export TRASH_VIFM="/var/tmp/Trash_vifm"
 export _ZO_EXCLUDE_DIRS="$HOME:/opt/.porn/*:/media/simone/*"
 
+#new file: 600 [-rw-------]
+#new dir:  700 [drwx------]
+umask 077
+
 ### internal functions {{{
 export PSTOGGLE=1
 pstoggle() {

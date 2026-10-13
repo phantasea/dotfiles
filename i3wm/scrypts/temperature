@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# sudo apt install lm-sensors
 TEMP=$(sensors | grep Tctl | cut -d'+' -f2 | sed -e 's/[ \t]*//g')
 
 color="color='#FFFFFF'"

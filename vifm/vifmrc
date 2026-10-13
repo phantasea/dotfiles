@@ -193,6 +193,8 @@ nnoremap  <c-z>  :ffiptv /opt/conf/iptv/<tab><tab>
 map <wait>  ++   :chgperm<cr>
 map <wait>  +-   :change<cr>
 map <wait>  --   :chmod<space>
+map <wait>  +i   :!sudo chattr +i %f<cr>
+map <wait>  -i   :!sudo chattr -i %f<cr>
 map <wait>  +ar  :chmod a+r<cr>
 map <wait>  +aw  :chmod a+w<cr>
 map <wait>  +ax  :chmod a+x<cr>
@@ -245,6 +247,13 @@ nnoremap <wait>  ;v  :version<cr>
 nnoremap <wait>  ;w  :pwd<cr>
 nnoremap <wait>  ;x  :s/\.html$/.txt/g<cr>
 
+nnoremap <wait>  ,c  :cmap<cr>
+nnoremap <wait>  ,d  :dmap<cr>
+nnoremap <wait>  ,m  :mmap<cr>
+nnoremap <wait>  ,n  :nmap<cr>
+nnoremap <wait>  ,q  :qmap<cr>
+nnoremap <wait>  ,v  :vmap<cr>
+
 nnoremap <wait>  ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
 nnoremap <wait>  ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
 " }}}
@@ -272,6 +281,7 @@ nnoremap  ?  :file<space><tab>
 nnoremap  \  :if selected() > 0 | invert s | else | invert o | endif
 vnoremap  \  :invert s<cr>
 nnoremap g\  :invert f<cr>
+nnoremap  _  :!lsattr %c %S<cr>
 nnoremap  |  <c-w>=
 nnoremap  <  :vswinmoveleft<cr>
 nnoremap  >  :vswinmoverite<cr>
@@ -307,7 +317,7 @@ nnoremap  cm :chmod<space>
 vnoremap  cm :chmod<space>
 nnoremap  cs :colorscheme<space><tab>
 nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
- noremap  ci :switch<cr>:copy<cr>:switch<cr>
+nnoremap  ca :%copy<cr>
 nnoremap  ci :copyin<cr>
 vnoremap  ci :copyin<cr>
 nnoremap  co :copyout<cr>
@@ -354,14 +364,13 @@ nnoremap zk  {
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  K  Qkv:if isactive('preview') | switch | endif<cr>
-nnoremap gm  gMzz
+nnoremap gl  :if filetype('.') == 'link' | exec 'norm! gf' | else | altopen | endif<cr>
+nnoremap gL  :if filetype('.') == 'link' | exec 'norm! gF' | else | auxopen | endif<cr>
 vnoremap  m  gM
-nnoremap  mc :cmap<cr>
-nnoremap  md :dmap<cr>
-nnoremap  mm :mmap<cr>
-nnoremap  mn :nmap<cr>
-nnoremap  mq :qmap<cr>
-nnoremap  mv :vmap<cr>
+nnoremap  mm gM
+nnoremap  mj 2gM
+nnoremap  mk 3gM
+nnoremap gm  gMzz
 nnoremap gn  <nop>
 nnoremap  oo =
 nnoremap  of zF
@@ -384,7 +393,6 @@ qnoremap  Q  <c-w>z
 nnoremap gq  q
 vnoremap  r  cw
 nnoremap  r  cw
-nnoremap cr  cw<c-u><c-k>
 nnoremap  R  cW<c-u>
 nnoremap gr  :grep<space>
 mnoremap gr  :grep<space>
@@ -430,25 +438,28 @@ nnoremap  T  kt
 nnoremap gt  gs
 nnoremap  U  <c-r>
 qnoremap  v  Q
-nnoremap gv  gv
 nnoremap  V  av
 vnoremap  V  <cr>
+nnoremap gv  gv
 qnoremap  w  W
 nnoremap  w  :set millerview!<cr>
 nnoremap  W  :togglewide<cr>
 nnoremap gw  :set wrap!<cr>
+nnoremap  xa :%move<cr>
 nnoremap  xi :movein<cr>
 vnoremap  xi :movein<cr>
 nnoremap  xo :moveout<cr>
 vnoremap  xo :moveout<cr>
-nnoremap  X  <c-w>x:switch<cr>
+nnoremap  X  <nop>
 nnoremap gx  :extract<cr>
 nnoremap  y  yy
-nnoremap gy  "RY
+nnoremap  Y  :yankrootname<cr>:echo expand('%"c:r') "is yanked"<cr>
 nnoremap by  :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
 nnoremap cy  :yankfullname<cr>:echo expand('%"c:p') "is yanked"<cr>
 nnoremap dy  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
-nnoremap  Y  :yankrootname<cr>:echo expand('%"c:r') "is yanked"<cr>
+nnoremap gy  "RY
+nnoremap  zi :vswinzoomin<cr>
+nnoremap  zo :vswinzoomout<cr>
 nnoremap  zh :set hlsearch!<cr>
 nnoremap  zn :view next<cr>
 nnoremap  zp :view prev<cr>
@@ -660,7 +671,7 @@ command! systcopyin      cp -i -R %F %d
 command! systcopyout     cp -i -R %f %D
 command! systmovein      mv -i %F %d
 command! systmoveout     mv -i %f %D
-command! sudtocopyin     sudo cp -R %F %d
+command! sudocopyin      sudo cp -R %F %d
 command! sudocopyout     sudo cp -R %f %D
 command! sudomovein      sudo mv -i %F %d
 command! sudomoveout     sudo mv -i %f %D
@@ -785,6 +796,20 @@ command! vswinmoverite
      \ |   exec 'norm s>'
      \ | elseif layoutis('vsplit') && paneisat('right')
      \ |   exec 'norm s<'
+     \ | endif
+
+command! vswinzoomin
+     \ : if layoutis('vsplit') && paneisat('left')
+     \ |   exec 'norm s>'
+     \ | elseif layoutis('vsplit') && paneisat('right')
+     \ |   exec 'norm s<'
+     \ | endif
+
+command! vswinzoomout
+     \ : if layoutis('vsplit') && paneisat('left')
+     \ |   exec 'norm s<'
+     \ | elseif layoutis('vsplit') && paneisat('right')
+     \ |   exec 'norm s>'
      \ | endif
 
 command! batchpreview
