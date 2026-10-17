@@ -191,8 +191,7 @@ nnoremap  <c-z>  :restart<cr>
 nnoremap  <c-z>  :ffiptv /opt/conf/iptv/<tab><tab>
 
 map <wait>  ++   :chgperm<cr>
-map <wait>  +-   :change<cr>
-map <wait>  --   :chmod<space>
+map <wait>  --   :change<cr>
 map <wait>  +i   :!sudo chattr +i %f<cr>
 map <wait>  -i   :!sudo chattr -i %f<cr>
 map <wait>  +ar  :chmod a+r<cr>
@@ -307,21 +306,22 @@ nnoremap  bw :!tmux split "watch -n 8 tsp"<cr>
 nnoremap  by :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
 nnoremap  B  <nop>
 nnoremap gb  <nop>
+nnoremap  ca :%copy<cr>
 nnoremap  cc cp
 vnoremap  cc cp
 nnoremap  cd :cd<space>
 vnoremap  cd :cd<space>
+nnoremap  ci :copyin<cr>
+vnoremap  ci :copyin<cr>
 nnoremap  cl :symlink<cr>
 vnoremap  cl :symlink<cr>
 nnoremap  cm :chmod<space>
 vnoremap  cm :chmod<space>
-nnoremap  cs :colorscheme<space><tab>
-nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
-nnoremap  ca :%copy<cr>
-nnoremap  ci :copyin<cr>
-vnoremap  ci :copyin<cr>
 nnoremap  co :copyout<cr>
 vnoremap  co :copyout<cr>
+nnoremap  cr :%chmod 400<cr>
+nnoremap  cs :colorscheme<space><tab>
+nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
 nnoremap  cy :yankfullname<cr>:echo expand('%"c:p') "is yanked"<cr>
 nnoremap  C  :clone<cr>
 vnoremap  C  :clone<cr>
@@ -347,19 +347,25 @@ nnoremap gi  :touch ""<left><c-x>c
 nnoremap  I  :mkdir! ""<left>
 nnoremap gI  :mkdir! ""<left><c-x>c
 nnoremap bj  <nop>
+nnoremap cj  <nop>
+nnoremap dj  <nop>
 nnoremap gj  ]R
 nnoremap mj  2gM
 nnoremap oj  <nop>
 nnoremap sj  ]S
+nnoremap xj  <nop>
 nnoremap zj  }
 nnoremap  J  <c-e>
 mnoremap  J  <c-e>
 qnoremap  J  Qjv:if &quickview | switch | endif<cr>
 nnoremap bk  <nop>
+nnoremap ck  <nop>
+nnoremap dk  <nop>
 nnoremap gk  [R
 nnoremap mk  3gM
 nnoremap ok  <nop>
 nnoremap sk  [S
+nnoremap xk  <nop>
 nnoremap zk  {
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
@@ -373,9 +379,9 @@ nnoremap  mk 3gM
 nnoremap gm  gMzz
 nnoremap gn  <nop>
 nnoremap  oo =
-nnoremap  of zF
 nnoremap  od zD
 nnoremap  oe :exec "filter! /\.".expand('%c:e')."$/i"<cr>
+nnoremap  of zF
 nnoremap  ol zL
 nnoremap  or zS
 nnoremap  os :invert s<cr>zf
@@ -407,11 +413,11 @@ vnoremap  sd :smartdiff<cr>
 nnoremap  se :exec "select /\.".expand('%c:e')."$/i"<cr>
 nnoremap  sf :select //i<left><left>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
-nnoremap  so :sync<cr>
 nnoremap  sl :alink<cr>
 vnoremap  sl :alink<cr>
 nnoremap  sl :symlink<cr>
 vnoremap  sl :symlink<cr>
+nnoremap  so :sync<cr>
 nnoremap  sp al
 nnoremap  sp :putlink<cr>
 nnoremap  ss <c-w>S
@@ -458,10 +464,10 @@ nnoremap by  :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
 nnoremap cy  :yankfullname<cr>:echo expand('%"c:p') "is yanked"<cr>
 nnoremap dy  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
 nnoremap gy  "RY
-nnoremap  zi :vswinzoomin<cr>
-nnoremap  zo :vswinzoomout<cr>
 nnoremap  zh :set hlsearch!<cr>
+nnoremap  zi <c-w>>
 nnoremap  zn :view next<cr>
+nnoremap  zo <c-w><
 nnoremap  zp :view prev<cr>
 nnoremap  zv :explore<cr>
 nnoremap  zx :screen<cr>
@@ -798,20 +804,6 @@ command! vswinmoverite
      \ |   exec 'norm s<'
      \ | endif
 
-command! vswinzoomin
-     \ : if layoutis('vsplit') && paneisat('left')
-     \ |   exec 'norm s>'
-     \ | elseif layoutis('vsplit') && paneisat('right')
-     \ |   exec 'norm s<'
-     \ | endif
-
-command! vswinzoomout
-     \ : if layoutis('vsplit') && paneisat('left')
-     \ |   exec 'norm s<'
-     \ | elseif layoutis('vsplit') && paneisat('right')
-     \ |   exec 'norm s>'
-     \ | endif
-
 command! batchpreview
      \ : if layoutis('only') && ! &quickview
      \ |   exec 'norm ss'
@@ -936,10 +928,9 @@ command! epub2txt epub2txt %a %c &
 " }}}
 
 " autocmds {{{
-autocmd DirEnter '/var/tmp/Trash*'     setl dotfiles
+autocmd DirEnter '/var/tmp/Trash*'    setl dotfiles
 autocmd DirEnter '/opt/util'          setl nomillerview lsview previewprg='bat --style="plain" -- %c'
 autocmd DirEnter '/opt/apps/vifm'     exec 'norm! fs;'
-autocmd DirEnter '~/docs/misc'        exec 'norm! zF'
 autocmd DirEnter '~/docs/webs'        exec 'norm! zF'
 autocmd DirEnter '~/misc/gits/**/*'   setl dotfiles
 autocmd DirEnter '~/pics/celeb/*/'    setl sort='-mtime,+iname'
