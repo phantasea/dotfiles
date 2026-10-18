@@ -1,5 +1,5 @@
 :root {
-  --navbar-width: 500px;
+  --navbar-width: 460px;
   --navbar-width-focused: 800px; 
   --url-max-width-not-focused: 200px; 
   /* tabs-width is the remaining part */

@@ -5,7 +5,7 @@ mark  c  /opt/conf          vifm
 mark  d  /var/tmp/Trash_vifm
 mark  h  ~/                 misc
 mark  i  ~/pics             celeb
-mark  m  ~/misc
+mark  m  /opt/misc          repo
 mark  n  ~/docs/note        reinstall_ubuntu.txt
 mark  o  /opt               misc
 mark  p  /opt/.priv
@@ -16,7 +16,7 @@ mark  v  ~/vids             celeb-2
 mark  w  ~/docs/webs
 mark  x  /opt/.porn         vids
 
-mark  A  /opt/.porn/auds
+mark  A  /opt/.porn/auds    temp
 mark  E  /opt/.porn/eros    temp
 mark  I  /opt/.porn/pics/IMG
 mark  P  /opt/.porn/pics

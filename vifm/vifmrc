@@ -105,7 +105,7 @@ nnoremap c<cr>     <nop>
 nnoremap d<cr>     <nop>
 nnoremap f<cr>     <nop>
 nnoremap g<cr>     <c-g>
-nnoremap m<cr>     <nop>
+nnoremap m<cr>     :%chmod 400<cr>
 nnoremap o<cr>     <nop>
 nnoremap s<cr>     <nop>
 nnoremap x<cr>     <nop>
@@ -192,8 +192,10 @@ nnoremap  <c-z>  :ffiptv /opt/conf/iptv/<tab><tab>
 
 map <wait>  ++   :chgperm<cr>
 map <wait>  --   :change<cr>
-map <wait>  +i   :!sudo chattr +i %f<cr>
-map <wait>  -i   :!sudo chattr -i %f<cr>
+map <wait>  +fa  :!sudo chattr +a %f<cr>
+map <wait>  -fa  :!sudo chattr -a %f<cr>
+map <wait>  +fi  :!sudo chattr +i %f<cr>
+map <wait>  -fi  :!sudo chattr -i %f<cr>
 map <wait>  +ar  :chmod a+r<cr>
 map <wait>  +aw  :chmod a+w<cr>
 map <wait>  +ax  :chmod a+x<cr>
@@ -246,12 +248,18 @@ nnoremap <wait>  ;v  :version<cr>
 nnoremap <wait>  ;w  :pwd<cr>
 nnoremap <wait>  ;x  :s/\.html$/.txt/g<cr>
 
+nnoremap <wait>  ;/  /<c-y>
+nnoremap <wait>  ;=  =<c-y>
+
 nnoremap <wait>  ,c  :cmap<cr>
 nnoremap <wait>  ,d  :dmap<cr>
 nnoremap <wait>  ,m  :mmap<cr>
 nnoremap <wait>  ,n  :nmap<cr>
 nnoremap <wait>  ,q  :qmap<cr>
 nnoremap <wait>  ,v  :vmap<cr>
+nnoremap <wait>  ,y  "RY
+nnoremap <wait>  ,p  "Rp
+nnoremap <wait>  ,P  "RP
 
 nnoremap <wait>  ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
 nnoremap <wait>  ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
@@ -271,8 +279,8 @@ nnoremap  !  !!  %c<left><left><left>
 nnoremap b!  !!  %c &<left><left><left><left><left>
 nnoremap g!  :!./%c:. &<cr>
 nnoremap g.  hgfl:set nodotfiles<cr>
-nnoremap g/  /<c-y>
-nnoremap g=  =<c-y>
+nnoremap g/  :grep<space>
+mnoremap g/  :grep<space>
 nnoremap  ~  :cd ~<cr>
 nnoremap  @  :shell<cr>
 nnoremap  #  :cyclenumber<cr>
@@ -319,13 +327,12 @@ nnoremap  cm :chmod<space>
 vnoremap  cm :chmod<space>
 nnoremap  co :copyout<cr>
 vnoremap  co :copyout<cr>
-nnoremap  cr :%chmod 400<cr>
 nnoremap  cs :colorscheme<space><tab>
 nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
 nnoremap  cy :yankfullname<cr>:echo expand('%"c:p') "is yanked"<cr>
 nnoremap  C  :clone<cr>
 vnoremap  C  :clone<cr>
-nnoremap gc  <nop>
+nnoremap gc  :%copy<cr>
 nnoremap  da :%delete<cr>
 nnoremap  dc :compare groupids<cr>
 nnoremap  di do
@@ -333,7 +340,8 @@ nnoremap  do dp
 nnoremap  d\ dS
 nnoremap  dy :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
 nnoremap  D  DD
-nnoremap gd  <nop>
+nnoremap gd  :%delete<cr>
+nnoremap gD  :%delete!<cr>
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
@@ -389,8 +397,7 @@ nnoremap  o. zA
 nnoremap  O  gO
 nnoremap go  :goto<space>
 qnoremap  p  N
-nnoremap gp  "Rp
-nnoremap gP  "RP
+nnoremap gp  <nop>
 nnoremap  q  ZZ
 vnoremap  q  ZZ
 qnoremap  q  Q
@@ -400,8 +407,7 @@ nnoremap gq  q
 vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  cW<c-u>
-nnoremap gr  :grep<space>
-mnoremap gr  :grep<space>
+nnoremap gr  :%rename<cr>
 qnoremap  s  <c-w>
 nnoremap  sa GVgg
 vnoremap  sa ggoG
@@ -435,10 +441,9 @@ nnoremap  s> <c-w>>
 nnoremap  s= <c-w>=
 nnoremap  s| <c-w>|
 nnoremap  s_ <c-w>_
-nnoremap gs  gS
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
-nnoremap gS  :%s//g<left><left>
+nnoremap gs  :%s//g<left><left>
 nnoremap  t  tj
 nnoremap  T  kt
 nnoremap gt  gs
@@ -451,19 +456,18 @@ qnoremap  w  W
 nnoremap  w  :set millerview!<cr>
 nnoremap  W  :togglewide<cr>
 nnoremap gw  :set wrap!<cr>
-nnoremap  xa :%move<cr>
 nnoremap  xi :movein<cr>
 vnoremap  xi :movein<cr>
 nnoremap  xo :moveout<cr>
 vnoremap  xo :moveout<cr>
-nnoremap  X  <nop>
-nnoremap gx  :extract<cr>
+nnoremap  xx :extract<cr>
+nnoremap gx  :%move<cr>
 nnoremap  y  yy
 nnoremap  Y  :yankrootname<cr>:echo expand('%"c:r') "is yanked"<cr>
 nnoremap by  :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
 nnoremap cy  :yankfullname<cr>:echo expand('%"c:p') "is yanked"<cr>
 nnoremap dy  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
-nnoremap gy  "RY
+nnoremap gy  :%yank<cr>
 nnoremap  zh :set hlsearch!<cr>
 nnoremap  zi <c-w>>
 nnoremap  zn :view next<cr>
@@ -471,7 +475,7 @@ nnoremap  zo <c-w><
 nnoremap  zp :view prev<cr>
 nnoremap  zv :explore<cr>
 nnoremap  zx :screen<cr>
-nnoremap gz  :archive<cr>
+nnoremap  zz :archive<cr>
 
 " keymaps-3 {{{
 "nnoremap <c-h> :if paneisat('left')   | exec '!tmux select-pane -L %i' | else | exec 'wincmd h' | endif<cr>

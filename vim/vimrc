@@ -77,6 +77,7 @@ set magic
 set modeline
 set mouse=a
 set nobackup
+set nowritebackup
 set nocompatible
 set nocursorcolumn
 set noerrorbells
@@ -180,7 +181,7 @@ inoremap   <C-Y>    <C-R><C-R>=VCopy('up')<CR>
 inoremap   <C-E>    <C-R><C-R>=VCopy('down')<CR>
 inoremap   <C-S>    <C-O>:update<cr>
 
-nnoremap   <C-C>    <nop>
+nnoremap   <C-C>    1<C-G>
 vnoremap   <C-C>    y:call SmartVisualYank()<CR>
 nnoremap   <C-E>    :setlocal ambiwidth=single<cr>:FFEdit<cr>
 nnoremap   <C-F>    :setlocal ambiwidth=single<cr>:FFFave<cr>
