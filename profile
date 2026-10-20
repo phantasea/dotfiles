@@ -23,7 +23,7 @@ else
 fi
 
 # MPD daemon start (if no other user instance exists)
-[ ! -s ~/.cache/mpd/mpd.pid ] && mpd
+[ ! -s /var/tmp/mpd/mpd.pid ] && mpd
 
 # set PATH so it includes user's private bin directories
 if [ -d "$HOME/.local/bin" ] ; then

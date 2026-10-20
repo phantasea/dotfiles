@@ -243,4 +243,19 @@ fi
 
 cd ~/temp
 
+[[ ! -d /tmp/cache ]] && mkdir -p /tmp/cache
+[[ ! -d /tmp/firefox/storage ]] && mkdir -p /tmp/firefox/storage
+
+[[ ! -d /var/tmp/mpd ]] && mkdir -p /var/tmp/mpd
+[[ ! -d /var/tmp/mozilla ]] && mkdir -p /var/tmp/mozilla
+[[ ! -d /var/tmp/Trash ]] && mkdir -p /var/tmp/Trash
+[[ ! -d /var/tmp/Trash_vifm ]] && mkdir -p /var/tmp/Trash_vifm
+[[ ! -d /var/tmp/Trash_ranger ]] && mkdir -p /var/tmp/Trash_ranger
+
+#FF_DEF_DIR="$HOME/.cache/mozilla/firefox/*.default-release"
+#FF_DEF_DIR=$(ls -d $FF_DEF_DIR 2>/dev/null | head -n 1)
+#if [ -L "$FF_DEF_DIR"/cache2 ]; then
+#    ln -sf $FF_CACHE_DIR $FF_DEF_DIR
+#fi
+
 # vim: foldmethod=marker
