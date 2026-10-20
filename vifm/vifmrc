@@ -75,7 +75,7 @@
 "  "zf/zs" -- auto/implicit filter
 " }}}
 
-" keymaps-1 {{{
+" keymaps-1: tab/enter/space {{{
 " [n]ormal, [v]isual, [d]ialogue, [q]uickview, [m]enu, [c]ommand
 map  <left>   <nop>
 map  <right>  <nop>
@@ -86,6 +86,7 @@ map  <down>   <nop>
 "nnoremap <tab>    :toggletab<cr>
 qnoremap  <s-tab>  <tab>
 nnoremap  <s-tab>  :fileinfo<cr>
+nnoremap a<tab>    <nop>
 nnoremap b<tab>    <nop>
 nnoremap c<tab>    <nop>
 nnoremap d<tab>    <nop>
@@ -100,6 +101,7 @@ nnoremap z<tab>    <nop>
 "<cr> = <c-m>
 vnoremap  <cr>     :select<cr>
 nnoremap  <cr>     :if filetype('.') == 'link' | exec 'norm! gf' | else | open | endif<cr>
+nnoremap a<cr>     <nop>
 nnoremap b<cr>     <nop>
 nnoremap c<cr>     <nop>
 nnoremap d<cr>     <nop>
@@ -116,6 +118,7 @@ mnoremap  <bs>     <c-b>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
 nnoremap  <space>  :keepsel switch<cr>
+nnoremap a<space>  <nop>
 nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
 nnoremap c<space>  :if &laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
 nnoremap d<space>  <nop>
@@ -126,8 +129,9 @@ nnoremap o<space>  :if toggle("bold") | hi OddLine cterm=bold | else | hi OddLin
 nnoremap s<space>  :smartsortbysize<cr>
 nnoremap x<space>  <c-w>x
 nnoremap z<space>  :togglezcmd<space>
+" }}}
 
-
+" keymaps-2: Ctrl-X {{{
 "navigation mode: works only for / or = cmd
 "nav-mode is to control normal-mode ops
 anoremap  <c-@>  <c-y>
@@ -189,7 +193,9 @@ nnoremap  <c-x>  :fferos<cr>
 nnoremap  <c-y>  :ffpics<cr>
 nnoremap  <c-z>  :restart<cr>
 nnoremap  <c-z>  :ffiptv /opt/conf/iptv/<tab><tab>
+" }}}
 
+" keymaps-3: +/-/;/, {{{
 map <wait>  ++   :chgperm<cr>
 map <wait>  --   :change<cr>
 map <wait>  +fa  :!sudo chattr +a %f<cr>
@@ -248,27 +254,18 @@ nnoremap <wait>  ;v  :version<cr>
 nnoremap <wait>  ;w  :pwd<cr>
 nnoremap <wait>  ;x  :s/\.html$/.txt/g<cr>
 
-nnoremap <wait>  ;/  /<c-y>
-nnoremap <wait>  ;=  =<c-y>
-
 nnoremap <wait>  ,c  :cmap<cr>
 nnoremap <wait>  ,d  :dmap<cr>
 nnoremap <wait>  ,m  :mmap<cr>
 nnoremap <wait>  ,n  :nmap<cr>
 nnoremap <wait>  ,q  :qmap<cr>
 nnoremap <wait>  ,v  :vmap<cr>
-nnoremap <wait>  ,y  "RY
-nnoremap <wait>  ,p  "Rp
-nnoremap <wait>  ,P  "RP
 
 nnoremap <wait>  ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
 nnoremap <wait>  ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
 " }}}
 
-" keymaps-2
-" :exec "norm \<c-w>s" works since vifm v0.15
-" (must use double-quotes to accept escape-sequence)
-" special chars {{{
+" keymaps-4: special chars {{{
 nnoremap  0  gg
 nnoremap  ^  gg
 nnoremap  $  G
@@ -279,8 +276,8 @@ nnoremap  !  !!  %c<left><left><left>
 nnoremap b!  !!  %c &<left><left><left><left><left>
 nnoremap g!  :!./%c:. &<cr>
 nnoremap g.  hgfl:set nodotfiles<cr>
-nnoremap g/  :grep<space>
-mnoremap g/  :grep<space>
+nnoremap g/  /<c-y>
+nnoremap g=  =<c-y>
 nnoremap  ~  :cd ~<cr>
 nnoremap  @  :shell<cr>
 nnoremap  #  :cyclenumber<cr>
@@ -288,7 +285,7 @@ nnoremap  ?  :file<space><tab>
 nnoremap  \  :if selected() > 0 | invert s | else | invert o | endif
 vnoremap  \  :invert s<cr>
 nnoremap g\  :invert f<cr>
-nnoremap  _  :!lsattr %c %S<cr>
+nnoremap  _  :!lsattr -d %c %S<cr>
 nnoremap  |  <c-w>=
 nnoremap  <  :vswinmoveleft<cr>
 nnoremap  >  :vswinmoverite<cr>
@@ -298,8 +295,17 @@ mnoremap  [  zH
 mnoremap  ]  zL
 " }}}
 
-nnoremap  a  :%select<cr>
-vnoremap  a  :%select<cr>
+" keymaps-5: regular chars
+nnoremap  aa :%select<cr>
+vnoremap  aa :%select<cr>
+nnoremap  ac :%copy<cr>
+nnoremap  ad :%delete<cr>
+nnoremap  aD :%delete!<cr>
+nnoremap  am :%chmod 400<cr>
+nnoremap  ar :%rename<cr>
+nnoremap  as :%s//g<left><left>
+nnoremap  ax :%move<cr>
+nnoremap  ay :%yank<cr>
 qnoremap  a  <nop>
 qnoremap  A  <nop>
 nnoremap  A  za
@@ -313,7 +319,7 @@ nnoremap  bv :batchpreview<cr>
 nnoremap  bw :!tmux split "watch -n 8 tsp"<cr>
 nnoremap  by :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
 nnoremap  B  <nop>
-nnoremap gb  <nop>
+nnoremap gb  :hideui<cr>
 nnoremap  ca :%copy<cr>
 nnoremap  cc cp
 vnoremap  cc cp
@@ -329,19 +335,16 @@ nnoremap  co :copyout<cr>
 vnoremap  co :copyout<cr>
 nnoremap  cs :colorscheme<space><tab>
 nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
-nnoremap  cy :yankfullname<cr>:echo expand('%"c:p') "is yanked"<cr>
 nnoremap  C  :clone<cr>
 vnoremap  C  :clone<cr>
-nnoremap gc  :%copy<cr>
+nnoremap gc  <nop>
 nnoremap  da :%delete<cr>
 nnoremap  dc :compare groupids<cr>
 nnoremap  di do
 nnoremap  do dp
 nnoremap  d\ dS
-nnoremap  dy :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
 nnoremap  D  DD
-nnoremap gd  :%delete<cr>
-nnoremap gD  :%delete!<cr>
+nnoremap gd  <nop>
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
@@ -354,6 +357,7 @@ nnoremap  i  :touch ""<left>
 nnoremap gi  :touch ""<left><c-x>c
 nnoremap  I  :mkdir! ""<left>
 nnoremap gI  :mkdir! ""<left><c-x>c
+nnoremap aj  <nop>
 nnoremap bj  <nop>
 nnoremap cj  <nop>
 nnoremap dj  <nop>
@@ -366,6 +370,7 @@ nnoremap zj  }
 nnoremap  J  <c-e>
 mnoremap  J  <c-e>
 qnoremap  J  Qjv:if &quickview | switch | endif<cr>
+nnoremap ak  <nop>
 nnoremap bk  <nop>
 nnoremap ck  <nop>
 nnoremap dk  <nop>
@@ -397,7 +402,8 @@ nnoremap  o. zA
 nnoremap  O  gO
 nnoremap go  :goto<space>
 qnoremap  p  N
-nnoremap gp  <nop>
+nnoremap gp  "Rp
+nnoremap gP  "RP
 nnoremap  q  ZZ
 vnoremap  q  ZZ
 qnoremap  q  Q
@@ -407,7 +413,8 @@ nnoremap gq  q
 vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  cW<c-u>
-nnoremap gr  :%rename<cr>
+nnoremap gr  :grep<cr>
+qnoremap gr  :grep<cr>
 qnoremap  s  <c-w>
 nnoremap  sa GVgg
 vnoremap  sa ggoG
@@ -443,7 +450,7 @@ nnoremap  s| <c-w>|
 nnoremap  s_ <c-w>_
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
-nnoremap gs  :%s//g<left><left>
+nnoremap gs  gS
 nnoremap  t  tj
 nnoremap  T  kt
 nnoremap gt  gs
@@ -461,13 +468,13 @@ vnoremap  xi :movein<cr>
 nnoremap  xo :moveout<cr>
 vnoremap  xo :moveout<cr>
 nnoremap  xx :extract<cr>
-nnoremap gx  :%move<cr>
+nnoremap gx  :extract<cr>
 nnoremap  y  yy
 nnoremap  Y  :yankrootname<cr>:echo expand('%"c:r') "is yanked"<cr>
 nnoremap by  :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
 nnoremap cy  :yankfullname<cr>:echo expand('%"c:p') "is yanked"<cr>
 nnoremap dy  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
-nnoremap gy  :%yank<cr>
+nnoremap gy  "RY
 nnoremap  zh :set hlsearch!<cr>
 nnoremap  zi <c-w>>
 nnoremap  zn :view next<cr>
@@ -475,9 +482,9 @@ nnoremap  zo <c-w><
 nnoremap  zp :view prev<cr>
 nnoremap  zv :explore<cr>
 nnoremap  zx :screen<cr>
-nnoremap  zz :archive<cr>
+nnoremap gz  :archive<cr>
 
-" keymaps-3 {{{
+" keymaps-6 misc {{{
 "nnoremap <c-h> :if paneisat('left')   | exec '!tmux select-pane -L %i' | else | exec 'wincmd h' | endif<cr>
 "nnoremap <c-j> :if paneisat('bottom') | exec '!tmux select-pane -D %i' | else | exec 'wincmd j' | endif<cr>
 "nnoremap <c-k> :if paneisat('top')    | exec '!tmux select-pane -U %i' | else | exec 'wincmd k' | endif<cr>
@@ -530,6 +537,7 @@ set previewoptions=graphicsdelay:50000,maxtreedepth:3,toptreestats
 set caseoptions="pg"
 set cpoptions="fs"
 set cvoptions=autocmds
+set fileoptions=hidemissing
 set hloptions=filehi:allrows
 set iooptions=datasync,fastfilecloning
 set lsoptions=transposed,columncount:0
@@ -722,6 +730,8 @@ command! xyankpathname   echo -n %d   | tee >(xsel -i -p) >(xsel -i -b) %i
 command! xyankfullname   echo -n %c:p | tee >(xsel -i -p) >(xsel -i -b) %i
 endif
 
+" :exec "norm \<c-w>s" works since vifm v0.15
+" (must use double-quotes to accept escape-sequence)
 command! smartdiff
      \ : if selected() == 0
      \ |   exec '!vim -d %%c %%C'
