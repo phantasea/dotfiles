@@ -248,18 +248,12 @@ nnoremap <wait>  ;p  :plugins<cr>
 nnoremap <wait>  ;r  :ratings<cr>
 nnoremap <wait>  ;R  :registers<cr>
 nnoremap <wait>  ;s  :sort<cr>
+nnoremap <wait>  ;S  :shell<cr>
 nnoremap <wait>  ;t  :lstrash<cr>
 nnoremap <wait>  ;u  :undolist<cr>
 nnoremap <wait>  ;v  :version<cr>
 nnoremap <wait>  ;w  :pwd<cr>
 nnoremap <wait>  ;x  :s/\.html$/.txt/g<cr>
-
-nnoremap <wait>  ,c  :cmap<cr>
-nnoremap <wait>  ,d  :dmap<cr>
-nnoremap <wait>  ,m  :mmap<cr>
-nnoremap <wait>  ,n  :nmap<cr>
-nnoremap <wait>  ,q  :qmap<cr>
-nnoremap <wait>  ,v  :vmap<cr>
 
 nnoremap <wait>  ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
 nnoremap <wait>  ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
@@ -279,10 +273,10 @@ nnoremap g.  hgfl:set nodotfiles<cr>
 nnoremap g/  /<c-y>
 nnoremap g=  =<c-y>
 nnoremap  ~  :cd ~<cr>
-nnoremap  @  :shell<cr>
+nnoremap  @  :cyclesort<cr>
 nnoremap  #  :cyclenumber<cr>
 nnoremap  ?  :file<space><tab>
-nnoremap  \  :if selected() > 0 | invert s | else | invert o | endif
+nnoremap  \  :if selected() > 0 | invert s | else | invert o | endif<cr>
 vnoremap  \  :invert s<cr>
 nnoremap g\  :invert f<cr>
 nnoremap  _  :!lsattr -d %c %S<cr>
@@ -301,6 +295,7 @@ vnoremap  aa :%select<cr>
 nnoremap  ac :%copy<cr>
 nnoremap  ad :%delete<cr>
 nnoremap  aD :%delete!<cr>
+nnoremap  al :! ls -p | grep -v / | sort -t' ' -k2 %q<cr>
 nnoremap  am :%chmod 400<cr>
 nnoremap  ar :%rename<cr>
 nnoremap  as :%s//g<left><left>
@@ -310,15 +305,8 @@ qnoremap  a  <nop>
 qnoremap  A  <nop>
 nnoremap  A  za
 nnoremap ga  gA
-nnoremap  bc :!cat %f >  %i<left><left><left>
-nnoremap  bd :!sdcv  %q<left><left><left>
-nnoremap  bg :hideui<cr>
-nnoremap  bi <c-g>
-nnoremap  bl :! ls -p | grep -v / | sort -t' ' -k2 %q<cr>
-nnoremap  bv :batchpreview<cr>
-nnoremap  bw :!tmux split "watch -n 8 tsp"<cr>
-nnoremap  by :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
-nnoremap  B  <nop>
+nnoremap  b  <c-g>
+nnoremap  B  :batchpreview<cr>
 nnoremap gb  :hideui<cr>
 nnoremap  ca :%copy<cr>
 nnoremap  cc cp
@@ -337,14 +325,14 @@ nnoremap  cs :colorscheme<space><tab>
 nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
 nnoremap  C  :clone<cr>
 vnoremap  C  :clone<cr>
-nnoremap gc  <nop>
+nnoremap gc  :!cat %f >  %i<left><left><left>
 nnoremap  da :%delete<cr>
 nnoremap  dc :compare groupids<cr>
 nnoremap  di do
 nnoremap  do dp
 nnoremap  d\ dS
 nnoremap  D  DD
-nnoremap gd  <nop>
+nnoremap gd  :!sdcv  %q<left><left><left>
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
@@ -385,11 +373,16 @@ mnoremap  K  <c-y>
 qnoremap  K  Qkv:if isactive('preview') | switch | endif<cr>
 nnoremap gl  :if filetype('.') == 'link' | exec 'norm! gf' | else | altopen | endif<cr>
 nnoremap gL  :if filetype('.') == 'link' | exec 'norm! gF' | else | auxopen | endif<cr>
-vnoremap  m  gM
-nnoremap  mm gM
 nnoremap  mj 2gM
 nnoremap  mk 3gM
+vnoremap  m  gM
 nnoremap gm  gMzz
+nnoremap  mc :cmap<cr>
+nnoremap  md :dmap<cr>
+nnoremap  mm :mmap<cr>
+nnoremap  mn :nmap<cr>
+nnoremap  mq :qmap<cr>
+nnoremap  mv :vmap<cr>
 nnoremap gn  <nop>
 nnoremap  oo =
 nnoremap  od zD
@@ -467,12 +460,12 @@ nnoremap  xi :movein<cr>
 vnoremap  xi :movein<cr>
 nnoremap  xo :moveout<cr>
 vnoremap  xo :moveout<cr>
-nnoremap  xx :extract<cr>
+nnoremap  xw :!tmux split "watch -n 8 tsp"<cr>
 nnoremap gx  :extract<cr>
 nnoremap  y  yy
 nnoremap  Y  :yankrootname<cr>:echo expand('%"c:r') "is yanked"<cr>
-nnoremap by  :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
-nnoremap cy  :yankfullname<cr>:echo expand('%"c:p') "is yanked"<cr>
+nnoremap ay  :yankfullname<cr>:echo expand('%"c:p') "is yanked"<cr>
+nnoremap cy  :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
 nnoremap dy  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
 nnoremap gy  "RY
 nnoremap  zh :set hlsearch!<cr>
@@ -915,8 +908,8 @@ command! ffedit   fd -d=3 -t=f -t=l -H -E .git --size=-800k | fzf --height=0 -1 
 command! fffave   cat ~/.favedirs | sed "s#\~#$HOME#" | xargs fd -a -t=f -t=l . | fzf --tmux=80%% --bind 'ctrl-o:execute(fzfopen {})' | xargs -r vifmedit
 command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/auds | fzf --height=0 --bind 'ctrl-o:execute-silent(fzfopen {})' | sed 's/ /\\ /g' | xargs -r audplay -b
 command! ffauds   fd -H -L -d=3 -t=f -e=mp3 -e=m4a . /opt/.porn/auds | fzf --height=0 --bind 'ctrl-o:execute(fzfopen -x {})' --print0 | xargs -0 -r vifmgoto
-command! fferos   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/eros | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webopen
-command! fferos   fd -d=2 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/eros | fzf --height=0 --print0 | xargs -0r vifmgoto
+command! fferos   fd -d=3 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/eros | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webopen
+command! fferos   fd -d=3 -t=f -e=html -e=epub -e=pdf -e=txt . /opt/.porn/eros | fzf --height=0 --print0 | xargs -0r vifmgoto
 command! ffpics   fd -L -E '{*.webp,*.jpg,*.jpeg,*.JPG,*.JPEG}' . /opt/.porn/pics | fzf --height=0 --print0 | xargs -0r vifmgoto
 command! ffvids   fd -H -L -d=4 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . /opt/.porn/vids | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r vidplay
 command! ffvids   fd -H -L -d=4 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . /opt/.porn/vids | fzf --height=0 --print0 | xargs -0r vifmgoto

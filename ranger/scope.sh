@@ -129,6 +129,11 @@ handle_extension() {
             highlight -S python -O ansi -s dante "${FILE_PATH}" && exit 5
             exit 1;;
 
+        # js script
+        js)
+            highlight -S js -O ansi -s dante "${FILE_PATH}" && exit 5
+            exit 1;;
+
         # Shell script
         sh)
             highlight -S sh -O ansi -s dante "${FILE_PATH}" && exit 5
