@@ -87,7 +87,6 @@ map  <down>   <nop>
 qnoremap  <s-tab>  <tab>
 nnoremap  <s-tab>  :fileinfo<cr>
 nnoremap a<tab>    <nop>
-nnoremap b<tab>    <nop>
 nnoremap c<tab>    <nop>
 nnoremap d<tab>    <nop>
 nnoremap f<tab>    <nop>
@@ -102,12 +101,11 @@ nnoremap z<tab>    <nop>
 vnoremap  <cr>     :select<cr>
 nnoremap  <cr>     :if filetype('.') == 'link' | exec 'norm! gf' | else | open | endif<cr>
 nnoremap a<cr>     <nop>
-nnoremap b<cr>     <nop>
 nnoremap c<cr>     <nop>
 nnoremap d<cr>     <nop>
 nnoremap f<cr>     <nop>
-nnoremap g<cr>     <c-g>
-nnoremap m<cr>     :%chmod 400<cr>
+nnoremap g<cr>     <nop>
+nnoremap m<cr>     <nop>
 nnoremap o<cr>     <nop>
 nnoremap s<cr>     <nop>
 nnoremap x<cr>     <nop>
@@ -118,8 +116,7 @@ mnoremap  <bs>     <c-b>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
 nnoremap  <space>  :keepsel switch<cr>
-nnoremap a<space>  <nop>
-nnoremap b<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
+nnoremap a<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
 nnoremap c<space>  :if &laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
 nnoremap d<space>  <nop>
 nnoremap f<space>  :smartsortbytime<cr>
@@ -255,8 +252,10 @@ nnoremap <wait>  ;v  :version<cr>
 nnoremap <wait>  ;w  :pwd<cr>
 nnoremap <wait>  ;x  :s/\.html$/.txt/g<cr>
 
-nnoremap <wait>  ;;  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
-nnoremap <wait>  ,,  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
+nnoremap <wait>  ,l  :! ls -p | grep -v / | sort -t' ' -k2 %q<cr>
+
+nnoremap <wait>  ;;  ;
+nnoremap <wait>  ,,  ,
 " }}}
 
 " keymaps-4: special chars {{{
@@ -267,7 +266,6 @@ nnoremap  %  %zz
 nnoremap  *  *
 nnoremap  &  #
 nnoremap  !  !!  %c<left><left><left>
-nnoremap b!  !!  %c &<left><left><left><left><left>
 nnoremap g!  :!./%c:. &<cr>
 nnoremap g.  hgfl:set nodotfiles<cr>
 nnoremap g/  /<c-y>
@@ -295,12 +293,15 @@ vnoremap  aa :%select<cr>
 nnoremap  ac :%copy<cr>
 nnoremap  ad :%delete<cr>
 nnoremap  aD :%delete!<cr>
-nnoremap  al :! ls -p | grep -v / | sort -t' ' -k2 %q<cr>
+nnoremap  ae :%edit<cr>
 nnoremap  am :%chmod 400<cr>
 nnoremap  ar :%rename<cr>
-nnoremap  as :%s//g<left><left>
+nnoremap  as :%subst//g<left><left>
+nnoremap  au :%restore<cr>
 nnoremap  ax :%move<cr>
 nnoremap  ay :%yank<cr>
+nnoremap  av ggVG
+vnoremap  av ggoG
 qnoremap  a  <nop>
 qnoremap  A  <nop>
 nnoremap  A  za
@@ -325,14 +326,14 @@ nnoremap  cs :colorscheme<space><tab>
 nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
 nnoremap  C  :clone<cr>
 vnoremap  C  :clone<cr>
-nnoremap gc  :!cat %f >  %i<left><left><left>
+nnoremap gc  :catselto<space>
 nnoremap  da :%delete<cr>
 nnoremap  dc :compare groupids<cr>
 nnoremap  di do
 nnoremap  do dp
 nnoremap  d\ dS
 nnoremap  D  DD
-nnoremap gd  :!sdcv  %q<left><left><left>
+nnoremap gd  :stardict<space>
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
@@ -346,11 +347,9 @@ nnoremap gi  :touch ""<left><c-x>c
 nnoremap  I  :mkdir! ""<left>
 nnoremap gI  :mkdir! ""<left><c-x>c
 nnoremap aj  <nop>
-nnoremap bj  <nop>
 nnoremap cj  <nop>
 nnoremap dj  <nop>
 nnoremap gj  ]R
-nnoremap mj  2gM
 nnoremap oj  <nop>
 nnoremap sj  ]S
 nnoremap xj  <nop>
@@ -359,11 +358,9 @@ nnoremap  J  <c-e>
 mnoremap  J  <c-e>
 qnoremap  J  Qjv:if &quickview | switch | endif<cr>
 nnoremap ak  <nop>
-nnoremap bk  <nop>
 nnoremap ck  <nop>
 nnoremap dk  <nop>
 nnoremap gk  [R
-nnoremap mk  3gM
 nnoremap ok  <nop>
 nnoremap sk  [S
 nnoremap xk  <nop>
@@ -373,10 +370,12 @@ mnoremap  K  <c-y>
 qnoremap  K  Qkv:if isactive('preview') | switch | endif<cr>
 nnoremap gl  :if filetype('.') == 'link' | exec 'norm! gf' | else | altopen | endif<cr>
 nnoremap gL  :if filetype('.') == 'link' | exec 'norm! gF' | else | auxopen | endif<cr>
+vnoremap  m  gM
 nnoremap  mj 2gM
 nnoremap  mk 3gM
-vnoremap  m  gM
 nnoremap gm  gMzz
+nnoremap dm  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
+nnoremap sm  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
 nnoremap  mc :cmap<cr>
 nnoremap  md :dmap<cr>
 nnoremap  mm :mmap<cr>
@@ -429,6 +428,7 @@ nnoremap  sp :putlink<cr>
 nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
 nnoremap  st :if getpanetype() == "regular" | tree | else | exec 'norm! gh' | endif<cr>
+nnoremap  su :unselect //i<left><left>
 nnoremap  sw :!setwallpaper %c %i<cr>
 nnoremap  sx <c-w>x:switch<cr>
 nnoremap  sy :if isdir('.') | sync %c | else | sync | endif<cr>
@@ -463,15 +463,15 @@ vnoremap  xo :moveout<cr>
 nnoremap  xw :!tmux split "watch -n 8 tsp"<cr>
 nnoremap gx  :extract<cr>
 nnoremap  y  yy
+nnoremap gy  "Ryy
+nnoremap  Y  :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
 nnoremap  Y  :yankrootname<cr>:echo expand('%"c:r') "is yanked"<cr>
-nnoremap ay  :yankfullname<cr>:echo expand('%"c:p') "is yanked"<cr>
-nnoremap cy  :yankbasename<cr>:echo expand('%"c') "is yanked"<cr>
-nnoremap dy  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
-nnoremap gy  "RY
+nnoremap gY  :yankfullname<cr>:echo expand('%"c:p') "is yanked"<cr>
+nnoremap gY  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
 nnoremap  zh :set hlsearch!<cr>
 nnoremap  zi <c-w>>
-nnoremap  zn :view next<cr>
 nnoremap  zo <c-w><
+nnoremap  zn :view next<cr>
 nnoremap  zp :view prev<cr>
 nnoremap  zv :explore<cr>
 nnoremap  zx :screen<cr>
@@ -926,6 +926,8 @@ command! auxopen  fileopen -B %c
 command! lsselto  cat > %a %Pl
 command! lsallto  :select * | lsselto %a
 command! selcat   cat %f > %c.txt %i
+command! catselto cat %f > %a %i
+command! stardict sdcv %a %q
 command! audcat   audcat   %f &
 command! audconv  audconv  %a %c &
 command! imgconv  imgconv  %a %c &
