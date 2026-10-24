@@ -99,7 +99,7 @@ nnoremap z<tab>    <nop>
 
 "<cr> = <c-m>
 vnoremap  <cr>     :select<cr>
-nnoremap  <cr>     :if filetype('.') == 'link' | exec 'norm! gf' | else | open | endif<cr>
+nnoremap  <cr>     <c-g>
 nnoremap a<cr>     <nop>
 nnoremap c<cr>     <nop>
 nnoremap d<cr>     <nop>
@@ -128,7 +128,7 @@ nnoremap x<space>  <c-w>x
 nnoremap z<space>  :togglezcmd<space>
 " }}}
 
-" keymaps-2: Ctrl-X {{{
+" keymaps-2: Ctrl+X {{{
 "navigation mode: works only for / or = cmd
 "nav-mode is to control normal-mode ops
 anoremap  <c-@>  <c-y>
@@ -306,8 +306,8 @@ qnoremap  a  <nop>
 qnoremap  A  <nop>
 nnoremap  A  za
 nnoremap ga  gA
-nnoremap  b  <c-g>
-nnoremap  B  :batchpreview<cr>
+nnoremap  b  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
+nnoremap  B  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
 nnoremap gb  :hideui<cr>
 nnoremap  ca :%copy<cr>
 nnoremap  cc cp
@@ -339,6 +339,7 @@ mnoremap  e  v
 qnoremap  e  v
 nnoremap  E  e
 nnoremap ge  :empty<cr>
+nnoremap gf  :fileinfo<cr>
 mnoremap  h  q
 dnoremap  h  q
 qnoremap  i  <nop>
@@ -374,15 +375,13 @@ vnoremap  m  gM
 nnoremap  mj 2gM
 nnoremap  mk 3gM
 nnoremap gm  gMzz
-nnoremap dm  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
-nnoremap sm  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
 nnoremap  mc :cmap<cr>
 nnoremap  md :dmap<cr>
 nnoremap  mm :mmap<cr>
 nnoremap  mn :nmap<cr>
 nnoremap  mq :qmap<cr>
 nnoremap  mv :vmap<cr>
-nnoremap gn  <nop>
+nnoremap gn  :naviview<cr>
 nnoremap  oo =
 nnoremap  od zD
 nnoremap  oe :exec "filter! /\.".expand('%c:e')."$/i"<cr>
@@ -811,7 +810,7 @@ command! vswinmoverite
      \ |   exec 'norm s<'
      \ | endif
 
-command! batchpreview
+command! naviview
      \ : if layoutis('only') && ! &quickview
      \ |   exec 'norm ss'
      \ |   exec "norm! \<c-w>H"
