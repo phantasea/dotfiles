@@ -128,6 +128,7 @@ export DELTA_PAGER="less -R"
 export TRASH_DIR="/var/tmp/Trash"
 export TRASH_RANGER="/var/tmp/Trash_ranger"
 export TRASH_VIFM="/var/tmp/Trash_vifm"
+export FF_DEF_DIR="/var/tmp/mozilla/firefox/77cpc977.default-release"
 export _ZO_EXCLUDE_DIRS="$HOME:/opt/.porn/*:/media/simone/*"
 
 #new file: 600 [-rw-------]
@@ -241,10 +242,8 @@ elif [[ $tmux_sid -eq 3 ]]; then
     tmux set-environment GUITERM "xterm"
 fi
 
-cd ~/temp
-
 [[ ! -d /tmp/cache ]] && mkdir -p /tmp/cache
-[[ ! -d /tmp/firefox/storage ]] && mkdir -p /tmp/firefox/storage
+[[ ! -d /tmp/firefox/storage/default ]] && mkdir -p /tmp/firefox/storage/default
 
 [[ ! -d /var/tmp/mpd ]] && mkdir -p /var/tmp/mpd
 [[ ! -d /var/tmp/mozilla ]] && mkdir -p /var/tmp/mozilla
@@ -252,10 +251,12 @@ cd ~/temp
 [[ ! -d /var/tmp/Trash_vifm ]] && mkdir -p /var/tmp/Trash_vifm
 [[ ! -d /var/tmp/Trash_ranger ]] && mkdir -p /var/tmp/Trash_ranger
 
-#FF_DEF_DIR="$HOME/.cache/mozilla/firefox/*.default-release"
-#FF_DEF_DIR=$(ls -d $FF_DEF_DIR 2>/dev/null | head -n 1)
-#if [ -L "$FF_DEF_DIR"/cache2 ]; then
-#    ln -sf $FF_CACHE_DIR $FF_DEF_DIR
-#fi
+FF_ADDON_DIR="/var/tmp/mozilla/firefox/*.default-release/storage.bak/default"
+FF_ADDON_DIR=$(ls -d $FF_ADDON_DIR 2>/dev/null | head -n 1)
+if [ -d "$FF_ADDON_DIR" ]; then
+    ln -sf $FF_ADDON_DIR/* /tmp/firefox/storage/default/
+fi
+
+cd ~/temp
 
 # vim: foldmethod=marker

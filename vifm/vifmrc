@@ -404,8 +404,8 @@ nnoremap gq  q
 vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  cW<c-u>
-nnoremap gr  :grep<cr>
-qnoremap gr  :grep<cr>
+nnoremap gr  :grep<space>
+qnoremap gr  :grep<space>
 qnoremap  s  <c-w>
 nnoremap  sa GVgg
 vnoremap  sa ggoG
