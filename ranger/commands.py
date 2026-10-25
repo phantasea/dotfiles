@@ -168,6 +168,37 @@ class smart_goto_mid(Command):
             return
 
 
+class jump_boundary(Command):
+    """:jump_boundary [-x]
+    Jumps to dir/file boundary
+
+    Flag:
+      -x  if crossing the dir/file boundary
+    """
+    def __init__(self, *args, **kwargs):
+        super(jump_boundary, self).__init__(*args, **kwargs)
+        flags, _ = self.parse_flags()
+        self._xing = 'x' in flags
+
+    def execute(self):
+        oldfile = self.fm.thisfile
+        if oldfile.is_directory:
+            self.fm.execute_console('jump_non')
+        else:
+            self.fm.execute_console('jump_non -r')
+
+        if self.fm.thisfile == oldfile:
+            self.fm.notify("No boundary for all dirs/files!", bad=False)
+            return
+
+        if not self._xing:
+            if oldfile.is_directory:
+                self.fm.move(up=1)
+            else:
+                self.fm.move(down=1)
+        return
+
+
 class smart_symlink(Command):
     def execute(self):
         thisdir = self.fm.thisdir

@@ -306,8 +306,8 @@ qnoremap  a  <nop>
 qnoremap  A  <nop>
 nnoremap  A  za
 nnoremap ga  gA
-nnoremap  b  :if isdir('.') | exec 'norm! }k' | else | exec 'norm! {j' | endif<cr>
-nnoremap  B  :if isdir('.') | exec 'norm! }'  | else | exec 'norm! {'  | endif<cr>
+nnoremap  b  :boundary<cr>
+nnoremap  B  :boundary!<cr>
 nnoremap gb  :hideui<cr>
 nnoremap  ca :%copy<cr>
 nnoremap  cc cp
