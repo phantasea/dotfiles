@@ -224,19 +224,17 @@ map <wait>  -or  :chmod o-r<cr>
 map <wait>  -ow  :chmod o-w<cr>
 map <wait>  -ox  :chmod o-x<cr>
 
-nnoremap <wait>  ;/  :find<space>
 nnoremap <wait>  ;b  :marks<cr>
 nnoremap <wait>  ;c  :command<cr>
 nnoremap <wait>  ;d  :dirs<cr>
-nnoremap <wait>  ;f  :file<cr>
+nnoremap <wait>  ;f  :find<space>
+nnoremap <wait>  ;F  :file<cr>
 nnoremap <wait>  ;g  :bmgo<space>
 nnoremap <wait>  ;h  :manhelp<cr>
 nnoremap <wait>  ;H  :help<cr>
 nnoremap <wait>  ;i  :imgall<cr>
 nnoremap <wait>  ;I  :imgrall<cr>
 nnoremap <wait>  ;J  :jobs<cr>
-nnoremap <wait>  ;j  :<c-u>exec '.+'.v:count '| open'<cr>
-nnoremap <wait>  ;k  :<c-u>exec '.-'.v:count '| norm! gf'<cr>
 nnoremap <wait>  ;l  :messages<cr>
 nnoremap <wait>  ;L  :locate<space>
 nnoremap <wait>  ;m  :media<cr>
@@ -251,8 +249,6 @@ nnoremap <wait>  ;u  :undolist<cr>
 nnoremap <wait>  ;v  :version<cr>
 nnoremap <wait>  ;w  :pwd<cr>
 nnoremap <wait>  ;x  :s/\.html$/.txt/g<cr>
-
-nnoremap <wait>  ,l  :! ls -p | grep -v / | sort -t' ' -k2 %q<cr>
 
 nnoremap <wait>  ;;  ;
 nnoremap <wait>  ,,  ,
@@ -288,6 +284,7 @@ mnoremap  ]  zL
 " }}}
 
 " keymaps-5: regular chars
+nnoremap  al :! ls -p | grep -v / | sort -t' ' -k2 %q<cr>
 nnoremap  aa :%select<cr>
 vnoremap  aa :%select<cr>
 nnoremap  ac :%copy<cr>
@@ -351,7 +348,7 @@ nnoremap aj  <nop>
 nnoremap cj  <nop>
 nnoremap dj  <nop>
 nnoremap gj  ]R
-nnoremap oj  <nop>
+nnoremap oj  :exec '.+'.v:count '| open'<cr>
 nnoremap sj  ]S
 nnoremap xj  <nop>
 nnoremap zj  }
@@ -362,7 +359,7 @@ nnoremap ak  <nop>
 nnoremap ck  <nop>
 nnoremap dk  <nop>
 nnoremap gk  [R
-nnoremap ok  <nop>
+nnoremap ok  :exec '.-'.v:count '| open'<cr>
 nnoremap sk  [S
 nnoremap xk  <nop>
 nnoremap zk  {
