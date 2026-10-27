@@ -86,29 +86,10 @@ map  <down>   <nop>
 "nnoremap <tab>    :toggletab<cr>
 qnoremap  <s-tab>  <tab>
 nnoremap  <s-tab>  :fileinfo<cr>
-nnoremap a<tab>    <nop>
-nnoremap c<tab>    <nop>
-nnoremap d<tab>    <nop>
-nnoremap f<tab>    <nop>
-nnoremap g<tab>    <nop>
-nnoremap m<tab>    <nop>
-nnoremap o<tab>    <nop>
-nnoremap s<tab>    <nop>
-nnoremap x<tab>    <nop>
-nnoremap z<tab>    <nop>
 
 "<cr> = <c-m>
-vnoremap  <cr>     :select<cr>
 nnoremap  <cr>     <c-g>
-nnoremap a<cr>     <nop>
-nnoremap c<cr>     <nop>
-nnoremap d<cr>     <nop>
-nnoremap f<cr>     <nop>
-nnoremap g<cr>     <nop>
-nnoremap m<cr>     <nop>
-nnoremap o<cr>     <nop>
-nnoremap s<cr>     <nop>
-nnoremap x<cr>     <nop>
+vnoremap  <cr>     :select<cr>
 nnoremap z<cr>     :!dotify %f<cr>
 
 nnoremap  <bs>     :fileinfo<cr>
@@ -118,10 +99,8 @@ mnoremap  <space>  <c-f>
 nnoremap  <space>  :keepsel switch<cr>
 nnoremap a<space>  :if toggle("bold") | hi Win cterm=bold | else | hi Win cterm=none | endif<cr>
 nnoremap c<space>  :if &laststatus | colorscheme lynna | else | colorscheme chris | endif<cr>
-nnoremap d<space>  <nop>
 nnoremap f<space>  :smartsortbytime<cr>
 nnoremap g<space>  :edit $MYVIFMRC<cr>
-nnoremap m<space>  <nop>
 nnoremap o<space>  :if toggle("bold") | hi OddLine cterm=bold | else | hi OddLine cterm=none | endif<cr>
 nnoremap s<space>  :smartsortbysize<cr>
 nnoremap x<space>  <c-w>x
@@ -307,8 +286,8 @@ nnoremap  b  :boundary<cr>
 nnoremap  B  :boundary!<cr>
 nnoremap gb  :hideui<cr>
 nnoremap  ca :%copy<cr>
-nnoremap  cc cp
-vnoremap  cc cp
+nnoremap  cc :copy<cr>
+vnoremap  cc :copy<cr>
 nnoremap  cd :cd<space>
 vnoremap  cd :cd<space>
 nnoremap  ci :copyin<cr>
@@ -319,6 +298,8 @@ nnoremap  cm :chmod<space>
 vnoremap  cm :chmod<space>
 nnoremap  co :copyout<cr>
 vnoremap  co :copyout<cr>
+nnoremap  cp cp
+vnoremap  cp cp
 nnoremap  cs :colorscheme<space><tab>
 nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
 nnoremap  C  :clone<cr>
@@ -326,6 +307,7 @@ vnoremap  C  :clone<cr>
 nnoremap gc  :catselto<space>
 nnoremap  da :%delete<cr>
 nnoremap  dc :compare groupids<cr>
+nnoremap  dd :delete<cr>
 nnoremap  di do
 nnoremap  do dp
 nnoremap  d\ dS
@@ -336,38 +318,27 @@ mnoremap  e  v
 qnoremap  e  v
 nnoremap  E  e
 nnoremap ge  :empty<cr>
-nnoremap gf  :fileinfo<cr>
 mnoremap  h  q
 dnoremap  h  q
+nnoremap  H  :smartHI<cr>
 qnoremap  i  <nop>
 nnoremap  i  :touch ""<left>
 nnoremap gi  :touch ""<left><c-x>c
 nnoremap  I  :mkdir! ""<left>
 nnoremap gI  :mkdir! ""<left><c-x>c
-nnoremap aj  <nop>
-nnoremap cj  <nop>
-nnoremap dj  <nop>
 nnoremap gj  ]R
-nnoremap oj  :exec '.+'.v:count '| open'<cr>
 nnoremap sj  ]S
-nnoremap xj  <nop>
-nnoremap zj  }
 nnoremap  J  <c-e>
 mnoremap  J  <c-e>
 qnoremap  J  Qjv:if &quickview | switch | endif<cr>
-nnoremap ak  <nop>
-nnoremap ck  <nop>
-nnoremap dk  <nop>
 nnoremap gk  [R
-nnoremap ok  :exec '.-'.v:count '| open'<cr>
 nnoremap sk  [S
-nnoremap xk  <nop>
-nnoremap zk  {
 nnoremap  K  <c-y>
 mnoremap  K  <c-y>
 qnoremap  K  Qkv:if isactive('preview') | switch | endif<cr>
 nnoremap gl  :if filetype('.') == 'link' | exec 'norm! gf' | else | altopen | endif<cr>
 nnoremap gL  :if filetype('.') == 'link' | exec 'norm! gF' | else | auxopen | endif<cr>
+nnoremap  L  :smartLO<cr>
 vnoremap  m  gM
 nnoremap  mj 2gM
 nnoremap  mk 3gM
@@ -456,6 +427,8 @@ nnoremap  xi :movein<cr>
 vnoremap  xi :movein<cr>
 nnoremap  xo :moveout<cr>
 vnoremap  xo :moveout<cr>
+nnoremap  xx :move<cr>
+vnoremap  xx :move<cr>
 nnoremap  xw :!tmux split "watch -n 8 tsp"<cr>
 nnoremap gx  :extract<cr>
 nnoremap  y  yy
@@ -467,6 +440,7 @@ nnoremap gY  :yankpathname<cr>:echo expand('%"c:p:h') "is yanked"<cr>
 nnoremap  zh :set hlsearch!<cr>
 nnoremap  zi <c-w>>
 nnoremap  zo <c-w><
+nnoremap  zm zz
 nnoremap  zn :view next<cr>
 nnoremap  zp :view prev<cr>
 nnoremap  zv :explore<cr>
@@ -721,6 +695,22 @@ endif
 
 " :exec "norm \<c-w>s" works since vifm v0.15
 " (must use double-quotes to accept escape-sequence)
+command! smartHI
+     \ : if v:count > 0
+     \ |   exec '.-'.v:count
+     \ |   open
+     \ | else
+     \ |   exec 'norm! H'
+     \ | endif
+
+command! smartLO
+     \ : if v:count > 0
+     \ |   exec '.+'.v:count
+     \ |   open
+     \ | else
+     \ |   exec 'norm! L'
+     \ | endif
+
 command! smartdiff
      \ : if selected() == 0
      \ |   exec '!vim -d %%c %%C'
