@@ -320,7 +320,6 @@ nnoremap  E  e
 nnoremap ge  :empty<cr>
 mnoremap  h  q
 dnoremap  h  q
-nnoremap  H  :smartHI<cr>
 qnoremap  i  <nop>
 nnoremap  i  :touch ""<left>
 nnoremap gi  :touch ""<left><c-x>c
@@ -338,7 +337,6 @@ mnoremap  K  <c-y>
 qnoremap  K  Qkv:if isactive('preview') | switch | endif<cr>
 nnoremap gl  :if filetype('.') == 'link' | exec 'norm! gf' | else | altopen | endif<cr>
 nnoremap gL  :if filetype('.') == 'link' | exec 'norm! gF' | else | auxopen | endif<cr>
-nnoremap  L  :smartLO<cr>
 vnoremap  m  gM
 nnoremap  mj 2gM
 nnoremap  mk 3gM
