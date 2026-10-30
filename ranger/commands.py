@@ -159,12 +159,12 @@ class smart_goto_mid(Command):
     """
 
     def execute(self):
-        if self.mode == 'normal':
-            self.fm.move_mid(2)
+        if self.fm.mode == 'normal':
+            self.fm.move_mid('ABS_MID')
             return
 
-        if self.mode == 'visual':
-            self.fm.visual_to_mid
+        if self.fm.mode == 'visual':
+            self.fm.visual_to_mid()
             return
 
 

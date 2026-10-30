@@ -270,7 +270,7 @@ nnoremap  ac :%copy<cr>
 nnoremap  ad :%delete<cr>
 nnoremap  aD :%delete!<cr>
 nnoremap  ae :%edit<cr>
-nnoremap  am :%chmod 400<cr>
+nnoremap  am :%chmod<space>
 nnoremap  ar :%rename<cr>
 nnoremap  as :%subst//g<left><left>
 nnoremap  au :%restore<cr>
@@ -310,6 +310,7 @@ nnoremap  dc :compare groupids<cr>
 nnoremap  dd :delete<cr>
 nnoremap  di do
 nnoremap  do dp
+nnoremap  ds :unselect//i<left><left>
 nnoremap  d\ dS
 nnoremap  D  DD
 nnoremap gd  :stardict<space>
@@ -393,7 +394,6 @@ nnoremap  sp :putlink<cr>
 nnoremap  ss <c-w>S
 qnoremap  ss <c-w>S
 nnoremap  st :if getpanetype() == "regular" | tree | else | exec 'norm! gh' | endif<cr>
-nnoremap  su :unselect //i<left><left>
 nnoremap  sw :!setwallpaper %c %i<cr>
 nnoremap  sx <c-w>x:switch<cr>
 nnoremap  sy :if isdir('.') | sync %c | else | sync | endif<cr>
@@ -408,7 +408,7 @@ nnoremap  s| <c-w>|
 nnoremap  s_ <c-w>_
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
-nnoremap gs  gS
+nnoremap gs  :%s//g<left><left>
 nnoremap  t  tj
 nnoremap  T  kt
 nnoremap gt  gs
@@ -962,14 +962,6 @@ autocmd DirEnter '/opt/conf/wezterm/**/*'  setl previewprg='git log --color -- %
 " Example first line for SshMount filetype: root@127.0.0.1:/
 "
 " You can also add %CLEAR if you want to clear screen before running FUSE program.
-
-" You can use filename modifiers after %c, %C, %f, %F, %b, %d and %D macros.  Supported modifiers are:
-" :p - full path
-" :~ - relative to the home directory
-" :. - relative to current directory
-" :h - head of the filename
-" :t - tail of the filename
-" :r - root of the filename (without last extension)
 
 " Directories (fallback to /opt/util/fileview if not set here)
 if $DISPLAY == ""
