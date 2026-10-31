@@ -298,6 +298,7 @@ nnoremap  cm :chmod<space>
 vnoremap  cm :chmod<space>
 nnoremap  co :copyout<cr>
 vnoremap  co :copyout<cr>
+nnoremap  cO :systcopyout<cr>
 nnoremap  cp cp
 vnoremap  cp cp
 nnoremap  cs :colorscheme<space><tab>
@@ -427,6 +428,7 @@ nnoremap  xo :moveout<cr>
 vnoremap  xo :moveout<cr>
 nnoremap  xx :move<cr>
 vnoremap  xx :move<cr>
+nnoremap  xO :systmoveout<cr>
 nnoremap  xw :!tmux split "watch -n 8 tsp"<cr>
 nnoremap gx  :extract<cr>
 nnoremap  y  yy
@@ -646,10 +648,10 @@ windo filter /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume
 " commands {{{
 command! diffonewin      vimux -d %f
 command! difftwowin      vimux -d %c %C
-command! systcopyin      cp -i -R %F %d
-command! systcopyout     cp -i -R %f %D
-command! systmovein      mv -i %F %d
-command! systmoveout     mv -i %f %D
+command! systcopyin      cp -i -R %F %d %i
+command! systcopyout     cp -i -R %f %D %i
+command! systmovein      mv -i %F %d %i
+command! systmoveout     mv -i %f %D %i
 command! sudocopyin      sudo cp -R %F %d
 command! sudocopyout     sudo cp -R %f %D
 command! sudomovein      sudo mv -i %F %d

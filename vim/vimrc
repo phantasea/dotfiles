@@ -207,7 +207,7 @@ nnoremap  g#    g#n
 nnoremap   *    *N
 nnoremap  g*    g*N
 nnoremap  g/    :Ag  %<left><left>
-nnoremap  g|    :set cursorcolumn!<CR>
+nnoremap  g\|   :set cursorcolumn!<CR>
 vnoremap   $    $<left>
 vnoremap   #    y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 vnoremap   *    y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
@@ -254,6 +254,8 @@ nnoremap  gN    :g/\v/norm<space><C-R>=setcmdpos(6)?'':''
 nnoremap  gN    :g/\v/norm<space><left><left><left><left><left><left>
 nnoremap  go    :Fffm<CR>
 xnoremap   p    "0p
+nnoremap  yo    o<Esc>k
+nnoremap  yO    O<Esc>j
 nnoremap   q    :call SmartQuit()<CR>
 nnoremap  gq    q
 nnoremap   Q    :qall!<CR>
@@ -266,6 +268,7 @@ nnoremap   sa   :vert ball<CR>
 nnoremap   sb   :windo set scrollbind!<CR>
 nnoremap   sd   :DiffOrig<CR>
 nnoremap   sf   :call DirFilePicker("HSplit")<CR>
+nnoremap   so   :Fffm<CR>
 nnoremap   sq   :call QuitAllBufButMe()<CR>
 nnoremap   st   :terminal<cr>
 nnoremap   s}   :call OpenTagPreviewWin()<CR>
@@ -280,8 +283,6 @@ nnoremap  gW    :w !sudo tee % > /dev/null<CR>
 vnoremap  gy    y:call SmartVisualYank()<CR>
 vnoremap  gY    "+y
 nnoremap   Y    y$
-nnoremap   yo   o<Esc>k
-nnoremap   yO   O<Esc>j
 nnoremap   zh   :nohlsearch<cr>
 nnoremap   zm   zz
 nnoremap   zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
