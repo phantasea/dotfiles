@@ -142,14 +142,11 @@ nnoremap   <Space>    <PageDown>L
 nnoremap   <Up>       <C-Y>
 nnoremap   <Down>     <C-E>
 nnoremap   <Left>     zh
-nnoremap   <S-Left>   zH
-nnoremap   <C-Left>   zs
 nnoremap   <Right>    zl
+nnoremap   <S-Left>   zH
 nnoremap   <S-Right>  zL
-nnoremap   <C-Right>  ze
 
 map <F5>   :!clear && gcc % -o %:r && ./%:r<cr>
-map <F8>   :nohlsearch<CR>
 
 onoremap   aa   :<C-U>normal! ggVG<CR>
 onoremap   if   :<C-U>normal! [[jV]]k<CR>
@@ -163,7 +160,10 @@ cnoremap   <C-A>    <Home>
 cnoremap   <C-B>    <Left>
 cnoremap   <C-D>    <Del>
 cnoremap   <C-E>    <End>
+cnoremap   <C-L>    <End>
 cnoremap   <C-F>    <Right>
+cnoremap   <C-I>    <Tab>
+cnoremap   <C-K>    <C-\>estrpart(getcmdline(), 0, getcmdpos()-1)<CR>
 cnoremap   <C-O>    <S-Tab>
 cnoremap   <C-Y>    <S-Left>
 cnoremap   <C-G>    <S-Right>
@@ -174,7 +174,7 @@ inoremap   <C-D>    <Del>
 inoremap   <C-F>    <Right>
 inoremap   <C-L>    <End>
 inoremap   <C-H>    <BS>
-inoremap   <C-K>    <Esc>lC
+inoremap   <C-K>    <C-O>D
 inoremap   <C-T>    <C-V><Tab><C-O>:.retab<CR>
 inoremap   <C-V>    <C-R>*
 inoremap   <C-Y>    <C-R><C-R>=VCopy('up')<CR>
@@ -191,46 +191,40 @@ nnoremap   <C-J>    <PageDown>L
 vnoremap   <C-J>    <PageDown>zz
 nnoremap   <C-K>    <PageUp>H
 vnoremap   <C-K>    <PageUp>zz
-nnoremap   <C-N>    :bn<CR>
-nnoremap   <C-P>    :bp<CR>
+nnoremap   <C-N>    :bnext<CR>
+nnoremap   <C-P>    :bprev<CR>
 nnoremap   <C-S>    :update<cr>
 nnoremap   <C-U>    <C-T>
 nnoremap   <C-Y>    :History<CR>
 
 "vnoremap  #    y:let @/=@"<CR>N
 "vnoremap  *    y/<C-R>"<CR>
-nnoremap  \|\|  \|
 nnoremap   '    `
 nnoremap   ['   [`
 nnoremap   ]'   ]`
-nnoremap   &    :&&<CR>
-vnoremap   $    $<left>
-nnoremap  g/    :Ag  %<left><left>
 nnoremap   #    #n
 nnoremap  g#    g#n
 nnoremap   *    *N
 nnoremap  g*    g*N
-vnoremap   &    :&&<CR>
+nnoremap  g/    :Ag  %<left><left>
+nnoremap  g|    :set cursorcolumn!<CR>
+vnoremap   $    $<left>
 vnoremap   #    y?<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 vnoremap   *    y/<C-R>=escape(@", '\\/.*$^~[]')<CR><CR>
 vnoremap   <    <gv
 vnoremap   >    >gv
-vnoremap   .    :normal .<CR>
-vnoremap  g(    <esc>`<i(<esc>`>a)<esc>
-vnoremap  g[    <esc>`<i[<esc>`>a]<esc>
-vnoremap  g{    <esc>`<i{<esc>`>a}<esc>
-vnoremap  g"    <esc>`<i"<esc>`>a"<esc>
-vnoremap  g'    <esc>`<i'<esc>`>a'<esc>
-vnoremap  g<    <esc>`<i<<esc>`>i><esc>
+vnoremap  g"    c"<C-R>""<esc>
+vnoremap  g'    c'<C-R>"'<esc>
+vnoremap  g(    c(<C-R>")<esc>
+vnoremap  g{    c{<C-R>"}<esc>
+vnoremap  g[    c[<C-R>"]<esc>
+vnoremap  g<    c<lt><C-R>"><esc>
 
 "swap 0 and ^ function
 nnoremap  0     ^
 nnoremap  ^     0
 vnoremap  0     ^
 vnoremap  ^     0
-
-nnoremap  gq:   q:
-nnoremap  gN    :g/\v/norm<space><left><left><left><left><left><left>
 
 nnoremap  gb    :buffer<space>
 nnoremap  gB    :buffers<CR>
@@ -249,19 +243,22 @@ nnoremap  gh    :History<CR>
 nnoremap   j    gj
 vnoremap   j    gj
 nnoremap  gj    J
+nnoremap   J    <C-E>
 nnoremap   k    gk
 vnoremap   k    gk
 nnoremap  gk    K
-nnoremap   J    <C-E>
 nnoremap   K    <C-Y>
-nnoremap  n    nzz
-nnoremap  N    Nzz
+nnoremap   n    nzz
+nnoremap   N    Nzz
+nnoremap  gN    :g/\v/norm<space><C-R>=setcmdpos(6)?'':''
+nnoremap  gN    :g/\v/norm<space><left><left><left><left><left><left>
 nnoremap  go    :Fffm<CR>
 xnoremap   p    "0p
 nnoremap   q    :call SmartQuit()<CR>
+nnoremap  gq    q
 nnoremap   Q    :qall!<CR>
 nnoremap  gr    :setlocal ambiwidth=single<cr>:FFRGB<space>
-nnoremap  gs    :g//d<Left><Left>
+nnoremap  gs    :%s/\v/g<Left><Left>
 nnoremap   S    :%s/\v/g<Left><Left>
 vnoremap   S    :s/\%V/g<left><left>
 nnoremap   s    <C-W>
@@ -273,8 +270,8 @@ nnoremap   sq   :call QuitAllBufButMe()<CR>
 nnoremap   st   :terminal<cr>
 nnoremap   s}   :call OpenTagPreviewWin()<CR>
 nnoremap   s#   :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-nnoremap   s*   :call ListSrchCurrFile("n")<CR>
-vnoremap   s*   y:call ListSrchCurrFile("v")<CR>
+nnoremap   s*   :call ListSrchCurrFile("n")<CR>:cw<CR>
+vnoremap   s*   y:call ListSrchCurrFile("v")<CR>:cw<CR>
 nnoremap   s/   :vimgrep  %<left><left>
 nnoremap   s?   :vimgrepadd  %<left><left>
 nnoremap   U    <C-R>
@@ -286,6 +283,7 @@ nnoremap   Y    y$
 nnoremap   yo   o<Esc>k
 nnoremap   yO   O<Esc>j
 nnoremap   zh   :nohlsearch<cr>
+nnoremap   zm   zz
 nnoremap   zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 nnoremap   zw   :set wrap!<cr>
 
@@ -316,7 +314,6 @@ nnoremap   y<space>   :Fffm<cr>
 nnoremap   z<space>   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 nnoremap   =<space>   :call SmartWinMax()<CR>
 nnoremap   -<space>   :set cursorline!<CR>
-nnoremap  \|<space>   :set cursorcolumn!<CR>
 
 nnoremap   <leader><leader>  :NERDTreeToggle<CR>
 nnoremap   <leader><space>   :set wrap!<cr>
