@@ -130,6 +130,18 @@ cnoremap  <c-t>  <c-g>
 cnoremap  <c-v>  <c-x>s
 cnoremap  <c-y>  <a-b>
 
+mnoremap  <c-j>  <c-f>
+mnoremap  <c-k>  <c-b>
+mnoremap  <c-i>  :cnewer<cr>
+mnoremap  <c-n>  :cnewer<cr>
+mnoremap  <c-o>  :colder<cr>
+mnoremap  <c-p>  :colder<cr>
+
+qnoremap  <c-j>  <c-f>
+qnoremap  <c-k>  <c-b>
+qnoremap  <c-n>  a
+qnoremap  <c-p>  A
+
 nnoremap  <c-a>  :ffauds<cr>
 nnoremap  <c-b>  :tree!<cr>
 nnoremap  <c-c>  :history<cr>
@@ -140,22 +152,16 @@ nnoremap  <c-f>  :fffave<cr>
 nnoremap  <c-g>  :ffgoto<cr>
 vnoremap  <c-g>  <c-g>
 nnoremap  <c-i>  :histnext<cr>
-mnoremap  <c-j>  <c-f>
 nnoremap  <c-j>  <c-f>
-qnoremap  <c-j>  <c-f>
 vnoremap  <c-j>  <c-f>
-mnoremap  <c-k>  <c-b>
 nnoremap  <c-k>  <c-b>
-qnoremap  <c-k>  <c-b>
 vnoremap  <c-k>  <c-b>
 nnoremap  <c-l>  :redraw<cr>
 nnoremap  <c-n>  gt
 vnoremap  <c-n>  gt
-qnoremap  <c-n>  a
 nnoremap  <c-o>  :histprev<cr>
 nnoremap  <c-p>  gT
 vnoremap  <c-p>  gT
-qnoremap  <c-p>  A
 nnoremap  <c-q>  :tabonly<cr>
 nnoremap  <c-r>  :restore<cr>
 nnoremap  <c-s>  :tabnew<cr>
@@ -206,7 +212,6 @@ map <wait>  -ox  :chmod o-x<cr>
 nnoremap <wait>  ;b  :marks<cr>
 nnoremap <wait>  ;c  :command<cr>
 nnoremap <wait>  ;d  :dirs<cr>
-nnoremap <wait>  ;f  :find<space>
 nnoremap <wait>  ;F  :file<cr>
 nnoremap <wait>  ;g  :bmgo<space>
 nnoremap <wait>  ;h  :manhelp<cr>
@@ -214,17 +219,12 @@ nnoremap <wait>  ;H  :help<cr>
 nnoremap <wait>  ;i  :imgall<cr>
 nnoremap <wait>  ;I  :imgrall<cr>
 nnoremap <wait>  ;J  :jobs<cr>
-nnoremap <wait>  ;l  :messages<cr>
 nnoremap <wait>  ;L  :locate<space>
 nnoremap <wait>  ;m  :media<cr>
-nnoremap <wait>  ;o  :copen<cr>
 nnoremap <wait>  ;p  :plugins<cr>
-nnoremap <wait>  ;r  :ratings<cr>
 nnoremap <wait>  ;R  :registers<cr>
 nnoremap <wait>  ;s  :sort<cr>
 nnoremap <wait>  ;S  :shell<cr>
-nnoremap <wait>  ;t  :lstrash<cr>
-nnoremap <wait>  ;u  :undolist<cr>
 nnoremap <wait>  ;v  :version<cr>
 nnoremap <wait>  ;w  :pwd<cr>
 nnoremap <wait>  ;x  :s/\.html$/.txt/g<cr>
@@ -286,8 +286,7 @@ nnoremap  b  :boundary<cr>
 nnoremap  B  :boundary!<cr>
 nnoremap gb  :hideui<cr>
 nnoremap  ca :%copy<cr>
-nnoremap  cc :copy<cr>
-vnoremap  cc :copy<cr>
+nnoremap  cc :systcopy<cr>
 nnoremap  cd :cd<space>
 vnoremap  cd :cd<space>
 nnoremap  ci :copyin<cr>
@@ -298,7 +297,6 @@ nnoremap  cm :chmod<space>
 vnoremap  cm :chmod<space>
 nnoremap  co :copyout<cr>
 vnoremap  co :copyout<cr>
-nnoremap  cO :systcopyout<cr>
 nnoremap  cp cp
 vnoremap  cp cp
 nnoremap  cs :colorscheme<space><tab>
@@ -307,7 +305,7 @@ nnoremap  C  :clone<cr>
 vnoremap  C  :clone<cr>
 nnoremap gc  :catselto<space>
 nnoremap  da :%delete<cr>
-nnoremap  dc :compare groupids<cr>
+nnoremap  dc :compare<cr>
 nnoremap  dd :delete<cr>
 nnoremap  di do
 nnoremap  do dp
@@ -320,6 +318,7 @@ mnoremap  e  v
 qnoremap  e  v
 nnoremap  E  e
 nnoremap ge  :empty<cr>
+nnoremap gf  :find<space>
 mnoremap  h  q
 dnoremap  h  q
 qnoremap  i  <nop>
@@ -342,13 +341,17 @@ nnoremap gL  :if filetype('.') == 'link' | exec 'norm! gF' | else | auxopen | en
 vnoremap  m  gM
 nnoremap  mj 2gM
 nnoremap  mk 3gM
-nnoremap gm  gMzz
+nnoremap gM  gMzz
+nnoremap  mr :ratings<cr>
+nnoremap  mt :lstrash<cr>
+nnoremap  mu :undolist<cr>
 nnoremap  mc :cmap<cr>
 nnoremap  md :dmap<cr>
 nnoremap  mm :mmap<cr>
 nnoremap  mn :nmap<cr>
 nnoremap  mq :qmap<cr>
 nnoremap  mv :vmap<cr>
+nnoremap gm  :copen<cr>
 nnoremap gn  :naviview<cr>
 nnoremap  oo =
 nnoremap  od zD
@@ -389,6 +392,7 @@ nnoremap  sl :alink<cr>
 vnoremap  sl :alink<cr>
 nnoremap  sl :symlink<cr>
 vnoremap  sl :symlink<cr>
+nnoremap  sm :messages<cr>
 nnoremap  so :sync<cr>
 nnoremap  sp al
 nnoremap  sp :putlink<cr>
@@ -426,9 +430,7 @@ nnoremap  xi :movein<cr>
 vnoremap  xi :movein<cr>
 nnoremap  xo :moveout<cr>
 vnoremap  xo :moveout<cr>
-nnoremap  xx :move<cr>
-vnoremap  xx :move<cr>
-nnoremap  xO :systmoveout<cr>
+nnoremap  xx :systmove<cr>
 nnoremap  xw :!tmux split "watch -n 8 tsp"<cr>
 nnoremap gx  :extract<cr>
 nnoremap  y  yy
@@ -648,14 +650,10 @@ windo filter /(lost\+found|Desktop|\.pyo$|\.pyc$|__pycache__|Volume
 " commands {{{
 command! diffonewin      vimux -d %f
 command! difftwowin      vimux -d %c %C
-command! systcopyin      cp -i -R %F %d %i
-command! systcopyout     cp -i -R %f %D %i
-command! systmovein      mv -i %F %d %i
-command! systmoveout     mv -i %f %D %i
-command! sudocopyin      sudo cp -R %F %d
-command! sudocopyout     sudo cp -R %f %D
-command! sudomovein      sudo mv -i %F %d
-command! sudomoveout     sudo mv -i %f %D
+command! systcopy        cp -i -R %f %D %i
+command! systmove        mv -i %f %D %i
+command! sudocopy        sudo cp -R %f %D
+command! sudomove        sudo mv -i %f %D
 command! sudoedit        sudoedit %c
 command! sudoremove      sudo rm -i %f
 command! sudochgown      sudo chown simone:simone %f

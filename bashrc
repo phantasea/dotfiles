@@ -197,7 +197,7 @@ if [ -f ~/.alias ]; then
     . ~/.alias
 fi
 
-[ -f /opt/conf/forgit.bash ] && source /opt/conf/forgit.bash
+#[ -f /opt/conf/forgit.bash ] && source /opt/conf/forgit.bash
 [ -f /opt/conf/fzf.bash ]    && source /opt/conf/fzf.bash
 
 # enable programmable completion features

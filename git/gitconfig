@@ -45,10 +45,10 @@
     a  = add
     c  = clone
     d  = diff
+    s  = status
     co = checkout
     ci = commit -m
     br = branch
-    st = status
     lg = log
     dt = difftool
     mt = mergetool
