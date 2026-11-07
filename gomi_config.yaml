@@ -2,7 +2,7 @@ core:
   trash:
     strategy: auto
     home_fallback: true
-    gomi_dir: /var/tmp/Trash_ranger
+    gomi_dir: /var/tmp/Trash/ranger
     forbidden_paths:
     - $HOME/.local/share/Trash
     - $HOME/.trash

@@ -2,7 +2,7 @@
 
 mark  a  /opt/apps          vifm
 mark  c  /opt/conf          vifm
-mark  d  /var/tmp/Trash_vifm
+mark  d  /var/tmp/Trash/vifm
 mark  h  ~/                 misc
 mark  i  ~/pics             celeb
 mark  m  /opt/misc          repo

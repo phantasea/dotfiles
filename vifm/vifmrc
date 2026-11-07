@@ -584,7 +584,7 @@ endif
 set timeoutlen=1000
 set notitle
 set trash
-set trashdir=/var/tmp/Trash_vifm
+set trashdir=/var/tmp/Trash/vifm
 set undolevels=99
 if $DISPLAY != ""
 set viewcolumns=-{name},{rating},17{mtime}
@@ -922,7 +922,6 @@ command! epub2txt epub2txt %a %c &
 " }}}
 
 " autocmds {{{
-autocmd DirEnter '/var/tmp/Trash*'    setl dotfiles
 autocmd DirEnter '/opt/util'          setl nomillerview lsview previewprg='bat --style="plain" -- %c'
 autocmd DirEnter '/opt/apps/vifm'     exec 'norm! fs;'
 autocmd DirEnter '~/docs/webs'        exec 'norm! zF'

@@ -126,8 +126,8 @@ export MPD_PORT=6609
 export OPENAI_API_KEY="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"
 export DELTA_PAGER="less -R"
 export TRASH_DIR="/var/tmp/Trash"
-export TRASH_RANGER="/var/tmp/Trash_ranger"
-export TRASH_VIFM="/var/tmp/Trash_vifm"
+export TRASH_RANGER="/var/tmp/Trash/ranger"
+export TRASH_VIFM="/var/tmp/Trash/vifm"
 export FF_DEF_DIR="/var/tmp/mozilla/firefox/77cpc977.default-release"
 export _ZO_EXCLUDE_DIRS="$HOME:/opt/.porn/*:/media/simone/*"
 
@@ -247,9 +247,8 @@ fi
 
 [[ ! -d /var/tmp/mpd ]] && mkdir -p /var/tmp/mpd
 [[ ! -d /var/tmp/mozilla ]] && mkdir -p /var/tmp/mozilla
-[[ ! -d /var/tmp/Trash ]] && mkdir -p /var/tmp/Trash
-[[ ! -d /var/tmp/Trash_vifm ]] && mkdir -p /var/tmp/Trash_vifm
-[[ ! -d /var/tmp/Trash_ranger ]] && mkdir -p /var/tmp/Trash_ranger
+[[ ! -d /var/tmp/Trash/vifm ]] && mkdir -p /var/tmp/Trash/vifm
+[[ ! -d /var/tmp/Trash/ranger ]] && mkdir -p /var/tmp/Trash/ranger
 
 FF_ADDON_DIR="/var/tmp/mozilla/firefox/*.default-release/storage.bak/default"
 FF_ADDON_DIR=$(ls -d $FF_ADDON_DIR 2>/dev/null | head -n 1)
