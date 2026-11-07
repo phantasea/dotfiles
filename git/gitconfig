@@ -46,6 +46,7 @@
     c  = clone
     d  = diff
     s  = status
+    r  = restore
     co = checkout
     ci = commit -m
     br = branch

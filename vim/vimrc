@@ -162,7 +162,6 @@ cnoremap   <C-D>    <Del>
 cnoremap   <C-E>    <End>
 cnoremap   <C-L>    <End>
 cnoremap   <C-F>    <Right>
-cnoremap   <C-I>    <Tab>
 cnoremap   <C-K>    <C-\>estrpart(getcmdline(), 0, getcmdpos()-1)<CR>
 cnoremap   <C-O>    <S-Tab>
 cnoremap   <C-Y>    <S-Left>
@@ -268,7 +267,6 @@ nnoremap   sa   :vert ball<CR>
 nnoremap   sb   :windo set scrollbind!<CR>
 nnoremap   sd   :DiffOrig<CR>
 nnoremap   sf   :call DirFilePicker("HSplit")<CR>
-nnoremap   so   :Fffm<CR>
 nnoremap   sq   :call QuitAllBufButMe()<CR>
 nnoremap   st   :terminal<cr>
 nnoremap   s}   :call OpenTagPreviewWin()<CR>

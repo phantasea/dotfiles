@@ -86,14 +86,22 @@ map  <down>   <nop>
 "nnoremap <tab>    :toggletab<cr>
 qnoremap  <s-tab>  <tab>
 nnoremap  <s-tab>  :fileinfo<cr>
+nnoremap c<tab>    :command<cr>
+nnoremap d<tab>    :dirs<cr>
+nnoremap f<tab>    :filelist<cr>
+nnoremap m<tab>    :media<cr>
 
 "<cr> = <c-m>
 nnoremap  <cr>     <c-g>
 vnoremap  <cr>     :select<cr>
+nnoremap c<cr>     :change<cr>
+nnoremap m<cr>     :chgperm<cr>
+nnoremap s<cr>     :sort<cr>
 nnoremap z<cr>     :!dotify %f<cr>
 
 nnoremap  <bs>     :fileinfo<cr>
 mnoremap  <bs>     <c-b>
+nnoremap g<bs>     :!manmux vifm<cr>
 qnoremap  <space>  <tab>
 mnoremap  <space>  <c-f>
 nnoremap  <space>  :keepsel switch<cr>
@@ -209,24 +217,20 @@ map <wait>  -or  :chmod o-r<cr>
 map <wait>  -ow  :chmod o-w<cr>
 map <wait>  -ox  :chmod o-x<cr>
 
-nnoremap <wait>  ;b  :marks<cr>
-nnoremap <wait>  ;c  :command<cr>
-nnoremap <wait>  ;d  :dirs<cr>
-nnoremap <wait>  ;F  :file<cr>
-nnoremap <wait>  ;g  :bmgo<space>
-nnoremap <wait>  ;h  :manhelp<cr>
-nnoremap <wait>  ;H  :help<cr>
-nnoremap <wait>  ;i  :imgall<cr>
-nnoremap <wait>  ;I  :imgrall<cr>
-nnoremap <wait>  ;J  :jobs<cr>
-nnoremap <wait>  ;L  :locate<space>
-nnoremap <wait>  ;m  :media<cr>
-nnoremap <wait>  ;p  :plugins<cr>
-nnoremap <wait>  ;R  :registers<cr>
-nnoremap <wait>  ;s  :sort<cr>
-nnoremap <wait>  ;S  :shell<cr>
-nnoremap <wait>  ;v  :version<cr>
-nnoremap <wait>  ;w  :pwd<cr>
+nnoremap <wait>  ,i  :imgall<cr>
+nnoremap <wait>  ,I  :imgrall<cr>
+nnoremap <wait>  ,b  :bmgo<space>
+nnoremap <wait>  ,j  :jobs<cr>
+nnoremap <wait>  ,l  :locate<space>
+nnoremap <wait>  ,m  :marks<cr>
+nnoremap <wait>  ,p  :plugins<cr>
+nnoremap <wait>  ,r  :registers<cr>
+nnoremap <wait>  ,s  :shell<cr>
+nnoremap <wait>  ,t  :lstrash<cr>
+nnoremap <wait>  ,u  :undolist<cr>
+nnoremap <wait>  ,v  :version<cr>
+nnoremap <wait>  ,w  :pwd<cr>
+
 nnoremap <wait>  ;x  :s/\.html$/.txt/g<cr>
 
 nnoremap <wait>  ;;  ;
@@ -239,6 +243,8 @@ nnoremap  ^  gg
 nnoremap  $  G
 nnoremap  %  %zz
 nnoremap  *  *
+nnoremap d*  :stardict<space>
+nnoremap g*  :ratings<cr>
 nnoremap  &  #
 nnoremap  !  !!  %c<left><left><left>
 nnoremap g!  :!./%c:. &<cr>
@@ -263,7 +269,6 @@ mnoremap  ]  zL
 " }}}
 
 " keymaps-5: regular chars
-nnoremap  al :! ls -p | grep -v / | sort -t' ' -k2 %q<cr>
 nnoremap  aa :%select<cr>
 vnoremap  aa :%select<cr>
 nnoremap  ac :%copy<cr>
@@ -297,8 +302,6 @@ nnoremap  cm :chmod<space>
 vnoremap  cm :chmod<space>
 nnoremap  co :copyout<cr>
 vnoremap  co :copyout<cr>
-nnoremap  cp cp
-vnoremap  cp cp
 nnoremap  cs :colorscheme<space><tab>
 nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
 nnoremap  C  :clone<cr>
@@ -307,18 +310,21 @@ nnoremap gc  :catselto<space>
 nnoremap  da :%delete<cr>
 nnoremap  dc :compare<cr>
 nnoremap  dd :delete<cr>
+nnoremap  dm :messages<cr>
 nnoremap  di do
 nnoremap  do dp
 nnoremap  ds :unselect//i<left><left>
 nnoremap  d\ dS
 nnoremap  D  DD
-nnoremap gd  :stardict<space>
+nnoremap gd  :select//i|d<left><left><left><left>
+nnoremap gD  :select//i|d!<left><left><left><left><left>
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
 nnoremap  E  e
 nnoremap ge  :empty<cr>
 nnoremap gf  :find<space>
+nnoremap gF  :filter//i<left><left>
 mnoremap  h  q
 dnoremap  h  q
 qnoremap  i  <nop>
@@ -341,10 +347,7 @@ nnoremap gL  :if filetype('.') == 'link' | exec 'norm! gF' | else | auxopen | en
 vnoremap  m  gM
 nnoremap  mj 2gM
 nnoremap  mk 3gM
-nnoremap gM  gMzz
-nnoremap  mr :ratings<cr>
-nnoremap  mt :lstrash<cr>
-nnoremap  mu :undolist<cr>
+nnoremap  gM gMzz
 nnoremap  mc :cmap<cr>
 nnoremap  md :dmap<cr>
 nnoremap  mm :mmap<cr>
@@ -386,13 +389,11 @@ vnoremap  sc :selcat<cr>gv
 nnoremap  sd :smartdiff<cr>
 vnoremap  sd :smartdiff<cr>
 nnoremap  se :exec "select /\.".expand('%c:e')."$/i"<cr>
-nnoremap  sf :select //i<left><left>
 nnoremap  si :switch<cr>:sync<cr>:switch<cr>
 nnoremap  sl :alink<cr>
 vnoremap  sl :alink<cr>
 nnoremap  sl :symlink<cr>
 vnoremap  sl :symlink<cr>
-nnoremap  sm :messages<cr>
 nnoremap  so :sync<cr>
 nnoremap  sp al
 nnoremap  sp :putlink<cr>
@@ -413,7 +414,7 @@ nnoremap  s| <c-w>|
 nnoremap  s_ <c-w>_
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
-nnoremap gs  :%s//g<left><left>
+nnoremap gs  :select//i<left><left>
 nnoremap  t  tj
 nnoremap  T  kt
 nnoremap gt  gs
@@ -518,7 +519,7 @@ set aproposprg='apropos %a'
 set deleteprg=""
 set findprg='fd -i -d=3 -t=f %p %s %u'
 set grepprg='rg --smart-case --vimgrep %i %a'
-set locateprg='locate %a'
+set locateprg='mlocate %a'
 set mediaprg='vifmmed'
 set previewprg=""
 
@@ -866,10 +867,10 @@ command! iconv    iconv -f GBK -t UTF8 %c -o %c %i
 command! vgrep    vim "+grep %a"
 command! mpv      mpv --vo=drm %c
 command! mpl      mplayer -vo x11 %c
-command! manhelp  manmux vifm
 command! weather  curl --silent wttr.in | sed 's/\x1B\[[0-9;]*[mGK]//g' | less
 command! weather  curl --silent wttr.in | bat
 command! mpvplay  mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-16-60 %c
+command! filelist ls -p | grep -v / | sort -t' ' -k2 %q
 
 command! extract  extract %c %i
 command! extractA aunpack -e %f &>/dev/null &
