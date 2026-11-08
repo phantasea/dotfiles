@@ -92,9 +92,10 @@ nnoremap f<tab>    :filelist<cr>
 nnoremap m<tab>    :media<cr>
 
 "<cr> = <c-m>
-nnoremap  <cr>     <c-g>
+nnoremap  <cr>     :open<cr>
 vnoremap  <cr>     :select<cr>
 nnoremap c<cr>     :change<cr>
+nnoremap g<cr>     <c-g>
 nnoremap m<cr>     :chgperm<cr>
 nnoremap s<cr>     :sort<cr>
 nnoremap z<cr>     :!dotify %f<cr>
@@ -318,6 +319,8 @@ nnoremap  d\ dS
 nnoremap  D  DD
 nnoremap gd  :select//i|d<left><left><left><left>
 nnoremap gD  :select//i|d!<left><left><left><left><left>
+nnoremap <help> gd :seltempdel<cr>
+nnoremap <help> gD :selpermdel<cr>
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
@@ -379,7 +382,7 @@ vnoremap  r  cw
 nnoremap  r  cw
 nnoremap  R  cW<c-u>
 nnoremap gr  :grep<space>
-qnoremap gr  :grep<space>
+mnoremap gr  :grep<space>
 qnoremap  s  <c-w>
 nnoremap  sa GVgg
 vnoremap  sa ggoG
@@ -822,6 +825,24 @@ command! smartsortbysize
      \ |   setl sort='+iname'
      \ | endif
 
+command! seltempdel
+     \ : let g:regex = input('trash regex=')
+     \ | if g:regex != ''
+     \ |   exec 'select/'.g:regex.'/i'
+     \ |   if selected() > 0
+     \ |     delete
+     \ |   endif
+     \ | endif
+
+command! selpermdel
+     \ : let g:regex = input('remove regex=')
+     \ | if g:regex != ''
+     \ |   exec 'select/'.g:regex.'/i'
+     \ |   if selected() > 0
+     \ |     delete!
+     \ |   endif
+     \ | endif
+
 let g:zcmd = 0
 command! togglezcmd
      \ : if g:zcmd == 0
@@ -925,7 +946,6 @@ command! epub2txt epub2txt %a %c &
 autocmd DirEnter '/opt/util'          setl nomillerview lsview previewprg='bat --style="plain" -- %c'
 autocmd DirEnter '/opt/apps/vifm'     exec 'norm! fs;'
 autocmd DirEnter '~/docs/webs'        exec 'norm! zF'
-autocmd DirEnter '~/misc/gits/**/*'   setl dotfiles
 autocmd DirEnter '~/pics/celeb/*/'    setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/combo'       setl sort='-mtime,+iname'
 autocmd DirEnter '~/pics/fave*'       setl sort='-mtime,+iname'
