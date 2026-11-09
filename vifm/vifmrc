@@ -113,7 +113,7 @@ nnoremap g<space>  :edit $MYVIFMRC<cr>
 nnoremap o<space>  :if toggle("bold") | hi OddLine cterm=bold | else | hi OddLine cterm=none | endif<cr>
 nnoremap s<space>  :smartsortbysize<cr>
 nnoremap x<space>  <c-w>x
-nnoremap z<space>  :togglezcmd<space>
+nnoremap z<space>  :togglezcmd /opt/util/
 " }}}
 
 " keymaps-2: Ctrl+X {{{
@@ -319,8 +319,8 @@ nnoremap  d\ dS
 nnoremap  D  DD
 nnoremap gd  :select//i|d<left><left><left><left>
 nnoremap gD  :select//i|d!<left><left><left><left><left>
-nnoremap <help> gd :seltempdel<cr>
-nnoremap <help> gD :selpermdel<cr>
+nnoremap <help> gd :seltodeltemp<cr>
+nnoremap <help> gD :seltodelperm<cr>
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
@@ -700,7 +700,9 @@ endif
 command! smartHI
      \ : if v:count > 0
      \ |   exec '.-'.v:count
-     \ |   open
+     \ |   if isdir('.')
+     \ |     open
+     \ |   endif
      \ | else
      \ |   exec 'norm! H'
      \ | endif
@@ -708,7 +710,9 @@ command! smartHI
 command! smartLO
      \ : if v:count > 0
      \ |   exec '.+'.v:count
-     \ |   open
+     \ |   if isdir('.')
+     \ |     open
+     \ |   endif
      \ | else
      \ |   exec 'norm! L'
      \ | endif
@@ -716,7 +720,7 @@ command! smartLO
 command! smartdiff
      \ : if selected() == 0
      \ |   exec '!vim -d %%c %%C'
-     \ | elseif selected() >= 2 && selected() <= 3
+     \ | elseif selected() == 2
      \ |   exec '!vim -d %%f'
      \ | else
      \ |   echo 'Diff selected files == '.selected().'!'
@@ -825,8 +829,8 @@ command! smartsortbysize
      \ |   setl sort='+iname'
      \ | endif
 
-command! seltempdel
-     \ : let g:regex = input('trash regex=')
+command! seltodeltemp
+     \ : let g:regex = input('trash#regex=')
      \ | if g:regex != ''
      \ |   exec 'select/'.g:regex.'/i'
      \ |   if selected() > 0
@@ -834,8 +838,8 @@ command! seltempdel
      \ |   endif
      \ | endif
 
-command! selpermdel
-     \ : let g:regex = input('remove regex=')
+command! seltodelperm
+     \ : let g:regex = input('remove#regex=')
      \ | if g:regex != ''
      \ |   exec 'select/'.g:regex.'/i'
      \ |   if selected() > 0
@@ -867,30 +871,21 @@ command! imgclear vifmimg clear
 
 command! clock    tty-clock -cBS -C 6
 command! cmatrix  cmatrix -abs -C cyan
-command! editrc   vimux $VIFM/vifmrc
-command! df       df -h %m 2>/dev/null
-command! ps       pstree %m
 command! ctags    ctags -R . %i
+command! df       df -h %m 2>/dev/null
 command! du       ncdu .
+command! ps       pstree %m
 command! uz       tar -zxf %c %i
 command! uj       tar -jxf %c %i
 command! zip      zip -r %f.zip %f
-command! run      !! ./%f
 command! mkcd     :mkdir %a | cd %a
-command! md       mkdir -p %a
-command! mv       mv -r %f %D
-command! cp       cp -r %f %D
-command! link     ln -s %d/%f %D
-command! mkbt     mktorrent -p -a -o %D/%f.torrent %d%f
 command! sign     gpg2 --armor --detach-sign %c
 command! reload   :write | restart full
 command! iconv    iconv -f GBK -t UTF8 %c -o %c %i
-command! vgrep    vim "+grep %a"
-command! mpv      mpv --vo=drm %c
-command! mpl      mplayer -vo x11 %c
-command! weather  curl --silent wttr.in | sed 's/\x1B\[[0-9;]*[mGK]//g' | less
+command! vimgrep  vim "+grep %a"
+command! mpvcli   mpv --vo=drm %c
+command! mplgui   mplayer -vo x11 %c
 command! weather  curl --silent wttr.in | bat
-command! mpvplay  mpv --ontop --no-border --force-window --autofit=500x280 --geometry=-16-60 %c
 command! filelist ls -p | grep -v / | sort -t' ' -k2 %q
 
 command! extract  extract %c %i
@@ -922,10 +917,11 @@ command! ffvids   fd -H -L -d=4 -t=f -e=mp4 -e=webm -e=avi -e=mkv -e=rmvb . /opt
 command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --bind 'ctrl-o:execute(fzfopen {})' | sed 's/ /\\ /g' | xargs -r webopen
 command! ffwebs   fd -d=1 -t=f . ~/docs/webs | fzf --height=0 --print0 | xargs -0r vifmgoto
 command! ffiptv   cat %a | fzf -d, --with-nth -1 --height=0 | xargs -r vidplay -x 2>/dev/null
-command! fftest   :let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-tmux --height 10 2> /dev/tty")
-                \| if $FZF_RES != ''
-                \|   exec 'cd' fnameescape($FZF_RES)
-                \| endif
+command! fftest
+     \ : let $FZF_RES = term("fd -d 2 -t d '' ".expand('%d')." | fzf-tmux --height 10 2> /dev/tty")
+     \ | if $FZF_RES != ''
+     \ |   exec 'cd' fnameescape($FZF_RES)
+     \ | endif
 
 command! altopen  fileopen -b %c
 command! auxopen  fileopen -B %c
