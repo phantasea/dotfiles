@@ -281,23 +281,23 @@ nnoremap  gW    :w !sudo tee % > /dev/null<CR>
 vnoremap  gy    y:call SmartVisualYank()<CR>
 vnoremap  gY    "+y
 nnoremap   Y    y$
-nnoremap   zh   :nohlsearch<cr>
+nnoremap   zh   :nohlsearch<CR>
 nnoremap   zm   zz
 nnoremap   zo   @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 nnoremap   zw   :set wrap!<cr>
 
-nnoremap   c<CR>   <NOP>
-nnoremap   d<CR>   <NOP>
-nnoremap   f<CR>   :Fffm<cr>
-nnoremap   g<CR>   <NOP>
-nnoremap   m<CR>   <NOP>
-nnoremap   s<CR>   <NOP>
-nnoremap   t<CR>   <NOP>
-nnoremap   y<CR>   <NOP>
-nnoremap   z<CR>   zt
+nnoremap <silent>  c<CR>   :%s/^\(第.\{1,5\}章\)/\r\1：/g<CR>
+nnoremap <silent>  d<CR>   :g/^$/d<CR>
+nnoremap <silent>  f<CR>   :%s/\v^([0-9]+)\./第\1章：/g
+nnoremap <silent>  g<CR>   :%s/[￼ 　  \t]\+//g<CR>
+nnoremap <silent>  m<CR>   <NOP>
+nnoremap <silent>  s<CR>  :%s/?/？/ge \| %s/,/，/ge \| %s/\~/～/ge \| %s/!/！/ge \| %s/:/：/ge \| %s/;/；/ge \| %s/(/（/ge \| %s/)/）/ge \| %s/\.\.\./…/ge \| %s/\.\./…/ge \| %s/…\./……/ge \| %s/\.…/……/ge \| %s/\"/＂/ge<CR>
+nnoremap <silent>  t<CR>   <NOP>
+nnoremap <silent>  y<CR>   <NOP>
+nnoremap <silent>  z<CR>   :%s/\n\([^￼ 　  \t]\)/\1/g<CR>
 
-nnoremap   d<Tab>  <NOP>
 nnoremap   c<Tab>  :.retab<CR>
+nnoremap   d<Tab>  :%s/[￼ 　  \t]\+//g<CR>
 nnoremap   g<Tab>  :retab<CR>
 nnoremap   m<Tab>  <NOP>
 nnoremap   y<Tab>  :FormatJSON<CR>
@@ -305,7 +305,7 @@ nnoremap   s<Tab>  s<C-V><Tab><Esc>
 nnoremap   z<Tab>  i<C-V><Tab><Esc>
 
 nnoremap   c<space>   :call SmartOpenQfWin()<CR>
-nnoremap   d<space>   :vert ball<CR>:call SmartDiffToggle()<CR>
+nnoremap   d<space>   :vert ball<CR>:call DiffToggle()<CR>
 nnoremap   g<space>   :edit ~/.vimrc<CR>
 nnoremap   m<space>   :edit ~/.vim/bookmarks<CR>
 nnoremap   s<space>   :<C-U>call FZF_Files(v:count1)<cr>
@@ -595,7 +595,7 @@ func! ListSrchCurrFile(mode)
     call setpos('.', save_cursor)
 endfunc
 
-func! SmartDiffToggle()
+func! DiffToggle()
     if &diff
         diffoff
     else
