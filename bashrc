@@ -130,6 +130,8 @@ export TRASH_RANGER="/var/tmp/Trash/ranger"
 export TRASH_VIFM="/var/tmp/Trash/vifm"
 export FF_DEF_DIR="/var/tmp/mozilla/firefox/77cpc977.default-release"
 export _ZO_EXCLUDE_DIRS="$HOME:/opt/.porn/*:/media/simone/*"
+export RUSTUP_HOME="/var/tmp/rust/rustup"
+export CARGO_HOME="/var/tmp/rust/cargo"
 
 #new file: 600 [-rw-------]
 #new dir:  700 [drwx------]
@@ -249,6 +251,8 @@ fi
 [[ ! -d /var/tmp/mozilla ]] && mkdir -p /var/tmp/mozilla
 [[ ! -d /var/tmp/Trash/vifm ]] && mkdir -p /var/tmp/Trash/vifm
 [[ ! -d /var/tmp/Trash/ranger ]] && mkdir -p /var/tmp/Trash/ranger
+[[ ! -d /var/tmp/rust/rustup ]] && mkdir -p /var/tmp/rust/rustup
+[[ ! -d /var/tmp/rust/cargo ]] && mkdir -p /var/tmp/rust/cargo
 
 FF_ADDON_DIR="/var/tmp/mozilla/firefox/*.default-release/storage.bak/default"
 FF_ADDON_DIR=$(ls -d $FF_ADDON_DIR 2>/dev/null | head -n 1)

@@ -134,7 +134,6 @@ cnoremap  <c-@>  <c-y>
 cnoremap  <c-g>  <a-f>
 cnoremap  <c-j>  <cr>
 cnoremap  <c-o>  <s-tab>
-cnoremap  <c-r>  <c-x>
 cnoremap  <c-t>  <c-g>
 cnoremap  <c-v>  <c-x>s
 cnoremap  <c-y>  <a-b>
@@ -256,7 +255,7 @@ nnoremap  ~  :cd ~<cr>
 nnoremap  @  :cyclesort<cr>
 nnoremap  #  :cyclenumber<cr>
 nnoremap  ?  :file<space><tab>
-nnoremap  \  :if selected() > 0 | invert s | else | invert o | endif<cr>
+nnoremap  \  :smartinvert<cr>
 vnoremap  \  :invert s<cr>
 nnoremap g\  :invert f<cr>
 nnoremap  _  :!lsattr -d %c %S<cr>
@@ -274,7 +273,7 @@ nnoremap  aa :%select<cr>
 vnoremap  aa :%select<cr>
 nnoremap  ac :%copy<cr>
 nnoremap  ad :%delete<cr>
-nnoremap  aD :%delete!<cr>
+nnoremap  aD :%DELETE<cr>
 nnoremap  ae :%edit<cr>
 nnoremap  am :%chmod<space>
 nnoremap  ar :%rename<cr>
@@ -317,10 +316,13 @@ nnoremap  do dp
 nnoremap  ds :unselect//i<left><left>
 nnoremap  d\ dS
 nnoremap  D  DD
-nnoremap gd  :select//i|d<left><left><left><left>
-nnoremap gD  :select//i|d!<left><left><left><left><left>
-nnoremap <help> gd :seltodeltemp<cr>
-nnoremap <help> gD :seltodelperm<cr>
+nnoremap gd  :select//i|d<C-R>=setcmdpos(8)<cr>
+nnoremap gD  :select//i|d!<C-R>=setcmdpos(8)<cr>
+nnoremap gD  :select//i|D<C-R>=setcmdpos(8)<cr>
+nnoremap <input> gd :seltodeltemp<cr>
+nnoremap <input> gD :seltodelperm<cr>
+nnoremap gd  :g//d<left><left>
+nnoremap gD  :g//D<left><left>
 nnoremap  e  :edit %c<cr>
 mnoremap  e  v
 qnoremap  e  v
@@ -726,6 +728,20 @@ command! smartdiff
      \ |   echo 'Diff selected files == '.selected().'!'
      \ | endif
 
+command! smartinvert
+     \ : exec 'keepsel let g:keepsel = &keepsel'
+     \ | exec 'keepsel set keepsel'
+     \ | let g:restore = ''
+     \ | if !g:keepsel
+     \ |   let g:restore = 'set nokeepsel'
+     \ | endif
+     \ | if selected() > 0
+     \ |   invert s
+     \ | else
+     \ |   invert o
+     \ | endif
+     \ | exec g:restore
+
 let g:tabmap = 1
 command! toggletab
      \ : if g:tabmap
@@ -993,6 +1009,7 @@ fileview  {*.[1-8]},<text/troff>  man ./%c | col -b
 " Office files
 filextype *.doc,*.docx,*.xls,*.xlsx,*.ppt,*.pptx  libreoffice 2>/dev/null %c &
 filetype  *.xls,*.xlsx,*.csv,*.tsv  vd %c, sc-im %c
+filetype  *.docx doxx %c
 fileview  *.doc  antiword %c, catdoc -- %c
 fileview  *.docx docx2txt %c -, catdoc -- %c, pandoc -s -t markdown -- %c
 fileview  *.ppt  catppt %c
