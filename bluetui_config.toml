@@ -1,0 +1,25 @@
+# ascii display (false = do not show icons)
+ascii = false
+
+# Possible values: "Legacy", "Start", "End", "Center", "SpaceAround", "SpaceBetween"
+layout = "Legacy"
+
+# Window width
+# Possible values: "auto" or a positive integer
+width = "auto"
+
+toggle_scanning = "s"
+
+# Set to true to enable Esc key to quit the app
+esc_quit = false
+
+[adapter]
+toggle_pairing = "p"
+toggle_power = "o"
+toggle_discovery = "d"
+
+[paired_device]
+unpair = "u"
+toggle_trust = "t"
+toggle_favorite = "f"
+rename = "r"
