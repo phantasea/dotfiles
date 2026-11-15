@@ -1,0 +1,17 @@
+[keymap]
+preset = "vim"
+
+[keymap.custom]
+k = "scroll_up"
+j = "scroll_down"
+ctrl-k = "page_up"
+ctrl-j = "page_down"
+g = "goto_start"
+G = "goto_end"
+tab = "toggle_outline"
+N = "search_previous"
+n = "search_next"
+z = "toggle_search_state"
+h = "toggle_help"
+y = "copy"
+esc = "escape"
