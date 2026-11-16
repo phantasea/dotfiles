@@ -65,31 +65,35 @@ class filter_ext_type(Command):
 
 class subst(Command):
     """
-    :subst <pattern> [replace]
+    :subst <pattern> [replace] [flags]
     """
 
     def execute(self):
         from ranger.ext.shell_escape import shell_escape as esc
 
         if not self.arg(1):
-            self.fm.notify("subst <pattern> [replace]")
+            self.fm.notify("subst <pattern> [replace] [flags]")
             return
 
         pattern = self.arg(1)
-        replace = self.rest(2)
-        #regexobj = re.compile(pattern)
-        #regexobj = re.compile(pattern, re.IGNORECASE)
+        replace = self.arg(2)
+        flags = self.rest(3)
+
+        regex_flags = re.IGNORECASE if "i" in flags else 0
+        regexobj = re.compile(pattern, regex_flags)
 
         for file in self.fm.thistab.get_selection():
             filename = esc(file.basename)
-            #newfilename = regexobj.sub(replace, filename)
-            #newfilename = re.sub(pattern, replace, filename, flags=re.IGNORECASE)
-            newfilename = re.sub(pattern, replace, filename)
+            newfilename = regexobj.sub(replace, filename)
+            #newfilename = re.sub(pattern, replace, filename, flags=regex_flags)
             try:
                 self.fm.notify(filename + ' -> ' + newfilename)
                 self.fm.run('mv ' + filename + ' ' + newfilename)
             except OSError as err:
                 self.fm.notify(err)
+
+class s(subst):
+    pass
 
 
 class toggle_split(Command):
