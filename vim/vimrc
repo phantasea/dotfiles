@@ -135,6 +135,7 @@ endif
 "nnoremap <F37> :echo "You pressed ONLY Ctrl+I!"<CR>
 "nnoremap <Tab> :echo "You pressed ONLY Tab!"<CR>
 
+nnoremap   <Tab>     1<C-G>
 inoremap   <Tab>      <C-N>
 nnoremap   <CR>       <C-W>w
 nnoremap   <BS>       <PageUp>H
