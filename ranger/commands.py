@@ -63,9 +63,42 @@ class filter_ext_type(Command):
         self.fm.ui.redraw_window()
 
 
+class pwd(Command):
+    def execute(self):
+        self.fm.notify(self.fm.thisdir)
+
+class p(pwd):
+    pass
+
+
+class g(Command):
+    def execute(self):
+        if not self.arg(1):
+            self.fm.notify("g/pat/cmd")
+            return
+
+        pattern = self.arg(1)
+        command = self.rest(2)
+        self.fm.execute_console('scout -mrs ' + pattern)
+        self.fm.execute_console(command)
+
+
+class v(Command):
+    def execute(self):
+        if not self.arg(1):
+            self.fm.notify("v/pat/cmd")
+            return
+
+        pattern = self.arg(1)
+        command = self.rest(2)
+        self.fm.execute_console('scout -vmrs ' + pattern)
+        self.fm.execute_console(command)
+
+
 class subst(Command):
     """
     :subst <pattern> [replace] [flags]
+    :subst/pat/rep/i
     """
 
     def execute(self):
@@ -92,6 +125,7 @@ class subst(Command):
             except OSError as err:
                 self.fm.notify(err)
 
+#add by sim1: add alias cmd 's' for 'subst'
 class s(subst):
     pass
 
