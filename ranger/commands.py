@@ -79,8 +79,17 @@ class g(Command):
 
         pattern = self.arg(1)
         command = self.rest(2)
+        if not command:
+            command = 'pwd'
+
         self.fm.execute_console('scout -mrs ' + pattern)
+        if not self.fm.thisdir.marked_items:
+            self.fm.notify("None matched for /" + pattern + "/")
+            return
+
+        self.fm.settings.gcmd_running = True
         self.fm.execute_console(command)
+        self.fm.settings.gcmd_running = False
 
 
 class v(Command):
@@ -91,7 +100,23 @@ class v(Command):
 
         pattern = self.arg(1)
         command = self.rest(2)
-        self.fm.execute_console('scout -vmrs ' + pattern)
+        if not command:
+            command = 'pwd'
+
+        if self.fm.settings.gcmd_running == True:
+            self.fm.execute_console('scout -mrsV ' + pattern)
+        else:
+            self.fm.execute_console('scout -mrsv ' + pattern)
+
+        cwd = self.fm.thisdir
+        if not cwd.marked_items:
+            self.fm.notify("None matched for /" + pattern + "/")
+            return
+
+        if len(cwd.marked_items) == len(cwd.files):
+            self.fm.notify("All matched for /" + pattern + "/")
+            return
+
         self.fm.execute_console(command)
 
 
