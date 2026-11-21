@@ -65,9 +65,14 @@ class filter_ext_type(Command):
 
 class pwd(Command):
     def execute(self):
-        self.fm.notify(self.fm.thisdir)
+        self.fm.notify('PWD: ' + str(self.fm.thisdir), duration=10, bad=False)
 
-class p(pwd):
+
+class print(Command):
+    def execute(self):
+        self.fm.notify('CMD: ' + self.fm.ui.console.line, duration=10, bad=False)
+
+class p(print):
     pass
 
 
@@ -89,11 +94,11 @@ class g(Command):
 
         cwd = self.fm.thisdir
         if not cwd.marked_items:
-            self.fm.notify("None matched for /" + pattern + "/")
+            self.fm.notify("None matched for: %s" % self.fm.ui.console.line, duration=8)
             return
 
         if len(cwd.marked_items) == len(cwd.files):
-            self.fm.notify("All matched for /" + pattern + "/")
+            self.fm.notify("All matched for: %s" % self.fm.ui.console.line, duration=8)
             return
 
         self.fm.settings.gcmd_running = True

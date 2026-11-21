@@ -306,7 +306,7 @@ nnoremap  cs :colorscheme<space><tab>
 nnoremap  ct :!touch -m -t 202612312058 %f<left><left><left>
 nnoremap  C  :clone<cr>
 vnoremap  C  :clone<cr>
-nnoremap gc  :catselto<space>
+nnoremap gc  :g//p<left><left>
 nnoremap  da :%delete<cr>
 nnoremap  dc :compare<cr>
 nnoremap  dd :delete<cr>
