@@ -128,6 +128,50 @@ class v(Command):
         self.fm.settings.gcmd_running = False
 
 
+class zip(Command):
+    def execute(self):
+        cwd = self.fm.thisdir
+        if not cwd.marked_items:
+            self.fm.notify("Nothing zipped for NONE selected!")
+            return
+
+        if len(cwd.marked_items) == len(cwd.files):
+            self.fm.notify("Nothing zipped for ALL selected!")
+            return
+
+        self.fm.execute_console('mark_files all=True toggle=True')
+        self.fm.execute_console('narrow')
+
+        if cwd.marked_items:
+            for fobj in cwd.marked_items[:]:
+                cwd.mark_item(fobj, 0)
+
+
+class z(zip):
+    pass
+
+
+class ZIP(Command):
+    def execute(self):
+        cwd = self.fm.thisdir
+        if not cwd.marked_items:
+            self.fm.notify("Nothing zipped for NONE selected!")
+            return
+
+        if len(cwd.marked_items) == len(cwd.files):
+            self.fm.notify("Nothing zipped for ALL selected!")
+            return
+
+        self.fm.execute_console('narrow')
+
+        if cwd.marked_items:
+            for fobj in cwd.marked_items[:]:
+                cwd.mark_item(fobj, 0)
+
+class Z(ZIP):
+    pass
+
+
 class subst(Command):
     """
     :subst <pattern> [replace] [flags]
