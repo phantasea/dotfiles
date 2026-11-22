@@ -419,11 +419,12 @@ nnoremap  s| <c-w>|
 nnoremap  s_ <c-w>_
 nnoremap  S  :s//g<left><left>
 vnoremap  S  :s//g<left><left>
-nnoremap gs  :select//i<left><left>
+nnoremap gs  :select!//i<left><left>
 nnoremap  t  tj
 nnoremap  T  kt
 nnoremap gt  gs
 nnoremap  U  <c-r>
+nnoremap gu  :unselect//i<left><left>
 qnoremap  v  Q
 nnoremap  V  av
 vnoremap  V  <cr>
@@ -893,7 +894,6 @@ command! du       ncdu .
 command! ps       pstree %m
 command! uz       tar -zxf %c %i
 command! uj       tar -jxf %c %i
-command! zip      zip -r %f.zip %f
 command! mkcd     :mkdir %a | cd %a
 command! sign     gpg2 --armor --detach-sign %c
 command! reload   :write | restart full
