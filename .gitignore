@@ -1,3 +1,11 @@
+config/.gsd-keyboard.settings-ported
+config/gnome-initial-setup-done
+config/gtk-3.0/
+config/ibus/
+config/mimeapps.list
+config/nautilus/
+config/pavucontrol.ini
+config/pulse/
 elinks/*
 !elinks/elinks.conf
 !elinks/bookmarks

@@ -1,0 +1,12 @@
+{
+  "documents": {
+    "file-sample_100kB.docx": {
+      "scroll_offset": 18,
+      "last_search": "",
+      "last_accessed": {
+        "secs_since_epoch": 1794650328,
+        "nanos_since_epoch": 519673782
+      }
+    }
+  }
+}
