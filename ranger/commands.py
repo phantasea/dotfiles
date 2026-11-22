@@ -78,14 +78,10 @@ class p(print):
 
 class g(Command):
     def execute(self):
-        if not self.arg(1):
-            self.fm.notify("g/pat/cmd")
-            return
-
         pattern = self.arg(1)
         command = self.rest(2)
         if not command:
-            command = 'pwd'
+            command = 'print'
 
         if self.fm.settings.gcmd_running == True:
             self.fm.execute_console('scout -mrsK ' + pattern)
@@ -108,14 +104,10 @@ class g(Command):
 
 class v(Command):
     def execute(self):
-        if not self.arg(1):
-            self.fm.notify("v/pat/cmd")
-            return
-
         pattern = self.arg(1)
         command = self.rest(2)
         if not command:
-            command = 'pwd'
+            command = 'print'
 
         if self.fm.settings.gcmd_running == True:
             self.fm.execute_console('scout -mrsvK ' + pattern)
